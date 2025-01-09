@@ -1,0 +1,162 @@
+/* General Reset */
+body, h1, p, input, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header Styling */
+header {
+    background: #6200ea;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Search Container */
+.search-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+#searchInput {
+    padding: 12px;
+    width: 80%;
+    max-width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+#searchInput:focus {
+    border: 1px solid #6200ea;
+}
+
+/* Ontology Container with Grid Layout */
+#ontology-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+    justify-items: center; /* Centre cards horizontally */
+}
+
+/* Ontology Card Styling */
+.ontology-card {
+    background: #9c27b0;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%; /* Ensures responsive width */
+    max-width: 200px; /* Controls card size */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ontology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Sections */
+.card-header,
+.card-name {
+    background: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: white;
+}
+
+.card-header {
+    font-size: 18px;
+}
+
+.circle {
+    background: black;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-content {
+    background: black;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card-description {
+    background: black;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    #ontology-container {
+        grid-template-columns: repeat(4, 1fr); /* Four columns for medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    #ontology-container {
+        grid-template-columns: repeat(3, 1fr); /* Three columns for smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    #ontology-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for very small screens */
+    }
+}
+
+@media (max-width: 400px) {
+    #ontology-container {
+        grid-template-columns: repeat(1, 1fr); /* One column for narrow screens */
+    }
+}

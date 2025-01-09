@@ -1,0 +1,243 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background: linear-gradient(135deg, #1b1b1b, #333);
+    padding: 0;
+}
+
+/* Header Ribbon */
+.header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width */
+    position: sticky; /* Sticky at the top */
+    top: 0; /* Fixed to the top */
+    z-index: 10; /* Ensures it stays above other elements */
+}
+
+.logo img {
+    height: 40px; /* Adjust the size of your logo */
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+        margin: 0;
+}
+
+.nav ul li a {
+    color: #f7a11b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav ul li a:hover {
+    color: #e69518;
+}
+
+/* Social Media Icons in Ribbon */
+.social-icons a {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.social-icons img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Main Header */
+.header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f7a11b;
+    color: #1b1b1b;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background: #e69518;
+}
+
+/* Features Section */
+.features {
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns per row */
+    gap: 20px; /* Space between boxes */
+}
+
+
+.feature-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.feature-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #f7a11b;
+}
+
+.feature-box p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    background: #111;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.footer .social-icons {
+    margin-top: 10px;
+}
+
+.footer .social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer .social-icons img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.footer .social-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Floating Photo */
+.floating-photo {
+    position: absolute; /* Makes the photo float */
+    top: 120%; /* Adjust this value to position below "Key Features" */
+    right: 10%; /* Distance from the right edge */
+    width: 200px; /* Adjust the width */
+    z-index: 5; /* Ensure it floats above other elements */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.floating-photo img {
+    width: 100%; /* Ensures responsive resizing */
+    border-radius: 10px; /* Adds rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.floating-photo:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* For Responsive Design */
+@media (max-width: 768px) {
+    .floating-photo {
+        right: 5%; /* Adjust for smaller screens */
+        width: 150px; /* Smaller image size */
+    }
+}
+
+/* Video Background Container */
+/* Video Background */
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Fullscreen Height */
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Send Video Behind Content */
+    object-fit: cover; /* Cover the Entire Container */
+}
+
+/* Overlay for Readability */
+.video-overlay {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-grey);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-Transparent Overlay */
+}

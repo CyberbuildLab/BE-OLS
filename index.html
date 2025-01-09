@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC3 Ontologies</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>EC3 Ontologies</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Ontologies..."
+                oninput="filterOntologies()" aria-label="Search Ontologies">
+        </div>
+    </header>
+
+    <main id="ontology-container">
+        <div class="ontology-card">
+            <div class="card-header">Acronym</div>
+            <div class="card-name">Name</div>
+            <div class="circle">EC3Web</div>
+            <div class="card-content">FOOPS Score</div>
+            <div class="card-content">Primary Domain</div>
+            <div class="card-content">Secondary Domain</div>
+            <div class="card-description">Short Description</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EC3 OLS. All rights reserved.</p>
+    </footer>
+
+    <script src="ontology_cards.js"></script>
+</body>
+
+</html>
