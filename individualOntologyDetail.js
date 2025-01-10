@@ -1,8 +1,10 @@
-// Fetch and display ontology data dynamically based on the query parameter
+// This the  file for individual ontolgoy descriptions after the user clicks on the cards or on the See Details butyon
+
+// Fetch and display ontology data dynamically 
 async function loadOntologyDetails() {
-    // Get the ontology name from the query string in the URL
+    // Get the ontology NAME from the URL string in the URL that comes from the displayOntologies function in ontology-cards.js
     const urlParams = new URLSearchParams(window.location.search);
-    const ontologyName = urlParams.get('ontology'); // Get the ontology name from the URL
+    const ontologyName = urlParams.get('ontology');
 
     if (!ontologyName) {
         document.getElementById('ontology-details').innerHTML = 'No ontology found.';
@@ -24,19 +26,19 @@ async function loadOntologyDetails() {
             return;
         }
 
-        populateOntologyTable(ontology);  // Populate the details in the table
+        populateOntologyTable(ontology);  // create the table
     } catch (error) {
         console.error('Error fetching ontology data:', error);
         document.getElementById('ontology-details').innerHTML = 'Error loading ontology data. Please try again later.';
     }
 }
 
-// Function to populate the ontology details in the table
+// Function to create and populate the ontology table
 function populateOntologyTable(ontology) {
     const tableBody = document.querySelector('#ontology-table tbody');
-    tableBody.innerHTML = '';  // Clear existing rows
+    tableBody.innerHTML = '';  
 
-    // Populate table with ontology data
+    // Populate the table with data
     Object.keys(ontology).forEach(key => {
         if (ontology[key] !== null) {
             const row = document.createElement('tr');
@@ -49,5 +51,5 @@ function populateOntologyTable(ontology) {
     });
 }
 
-// Load ontology details when the page is loaded
+
 window.onload = loadOntologyDetails;

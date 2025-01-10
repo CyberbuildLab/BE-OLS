@@ -1,15 +1,17 @@
-// Fetch and display ontology data dynamically
+// This the main file for all functions that display the ontology cards
+
+// Fetch and display ontology data dynamically from a JSON file
 async function loadOntologies() {
     try {
-        const response = await fetch('data/Ontologies_forRepo.json'); // Ensure the JSON file path is correct
+        const response = await fetch('data/Ontologies_forRepo.json'); 
         if (!response.ok) {
             throw new Error('Failed to fetch JSON file');
         }
 
-        const ontologies = await response.json(); // Parse the JSON data
-        window.ontologiesData = ontologies; // Store the data globally for reuse
-        console.log('Ontologies loaded:', ontologies); // Log for debugging
-        displayOntologies(ontologies); // Display all ontologies initially
+        const ontologies = await response.json(); 
+        window.ontologiesData = ontologies; 
+        console.log('Ontologies loaded:', ontologies); 
+        displayOntologies(ontologies); 
     } catch (error) {
         console.error('Error loading ontologies:', error);
         document.getElementById('ontology-container').innerHTML = '<p>Error loading ontologies. Please try again later.</p>';
@@ -19,18 +21,18 @@ async function loadOntologies() {
 // Function to display ontologies
 function displayOntologies(ontologies) {
     const container = document.getElementById('ontology-container');
-    container.innerHTML = '';  // Clear previous content
-
+    container.innerHTML = '';  
     ontologies.forEach(ontology => {
         const card = document.createElement('div');
         card.classList.add('card');
 
+        // This part is for making the individualOntologyDetail.html tailored to each ontology based on their Name in the JSON file
         // Create the link that directs to individualOntologyDetail.html with the ontology name as a query parameter
         const ontologyLink = document.createElement('a');
         ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Name)}`; // URL with query parameter
-        ontologyLink.classList.add('card-link');  // Optional: Add a class for styling the link
+        ontologyLink.classList.add('card-link');  
 
-        // Add content inside the card
+        // content inside the ontology cards:
         ontologyLink.innerHTML = `
             <div class="media">
                 <img src="images/EC3SpiderChart.png" alt="EC3 Spider Chart">
@@ -54,27 +56,26 @@ function displayOntologies(ontologies) {
             </div>
         `;
 
-        // Append the ontologyLink (which contains the entire card content) to the card
+        // Append the ontologyLink 
         card.appendChild(ontologyLink);
-
         container.appendChild(card);  // Add the card to the container
     });
 }
 
-// Function to filter ontologies based on a search query
+// Function to filter ontologies based on a search query for any keyword. This function is dynamic and shows the cards as the user types
 function filterOntologies(query) {
     const filtered = window.ontologiesData.filter(ontology =>
         Object.values(ontology).some(value =>
             value && String(value).toLowerCase().includes(query.toLowerCase())
         )
     );
-    displayOntologies(filtered);  // Display the search results
+    displayOntologies(filtered);
 }
 
-// Function to handle primary domain button clicks
+// Function to handle primary domain button clicks for the top box
 function filterByDomain(domain) {
     if (domain === 'all') {
-        displayOntologies(window.ontologiesData);  // Show all ontologies when "All" is clicked
+        displayOntologies(window.ontologiesData);  
     } else {
         const filtered = window.ontologiesData.filter(ontology =>
             ontology['Primary Domain'] && ontology['Primary Domain'].toLowerCase() === domain.toLowerCase()
@@ -93,7 +94,7 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 const primaryDomainButtons = document.querySelectorAll('.primary-domain-btn');
 primaryDomainButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-        const domain = e.target.innerText.trim(); // Get domain from button text (ensuring no extra spaces)
+        const domain = e.target.innerText.trim();
         filterByDomain(domain); // Filter based on primary domain
     });
 });

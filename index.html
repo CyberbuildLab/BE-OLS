@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EC3 Ontologies</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>EC3 OLS</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -17,45 +17,60 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a href="Landing.html">Home</a></li>
-                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
+                <li><a href="#knowledgehub">Knowledge Hub</a></li>
+                <li><a href="https://ec-3.org/BIM-Standards-Landscape-Explorer.html">Other Projects</a></li>
+                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About
+                        Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <div id="search-and-buttons">
-            <div id="search-container">
-                <input type="text" id="searchInput" placeholder="Search Ontologies ...">
-                <button id="searchButton" onclick="filterOntologies()">→</button>
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="images/OntologyVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <header class="header">
+                <h1>EC3 Ontology LookUp Service</h1>
+                <p>blablabla</p>
+                <a href="http://localhost:3000/ontologyCards.html" class="button">Get Started</a>
+            </header>
+        </div>
+    </div>
+
+
+    <section class="features">
+        <h2>Key Features</h2>
+        <div class="features-container">
+            <div class="feature-box">
+                <h3>XXX</h3>
+                <p>Search for ontologies.</p>
             </div>
-            <div id="primary-domains">
-                <button class="primary-domain-btn" onclick="window.location.reload();">All</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Information Management')">Information Management</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Circular Economy')">Circular Economy</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Energy')">Energy</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Infrastructure)')">BE Product (Infrastructure)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Building)')">BE Product (Building)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Structural (Performance)')">Structural (Performance)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Quality')">Quality</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Geographic Information')">Geographic Information</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Production (Process)')">Production (Process)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Resources')">Resources</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Comfort')">Comfort</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Safety')">Safety</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('IoT Sensors/Actuators')">IoT Sensors/Actuators</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Fire Safety')">Fire Safety</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Geometry')">Geometry</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Planning Permission')">Planning Permission</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Mobility/Transport')">Mobility/Transport</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Facilities Management')">Facilities Management</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Weather/Climate')">Weather/Climate</button>
+            <div class="feature-box">
+                <h3>XXX2</h3>
+                <p>See their FAIR-ness.</p>
+            </div>
+            <div class="feature-box">
+                <h3>XXX3</h3>
+                <p>blabla.</p>
+            </div>
+            <div class="feature-box">
+                <h3>XXX4</h3>
+                <p>blabla</p>
+            </div>
+            <div class="feature-box">
+                <h3>XXX5</h3>
+                <p>blabla.</p>
+            </div>
+            <div class="feature-box">
+                <h3>XXX6</h3>
+                <p>blabla.</p>
             </div>
         </div>
-
-        <section class="ontologies" id="ontology-container"></section>
-    </main>
+    </section>
 
     <footer class="footer">
         <div class="social-icons">
@@ -64,8 +79,6 @@
         </div>
         <p>&copy; Copyright EC3 M&S 2025 | All rights reserved.</p>
     </footer>
-
-    <script src="ontology_cards.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-/* General Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
     padding: 0;
 }
 
-/* Header Ribbon */
+/* Header Ribbon - this is the same for all pages */
 .header-ribbon {
     display: flex;
     justify-content: space-between;
@@ -29,14 +29,14 @@ body {
     padding: 10px 20px;
     background: #222;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 100%; /* Full width */
-    position: sticky; /* Sticky at the top */
-    top: 0; /* Fixed to the top */
-    z-index: 10; /* Ensures it stays above other elements */
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .logo img {
-    height: 40px; /* Adjust the size of your logo */
+    height: 40px;
     width: auto;
     transition: transform 0.3s;
 }
@@ -63,7 +63,7 @@ body {
     color: #e69518;
 }
 
-/* Social Media Icons in Ribbon */
+/* Social media icons in ribbon */
 .social-icons a {
     display: inline-block;
     margin-left: 10px;
@@ -79,7 +79,7 @@ body {
     transform: scale(1.2);
 }
 
-/* Main Header */
+/* Main Header - this is the same for all pages*/
 .header {
     text-align: center;
     margin: 40px 0;
@@ -121,9 +121,10 @@ body {
     margin-bottom: 20px;
 }
 
+/* The grid is set to 3  cards per row*/
 .features-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three columns per row */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px; /* Space between boxes */
 }
 
@@ -152,7 +153,7 @@ body {
     color: #ccc;
 }
 
-/* Footer */
+/* Footer - this is the same for all pages */
 .footer {
     text-align: center;
     margin-top: 40px;
@@ -181,27 +182,6 @@ body {
     transform: scale(1.2);
 }
 
-/* Floating Photo */
-.floating-photo {
-    position: absolute; /* Makes the photo float */
-    top: 120%; /* Adjust this value to position below "Key Features" */
-    right: 10%; /* Distance from the right edge */
-    width: 200px; /* Adjust the width */
-    z-index: 5; /* Ensure it floats above other elements */
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.floating-photo img {
-    width: 100%; /* Ensures responsive resizing */
-    border-radius: 10px; /* Adds rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-}
-
-.floating-photo:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-}
-
 /* For Responsive Design */
 @media (max-width: 768px) {
     .floating-photo {
@@ -211,11 +191,10 @@ body {
 }
 
 /* Video Background Container */
-/* Video Background */
 .video-background {
     position: relative;
     width: 100%;
-    height: 100vh; /* Fullscreen Height */
+    height: 100vh; /* Fullscreen height */
     overflow: hidden;
 }
 
