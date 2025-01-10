@@ -41,7 +41,7 @@ function displayOntologies(ontologies) {
                 <div class="name">${ontology.Name}</div>
                 <div class="acronym">${ontology.Acronym || 'N/A'}</div>
                 <div class="details">
-                    <span><strong>FOOPS Score:</strong> ${ontology.FOOPSScore || 'N/A'}</span>
+                    <span><strong>FOOPS Score:</strong> ${ontology['FOOPS Score'}</span>
                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
                 </div>
