@@ -1,0 +1,135 @@
+/* Header Ribbon */
+.header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width */
+    top: 0; /* Fixed to the top */
+    box-sizing: border-box; /* Prevents width overflow from padding */
+    overflow: hidden; /* Prevents overflow */
+}
+
+/* Logo Section */
+.logo a {
+    display: inline-block;
+    max-width: 100%; /* Ensure the logo fits within the header */
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav {
+    display: flex; /* Ensure navigation items are laid out in a row */
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end; /* Align the menu to the right */
+    width: 100%; /* Ensure the nav takes up the full width */
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end; /* Align items to the right */
+    width: 100%; /* Ensure full width for the list */
+}
+
+.nav ul li a {
+    color: #f7a11b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 5px; /* Add some padding to make sure it's not too close to the edge */
+}
+
+.nav ul li a:hover {
+    color: #e69518;
+}
+
+
+body {
+    margin: 0;
+    overflow-x: hidden; 
+    font-family: Arial, sans-serif;
+
+}
+
+/* Main Content Wrapper */
+main {
+    flex: 1;
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); /* Same gradient as body */
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    max-width: 1200px;
+    margin: 20px auto; /* Center the content */
+}
+
+
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    background: #111;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.footer .social-icons {
+    margin-top: 10px;
+}
+
+.footer .social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer .social-icons img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.footer .social-icons img:hover {
+    transform: scale(1.2);
+}
+
+
+/* Table Styling */
+#ontology-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#ontology-table th,
+#ontology-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#ontology-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#ontology-table td {
+    background-color: #fff;
+}

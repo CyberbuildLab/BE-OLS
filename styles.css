@@ -7,156 +7,285 @@ body, h1, p, input, div {
 
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); /* Gradient background */
+    color: #ffffff; /* Default text color */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+}
+
+/* Main Content Wrapper */
+main {
+    flex: 1;
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); /* Same gradient as body */
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    max-width: 1200px;
+    margin: 20px auto; /* Center the content */
+}
+
+/* Header Ribbon */
+.header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width */
+    position: sticky; /* Sticky at the top */
+    top: 0; /* Fixed to the top */
+    z-index: 10; /* Ensures it stays above other elements */
+    max-width: 100%; /* Ensure header stays within screen width */
+    box-sizing: border-box; /* Prevents width overflow from padding */
+    overflow: hidden; /* Prevents overflow */
+}
+
+/* Header Logo */
+.logo img {
+    height: 40px; /* Adjust the size of your logo */
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
     margin: 0;
 }
 
-/* Header Styling */
-header {
-    background: #6200ea;
-    color: white;
-    padding: 20px 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-/* Search Container */
-.search-container {
-    margin: 20px auto;
-    text-align: center;
-}
-
-#searchInput {
-    padding: 12px;
-    width: 80%;
-    max-width: 600px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    outline: none;
-    transition: border 0.3s ease;
-}
-
-#searchInput:focus {
-    border: 1px solid #6200ea;
-}
-
-/* Ontology Container with Grid Layout */
-#ontology-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Five columns */
-    gap: 20px; /* Space between cards */
-    padding: 20px;
-    justify-items: center; /* Centre cards horizontally */
-}
-
-/* Ontology Card Styling */
-.ontology-card {
-    background: #9c27b0;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%; /* Ensures responsive width */
-    max-width: 200px; /* Controls card size */
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.ontology-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Card Sections */
-.card-header,
-.card-name {
-    background: black;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
+.nav ul li a {
+    color: #f7a11b;
+    text-decoration: none;
     font-weight: bold;
-    border-radius: 4px;
-    color: white;
+    transition: color 0.3s;
 }
 
-.card-header {
-    font-size: 18px;
+.nav ul li a:hover {
+    color: #e69518;
 }
 
-.circle {
-    background: black;
-    color: white;
-    width: 100px;
-    height: 100px;
-    margin: 10px auto;
-    border-radius: 50%;
+/* Search and Primary Domain Buttons */
+#search-and-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+/* Search Box */
+#search-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#searchInput {
+    padding: 10px;
     font-size: 16px;
-    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.card-content {
-    background: black;
+#searchButton {
+    background-color: #ff69b4; /* Pink button */
     color: white;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Primary Domain Buttons */
+#primary-domains {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.primary-domain-btn {
+    background-color: transparent;
+    border: 2px solid #333;
+    color: #333;
+    padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
-}
-
-.card-description {
-    background: black;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 12px;
-    font-style: italic;
-    border-radius: 4px;
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: white;
-    padding: 10px;
     text-align: center;
-    font-size: 14px;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-domain-btn:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* Optionally, add focus halo effect for accessibility */
+.primary-domain-btn:focus, #searchButton:focus {
+    outline: none;
+}
+
+/* Ontology Cards Container */
+#ontology-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Show 3 cards per row */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Individual Card */
+.card {
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%; /* Ensures consistent width for each card */
+    max-width: 400px; /* Set a maximum width for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hover effect */
+}
+
+/* Media (Image) */
+.card .media {
+    background-color: white;
+    height: 180px; /* Set height for image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card .media img {
+    max-width: 100%; /* Ensure image doesn't exceed container width */
+    height: 100%; /* Ensure the image fills the space */
+    object-fit: cover; /* Ensure the image fits the area without distortion */
+}
+
+/* Content Section */
+.card .content {
+    padding: 20px;
+}
+
+.card .name {
+    font-size: 20px; /* Larger font for Name */
+    font-weight: bold;
+    color: #282828;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.card .acronym {
+    font-size: 16px; /* Smaller font for Acronym */
+    font-weight: 300; /* Lighter weight */
+    color: #9F9F9F;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.card .details {
+    font-size: 12px; /* Standard font size for details */
+    color: #444;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.card .details span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Buttons Section */
+.card .buttons {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    #ontology-container {
-        grid-template-columns: repeat(4, 1fr); /* Four columns for medium screens */
-    }
+.card .buttons a,
+.card .buttons button {
+    background-color: #2D2D2D; /* Dark color for the buttons */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 45%; /* Button width */
+    text-align: left;
+    font-size: 12px;
 }
 
-@media (max-width: 900px) {
-    #ontology-container {
-        grid-template-columns: repeat(3, 1fr); /* Three columns for smaller screens */
-    }
+.card .buttons a:hover,
+.card .buttons button:hover {
+    background-color: #2D2D2D; /* Darker color on hover */
 }
 
-@media (max-width: 600px) {
-    #ontology-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for very small screens */
-    }
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    background: #111;
+    font-size: 0.9rem;
+    color: #ccc;
 }
 
-@media (max-width: 400px) {
-    #ontology-container {
-        grid-template-columns: repeat(1, 1fr); /* One column for narrow screens */
-    }
+.footer .social-icons {
+    margin-top: 10px;
+}
+
+.footer .social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer .social-icons img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.footer .social-icons img:hover {
+    transform: scale(1.2);
+}
+
+
+/* make the entire card is clickable */
+.card-link {
+    display: block;  
+    text-decoration: none;  
+    color: inherit; 
+}
+
+
+.card-link:hover {
+    transform: translateY(-5px); 
+    cursor: pointer; 
 }

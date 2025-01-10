@@ -9,28 +9,60 @@
 </head>
 
 <body>
-    <header>
-        <h1>EC3 Ontologies</h1>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search Ontologies..."
-                oninput="filterOntologies()" aria-label="Search Ontologies">
+    <header class="header-ribbon">
+        <div class="logo">
+            <a href="https://ec-3.org/">
+                <img src="images/ec3_logo.jpg" alt="EC3 Logo">
+            </a>
         </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="Landing.html">Home</a></li>
+                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main id="ontology-container">
-        <div class="ontology-card">
-            <div class="card-header">Acronym</div>
-            <div class="card-name">Name</div>
-            <div class="circle">EC3Web</div>
-            <div class="card-content">FOOPS Score</div>
-            <div class="card-content">Primary Domain</div>
-            <div class="card-content">Secondary Domain</div>
-            <div class="card-description">Short Description</div>
+    <main>
+        <div id="search-and-buttons">
+            <div id="search-container">
+                <input type="text" id="searchInput" placeholder="Search Ontologies ...">
+                <button id="searchButton" onclick="filterOntologies()">→</button>
+            </div>
+            <div id="primary-domains">
+                <button class="primary-domain-btn" onclick="window.location.reload();">All</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Information Management')">Information Management</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Circular Economy')">Circular Economy</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Energy')">Energy</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Infrastructure)')">BE Product (Infrastructure)</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Building)')">BE Product (Building)</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Structural (Performance)')">Structural (Performance)</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Quality')">Quality</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Geographic Information')">Geographic Information</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Production (Process)')">Production (Process)</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Resources')">Resources</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Comfort')">Comfort</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Safety')">Safety</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('IoT Sensors/Actuators')">IoT Sensors/Actuators</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Fire Safety')">Fire Safety</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Geometry')">Geometry</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Planning Permission')">Planning Permission</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Mobility/Transport')">Mobility/Transport</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Facilities Management')">Facilities Management</button>
+                <button class="primary-domain-btn" onclick="filterByDomain('Weather/Climate')">Weather/Climate</button>
+            </div>
         </div>
+
+        <section class="ontologies" id="ontology-container"></section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 EC3 OLS. All rights reserved.</p>
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank"><img src="images/twitter.png" alt="Twitter"></a>
+            <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        </div>
+        <p>&copy; Copyright EC3 M&S 2025 | All rights reserved.</p>
     </footer>
 
     <script src="ontology_cards.js"></script>

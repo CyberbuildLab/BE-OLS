@@ -7,72 +7,96 @@ async function loadOntologies() {
         }
 
         const ontologies = await response.json(); // Parse the JSON data
+        window.ontologiesData = ontologies; // Store the data globally for reuse
         console.log('Ontologies loaded:', ontologies); // Log for debugging
-        displayOntologies(ontologies);
+        displayOntologies(ontologies); // Display all ontologies initially
     } catch (error) {
         console.error('Error loading ontologies:', error);
         document.getElementById('ontology-container').innerHTML = '<p>Error loading ontologies. Please try again later.</p>';
     }
 }
 
-// Function to map primary domain to corresponding image paths
-function getCategoryImage(category) {
-    switch (category?.toLowerCase()) {
-        case 'information management':
-            return 'images/information_management.png';
-        case 'circular economy':
-            return 'images/circular_economy.png';
-        case 'be product (building)':
-            return 'images/be_product_building.png';
-        case 'be product (infrastructure)':
-            return 'images/be_product_infrastructure.png';
-        default:
-            return 'images/default_category.png';
-    }
-}
-
+// Function to display ontologies
 function displayOntologies(ontologies) {
     const container = document.getElementById('ontology-container');
-    container.innerHTML = ''; // Clear previous content
+    container.innerHTML = '';  // Clear previous content
 
     ontologies.forEach(ontology => {
         const card = document.createElement('div');
-        card.classList.add('ontology-card');
+        card.classList.add('card');
 
-        card.innerHTML = `
-            <div class="card-header">${ontology.Acronym || 'N/A'}</div>
-            <div class="card-name">${ontology.Name || 'Unnamed Ontology'}</div>
-            <div class="circle">${ontology.EC3Web || 'N/A'}</div>
-            <div class="card-content">FOOPS Score: ${ontology['FOOPS Score'] || 'N/A'}</div>
-            <div class="card-content">Primary Domain: ${ontology['Primary Domain'] || 'N/A'}</div>
-            <div class="card-content">Secondary Domain: ${ontology['Secondary Domain'] || 'N/A'}</div>
-            <div class="card-description">${ontology['Short Description'] || 'No description available.'}</div>
+        // Create the link that directs to individualOntologyDetail.html with the ontology name as a query parameter
+        const ontologyLink = document.createElement('a');
+        ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Name)}`; // URL with query parameter
+        ontologyLink.classList.add('card-link');  // Optional: Add a class for styling the link
+
+        // Add content inside the card
+        ontologyLink.innerHTML = `
+            <div class="media">
+                <img src="images/EC3SpiderChart.png" alt="EC3 Spider Chart">
+            </div>
+            <div class="content">
+                <div class="name">${ontology.Name}</div>
+                <div class="acronym">${ontology.Acronym || 'N/A'}</div>
+                <div class="details">
+                    <span><strong>FOOPS Score:</strong> ${ontology.FOOPSScore || 'N/A'}</span>
+                    <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
+                    <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
+                </div>
+                <div class="buttons">
+                    <button class="see-details">
+                        See Details
+                    </button>
+                    <a href="${ontology.URI}" target="_blank" class="go-to-ontology-btn">
+                        See Ontology
+                    </a>
+                </div>
+            </div>
         `;
 
-        container.appendChild(card);
+        // Append the ontologyLink (which contains the entire card content) to the card
+        card.appendChild(ontologyLink);
+
+        container.appendChild(card);  // Add the card to the container
     });
 }
 
-
 // Function to filter ontologies based on a search query
-function filterOntologies() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-
-    fetch('Ontologies_forRepo.json')
-        .then(response => response.json())
-        .then(ontologies => {
-            const filtered = ontologies.filter(ontology =>
-                Object.values(ontology).some(value =>
-                    value && String(value).toLowerCase().includes(query)
-                )
-            );
-            displayOntologies(filtered);
-        })
-        .catch(error => console.error('Error filtering ontologies:', error));
+function filterOntologies(query) {
+    const filtered = window.ontologiesData.filter(ontology =>
+        Object.values(ontology).some(value =>
+            value && String(value).toLowerCase().includes(query.toLowerCase())
+        )
+    );
+    displayOntologies(filtered);  // Display the search results
 }
+
+// Function to handle primary domain button clicks
+function filterByDomain(domain) {
+    if (domain === 'all') {
+        displayOntologies(window.ontologiesData);  // Show all ontologies when "All" is clicked
+    } else {
+        const filtered = window.ontologiesData.filter(ontology =>
+            ontology['Primary Domain'] && ontology['Primary Domain'].toLowerCase() === domain.toLowerCase()
+        );
+        displayOntologies(filtered);
+    }
+}
+
+// Event listener for the search function
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const query = e.target.value.trim();  // Get the search input value
+    filterOntologies(query); // Call the search function with the query
+});
+
+// Event listener for primary domain buttons (including the "All" button)
+const primaryDomainButtons = document.querySelectorAll('.primary-domain-btn');
+primaryDomainButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const domain = e.target.innerText.trim(); // Get domain from button text (ensuring no extra spaces)
+        filterByDomain(domain); // Filter based on primary domain
+    });
+});
 
 // Load ontologies when the page is loaded
 window.onload = loadOntologies;
-
-// Expose the filter function for search input
-window.filterOntologies = filterOntologies;
