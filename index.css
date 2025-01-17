@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #fff;
     background: linear-gradient(135deg, #1b1b1b, #333);
