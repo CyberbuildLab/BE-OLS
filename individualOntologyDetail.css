@@ -65,7 +65,6 @@ body {
     margin: 0;
     overflow-x: hidden; 
     font-family: Arial, sans-serif;
-    font-size: 1.1 rem;
 
 }
 
@@ -118,7 +117,6 @@ main {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    font-size: 12 px;
 }
 
 #ontology-table th,
@@ -126,6 +124,7 @@ main {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+    font-size: 12 px;
 }
 
 #ontology-table th {
