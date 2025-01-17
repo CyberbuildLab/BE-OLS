@@ -118,6 +118,7 @@ main {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 12 px;
 }
 
 #ontology-table th,
