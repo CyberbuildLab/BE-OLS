@@ -64,7 +64,7 @@
 body {
     margin: 0;
     overflow-x: hidden; 
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
@@ -110,6 +110,34 @@ main {
     transform: scale(1.2);
 }
 
+/* Style for social icons */
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    justify-content: center; /* Center the icons */
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: white; /* White background behind the icons */
+    border-radius: 50%; /* Make the background circular */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    overflow: hidden; /* Ensure the icon fits inside the background */
+    text-align: center;
+    line-height: 40px; /* Center-align the image vertically */
+}
+
+.social-icons img {
+    width: 60%; /* Adjust the size of the image */
+    height: 60%;
+    object-fit: contain; /* Ensure the icon maintains its aspect ratio */
+    vertical-align: middle;
+}
+
+
 
 /* This is the part that makes this CSS different from the others in the folder. This is only for the table */
 /* Table Styling */
@@ -124,15 +152,47 @@ main {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-    font-size: 11 px;
 }
 
 #ontology-table th {
     background-color: #f4f4f4;
     color: #333;
-    font-size: 11 px;
 }
 
 #ontology-table td {
     background-color: #fff;
+}
+
+
+/* LAST Addition to accomodate the new cluster box */
+.box-shadow {
+    background-color: #fff; /* White background for the box */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    padding: 20px; /* Inner padding */
+    margin: 20px auto; /* Center align with space around */
+    max-width: 900px; /* Maximum width of the box */
+    border: 1px solid #ddd; /* Light border for separation */
+}
+
+/* Separate Cluster Section Styling */
+#cluster-box {
+    display: none; /* Initially hidden */
+    margin-top: 20px; /* Space above the cluster box */
+    padding: 15px; /* Inner padding for the box */
+    border: 2px solid #ffa500; /* Orange border to match theme */
+    border-radius: 8px; /* Rounded corners for the box */
+    background-color: #fdf5e6; /* Light yellow background */
+}
+
+#cluster-box h3 {
+    margin: 0 0 10px 0; /* Space below the title */
+    color: #333; /* Dark title color */
+    font-size: 18px; /* Slightly larger font size */
+}
+
+.cluster-name {
+    font-size: 16px; /* Font size for the cluster name */
+    font-weight: bold; /* Bold text for emphasis */
+    color: #555; /* Slightly darker text color */
 }
