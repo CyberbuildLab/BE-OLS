@@ -13,7 +13,7 @@ async function loadOntologyDetails() {
 
     try {
         // Fetch the ontology data from the JSON file
-        const response = await fetch('data/Ontologies_forRepo.json');
+        const response = await fetch('data/Ontologies_forRepoNew.json');
         if (!response.ok) {
             throw new Error('Failed to fetch ontology data');
         }
@@ -34,21 +34,72 @@ async function loadOntologyDetails() {
 }
 
 // Function to create and populate the ontology table
+// function populateOntologyTable(ontology) {
+//     const tableBody = document.querySelector('#ontology-table tbody');
+//     tableBody.innerHTML = '';  
+
+//     // Populate the table with data
+//     Object.keys(ontology).forEach(key => {
+//         if (ontology[key] !== null) {
+//             const row = document.createElement('tr');
+//             row.innerHTML = `
+//                 <td>${key}</td>
+//                 <td>${ontology[key]}</td>
+//             `;
+//             tableBody.appendChild(row);
+//         }
+//     });
+// }
+
+
 function populateOntologyTable(ontology) {
     const tableBody = document.querySelector('#ontology-table tbody');
-    tableBody.innerHTML = '';  
+    tableBody.innerHTML = ''; // Clear previous content
 
-    // Populate the table with data
-    Object.keys(ontology).forEach(key => {
-        if (ontology[key] !== null) {
+    // Define the desired order of fields
+    const fieldOrder = [
+        "Year published",
+        "Version",
+        "Licensing",
+        "URI/Link/Namespace",
+        "FOOPS Score",
+        "Short Description",
+        "Used Standards",
+        "Primary Domain",
+        "Secondary Domain",
+        "Reference",
+        "Linked-to ontologies AECO",
+        "Linked-by ontologies UPPER",
+    ];
+
+    // Populate the table in the defined order
+    fieldOrder.forEach((key) => {
+        if (ontology[key] !== null && ontology[key] !== undefined) {
+            let value = ontology[key];
+
+            // Capitalize specific fields
+            if (key === "Acronym" || key === "Linked-to ontologies AECO" || key === "Linked-by ontologies UPPER") {
+                value = String(value).toUpperCase();
+            }
+            
+
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${key}</td>
-                <td>${ontology[key]}</td>
+                <td>${value}</td>
             `;
             tableBody.appendChild(row);
         }
     });
+
+    // Check if PartOfCluster is "Yes" and display ClusterName in the second box
+    const clusterBox = document.getElementById('cluster-box');
+    if (ontology.PartOfCluster === "Yes" && ontology.ClusterName) {
+        clusterBox.style.display = 'block'; // Make the cluster box visible
+        clusterBox.querySelector('.cluster-name').textContent = ontology.ClusterName;
+    } else {
+        clusterBox.style.display = 'none'; // Hide the cluster box if not part of a cluster
+    }
 }
 
 
