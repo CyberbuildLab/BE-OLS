@@ -13,7 +13,7 @@ async function loadOntologyDetails() {
 
     try {
         // Fetch the ontology data from the JSON file
-        const response = await fetch('data/Ontologies_forRepoNew.json');
+        const response = await fetch('data/Ontologies_forRepo.json');
         if (!response.ok) {
             throw new Error('Failed to fetch ontology data');
         }
