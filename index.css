@@ -35,6 +35,18 @@ body {
     z-index: 10;
 }
 
+.header-title a {
+    color: #f7a11b; /* Match orange nav links */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px; /* Adjust to match the nav size */
+    transition: color 0.3s;
+}
+
+.header-title a:hover {
+    color: #e69518; /* Hover effect same as nav */
+}
+
 .logo img {
     height: 40px;
     width: auto;
