@@ -19,6 +19,7 @@ async function loadOntologies() {
 }
 
 
+
 // Generate a spider chart and return it as a data URL
 function generateSpiderChart(data) {
     const canvas = document.createElement('canvas');
