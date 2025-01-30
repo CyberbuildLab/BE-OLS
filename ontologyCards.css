@@ -249,7 +249,7 @@ main {
 /* Footer  - this is the same for all pages */
 .footer {
     text-align: center;
-    margin-top: 40px;
+    margin-top: auto;
     padding: 20px 0;
     background: #111;
     font-size: 0.9rem;
