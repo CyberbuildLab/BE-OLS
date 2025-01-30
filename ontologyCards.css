@@ -275,7 +275,32 @@ main {
     transform: scale(1.2);
 }
 
+/* Style for social icons */
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    justify-content: center; /* Center the icons */
+    margin-top: 15px;
+}
 
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: white; /* White background behind the icons */
+    border-radius: 50%; /* Make the background circular */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    overflow: hidden; /* Ensure the icon fits inside the background */
+    text-align: center;
+    line-height: 40px; /* Center-align the image vertically */
+}
+
+.social-icons img {
+    width: 60%; /* Adjust the size of the image */
+    height: 60%;
+    object-fit: contain; /* Ensure the icon maintains its aspect ratio */
+    vertical-align: middle;
+}
 
 /* This is the last change in this file*/
 /* make the entire card is clickable */
