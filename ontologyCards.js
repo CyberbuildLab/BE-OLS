@@ -149,7 +149,7 @@ function displayOntologies(ontologies) {
                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
                     <span><strong>FAIR Score:</strong> ${ontology['FOOPS'] || 'N/A'}</span>
-                    <span><strong>${ontology['Year published'] || 'N/A'</strong>}</span>
+                    <span><strong>${ontology['Year published'] || 'N/A'}</strong>}</span>
                 </div>
                 <div class="buttons">
                     <button class="see-details">See Details</button>
