@@ -53,9 +53,19 @@ async function loadOntologyDetails() {
 
 
 function populateOntologyTable(ontology) {
+
+    // Update the page header with ontology Name and Acronym (new addition: 20250227)
+    const ontologyHeading = document.getElementById('ontology-heading');
+    ontologyHeading.textContent = ontology.Name; // Set Name as the title
+
+    // Check if Acronym exists and append it
+    if (ontology.Acronym) {
+        ontologyHeading.textContent += ` (${ontology.Acronym.toUpperCase()})`;
+    }
+
     const tableBody = document.querySelector('#ontology-table tbody');
     tableBody.innerHTML = ''; // Clear previous content
-
+    
     // Define the desired order of fields
     const fieldOrder = [
         "Year published",
