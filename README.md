@@ -5,10 +5,25 @@ This is the repository of the **Built Environment - Ontology Lookup Service (BE-
 The BE-OLS is developed and maintained by a team of volunteers who are members of the [EC3 Modelling & Standards Committee](https://ec-3.org/governance/technical-committees/modelling-standards-committee/).
 
 
+
+
+
+
+Noticed an issue?
+==========
+If you notice some error in the information provided by the OLS, please submit an *Issue*.
+
+
+Contact Us
+==========
+For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
+
+Disclaimer
+==========
+This project is work-in-progress and we will constantly update and maintain the BE-OLS.
+
+References
+==========
 To acknowledge this work, please cite the following paper:
 
 > TBD
-
-If you notice some error in the information provided by the OLS, please submit an *Issue*.
-
-If you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
