@@ -5,7 +5,19 @@ This is the repository of the **Built Environment - Ontology Lookup Service (BE-
 The BE-OLS is developed and maintained by a team of volunteers who are members of the [EC3 Modelling & Standards Committee](https://ec-3.org/governance/technical-committees/modelling-standards-committee/).
 
 
+🚀 Key Features
 
+100+ Ontologies – A vast database covering various built environment topics.
+
+🔍 Advanced Filters – Extensive search capabilities to refine ontology selection.
+
+📊 Multi-Criteria Ontology Rating – Evaluation based on alignment, accessibility, robustness, quality, and quantity.
+
+🏗️ Domain-Driven Categorisation – Classification into 20 built environment-specific domains.
+
+✅ FAIR Assessment – Ensuring ontologies are Findable, Accessible, Interoperable, and Reusable (FAIR principles).
+
+🌐 Linked Built Environment Data Cloud – Mapping relationships between domain ontologies for better interoperability.
 
 
 
