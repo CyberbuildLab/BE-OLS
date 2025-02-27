@@ -47,6 +47,11 @@ body {
     color: #e69518; /* Hover effect same as nav */
 }
 
+.logo {
+    align-items: center;
+    display: flex;
+    gap: 10px;}
+
 .logo img {
     height: 40px;
     width: auto;
@@ -55,6 +60,20 @@ body {
 
 .logo img:hover {
     transform: scale(1.1);
+}
+
+/*Last fix*/
+.logo a {
+    color: #f7a11b; /* Match orange nav links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 20px; /* larger than nav size */
+
+}
+
+.logo a:hover {
+    color: #e69518; /* Hover effect same as nav */
 }
 
 .nav ul {
@@ -261,14 +280,4 @@ body {
 }
 
 
-/*Last fix*/
-.logo a {
-    color: #f7a11b; /* Match orange nav links */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
 
-.logo a:hover {
-    color: #e69518; /* Hover effect same as nav */
-}
