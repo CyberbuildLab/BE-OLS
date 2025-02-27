@@ -12,7 +12,6 @@
     top: 0;
     box-sizing: border-box;
     overflow: hidden;
-    z-index: 1000; 
 }
 
 .logo a {
