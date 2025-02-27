@@ -259,3 +259,16 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Semi-Transparent Overlay */
 }
+
+
+/*Last fix*/
+.logo a {
+    color: #f7a11b; /* Match orange nav links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.logo a:hover {
+    color: #e69518; /* Hover effect same as nav */
+}
