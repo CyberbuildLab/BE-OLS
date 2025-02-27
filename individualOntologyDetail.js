@@ -68,6 +68,8 @@ function populateOntologyTable(ontology) {
     
     // Define the desired order of fields
     const fieldOrder = [
+        "Name",
+        "Acronym",
         "Year published",
         "Version",
         "Licensing",
