@@ -121,32 +121,59 @@ function populateEvaluationTable(ontology) {
     const tableBody = document.querySelector("#evaluation-table tbody");
     tableBody.innerHTML = ""; // Clear previous content
 
-    const evaluationCriteria = [
-        { axis: "Alignment", criteria: "Linkage to upper ontologies", key: "Alignment" },
-        { axis: "Alignment", criteria: "Linkage to existing AECO ontologies", key: "LinkedToAECO" },
-        { axis: "Alignment", criteria: "Linkage to meta schema ontologies", key: "MetaSchema" },
-        { axis: "Accessibility", criteria: "Conceptual Data model available", key: "Accessability" },
-        { axis: "Accessibility", criteria: "Accessible as Serialization", key: "Serialization" },
-        { axis: "Accessibility", criteria: "Accessible as a URI", key: "URI" },
-        { axis: "Quality", criteria: "Clearly documented", key: "Quality" },
-        { axis: "Quality", criteria: "Use of annotations", key: "Annotations" },
-        { axis: "Quality", criteria: "Reused/Extended", key: "ReusedExtended" }
-    ];
+    // Define the fixed criteria and their corresponding keys in the JSON
+    const evaluationCriteria = {
+        "Alignment": [
+            { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
+            { criteria: "Linkage to existing AECO ontologies", key: "Linkage to existing AECO ontologies" },
+            { criteria: "Linkage to meta schema ontologies", key: "Linkage to meta schema ontologies" }
+        ],
+        "Accessibility": [
+            { criteria: "Conceptual Data model available", key: "Conceptual Data model available" },
+            { criteria: "Accessible as Serialization", key: "Accessible as Serialization" },
+            { criteria: "Accessible as a URI", key: "Accessible as a  URI" }
+        ],
+        "Quality": [
+            { criteria: "Clearly documented", key: "Clearly \u00a0documented" },
+            { criteria: "Use of annotations", key: "Use of annotations" },
+            { criteria: "Reused/Extended", key: "Reused/Extended" }
+        ]
+    };
 
-    evaluationCriteria.forEach(({ axis, criteria, key }) => {
-        const value = ontology[key] ? "Yes" : "No";
-        const score = ontology[key] || 0;
+    // Axis score mappings
+    const axisScores = {
+        "Alignment": ontology["Alignment"] || 0,
+        "Accessibility": ontology["Accessability"] || 0,
+        "Quality": ontology["Quality"] || 0
+    };
 
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${axis}</td>
-            <td>${criteria}</td>
-            <td>${value}</td>
-            <td>${score}</td>
-        `;
-        tableBody.appendChild(row);
+    Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
+        criteriaList.forEach((item, index) => {
+            let presence = ontology[item.key] ? ontology[item.key].trim().toLowerCase() : "no";
+            presence = presence === "yes" ? "Yes" : "No";
+
+            const row = document.createElement("tr");
+            
+            // First row of the axis group: Merge Evaluation Axis & Axis Score columns
+            if (index === 0) {
+                row.innerHTML = `
+                    <td rowspan="${criteriaList.length}" style="vertical-align: middle; text-align: center; font-weight: bold;">${axis}</td>
+                    <td>${item.criteria}</td>
+                    <td>${presence}</td>
+                    <td rowspan="${criteriaList.length}" style="vertical-align: middle; text-align: center; font-weight: bold;">${axisScores[axis]}</td>
+                `;
+            } else {
+                row.innerHTML = `
+                    <td>${item.criteria}</td>
+                    <td>${presence}</td>
+                `;
+            }
+            
+            tableBody.appendChild(row);
+        });
     });
 }
+
 
 // Function to Render Spider Chart
 function renderSpiderChart(ontology) {
