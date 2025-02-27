@@ -3,7 +3,7 @@
 // Fetch and display ontology data dynamically from a JSON file
 async function loadOntologies() {
     try {
-        const response = await fetch('data/Ontologies_forRepo.json');
+        const response = await fetch('data/20250227_Ontologies.json');
         if (!response.ok) {
             throw new Error('Failed to fetch JSON file');
         }
