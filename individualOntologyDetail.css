@@ -190,7 +190,7 @@ main {
 }
 
 
-/* LAST Addition to accomodate the new cluster box */
+
 .box-shadow {
     background-color: #fff; /* White background for the box */
     border-radius: 8px; /* Rounded corners */
@@ -224,7 +224,7 @@ main {
 }
 
 
-/* because header wasnot being displayed correctly */
+/* because header wasnot being displayed correctly (27 Feb 25)*/
 /* Responsive Fix for Smaller Screens */
 @media (max-width: 768px) {
     .header-ribbon {
@@ -248,7 +248,7 @@ main {
     }
 }
 
-/* Evaluation & Spider Chart Container */
+/* Evaluation & Spider Chart Container (27 Feb  25)*/
 .evaluation-container {
     display: flex;
     justify-content: space-between;
