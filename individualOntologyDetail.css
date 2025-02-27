@@ -34,7 +34,9 @@
 .logo {
     align-items: center;
     display: flex;
-    gap: 10px;}
+    gap: 10px;
+}
+
 .logo a {
     color: #f7a11b; /* Match orange nav links */
     text-decoration: none;
