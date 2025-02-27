@@ -13,6 +13,8 @@
     z-index: 1000; /* Ensure it stays above other elements */
     box-sizing: border-box;
     overflow: hidden;
+    z-index: 1000; 
+    height: 60px; 
 }
 
 .logo a {
