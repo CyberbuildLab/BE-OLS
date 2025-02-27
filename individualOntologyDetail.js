@@ -192,7 +192,7 @@ async function loadOntologyDetails() {
     }
 
     try {
-        const response = await fetch("data/20250227_Ontologies.json");
+        const response = await fetch("data/Ontologies_forRepo.json");
         if (!response.ok) throw new Error("Failed to fetch ontology data");
 
         const ontologies = await response.json();
