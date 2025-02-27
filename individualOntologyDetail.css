@@ -283,6 +283,8 @@ main {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    font-size: 10px;
+    
 }
 
 #evaluation-table th,
