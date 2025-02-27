@@ -1,5 +1,34 @@
 // This the  file for individual ontolgoy descriptions after the user clicks on the cards or on the See Details butyon
+// Fetch and Load Data
+async function loadOntologyDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ontologyName = urlParams.get("ontology");
 
+    if (!ontologyName) {
+        document.getElementById("ontology-details").innerHTML = "No ontology found.";
+        return;
+    }
+
+    try {
+        const response = await fetch("data/Ontologies_forRepo.json");
+        if (!response.ok) throw new Error("Failed to fetch ontology data");
+
+        const ontologies = await response.json();
+        const ontology = ontologies.find(o => o.Name === ontologyName);
+
+        if (!ontology) {
+            document.getElementById("ontology-details").innerHTML = "Ontology not found.";
+            return;
+        }
+
+        populateOntologyTable(ontology);
+        populateEvaluationTable(ontology);
+        renderSpiderChart(ontology);
+    } catch (error) {
+        console.error("Error fetching ontology data:", error);
+        document.getElementById("ontology-details").innerHTML = "Error loading ontology data.";
+    }
+}
 // Fetch and display ontology data dynamically 
 // async function loadOntologyDetails() {
 //     // Get the ontology NAME from the URL string in the URL that comes from the displayOntologies function in ontology-cards.js
