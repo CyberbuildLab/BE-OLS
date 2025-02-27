@@ -1,6 +1,6 @@
 // This the  file for individual ontolgoy descriptions after the user clicks on the cards or on the See Details butyon
 
-Fetch and display ontology data dynamically 
+//Fetch and display ontology data dynamically 
 async function loadOntologyDetails() {
     // Get the ontology NAME from the URL string in the URL that comes from the displayOntologies function in ontology-cards.js
     const urlParams = new URLSearchParams(window.location.search);
