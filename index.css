@@ -265,6 +265,7 @@ body {
     transform: translate(-50%, -50%);
     z-index: -1; /* Send Video Behind Content */
     object-fit: cover; /* Cover the Entire Container */
+    filter: grayscale(100%) hue-rotate(0deg);
 }
 
 /* Overlay for Readability */
