@@ -91,6 +91,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding-top: 70px;
 }
 
 
