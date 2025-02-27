@@ -75,6 +75,9 @@ main {
     color: #e69518; /* Hover effect same as nav */
 }
 
+.logo a:visited {
+    color: #f7a11b !important;}
+
 /* Navigation Menu - this is the same for all pages */
 .nav ul {
     list-style: none;
