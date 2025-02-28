@@ -20,8 +20,7 @@ Key Features
 
 🌐 Linked Built Environment Data Cloud – Mapping relationships between domain ontologies for better interoperability.
 
-
-![EC3 M&S Built Environment Ontology Lookup Service](images/EC3 M&S Built Environment Ontology Lookup Service.png)
+  <img src="images/EC3 M&S Built Environment Ontology Lookup Service.png">
 
 Noticed an issue?
 ==========
