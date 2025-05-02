@@ -28,6 +28,16 @@ Noticed an issue?
 ==========
 If you notice some error in the information provided by the OLS, please submit an *Issue*.
 
+If you would like to suggest the addition of a missing ontology, please submit the following information:
+* Name: {name of the ontology}
+* Acronym: {the namespeace acronym, e.g. bot}
+* URI/Namespace: {https://w3id.org/...}
+* Reference: {weblink to a webpage or DOI of the paper}
+* Link to AEC ontologies: {they should normally be already in BE-OLS. If not, please submit an Issue to add those too :)}
+* Link to Upper ontologies: {ontologies like: schema, terms, prov, skos, vann, cc, foaf, qudt, unit, og, fno}
+* Link to other professional domain ontologies: {ontologies that link to (sub)-domains that may not really be within AEC, e.g. eli}
+
+
 
 Contact Us
 ==========
