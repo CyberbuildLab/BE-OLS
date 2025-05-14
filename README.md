@@ -37,7 +37,11 @@ If you would like to suggest the addition of a missing ontology, please submit t
 * Link to Upper ontologies: {ontologies like: schema, terms, prov, skos, vann, cc, foaf, qudt, unit, og, fno}
 * Link to other professional domain ontologies: {ontologies that link to (sub)-domains that may not really be within AEC, e.g. eli}
 
+References
+==========
+To acknowledge this work, please cite the following peer-reviewed paper:
 
+> Akbarieh, A., Osadcha, I., Farghali, K.,  Bosché, F. , Puust, R.,  (2025). Development of a built environment ontology lookup service (BE-OLS) with a new ontology evaluation (Accepted). European Conference on Computing in Construction (EC3), Porto, Portugal.
 
 Contact Us
 ==========
@@ -46,10 +50,4 @@ For any queries, questions, sugestions and comments, or if you would like to con
 Disclaimer
 ==========
 This project is work-in-progress and we will constantly update and maintain the BE-OLS.
-
-References
-==========
-To acknowledge this work, please cite the following paper:
-
-> Akbarieh, A., Osadcha, I., Farghali, K.,  Bosché, F. , Puust, R.,  (2025). Development of a built environment ontology lookup service (BE-OLS) with a new ontology evaluation (Accepted). European Conference on Computing in Construction (EC3), Porto, Portugal.
 
