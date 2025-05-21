@@ -24,11 +24,11 @@ Key Features
   <img src="images/EC3 M&S Built Environment Ontology Lookup Service_v2.png">
   
 
-Noticed an issue?
+Issues (including Missing Ontologies)
 ==========
-If you notice some error in the information provided by the OLS, please submit an *Issue*.
+If you notice some error in the information provided by the OLS or a missing ontology, please submit an *Issue*.
 
-If you would like to suggest the addition of a missing ontology, please submit the following information:
+To suggest the addition of a missing ontology, please submit the following information:
 * Name: {name of the ontology}
 * Acronym: {the namespeace acronym, e.g. bot}
 * URI/Namespace: {https://w3id.org/...}
