@@ -15,7 +15,7 @@ A GitHub Actions workflow monitors this folder for modifications to `Ontologies_
 2. **Conversion**: The Python script `excel_to_json.py` in the main root reads the sheet **Data** by default and writes to `Ontologies_forRepo.json`.
 3. **Commit**: The updated JSON file is committed back into the `data/` folder. It replaces the previous version.
 4. **Time**: This process takes time. Wait 1-2 minutes.
-5. **Manual Conversion**: If you go to the Actions in the top ribbon and run the workflow manually via Convert Excel to JSON.
+5. **Manual Conversion**: Alternatively, you can go to the Actions in the top ribbon and run the workflow manually via Convert Excel to JSON.
 
 
 
