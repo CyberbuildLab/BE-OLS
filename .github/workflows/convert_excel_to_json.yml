@@ -1,5 +1,3 @@
-mkdir -p .github/workflows
-cat > .github/workflows/convert_excel_to_json.yml << 'EOF'
 name: Convert Excel to JSON
 
 on:
