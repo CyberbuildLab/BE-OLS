@@ -1,4 +1,0 @@
-# File: requirements.txt
-
-pandas
-openpyxl
