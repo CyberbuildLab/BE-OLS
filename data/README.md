@@ -17,7 +17,7 @@ A GitHub Actions workflow monitors this folder for modifications to `Ontologies_
 
 ## Important points (and troubleshooting)
 
-* **Correct Json name** The JSON output file must be named exactly `Ontologies_forRepo.json` so that all downstream code can locate it.
+* **Correct Json name** - The JSON output file must be named exactly `Ontologies_forRepo.json` so that all downstream code can locate it.
 * **Workflow failure** - Ensure the Excel workbook includes a sheet named **Data** and that it contains the main data used for the ontologies.
 * **Incorrect Excel name** - If the JSON filename is wrong, the front-end will not find it. If you upload a new Excel file with a different name, the converter will keep the new name for the json file.
 
