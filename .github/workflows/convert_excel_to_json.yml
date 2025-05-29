@@ -24,22 +24,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Convert Excel files to JSON
+      - name: Set timestamp
+        run: echo "TS=$(date -u +'%Y%m%dT%H%M%SZ')" >> $GITHUB_ENV
+
+      - name: Convert Excel to JSON (live + backup)
         run: |
           mkdir -p output
           for file in data/*.xlsx; do
             name=$(basename "$file" .xlsx)
-            python excel_to_json.py "$file" "output/${name}.json"
+            # overwrite the live JSON for your front-end
+            python excel_to_json.py "$file" "data/${name}.json"
+            # write a timestamped backup
+            python excel_to_json.py "$file" "output/${name}_${TS}.json"
           done
 
       - name: Commit and push JSON
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/*.json
+          git add data/*.json output/*.json
           if ! git diff --quiet --cached; then
             git commit -m "Auto-convert Excel to JSON"
             git push
-          else
-            echo "No changes to commit"
           fi
