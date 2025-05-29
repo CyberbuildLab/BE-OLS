@@ -1,49 +1,18 @@
-name: Convert Excel to JSON
+import json
+import pandas as pd
+import sys
 
-on:
-  push:
-    paths:
-      - 'data/*.xlsx'
-  workflow_dispatch:
+def excel_to_json(input_path, output_path, sheet_name=0):
+    df = pd.read_excel(input_path, sheet_name=sheet_name)
+    data = df.to_dict(orient='records')
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-jobs:
-  convert:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Set timestamp
-        run: echo "TS=$(date -u +'%Y%m%dT%H%M%SZ')" >> $GITHUB_ENV
-
-      - name: Convert Excel to JSON (live + backup)
-        run: |
-          mkdir -p output
-          for file in data/*.xlsx; do
-            name=$(basename "$file" .xlsx)
-            # overwrite the live JSON for your front-end
-            python excel_to_json.py "$file" "data/${name}.json"
-            # write a timestamped backup
-            python excel_to_json.py "$file" "output/${name}_${TS}.json"
-          done
-
-      - name: Commit and push JSON
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.json output/*.json
-          if ! git diff --quiet --cached; then
-            git commit -m "Auto-convert Excel to JSON"
-            git push
-          fi
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print("Usage: python excel_to_json.py <input.xlsx> <output.json> [sheet_name]")
+        sys.exit(1)
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    sheet = sys.argv[3] if len(sys.argv) > 3 else 0
+    excel_to_json(input_file, output_file, sheet)
