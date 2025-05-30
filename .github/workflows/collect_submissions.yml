@@ -2,54 +2,54 @@ name: Collect Ontology Submissions
 
 on:
   issues:
-    types: [opened]       # run only when an issue is created
+    types: [opened]
 
 jobs:
   export:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repo
+        uses: actions/checkout@v3
 
-      # ---------- extract form data ----------
-      - name: Extract form data to JSON
+      # -------- Parse the issue body --------
+      - name: Extract form data
         id: form
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = context.payload.issue           // <─ FIX: use context.payload
-            if (!issue) {
-              core.setFailed('No issue found in context'); 
-              return {};
+            const issue = context.payload.issue
+            const lines = issue.body.split(/\r?\n/)
+            const data  = {}
+
+            let currentKey = null
+            for (const ln of lines) {
+              const heading = ln.match(/^###\s+(.*)/)      // '### Name'
+              if (heading) {                               // start of a new field
+                currentKey = heading[1].trim()
+                continue
+              }
+              if (!currentKey) continue                    // not inside a field yet
+              if (ln.trim() === '') continue               // skip blank lines
+              data[currentKey] = ln.trim()                 // first non-blank line = answer
+              currentKey = null                            // reset for the next heading
             }
 
-            const lines = issue.body.split('\n')
-            // quick guard – expect a "Name:" field
-            if (!lines.some(l => l.startsWith('Name'))) {
-              core.info('Not an ontology-submission form; exiting.')
-              return {}
+            if (!Object.keys(data).length) {
+              core.setFailed('No form fields found – is this the right template?')
             }
 
-            const data = {}
-            for (const line of lines) {
-              const [rawKey, ...rest] = line.split(':')
-              if (!rest.length) continue
-              data[rawKey.trim()] = rest.join(':').trim()
-            }
-            return data
+            // expose as output called 'json'
+            core.setOutput('json', JSON.stringify(data, null, 2))
 
-      # ---------- stop if it was not the form ----------
-      - name: Abort if not form
-        if: ${{ steps.form.outputs == '{}' }}
-        run: echo "No form data – workflow ends."
-
-      # ---------- write JSON + Excel ----------
-      - name: Write JSON file
+      # -------- Write JSON to repo --------
+      - name: Save JSON
         run: |
           mkdir -p data/submissions
-          echo '${{ toJSON(steps.form.outputs) }}' \
-            > data/submissions/submission_${{ github.event.issue.number }}.json
+          echo '${{ steps.form.outputs.json }}' \
+            > "data/submissions/submission_${{ github.event.issue.number }}.json"
 
+      # -------- Convert JSON → Excel --------
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
@@ -58,15 +58,15 @@ jobs:
       - name: JSON → Excel
         run: |
           python create_submission_excel.py \
-            data/submissions/submission_${{ github.event.issue.number }}.json \
-            data/submissions/submission_${{ github.event.issue.number }}.xlsx
+            "data/submissions/submission_${{ github.event.issue.number }}.json" \
+            "data/submissions/submission_${{ github.event.issue.number }}.xlsx"
 
-      - name: Commit submission Excel
+      # -------- Commit both files --------
+      - name: Commit submission files
         run: |
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            # stage both artefacts
-            git add data/submissions/submission_${{ github.event.issue.number }}.json
-            git add data/submissions/submission_${{ github.event.issue.number }}.xlsx
-            git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
-            git push
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "data/submissions/submission_${{ github.event.issue.number }}.json"
+          git add "data/submissions/submission_${{ github.event.issue.number }}.xlsx"
+          git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
+          git push
