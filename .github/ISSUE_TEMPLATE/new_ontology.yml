@@ -1,5 +1,5 @@
 name: 🆕 New Ontology Submission
-description: Fill in the fields below to submit a new ontology entry.  The workflow will append it to the master Excel file.
+description: Fill in the fields below to submit a new ontology entry. This will generate a standalone Excel you can review.
 title: "Ontology submission: ${{ github.event.issue.number }}"
 labels:
   - ontology-submission
@@ -8,7 +8,6 @@ body:
     id: name
     attributes:
       label: Name
-      description: Friendly name of the ontology
   - type: input
     id: acronym
     attributes:
