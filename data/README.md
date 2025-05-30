@@ -8,6 +8,8 @@ This folder keeps  the source data and is the entry point for automated Excel-to
 * **Ontologies\_forRepo.json** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the Excel file changes.
 * **Output folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
 
+* * **submissions folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
+
 ## Automatic Conversion
 
 A GitHub Actions workflow monitors this folder for modifications to `Ontologies_forRepo.xlsx`. Whenever changes are pushed:
