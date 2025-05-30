@@ -2,41 +2,49 @@ name: Collect Ontology Submissions
 
 on:
   issues:
-    types:
-      - opened    # ← only trigger on new issues
+    types: [opened]       # run only when an issue is created
 
 jobs:
   export:
-    # ensure this is really an issues event
-    if: ${{ github.event_name == 'issues' && github.event.issue }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
+      # ---------- extract form data ----------
       - name: Extract form data to JSON
         id: form
         uses: actions/github-script@v6
         with:
           script: |
-            const lines = github.event.issue.body.split('\n');
-            if (!lines.some(l => l.startsWith('Name'))) {
-              core.info('Not a submission form; exiting.');
+            const issue = context.payload.issue           // <─ FIX: use context.payload
+            if (!issue) {
+              core.setFailed('No issue found in context'); 
               return {};
             }
-            const data = {};
+
+            const lines = issue.body.split('\n')
+            // quick guard – expect a "Name:" field
+            if (!lines.some(l => l.startsWith('Name'))) {
+              core.info('Not an ontology-submission form; exiting.')
+              return {}
+            }
+
+            const data = {}
             for (const line of lines) {
-              const [k, ...rest] = line.split(':');
-              if (!rest.length) continue;
-              data[k.trim()] = rest.join(':').trim();
+              const [rawKey, ...rest] = line.split(':')
+              if (!rest.length) continue
+              data[rawKey.trim()] = rest.join(':').trim()
             }
             return data
 
+      # ---------- stop if it was not the form ----------
       - name: Abort if not form
         if: ${{ steps.form.outputs == '{}' }}
-        run: echo "No form data found, exiting."
+        run: echo "No form data – workflow ends."
 
-      - name: Write JSON
+      # ---------- write JSON + Excel ----------
+      - name: Write JSON file
         run: |
           mkdir -p data/submissions
           echo '${{ toJSON(steps.form.outputs) }}' \
@@ -53,9 +61,9 @@ jobs:
             data/submissions/submission_${{ github.event.issue.number }}.json \
             data/submissions/submission_${{ github.event.issue.number }}.xlsx
 
-      - name: Commit Excel
+      - name: Commit submission Excel
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/submissions/submission_${{ github.event.issue.number }}.xlsx
           git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
