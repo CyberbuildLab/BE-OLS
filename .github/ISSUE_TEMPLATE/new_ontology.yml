@@ -14,19 +14,19 @@ body:
     attributes:
       label: Name
       description: Name of the ontology
-      placeholder: e.g. Decommissioning and Reuse
+      placeholder: e.g. Modelling and Standards Ontology
 
   - type: input
     id: acronym
     attributes:
       label: Acronym
       description: Namespace acronym
-      placeholder: e.g. DOR
+      placeholder: e.g. MNS
   - type: input
     id: uri
     attributes:
       label: URI/Namespace
-      description: e.g. https://w3id.org/your-ontology#
+      description: e.g. https://z-arghavan.github.io/MnSOntology/
 
   - type: input
     id: reference
