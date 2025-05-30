@@ -5,11 +5,11 @@ name: Collect Ontology Submissions
 on:
   issues:
     types:
-      - opened    # only trigger when an issue is opened
+      - opened    # only when an issue is first created
 
 jobs:
   export:
-    # ensure we’re in an actual issues event
+    # only run when GitHub really invoked this on an issue event
     if: ${{ github.event_name == 'issues' && github.event.issue }}
     runs-on: ubuntu-latest
 
@@ -23,7 +23,7 @@ jobs:
         with:
           script: |
             const bodyLines = github.event.issue.body.split('\n');
-            // quick guard: must have a “Name” field
+            // guard: must have our form’s "Name" field
             if (!bodyLines.some(l => l.startsWith('Name'))) {
               core.info('Not an ontology-submission form; exiting.');
               return {};
@@ -32,7 +32,7 @@ jobs:
             for (const line of bodyLines) {
               const [rawKey, ...rest] = line.split(':');
               if (!rest.length) continue;
-              const key = rawKey.trim().replace(/ /g, '_');
+              const key = rawKey.trim().replace(/ /g, '_').toLowerCase();
               const val = rest.join(':').trim();
               data[key] = val;
             }
@@ -40,8 +40,7 @@ jobs:
 
       - name: Abort if not form
         if: ${{ steps.form.outputs == '{}' }}
-        run: |
-          echo "Received no form data, stopping workflow."
+        run: echo "No form data found, exiting workflow."
 
       - name: Write JSON to file
         run: |
@@ -62,8 +61,6 @@ jobs:
 
       - name: Commit submission Excel
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/submissions/submission_${{ github.event.issue.number }}.xlsx
-          git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
-          git push
+          git add data/submissions/submission_${{ github.event.issue.number }}.x_
