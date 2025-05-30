@@ -48,7 +48,7 @@ body:
     attributes:
       label: Year published
       description: The year that corresponds to the creation of the version submitted
-      placeholder: 2025
+      placeholder: Year
 
 
   - type: input
