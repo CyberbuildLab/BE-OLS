@@ -14,14 +14,14 @@ body:
     attributes:
       label: Name
       description: Name of the ontology
-      placeholder: e.g. BIMERR Annotation Objects Ontology
+      placeholder: e.g. Decommissioning and Reuse
 
   - type: input
     id: acronym
     attributes:
       label: Acronym
-      description: Namespace acronym, e.g. ao
-
+      description: Namespace acronym
+      placeholder: e.g. DOR
   - type: input
     id: uri
     attributes:
@@ -32,15 +32,17 @@ body:
     id: reference
     attributes:
       label: Reference
-      description: Web link to a webpage or DOI of the paper
+      description: Web link to a webpage or DOI of a paper or any documentation
+      placeholder: e.g. https://ec-3.org/#
+
 
   - type: input
     id: linked_aec
     attributes:
       label: Linked AEC ontologies
       description: >
-        Acronyms of ontologies (preferably already in BE-OLS). If not,
-        please submit an Issue to add those too.
+        Acronyms of ontologies in the domain of Built Environment. If not,
+        please submit an Issue to add those too. Use Semicolon as separtor: ;
 
   - type: input
     id: link_to_upper
@@ -48,12 +50,12 @@ body:
       label: Link to upper ontologies
       description: >
         Acronyms like schema, terms, prov, skos, vann, cc, foaf, qudt,
-        unit, og, fno
+        unit, og, fno. Use Semicolon as separtor: ;
 
   - type: input
     id: linked_other
     attributes:
       label: Linked other professional domain ontologies
       description: >
-        Acronyms of ontologies in related domains (e.g. eli)
+        Acronyms of ontologies; ontologies that link to (sub)-domains that may not really be within AECO (e.g. eli). Use Semicolon as separtor: ;
 
