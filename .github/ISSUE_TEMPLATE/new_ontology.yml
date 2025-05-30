@@ -22,6 +22,7 @@ body:
       label: Acronym
       description: Namespace acronym
       placeholder: e.g. MNS
+
   - type: input
     id: uri
     attributes:
@@ -39,15 +40,15 @@ body:
     id: version
     attributes:
       label: Version
-description: The latest version of your ontology, for which you have provided a URI
-placeholder: 0.0.v
+      description: The latest version of your ontology, for which you have provided a URI
+      placeholder: 0.0.v
 
   - type: input
     id: year
     attributes:
       label: Year published
-description: The year that corresponds to the creation of the version submitted
-placeholder: year
+      description: The year that corresponds to the creation of the version submitted
+      placeholder: 2025
 
 
   - type: input
