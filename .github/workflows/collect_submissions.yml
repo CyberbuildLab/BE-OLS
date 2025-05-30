@@ -2,7 +2,9 @@ name: Collect Ontology Submissions
 
 on:
   issues:
-    types: [opened]
+    types:
+      - opened
+      - edited     
 
 jobs:
   export:
