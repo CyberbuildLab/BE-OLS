@@ -63,8 +63,10 @@ jobs:
 
       - name: Commit submission Excel
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/submissions/submission_${{ github.event.issue.number }}.xlsx
-          git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
-          git push
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            # stage both artefacts
+            git add data/submissions/submission_${{ github.event.issue.number }}.json
+            git add data/submissions/submission_${{ github.event.issue.number }}.xlsx
+            git commit -m "Add submission #${{ github.event.issue.number }}" || echo "Nothing to commit"
+            git push
