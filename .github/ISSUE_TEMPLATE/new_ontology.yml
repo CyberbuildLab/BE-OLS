@@ -41,14 +41,14 @@ body:
     attributes:
       label: Version
       description: The latest version of your ontology, for which you have provided a URI
-      placeholder: 0.0.v
+      placeholder: e.g. 0.0.v
 
   - type: input
     id: year
     attributes:
       label: Year published
       description: The year that corresponds to the creation of the version submitted
-      placeholder: Year
+      placeholder: e.g. Year
 
 
   - type: input
