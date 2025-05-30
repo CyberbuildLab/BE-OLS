@@ -3,7 +3,7 @@ labels:
   - ontology-submission
 description: >
   Fill in the fields below to submit a new ontology entry. Your submission
-  will be collected for review; it will not directly update the master Excel.
+  will be collected for review; it will not directly update the BE-OLS.
 title: "Ontology submission: ${{ github.event.issue.number }}"
 
 body:
@@ -39,21 +39,22 @@ body:
     id: short_description
     attributes:
       label: Short Description
-      description: Brief one-sentence summary of the ontology
-      placeholder: e.g. Describes modelling and standards used in renovation projects
+      description: Brief summary of the ontology
+      placeholder: e.g. This ontology supports topic/use-case X and serves stakeholder Y, which is useful because Z.
 
   - type: input
     id: uri
     attributes:
       label: URI/Namespace
-      placeholder: e.g. https://w3id.org/example#
+      placeholder: https://z-arghavan.github.io/MnSOntology/
+
 
   - type: input
     id: reference
     attributes:
       label: Reference
       description: Web page or DOI that documents the ontology
-      placeholder: e.g. https://example.org/paper
+      placeholder: e.g. https://ec-3.org/#
 
   - type: input
     id: linked_aec
