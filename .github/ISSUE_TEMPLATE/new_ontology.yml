@@ -74,10 +74,10 @@ body:
       description: >
         Acronyms of ontologies; ontologies that link to (sub)-domains that may not really be within AECO (e.g. eli). Use Semicolon as separtor: ;
   
-  - type: input
-    id: description
+    - type: textarea
+    id: short_description
     attributes:
-      label: Description
+      label: Short Description
       description: Please briefly describe this ontology
-      placeholder: e.g., This ontology is designed for Y to serve stakeholders such as X and helpw with Z topic.
+      placeholder: e.g.  e.g., This ontology is designed for Y to serve stakeholders such as X and helps with Z and Q topics.
 
