@@ -1,5 +1,7 @@
 name: 🆕 New Ontology Submission
-description: Fill in the fields below to submit a new ontology entry. This will generate a standalone Excel you can review.
+description: >
+  Fill in the fields below to submit a new ontology entry. Your submission
+  will be collected for review; it will not directly update the master Excel.
 title: "Ontology submission: ${{ github.event.issue.number }}"
 labels:
   - ontology-submission
@@ -8,20 +10,46 @@ body:
     id: name
     attributes:
       label: Name
+      description: Name of the ontology
+      placeholder: e.g. BIMERR Annotation Objects Ontology
+
   - type: input
     id: acronym
     attributes:
       label: Acronym
+      description: Namespace acronym, e.g. ao
+
   - type: input
-    id: version
+    id: uri
     attributes:
-      label: Version
+      label: URI/Namespace
+      description: e.g. https://w3id.org/your-ontology#
+
   - type: input
-    id: year
+    id: reference
     attributes:
-      label: Year published
+      label: Reference
+      description: Web link to a webpage or DOI of the paper
+
   - type: input
-    id: domain
+    id: linked_aec
     attributes:
-      label: Primary Domain
-  # …add one block per column in your sheet…
+      label: Linked AEC ontologies
+      description: >
+        Acronyms of ontologies (preferably already in BE-OLS). If not,
+        please submit an Issue to add those too.
+
+  - type: input
+    id: link_to_upper
+    attributes:
+      label: Link to upper ontologies
+      description: >
+        Acronyms like schema, terms, prov, skos, vann, cc, foaf, qudt,
+        unit, og, fno
+
+  - type: input
+    id: linked_other
+    attributes:
+      label: Linked other professional domain ontologies
+      description: >
+        Acronyms of ontologies in related domains (e.g. eli)
