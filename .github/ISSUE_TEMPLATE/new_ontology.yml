@@ -1,13 +1,11 @@
 name: 🆕 New Ontology Submission
 labels:
   - ontology-submission
-
 description: >
   Fill in the fields below to submit a new ontology entry. Your submission
   will be collected for review; it will not directly update the master Excel.
 title: "Ontology submission: ${{ github.event.issue.number }}"
-labels:
-  - ontology-submission
+
 body:
   - type: input
     id: name
@@ -24,60 +22,56 @@ body:
       placeholder: e.g. MNS
 
   - type: input
-    id: uri
-    attributes:
-      label: URI/Namespace
-      placeholder: e.g. https://z-arghavan.github.io/MnSOntology/
-
-  - type: input
-    id: reference
-    attributes:
-      label: Reference
-      description: Web link to a webpage or DOI of a paper or any documentation
-      placeholder: e.g. https://ec-3.org/#
-
-  - type: input
     id: version
     attributes:
       label: Version
-      description: The latest version of your ontology, for which you have provided a URI
+      description: Latest released version
       placeholder: e.g. 0.0.v
 
   - type: input
     id: year
     attributes:
       label: Year published
-      description: The year that corresponds to the creation of the version submitted
-      placeholder: e.g. Year
+      description: Year that version was created
+      placeholder: e.g. 2024
 
+  - type: textarea
+    id: short_description
+    attributes:
+      label: Short Description
+      description: Brief one-sentence summary of the ontology
+      placeholder: e.g. Describes modelling and standards used in renovation projects
+
+  - type: input
+    id: uri
+    attributes:
+      label: URI/Namespace
+      placeholder: e.g. https://w3id.org/example#
+
+  - type: input
+    id: reference
+    attributes:
+      label: Reference
+      description: Web page or DOI that documents the ontology
+      placeholder: e.g. https://example.org/paper
 
   - type: input
     id: linked_aec
     attributes:
-      label: Linked AEC ontologies
-      description: >
-        Acronyms of ontologies in the domain of Built Environment. If not,
-        please submit an Issue to add those too. Use Semicolon as separtor: ;
+      label: Linked-to ontologies AECO
+      description: Acronyms of AECO ontologies; use semicolons to separate multiple values
+      placeholder: bot; ifc
 
   - type: input
     id: link_to_upper
     attributes:
-      label: Link to upper ontologies
-      description: >
-        Acronyms like schema, terms, prov, skos, vann, cc, foaf, qudt,
-        unit, og, fno. Use Semicolon as separtor: ;
+      label: Linked-to ontologies UPPER
+      description: Acronyms such as schema, skos, prov, etc.; use semicolons to separate
+      placeholder: schema; skos
 
   - type: input
     id: linked_other
     attributes:
       label: Linked other professional domain ontologies
-      description: >
-        Acronyms of ontologies; ontologies that link to (sub)-domains that may not really be within AECO (e.g. eli). Use Semicolon as separtor: ;
-  
-    - type: textarea
-    id: short_description
-    attributes:
-      label: Short Description
-      description: Please briefly describe this ontology
-      placeholder: e.g.  e.g., This ontology is designed for Y to serve stakeholders such as X and helps with Z and Q topics.
-
+      description: Ontologies outside AECO (e.g. eli); use semicolons to separate
+      placeholder: eli
