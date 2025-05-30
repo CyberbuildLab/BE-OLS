@@ -35,6 +35,20 @@ body:
       description: Web link to a webpage or DOI of a paper or any documentation
       placeholder: e.g. https://ec-3.org/#
 
+  - type: input
+    id: version
+    attributes:
+      label: Version
+description: The latest version of your ontology, for which you have provided a URI
+placeholder: 0.0.v
+
+  - type: input
+    id: year
+    attributes:
+      label: Year published
+description: The year that corresponds to the creation of the version submitted
+placeholder: 2025
+
 
   - type: input
     id: linked_aec
