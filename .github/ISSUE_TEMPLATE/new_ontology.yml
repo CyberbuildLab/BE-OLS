@@ -73,4 +73,11 @@ body:
       label: Linked other professional domain ontologies
       description: >
         Acronyms of ontologies; ontologies that link to (sub)-domains that may not really be within AECO (e.g. eli). Use Semicolon as separtor: ;
+  
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: Please briefly describe this ontology
+      placeholder: e.g., This ontology is designed for Y to serve stakeholders such as X and helpw with Z topic.
 
