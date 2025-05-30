@@ -53,3 +53,8 @@ body:
       label: Linked other professional domain ontologies
       description: >
         Acronyms of ontologies in related domains (e.g. eli)
+
+
+      labels:
+  - ontology-submission
+
