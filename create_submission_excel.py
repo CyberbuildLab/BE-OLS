@@ -1,5 +1,3 @@
-# File: create_submission_excel.py
-
 import json
 import pandas as pd
 import sys
