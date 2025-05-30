@@ -5,10 +5,12 @@ name: Collect Ontology Submissions
 on:
   issues:
     types:
-      - opened
+      - opened    # only trigger when an issue is opened
 
 jobs:
   export:
+    # ensure we’re in an actual issues event
+    if: ${{ github.event_name == 'issues' && github.event.issue }}
     runs-on: ubuntu-latest
 
     steps:
@@ -20,21 +22,26 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const bodyLines = github.event.issue.body.split('\n')
-            // Quick guard: must have a "Name" field
-            if (!bodyLines.some(line => line.startsWith('Name'))) {
-              core.info('Not an ontology‐submission form; exiting.')
-              return {}
+            const bodyLines = github.event.issue.body.split('\n');
+            // quick guard: must have a “Name” field
+            if (!bodyLines.some(l => l.startsWith('Name'))) {
+              core.info('Not an ontology-submission form; exiting.');
+              return {};
             }
-            const data = {}
+            const data = {};
             for (const line of bodyLines) {
-              const [rawKey, ...rest] = line.split(':')
-              if (!rest.length) continue
-              const key   = rawKey.trim()
-              const value = rest.join(':').trim()
-              data[key] = value
+              const [rawKey, ...rest] = line.split(':');
+              if (!rest.length) continue;
+              const key = rawKey.trim().replace(/ /g, '_');
+              const val = rest.join(':').trim();
+              data[key] = val;
             }
             return data
+
+      - name: Abort if not form
+        if: ${{ steps.form.outputs == '{}' }}
+        run: |
+          echo "Received no form data, stopping workflow."
 
       - name: Write JSON to file
         run: |
