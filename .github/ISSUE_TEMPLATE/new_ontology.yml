@@ -1,4 +1,7 @@
 name: 🆕 New Ontology Submission
+labels:
+  - ontology-submission
+
 description: >
   Fill in the fields below to submit a new ontology entry. Your submission
   will be collected for review; it will not directly update the master Excel.
@@ -53,8 +56,4 @@ body:
       label: Linked other professional domain ontologies
       description: >
         Acronyms of ontologies in related domains (e.g. eli)
-
-
-      labels:
-  - ontology-submission
 
