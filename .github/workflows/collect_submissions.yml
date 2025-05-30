@@ -2,55 +2,67 @@ name: Collect Ontology Submissions
 
 on:
   issues:
-    types: [opened]
+    types: [opened]   # run only when a new issue is created
 
 jobs:
   export:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repo
+      - name: Check out repository
         uses: actions/checkout@v3
 
-      # -------- Parse the issue body --------
       - name: Extract form data
         id: form
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = context.payload.issue
-            const lines = issue.body.split(/\r?\n/)
-            const data  = {}
+            const issue = context.payload.issue;
 
-            let currentKey = null
+            // Map headings exactly to your desired column titles
+            const headingMap = {
+              'Name': 'Name',
+              'Acronym': 'Acronym',
+              'Version': 'Version',
+              'Year published': 'Year published',
+              'Short Description': 'Short Description',
+              'URI/Namespace': 'URI/Namespace',
+              'Reference': 'Reference',
+              'Linked-to ontologies AECO': 'Linked-to ontologies AECO',
+              'Linked-to ontologies UPPER': 'Linked-to ontologies UPPER',
+              'Linked other professional domain ontologies': 'Linked other professional domain ontologies'
+            };
+
+            const lines = issue.body.split(/\r?\n/);
+            const data  = {};
+            let currentKey = null;
+
             for (const ln of lines) {
-              const heading = ln.match(/^###\s+(.*)/)      // '### Name'
-              if (heading) {                               // start of a new field
-                currentKey = heading[1].trim()
-                continue
+              const heading = ln.match(/^###\s+(.*)/);  // “### Heading”
+              if (heading) {
+                const raw = heading[1].trim();
+                currentKey = headingMap[raw] ?? raw;    // normalise heading
+                continue;
               }
-              if (!currentKey) continue                    // not inside a field yet
-              if (ln.trim() === '') continue               // skip blank lines
-              data[currentKey] = ln.trim()                 // first non-blank line = answer
-              currentKey = null                            // reset for the next heading
+              if (!currentKey) continue;
+              if (ln.trim() === '') continue;           // skip blank line
+              data[currentKey] = ln.trim();             // first non-blank line = value
+              currentKey = null;                        // reset
             }
 
-            if (!Object.keys(data).length) {
-              core.setFailed('No form fields found – is this the right template?')
+            if (Object.keys(data).length === 0) {
+              core.setFailed('No form fields found – is this the correct template?');
             }
 
-            // expose as output called 'json'
-            core.setOutput('json', JSON.stringify(data, null, 2))
+            core.setOutput('json', JSON.stringify(data, null, 2));
 
-      # -------- Write JSON to repo --------
       - name: Save JSON
         run: |
           mkdir -p data/submissions
           echo '${{ steps.form.outputs.json }}' \
             > "data/submissions/submission_${{ github.event.issue.number }}.json"
 
-      # -------- Convert JSON → Excel --------
-      - name: Install Python deps
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pandas openpyxl
@@ -61,7 +73,6 @@ jobs:
             "data/submissions/submission_${{ github.event.issue.number }}.json" \
             "data/submissions/submission_${{ github.event.issue.number }}.xlsx"
 
-      # -------- Commit both files --------
       - name: Commit submission files
         run: |
           git config user.name  "github-actions[bot]"
