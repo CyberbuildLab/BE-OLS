@@ -1,5 +1,3 @@
-# File: excel_to_json.py
-
 import json
 import pandas as pd
 import sys
