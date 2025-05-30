@@ -7,7 +7,14 @@ import sys
 def excel_to_json(input_path, output_path, sheet_name='Data'):
     # Read the named sheet (default: 'Data')
     df = pd.read_excel(input_path, sheet_name=sheet_name)
+
+    # Replace all NaN with None so json.dump writes them as null
+    df = df.where(pd.notnull(df), None)
+
+    # Convert to list of dicts
     data = df.to_dict(orient='records')
+
+    # Write JSON
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
