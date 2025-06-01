@@ -1,0 +1,12 @@
+{
+  "Name": "Flow Systems Ontology",
+  "Acronym": "FSO",
+  "Version": "0.1.0",
+  "Year published": "2021",
+  "Short Description": "The Flow Systems Ontology (FSO) is an ontology for describing interconnected systems with material or energy flow connections, and their components.",
+  "URI/Namespace": "http://www.w3id.org/fso#",
+  "Reference": "https://github.com/alikucukavci/FSO",
+  "Linked-to ontologies AECO": "bot",
+  "Linked-to ontologies UPPER": "foaf, vann, voaf, schema, dce, dcterms",
+  "Linked other professional domain ontologies": "n/d"
+}
