@@ -1,0 +1,12 @@
+{
+  "Name": "Ontology for Construction Quality Assurence",
+  "Acronym": "ocqa",
+  "Version": "1.0",
+  "Year published": "2022",
+  "Short Description": "OCQA is designed to represent explicit knowledge about the domain of quality inspection planning. The ontology is intended to provide a standardized vocabulary for describing concepts, entities, and relationships relevant to inspection planning in construction execution.",
+  "URI/Namespace": "https://w3id.org/ocqa#",
+  "Reference": "https://github.com/SebSeis/ocqa",
+  "Linked-to ontologies AECO": "opm; dica; dice; dicp",
+  "Linked-to ontologies UPPER": "vann; dcterms",
+  "Linked other professional domain ontologies": "n/d"
+}
