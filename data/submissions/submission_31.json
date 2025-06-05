@@ -1,0 +1,12 @@
+{
+  "Name": "UNified Ontology for Construction Safety",
+  "Acronym": "unocs",
+  "Version": "n/d",
+  "Year published": "2024",
+  "Short Description": "UNOCS is a safety ontology designed to unify construction safety knowledge from diverse sources, enabling automated reasoning, safety rule checking, and improved hazard identification. By integrating data from BIM, IoT, and virtual training, it supports informed decision-making and enhances interoperability among stakeholders.",
+  "URI/Namespace": "http://www.w3id.org/unocs#",
+  "Reference": "https://doi.org/10.1016/j.autcon.2025.106293",
+  "Linked-to ontologies AECO": "dicu; bot; dici; ocqa; opm",
+  "Linked-to ontologies UPPER": "vann",
+  "Linked other professional domain ontologies": "n/d"
+}
