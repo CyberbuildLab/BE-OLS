@@ -70,7 +70,7 @@ function generateSpiderChart(data) {
     });
 
     // Add axis labels
-    const labels = ['Alignment', 'Accessibility', 'Reuse & Documentation'];
+    const labels = ['Connectivity', 'Accessibility', 'Reuse & Documentation'];
     ctx.font = '14px Arial';
     ctx.fillStyle = '#000';
     ctx.textAlign = 'center';
