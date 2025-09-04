@@ -123,7 +123,7 @@ function populateEvaluationTable(ontology) {
 
     // Define the fixed criteria and their corresponding keys in the JSON
     const evaluationCriteria = {
-        "Alignment": [
+        "Connectivity": [
             { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
             { criteria: "Linkage to existing AECO ontologies", key: "Linkage to existing AECO ontologies" },
             { criteria: "Linkage to meta schema ontologies", key: "Linkage to meta schema ontologies" }
@@ -142,7 +142,7 @@ function populateEvaluationTable(ontology) {
 
     // Axis score mappings
     const axisScores = {
-        "Alignment": ontology["Alignment"] || 0,
+        "Connectivity": ontology["Alignment"] || 0,
         "Accessibility": ontology["Accessability"] || 0,
         "Reuse & Documentation": ontology["Quality"] || 0
     };
@@ -182,7 +182,7 @@ function renderSpiderChart(ontology) {
     new Chart(ctx, {
         type: "radar",
         data: {
-            labels: ["Alignment", "Accessibility", "Reuse & Documentation"],
+            labels: ["Connectivity", "Accessibility", "Reuse & Documentation"],
             datasets: [
                 {
                     label: ontology.Name,
