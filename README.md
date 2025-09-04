@@ -41,8 +41,8 @@ References
 ==========
 To acknowledge this work, please cite the following peer-reviewed paper:
 
-> Akbarieh, A., Osadcha, I., Farghali, K.,  Bosché, F. , Puust, R.,  (2025). Development of a built environment ontology lookup service (BE-OLS) with a new ontology evaluation (Accepted). European Conference on Computing in Construction (EC3), Porto, Portugal.
-
+_> Akbarieh, A., Osadcha, I., Farghaly, K.,  Bosché, F. , Puust, R.,  (2025). Development of a built environment ontology lookup service (BE-OLS) with a new ontology evaluation. European Conference on Computing in Construction (EC3), Porto, Portugal.
+_
 Contact Us
 ==========
 For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
