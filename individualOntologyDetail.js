@@ -133,7 +133,7 @@ function populateEvaluationTable(ontology) {
             { criteria: "Accessible as Serialization", key: "Accessible as Serialization" },
             { criteria: "Accessible as a URI", key: "Accessible as a  URI" }
         ],
-        "Quality": [
+        "Reuse & Documentation": [
             { criteria: "Clearly documented", key: "Clearly \u00a0documented" },
             { criteria: "Use of annotations", key: "Use of annotations" },
             { criteria: "Reused/Extended", key: "Reused/Extended" }
@@ -144,7 +144,7 @@ function populateEvaluationTable(ontology) {
     const axisScores = {
         "Alignment": ontology["Alignment"] || 0,
         "Accessibility": ontology["Accessability"] || 0,
-        "Quality": ontology["Quality"] || 0
+        "Reuse & Documentation": ontology["Quality"] || 0
     };
 
     Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
@@ -182,7 +182,7 @@ function renderSpiderChart(ontology) {
     new Chart(ctx, {
         type: "radar",
         data: {
-            labels: ["Alignment", "Accessibility", "Quality"],
+            labels: ["Alignment", "Accessibility", "Reuse & Documentation"],
             datasets: [
                 {
                     label: ontology.Name,
