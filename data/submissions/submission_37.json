@@ -1,0 +1,12 @@
+{
+  "Name": "Drawing ANalysis Ontology",
+  "Acronym": "dano",
+  "Version": "0.0.0",
+  "Year published": "2025",
+  "Short Description": "DAnO is designed to standardize the representation of technical drawing data extracted through computer vision techniques. Focusing on floor plans, DAnO enables the aggregation, integration, and validation of extracted elements by defining key concepts, such as DrawingElement, DisplayElement, and DescriptionElement, and their relationships.",
+  "URI/Namespace": "_No response_",
+  "Reference": "https://doi.org/10.1016/j.aei.2025.103761",
+  "Linked-to ontologies AECO": "beo, bot, sbeo, seas",
+  "Linked-to ontologies UPPER": "_No response_",
+  "Linked other professional domain ontologies": "geosparql"
+}
