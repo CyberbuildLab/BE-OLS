@@ -1,0 +1,12 @@
+{
+  "Name": "Relative Location Ontology",
+  "Acronym": "RELOC",
+  "Version": "1.0.0",
+  "Year published": "2024",
+  "Short Description": "The Relative Location Ontology (RELOC) enables the expression of the spatial relationship between two objects using directional-topological terms. The ontology is designed to be compatible with the natural language-based approach of describing relative locations, enabling the conversion of existing location descriptions into structured spatial graph representations. The ontology provides directional, axis-related properties (e.g., longitudinal axis: front, center, rear) and topological properties (e.g., meet, contained in, intersect). These properties are finally merged into combined properties (e.g., containedInFront) to reflect the spatial information of statements like A is in the front part of B. The application context of the RELOC Ontology is the processing of existing damage documentation of bridges.",
+  "URI/Namespace": "https://w3id.org/reloc#",
+  "Reference": "https://ceur-ws.org/Vol-3824/paper7.pdf",
+  "Linked-to ontologies AECO": "_No response_",
+  "Linked-to ontologies UPPER": "skos;vann;terms;",
+  "Linked other professional domain ontologies": "_No response_"
+}
