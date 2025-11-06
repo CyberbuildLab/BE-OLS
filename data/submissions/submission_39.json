@@ -1,0 +1,12 @@
+{
+  "Name": "Cost Item Ontology",
+  "Acronym": "CI",
+  "Version": "0.2.v",
+  "Year published": "2024",
+  "Short Description": "The Cost Item (CI) ontology represents the cost domain and defines a structured model for describing and aggregating cost items and their components. It extends IfcCostItem from IFC4x3 and introduces the class ci:CostItem, which aggregates instances of ci:CostComponent through ci:hasPart. The ontology integrates QUDT for units, supports connections to IFC geometry, and aligns cost activities with DTC tasks. By linking with CR, it ensures consistent semantic mapping between cost, resources, and geometry for model-based estimation.",
+  "URI/Namespace": "http://w3id.org/ci#",
+  "Reference": "http://www.doi.org/10.35490/EC3.2025.263",
+  "Linked-to ontologies AECO": "ifcOWL; DTC; CR",
+  "Linked-to ontologies UPPER": "RDF; RDFS; OWL; VANN",
+  "Linked other professional domain ontologies": "QUDT"
+}
