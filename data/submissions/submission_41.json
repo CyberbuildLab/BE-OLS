@@ -1,0 +1,12 @@
+{
+  "Name": "Construction Terminology Ontology",
+  "Acronym": "CTERM",
+  "Version": "0.2.v",
+  "Year published": "2024",
+  "Short Description": "The Construction Terminology (CTERM) ontology provides a multilingual and structured vocabulary for describing construction concepts and parameters. It defines classes such as cterm:Object, cterm:Material, cterm:Function, cterm:Aspect, and cterm:Finishing, used by CI and CR for consistent annotation. Parameter subclasses (cterm:DimensionParameter, cterm:PhysicalParameter, cterm:PerformanceParameter) model measurable or qualitative characteristics using QUDT units. CTERM supports multiple classification systems (DIN 276, UNI 8290, Uniclass, Omniclass, Uniformat, StLB) and includes multilingual labels (e.g., “Reinforcement”@en, “Bewehrung”@de, “Armatura”@it). It acts as the terminological backbone of the ontology network and can be exported as a SKOS vocabulary in future work.",
+  "URI/Namespace": "http://w3id.org/cterm#",
+  "Reference": "http://www.doi.org/10.35490/EC3.2025.263",
+  "Linked-to ontologies AECO": "ifcOWL; DTC; CR",
+  "Linked-to ontologies UPPER": "RDF; RDFS; OWL; VANN",
+  "Linked other professional domain ontologies": "QUDT"
+}
