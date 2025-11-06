@@ -1,0 +1,12 @@
+{
+  "Name": "Construction Resources Ontology",
+  "Acronym": "CR",
+  "Version": "0.2.v",
+  "Year published": "2024",
+  "Short Description": "The Construction Resources (CR) ontology defines the shared resource domain connecting cost, scheduling and geometrical data. The central class cr:Resource specializes into cr:LabourResource, cr:EquipmentResource, and cr:MaterialResource, aligned respectively with DTC classes for workers, equipment, and materials. It includes mechanisms for aggregation (cr:hasSubResource), and cross-domain assignments (cr:AssignmentSet, cr:Assignment) linking ci:CostItem, dtc:Task, and ifc:IfcProduct. Parameters such as quantity, utilization rate, and formulas enable accurate data exchange between domains. CR bridges CI and DTC, ensuring unified representation of resources for cost- and time-centric project management.",
+  "URI/Namespace": "http://w3id.org/cterm#",
+  "Reference": "http://www.doi.org/10.35490/EC3.2025.263",
+  "Linked-to ontologies AECO": "ifcOWL; DTC; CR",
+  "Linked-to ontologies UPPER": "RDF; RDFS; OWL; VANN",
+  "Linked other professional domain ontologies": "QUDT"
+}
