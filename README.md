@@ -26,9 +26,9 @@ Key Features
 
 Issues (including Missing Ontologies)
 ==========
-If you notice some error in the information provided by the OLS or a missing ontology, please submit an *Issue*.
+If you notice some error in the information provided by the BE-OLS or a missing ontology, please submit an **[issue](https://github.com/CyberbuildLab/BE-OLS/issues)**
 
-To suggest the addition of a missing ontology, please submit the following information:
+To suggest the addition of a missing ontology, please submit the following information or use the automated Ontology Submission Issue.
 * Name: {name of the ontology}
 * Acronym: {the namespeace acronym, e.g. bot}
 * URI/Namespace: {https://w3id.org/...}
