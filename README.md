@@ -48,7 +48,8 @@ To acknowledge this work, please cite the following peer-reviewed paper:
 
 Contact Us
 ==========
-For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
+For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above. Alternatively, open an issue on our [GitHub repo](https://github.com/CyberbuildLab/BE-OLS/issues).
+
 
 Disclaimer
 ==========
