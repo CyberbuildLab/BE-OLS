@@ -38,6 +38,8 @@ To suggest the addition of a missing ontology, please submit the following infor
 * Link to Upper ontologies: {ontologies like: schema, terms, prov, skos, vann, cc, foaf, qudt, unit, og, fno}
 * Link to other professional domain ontologies: {ontologies that link to (sub)-domains that may not really be within AEC, e.g. eli}
 
+Read more about our evaluation framework in our [Wiki](https://github.com/CyberbuildLab/BE-OLS/wiki/Evaluation-Framework)
+
 References
 ==========
 To acknowledge this work, please cite the following peer-reviewed paper:
