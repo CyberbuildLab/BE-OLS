@@ -124,7 +124,7 @@ function populateEvaluationTable(ontology) {
     // Define the fixed criteria and their corresponding keys in the JSON
     const evaluationCriteria = {
         "Connectivity": [
-            { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
+            { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
             { criteria: "Linkage to existing AECO ontologies", key: "Linkage to existing AECO ontologies" },
             { criteria: "Linkage to meta schema ontologies", key: "Linkage to meta schema ontologies" }
         ],
