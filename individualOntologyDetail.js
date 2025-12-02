@@ -123,7 +123,7 @@ function populateEvaluationTable(ontology) {
 
     // Define the fixed criteria and their corresponding keys in the JSON
     const evaluationCriteria = {
-        "Alignment": [
+        "Connectivity": [
             { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
             { criteria: "Linkage to existing AECO ontologies", key: "Linkage to existing AECO ontologies" },
             { criteria: "Linkage to meta schema ontologies", key: "Linkage to meta schema ontologies" }
@@ -133,7 +133,7 @@ function populateEvaluationTable(ontology) {
             { criteria: "Accessible as Serialization", key: "Accessible as Serialization" },
             { criteria: "Accessible as a URI", key: "Accessible as a  URI" }
         ],
-        "Quality": [
+        "Documentation & Reuse": [
             { criteria: "Clearly documented", key: "Clearly \u00a0documented" },
             { criteria: "Use of annotations", key: "Use of annotations" },
             { criteria: "Reused/Extended", key: "Reused/Extended" }
@@ -142,9 +142,9 @@ function populateEvaluationTable(ontology) {
 
     // Axis score mappings
     const axisScores = {
-        "Alignment": ontology["Alignment"] || 0,
+        "Connectivity": ontology["Connectivity"] || 0,
         "Accessibility": ontology["Accessability"] || 0,
-        "Quality": ontology["Quality"] || 0
+        "Documentation & Reuse": ontology["Documentation & Reuse"] || 0
     };
 
     Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
@@ -182,14 +182,14 @@ function renderSpiderChart(ontology) {
     new Chart(ctx, {
         type: "radar",
         data: {
-            labels: ["Alignment", "Accessibility", "Quality"],
+            labels: ["Connectivity", "Accessibility", "Documentation & Reuse"],
             datasets: [
                 {
                     label: ontology.Name,
                     data: [
-                        ontology.Alignment || 0,
+                        ontology.Connectivity || 0,
                         ontology.Accessability || 0,
-                        ontology.Quality || 0
+                        ontology["Documentation & Reuse"] || 0
                     ],
                     backgroundColor: "rgba(255, 99, 132, 0.2)",
                     borderColor: "rgba(255, 99, 132, 1)",
