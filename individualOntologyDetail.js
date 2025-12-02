@@ -72,7 +72,7 @@ function populateOntologyTable(ontology) {
     const fieldOrder = [
         "Name",
         "Acronym",
-        "Year published",
+        "Year Issued",
         "Version",
         "Licensing",
         "URI/Link/Namespace",
