@@ -136,7 +136,7 @@ function populateEvaluationTable(ontology) {
         "Documentation & Reuse": [
             { criteria: "Clearly documented", key: "Clearly  documented" },
             { criteria: "Use of annotations", key: "Use of annotations" },
-            { criteria: "Reused/Extended", key: "Reused/Extended" }
+            { criteria: "Reused/Extended", key: "Reused/Extended by Explicit Import" }
         ]
     };
 
