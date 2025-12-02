@@ -1,5 +1,5 @@
 /* Reset */
-body, h1, p, a, div {
+body, h1, p, a, div, header, footer, nav, ul, li {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,6 +15,74 @@ body {
     min-height: 100vh;
 }
 
+/* Header ribbon */
+.header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: centre;
+    padding: 10px 20px;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* EC3 header logo */
+.logo {
+    align-items: centre;
+    display: flex;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.logo a {
+    color: #f7a11b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 20px;
+}
+
+.logo a:hover {
+    color: #e69518;
+}
+
+.logo a:visited {
+    color: #f7a11b !important;
+}
+
+/* Navigation menu */
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+}
+
+.nav ul li a {
+    color: #f7a11b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav ul li a:hover {
+    color: #e69518;
+}
+
 /* Main content box */
 main.missing-uri {
     flex: 1;
@@ -23,7 +91,7 @@ main.missing-uri {
     max-width: 900px;
     border-radius: 15px;
     margin: 40px auto;
-    text-align: center;
+    text-align: centre;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -74,9 +142,9 @@ main.missing-uri p {
     color: #555;
 }
 
-/* Footer  - this is the same for all pages */
+/* Footer */
 .footer {
-    text-align: center;
+    text-align: centre;
     margin-top: auto;
     padding: 20px 0;
     background: #111;
@@ -84,126 +152,36 @@ main.missing-uri p {
     color: #ccc;
 }
 
-.footer .social-icons {
-    margin-top: 10px;
-}
-
-.footer .social-icons a {
-    display: inline-block;
-    margin: 0 10px;
-}
-
-.footer .social-icons img {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s;
-}
-
-.footer .social-icons img:hover {
-    transform: scale(1.2);
-}
-
-/* Style for social icons */
+/* Social icons container */
 .social-icons {
     display: flex;
-    gap: 15px; /* Space between icons */
-    justify-content: center; /* Center the icons */
+    gap: 15px;
+    justify-content: centre;
     margin-top: 15px;
 }
 
+/* Social icon links */
 .social-icons a {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-color: white; /* White background behind the icons */
-    border-radius: 50%; /* Make the background circular */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-    overflow: hidden; /* Ensure the icon fits inside the background */
-    text-align: center;
-    line-height: 40px; /* Center-align the image vertically */
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: centre;
+    line-height: 40px;
 }
 
+/* Social icon images */
 .social-icons img {
-    width: 60%; /* Adjust the size of the image */
+    width: 60%;
     height: 60%;
-    object-fit: contain; /* Ensure the icon maintains its aspect ratio */
+    object-fit: contain;
     vertical-align: middle;
-}
-
-/* Header Ribbon - this is the same for all pages */
-.header-ribbon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #222;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 100%; /* Full width */
-    position: sticky; /* Sticky at the top */
-    top: 0; /* Fixed to the top */
-    z-index: 10; /* Ensures it stays above other elements */
-    max-width: 100%; /* Ensure header stays within screen width */
-    box-sizing: border-box; /* Prevents width overflow from padding */
-    overflow: hidden; /* Prevents overflow */
-}
-
-/* EC3 Header Logo */
-.logo img {
-    height: 40px; /* Adjust the size of your logo */
-    width: auto;
     transition: transform 0.3s;
 }
 
-.logo img:hover {
-    transform: scale(1.1);
-}
-
-/*Last fix*/
-.logo {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
-
-.logo a {
-    color: #f7a11b; /* Match orange nav links */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-    font-size: 20px; /* larger than nav size */
-}
-
-.logo a:hover {
-    color: #e69518; /* Hover effect same as nav */
-}
-
-.logo a:visited {
-    color: #f7a11b !important;}
-
-/* Navigation Menu - this is the same for all pages */
-.nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-}
-
-.nav ul li a {
-    color: #f7a11b;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.nav ul li a:hover {
-    color: #e69518;
-}
-
-/* Search and Primary Domain Buttons */
-#search-and-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 20px;
+.social-icons img:hover {
+    transform: scale(1.2);
 }
