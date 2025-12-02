@@ -70,7 +70,7 @@ function generateSpiderChart(data) {
     });
 
     // Add axis labels
-    const labels = ['Alignment', 'Accessibility', 'Quality'];
+    const labels = ['Connectivity', 'Accessibility', 'Documentation & Reuse'];
     ctx.font = '14px Arial';
     ctx.fillStyle = '#000';
     ctx.textAlign = 'center';
@@ -133,9 +133,9 @@ function displayOntologies(ontologies) {
 
         // Generate spider chart for the ontology
         const spiderChartUrl = generateSpiderChart({
-            Alignment: ontology.Alignment,
+            Connectivity: ontology.Alignment,
             Accessibility: ontology.Accessability,
-            Quality: ontology.Quality,
+            "Documentation & Reuse": ontology.Quality,
         });
 
         // Create the card content
@@ -164,51 +164,6 @@ function displayOntologies(ontologies) {
     });
 }
 
-
-
-// // Function to display ontologies
-// function displayOntologies(ontologies) {
-//     const container = document.getElementById('ontology-container');
-//     container.innerHTML = '';  
-//     ontologies.forEach(ontology => {
-//         const card = document.createElement('div');
-//         card.classList.add('card');
-
-//         // This part is for making the individualOntologyDetail.html tailored to each ontology based on their Name in the JSON file
-//         // Create the link that directs to individualOntologyDetail.html with the ontology name as a query parameter
-//         const ontologyLink = document.createElement('a');
-//         ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Name)}`; // URL with query parameter
-//         ontologyLink.classList.add('card-link');  
-
-//         // content inside the ontology cards:
-//         ontologyLink.innerHTML = `
-//             <div class="media">
-//                 <img src="images/EC3SpiderChart.png" alt="EC3 Spider Chart">
-//             </div>
-//             <div class="content">
-//                 <div class="name">${ontology.Name}</div>
-//                 <div class="acronym">${ontology.Acronym || 'N/A'}</div>
-//                 <div class="details">
-//                     <span><strong>FOOPS Score:</strong> ${ontology.FOOPSScore || 'N/A'}</span>
-//                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
-//                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
-//                 </div>
-//                 <div class="buttons">
-//                     <button class="see-details">
-//                         See Details
-//                     </button>
-//                     <a href="${ontology.URI}" target="_blank" class="go-to-ontology-btn">
-//                         See Ontology
-//                     </a>
-//                 </div>
-//             </div>
-//         `;
-
-//         // Append the ontologyLink 
-//         card.appendChild(ontologyLink);
-//         container.appendChild(card);  // Add the card to the container
-//     });
-// }
 
 // Function to filter ontologies based on a search query for any keyword. This function is dynamic and shows the cards as the user types
 function filterOntologies(query) {
