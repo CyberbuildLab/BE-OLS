@@ -1,0 +1,75 @@
+/* Reset */
+body, h1, p, a, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page background and typography */
+body {
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5);
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main container */
+main.missing-uri {
+    flex: 1;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Headline */
+main.missing-uri h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #282828;
+    margin-bottom: 20px;
+}
+
+/* Paragraphs */
+main.missing-uri p {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* GitHub Issue Button */
+.github-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2D2D2D;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    font-size: 15px;
+}
+
+.github-link:hover {
+    background-color: #111111;
+}
+
+/* Back to overview link */
+.back-link a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.back-link a:hover {
+    color: #555;
+}
