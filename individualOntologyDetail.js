@@ -134,7 +134,7 @@ function populateEvaluationTable(ontology) {
             { criteria: "Accessible as a URI", key: "Accessible as a  URI" }
         ],
         "Documentation & Reuse": [
-            { criteria: "Clearly documented", key: "Clearly \u00a0documented" },
+            { criteria: "Clearly documented", key: "Clearly  documented" },
             { criteria: "Use of annotations", key: "Use of annotations" },
             { criteria: "Reused/Extended", key: "Reused/Extended" }
         ]
