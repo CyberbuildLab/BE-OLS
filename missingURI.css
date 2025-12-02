@@ -5,114 +5,113 @@ body, h1, p, a, div {
     box-sizing: border-box;
 }
 
-/* Page background and typography */
+/* Background and layout */
 body {
-    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); /* Gradient background */
-    color: #333; /* Dark text for readability */
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5);
+    color: #333;
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh;
 }
 
-/* Main container just for this page */
+/* Main content box */
 main.missing-uri {
     flex: 1;
-    background: #ffffff; /* White card on grey background */
-    padding: 30px 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    padding: 40px 30px;
+    max-width: 900px;
     border-radius: 15px;
-    max-width: 800px;
-    margin: 40px auto; /* Centre the content */
-    text-align: centre;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Headline */
+/* Title text */
 main.missing-uri h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     color: #282828;
-    margin-bottom: 20px;
-    text-align: centre;
+    margin-bottom: 30px;
 }
 
-/* Paragraphs */
+/* Informational paragraphs */
 main.missing-uri p {
     font-size: 16px;
     color: #444;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.6;
 }
 
-/* GitHub Issue Button */
+/* GitHub button */
 .github-link {
     display: inline-block;
-    padding: 12px 25px;
-    background-color: #2D2D2D; /* Same dark tone as card buttons */
+    padding: 12px 28px;
+    background-color: #2D2D2D;
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
     font-size: 15px;
+    transition: background-color 0.3s ease;
 }
 
 .github-link:hover {
     background-color: #111111;
 }
 
-/* Back to overview link */
+/* Back link */
 .back-link a {
     display: inline-block;
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     text-decoration: underline;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .back-link a:hover {
     color: #555;
 }
 
-/* Footer (same style as other pages) */
+/* Footer */
 .footer {
-    text-align: centre;
+    text-align: center;
     margin-top: auto;
-    padding: 20px 0;
+    padding: 25px 0;
     background: #111;
-    font-size: 0.9rem;
     color: #ccc;
+    font-size: 0.9rem;
 }
 
-/* Style for social icons container */
+/* Footer icons container */
 .social-icons {
     display: flex;
-    gap: 15px; /* Space between icons */
-    justify-content: centre; /* Centre the icons */
+    gap: 15px;
+    justify-content: center;
     margin-top: 15px;
 }
 
-/* Individual social icon links */
+/* Circular icon backgrounds */
 .social-icons a {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    background-color: white; /* White background behind the icons */
-    border-radius: 50%; /* Circular background */
+    width: 42px;
+    height: 42px;
+    background-color: white;
+    border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 42px;
     overflow: hidden;
-    text-align: centre;
-    line-height: 40px; /* Vertically centre the icon */
 }
 
-/* Social icon images */
+/* Icon images */
 .social-icons img {
     width: 60%;
     height: 60%;
     object-fit: contain;
     vertical-align: middle;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .social-icons img:hover {
