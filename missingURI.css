@@ -7,24 +7,24 @@ body, h1, p, a, div {
 
 /* Page background and typography */
 body {
-    background: linear-gradient(145deg, #f5f5f5, #f5f5f5);
-    color: #333;
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); /* Gradient background */
+    color: #333; /* Dark text for readability */
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Full viewport height */
 }
 
-/* Main container */
+/* Main container just for this page */
 main.missing-uri {
     flex: 1;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #ffffff;
+    background: #ffffff; /* White card on grey background */
+    padding: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    text-align: center;
+    max-width: 800px;
+    margin: 40px auto; /* Centre the content */
+    text-align: centre;
 }
 
 /* Headline */
@@ -33,6 +33,7 @@ main.missing-uri h1 {
     font-weight: bold;
     color: #282828;
     margin-bottom: 20px;
+    text-align: centre;
 }
 
 /* Paragraphs */
@@ -47,12 +48,12 @@ main.missing-uri p {
 .github-link {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #2D2D2D;
+    background-color: #2D2D2D; /* Same dark tone as card buttons */
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     border-radius: 8px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
     font-size: 15px;
 }
 
@@ -72,4 +73,48 @@ main.missing-uri p {
 
 .back-link a:hover {
     color: #555;
+}
+
+/* Footer (same style as other pages) */
+.footer {
+    text-align: centre;
+    margin-top: auto;
+    padding: 20px 0;
+    background: #111;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Style for social icons container */
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    justify-content: centre; /* Centre the icons */
+    margin-top: 15px;
+}
+
+/* Individual social icon links */
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: white; /* White background behind the icons */
+    border-radius: 50%; /* Circular background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: centre;
+    line-height: 40px; /* Vertically centre the icon */
+}
+
+/* Social icon images */
+.social-icons img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
 }
