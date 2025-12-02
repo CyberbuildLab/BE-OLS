@@ -138,6 +138,13 @@ function displayOntologies(ontologies) {
             "Documentation & Reuse": ontology["Documentation & Reuse"],
         });
 
+        // Check if the URI is missing. If missing, route to the missingURI.html - 20251202
+        const rawURI = ontology.URI ? ontology.URI.toString().trim() : "";
+        const isMissingURI = rawURI === "" || rawURI.toLowerCase() === "n/a";
+
+        // If missing:
+        const resolvedURI = isMissingURI ? "missingURI.html" : rawURI;
+
         // Create the card content
         ontologyLink.innerHTML = `
             <div class="media">
@@ -154,7 +161,7 @@ function displayOntologies(ontologies) {
                 </div>
                 <div class="buttons">
                     <button class="see-details">See Details</button>
-                    <a href="${ontology.URI}" target="_blank" class="go-to-ontology-btn">See Ontology</a>
+                    <a href="${resolvedURI}" target="_blank" class="go-to-ontology-btn">See Ontology</a>
                 </div>
             </div>
         `;
