@@ -32,9 +32,9 @@ function generateSpiderChart(data) {
     const radius = 100; // Full axis length
     const angles = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
     const values = [
-        data.Alignment || 0,
+        data.Connectivity || 0,
         data.Accessibility || 0,
-        data.Quality || 0,
+        data["Documentation & Reuse"] || 0,
     ];
     const maxValue = 3; // 3 segments
 
@@ -135,7 +135,7 @@ function displayOntologies(ontologies) {
         const spiderChartUrl = generateSpiderChart({
             Connectivity: ontology.Alignment,
             Accessibility: ontology.Accessability,
-            "Documentation & Reuse": ontology.Quality,
+            "Documentation & Reuse": ontology["Documentation & Reuse"],
         });
 
         // Create the card content
