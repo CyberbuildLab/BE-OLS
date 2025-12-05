@@ -1,0 +1,12 @@
+{
+  "Name": "Agents in Construction (AiC) Ontology",
+  "Acronym": "aic",
+  "Version": "1.0",
+  "Year published": "2025",
+  "Short Description": "The **Agents in Construction (AiC)** ontology is a lightweight semantic model for coordinating on-site production in construction. It represents construction agents (human workers, robots, and other autonomous hardware) as they operate on a site: the processes they carry out, the elements they modify, the resources they handle, and the operational modes and metrics used to assess their performance and impact. To express how agent activities evolve over time, AiC introduces meta-properties that specify when a statement holds (at an instant or over an interval), what dimension of information it represents (planned, simulated, or performed), and who generated it. The ontology emphasizes generic, trade-agnostic concepts to ensure broad applicability across project types and delivery methods.",
+  "URI/Namespace": "https://w3id.org/aic#",
+  "Reference": "https://digiconstructlab-tu-delft.github.io/AiC-Ontology/",
+  "Linked-to ontologies AECO": "_No response_",
+  "Linked-to ontologies UPPER": "_No response_",
+  "Linked other professional domain ontologies": "_No response_"
+}
