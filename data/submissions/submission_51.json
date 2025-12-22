@@ -1,0 +1,12 @@
+{
+  "Name": "Historic Masonry Ontology",
+  "Acronym": "HMO",
+  "Version": "0.0.1",
+  "Year published": "2024",
+  "Short Description": "The Historic Masonry Ontology (HMO) aims to represent the historic masonry material by considering its heterogeneous nature and defining the configuration of units and joints in the wall. The proposed namespace is [](https://w3id.org/hmo#), with the preferred prefix hmo.",
+  "URI/Namespace": "https://w3id.org/hmo#",
+  "Reference": "https://mlaura1996.github.io/HistoricMasonryOntology/",
+  "Linked-to ontologies AECO": "bot; beo; dot;",
+  "Linked-to ontologies UPPER": "owl; rdfs; xml; rdf; xsd",
+  "Linked other professional domain ontologies": "saref"
+}
