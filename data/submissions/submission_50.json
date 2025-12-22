@@ -1,0 +1,12 @@
+{
+  "Name": "ECO - Eurocode Core Ontology",
+  "Acronym": "eco",
+  "Version": "1.0.0",
+  "Year published": "2025",
+  "Short Description": "The Eurocode Core Ontology (ECO) provides a formal semantic representation of foundational concepts from the Eurocodes, the European standards for structural design. It enables machine-readable interpretation of regulatory knowledge, supporting automated reasoning, semantic interoperability, and integration with engineering workflows. ECO is designed as a modular, extensible framework for use in intelligent, standards-compliant design tools within the AECO industry. [https://doi.org/10.1016/j.aei.2025.104218](https://doi.org/10.1016/j.aei.2025.104218)",
+  "URI/Namespace": "http://www.w3id.org/eurocodes/ec1990#",
+  "Reference": "https://mlaura1996.github.io/EC1990/",
+  "Linked-to ontologies AECO": "bot; omg; beo",
+  "Linked-to ontologies UPPER": "owl; rdf; xml; xsd; rdfs; skos;",
+  "Linked other professional domain ontologies": "qudt; bfo; emmo;"
+}
