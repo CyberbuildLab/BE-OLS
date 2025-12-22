@@ -1,0 +1,12 @@
+{
+  "Name": "Failure Mechanism Ontology",
+  "Acronym": "FMO",
+  "Version": "0.0.1",
+  "Year published": "2024",
+  "Short Description": "The primary objective of the Failure Mechanism Ontology (FMO) is to represent masonry walls taking into account features and vulnerabilities that leads to a specific type of failure mechanism. This ontology is complementary to the Historic Masonry Ontology (HMO), of which represents an extension. The recommended prefix for this ontology is FMO, and its proposed namespace is https://w3id.org/fmo#. By utilizing the FMO ontology, it becomes possible to determine whether the structure is more susceptible to out-of-plane collapse or if in-plane failures are more likely. The scope is to facilitate the definition of the modeling assmptions, while employing global models for the structural analysis of unreinforced masonry constructions.",
+  "URI/Namespace": "https://w3id.org/fmo",
+  "Reference": "https://mlaura1996.github.io/FailureMechanismOntology/",
+  "Linked-to ontologies AECO": "beo; dot",
+  "Linked-to ontologies UPPER": "rdf; rdfs; xsd; xml",
+  "Linked other professional domain ontologies": "_No response_"
+}
