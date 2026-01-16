@@ -70,18 +70,18 @@ function populateOntologyTable(ontology) {
     
     // Define the desired order of fields
     const fieldOrder = [
-        "Name",
+        "Title",
         "Acronym",
-        "Year Issued",
+        "Issued",
         "Version",
-        "Licensing",
-        "URI/Link/Namespace",
+        "License",
+        "URI",
         "FOOPS Score",
-        "Short Description",
-        "Used Standards",
+        "Description",
+        "Conforms To Standard",
         "Primary Domain",
         "Secondary Domain",
-        "Reference",
+        "References",
         "Linked-to ontologies AECO",
         "Linked-by ontologies UPPER",
     ];
