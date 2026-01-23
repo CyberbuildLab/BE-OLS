@@ -131,11 +131,11 @@ function displayOntologies(ontologies) {
         ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Title)}`;
         ontologyLink.classList.add('card-link');
 
-        // Generate spider chart for the ontology
+        // Generate spider chart for the ontology (updated field names)
         const spiderChartUrl = generateSpiderChart({
             Connectivity: ontology["Alignment Score"],
-            Accessibility: ontology["Accessability Score"],
-            "Documentation & Reuse": ontology["Documentation & Reuse"],
+            Accessibility: ontology["Accessibility Score"],
+            "Documentation & Reuse": ontology["Quality Score"],
         });
 
         // Check if the URI is missing. If missing, route to the missingURI.html - 20251202
@@ -145,7 +145,7 @@ function displayOntologies(ontologies) {
         // If missing:
         const resolvedURI = isMissingURI ? "missingURI.html" : rawURI;
 
-        // Create the card content
+        // Create the card content (updated field names)
         ontologyLink.innerHTML = `
             <div class="media">
                 <img src="${spiderChartUrl}" alt="Spider Chart">
@@ -156,8 +156,8 @@ function displayOntologies(ontologies) {
                 <div class="details">
                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
-                    <span><strong>FAIR Score:</strong> ${ontology['FOOPS Score'] || 'N/A'}</span>
-                    <span><strong>${ontology['Created (or Issued or )'] || 'Publication year unknown'}</strong></span>
+                    <span><strong>FAIR Score:</strong> ${ontology['FOOPs Score'] || 'N/A'}</span>
+                    <span><strong>${ontology['Created'] || 'Publication year unknown'}</strong></span>
                 </div>
                 <div class="buttons">
                     <button class="see-details">See Details</button>

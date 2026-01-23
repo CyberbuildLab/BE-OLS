@@ -38,14 +38,9 @@ async function loadOntologyDetails() {
 
 function populateOntologyTable(ontology) {
 
-    // Update the page header with ontology Title and Prefix (updated column names)
+    // Update the page header with ontology Title
     const ontologyHeading = document.getElementById('ontology-heading');
     ontologyHeading.textContent = ontology.Title; // Set Title as the title
-
-    // Check if Prefix exists and append it
-    if (ontology.Prefix) {
-        ontologyHeading.textContent += ` (${ontology.Prefix})`;
-    }
 
     const tableBody = document.querySelector('#ontology-table tbody');
     tableBody.innerHTML = ''; // Clear previous content
@@ -54,7 +49,7 @@ function populateOntologyTable(ontology) {
     const fieldOrder = [
         "Title",
         "Prefix",
-        "Created (or Issued or )",
+        "Created",
         "Version",
         "License",
         "URI",
@@ -66,6 +61,10 @@ function populateOntologyTable(ontology) {
         "Reference Source",
         "Linked-to AECO Ontologies",
         "Linked-to Upper Ontologies",
+        "linked-by AECO Ontologies",
+        "Number of Classes",
+        "Number of Object Properties",
+        "Number of Data Properties",
     ];
 
     // Populate the table in the defined order
@@ -90,11 +89,11 @@ function populateOntologyTable(ontology) {
         tableBody.appendChild(row);
     });
 
-    // Check if "Is Part of Ontology Cluster" exists and display ClusterName in the second box
+    // Check if "Cluster" exists and display ClusterName in the second box
     const clusterBox = document.getElementById('cluster-box');
-    if (ontology["Is Part of Ontology Cluster"]) {
+    if (ontology["Cluster"]) {
         clusterBox.style.display = 'block'; // Make the cluster box visible
-        clusterBox.querySelector('.cluster-name').textContent = ontology["Is Part of Ontology Cluster"];
+        clusterBox.querySelector('.cluster-name').textContent = ontology["Cluster"];
     } else {
         clusterBox.style.display = 'none'; // Hide the cluster box if not part of a cluster
     }

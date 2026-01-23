@@ -173,6 +173,7 @@ main {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: fixed;
 }
 
 #ontology-table th,
@@ -180,6 +181,17 @@ main {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+}
+
+#ontology-table th:first-child,
+#ontology-table td:first-child {
+    width: 20%;
+}
+
+#ontology-table th:last-child,
+#ontology-table td:last-child {
+    width: 80%;
+    word-wrap: break-word;
 }
 
 #ontology-table th {
