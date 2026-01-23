@@ -128,13 +128,13 @@ function displayOntologies(ontologies) {
         card.classList.add('card');
 
         const ontologyLink = document.createElement('a');
-        ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Name)}`;
+        ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Title)}`;
         ontologyLink.classList.add('card-link');
 
         // Generate spider chart for the ontology
         const spiderChartUrl = generateSpiderChart({
-            Connectivity: ontology.Alignment,
-            Accessibility: ontology.Accessability,
+            Connectivity: ontology["Alignment Score"],
+            Accessibility: ontology["Accessability Score"],
             "Documentation & Reuse": ontology["Documentation & Reuse"],
         });
 
@@ -151,13 +151,13 @@ function displayOntologies(ontologies) {
                 <img src="${spiderChartUrl}" alt="Spider Chart">
             </div>
             <div class="content">
-                <div class="name">${ontology.Name}</div>
-                <div class="acronym">${ontology.Acronym || 'N/A'}</div>
+                <div class="name">${ontology.Title}</div>
+                <div class="acronym">${ontology.Prefix || 'N/A'}</div>
                 <div class="details">
                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
-                    <span><strong>FAIR Score:</strong> ${ontology['FOOPS'] || 'N/A'}</span>
-                    <span><strong>${ontology['Issued'] || 'Publication year unknown'}</strong></span>
+                    <span><strong>FAIR Score:</strong> ${ontology['FOOPS Score'] || 'N/A'}</span>
+                    <span><strong>${ontology['Created (or Issued or )'] || 'Publication year unknown'}</strong></span>
                 </div>
                 <div class="buttons">
                     <button class="see-details">See Details</button>

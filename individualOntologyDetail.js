@@ -19,7 +19,7 @@ async function loadOntologyDetails() {
         }
 
         const ontologies = await response.json();
-        const ontology = ontologies.find(o => o.Name === ontologyName); // Find the ontology by name
+        const ontology = ontologies.find(o => o.Title === ontologyName); // Find the ontology by Title
 
         if (!ontology) {
             document.getElementById('ontology-details').innerHTML = 'Ontology not found.';
@@ -35,82 +35,66 @@ async function loadOntologyDetails() {
     }
 }
 
-// Function to create and populate the ontology table
-// function populateOntologyTable(ontology) {
-//     const tableBody = document.querySelector('#ontology-table tbody');
-//     tableBody.innerHTML = '';  
-
-//     // Populate the table with data
-//     Object.keys(ontology).forEach(key => {
-//         if (ontology[key] !== null) {
-//             const row = document.createElement('tr');
-//             row.innerHTML = `
-//                 <td>${key}</td>
-//                 <td>${ontology[key]}</td>
-//             `;
-//             tableBody.appendChild(row);
-//         }
-//     });
-// }
-
 
 function populateOntologyTable(ontology) {
 
-    // Update the page header with ontology Name and Acronym (new addition: 20250227)
+    // Update the page header with ontology Title and Prefix (updated column names)
     const ontologyHeading = document.getElementById('ontology-heading');
-    ontologyHeading.textContent = ontology.Name; // Set Name as the title
+    ontologyHeading.textContent = ontology.Title; // Set Title as the title
 
-    // Check if Acronym exists and append it
-    if (ontology.Acronym) {
-        ontologyHeading.textContent += ` (${ontology.Acronym.toUpperCase()})`;
+    // Check if Prefix exists and append it
+    if (ontology.Prefix) {
+        ontologyHeading.textContent += ` (${ontology.Prefix})`;
     }
 
     const tableBody = document.querySelector('#ontology-table tbody');
     tableBody.innerHTML = ''; // Clear previous content
     
-    // Define the desired order of fields
+    // Define the desired order of fields (updated to match JSON column names)
     const fieldOrder = [
         "Title",
-        "Acronym",
-        "Issued",
+        "Prefix",
+        "Created (or Issued or )",
         "Version",
         "License",
         "URI",
-        "FOOPS Score",
+        "FOOPs Score",
         "Description",
-        "Conforms To Standard",
+        "Conforms to Standard(s)",
         "Primary Domain",
         "Secondary Domain",
-        "References",
-        "Linked-to ontologies AECO",
-        "Linked-by ontologies UPPER",
+        "Reference Source",
+        "Linked-to AECO Ontologies",
+        "Linked-to Upper Ontologies",
     ];
 
     // Populate the table in the defined order
     fieldOrder.forEach((key) => {
-        if (ontology[key] !== null && ontology[key] !== undefined) {
-            let value = ontology[key];
-
-            // Capitalize specific fields
-            if (key === "Acronym" || key === "Linked-to ontologies AECO" || key === "Linked-by ontologies UPPER") {
-                value = String(value).toUpperCase();
-            }
-            
-
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${key}</td>
-                <td>${value}</td>
-            `;
-            tableBody.appendChild(row);
+        let value = ontology[key];
+        
+        // Show blank for null/undefined values instead of hiding the row
+        if (value === null || value === undefined) {
+            value = "";
         }
+
+        // Make URI a clickable link
+        if (key === "URI" && value) {
+            value = `<a href="${value}" target="_blank">${value}</a>`;
+        }
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${key}</td>
+            <td>${value}</td>
+        `;
+        tableBody.appendChild(row);
     });
 
-    // Check if PartOfCluster is "Yes" and display ClusterName in the second box
+    // Check if "Is Part of Ontology Cluster" exists and display ClusterName in the second box
     const clusterBox = document.getElementById('cluster-box');
-    if (ontology.PartOfCluster === "Yes" && ontology.ClusterName) {
+    if (ontology["Is Part of Ontology Cluster"]) {
         clusterBox.style.display = 'block'; // Make the cluster box visible
-        clusterBox.querySelector('.cluster-name').textContent = ontology.ClusterName;
+        clusterBox.querySelector('.cluster-name').textContent = ontology["Is Part of Ontology Cluster"];
     } else {
         clusterBox.style.display = 'none'; // Hide the cluster box if not part of a cluster
     }
@@ -124,33 +108,43 @@ function populateEvaluationTable(ontology) {
     // Define the fixed criteria and their corresponding keys in the JSON
     const evaluationCriteria = {
         "Connectivity": [
-            { criteria: "Linkage to upper ontologies", key: "Linkage to upper ontologies" },
-            { criteria: "Linkage to existing AECO ontologies", key: "Linkage to existing AECO ontologies" },
-            { criteria: "Linkage to meta schema ontologies", key: "Linkage to meta schema ontologies" }
+            { criteria: "Linkage to upper ontologies", key: "Linked-to Upper Ontologies" },
+            { criteria: "Linkage to existing AECO ontologies", key: "Linked-to AECO Ontologies" },
+            { criteria: "Linkage to meta schema ontologies", key: "Conforms to Standard(s)" }
         ],
         "Accessibility": [
-            { criteria: "Conceptual Data model available", key: "Conceptual Data model available" },
-            { criteria: "Accessible as Serialization", key: "Accessible as Serialization" },
-            { criteria: "Accessible as a URI", key: "Accessible as a  URI" }
+            { criteria: "Conceptual Data model available", key: "Has Conceptual Model" },
+            { criteria: "Accessible as Serialization", key: "Has Serialization" },
+            { criteria: "Accessible as a URI", key: "URI" }
         ],
         "Documentation & Reuse": [
-            { criteria: "Clearly documented", key: "Clearly  documented" },
-            { criteria: "Use of annotations", key: "Use of annotations" },
-            { criteria: "Reused/Extended", key: "Reused/Extended by Explicit Import" }
+            { criteria: "Clearly documented", key: "Has Documentation" },
+            { criteria: "Use of annotations", key: "Has Annotations" },
+            { criteria: "Reused/Extended", key: "Is Reused by Other AECO Ontologies" }
         ]
     };
 
-    // Axis score mappings
+    // Axis score mappings (updated to match JSON column names)
     const axisScores = {
-        "Connectivity": ontology["Connectivity"] || 0,
-        "Accessibility": ontology["Accessability"] || 0,
-        "Documentation & Reuse": ontology["Documentation & Reuse"] || 0
+        "Connectivity": ontology["Alignment Score"] || 0,
+        "Accessibility": ontology["Accessibility Score"] || 0,
+        "Documentation & Reuse": ontology["Quality Score"] || 0
     };
 
     Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
         criteriaList.forEach((item, index) => {
-            let presence = ontology[item.key] ? ontology[item.key].trim().toLowerCase() : "no";
-            presence = presence === "yes" ? "Yes" : "No";
+            let value = ontology[item.key];
+            let presence = "No";
+            
+            // Handle different value types
+            if (value !== null && value !== undefined) {
+                if (typeof value === 'number') {
+                    presence = value >= 1 ? "Yes" : "No";
+                } else if (typeof value === 'string') {
+                    const trimmed = value.trim().toLowerCase();
+                    presence = (trimmed !== "" && trimmed !== "no" && trimmed !== "n/a") ? "Yes" : "No";
+                }
+            }
 
             const row = document.createElement("tr");
             
@@ -185,11 +179,11 @@ function renderSpiderChart(ontology) {
             labels: ["Connectivity", "Accessibility", "Documentation & Reuse"],
             datasets: [
                 {
-                    label: ontology.Name,
+                    label: ontology.Title,
                     data: [
-                        ontology.Connectivity || 0,
-                        ontology.Accessability || 0,
-                        ontology["Documentation & Reuse"] || 0
+                        ontology["Alignment Score"] || 0,
+                        ontology["Accessibility Score"] || 0,
+                        ontology["Quality Score"] || 0
                     ],
                     backgroundColor: "rgba(255, 99, 132, 0.2)",
                     borderColor: "rgba(255, 99, 132, 1)",
@@ -210,36 +204,4 @@ function renderSpiderChart(ontology) {
     });
 }
 
-// Fetch and Load Data
-async function loadOntologyDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ontologyName = urlParams.get("ontology");
-
-    if (!ontologyName) {
-        document.getElementById("ontology-details").innerHTML = "No ontology found.";
-        return;
-    }
-
-    try {
-        const response = await fetch("data/Ontologies_forRepo.json");
-        if (!response.ok) throw new Error("Failed to fetch ontology data");
-
-        const ontologies = await response.json();
-        const ontology = ontologies.find(o => o.Name === ontologyName);
-
-        if (!ontology) {
-            document.getElementById("ontology-details").innerHTML = "Ontology not found.";
-            return;
-        }
-
-        populateOntologyTable(ontology);
-        populateEvaluationTable(ontology);
-        renderSpiderChart(ontology);
-    } catch (error) {
-        console.error("Error fetching ontology data:", error);
-        document.getElementById("ontology-details").innerHTML = "Error loading ontology data.";
-    }
-}
-
 window.onload = loadOntologyDetails;
-
