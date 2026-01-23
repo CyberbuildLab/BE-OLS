@@ -61,7 +61,7 @@ function populateOntologyTable(ontology) {
         "Reference Source",
         "Linked-to AECO Ontologies",
         "Linked-to Upper Ontologies",
-        "linked-by AECO Ontologies",
+        "Linked-by AECO Ontologies",
         "Number of Classes",
         "Number of Object Properties",
         "Number of Data Properties",

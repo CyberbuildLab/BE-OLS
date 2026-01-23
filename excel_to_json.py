@@ -25,7 +25,7 @@ COLUMN_MAPPING = {
     "license_final": "License",
     "linked_aeco_final": "Linked-to AECO Ontologies",
     "linked_upper_final": "Linked-to Upper Ontologies",
-    "linked_by_aeco_final": "linked-by AECO Ontologies",
+    "linked_by_aeco_final": "Linked-by AECO Ontologies",
     "serialization_final": "Has Serialization",
     "documentation_final": "Has Documentation",
     "conceptual_data_model_final": "Has Conceptual Model",
