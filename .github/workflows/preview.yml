@@ -14,7 +14,10 @@ jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: rossjrw/pr-preview-action@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy PR Preview
+        uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./
