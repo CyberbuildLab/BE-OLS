@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Graph - BE-OLS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1b1b1b, #333);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Ribbon - this is the same for all pages */
+        .header-ribbon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #222;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo a {
+            color: #f7a11b;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .logo a:hover {
+            color: #e69518;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav a {
+            color: #f7a11b;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #e69518;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 20px auto;
+            width: 100%;
+        }
+
+        .graph-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+
+        .graph-title {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #mynetwork {
+            width: 100%;
+            height: 700px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        #loadingBar {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200, 200, 200, 0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity: 1;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        #bar {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 20px;
+            height: 20px;
+            margin: auto auto auto auto;
+            border-radius: 11px;
+            border: 2px solid rgba(30, 30, 30, 0.05);
+            background: rgb(0, 173, 246);
+            box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        #border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 500px;
+            height: 23px;
+            margin: auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        #text {
+            position: absolute;
+            top: 8px;
+            left: 530px;
+            width: 30px;
+            height: 50px;
+            margin: auto auto auto auto;
+            font-size: 22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position: relative;
+            top: 400px;
+            width: 600px;
+            height: 44px;
+            margin: auto auto auto auto;
+            border: 8px solid rgba(0, 0, 0, 0.1);
+            background: rgb(252, 252, 252);
+            background: -moz-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(252, 252, 252, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+            background: -webkit-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
+            background: -o-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
+            background: linear-gradient(to bottom, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 );
+            border-radius: 72px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+
+        .footer .social-icons {
+            margin-bottom: 10px;
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .footer .social-icons img {
+            height: 24px;
+            width: 24px;
+            transition: opacity 0.3s;
+        }
+
+        .footer .social-icons img:hover {
+            opacity: 0.7;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Help text for graph interaction */
+        .graph-help {
+            text-align: center;
+            padding: 15px;
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <header class="header-ribbon">
+        <div class="logo">
+            <a href="https://ec-3.org/">
+                <img src="images/ec3_logo.jpg" alt="EC3 Logo">
+            </a>
+            <a href="https://cyberbuildlab.github.io/BE-OLS/"> Built Environment Ontology Lookup Service</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ontologyCards.html">Ontologies</a></li>
+                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="graph-container">
+            <h2 class="graph-title">Ontology Network Graph</h2>
+            <div id="mynetwork">
+                <div id="loadingBar">
+                    <div class="outerBorder">
+                        <div id="text">0%</div>
+                        <div id="border">
+                            <div id="bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="graph-help">
+                💡 Scroll to zoom in/out • Drag to pan • Click to interact with nodes
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://x.com/europeanC3" target="_blank"><img src="images/twitter.png" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/company/european-council-for-computing-in-construction" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        </div>
+        <p>&copy; Copyright EC3 M&S Committee 2025 | All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        // Ensure vis library is loaded
+        function initializeGraph() {
+            console.log('Initializing graph...');
+            
+            var container = document.getElementById('mynetwork');
+            if (!container) {
+                console.error('Container #mynetwork not found!');
+                return;
+            }
+
+            console.log('Container found, creating data...');
+            
+            // Create nodes dataset
+            var nodes = new vis.DataSet([{"color": "#ffbb78", "font": {"size": 16}, "id": "aec3po", "label": "aec3po", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Planning Permission\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "ao", "label": "ao", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Information Management\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "aoi", "label": "aoi", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 1"}, {"color": "#98df8a", "font": {"size": 16}, "id": "asb", "label": "asb", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Infrastructure)\u003cbr\u003eCentrality: 1"}, {"color": "#9edae5", "font": {"size": 16}, "id": "bao", "label": "bao", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Standards, Codes and Certifications\u003cbr\u003eCentrality: 0"}, {"color": "#ff9896", "font": {"size": 16}, "id": "bcao", "label": "bcao", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "bcfowl", "label": "bcfowl", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Information Management\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "bem-reno", "label": "bem-reno", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "beo", "label": "beo", "labelHighlightBold": true, "shape": "dot", "size": 32.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 7"}, {"color": "#17becf", "font": {"size": 16}, "id": "bfp", "label": "bfp", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Fire Safety\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "bimdo", "label": "bimdo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "bimso", "label": "bimso", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 1"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "bm", "label": "bm", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Information Management\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "bop", "label": "bop", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "bot", "label": "bot", "labelHighlightBold": true, "shape": "dot", "size": 65.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 20"}, {"color": "#c49c94", "font": {"size": 16}, "id": "bpo", "label": "bpo", "labelHighlightBold": true, "shape": "dot", "size": 22.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 3"}, {"color": "#c49c94", "font": {"size": 16}, "id": "brick", "label": "brick", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 2"}, {"color": "#98df8a", "font": {"size": 16}, "id": "brot", "label": "brot", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Infrastructure)\u003cbr\u003eCentrality: 1"}, {"color": "#c49c94", "font": {"size": 16}, "id": "building", "label": "building", "labelHighlightBold": true, "shape": "dot", "size": 27.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 5"}, {"color": "#ff9896", "font": {"size": 16}, "id": "camo", "label": "camo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "cdc", "label": "cdc", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Information Management\u003cbr\u003eCentrality: 0"}, {"color": "#f7b6d2", "font": {"size": 16}, "id": "cdo", "label": "cdo", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Quality\u003cbr\u003eCentrality: 1"}, {"color": "#ff9896", "font": {"size": 16}, "id": "ceo", "label": "ceo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "conse", "label": "conse", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "contax", "label": "contax", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 1"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "cto", "label": "cto", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 2"}, {"color": "#c49c94", "font": {"size": 16}, "id": "dbo", "label": "dbo", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 1"}, {"color": "#c49c94", "font": {"size": 16}, "id": "dclvl", "label": "dclvl", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#9467bd", "font": {"size": 16}, "id": "dica", "label": "dica", "labelHighlightBold": true, "shape": "dot", "size": 27.5, "title": "Category: Resources\u003cbr\u003eCentrality: 5"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dicc", "label": "dicc", "labelHighlightBold": true, "shape": "dot", "size": 25.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 4"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dice", "label": "dice", "labelHighlightBold": true, "shape": "dot", "size": 37.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 9"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "dices", "label": "dices", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "dici", "label": "dici", "labelHighlightBold": true, "shape": "dot", "size": 22.5, "title": "Category: Information Management\u003cbr\u003eCentrality: 3"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dicl", "label": "dicl", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 1"}, {"color": "#bcbd22", "font": {"size": 16}, "id": "dicm", "label": "dicm", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: Materials\u003cbr\u003eCentrality: 2"}, {"color": "#c5b0d5", "font": {"size": 16}, "id": "dicob", "label": "dicob", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Comfort\u003cbr\u003eCentrality: 0"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dicp", "label": "dicp", "labelHighlightBold": true, "shape": "dot", "size": 30.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 6"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dicstg", "label": "dicstg", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 1"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "dicu", "label": "dicu", "labelHighlightBold": true, "shape": "dot", "size": 25.0, "title": "Category: Energy\u003cbr\u003eCentrality: 4"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dicv", "label": "dicv", "labelHighlightBold": true, "shape": "dot", "size": 32.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 7"}, {"color": "#d62728", "font": {"size": 16}, "id": "dmo", "label": "dmo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Safety\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "dogont", "label": "dogont", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#ff9896", "font": {"size": 16}, "id": "dor", "label": "dor", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#d62728", "font": {"size": 16}, "id": "dot", "label": "dot", "labelHighlightBold": true, "shape": "dot", "size": 30.0, "title": "Category: Safety\u003cbr\u003eCentrality: 6"}, {"color": "#c49c94", "font": {"size": 16}, "id": "dstv", "label": "dstv", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "dt", "label": "dt", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "dtc", "label": "dtc", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "eepsa", "label": "eepsa", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#bcbd22", "font": {"size": 16}, "id": "emmo", "label": "emmo", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: Materials\u003cbr\u003eCentrality: 2"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "esair", "label": "esair", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#bcbd22", "font": {"size": 16}, "id": "eurobau", "label": "eurobau", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Materials\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "facility", "label": "facility", "labelHighlightBold": true, "shape": "dot", "size": 25.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 4"}, {"color": "#17becf", "font": {"size": 16}, "id": "ffdr", "label": "ffdr", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Fire Safety\u003cbr\u003eCentrality: 0"}, {"color": "#17becf", "font": {"size": 16}, "id": "fisa", "label": "fisa", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Fire Safety\u003cbr\u003eCentrality: 0"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "fm-ener", "label": "fm-ener", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 0"}, {"color": "#e377c2", "font": {"size": 16}, "id": "fog", "label": "fog", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: Geometry\u003cbr\u003eCentrality: 2"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "FSO", "label": "FSO", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 0"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "HBPO", "label": "HBPO", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 0"}, {"color": "#98df8a", "font": {"size": 16}, "id": "icdd2ams", "label": "icdd2ams", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Infrastructure)\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "idpo", "label": "idpo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Information Management\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "ifc4-add2", "label": "ifc4-add2", "labelHighlightBold": true, "shape": "dot", "size": 30.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 6"}, {"color": "#98df8a", "font": {"size": 16}, "id": "into", "label": "into", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Infrastructure)\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "io", "label": "io", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Information Management\u003cbr\u003eCentrality: 1"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "ioc", "label": "ioc", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 1"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "iot", "label": "iot", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 1"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "isoprops", "label": "isoprops", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 1"}, {"color": "#dbdb8d", "font": {"size": 16}, "id": "jup", "label": "jup", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Mobility/Transport\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "kpi", "label": "kpi", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: Energy\u003cbr\u003eCentrality: 2"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "lca-c-renovation", "label": "lca-c-renovation", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "font": {"size": 16}, "id": "loin", "label": "loin", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Information Management\u003cbr\u003eCentrality: 1"}, {"color": "#bcbd22", "font": {"size": 16}, "id": "mat", "label": "mat", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Materials\u003cbr\u003eCentrality: 1"}, {"color": "#bcbd22", "font": {"size": 16}, "id": "mdo", "label": "mdo", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Materials\u003cbr\u003eCentrality: 1"}, {"color": "#c49c94", "font": {"size": 16}, "id": "mep", "label": "mep", "labelHighlightBold": true, "shape": "dot", "size": 20.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 2"}, {"color": "#ff9896", "font": {"size": 16}, "id": "mpo", "label": "mpo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#9edae5", "font": {"size": 16}, "id": "nen2660", "label": "nen2660", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Standards, Codes and Certifications\u003cbr\u003eCentrality: 0"}, {"color": "#9edae5", "font": {"size": 16}, "id": "nen2660-term ", "label": "nen2660-term ", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Standards, Codes and Certifications\u003cbr\u003eCentrality: 0"}, {"color": "#ffbb78", "font": {"size": 16}, "id": "obpa", "label": "obpa", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Planning Permission\u003cbr\u003eCentrality: 0"}, {"color": "#f7b6d2", "font": {"size": 16}, "id": "ocqa", "label": "ocqa", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Quality\u003cbr\u003eCentrality: 1"}, {"color": "#c5b0d5", "font": {"size": 16}, "id": "ofo", "label": "ofo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Comfort\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "omg", "label": "omg", "labelHighlightBold": true, "shape": "dot", "size": 27.5, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 5"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "onem2m", "label": "onem2m", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 1"}, {"color": "#8c564b", "font": {"size": 16}, "id": "OntoCityGML ", "label": "OntoCityGML ", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Geographic Information\u003cbr\u003eCentrality: 0"}, {"color": "#dbdb8d", "font": {"size": 16}, "id": "ontonav", "label": "ontonav", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Mobility/Transport\u003cbr\u003eCentrality: 0"}, {"color": "#c5b0d5", "font": {"size": 16}, "id": "op", "label": "op", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Comfort\u003cbr\u003eCentrality: 0"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "opm", "label": "opm", "labelHighlightBold": true, "shape": "dot", "size": 27.5, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 5"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "process", "label": "process", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 1"}, {"color": "#f7b6d2", "font": {"size": 16}, "id": "quality", "label": "quality", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Quality\u003cbr\u003eCentrality: 0"}, {"color": "#2ca02c", "font": {"size": 16}, "id": "rec", "label": "rec", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: Facilities Management\u003cbr\u003eCentrality: 1"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "reno-inst", "label": "reno-inst", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#aec7e8", "font": {"size": 16}, "id": "renp", "label": "renp", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Production (Process)\u003cbr\u003eCentrality: 0"}, {"color": "#9467bd", "font": {"size": 16}, "id": "resource", "label": "resource", "labelHighlightBold": true, "shape": "dot", "size": 22.5, "title": "Category: Resources\u003cbr\u003eCentrality: 3"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4bldg", "label": "s4bldg", "labelHighlightBold": true, "shape": "dot", "size": 25.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 4"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4city", "label": "s4city", "labelHighlightBold": true, "shape": "dot", "size": 22.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 3"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4ener", "label": "s4ener", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4envi", "label": "s4envi", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4grid", "label": "s4grid", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4lift", "label": "s4lift", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4syst", "label": "s4syst", "labelHighlightBold": true, "shape": "dot", "size": 22.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 3"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "s4water", "label": "s4water", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#d62728", "font": {"size": 16}, "id": "safety", "label": "safety", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Safety\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "sao", "label": "sao", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "saref", "label": "saref", "labelHighlightBold": true, "shape": "dot", "size": 57.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 17"}, {"color": "#d62728", "font": {"size": 16}, "id": "sbeo", "label": "sbeo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Safety\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "sbim", "label": "sbim", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "sbonto", "label": "sbonto", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "sd", "label": "sd", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "seas", "label": "seas", "labelHighlightBold": true, "shape": "dot", "size": 27.5, "title": "Category: Energy\u003cbr\u003eCentrality: 5"}, {"color": "#ff9896", "font": {"size": 16}, "id": "sero", "label": "sero", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Circular Economy\u003cbr\u003eCentrality: 0"}, {"color": "#9edae5", "font": {"size": 16}, "id": "sml", "label": "sml", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Standards, Codes and Certifications\u003cbr\u003eCentrality: 0"}, {"color": "#9edae5", "font": {"size": 16}, "id": "sml-term", "label": "sml-term", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Standards, Codes and Certifications\u003cbr\u003eCentrality: 0"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "sosa", "label": "sosa", "labelHighlightBold": true, "shape": "dot", "size": 37.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 9"}, {"color": "#7f7f7f", "font": {"size": 16}, "id": "ssn", "label": "ssn", "labelHighlightBold": true, "shape": "dot", "size": 17.5, "title": "Category: IoT Sensors/Actuators\u003cbr\u003eCentrality: 1"}, {"color": "#c49c94", "font": {"size": 16}, "id": "stg", "label": "stg", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#c5b0d5", "font": {"size": 16}, "id": "th-actor", "label": "th-actor", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Comfort\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "th-building", "label": "th-building", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "th-energy", "label": "th-energy", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#ff7f0e", "font": {"size": 16}, "id": "th-process", "label": "th-process", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Energy\u003cbr\u003eCentrality: 0"}, {"color": "#c49c94", "font": {"size": 16}, "id": "th-sharedvocabulary", "label": "th-sharedvocabulary", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: BE Product (Building)\u003cbr\u003eCentrality: 0"}, {"color": "#c7c7c7", "font": {"size": 16}, "id": "th-weather", "label": "th-weather", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Weather/Climate\u003cbr\u003eCentrality: 0"}, {"color": "#dbdb8d", "font": {"size": 16}, "id": "uno", "label": "uno", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Mobility/Transport\u003cbr\u003eCentrality: 0"}, {"color": "#d62728", "font": {"size": 16}, "id": "unocs", "label": "unocs", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Safety\u003cbr\u003eCentrality: 0"}, {"color": "#dbdb8d", "font": {"size": 16}, "id": "upo", "label": "upo", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Mobility/Transport\u003cbr\u003eCentrality: 0"}, {"color": "#c7c7c7", "font": {"size": 16}, "id": "weat", "label": "weat", "labelHighlightBold": true, "shape": "dot", "size": 15.0, "title": "Category: Weather/Climate\u003cbr\u003eCentrality: 0"}, {"color": "#1f77b4", "fixed": true, "font": {"size": 18}, "id": "legend_0", "label": "Information Management", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": 0}, {"color": "#aec7e8", "fixed": true, "font": {"size": 18}, "id": "legend_1", "label": "Production (Process)", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -70}, {"color": "#ff7f0e", "fixed": true, "font": {"size": 18}, "id": "legend_2", "label": "Energy", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -140}, {"color": "#ffbb78", "fixed": true, "font": {"size": 18}, "id": "legend_3", "label": "Planning Permission", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -210}, {"color": "#2ca02c", "fixed": true, "font": {"size": 18}, "id": "legend_4", "label": "Facilities Management", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -280}, {"color": "#98df8a", "fixed": true, "font": {"size": 18}, "id": "legend_5", "label": "BE Product (Infrastructure)", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -350}, {"color": "#d62728", "fixed": true, "font": {"size": 18}, "id": "legend_6", "label": "Safety", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -420}, {"color": "#ff9896", "fixed": true, "font": {"size": 18}, "id": "legend_7", "label": "Circular Economy", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -490}, {"color": "#9467bd", "fixed": true, "font": {"size": 18}, "id": "legend_8", "label": "Resources", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -560}, {"color": "#c5b0d5", "fixed": true, "font": {"size": 18}, "id": "legend_9", "label": "Comfort", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -630}, {"color": "#8c564b", "fixed": true, "font": {"size": 18}, "id": "legend_10", "label": "Geographic Information", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -700}, {"color": "#c49c94", "fixed": true, "font": {"size": 18}, "id": "legend_11", "label": "BE Product (Building)", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -770}, {"color": "#e377c2", "fixed": true, "font": {"size": 18}, "id": "legend_12", "label": "Geometry", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -840}, {"color": "#f7b6d2", "fixed": true, "font": {"size": 18}, "id": "legend_13", "label": "Quality", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -910}, {"color": "#7f7f7f", "fixed": true, "font": {"size": 18}, "id": "legend_14", "label": "IoT Sensors/Actuators", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -980}, {"color": "#c7c7c7", "fixed": true, "font": {"size": 18}, "id": "legend_15", "label": "Weather/Climate", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -1050}, {"color": "#bcbd22", "fixed": true, "font": {"size": 18}, "id": "legend_16", "label": "Materials", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -1120}, {"color": "#dbdb8d", "fixed": true, "font": {"size": 18}, "id": "legend_17", "label": "Mobility/Transport", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -1190}, {"color": "#17becf", "fixed": true, "font": {"size": 18}, "id": "legend_18", "label": "Fire Safety", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -1260}, {"color": "#9edae5", "fixed": true, "font": {"size": 18}, "id": "legend_19", "label": "Standards, Codes and Certifications", "labelHighlightBold": true, "physics": false, "shape": "dot", "size": 35, "x": 1000, "y": -1330}]);
+            
+            var edges = new vis.DataSet([{"arrows": "to", "from": "aec3po", "to": "dicstg"}, {"arrows": "to", "from": "aec3po", "to": "dicl"}, {"arrows": "to", "from": "aec3po", "to": "ifc4-add2"}, {"arrows": "to", "from": "ao", "to": "building"}, {"arrows": "to", "from": "ao", "to": "kpi"}, {"arrows": "to", "from": "ao", "to": "io"}, {"arrows": "to", "from": "aoi", "to": "dot"}, {"arrows": "to", "from": "beo", "to": "ifc4-add2"}, {"arrows": "to", "from": "bfp", "to": "bot"}, {"arrows": "to", "from": "bfp", "to": "brick"}, {"arrows": "to", "from": "bfp", "to": "sosa"}, {"arrows": "to", "from": "bimdo", "to": "bimso"}, {"arrows": "to", "from": "bot", "to": "dbo"}, {"arrows": "to", "from": "bpo", "to": "seas"}, {"arrows": "to", "from": "brick", "to": "rec"}, {"arrows": "to", "from": "brick", "to": "sosa"}, {"arrows": "to", "from": "building", "to": "bot"}, {"arrows": "to", "from": "building", "to": "s4bldg"}, {"arrows": "to", "from": "cdc", "to": "bot"}, {"arrows": "to", "from": "cdc", "to": "dot"}, {"arrows": "to", "from": "cdo", "to": "bot"}, {"arrows": "to", "from": "cdo", "to": "dot"}, {"arrows": "to", "from": "cdo", "to": "beo"}, {"arrows": "to", "from": "cdo", "to": "aoi"}, {"arrows": "to", "from": "conse", "to": "sosa"}, {"arrows": "to", "from": "conse", "to": "dica"}, {"arrows": "to", "from": "conse", "to": "dice"}, {"arrows": "to", "from": "contax", "to": "beo"}, {"arrows": "to", "from": "contax", "to": "bot"}, {"arrows": "to", "from": "contax", "to": "dot"}, {"arrows": "to", "from": "contax", "to": "mep"}, {"arrows": "to", "from": "contax", "to": "opm"}, {"arrows": "to", "from": "contax", "to": "omg"}, {"arrows": "to", "from": "contax", "to": "fog"}, {"arrows": "to", "from": "contax", "to": "cto"}, {"arrows": "to", "from": "cto", "to": "bot"}, {"arrows": "to", "from": "cto", "to": "dot"}, {"arrows": "to", "from": "cto", "to": "contax"}, {"arrows": "to", "from": "dica", "to": "dice"}, {"arrows": "to", "from": "dica", "to": "dicp"}, {"arrows": "to", "from": "dice", "to": "dicc"}, {"arrows": "to", "from": "dice", "to": "dicv"}, {"arrows": "to", "from": "dices", "to": "dice"}, {"arrows": "to", "from": "dices", "to": "dici"}, {"arrows": "to", "from": "dices", "to": "dicp"}, {"arrows": "to", "from": "dices", "to": "dicu"}, {"arrows": "to", "from": "dices", "to": "dicv"}, {"arrows": "to", "from": "dici", "to": "dica"}, {"arrows": "to", "from": "dici", "to": "dicc"}, {"arrows": "to", "from": "dici", "to": "dice"}, {"arrows": "to", "from": "dici", "to": "dicp"}, {"arrows": "to", "from": "dici", "to": "dicv"}, {"arrows": "to", "from": "dicl", "to": "dica"}, {"arrows": "to", "from": "dicl", "to": "dicc"}, {"arrows": "to", "from": "dicl", "to": "dice"}, {"arrows": "to", "from": "dicl", "to": "dicp"}, {"arrows": "to", "from": "dicl", "to": "dicv"}, {"arrows": "to", "from": "dicm", "to": "dice"}, {"arrows": "to", "from": "dicm", "to": "dicu"}, {"arrows": "to", "from": "dicm", "to": "dicv"}, {"arrows": "to", "from": "dicob", "to": "dica"}, {"arrows": "to", "from": "dicob", "to": "dicc"}, {"arrows": "to", "from": "dicob", "to": "dice"}, {"arrows": "to", "from": "dicob", "to": "dici"}, {"arrows": "to", "from": "dicob", "to": "dicp"}, {"arrows": "to", "from": "dicob", "to": "dicu"}, {"arrows": "to", "from": "dicob", "to": "dicv"}, {"arrows": "to", "from": "dicp", "to": "dice"}, {"arrows": "to", "from": "dicp", "to": "dicv"}, {"arrows": "to", "from": "dor", "to": "bot"}, {"arrows": "to", "from": "dor", "to": "bpo"}, {"arrows": "to", "from": "dor", "to": "dicm"}, {"arrows": "to", "from": "dot", "to": "bot"}, {"arrows": "to", "from": "dot", "to": "brot"}, {"arrows": "to", "from": "dstv", "to": "ioc"}, {"arrows": "to", "from": "dt", "to": "loin"}, {"arrows": "to", "from": "dt", "to": "isoprops"}, {"arrows": "to", "from": "dtc", "to": "bot"}, {"arrows": "to", "from": "dtc", "to": "beo"}, {"arrows": "to", "from": "esair", "to": "sosa"}, {"arrows": "to", "from": "facility", "to": "bot"}, {"arrows": "to", "from": "facility", "to": "beo"}, {"arrows": "to", "from": "facility", "to": "s4bldg"}, {"arrows": "to", "from": "facility", "to": "saref"}, {"arrows": "to", "from": "fisa", "to": "bot"}, {"arrows": "to", "from": "fm-ener", "to": "ifc4-add2"}, {"arrows": "to", "from": "fog", "to": "omg"}, {"arrows": "to", "from": "FSO", "to": "bot"}, {"arrows": "to", "from": "HBPO", "to": "mep"}, {"arrows": "to", "from": "HBPO", "to": "beo"}, {"arrows": "to", "from": "HBPO", "to": "bot"}, {"arrows": "to", "from": "HBPO", "to": "mat"}, {"arrows": "to", "from": "HBPO", "to": "ifc4-add2"}, {"arrows": "to", "from": "icdd2ams", "to": "asb"}, {"arrows": "to", "from": "icdd2ams", "to": "bot"}, {"arrows": "to", "from": "idpo", "to": "ifc4-add2"}, {"arrows": "to", "from": "idpo", "to": "bot"}, {"arrows": "to", "from": "ioc", "to": "bot"}, {"arrows": "to", "from": "ioc", "to": "omg"}, {"arrows": "to", "from": "ioc", "to": "cto"}, {"arrows": "to", "from": "iot", "to": "resource"}, {"arrows": "to", "from": "iot", "to": "saref"}, {"arrows": "to", "from": "iot", "to": "facility"}, {"arrows": "to", "from": "isoprops", "to": "opm"}, {"arrows": "to", "from": "kpi", "to": "s4city"}, {"arrows": "to", "from": "kpi", "to": "saref"}, {"arrows": "to", "from": "mat", "to": "building"}, {"arrows": "to", "from": "mat", "to": "saref"}, {"arrows": "to", "from": "mdo", "to": "emmo"}, {"arrows": "to", "from": "mep", "to": "ifc4-add2"}, {"arrows": "to", "from": "mpo", "to": "emmo"}, {"arrows": "to", "from": "mpo", "to": "mdo"}, {"arrows": "to", "from": "obpa", "to": "bot"}, {"arrows": "to", "from": "ocqa", "to": "opm"}, {"arrows": "to", "from": "ocqa", "to": "dica"}, {"arrows": "to", "from": "ocqa", "to": "dice"}, {"arrows": "to", "from": "ocqa", "to": "dicp"}, {"arrows": "to", "from": "omg", "to": "opm"}, {"arrows": "to", "from": "omg", "to": "seas"}, {"arrows": "to", "from": "op", "to": "s4bldg"}, {"arrows": "to", "from": "op", "to": "saref"}, {"arrows": "to", "from": "op", "to": "building"}, {"arrows": "to", "from": "opm", "to": "seas"}, {"arrows": "to", "from": "process", "to": "resource"}, {"arrows": "to", "from": "process", "to": "saref"}, {"arrows": "to", "from": "process", "to": "facility"}, {"arrows": "to", "from": "quality", "to": "facility"}, {"arrows": "to", "from": "quality", "to": "process"}, {"arrows": "to", "from": "quality", "to": "saref"}, {"arrows": "to", "from": "rec", "to": "brick"}, {"arrows": "to", "from": "renp", "to": "building"}, {"arrows": "to", "from": "renp", "to": "kpi"}, {"arrows": "to", "from": "resource", "to": "saref"}, {"arrows": "to", "from": "resource", "to": "iot"}, {"arrows": "to", "from": "s4bldg", "to": "saref"}, {"arrows": "to", "from": "s4city", "to": "saref"}, {"arrows": "to", "from": "s4ener", "to": "saref"}, {"arrows": "to", "from": "s4envi", "to": "saref"}, {"arrows": "to", "from": "s4grid", "to": "saref"}, {"arrows": "to", "from": "s4grid", "to": "onem2m"}, {"arrows": "to", "from": "s4lift", "to": "saref"}, {"arrows": "to", "from": "s4lift", "to": "s4bldg"}, {"arrows": "to", "from": "s4lift", "to": "s4syst"}, {"arrows": "to", "from": "s4water", "to": "saref"}, {"arrows": "to", "from": "s4water", "to": "s4city"}, {"arrows": "to", "from": "s4water", "to": "s4syst"}, {"arrows": "to", "from": "safety", "to": "resource"}, {"arrows": "to", "from": "safety", "to": "facility"}, {"arrows": "to", "from": "sao", "to": "ssn"}, {"arrows": "to", "from": "saref", "to": "s4syst"}, {"arrows": "to", "from": "sbeo", "to": "seas"}, {"arrows": "to", "from": "sbeo", "to": "sosa"}, {"arrows": "to", "from": "sbim", "to": "seas"}, {"arrows": "to", "from": "sbim", "to": "bot"}, {"arrows": "to", "from": "sbim", "to": "bpo"}, {"arrows": "to", "from": "sbim", "to": "omg"}, {"arrows": "to", "from": "sd", "to": "building"}, {"arrows": "to", "from": "sd", "to": "saref"}, {"arrows": "to", "from": "sero", "to": "beo"}, {"arrows": "to", "from": "sero", "to": "dicm"}, {"arrows": "to", "from": "sero", "to": "dot"}, {"arrows": "to", "from": "sero", "to": "cdo"}, {"arrows": "to", "from": "sml", "to": "sosa"}, {"arrows": "to", "from": "sml-term", "to": "sosa"}, {"arrows": "to", "from": "ssn", "to": "sosa"}, {"arrows": "to", "from": "stg", "to": "bot"}, {"arrows": "to", "from": "stg", "to": "beo"}, {"arrows": "to", "from": "stg", "to": "omg"}, {"arrows": "to", "from": "stg", "to": "bpo"}, {"arrows": "to", "from": "stg", "to": "fog"}, {"arrows": "to", "from": "unocs", "to": "dicu"}, {"arrows": "to", "from": "unocs", "to": "bot"}, {"arrows": "to", "from": "unocs", "to": "dici"}, {"arrows": "to", "from": "unocs", "to": "ocqa"}, {"arrows": "to", "from": "unocs", "to": "opm"}, {"arrows": "to", "from": "weat", "to": "saref"}, {"arrows": "to", "from": "weat", "to": "s4city"}]);
+                  
+                  var data = {nodes: nodes, edges: edges};
+
+                  var options = {
+                    "configure": {
+                        "enabled": false
+                    },
+                    "edges": {
+                        "color": {
+                            "inherit": true
+                        },
+                        "smooth": {
+                            "enabled": true,
+                            "type": "dynamic"
+                        }
+                    },
+                    "interaction": {
+                        "dragNodes": true,
+                        "hideEdgesOnDrag": false,
+                        "hideNodesOnDrag": false
+                    },
+                    "physics": {
+                        "enabled": true,
+                        "stabilization": {
+                            "enabled": true,
+                            "fit": true,
+                            "iterations": 1000,
+                            "onlyDynamicEdges": false,
+                            "updateInterval": 50
+                        }
+                    }
+                  };
+
+                  console.log('Creating network with', nodes.length, 'nodes and', edges.length, 'edges');
+                  
+                  var network = new vis.Network(container, data, options);
+                  console.log('Network created successfully');
+
+                  network.on("stabilizationProgress", function(params) {
+                      console.log('Stabilization progress:', params.iterations, '/', params.total);
+                      var loadingBar = document.getElementById('loadingBar');
+                      var bar = document.getElementById('bar');
+                      var text = document.getElementById('text');
+                      if (loadingBar) loadingBar.removeAttribute("style");
+                      if (text) {
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          if (bar) bar.style.width = width + 'px';
+                          text.innerHTML = Math.round(widthFactor*100) + '%';
+                      }
+                  });
+                  
+                  network.once("stabilizationIterationsDone", function() {
+                      console.log('Stabilization complete');
+                      var text = document.getElementById('text');
+                      var bar = document.getElementById('bar');
+                      var loadingBar = document.getElementById('loadingBar');
+                      if (text) text.innerHTML = '100%';
+                      if (bar) bar.style.width = '496px';
+                      if (loadingBar) loadingBar.style.opacity = 0;
+                      // really clean the dom element
+                      if (loadingBar) {
+                          setTimeout(function () {loadingBar.style.display = 'none';}, 500);
+                      }
+                  });
+        }
+
+        // Initialize graph when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeGraph);
+        } else {
+            initializeGraph();
+        }
+    </script>
+</body>
+</html>
