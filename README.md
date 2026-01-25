@@ -30,9 +30,9 @@ Issues (including Missing Ontologies)
 If you notice some error in the information provided by the BE-OLS or a missing ontology, **[please submit an issue](https://github.com/CyberbuildLab/BE-OLS/issues)**
 
 To suggest the addition of a missing ontology, please submit the following information or use the automated Ontology Submission Issue.
-* Name: {name of the ontology}
-* Acronym: {the namespeace acronym, e.g. bot}
-* URI/Namespace: {https://w3id.org/...}
+* Title: {title of the ontology}
+* Prefix: {the namespeace prefix, e.g. bot}
+* URI: {https://w3id.org/...}
 * Reference: {weblink to a webpage or DOI of the paper}
 * Link to AEC ontologies: {they should normally be already in BE-OLS. If not, please submit an Issue to add those too :)}
 * Link to Upper ontologies: {ontologies like: schema, terms, prov, skos, vann, cc, foaf, qudt, unit, og, fno}
