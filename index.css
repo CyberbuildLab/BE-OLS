@@ -184,6 +184,91 @@ body {
     color: #ccc;
 }
 
+/* Features Section */
+.features {
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* The grid is set to 3  cards per row*/
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Space between boxes */
+}
+
+
+.feature-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.feature-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f7a11b;
+}
+
+.feature-box p {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+/* Partner Section */
+.partners {
+    text-align: center;
+}
+
+.partners h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* The grid is set to 3  cards per row*/
+.partners-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Space between boxes */
+}
+
+
+.partner-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.partner-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.partner-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f7a11b;
+}
+
+.partner-box p {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+
 /* Footer - this is the same for all pages */
 .footer {
     text-align: center;
