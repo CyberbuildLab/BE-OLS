@@ -5,9 +5,9 @@ import sys
 # Desired column order
 COLUMNS = [
     "Title",
-    "Acronym",
+    "Prefix",
     "Version",
-    "Issued",
+    "Created",
     "License",
     "Conforms To Standard",
     "Description",
