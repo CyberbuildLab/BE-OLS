@@ -1,0 +1,12 @@
+{
+  "Name": "Ontology for Building Permit Inspection Planning",
+  "Acronym": "OBPI",
+  "Version": "1.0",
+  "Year published": "2025",
+  "Short Description": "OBPI is a formal, modular OWL ontology capturing the domain of inspection planning for building‐permit authorities",
+  "URI/Namespace": "https://sebseis.github.io/OBPI/",
+  "Reference": "https://sebseis.github.io/OBPI/",
+  "Linked-to ontologies AECO": "dice, dicp, dica, ifc, bot",
+  "Linked-to ontologies UPPER": "_No response_",
+  "Linked other professional domain ontologies": "org, foaf"
+}
