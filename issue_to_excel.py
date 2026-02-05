@@ -54,7 +54,7 @@ def parse_args() -> argparse.Namespace:
         description="Convert a specific sheet from an Excel file (--input) to a JSON file (--output)."
     )
     # Define the flags matching the failing job's call
-    ap.add_argument('--input', required=True, help='Path to the input Excel file.')
+    ap.add_argument('--input', required=True, help='Path to the input Excel file.' )
     ap.add_argument('--output', required=True, help='Path to the output JSON file.')
     ap.add_argument('--sheet', default='Data', help='Worksheet name to read from (default: Data).')
     
