@@ -7,39 +7,6 @@ import sys
 import pandas as pd
 import numpy as np
 
-# Column mapping: {original_name: new_name}
-COLUMN_MAPPING = {
-    "uri": "URI",
-    "prefix_final": "Prefix",
-    "title_final": "Title",
-    "description_final": "Description",
-    "cluster_final": "Cluster",
-    "conforms_to_standards_final": "Conforms to Standard(s)",
-    "primary_domain_final": "Primary Domain",
-    "secondary_domain_final": "Secondary Domain",
-    "reference_final": "Reference Source",
-    "version_final": "Version",
-    "created_final": "Created",
-    "creator_final": "Creator",
-    "publisher_final": "Publisher",
-    "license_final": "License",
-    "linked_aeco_final": "Linked-to AECO Ontologies",
-    "linked_upper_final": "Linked-to Upper Ontologies",
-    "linked_by_aeco_final": "Linked-by AECO Ontologies",
-    "serialization_final": "Has Serialization",
-    "documentation_final": "Has Documentation",
-    "conceptual_data_model_final": "Has Conceptual Model",
-    "annotation_final": "Has Annotations",
-    "annotation_coverage_percent": "Annotation Score",
-    "FOOPs_final": "FOOPs Score",
-    "classes_count_final": "Number of Classes",
-    "data_properties_count_final": "Number of Data Properties",
-    "object_properties_count_final": "Number of Object Properties",
-    "score_alignment": "Alignment Score",
-    "score_accessibility": "Accessibility Score",
-    "score_quality": "Quality Score",
-}
-
 def excel_to_json(input_path, output_path, sheet_name='Data'):
     # Read the named sheet
     try:
@@ -51,19 +18,6 @@ def excel_to_json(input_path, output_path, sheet_name='Data'):
         raise SystemExit(
             f"Sheet '{sheet_name}' not found. Available sheets: {available}"
         ) from e
-
-    # Filter to only the columns we want (that exist in the data)
-    available_columns = [col for col in COLUMN_MAPPING.keys() if col in df.columns]
-    missing_columns = [col for col in COLUMN_MAPPING.keys() if col not in df.columns]
-    
-    if missing_columns:
-        print(f"Warning: The following columns from the mapping were not found in the data: {missing_columns}")
-    
-    # Select only the mapped columns
-    df = df[available_columns]
-    
-    # Rename columns according to the mapping
-    df = df.rename(columns=COLUMN_MAPPING)
 
     # Replace missing values with None
     df = df.replace({pd.NA: None, np.nan: None})
@@ -79,7 +33,7 @@ def excel_to_json(input_path, output_path, sheet_name='Data'):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Convert an Excel sheet to JSON with column filtering and renaming."
+        description="Convert an Excel sheet to JSON."
     )
 
     # Flagged form
@@ -115,3 +69,4 @@ if __name__ == '__main__':
 
     excel_to_json(input_file, output_file, sheet)
     print(f"Wrote JSON to {output_file}")
+

@@ -3,12 +3,17 @@
 This folder keeps  the source data and is the entry point for automated Excel-to-JSON conversion.
 
 ## Files
-
-* **Ontologies\_forRepo.xlsx** - the main Excel workbook where collaborators add or update data. It must contain a sheet named **Data**.
-* **Ontologies\_forRepo.json** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the Excel file changes.
+* **Ontologies\_forRepo.xlsx** - the main Excel workbook containing the data used by front-end and other code. It must contain a sheet named **Data**.
+* **Ontologies\_forRepo.json** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes.
 * **Output folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
 
 * * **submissions folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
+
+* * **source folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here. This contains:
+  * **Ontologies.xlsx** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
+  * **Ontology_characterisation.jpynb** - the Jupyter Notebook used to process `Ontologies.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder.
+
+* * **Network Graph folder** - old content to be removed eventually.
 
 ## Automatic Conversion
 
@@ -31,7 +36,7 @@ If you need to run the workflow on demand:
 
 * The JSON output file must be named exactly `Ontologies_forRepo.json` so that all downstream code can locate it.
 * Do not rename this file manually. Always update the Excel workbook and let the workflow regenerate the JSON under the correct name.
-* If you upload a new Excel file with a different base name, the converter will generate a JSON file with the same base name.
+* If you upload a new Excel file with a different base name, the converter will generate a JSON file with the same base name (this needs updated so that only the `Ontologies_forRepo.xlsx` is processed).
 
 
 ## Important Points (and Troubleshooting)

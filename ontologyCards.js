@@ -128,14 +128,14 @@ function displayOntologies(ontologies) {
         card.classList.add('card');
 
         const ontologyLink = document.createElement('a');
-        ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Name)}`;
+        ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Title)}`;
         ontologyLink.classList.add('card-link');
 
-        // Generate spider chart for the ontology
+        // Generate spider chart for the ontology (updated field names)
         const spiderChartUrl = generateSpiderChart({
-            Connectivity: ontology.Alignment,
-            Accessibility: ontology.Accessability,
-            "Documentation & Reuse": ontology["Documentation & Reuse"],
+            Connectivity: ontology["Alignment Score"],
+            Accessibility: ontology["Accessibility Score"],
+            "Documentation & Reuse": ontology["Quality Score"],
         });
 
         // Check if the URI is missing. If missing, route to the missingURI.html - 20251202
@@ -145,19 +145,19 @@ function displayOntologies(ontologies) {
         // If missing:
         const resolvedURI = isMissingURI ? "missingURI.html" : rawURI;
 
-        // Create the card content
+        // Create the card content (updated field names)
         ontologyLink.innerHTML = `
             <div class="media">
                 <img src="${spiderChartUrl}" alt="Spider Chart">
             </div>
             <div class="content">
-                <div class="name">${ontology.Name}</div>
-                <div class="acronym">${ontology.Acronym || 'N/A'}</div>
+                <div class="name">${ontology.Title}</div>
+                <div class="acronym">${ontology.Prefix || 'N/A'}</div>
                 <div class="details">
                     <span><strong>Primary Domain:</strong> ${ontology['Primary Domain']}</span>
                     <span><strong>Secondary Domain:</strong> ${ontology['Secondary Domain'] || 'N/A'}</span>
-                    <span><strong>FAIR Score:</strong> ${ontology['FOOPS'] || 'N/A'}</span>
-                    <span><strong>${ontology['Year Issued'] || 'Publication year unknown'}</strong></span>
+                    <span><strong>FAIR Score:</strong> ${ontology['FOOPs Score'] || 'N/A'}</span>
+                    <span><strong>${ontology['Created'] || 'Publication year unknown'}</strong></span>
                 </div>
                 <div class="buttons">
                     <button class="see-details">See Details</button>

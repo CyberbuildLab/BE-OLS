@@ -4,16 +4,18 @@ import sys
 
 # Desired column order
 COLUMNS = [
-    "Name",
-    "Acronym",
+    "Title",
+    "Prefix",
     "Version",
-    "Year published",
-    "Short Description",
-    "URI/Namespace",
-    "Reference",
+    "Created",
+    "License",
+    "Conforms To Standard",
+    "Description",
+    "URI",
+    "References",
     "Linked-to ontologies AECO",
-    "Linked-to ontologies UPPER",
-    "Linked other professional domain ontologies"
+    "Linked-by ontologies UPPER",
+    #"Linked other professional domain ontologies"
 ]
 
 def submission_to_excel(input_json, output_excel, sheet_name='Data'):
