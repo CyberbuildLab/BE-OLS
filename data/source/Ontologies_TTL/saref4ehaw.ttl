@@ -1,0 +1,870 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix s4ehaw: <https://saref.etsi.org/saref4ehaw/> .
+@prefix s4syst: <https://saref.etsi.org/saref4syst/> .
+@prefix s4wear: <https://saref.etsi.org/saref4wear/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@base <https://saref.etsi.org/saref4ehaw/> .
+
+<https://saref.etsi.org/saref4ehaw/> rdf:type owl:Ontology ;
+  owl:imports <https://saref.etsi.org/core/v4.1.1/> ,
+    <https://saref.etsi.org/saref4syst/v1.1.2/> ,
+    <https://saref.etsi.org/saref4wear/v2.1.1/> ;
+  dcterms:creator <http://www-public.imtbs-tsp.eu/~girodgen/> ;
+  dcterms:contributor <https://www.linkedin.com/in/lina-nachabe-2b292457/> ,
+    <https://research.utwente.nl/en/persons/jo%C3%A3o-luiz-moreira> ,
+    <https://pdi.fbk.eu/people/profile/dragoni> ,
+    <http://www.maxime-lefrancois.info/> ;
+  dcterms:publisher <https://www.etsi.org/> ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:source <https://saref.etsi.org/sources/saref4ehaw/> ;
+  owl:versionIRI <https://saref.etsi.org/saref4ehaw/v2.1.1/> ;
+  owl:priorVersion <https://saref.etsi.org/saref4ehaw/v1.1.1/> ;
+  owl:versionInfo "v2.1.1" ;
+  vann:preferredNamespacePrefix "s4ehaw" ;
+  vann:preferredNamespaceUri "https://saref.etsi.org/saref4ehaw/" ;
+  dcterms:modified "2025-04-25"^^xsd:date ;
+  dcterms:issued "2025-04-25"^^xsd:date ;
+  rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341008/02.01.01_60/ts_10341008v020101p.pdf> ;
+  dcterms:title "SAREF4EHAW: an extension of SAREF for eHealth Ageing Well domain"@en ;
+  dcterms:description """The objective of SAREF4EHAW is to extend SAREF ontology for the eHealth/Ageing-well (EHAW) vertical. Clause 4.1 of the present document shortly introduces a high level view of the envisioned SAREF4EHAW semantic model and modular ontology, with the retained concepts (i.e. classes) and their relations. 
+SAREF4EHAW extension has been specified and formalised by investigating EHAW domain related resources, as reported in ETSI TR 103 509, such as: potential stakeholders, standardization initiatives, alliances/associations, European projects, EC directives, existing ontologies, and data repositories. Therefore, SAREF4EHAW modular ontology shall both:
+ - Allow the implementation of a limited set of typical EHAW related use cases already identified in ETSI TR 103 509, i.e.
+ - Use case 1 “elderly at home monitoring and support”,
+ - Use case 2 “monitoring and support of healthy lifestyles for citizens”,
+ - Use case 3 “Early Warning System (EWS) and Cardiovascular Accidents detection”.
+ - Fulfil the eHealth Ageing Well related requirements provided in ETSI TR 103 509, mainly the ontological ones that were mostly taken as input for the ontology specification.
+
+SAREF4EHAW mainly reuses the following existing ontologies: SAREF, ETSI SmartBAN reference model, SAREF 4 Environment extension and W3C SSN System module. The following figure presents the high level view of SAREF4EHAW ontology.
+![SAREF4SYST overview](diagrams/SAREF4EHAW_Model.jpg)
+For semantic interoperability handling purposes, an ontology based solution, combined with sensing-as-a-service and WoT strategies, is retained for SAREF4EHAW. Therefore, an upper level ontology, at service level, shall also behas been fully modelled (Service class and sub-classes depicted in the previous figure).
+For embedded semantic analytics purposes, SAREF4EHAW shall behas been designed using the modularity principle (see ETSI TR 103 509) and can thus be mainly described by the following self-contained knowledge sub-ontologies (or modules): HealthActor, Ban, HealthDevice, Function (measured data related concepts included) and Service."""^^<https://www.iana.org/assignments/media-types/text/markdown> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dcterms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+dcterms:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+
+
+###  https://saref.etsi.org/saref4ehaw/hasHub
+s4ehaw:hasHub rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectsSystem ;
+  rdfs:domain s4ehaw:Ban ;
+  rdfs:range s4ehaw:BanHub ;
+  rdfs:comment "A Body Area Network or BAN elects one hub that mainly plays the role of both a data concentrator and a network gateway."@en ;
+  rdfs:label "has hub"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+###  https://saref.etsi.org/saref4ehaw/dob
+s4ehaw:dob rdf:type owl:DatatypeProperty ;
+           rdfs:domain s4ehaw:HealthActor ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "The date of birth of a health actor."@en ;
+           rdfs:label "date of birth"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/firstName
+s4ehaw:firstName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain s4ehaw:HealthActor ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The first name of a health actor."@en ;
+                 rdfs:label "first name"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/hasMbox
+s4ehaw:hasMbox rdf:type owl:DatatypeProperty ;
+               rdfs:domain s4ehaw:HealthActor ;
+               rdfs:range xsd:anyURI ;
+               rdfs:comment "An email address (or mail box) of an health actor: a URI with the 'mailto' scheme as defined by RFC 6068."@en ;
+               rdfs:label "has mbox"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/lastName
+s4ehaw:lastName rdf:type owl:DatatypeProperty ;
+                rdfs:domain s4ehaw:HealthActor ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The familly name of a health actor."@en ;
+                rdfs:label "last name"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/phone
+s4ehaw:phone rdf:type owl:DatatypeProperty ;
+             rdfs:domain s4ehaw:HealthActor ;
+             rdfs:range xsd:string ;
+             rdfs:comment "The phone number of a health actor, in international format."@en ;
+             rdfs:label "phone"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/serialNb
+s4ehaw:serialNb rdf:type owl:DatatypeProperty ;
+                rdfs:domain s4ehaw:HealthDevice ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The serial number of a health device."@en ;
+                rdfs:label "serial number"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/vocommons/voaf#Vocabulary
+voaf:Vocabulary rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+###  https://saref.etsi.org/saref4ehaw/HealthActor
+s4ehaw:HealthActor rdf:type owl:Class ;
+  rdfs:subClassOf foaf:Agent ;
+  rdfs:comment "The eHealth actors like e.g. caregivers, patients, users, helpers..."@en ;
+  rdfs:label "Health actor"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onProperty saref:hasState ;
+      owl:hasValue s4ehaw:Gender 
+    ] ,
+    [ a owl:Restriction ;
+      owl:onProperty saref:hasState ;
+      owl:hasValue s4ehaw:Location
+    ] .
+
+s4ehaw:Caregiver rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthActor ;
+  rdfs:comment "The class of caregivers."@en ;
+  rdfs:label "Caregiver"@en .
+
+  s4ehaw:hasPatient rdf:type owl:ObjectProperty ;
+    rdfs:domain s4ehaw:Caregiver ;
+    rdfs:range s4ehaw:Patient ;
+    rdfs:comment "A caregiver may have one or multiple patients."@en ;
+    rdfs:label "has patient"@en .
+
+s4ehaw:Helper rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthActor ;
+  rdfs:comment "Helper of patients/users, e.g. a patient's relative."@en ;
+  rdfs:label "Helper"@en .
+
+  s4ehaw:followsUser rdf:type owl:ObjectProperty ;
+    rdfs:domain s4ehaw:Helper ;
+    rdfs:range s4ehaw:User ;
+    rdfs:comment "A helper may follow one or multiple users that can in particular be patients."@en ;
+    rdfs:label "follows user"@en .
+    
+s4ehaw:ResponsibleParty rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthActor ;
+  rdfs:comment "The legal entity responsible for a BAN, i.e. to contact in case of problem."@en ;
+  rdfs:label "Responsible party"@en .
+
+s4ehaw:User rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthActor ;
+  rdfs:comment "A health actor (patient included) that can be equiped with BANs or health devices for monitoring, control, care (specific case of patients) or support purposes."@en ;
+  rdfs:label "User"@en .
+
+s4ehaw:Patient rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:User ;
+  rdfs:comment "A user of the type patient, i.e. a cared-for person by one or multiple caregivers."@en ;
+  rdfs:label "Patient"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/Ban
+s4ehaw:Ban rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:Connection ,
+    [ a owl:Restriction ;
+      owl:onProperty s4syst:connectsSystem ;
+      owl:someValuesFrom s4ehaw:HealthDevice ] ;
+  rdfs:comment "Body Area Network."@en ;
+  rdfs:label "BAN"@en .
+
+  s4ehaw:hasResponsibleParty rdf:type owl:ObjectProperty ;
+    rdfs:domain s4ehaw:Ban ;
+    rdfs:range s4ehaw:ResponsibleParty ;
+    rdfs:comment "A BAN that has a responsible party which plays the role of the legal entity responsible for this BAN (e.g. to contact in case of problem). It should be an organization or a person."@en ;
+    rdfs:label "has responsible party"@en .
+
+  s4ehaw:usesBan rdf:type owl:ObjectProperty ;
+    rdfs:domain s4ehaw:HealthActor ;
+    rdfs:range s4ehaw:Ban ;
+    rdfs:comment "A health actor (e.g. a caregiver, a patient or a helper) uses a BAN for collecting, aggregating and relaying vital parameters."@en ;
+    rdfs:label "uses ban"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/ObservationCollectionExecution
+s4ehaw:ObservationCollectionExecution rdf:type owl:Class ;
+                                    rdfs:subClassOf saref:ProcedureExecution ;
+                                    rdfs:comment "Execution consisting in collecting observations made by Device (e.g. Sensor, Wearable, ECG Device...). Use saref:madeBy to link to the person or the Device that made it. Use saref:observes to link to the patient. Use saref:hasResult to link to the result, an ObservationCollection"@en ;
+                                    rdfs:label "Observation Collection Execution"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+
+###  https://saref.etsi.org/saref4ehaw/Precision
+s4ehaw:Precision rdf:type owl:NamedIndividual , saref:Property ;
+  rdfs:comment "Precision refers to the degree of reproducibility of a measured quantity (when the same quantity is measured several times how close are the measurements from each other)."@en ;
+  rdfs:label "Precision"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/Gender
+s4ehaw:Gender rdf:type saref:State ;
+  rdfs:comment "The gender of a health actor."@en ;
+  rdfs:label "has gender"@en .
+                
+s4ehaw:Male rdf:type saref:StateValue ;
+  rdfs:label "Male"@en ;
+  rdfs:comment "male gender"@en ;
+  saref:isValueOfState s4ehaw:Gender .
+                
+s4ehaw:Female rdf:type saref:StateValue ;
+  rdfs:label "Female"@en ;
+  rdfs:comment "female gender"@en ;
+  saref:isValueOfState s4ehaw:Gender .
+
+s4ehaw:NonBinary rdf:type saref:StateValue ;
+  rdfs:label "Non-binary"@en ;
+  rdfs:comment "non-binary gender"@en ;
+  saref:isValueOfState s4ehaw:Gender .
+
+s4ehaw:UndeterminedGender rdf:type saref:StateValue ;
+  rdfs:label "Undetermined"@en ;
+  rdfs:comment "undetermined gender"@en ;
+  saref:isValueOfState s4ehaw:Gender .
+
+
+###  https://saref.etsi.org/saref4ehaw/AgeCategory
+s4ehaw:AgeCategory rdf:type saref:State ;
+  rdfs:comment "The age group of a health actor, e.g. old or young."@en ;
+  rdfs:label "Age category"@en .
+
+s4ehaw:Old rdf:type saref:StateValue ;
+  rdfs:comment "Old, one user age category."@en ;
+  rdfs:label "Old"@en ;
+  saref:isValueOfState s4ehaw:AgeCategory .
+
+s4ehaw:Young rdf:type saref:StateValue ;
+  rdfs:comment "Young, one user age category."@en ;
+  rdfs:label "Young"@en ;
+  saref:isValueOfState s4ehaw:AgeCategory .
+
+
+###  https://saref.etsi.org/saref4ehaw/Habit
+s4ehaw:Habit rdf:type saref:State ;
+  rdfs:comment "Defined for users (that can in particular be patients) habits modelling, e.g. smoking, alcohol drinking, overeating, undereating..."@en ;
+  rdfs:label "Habit"@en ;
+  saref:isValueOfState s4ehaw:AgeCategory .
+
+s4ehaw:AlcoholDrinking rdf:type saref:StateValue ;
+  rdfs:comment "Alcohol drinking habit (User level)."@en ;
+  rdfs:label "Alcohol drinking"@en ;
+  saref:isValueOfState s4ehaw:Habit .
+
+s4ehaw:Overeating rdf:type saref:StateValue ;
+  rdfs:comment "Overeating habit (User level)."@en ;
+  rdfs:label "Overeating"@en ;
+  saref:isValueOfState s4ehaw:Habit .
+
+s4ehaw:Smoking rdf:type saref:StateValue ;
+  rdfs:comment "Smoking habit (User level)."@en ;
+  rdfs:label "Smoking"@en ;
+  saref:isValueOfState s4ehaw:Habit .
+
+s4ehaw:Undereating rdf:type saref:StateValue ;
+  rdfs:comment "Undereating habit (User level)."@en ;
+  rdfs:label "Undereating"@en ;
+  saref:isValueOfState s4ehaw:Habit .
+
+
+
+###  https://saref.etsi.org/saref4ehaw/Impairment
+s4ehaw:Impairment rdf:type saref:State ;
+  rdfs:comment "Defined for users (that can in particular be patients) impairments modelling, e.g. aural impairment, skeletal impairment, ocular impairment, mobility impairment, intellectual impairment. Those non exhaustive impairments are compatible with the World Health Organization classification."@en ;
+  rdfs:label "Impairment"@en .
+
+s4ehaw:AuralImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Aural impairment (User level), i.e. impairments of auditory sensitivity."@en ;
+  rdfs:label "Aural impairment"@en .
+
+s4ehaw:IntellectualImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Skeletal impairment (User level), e.g. ..."@en ;
+  rdfs:label "Intellectual impairment"@en .
+
+s4ehaw:MobilityImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Mobility impairment (User level)."@en ;
+  rdfs:label "Mobility impairment"@en .
+
+s4ehaw:OcularImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Ocular impairment (User level), i.e. impamnents of visual acuity."@en ;
+  rdfs:label "Ocular impairment"@en .
+
+s4ehaw:SkeletalImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Skeletal impairment (User level), e.g. of head and trunk regions, limbs..."@en ;
+  rdfs:label "Skeletal impairment"@en .
+
+s4ehaw:OcularImpairment rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Impairment ;
+  rdfs:comment "Ocular impairment (User level)."@en ;
+  rdfs:label "Ocular impairment"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/ChronicDisease
+s4ehaw:ChronicDisease rdf:type saref:State ;
+  rdfs:comment "For chronic disease modelling, e.g. diabetes, asthma..."@en ;
+  rdfs:label "Chronic disease"@en .
+
+s4ehaw:Asthma rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:ChronicDisease ;
+  rdfs:comment "Asthma, a chronical disease that some users can have."@en ;
+  rdfs:label "Asthma"@en .
+
+s4ehaw:Diabetes rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:ChronicDisease ;
+  rdfs:comment "Diabetes, a chronical disease that some users can have."@en ;
+  rdfs:label "Diabetes"@en .
+
+
+s4ehaw:Location rdf:type saref:State ;
+  rdfs:comment "The location. For example a position against the body (on - body surface – or in the body – implant –) or a physical location (a postal address, a geolocation)."@en ;
+  rdfs:label "Location"@en .
+
+  s4ehaw:LocationRelativeToBody rdf:type saref:State ;
+    skos:broader s4ehaw:Location ;
+    rdfs:comment "The location relative to the body (on - body surface – or in the body – implant –)."@en ;
+    rdfs:label "Location Relative to Body"@en .
+
+    s4ehaw:BodySurfaceLocation rdf:type saref:State ;
+      skos:broader s4ehaw:LocationRelativeToBody ;
+      rdfs:comment "The location in terms of a body surface position (i.e. on body health device)."@en ;
+      rdfs:label "Body surface location"@en .
+
+      s4ehaw:ArmpitWeared rdf:type saref:StateValue ;
+        saref:isValueOfState s4ehaw:BodySurfaceLocation ;
+        rdfs:comment "Armpit location, a user body surface location."@en ;
+        rdfs:label "Armpit location"@en .
+
+      s4ehaw:WristWeared rdf:type saref:StateValue ;
+        saref:isValueOfState s4ehaw:BodySurfaceLocation ;
+        rdfs:comment "Wrist, a user body surface location."@en ;
+        rdfs:label "Wrist location"@en .
+
+    s4ehaw:ImplantLocation rdf:type saref:State ;
+      skos:broader s4ehaw:LocationRelativeToBody ;
+      rdfs:comment "Implant Device (i.e. in body health device) position."@en ;
+      rdfs:label "Implant location"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/Recommended
+s4ehaw:Recommended a owl:NamedIndividual, saref:Property ;
+  rdfs:label "Recommended"@en ;
+  rdfs:comment "The recommended property values for some entity. Typically, a property will be defined both narrower than this and another property."@en .
+
+s4ehaw:MaximumRecommended a owl:NamedIndividual, saref:Property ;
+  rdfs:label "Maximum recommended"@en ;
+  rdfs:comment "The maximum recommended property value for some entity"@en ;
+  skos:broader s4ehaw:Recommended .
+
+s4ehaw:MinimumRecommended a owl:NamedIndividual, saref:Property ;
+  rdfs:label "Minimum recommended"@en ;
+  rdfs:comment "The minimum recommended property value for some entity"@en ;
+  skos:broader s4ehaw:Recommended .
+
+
+
+
+###  https://saref.etsi.org/saref4ehaw/BanTopology
+s4ehaw:BanTopology rdf:type saref:State ;
+  rdfs:comment "The BAN topology type, i.e Adhoc or Star or Mesh or Others."@en ;
+  rdfs:label "BAN topology"@en .
+
+s4ehaw:AdhocBanTopology rdf:type saref:StateValue ;
+  rdfs:comment "Adhoc BAN topology type."@en ;
+  rdfs:label "Adhoc BAN Topology"@en ;
+  saref:isValueOfState s4ehaw:BanTopology .
+
+s4ehaw:MeshBanTopology rdf:type saref:StateValue ;
+  rdfs:comment "Mesh BAN topology type."@en ;
+  rdfs:label "Mesh BAN Topology"@en ;
+  saref:isValueOfState s4ehaw:BanTopology .
+
+s4ehaw:StarBanTopology rdf:type saref:StateValue ;
+  rdfs:comment "Star BAN topology type."@en ;
+  rdfs:label "Star BAN Topology"@en ;
+  saref:isValueOfState s4ehaw:BanTopology .
+
+
+###  https://saref.etsi.org/saref4ehaw/ComputingPower
+s4ehaw:ComputingPower rdf:type saref:Property ;
+  rdfs:comment "The computing power capabilities of a device."@en ;
+  rdfs:label "has computing power"@en ;
+  saref:consistsOf s4ehaw:DutyCycle ,
+    s4ehaw:MaximumFlash ,
+    s4ehaw:MaximumRam ,
+    s4ehaw:CPUFrequency .
+
+s4ehaw:DutyCycle rdf:type saref:Property ;
+  rdfs:comment "The duty cycle of an embedded processor of a device, typically in percent."@en ;
+  rdfs:label "Duty cycle"@en .
+
+s4ehaw:MaximumFlash rdf:type saref:Property ;
+  rdfs:comment "The maximum flash memory space (in bytes) of a device."@en ;
+  rdfs:label "Maximum flash"@en .
+
+s4ehaw:MaximumRam rdf:type saref:Property ;
+  rdfs:comment "The maximum volatile memory space (in bytes) of a device."@en ;
+  rdfs:label "Maximum ram"@en .
+
+s4ehaw:CPUFrequency rdf:type saref:Property ;
+  rdfs:comment "The number of instructions an embedded processor - within a device - can perform per second (MIPS)."@en ;
+  rdfs:label "Frequency"@en .
+
+###  https://saref.etsi.org/saref4ehaw/velocity
+s4ehaw:Velocity rdf:type saref:Property ;
+  rdfs:comment "The velocity of a moving entity. Typically expressed in m/s."@en ;
+  rdfs:label "Velocity"@en .
+
+
+s4ehaw:AvailableFlash rdf:type saref:Property ;
+  rdfs:comment "The available flash memory (in byte) of a device. It is a dynamic attribute."@en ;
+  rdfs:label "available flash"@en .
+
+s4ehaw:AvailableRam rdf:type saref:Property ;
+  rdfs:comment "The available volatile memory space (in byte) of a device. It is a dynamic attribute."@en ;
+  rdfs:label "available ram"@en .
+
+s4ehaw:RemainingBatteryLevel rdf:type saref:Property ;
+  rdfs:comment "The level of remaining battery (if any : in percent) for a device. It is a dynamic attribute."@en ;
+  rdfs:label "remaining battery level"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/PowerSource
+### Characteristic describing energy source and battery related capabilities of the health device (number of power source, source type, rechargeable or not, available power level...).
+
+s4ehaw:SolarPowered rdf:type saref:FeatureKind ;
+  rdfs:comment "Kind of feature of interest powered by the sun."@en ;
+  rdfs:label "Solar Powered"@en .
+
+s4ehaw:BatteryPowered rdf:type saref:FeatureKind ;
+  rdfs:comment "Kind of feature of interest powered by batteries."@en ;
+  rdfs:label "BatteryPowered"@en .
+
+s4ehaw:MainsPowered rdf:type saref:FeatureKind ;
+  rdfs:comment "Kind of feature of interest powered by the mains."@en ;
+  rdfs:label "MainsPowered"@en .
+
+s4ehaw:Rechargeable rdf:type saref:FeatureKind ;
+  rdfs:comment "Kind of feature of interest whose power source is rechargeable."@en ;
+  rdfs:label "Rechargeable"@en .
+
+s4ehaw:NotRechargeable rdf:type saref:FeatureKind ;
+  rdfs:comment "Kind of feature of interest whose power source is not rechargeable."@en ;
+  rdfs:label "Not Rechargeable"@en .
+
+
+s4ehaw:NumberOfPowerSource rdf:type saref:Property ;
+  rdfs:comment "Number of power source of a feature of interest."@en ;
+  rdfs:label "Number Of Power Source"@en .
+
+s4ehaw:AvailablePowerLevel rdf:type saref:Property ;
+  rdfs:comment "Power level still available for the feature of interest to function."@en ;
+  rdfs:label "Available Power Level "@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/Dimensions 
+s4ehaw:Dimensions rdf:type saref:Property ;
+  rdfs:comment "The dimensions of a feature of interest, consisting of a length, a width, and a height."@en ;
+  rdfs:label "Dimensions"@en ;
+  saref:consistsOf s4ehaw:Height, s4ehaw:Width, s4ehaw:Length .
+
+s4ehaw:Height rdf:type saref:Property ;
+  rdfs:label "Height"@en ;
+  rdfs:comment "The height dimension of a feature of interest."@en .
+
+s4ehaw:Width rdf:type saref:Property ;
+  rdfs:label "Width"@en ;
+  rdfs:comment "The width dimension of a feature of interest."@en .
+
+s4ehaw:Length rdf:type saref:Property ;
+  rdfs:label "Length"@en ;
+  rdfs:comment "The length dimension of a feature of interest."@en .
+
+s4ehaw:Weight rdf:type saref:Property ;
+  rdfs:label "Weight"@en ;
+  rdfs:comment "The weight of a feature of interest."@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/Posture
+s4ehaw:Posture rdf:type saref:State ;
+  rdfs:comment "The posture of a health actor (mainly a patient or a user), e.g. exercising, lying, running, sitting, walking..."@en ;
+  rdfs:label "Posture"@en .
+
+s4ehaw:Walking rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Posture ;
+  rdfs:comment "Posture of a walking user."@en ;
+  rdfs:label "Walking"@en .
+
+s4ehaw:Sitting rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Posture ;
+  rdfs:comment "Posture of a sitting user."@en ;
+  rdfs:label "Sitting"@en .
+
+s4ehaw:Running rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Posture ;
+  rdfs:comment "Posture of a running user."@en ;
+  rdfs:label "Running"@en .
+
+s4ehaw:Lying rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Posture ;
+  rdfs:comment "Posture of a lying user."@en ;
+  rdfs:label "Lying"@en .
+  
+s4ehaw:Exercising rdf:type saref:StateValue ;
+  saref:isValueOfState s4ehaw:Posture ;
+  rdfs:comment "Posture of user doing exercises."@en ;
+  rdfs:label "Exercising"@en .
+
+
+
+###  https://saref.etsi.org/saref4ehaw/CommunicationFunction
+s4ehaw:CommunicationFunction rdf:type saref:Function ;
+  rdfs:comment "A device may have a communication function."@en ;
+  rdfs:label "Communication Function"@en .
+
+s4ehaw:PeriodicCommunicationFunction rdf:type saref:Function ;
+  skos:broader s4ehaw:CommunicationFunction ;
+  rdfs:comment "Function to communicate periodically to report observations and receive actuations."@en ;
+  rdfs:label "Periodic Communication Function"@en .
+
+s4ehaw:EventDrivenCommunicationFunction rdf:type saref:Function ;
+  skos:broader s4ehaw:CommunicationFunction ;
+  rdfs:comment "Function to communicate upon an event to report observations and receive actuations."@en ;
+  rdfs:label "Event driven Communication Function"@en .
+
+s4ehaw:OnRequestCommunicationFunction rdf:type saref:Function ;
+  skos:broader s4ehaw:CommunicationFunction ;
+  rdfs:comment "Function to communicate on request to report observations and receive actuations."@en ;
+  rdfs:label "On request Communication Function"@en .
+
+s4ehaw:SendingFrequency rdf:type saref:Property ;
+  rdfs:comment "The sending frequency of a device with a periodic communication function."@en ;
+  rdfs:label "Sending Frequency"@en .
+
+
+s4ehaw:CommunicationNetwork rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:Connection , saref:FeatureOfInterest ;
+  rdfs:comment "A communication network."@en ;
+  rdfs:label "Communication Network"@en .
+
+s4ehaw:CommunicationInterface rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:ConnectionPoint , saref:FeatureOfInterest ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty s4syst:connectionPointOf ;
+    owl:someValuesFrom saref:Device
+  ] ;
+  rdfs:comment "A communication interface of a device to a communication network."@en ;
+  rdfs:label "Communication Interface"@en .
+
+s4ehaw:hasMACAddress rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf saref:hasIdentifier ;
+  rdfs:domain s4ehaw:CommunicationInterface ;
+  rdfs:comment "The MAC address of an interface."@en ;
+  rdfs:label "has MAC address"@en .
+
+s4ehaw:hasIPv4Address rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf saref:hasIdentifier ;
+  rdfs:domain s4ehaw:CommunicationInterface ;
+  rdfs:comment "The IPv4 address of a host."@en ;
+  rdfs:label "has IPv4 address"@en .
+
+s4ehaw:hasPortNumber rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf saref:hasIdentifier ;
+  rdfs:domain s4ehaw:CommunicationInterface ;
+  rdfs:comment "The port number used to offer the service."@en ;
+  rdfs:label "port number"@en .
+
+s4ehaw:CommunicationProtocol rdf:type owl:Class  ;
+  rdfs:subClassOf saref:FeatureKind , s4syst:Connection ;
+  rdfs:comment "A communication protocol, e.g. BLE, serial, Ethernet..."@en ;
+  rdfs:label "Communication protocol"@en .
+
+s4ehaw:BluetoothLowEnergy rdf:type s4ehaw:CommunicationProtocol ;
+  rdfs:comment "Bluetooth Low Energy, a communication protocol."@en ;
+  rdfs:label "Bluetooth Low Energy"@en .
+
+s4ehaw:UltraWideBand rdf:type s4ehaw:CommunicationProtocol ;
+  rdfs:comment "Ultra Wide Band, a communication protocol."@en ;
+  rdfs:label "Ultra Wide Band"@en .
+
+s4ehaw:IEEE802\-15\-6 rdf:type s4ehaw:CommunicationProtocol ;
+  rdfs:comment "IEEE 802.15.6, a communication protocol."@en ;
+  rdfs:label "IEEE 802.15.6"@en .
+
+s4ehaw:hasGateway rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectsSystem ;
+  rdfs:domain s4ehaw:CommunicationNetwork ;
+  rdfs:range s4ehaw:CommunicationInterface ;
+  rdfs:comment "Links a communication network to its gateway, the communication interface of a device."@en ;
+  rdfs:label "has gateway"@en .
+
+s4ehaw:Gateway a saref:DeviceKind ;
+  rdfs:comment "Kind of devices that serve the role of a gateway."@en ;
+  rdfs:label "Gateway"@en .
+
+s4ehaw:TransmissionRate rdf:type saref:Property ;
+  rdfs:comment "The transmission rate of the interface, i.e. the number of bits transmitted per second (usually expressed in kbps or Mbps)."@en ;
+  rdfs:label "transmission rate"@en .
+
+###  https://saref.etsi.org/saref4ehaw/BanApplicationTask
+s4ehaw:BanApplicationTask rdf:type owl:Class ;
+  rdfs:subClassOf saref:Task ;
+  rdfs:comment "BAN application tasks, suchas healthcare, telemedicine, assisted living, sport training, safety and emergency..."@en ;
+  rdfs:label "BAN application tasks"@en .
+
+s4ehaw:AssistedLiving rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Assisted living task for BAN application."@en ;
+  rdfs:label "Assisted living"@en .
+
+s4ehaw:Emergency rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Emergency task for BAN application."@en ;
+  rdfs:label "Emergency"@en .
+
+s4ehaw:Healthcare rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Healthcare domain for BAN application."@en ;
+  rdfs:label "Healthcare"@en .
+
+s4ehaw:PervasiveComputing rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Pervasive computing task for BAN application."@en ;
+  rdfs:label "Pervasive computing"@en .
+
+s4ehaw:Safety rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Safety task for BAN application."@en ;
+  rdfs:label "Safety"@en .
+
+s4ehaw:SportTraining rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Sport training task for BAN application."@en ;
+  rdfs:label "Sport Training"@en .
+
+s4ehaw:Telemedicine rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Telemedicine task for BAN application."@en ;
+  rdfs:label "Telemedicine"@en .
+
+s4ehaw:Prevention rdf:type owl:NamedIndividual ,
+  s4ehaw:BanApplicationTask ;
+  rdfs:comment "Prevention task (e.g. preventive health) for BAN application."@en ;
+  rdfs:label "Prevention"@en .
+
+
+s4ehaw:isExposedOn a owl:ObjectProperty ;
+  rdfs:label "is exposed on"@en ;
+  rdfs:comment """Links a service to a Connection/FeatureKind (such as ex:Bluetooth), to a Connection/FeatureOfInterest (such as <this_network> ),  to a ConnectionPoint/FeatureKind (such as ex:TCPPort), to a ConnectionPoint/FeatureOfInterest (such as <tcp_port_4255>)."""@en ;
+  rdfs:domain saref:Service ;
+  rdfs:range [ a owl:Class ; owl:intersectionOf (
+    [ a owl:Class ; owl:unionOf ( saref:FeatureKind saref:FeatureOfInterest ) ]
+    [ a owl:Class ; owl:unionOf ( s4syst:Connection s4syst:ConnectionPoint) ]
+  ) ] .
+
+
+s4ehaw:hasPrecondition rdf:type owl:ObjectProperty ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( saref:Command saref:CommandOfInterest saref:Operation saref:ProcedureExecution ) ] ;
+  rdfs:comment "Links a command or operation to the conditions that are imposed over its inputs to be successufully invoked."@en ;
+  rdfs:label "has precondition"@en .
+
+s4ehaw:hasEffect rdf:type owl:ObjectProperty ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( saref:Command saref:CommandOfInterest saref:Operation saref:ProcedureExecution ) ] ;
+  rdfs:comment "Links a command or operation to the effect of invoking it. Can be an alert, nothing, an activation of another process..."@en ;
+  rdfs:label "has effect"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/AlarmCommand
+s4ehaw:Alarm rdf:type saref:Function ;
+  rdfs:comment "Function for issuing and managing alarms."@en ;
+  rdfs:label "Alarm"@en ;
+  saref:hasMandatoryCommand s4ehaw:Alarm_Trigger , s4ehaw:Alarm_Reset ;
+  saref:hasOptionalCommand s4ehaw:Alarm_Get , s4ehaw:Alarm_ResetLog .
+
+s4ehaw:Alarm_Trigger rdf:type saref:Command ;
+  rdfs:label "Alarm Trigger"@en ;
+  rdfs:comment "Command used for triggering an alarm."@en .
+
+s4ehaw:Alarm_Reset rdf:type saref:Command ;
+  rdfs:label "Alarm Reset"@en ;
+  rdfs:comment "Command used for resetting an alarm."@en .
+
+s4ehaw:Alarm_Get rdf:type saref:Command ;
+  rdfs:label "Alarm Get"@en ;
+  rdfs:comment "Command used for getting the alarm status."@en .
+
+s4ehaw:Alarm_ResetLog rdf:type saref:Command ;
+  rdfs:label "Alarm Reset Log"@en ;
+  rdfs:comment "Command used for resetting the alarm log."@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/ReminderCommand
+s4ehaw:Reminder rdf:type saref:Function ;
+  rdfs:label "Reminder"@en ;
+  rdfs:comment "Function for sending reminder notifications."@en ;
+  saref:hasMandatoryCommand s4ehaw:Reminder_Send .
+
+s4ehaw:Reminder_Send rdf:type saref:Command ;
+  rdfs:label "Reminder Send"@en ;
+  rdfs:comment "Command used for sending a reminder."@en .
+
+
+
+###  https://saref.etsi.org/saref4ehaw/hasContact
+s4ehaw:hasContact rdf:type owl:ObjectProperty ;
+  rdfs:domain s4ehaw:Ban ;
+  rdfs:range s4ehaw:HealthActor ;
+  rdfs:comment "A BAN has one or multiple contacts (e.g. the patient or user that is monitored through this BAN, the caregiver that is using this BAN for monitoring purposes)."@en ;
+  rdfs:label "has contact"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/FunctionalDevice
+s4ehaw:FunctionalDevice rdf:type owl:Class ;
+  rdfs:subClassOf saref:Device ;
+  rdfs:comment "Functional Devices are non-purely eHealth/ageing-well devices that can be used for modelling/detecting activities or behaviours of patients/users, like for example beacons that can detect indoor positioning of a patient in a house."@en ;
+  rdfs:label "Functional device"@en .
+
+
+###  https://saref.etsi.org/saref4ehaw/HealthDevice
+s4ehaw:HealthDevice rdf:type owl:Class ;
+  rdfs:subClassOf saref:Device ,
+    [ a owl:Restriction ;
+      owl:onProperty saref:hasState ;
+      owl:hasValue s4ehaw:Location
+    ] ;
+  rdfs:comment "Health devices, e.g. BAN hub, health sensor/actuator/Wereable."@en ;
+  rdfs:label "Health Device"@en .
+
+s4ehaw:HealthActuator rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthDevice , saref:Actuator ;
+  rdfs:comment "Health-related Actuator, sub-class of SAREF Actuator."@en ;
+  rdfs:label "Health actuator"@en .
+
+s4ehaw:HealthSensor rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthDevice , saref:Sensor ;
+  rdfs:comment "Health-related Sensor, sub-class of SAREF Sensor."@en ;
+  rdfs:label "Health sensor"@en .
+
+s4ehaw:HealthWearable rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthDevice , s4wear:WearableDevice ;
+  rdfs:comment  "Health-related Wearable, sub-class of SAREF4WEAR Wearable."@en ;
+  rdfs:label "Health wereable"@en .
+
+s4ehaw:BanHub rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:HealthDevice ;
+  rdfs:comment "Hub of the BAN, mainly playing the role of both a data concentrator and a network gateway."@en ;
+  rdfs:label "BAN hub"@en .
+
+s4ehaw:isAttachedTo rdf:type owl:ObjectProperty ;
+  rdfs:domain s4ehaw:HealthDevice ;
+  rdfs:range s4ehaw:HealthActor ;
+  rdfs:comment "A health Device is attached to a health actor such as a patient, a user and or a caregiver."@en ;
+  rdfs:label "is attached to"@en .
+
+
+
+###  https://saref.etsi.org/saref4ehaw/Activity
+s4ehaw:Activity rdf:type owl:Class ;
+  rdfs:comment "The activity of a patient/user, i.e. daily and nocturnal activities."@en ;
+  rdfs:label "Activity"@en .
+
+s4ehaw:DailyActivity rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:Activity ;
+  rdfs:comment "The patient/user activities that occur during daytime."@en ;
+  rdfs:label "Daily activity"@en .
+
+s4ehaw:NocturnalActivity rdf:type owl:Class ;
+  rdfs:subClassOf s4ehaw:Activity ;
+  rdfs:comment "The patient/user activities that occur during the night."@en ;
+  rdfs:label "Nocturnal activity"@en .
+
+s4ehaw:activityDuration rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4ehaw:Activity ;
+  rdfs:range xsd:float ;
+  rdfs:comment "The duration of an activity, in second."@en ;
+  rdfs:label "activity duration"@en .
+
+s4ehaw:hasActivity rdf:type owl:ObjectProperty ;
+  rdfs:domain s4ehaw:HealthActor ;
+  rdfs:range s4ehaw:Activity ;
+  rdfs:comment "A health actor may have one or multiple activities."@en ;
+  rdfs:label "has activity"@en .
+
+

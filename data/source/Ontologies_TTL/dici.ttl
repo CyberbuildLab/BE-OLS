@@ -1,0 +1,1145 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Information#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dica: <https://w3id.org/digitalconstruction/0.5/Agents#> .
+@prefix dicc: <https://w3id.org/digitalconstruction/0.5/Contexts#> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@base <https://w3id.org/digitalconstruction/0.5/Information> .
+
+<https://w3id.org/digitalconstruction/0.5/Information> rdf:type owl:Ontology ;
+                                                        owl:imports <https://w3id.org/digitalconstruction/0.5/Agents/agents.ttl> ;
+                                                        dc:date "2020-03-20" ;
+                                                        dc:title "Digital Construction Information" ;
+                                                        terms:created "2020-01-12" ;
+                                                        terms:creator "Seppo Törmä" ,
+                                                                      "Yuan Zheng" ;
+                                                        terms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                                        vann:preferredNamespacePrefix "dici" ;
+                                                        vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Information" ;
+                                                        rdfs:comment "Digital Construction Information ontology defines the representation of information content entities in construction and renovation, including models, plans, scenarios, messages, issues, videos and point clouds. The focus is on identifiable information contents (such as first version of the architectural model of a project), not on the particular information carries (such as hard disk, cloud storage, paper print)." ;
+                                                        rdfs:label "Digital Construction Information" ;
+                                                        rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/abstract
+terms:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+terms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#isCarrierOfAtAllTimes
+dice:isCarrierOfAtAllTimes rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#containerIncludedIn
+:containerIncludedIn rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :includesContainer ;
+                     rdfs:domain :InformationContainer ;
+                     rdfs:range :InformationModel ;
+                     rdfs:label "containerIncludedIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#contentRepresentedIn
+:contentRepresentedIn rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :representsContentOf ;
+                      rdfs:domain :InformationContentEntity ;
+                      rdfs:range dicc:Context ;
+                      rdfs:comment "The context in which the content of the information content entity is represented" ;
+                      rdfs:label "contentRepresentedIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#documentsProperty
+:documentsProperty rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isDocumentedBy ;
+                   rdfs:domain :InformationContentEntity ;
+                   rdfs:range dicv:Property ;
+                   rdfs:label "documentsProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#encodesComputationalFunction
+:encodesComputationalFunction rdf:type owl:ObjectProperty ;
+                              rdfs:domain :SoftwareApplication ;
+                              rdfs:range :ComputationalFunction .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#entryIncludedIn
+:entryIncludedIn rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :containerIncludedIn ;
+                 owl:inverseOf :includesEntry ;
+                 rdfs:domain :CatalogEntry ;
+                 rdfs:range :Catalog ;
+                 rdfs:label "entryIncludedIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasAttachment
+:hasAttachment rdf:type owl:ObjectProperty ;
+               rdfs:domain :Message ;
+               rdfs:range :InformationContentEntity ;
+               rdfs:comment "An information content entity attached to the message" ;
+               rdfs:label "hasAttachment" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasCarrier
+:hasCarrier rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isCarrierOf ;
+            rdfs:domain :InformationContentEntity ;
+            rdfs:range :File ;
+            rdfs:label "hasCarrier" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasClient
+:hasClient rdf:type owl:ObjectProperty ;
+           rdfs:domain :Contract ;
+           rdfs:range dica:Agent ;
+           rdfs:label "hasClient" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasClientObligation
+:hasClientObligation rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Contract ;
+                     rdfs:range dicp:Activity ;
+                     rdfs:label "clientObligation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasContainerSet
+:hasContainerSet rdf:type owl:ObjectProperty ;
+                 rdfs:domain :InformationModel ;
+                 rdfs:range dicc:ContextSet ;
+                 rdfs:label "hasContainerSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasContainerState
+:hasContainerState rdf:type owl:ObjectProperty ;
+                   rdfs:domain :InformationContainer .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasContractor
+:hasContractor rdf:type owl:ObjectProperty ;
+               rdfs:domain :Contract ;
+               rdfs:range dica:Agent ;
+               rdfs:label "hasContractor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasContractorObligation
+:hasContractorObligation rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Contract ;
+                         rdfs:range dicp:Activity ;
+                         rdfs:label "contractorObligation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasDefaultContainerSet
+:hasDefaultContainerSet rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasContainerSet ;
+                        rdfs:domain :InformationModel ;
+                        rdfs:range dicc:ContextSet ;
+                        rdfs:label "hasDefaultContainerSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasDescribedProperty
+:hasDescribedProperty rdf:type owl:ObjectProperty ;
+                      rdfs:domain :PropertyDescription ;
+                      rdfs:range rdf:Property ;
+                      rdfs:label "hasDescribedProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasEvaluationCriteria
+:hasEvaluationCriteria rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Plan ;
+                       rdfs:range :EvaluationCriteria ;
+                       rdfs:label "hasEvaluationCriteria" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasHandler
+:hasHandler rdf:type owl:ObjectProperty ;
+            rdfs:domain :Issue ;
+            rdfs:range dica:Agent ;
+            rdfs:label "hasHandler" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasInformation
+:hasInformation rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf dice:hasParticipant ;
+                owl:inverseOf :isInformationIn ;
+                rdfs:domain dicp:Activity ;
+                rdfs:range :InformationContentEntity ;
+                rdfs:label "hasInformation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasInputInformation
+:hasInputInformation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasInformation ;
+                     rdfs:label "hasInputInformation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasObjective
+:hasObjective rdf:type owl:ObjectProperty ;
+              rdfs:domain :Plan ;
+              rdfs:label "hasObjective" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasOutputInformation
+:hasOutputInformation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasInformation ;
+                      rdfs:label "hasOutputInformation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasParentIssue
+:hasParentIssue rdf:type owl:ObjectProperty ;
+                rdfs:domain :Issue ;
+                rdfs:range :Issue ;
+                rdfs:label "hasParentIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPlanConstraint
+:hasPlanConstraint rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Plan ;
+                   rdfs:range dicv:Constraint ;
+                   rdfs:label "hasPlanConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPlannedActivity
+:hasPlannedActivity rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isPlannedActiviyOf ;
+                    rdfs:domain :Plan ;
+                    rdfs:range dicp:Activity ;
+                    rdfs:label "hasPlannedActivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPlanningIssue
+:hasPlanningIssue rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Plan ;
+                  rdfs:range :PlanningIssue ;
+                  rdfs:label "hasPlanningIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertyDescription
+:hasPropertyDescription rdf:type owl:ObjectProperty ;
+                        rdfs:domain dicv:Property ;
+                        rdfs:range :PropertyDescription ;
+                        rdfs:label "hasPropertyDescription" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertySpecification
+:hasPropertySpecification rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :hasPropertyDescription ;
+                          rdfs:domain dicv:Property ;
+                          rdfs:range :PropertySpecification ;
+                          rdfs:label "hasPropertySpecification" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasRecipient
+:hasRecipient rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isRecipientOf ;
+              rdfs:domain :Message ;
+              rdfs:range dica:Agent ;
+              rdfs:comment "The agent that is the recipients of the message" ;
+              rdfs:label "hasRecipient" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasReferenceDocument
+:hasReferenceDocument rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :isCarrierOf ;
+                      rdfs:domain :InformationContainer ;
+                      rdfs:range :File ;
+                      rdfs:label "hasReferenceDocument" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasReply
+:hasReply rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isReplyTo ;
+          rdfs:domain :Message ;
+          rdfs:range :Message ;
+          rdfs:comment "A message that replies to this message" ;
+          rdfs:label "hasReply" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasRootObject
+:hasRootObject rdf:type owl:ObjectProperty ;
+               rdfs:domain :InformationContainer ;
+               rdfs:label "hasRootObject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasScope
+:hasScope rdf:type owl:ObjectProperty ;
+          rdfs:domain :Issue ;
+          rdfs:label "hasScope" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasSender
+:hasSender rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isSenderOf ;
+           rdfs:domain :Message ;
+           rdfs:range dica:Agent ;
+           rdfs:comment "The sender of a message" ;
+           rdfs:label "hasSender" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasSolution
+:hasSolution rdf:type owl:ObjectProperty ;
+             rdfs:domain :Issue ;
+             rdfs:label "hasSolution" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#imposedBy
+:imposedBy rdf:type owl:ObjectProperty ;
+           rdfs:domain :RegulatoryOrder ;
+           rdfs:range dica:Agent ;
+           rdfs:label "imposedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#includesContainer
+:includesContainer rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :includesContainer ;
+                   rdfs:domain :InformationModel ;
+                   rdfs:range :InformationContainer ;
+                   rdfs:label "includesContainer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#includesEntry
+:includesEntry rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :includesContainer ;
+               rdfs:domain :Catalog ;
+               rdfs:range :CatalogEntry ;
+               rdfs:label "includesEntry" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#includesModel
+:includesModel rdf:type owl:ObjectProperty ;
+               owl:inverseOf :modelIncludedIn ;
+               rdfs:domain :InformationModel ;
+               rdfs:range :InformationModel ;
+               rdfs:label "includesModel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isAbout
+:isAbout rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isTopicOf ;
+         rdfs:domain :InformationContentEntity ;
+         rdfs:range owl:Thing ;
+         rdfs:label "isAbout" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isCarrierOf
+:isCarrierOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dice:isCarrierOfAtAllTimes ;
+             rdfs:domain :File ;
+             rdfs:range :InformationContentEntity ;
+             rdfs:label "isCarrierOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isCausedByState
+:isCausedByState rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Issue ;
+                 rdfs:range dicv:PropertyState ;
+                 rdfs:comment "The property state that caused the issue" ;
+                 rdfs:label "isCausedByState" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isCreatedBy
+:isCreatedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :InformationContentEntity ;
+             rdfs:range dica:Agent ;
+             rdfs:label "isCreatedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isDocumentedBy
+:isDocumentedBy rdf:type owl:ObjectProperty ;
+                rdfs:domain dicv:Property ;
+                rdfs:range :InformationContentEntity ;
+                rdfs:label "isDocumentedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isInformationIn
+:isInformationIn rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf dice:participatesIn ;
+                 rdfs:domain :InformationContentEntity ;
+                 rdfs:range dicp:Activity ;
+                 rdfs:label "isInformationIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isPlannedActiviyOf
+:isPlannedActiviyOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain dicp:Activity ;
+                    rdfs:range :Plan .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isProducedBy
+:isProducedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :InformationContainer ;
+              rdfs:range dice:MaterialEntity ;
+              rdfs:label "isProducedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isRecipientOf
+:isRecipientOf rdf:type owl:ObjectProperty ;
+               rdfs:domain dica:Agent ;
+               rdfs:range :Message ;
+               rdfs:comment "A message that the agent has received" ;
+               rdfs:label "isRecipientOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isReplyTo
+:isReplyTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Message ;
+           rdfs:range :Message ;
+           rdfs:comment "The message that this message is a reply to" ;
+           rdfs:label "isReplyTo" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isSenderOf
+:isSenderOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain dica:Agent ;
+            rdfs:range :Message ;
+            rdfs:label "isSenderOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isServedBy
+:isServedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :InformationContentEntity ;
+            rdfs:range :DataService ;
+            rdfs:label "isServedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isSpecifiedBy
+:isSpecifiedBy rdf:type owl:ObjectProperty ;
+               owl:inverseOf :specifiesProperty ;
+               rdfs:domain :PropertyDescription ;
+               rdfs:range :RegulatoryOrder .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isTopicOf
+:isTopicOf rdf:type owl:ObjectProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:range :InformationContentEntity ;
+           rdfs:label "isTopicOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#modelIncludedIn
+:modelIncludedIn rdf:type owl:ObjectProperty ;
+                 rdfs:domain :InformationModel ;
+                 rdfs:range :InformationModel ;
+                 rdfs:label "modelIncludedIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#representsContentOf
+:representsContentOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain dicc:Context ;
+                     rdfs:range :InformationContentEntity ;
+                     rdfs:comment "The information content entity that is the source of the data represented in this context" ;
+                     rdfs:label "representsContentOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#serves
+:serves rdf:type owl:ObjectProperty ;
+        rdfs:domain :DataService ;
+        rdfs:range :InformationContentEntity ;
+        rdfs:label "serves" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#specifiesProperty
+:specifiesProperty rdf:type owl:ObjectProperty ;
+                   rdfs:domain :RegulatoryOrder ;
+                   rdfs:range :PropertySpecification ;
+                   rdfs:label "specifiesProperty" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasMessageBody
+:hasMessageBody rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Message ;
+                rdfs:range xsd:string ;
+                rdfs:label "hasMessageBody" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasMessageSubject
+:hasMessageSubject rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Message ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "hasMessageSubject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasNotificationImportance
+:hasNotificationImportance rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :Notification ;
+                           rdfs:range [ rdf:type rdfs:Datatype ;
+                                        owl:oneOf [ rdf:type rdf:List ;
+                                                    rdf:first "Alert" ;
+                                                    rdf:rest [ rdf:type rdf:List ;
+                                                               rdf:first "High" ;
+                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                          rdf:first "Low" ;
+                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                     rdf:first "Normal" ;
+                                                                                     rdf:rest rdf:nil
+                                                                                   ]
+                                                                        ]
+                                                             ]
+                                                  ]
+                                      ] ;
+                           rdfs:label "hasNotificationImportance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertyCondition
+:hasPropertyCondition rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :PropertyDescription ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:label "hasPropertyCondition" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertyMaximumValue
+:hasPropertyMaximumValue rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :PropertyDescription ;
+                         rdfs:range rdfs:Literal ;
+                         rdfs:label "hasPropertyMaximumValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertyMinimumValue
+:hasPropertyMinimumValue rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :PropertyDescription ;
+                         rdfs:range rdfs:Literal ;
+                         rdfs:label "hasPropertyMinimumValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasPropertyValue
+:hasPropertyValue rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :PropertyDescription ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:label "hasPropertyValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasStatusValue
+:hasStatusValue rdf:type owl:DatatypeProperty ;
+                rdfs:domain :StatusUpdate ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:oneOf [ rdf:type rdf:List ;
+                                         rdf:first "Completed" ;
+                                         rdf:rest [ rdf:type rdf:List ;
+                                                    rdf:first "Enabled" ;
+                                                    rdf:rest [ rdf:type rdf:List ;
+                                                               rdf:first "Initial" ;
+                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                          rdf:first "Paused" ;
+                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                     rdf:first "Started" ;
+                                                                                     rdf:rest rdf:nil
+                                                                                   ]
+                                                                        ]
+                                                             ]
+                                                  ]
+                                       ]
+                           ] ;
+                rdfs:label "hasStatusValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#hasWebAddress
+:hasWebAddress rdf:type owl:DatatypeProperty ;
+               rdfs:domain :InformationContentEntity ;
+               rdfs:range xsd:anyURI ;
+               rdfs:comment "An Web address (URI) from which the information content entity can be accessed" ;
+               rdfs:label "hasWebAddress" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isCreatedAt
+:isCreatedAt rdf:type owl:DatatypeProperty ;
+             rdfs:domain :InformationContentEntity ;
+             rdfs:range xsd:dateTime ;
+             rdfs:label "isCreatedAt" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isProducedAt
+:isProducedAt rdf:type owl:DatatypeProperty ;
+              rdfs:domain :InformationContentEntity ;
+              rdfs:range xsd:dateTime ;
+              rdfs:label "isProducedAt" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#isReceiptRequired
+:isReceiptRequired rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Message ;
+                   rdfs:range xsd:boolean ;
+                   rdfs:label "isReceiptRequired" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Information#AssetInformationModel
+:AssetInformationModel rdf:type owl:Class ;
+                       rdfs:subClassOf :InformationModel ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :isAbout ;
+                                         owl:allValuesFrom dice:Asset
+                                       ] ;
+                       rdfs:comment """Asset information model (AIM) is an Information model relating to the operational phase of Built asset (ISO 19650-1, def. 3.3.9)
+
+Asset information model (AIM) is a structured repository of information needed for making decisions during the whole life cycle of a built environment asset. This includes the design and construction of new assets, refurbishment of existing assets, and the operation and maintenance of an asset. It should be expected that the amount of information stored in AIM, and the different purposes it will be used for, will mostly increase during project delivery and asset management. (ISO 19650-1, ch. 4.1)""" ;
+                       rdfs:label "AssetInformationModel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#BreakdownStructure
+:BreakdownStructure rdf:type owl:Class ;
+                    rdfs:subClassOf :Dataset ;
+                    rdfs:label "BreakdownStructure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#BuildingInformationModel
+:BuildingInformationModel rdf:type owl:Class ;
+                          rdfs:subClassOf :Design ;
+                          rdfs:comment "Building Information Model (BIM) is a rich three-dimensional and  object-oriented model of a building." ;
+                          rdfs:label "BuildingInformationModel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Catalog
+:Catalog rdf:type owl:Class ;
+         rdfs:subClassOf :InformationModel ;
+         rdfs:comment "An information catalog that aligns with dcat:Catalog defined in DCAT2. The purpose is to give summary data, header information and access rights of the entities (typically assets and projects) described in the catalog." ;
+         rdfs:label "Catalog" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#CatalogEntry
+:CatalogEntry rdf:type owl:Class ;
+              rdfs:subClassOf :InformationContainer ;
+              rdfs:comment "A summarized description of an entity (dici:isAbout) whose content can be described in a separate context (dicc:hasContent). This applies to independently represented entities, such as assets, projects and information content entities such as plans, designs, or breakdown structures." ;
+              rdfs:label "CatalogEntry" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#CausalRelationIssue
+:CausalRelationIssue rdf:type owl:Class ;
+                     rdfs:subClassOf :PlanningIssue ;
+                     rdfs:comment "The broken or threatened causal relation between activities. For example, an activity to clean up a space before painting is (or can be) followed by an activity that messes up the space again." ;
+                     rdfs:label "CausalRelationIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Certificate
+:Certificate rdf:type owl:Class ;
+             rdfs:subClassOf :InformationContentEntity ;
+             rdfs:label "Certificate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ComputationalFunction
+:ComputationalFunction rdf:type owl:Class ;
+                       rdfs:subClassOf dice:Function ;
+                       rdfs:comment "A function that inheres in one or more pieces of computing hardware. The actualization or manifestation of a computational function is an essentially end-directed activity in virtue kind or kinds of contexts the computing hardware is made for." ;
+                       rdfs:label "ComputationalFunction" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Contract
+:Contract rdf:type owl:Class ;
+          rdfs:subClassOf :InformationContentEntity ;
+          rdfs:comment "An agreement that specifies the mutual obligations of a client and a contractor." ;
+          rdfs:label "Contract" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#CrossFileLinkset
+:CrossFileLinkset rdf:type owl:Class ;
+                  rdfs:subClassOf :Linkset ;
+                  rdfs:label "CrossFileLinkset" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#DataService
+:DataService rdf:type owl:Class ;
+             rdfs:subClassOf dicp:Service ;
+             rdfs:comment "A service that provides data. Aligns with dcat:DataService" ;
+             rdfs:label "DataService" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf :InformationContainer ;
+         rdfs:label "Dataset" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Design
+:Design rdf:type owl:Class ;
+        rdfs:subClassOf :Dataset ;
+        rdfs:comment "A specification of the construction products." ;
+        rdfs:label "Design" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#DesignChangeRequest
+:DesignChangeRequest rdf:type owl:Class ;
+                     rdfs:subClassOf :DesignIssue ;
+                     rdfs:comment "A need for a design change is detected" ;
+                     rdfs:label "DesignChangeRequest" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#DesignIssue
+:DesignIssue rdf:type owl:Class ;
+             rdfs:subClassOf :Issue ;
+             rdfs:comment "An issue concerning the design of a product (a building or some of its components or systems)" ;
+             rdfs:label "DesignIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#DisturbanceAreaIssue
+:DisturbanceAreaIssue rdf:type owl:Class ;
+                      rdfs:subClassOf :ExecutionIssue ;
+                      rdfs:comment "A disturbance (noise, dust, ...) at an area" ;
+                      rdfs:label "DisturbanceAreaIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Drawing
+:Drawing rdf:type owl:Class ;
+         rdfs:subClassOf :Design ;
+         rdfs:label "Drawing" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#EvaluationCriteria
+:EvaluationCriteria rdf:type owl:Class ;
+                    rdfs:subClassOf :InformationContentEntity ;
+                    rdfs:comment "Evaluation Criteria is a definition of a benchmark, standard, or yardstick against which accomplishment, conformance, performance, and suitability of an individual, alternative, activity, product, or plan is measured." ;
+                    rdfs:label "EvaluationCriteria" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Event
+:Event rdf:type owl:Class ;
+       rdfs:subClassOf :InformationContentEntity ;
+       rdfs:comment "A occurence that happens with a time instant for obtaining the information." ;
+       rdfs:label "Event" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ExecutionDelay
+:ExecutionDelay rdf:type owl:Class ;
+                rdfs:subClassOf :ExecutionIssue ;
+                rdfs:comment "The execution of an activity is behind its schedule" ;
+                rdfs:label "ExecutionDelay" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ExecutionFailure
+:ExecutionFailure rdf:type owl:Class ;
+                  rdfs:subClassOf :ExecutionIssue ;
+                  rdfs:comment "The execution of an activity fails to produce its intended effects" ;
+                  rdfs:label "ExecutionFailure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ExecutionIssue
+:ExecutionIssue rdf:type owl:Class ;
+                rdfs:subClassOf :Issue ;
+                rdfs:comment "Issue in the execution of activities" ;
+                rdfs:label "ExecutionIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#File
+:File rdf:type owl:Class ;
+      rdfs:subClassOf dice:MaterialEntity .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Image
+:Image rdf:type owl:Class ;
+       rdfs:subClassOf :InformationContentEntity ;
+       rdfs:comment "An information content entity containing visual data. For example, a photograph." ;
+       rdfs:label "Image" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#InformationContainer
+:InformationContainer rdf:type owl:Class ;
+                      rdfs:subClassOf dicc:Context ,
+                                      :InformationContentEntity ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty dice:hasEntityState ;
+                                        owl:allValuesFrom :InformationContainerState
+                                      ] ;
+                      rdfs:comment """InformationContainer is a named persistent set of information (ISO 19650-1 3.3.1) retrievable from within a file, system or application storage hierarchy (ISO 19650-1 def. 3.3.12)
+
+InformationContainer needs to be used when there is a need to represent information contents that consist of indefinite set of statements (composed of indefinite set of entities with indefinite set of mutual relations), that can create complex networks. Examples are complex designs, plans, linksets, and so on. 
+
+EXAMPLE Including sub-directory, information file (including model, document, table, schedule), or distinct sub-set of an information file such as a chapter or section, layer or symbol.""" ;
+                      rdfs:label "InformationContainer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#InformationContainerState
+:InformationContainerState rdf:type owl:Class ;
+                           rdfs:subClassOf dice:EntityState ;
+                           rdfs:comment "The states in which an Information Container can be according to the ISO 19650-1: Initial, WorkInProgress, Shared, Published, Archived" ;
+                           rdfs:label "InformationContainerState" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#InformationContentEntity
+:InformationContentEntity rdf:type owl:Class ;
+                          rdfs:subClassOf dice:GenericallyDependentContinuant ;
+                          rdfs:comment "Identifiable information content. Examples are a BIM model, a drawing, a specification, an image, a message, and an issue. Separate from physical information carriers. Note that the instances of this concept represent particular identifiable contents (such as a version of a architectural model or a master plan), not the physical carrier of that content (such as a database, a file in a cloud storage, or a bunch of paper). There can be several different carriers for the same information content entity" ;
+                          rdfs:label "InformationContentEntity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#InformationModel
+:InformationModel rdf:type owl:Class ;
+                  rdfs:subClassOf dicc:ContextSet ,
+                                  :InformationContentEntity ;
+                  rdfs:comment """A set of structured and unstructured information containers (ISO 19650-1, def. 3.3.8)
+
+Asset information models (AIM) and project information models (PIM) are the structured repositories of information needed for making decisions during the whole life cycle of a built environment asset. This includes the design and construction of new assets, refurbishment of existing assets, and the operation and maintenance of an asset. It should be expected that the amount of information stored in information models, and the different purposes it will be used for, will mostly increase during project delivery and asset management. (ISO 19650-1, ch. 4.1)
+
+AIM and PIM can include structured and unstructured information. Examples of structured information include geometrical models, schedules and databases. Examples of unstructured information include documentation, video clips and sound recordings. (ISO 19650-1, ch. 4.1)
+
+The whole information model is not always held in one place, particularly for large or complex assets or projects, or widely dispersed teams. (ISO 19650-1, ch. 12.1)
+
+Note: ISO 21597 ICDD ContainerDescription is aligned as a subclass of the InformationModel (based on the ISO 19650 \"Information model\").""" ;
+                  rdfs:label "InformationModel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Issue
+:Issue rdf:type owl:Class ;
+       rdfs:subClassOf :InformationContentEntity ;
+       rdfs:comment "A detected problem that requires an action." ;
+       rdfs:label "Issue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#LinkedDataLinkset
+:LinkedDataLinkset rdf:type owl:Class ;
+                   rdfs:subClassOf :Linkset ;
+                   rdfs:label "LinkedDataLinkset" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Linkset
+:Linkset rdf:type owl:Class ;
+         rdfs:subClassOf :InformationContainer ;
+         rdfs:comment """A dataset consisting of links between two or more datasets. 
+
+The links can be represented with RDF triples or more complex structures, as specified in ISO 21597 ICDD""" ;
+         rdfs:label "Linkset" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#LocationBreakdownStructure
+:LocationBreakdownStructure rdf:type owl:Class ;
+                            rdfs:subClassOf :BreakdownStructure ;
+                            rdfs:label "LocationBreakdownStructure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#LookaheadPlan
+:LookaheadPlan rdf:type owl:Class ;
+               rdfs:subClassOf :Plan ;
+               rdfs:label "LookaheadPlan" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#MasterPlan
+:MasterPlan rdf:type owl:Class ;
+            rdfs:subClassOf :Plan ;
+            rdfs:label "MasterPlan" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Message
+:Message rdf:type owl:Class ;
+         rdfs:subClassOf :InformationContentEntity ;
+         rdfs:comment "Information content transferred from a sender to receivers" ;
+         rdfs:label "Message" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#NonConformanceIssue
+:NonConformanceIssue rdf:type owl:Class ;
+                     rdfs:subClassOf :ProductIssue ;
+                     rdfs:comment "Issue that is about an entity that does not conform to its specification" ;
+                     rdfs:label "NonConformanceIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Notification
+:Notification rdf:type owl:Class ;
+              rdfs:subClassOf :Message ;
+              rdfs:comment "Notification is a message to inform recipients in a controlled manner about a situation they need to be aware of" ;
+              rdfs:label "Notification" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#OrderingConflict
+:OrderingConflict rdf:type owl:Class ;
+                  rdfs:subClassOf :PlanningIssue ;
+                  rdfs:comment "Two activities cannot be ordered to satisfy the requirements of a plan" ;
+                  rdfs:label "OrderingConflict" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PerformanceIndicator
+:PerformanceIndicator rdf:type owl:Class ;
+                      rdfs:subClassOf :EvaluationCriteria ;
+                      rdfs:comment "Performance Indicator is an Evaluation Criteria concerning the performance of an activity or some of its elements" ;
+                      rdfs:label "PerformanceIndicator" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Plan
+:Plan rdf:type owl:Class ;
+      rdfs:subClassOf :Dataset ;
+      rdfs:comment "A set of activities with constraints associated to them. For example, a sequence of activities (a set of activities with precedence constraints), or a project network." ;
+      rdfs:label "Plan" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PlanningIssue
+:PlanningIssue rdf:type owl:Class ;
+               rdfs:subClassOf :Issue ;
+               rdfs:comment "Issue concerning a plan" ;
+               rdfs:label "PlanningIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PointCloud
+:PointCloud rdf:type owl:Class ;
+            rdfs:subClassOf :InformationContentEntity ;
+            rdfs:label "PointCloud" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PreconditionIssue
+:PreconditionIssue rdf:type owl:Class ;
+                   rdfs:subClassOf :ExecutionIssue ;
+                   rdfs:comment "The preconditions of an activity are not satisfied at execution time" ;
+                   rdfs:label "PreconditionIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PriceIndex
+:PriceIndex rdf:type owl:Class ;
+            rdfs:subClassOf :PropertyHistory ;
+            rdfs:label "PriceIndex" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ProductBreakdownStructure
+:ProductBreakdownStructure rdf:type owl:Class ;
+                           rdfs:subClassOf :BreakdownStructure ;
+                           rdfs:label "ProductBreakdownStructure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ProductIssue
+:ProductIssue rdf:type owl:Class ;
+              rdfs:subClassOf :Issue ;
+              rdfs:comment "Issue related to the product (e.g., a building or some of its components or systems)" ;
+              rdfs:label "ProductIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Profile
+:Profile rdf:type owl:Class ;
+         rdfs:subClassOf :InformationContentEntity ;
+         rdfs:label "Profile" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ProjectInformationModel
+:ProjectInformationModel rdf:type owl:Class ;
+                         rdfs:subClassOf :InformationModel ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :isAbout ;
+                                           owl:allValuesFrom dicp:Project
+                                         ] ;
+                         rdfs:comment """Project information model (PIM) is an Information model (3.3.8) relating to the delivery phase of a Built asset. (ISO 19650-1, def. 3.3.10)
+
+Note: During the project, the project information model can be used to convey the design intent (sometimes called the design intent model) or the virtual representation of the asset to be constructed (sometimes called the virtual construction model). (ISO 19650-1, def. 3.3.10)
+
+Project information model (PIM) is a structured repository of information needed for making decisions during the delivery stage of a Built asset. It should be expected that the amount of information stored in PIM, and the different purposes it will be used for, will mostly increase during project delivery. PIM can include structured and unstructured information. (ISO 19650-1, def. 4.1)""" ;
+                         rdfs:label "ProjectInformationModel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PropertyDescription
+:PropertyDescription rdf:type owl:Class ;
+                     rdfs:subClassOf :InformationContentEntity ;
+                     rdfs:comment "Property description is an information content entity that gives decription of a property. It describes the property in general (it is about the property), not any particular use of the property (not the property of something)." ;
+                     rdfs:label "PropertyDescription" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PropertyHistory
+:PropertyHistory rdf:type owl:Class ;
+                 rdfs:subClassOf :PropertyDescription ;
+                 rdfs:comment "Property history is a property description that gives information about the historical development of the values of the high-level aggregate properties. A property history may contain also predicted future values. An example of  a property history is a price index." ;
+                 rdfs:label "PropertyHistory" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#PropertySpecification
+:PropertySpecification rdf:type owl:Class ;
+                       rdfs:subClassOf :PropertyDescription ;
+                       rdfs:comment "Property specification is a property description that defines limits to the values of the property, as given for example in regulations." ;
+                       rdfs:label "PropertySpecification" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Recommendation
+:Recommendation rdf:type owl:Class ;
+                rdfs:subClassOf :Message ;
+                rdfs:comment "Recommendation is a message in which the sender proposes a course of action to the recipient" ;
+                rdfs:label "Recommendation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#RegulatoryOrder
+:RegulatoryOrder rdf:type owl:Class ;
+                 rdfs:subClassOf :InformationContentEntity ;
+                 rdfs:comment "Regulatory Order means any injunction, order, judgment, decree, memorandum of understanding, consent decree, directive or regulatory restriction, or any change in or interpretation of any law, rule or regulation, imposed by a Governmental Entity. (https://www.lawinsider.com/)" ;
+                 rdfs:label "RegulatoryOrder" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#RenovationScenario
+:RenovationScenario rdf:type owl:Class ;
+                    rdfs:subClassOf :Scenario .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ResourceConflict
+:ResourceConflict rdf:type owl:Class ;
+                  rdfs:subClassOf :ExecutionIssue ;
+                  rdfs:comment "Activities require more resources than what are available" ;
+                  rdfs:label "ResourceConflict" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ResourceFailure
+:ResourceFailure rdf:type owl:Class ;
+                 rdfs:subClassOf :ExecutionIssue ;
+                 rdfs:comment "A resource has been broken and cannot be used for the execution of activities" ;
+                 rdfs:label "ResourceFailure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#SafetyIssue
+:SafetyIssue rdf:type owl:Class ;
+             rdfs:subClassOf :ExecutionIssue ;
+             rdfs:comment "Execution poses a safety threat to some agents" ;
+             rdfs:label "SafetyIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Scenario
+:Scenario rdf:type owl:Class ;
+          rdfs:subClassOf :Plan ;
+          rdfs:comment "A description and analysis of a potential future of some entity (an location, system, agent, or so). The scenario is about that particular entity. The purpose of a scenario is to explore, understand and predict the future of the entity. An example: a renovation scenario that is about a building, describes the installation of additional insulation and contains the resulting energy efficiency properties of the building." ;
+          rdfs:label "Scenario" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ScopeIssue
+:ScopeIssue rdf:type owl:Class ;
+            rdfs:subClassOf :DesignIssue ;
+            rdfs:comment "The scope of the product is too large or too small. For instance, some necessary parts are missing" ;
+            rdfs:label "ScopeIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#ServiceOutageIssue
+:ServiceOutageIssue rdf:type owl:Class ;
+                    rdfs:subClassOf :ExecutionIssue ;
+                    rdfs:comment "A non-functioning service" ;
+                    rdfs:label "ServiceOutageIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#SoftwareApplication
+:SoftwareApplication rdf:type owl:Class ;
+                     rdfs:subClassOf dice:GenericallyDependentContinuant ;
+                     rdfs:comment """A generically dependent continuant that encodes a representation of one or more computational functions (realizable functions)
+(Duncan, William. \"Making Ontological Sense of Hardware and Software.\" https://cse.buffalo.edu/~rapaport/584/S10/duncan09-HWSWOnt.pdf (2009))""" ;
+                     rdfs:label "SoftwareApplication" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#StakeholderIssue
+:StakeholderIssue rdf:type owl:Class ;
+                  rdfs:subClassOf :Issue ;
+                  rdfs:comment "An issue related to the stakeholders of a project" ;
+                  rdfs:label "StakeholderIssue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Statistic
+:Statistic rdf:type owl:Class ;
+           rdfs:subClassOf :InformationContentEntity ;
+           rdfs:label "Statistic" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#StatusUpdate
+:StatusUpdate rdf:type owl:Class ;
+              rdfs:subClassOf :Event ;
+              rdfs:label "StatusUpdate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#UnachievedGoal
+:UnachievedGoal rdf:type owl:Class ;
+                rdfs:subClassOf :PlanningIssue ;
+                rdfs:comment "A plan issue concerning a goal that is not achieved by the plan" ;
+                rdfs:label "UnachievedGoal" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#UnexecutableActivity
+:UnexecutableActivity rdf:type owl:Class ;
+                      rdfs:subClassOf :PlanningIssue ;
+                      rdfs:comment "A plan contains an activity that is not concrete enough to be executed. For instance, its resource allocation is missing or it still needs to be broken into a sequence of concrete steps." ;
+                      rdfs:label "UnexecutableActivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Video
+:Video rdf:type owl:Class ;
+       rdfs:subClassOf :InformationContentEntity ;
+       rdfs:label "Video" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#WeekPlan
+:WeekPlan rdf:type owl:Class ;
+          rdfs:subClassOf :Plan ;
+          rdfs:label "WeekPlan" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#WorkBreakdownStructure
+:WorkBreakdownStructure rdf:type owl:Class ;
+                        rdfs:subClassOf :BreakdownStructure ;
+                        rdfs:label "WorkBreakdownStructure" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Archived
+:Archived rdf:type owl:NamedIndividual ,
+                   :InformationContainerState ;
+          rdfs:comment """Information container not is use anymore, but stored for the purpose of history maintenance. 
+\"Journal of information transactions, providing an audit trail of information container development\" (ISO 19650-1)""" ;
+          rdfs:label "Archived" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Published
+:Published rdf:type owl:NamedIndividual ,
+                    :InformationContainerState ;
+           rdfs:comment "\"Information authorized for use in more detailed design, for construction and for asset management.\" (ISO 19650-1)" ;
+           rdfs:label "Published" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Shared
+:Shared rdf:type owl:NamedIndividual ,
+                 :InformationContainerState ;
+        rdfs:comment "\"Information approved for sharing with other appropriate task teams and delivery teams or with the appointing party\" (ISO 19650-1)" ;
+        rdfs:label "Shared" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#WorkInProgress
+:WorkInProgress rdf:type owl:NamedIndividual ,
+                         :InformationContainerState ;
+                rdfs:comment "\"Work to be developed by its originator or a task team, not visible or accessible to anyone else\" (ISO 19650-1)" ;
+                rdfs:label "WorkInProgress" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

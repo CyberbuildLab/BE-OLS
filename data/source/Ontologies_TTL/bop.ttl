@@ -1,0 +1,905 @@
+# Author: Alex Donkers, a.j.a.donkers@tue.nl
+# Contributors: Dujuan Yang, Bauke de Vries, Nico Baken
+# Eindhoven University of Technology
+
+@prefix : <https://w3id.org/bop#> .
+@prefix bop: <https://w3id.org/bop#> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/bop#> rdf:type owl:Ontology ;
+                         dcterms:creator <https://orcid.org/0000-0002-8809-3277> ;
+                         dcterms:description """De Building Performance Ontology (BOP) heeft het doel om de integratie van topologische gebouwinformatie met statische en dynamische eigenschappen mogelijk te maken, om zo een homogene informatieomgeving te creëren die wordt gebruikt bij complexe prestatiebeoordelingen van gebouwen. Het helpt gebouwbeheerders en hun software om te gaan met de grote heterogeniteit van informatie.
+
+Hoewel de gegevens die statische en dynamische eigenschappen beschrijven fundamenteel verschillend zijn, delen ze een vergelijkbare context met een complexe spatio-temporele resolutie. Het doel van deze ontologie is om deze complexe contextuele informatie op dezelfde manier weer te geven voor verschillende soorten informatie, waardoor de mogelijkheden voor het gebruik van de linked data in complexe vergelijkingen worden vergroot en de machineleesbaarheid wordt verbeterd. We hebben geprobeerd om zo semantisch correct mogelijk te izjn, terwijl we ook streefden naar eenvoudige en intuïtieve SPARQL queries. Doordat we concepten uit belangrijke ontologieën in het veld hebben hergebruikt, kan BOP gemakkelijk worden geïntegreerd met een breed scala aan bestaande ontologieën en datasets."""@nl ,
+                                             """The Building Performance Ontology (BOP) aims to enable the integration of topological building information with static and dynamic properties,  to create a homogeneous data environment used by complex building performance assessments. It helps building managers and their software to deal with the large heterogeneity of information. 
+
+While the data describing static and dynamic properties is fundamentally different, they share a similar context with a complex spatio-temporal resolution. The goal of this ontology is to represent this complex contextual information similarly for different types of information, which will increase the opportunities for using the linked data in complex equations and improves machine-readability. We tried to be as semantically correct as possible, while also aiming for simple and intuitive queries. By (re-)using concepts from major ontologies in the field, BOP could easily be integrated with a wide range of existing ontologies and datasets."""@en ;
+                         dcterms:title "Building Performance Ontology"@en ;
+                         vann:preferredNamespacePrefix "bop" ;
+                         vann:preferredNamespaceUri <https://w3id.org/bop#> ;
+                         owl:versionInfo "1.5"@nl .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+skos:example rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/weblog
+foaf:weblog rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/bop#actsOn
+:actsOn rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :executesOn ;
+        owl:inverseOf :isActuatedBy ;
+        rdfs:domain :Actuator ;
+        rdfs:range :Property ;
+        rdfs:comment "Relatie tussen een actuator en de eigenschap die hij bedient."@nl ,
+                     "Relationship between an actuator and the property it acts on."@en ;
+        rdfs:label "acts on"@en ,
+                   "bedient"@nl .
+
+
+###  https://w3id.org/bop#actuatedBy
+:actuatedBy rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :executedBy ;
+            owl:inverseOf :performsActuation ;
+            rdfs:domain :Actuation ;
+            rdfs:range :Actuator ;
+            rdfs:comment "Relatie tussen een bediening en een actuator die deze bediening heeft uitgevoerd."@nl ,
+                         "Relationship between an actuation and the actuator which performed this actuation."@en ;
+            rdfs:label "actuated by"@en ,
+                       "bediend door"@nl .
+
+
+###  https://w3id.org/bop#containsProperty
+:containsProperty rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isPartOfPropertySet ;
+                  rdfs:domain :PropertySet ;
+                  rdfs:range :Property ;
+                  rdfs:comment "Relatie tussen een set van eigenschappen en een eigenschap die deel uitmaakt van deze set."@nl ,
+                               "Relationship between a property set and a property which is part of this set."@en ;
+                  rdfs:label "bevat eigenschap"@nl ,
+                             "contains property"@en .
+
+
+###  https://w3id.org/bop#executedBy
+:executedBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :performsExecution ;
+            rdfs:domain :Execution ;
+            rdfs:range :Executor ;
+            rdfs:comment "Relatie tussen een uitvoering en een uitvoerder die deze uitvoering heeft uitgevoerd."@nl ,
+                         "Relationship between an execution and the executor which performed this execution."@en ;
+            rdfs:label "executed by"@en ,
+                       "uitgevoerd door"@nl .
+
+
+###  https://w3id.org/bop#executesOn
+:executesOn rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isExecutedBy ;
+            rdfs:domain :Executor ;
+            rdfs:range :Property ;
+            rdfs:comment "Relatie tussen een uitvoerder en de eigenschap waarop deze uitvoert."@nl ,
+                         "Relationship between an executor and the property it executes on."@en ;
+            rdfs:label "executes on"@en ,
+                       "voert uit op"@nl .
+
+
+###  https://w3id.org/bop#hasActuatedProperty
+:hasActuatedProperty rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasExecutedProperty ;
+                     owl:inverseOf :hasActuation ;
+                     rdfs:domain :Actuation ;
+                     rdfs:range :Property ;
+                     rdfs:comment "Relatie tussen een bediening en de bediende eigenschap."@nl ,
+                                  "Relationship between an actuation and the actuated property."@en ;
+                     rdfs:label "has actuated property"@en ,
+                                "heeft bediende eigenschap"@nl .
+
+
+###  https://w3id.org/bop#hasActuation
+:hasActuation rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasExecution ;
+              rdfs:domain :Property ;
+              rdfs:range :Actuation ;
+              rdfs:comment "Relatie tussen een eigenschap en een bijbehorende bediening"@nl ,
+                           "Relationship between a property and a corresponding actuation."@en ;
+              rdfs:label "has actuation"@en ,
+                         "heeft bediening"@nl .
+
+
+###  https://w3id.org/bop#hasComplexProperty
+:hasComplexProperty rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isComplexPropertyOf ;
+                    rdfs:domain :FeatureOfInterest ;
+                    rdfs:range :Result ;
+                    rdfs:comment "Direct relationship between a feature of interest and a result."@en ,
+                                 "Directe relatie tussen een kenmerk van belang en een resultaat."@nl ;
+                    rdfs:label "has complex property"@en ,
+                               "heeft complexe eigenschap"@nl ;
+                    skos:example """De objecteigenschap kan worden uitgebreid door deze te subclassificeren met casus-specifieke objecteigenschappen.
+
+Zo zou men kunnen zeggen: :Muur --ex:heeftLengte-> :Lengte, waarbij ex:heeftLengte een subklasse is van bop:hasComplexProperty."""@nl ,
+                                 """The object property could be extended by subclassing it with use-case-specific object properties.
+
+One could for example say: :Wall --ex:hasLength-> :CurrentWallLength, where ex:hasLength is a subclass of bop:hasComplexProperty."""@en .
+
+
+###  https://w3id.org/bop#hasDataPoint
+:hasDataPoint rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isDataPointOf ;
+              rdfs:domain :Database ;
+              rdfs:range :DataPoint ;
+              rdfs:comment "Relatie tussen een databank en zijn datapunten."@nl ,
+                           "Relationship between a database and its data points."@en ;
+              rdfs:label "has data point"@en ,
+                         "heeft datapunt"@nl ;
+              skos:example "Bijvoorbeeld the relatie tussen een time-series databank en een datapunt in deze databank."@nl ,
+                           "E.g. the relationship between a time-series database and a data record in this database."@en .
+
+
+###  https://w3id.org/bop#hasExecutedProperty
+:hasExecutedProperty rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :hasExecution ;
+                     rdfs:domain :Execution ;
+                     rdfs:range :Property ;
+                     rdfs:comment "Relatie tussen een uitvoering en de uitgevoerde eigenschap."@nl ,
+                                  "Relationship between an execution and the executed property."@en ;
+                     rdfs:label "has executed property"@en ,
+                                "heeft uitgevoerde eigenschap"@nl .
+
+
+###  https://w3id.org/bop#hasExecution
+:hasExecution rdf:type owl:ObjectProperty ;
+              rdfs:domain :Property ;
+              rdfs:range :Execution ;
+              rdfs:comment "Relatie tussen een eigenschap en een bijbehorende uitvoering."@nl ,
+                           "Relationship between a property and a corresponding execution."@en ;
+              rdfs:label "has execution"@en ,
+                         "heeft uitvoering"@nl .
+
+
+###  https://w3id.org/bop#hasExternalDatabase
+:hasExternalDatabase rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isExternalDatabaseOf ;
+                     rdfs:domain :Executor ;
+                     rdfs:range :Database ;
+                     rdfs:comment "Koppelt een uitvoerder aan een databank waar zijn resultaten worden opgeslagen."@nl ,
+                                  "Linking an executor with the database its results are stored in."@en ;
+                     rdfs:label "has external database"@en ,
+                                "heeft externe databank"@nl ;
+                     skos:example "Deze objecteigenschap kan worden gebruikt om een sensor te koppelen aan een time-series databank."@nl ,
+                                  "This object property could be used to link a sensor with a time-series database."@en .
+
+
+###  https://w3id.org/bop#hasFeatureOfInterest
+:hasFeatureOfInterest rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isFeatureOfInterestOf ;
+                      rdfs:domain :Execution ;
+                      rdfs:range :FeatureOfInterest ;
+                      rdfs:comment "Koppelt een uitvoering met zijn kenmerk van belang."@nl ,
+                                   "Linking an execution with its feature of interest."@en ;
+                      rdfs:label "has feature of interest"@en ,
+                                 "heeft kenmerk van belang"@nl .
+
+
+###  https://w3id.org/bop#hasObservation
+:hasObservation rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasExecution ;
+                owl:inverseOf :hasObservedProperty ;
+                rdfs:domain :Property ;
+                rdfs:range :Observation ;
+                rdfs:comment "Relatie tussen een eigenschap en een bijbehorende observatie."@nl ,
+                             "Relationship between a property and a corresponding observation."@en ;
+                rdfs:label "has observation"@en ,
+                           "heeft observatie"@nl .
+
+
+###  https://w3id.org/bop#hasObservedProperty
+:hasObservedProperty rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasExecutedProperty ;
+                     rdfs:domain :Observation ;
+                     rdfs:range :Property ;
+                     rdfs:comment "Relatie tussen een observatie en de geobserveerde eigenschap."@nl ,
+                                  "Relationship between an observation and the observed property."@en ;
+                     rdfs:label "has observed property"@en ,
+                                "heeft geobserveerde eigenschap"@nl .
+
+
+###  https://w3id.org/bop#hasProperty
+:hasProperty rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isPropertyOf ;
+             rdfs:domain :FeatureOfInterest ;
+             rdfs:range :Property ;
+             rdfs:comment "Koppelt een kenmerk van belang aan haar eigenschap. De eigenschap is intrinsiek aan dit kenmerk van belang, en kan niet bestaan zonder dit kenmerk van belang."@nl ,
+                          "Linking a feature of interest with its property. The property is intrinsic to this feature of interest, and cannot exist without this feature of interest."@en ;
+             rdfs:label "has property"@en ,
+                        "heeft eigenschap"@nl .
+
+
+###  https://w3id.org/bop#hasPropertyState
+:hasPropertyState rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isPropertyStateOf ;
+                  rdfs:domain :Property ;
+                  rdfs:range :Result ;
+                  rdfs:comment "Koppelt een eigenschap met een resultaat."@nl ,
+                               "Linking a property with a result"@en ;
+                  rdfs:label "has property state"@en ,
+                             "heeft eigenschapsstatus"@nl ;
+                  skos:example """Deze objecteigenschap kan worden gebruikt om direct een koppeling tussen een eigenschap en een eigenschapsstatus te maken. 
+
+Voorbeeld: :Temperatuur --bop:hasPropertyState--> :HuidigeTemperatuur"""@nl ,
+                               """This object property is used to directly link a property to a property state. 
+
+Example: :Temperature --bop:hasPropertyState--> :CurrentTemperatureState"""@en .
+
+
+###  https://w3id.org/bop#hasResult
+:hasResult rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isResultOf ;
+           rdfs:domain :Execution ;
+           rdfs:range :Result ;
+           rdfs:comment "Koppelt een uitvoering aan zijn resultaat."@nl ,
+                        "Linking an execution to its result."@en ;
+           rdfs:label "has result"@en ,
+                      "heeft resultaat"@nl .
+
+
+###  https://w3id.org/bop#hasSubActuator
+:hasSubActuator rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasSubExecutor ;
+                owl:inverseOf :isSubActuatorOf ;
+                rdf:type owl:AsymmetricProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain :Actuator ;
+                rdfs:range :Actuator ;
+                rdfs:comment "Describing a whole-part relationship between an actuator and its sub-actuator."@en ;
+                rdfs:label "has sub-actuator"@en .
+
+
+###  https://w3id.org/bop#hasSubExecutor
+:hasSubExecutor rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isSubExecutorOf ;
+                rdf:type owl:AsymmetricProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain :Executor ;
+                rdfs:range :Executor ;
+                rdfs:comment "Describing a whole-part relationship between an executor and its sub-executor."@en ;
+                rdfs:label "has sub-executor"@en .
+
+
+###  https://w3id.org/bop#hasSubProperty
+:hasSubProperty rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isSubPropertyOf ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain :Property ;
+                rdfs:range :Property ;
+                rdfs:comment "Describing a whole-part relationship between a property and its sub-property.."@en ;
+                rdfs:label "has sub-property"@en .
+
+
+###  https://w3id.org/bop#hasSubSensor
+:hasSubSensor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasSubExecutor ;
+              owl:inverseOf :isSubSensorOf ;
+              rdf:type owl:AsymmetricProperty ,
+                       owl:TransitiveProperty ;
+              rdfs:domain :Sensor ;
+              rdfs:range :Sensor ;
+              rdfs:comment "Describing a whole-part relationship between a sensor and its sub-sensor.."@en ;
+              rdfs:label "has sub-sensor"@en .
+
+
+###  https://w3id.org/bop#hasUnit
+:hasUnit rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isUnitOf ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain :Result ;
+         rdfs:range :Unit ;
+         rdfs:comment "Linking a result with a unit."@en ;
+         rdfs:label "has unit"@en .
+
+
+###  https://w3id.org/bop#hosts
+:hosts rdf:type owl:ObjectProperty ;
+       owl:inverseOf :isHostedBy ;
+       rdf:type owl:InverseFunctionalProperty ;
+       rdfs:domain :Platform ;
+       rdfs:range :Executor ;
+       rdfs:comment "Describing the relation between a platform and the executor which is hosted by this platform."@en ;
+       rdfs:label "hosts"@en ;
+       skos:example "This object property could be used to describe the relationship between a wall and a sensor hosted by this wall."@en .
+
+
+###  https://w3id.org/bop#implementedBy
+:implementedBy rdf:type owl:ObjectProperty ;
+               owl:inverseOf :implementsProcedure ;
+               rdfs:domain :Procedure ;
+               rdfs:range :Executor ;
+               rdfs:comment "Describing the relation between a procedure and the executor implementing this procedure."@en ;
+               rdfs:label "implemented by"@en .
+
+
+###  https://w3id.org/bop#implementsProcedure
+:implementsProcedure rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Executor ;
+                     rdfs:range :Procedure ;
+                     rdfs:comment "Describing the relationship between an executor and the procedure it implements."@en ;
+                     rdfs:label "implements procedure"@en .
+
+
+###  https://w3id.org/bop#isActuatedBy
+:isActuatedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isExecutedBy ;
+              rdfs:domain :Property ;
+              rdfs:range :Actuator ;
+              rdfs:comment "Relationship between a property and the actuator which acts on the property."@en ;
+              rdfs:label "is actuated by"@en .
+
+
+###  https://w3id.org/bop#isComplexPropertyOf
+:isComplexPropertyOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Result ;
+                     rdfs:range :FeatureOfInterest ;
+                     rdfs:comment "Linking a result with a feature of interest"@en ;
+                     rdfs:label "is complex property of"@en ;
+                     skos:example """This object property is used to directly link the current state of a property to a feature of interest. It is the shortest route to link a result to a feature of interest. 
+The object property could be extended by subclassing it with use-case-specific object properties.
+
+One could for example say: :CurrentWallLength --ex:isLengthOf-> :Wall, where ex:hasLength is a subclass of bop:isComplexPropertyOf."""@en .
+
+
+###  https://w3id.org/bop#isDataPointOf
+:isDataPointOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :DataPoint ;
+               rdfs:range :Database ;
+               rdfs:comment "Linking a data point with the database it is part of."@en ;
+               rdfs:label "is data point of"@en .
+
+
+###  https://w3id.org/bop#isExecutedBy
+:isExecutedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Property ;
+              rdfs:range :Executor ;
+              rdfs:comment "Relationship between a property and the executor which executes on the property."@en ;
+              rdfs:label "is executed by"@en .
+
+
+###  https://w3id.org/bop#isExternalDatabaseOf
+:isExternalDatabaseOf rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Database ;
+                      rdfs:range :Executor ;
+                      rdfs:label "is external database of"@en ;
+                      skos:example "Linking a database with the executor which results are stored in this database."@en ,
+                                   "This object property could be used to link a time-series database with a sensor."@en .
+
+
+###  https://w3id.org/bop#isFeatureOfInterestOf
+:isFeatureOfInterestOf rdf:type owl:ObjectProperty ;
+                       rdfs:domain :FeatureOfInterest ;
+                       rdfs:range :Execution ;
+                       rdfs:comment "Linking a feature of interest with an execution which executes on a property of this feature of interest."@en ;
+                       rdfs:label "is feature of interest of"@en .
+
+
+###  https://w3id.org/bop#isHostedBy
+:isHostedBy rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Executor ;
+            rdfs:range :Platform ;
+            rdfs:comment "Describing the relation between an executor and the platform hosting this executor."@en ;
+            rdfs:label "is hosted by"@en ;
+            skos:example "This object property could be used to describe the relationship between a sensor and a wall hosting this sensor."@en .
+
+
+###  https://w3id.org/bop#isObservedBy
+:isObservedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isExecutedBy ;
+              owl:inverseOf :observes ;
+              rdfs:domain :Property ;
+              rdfs:range :Sensor ;
+              rdfs:comment "Relationship between a property and the sensor which observes the property."@en ;
+              rdfs:label "is observed by"@en .
+
+
+###  https://w3id.org/bop#isPartOfPropertySet
+:isPartOfPropertySet rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Property ;
+                     rdfs:range :PropertySet ;
+                     rdfs:comment "Relationship between a property and the property set it is part of."@en ;
+                     rdfs:label "is part of property set"@en .
+
+
+###  https://w3id.org/bop#isPropertyOf
+:isPropertyOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Property ;
+              rdfs:range :FeatureOfInterest ;
+              rdfs:comment "Linking a property with its feature of interest. The property is intrinsic to this feature of interest, and cannot exist without a feature of interest."@en ;
+              rdfs:label "is property of"@en .
+
+
+###  https://w3id.org/bop#isPropertyStateOf
+:isPropertyStateOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Result ;
+                   rdfs:range :Property ;
+                   rdfs:comment "Linking a result with a property"@en ;
+                   rdfs:label "is property state of"@en ;
+                   skos:example """This object property is used to directly link the current state of a property to a property. It is the shortest route to link a result to a property. 
+
+Example: CurrentTemperatureState -- isPropertyStateOf --> Temperature"""@en .
+
+
+###  https://w3id.org/bop#isResultOf
+:isResultOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Result ;
+            rdfs:range :Execution ;
+            rdfs:comment "Linking a result with an execution."@en ;
+            rdfs:label "is result of"@en .
+
+
+###  https://w3id.org/bop#isSubActuatorOf
+:isSubActuatorOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isSubExecutorOf ;
+                 rdf:type owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Actuator ;
+                 rdfs:range :Actuator ;
+                 rdfs:comment "Relation between an actuator and sub-actuators. The sub-actuators are of type actuator and could function as individual actuators."@en ;
+                 rdfs:label "is sub-actuator of"@en ;
+                 skos:example "The object property could be used to model actuators which have multiple components with their own functions."@en .
+
+
+###  https://w3id.org/bop#isSubExecutorOf
+:isSubExecutorOf rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Executor ;
+                 rdfs:range :Executor ;
+                 rdfs:comment "Relation between an executor and sub-executors. The sub-executors are of type executor and could function as individual executors."@en ;
+                 rdfs:label "is sub-executor of"@en ;
+                 skos:example "The object property could be used to model devices which have multiple components with their own functions. A multisensor - for example - consists of multiple sub-sensors which individually perform a sensing function."@en .
+
+
+###  https://w3id.org/bop#isSubPropertyOf
+:isSubPropertyOf rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Property ;
+                 rdfs:range :Property ;
+                 rdfs:comment "Relation between a sub-property and its parent property."@en ;
+                 rdfs:label "is sub-property of"@en ;
+                 skos:example "The object property describes a typical whole-part relationship between a property and its sub-properties. It is used in cases where properties are so complex that it is desirable to decompose them into separate properties. The separate properties might also be individually linked to their own results."@en .
+
+
+###  https://w3id.org/bop#isSubSensorOf
+:isSubSensorOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isSubExecutorOf ;
+               rdf:type owl:AsymmetricProperty ,
+                        owl:TransitiveProperty ;
+               rdfs:domain :Sensor ;
+               rdfs:range :Sensor ;
+               rdfs:comment "Relation between a sensor and sub-sensors. The sub-sensors are of type sensor and could function as individual sensors."@en ;
+               rdfs:label "is sub-sensor of"@en ;
+               skos:example "The object property could be used to model sensors which have multiple components with their own functions."@en .
+
+
+###  https://w3id.org/bop#isUnitOf
+:isUnitOf rdf:type owl:ObjectProperty ,
+                   owl:InverseFunctionalProperty ;
+          rdfs:domain :Unit ;
+          rdfs:range :Result ;
+          rdfs:comment "Linking a unit with a result."@en ;
+          rdfs:label "is unit of"@en .
+
+
+###  https://w3id.org/bop#isUsedFor
+:isUsedFor rdf:type owl:ObjectProperty ;
+           owl:inverseOf :usesProcedure ;
+           rdfs:domain :Procedure ;
+           rdfs:range :Execution ;
+           rdfs:comment "The relationship between a procedure and an execution which used this procedure."@en ;
+           rdfs:label "is used for"@en .
+
+
+###  https://w3id.org/bop#observedBy
+:observedBy rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :executedBy ;
+            owl:inverseOf :performsObservation ;
+            rdfs:domain :Observation ;
+            rdfs:range :Sensor ;
+            rdfs:comment "Relatie tussen een observatie en een sensor die deze observatie heeft uitgevoerd."@nl ,
+                         "Relationship between an observation and the sensor which performed this observation."@en ;
+            rdfs:label "geobserveerd door"@nl ,
+                       "observed by"@en .
+
+
+###  https://w3id.org/bop#observes
+:observes rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :executesOn ;
+          rdfs:domain :Sensor ;
+          rdfs:range :Property ;
+          rdfs:comment "Relatie tussen een sensor en de eigenschap die hij observeert."@nl ,
+                       "Relationship between a sensor and the property it observes."@en ;
+          rdfs:label "observeert"@nl ,
+                     "observes"@en .
+
+
+###  https://w3id.org/bop#performsActuation
+:performsActuation rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :performsExecution ;
+                   rdfs:domain :Actuator ;
+                   rdfs:range :Actuation ;
+                   rdfs:comment "Relationship between an actuator and the actuation it performs."@en ;
+                   rdfs:label "performs actuation"@en .
+
+
+###  https://w3id.org/bop#performsExecution
+:performsExecution rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Executor ;
+                   rdfs:range :Execution ;
+                   rdfs:comment "Relationship between an executor and the execution it performs."@en ;
+                   rdfs:label "performs execution"@en .
+
+
+###  https://w3id.org/bop#performsObservation
+:performsObservation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :performsExecution ;
+                     rdfs:domain :Sensor ;
+                     rdfs:range :Observation ;
+                     rdfs:comment "Relationship between a sensor and the observation it performs."@en ;
+                     rdfs:label "performs observation"@en .
+
+
+###  https://w3id.org/bop#usesProcedure
+:usesProcedure rdf:type owl:ObjectProperty ;
+               rdfs:domain :Execution ;
+               rdfs:range :Procedure ;
+               rdfs:comment "The relationship between an execution and the used procedure."@en ;
+               rdfs:label "uses procedure"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bop#hasID
+:hasID rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :hasValue ;
+       rdf:type owl:FunctionalProperty ;
+       rdfs:domain :DataPoint ;
+       rdfs:comment "Het ID van een datapunt in een externe databank."@nl ,
+                    "The ID of a data point in an external database."@en ;
+       rdfs:label "has ID"@en ,
+                  "heeft ID"@nl .
+
+
+###  https://w3id.org/bop#hasSimpleProperty
+:hasSimpleProperty rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :FeatureOfInterest ;
+                   rdfs:comment "Koppelt een kenmerk van belang met een simpele eigenschapswaarde, beschreven als tekstueel veld."@nl ,
+                                "Linking a feature of interest with a simple property value described as a literal."@en ;
+                   rdfs:label "has simple property"@en ,
+                              "heeft simpele eigenschap"@nl .
+
+
+###  https://w3id.org/bop#hasSimplePropertyState
+:hasSimplePropertyState rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Property ;
+                        rdfs:comment "Koppelt een eigenschap met een simpele eigenschapsstatus, beschreven als tekstueel veld."@nl ,
+                                     "Linking a property with a simple property state value described as a literal."@en ;
+                        rdfs:label "has simple property state"@en ,
+                                   "heeft simpele eigenschapsstatus"@nl .
+
+
+###  https://w3id.org/bop#hasSimpleResult
+:hasSimpleResult rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :Execution ;
+                 rdfs:comment "Koppelt een uitvoering met een simpel resultaat, beschreven als tekstueel veld."@nl ,
+                              "Linking an execution with a simple result value described as a literal."@en ;
+                 rdfs:label "has simple result"@en ,
+                            "heeft simpel resultaat"@nl .
+
+
+###  https://w3id.org/bop#hasSimpleUnit
+:hasSimpleUnit rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Result ;
+               rdfs:comment "Koppelt een resultaat met een eenheid beschreven als tekstueel veld."@nl ,
+                            "Linking a result with a unit described by a literal."@en ;
+               rdfs:label "has simple unit"@en ,
+                          "heeft simpele eenheid"@nl .
+
+
+###  https://w3id.org/bop#hasValue
+:hasValue rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :Result ;
+          rdfs:comment "De waarde van een resultaat, beschreven als tekstueel veld."@nl ,
+                       "The simple value of a result."@en ;
+          rdfs:label "has value"@en ,
+                     "heeft waarde"@nl .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+###  https://w3id.org/bop#Actuation
+:Actuation rdf:type owl:Class ;
+           rdfs:subClassOf :Execution ;
+           owl:disjointWith :Observation ;
+           rdfs:comment "An act of carrying out an actuation procedure by an actuator to change the state of a property."@en ,
+                        "Het bedienen van iets. Een bediening kan worden bediend door een actuator, eventueel op basis van een procedure."@nl ;
+           rdfs:label "Actuation"@en ,
+                      "Bediening"@nl .
+
+
+###  https://w3id.org/bop#Actuator
+:Actuator rdf:type owl:Class ;
+          rdfs:subClassOf :Executor ;
+          owl:disjointWith :Sensor ;
+          rdfs:comment "An agent that can implement an actuation procedure to change the state of a property.."@en ,
+                       "Iets wat een bediening kan uitvoeren op basis van een procedure om de status van een eigenschap te veranderen."@nl ;
+          rdfs:label "Actuator"@en ,
+                     "Actuator"@nl .
+
+
+###  https://w3id.org/bop#DataPoint
+:DataPoint rdf:type owl:Class ;
+           rdfs:subClassOf :Result ;
+           rdfs:comment "A data element in a database representing the state of a property."@en ,
+                        "Een dataelement in een databank die de staat van een eigenschap vertegenwoordigt."@nl ;
+           rdfs:label "Data point"@en ,
+                      "Datapunt"@nl ;
+           skos:example "Het datapunt kan in verschillende soorten databanken worden gebruikt. Het komt overeen met afzonderlijke datapunten in time-series databanken of rijen in SQL tabellen. Het is ook een gebruikelijk concept in BMS-servers, waarin het bijvoorbeeld sensor-observaties, output van actuatoren of een andere scalaire waarde vertegenwoordigt."@nl ,
+                        "The data point can be used in various types of databases. It corresponds to single data records in time-series databases, or rows in SQL database tables. It is also a common concept in BMS servers, representing for example a sensor reading, output value of an actuator or any other scalar value."@en .
+
+
+###  https://w3id.org/bop#Database
+:Database rdf:type owl:Class ;
+          rdfs:comment """A collection of data.
+
+The database class is used to describe an external database, storing results of executions, such as a time-series database."""@en ,
+                       """Een collectie van data.
+
+De databank klasse wordt gebruikt om externe databanken te beschrijven. Deze kunnen resultaten van uitvoeringen bevatten."""@nl ;
+          rdfs:label "Databank"@nl ,
+                     "Database"@en .
+
+
+###  https://w3id.org/bop#Execution
+:Execution rdf:type owl:Class ;
+           rdfs:comment "An act of carrying out a procedure by an executor on a property"@en ,
+                        "Het doen of uitvoeren van iets. Een uitvoering kan worden uitgevoerd door een uitvoerder, eventueel op basis van een procedure."@nl ;
+           rdfs:label "Execution"@en ,
+                      "Uitvoering"@nl .
+
+
+###  https://w3id.org/bop#Executor
+:Executor rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :isHostedBy ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Platform
+                          ] ;
+          rdfs:comment "An agent that can implement a procedure to perform an execution."@en ,
+                       "Iets wat een taak kan uitvoeren op basis van een procedure."@nl ;
+          rdfs:label "Executor"@en ,
+                     "Uitvoerder"@nl .
+
+
+###  https://w3id.org/bop#FeatureOfInterest
+:FeatureOfInterest rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasProperty ;
+                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :Property
+                                   ] ;
+                   rdfs:comment "An abstraction of a real-world phenomenon which could be described in terms of its properties."@en ,
+                                "Een abstractie van een fenomeen uit de echte wereld (object, onderdeel, zone, evenement, etc)."@nl ;
+                   rdfs:label "Feature of interest"@en ,
+                              "Kenmerk van belang"@nl ;
+                   skos:example "An object, part, zone, event etc."@en ,
+                                "Een object, deel, zone, evenement, etc."@nl .
+
+
+###  https://w3id.org/bop#Input
+:Input rdf:type owl:Class ;
+       rdfs:subClassOf :DataPoint ;
+       rdfs:comment "An input data point in a BMS system."@en ,
+                    "Een invoerdatapunt in een BMS systeem."@nl ;
+       rdfs:label "Input"@en ,
+                  "Invoer"@nl ;
+       skos:example "Inputs in BMS are often the results of an observation, such as sensor readings. They are read by a system."@en ,
+                    "Invoerdatapunten in BMS-systemen zijn vaak het resultaat van een waarneming, zoals sensor-observaties. Ze worden gelezen door een systeem."@nl .
+
+
+###  https://w3id.org/bop#Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf :Execution ;
+             rdfs:comment "An act of carrying out an observation procedure by a sensor to observe the state of a property."@en ,
+                          "Het observeren van iets. Een observatie kan worden geobserveerd door een sensor, eventueel op basis van een procedure."@nl ;
+             rdfs:label "Observatie"@nl ,
+                        "Observation"@en .
+
+
+###  https://w3id.org/bop#Output
+:Output rdf:type owl:Class ;
+        rdfs:subClassOf :DataPoint ;
+        rdfs:comment "An output data point in a BMS system."@en ,
+                     "Een uitvoerdatapunt in een BMS systeem."@nl ;
+        rdfs:label "Output"@en ,
+                   "Uitvoer"@nl ;
+        skos:example "Outputs in BMS are often the values sent to actuators, such as turning on a light. They are written by a system."@en ,
+                     "Uitvoerdatapunten in BMS systemen zijn vaak de waarden die naar actuatoren worden gestuurd, zoals het inschakelen van een lamp. Ze worden geschreven door een systeem."@nl .
+
+
+###  https://w3id.org/bop#Platform
+:Platform rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hosts ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Executor
+                          ] ;
+          rdfs:comment "An entity that hosts an executor."@en ,
+                       "Een entitiet die een uitvoerder herbergt."@nl ;
+          rdfs:label "Platform"@en ,
+                     "Platform"@nl .
+
+
+###  https://w3id.org/bop#Procedure
+:Procedure rdf:type owl:Class ;
+           rdfs:comment "A workflow, protocol, plan, algorithm, or computational method specifying how to perform an execution."@en ,
+                        "Een workflow, protocol, plan, algoritme of rekenmethode die specificeert hoe een uitvoering moet worden uitgevoerd."@nl ;
+           rdfs:label "Procedure"@en ,
+                      "Procedure"@nl .
+
+
+###  https://w3id.org/bop#Property
+:Property rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :isPropertyOf ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :FeatureOfInterest
+                          ] ;
+          rdfs:comment "A measurable and intrinsic characteristic of a feature of interest."@en ,
+                       "Een eigenschap van een kenmerk van belang. De eigenschap is intrinsiek aan en kan niet bestaan zonder het kenmerk van belang."@nl ;
+          rdfs:label "Eigenschap"@nl ,
+                     "Property"@en .
+
+
+###  https://w3id.org/bop#PropertySet
+:PropertySet rdf:type owl:Class ;
+             rdfs:comment "A collection of properties. The collection could also be a singleton or a null set."@en ,
+                          "Een collectie van eigenschappen. De collectie kan ook een eenpuntsverzameling of een lege verzameling zijn."@nl ;
+             rdfs:label "Property set"@en ,
+                        "Verzameling van eigenschappen"@nl .
+
+
+###  https://w3id.org/bop#Result
+:Result rdf:type owl:Class ;
+        rdfs:comment "De uitkomst van een uitvoering."@nl ,
+                     "The outcome of an execution."@en ;
+        rdfs:label "Result"@en ,
+                   "Resultaat"@nl ;
+        skos:example "Het resultaat kan bijvoorbeeld bestaan uit een waarde, een eenheid en andere herkomstgegevens."@nl ,
+                     "The result may hold, for example, a value, a unit, a result time and other provenance data."@en .
+
+
+###  https://w3id.org/bop#Sensor
+:Sensor rdf:type owl:Class ;
+        rdfs:subClassOf :Executor ;
+        rdfs:comment "An agent that can implement an observation procedure to measure the state of a property."@en ,
+                     "Iets wat een observatie kan uitvoeren op basis van een procedure om de status van een eigenschap te meten."@nl ;
+        rdfs:label "Sensor"@en ,
+                   "Sensor"@nl .
+
+
+###  https://w3id.org/bop#Unit
+:Unit rdf:type owl:Class ;
+      rdfs:comment "A particular quantity value that has been chosen as a scale for measuring other quantities of the same kind."@en ,
+                   "Een specifieke waarde van een natuurkundige grootheid die is gekozen als een schaal voor het meten van andere hoeveelheden van diezelfde grootheid."@nl ;
+      rdfs:label "Eenheid"@nl ,
+                 "Unit"@en .
+
+
+###  https://w3id.org/bop#UserDefined
+:UserDefined rdf:type owl:Class ;
+             rdfs:subClassOf :DataPoint ;
+             rdfs:comment "A user defined data point in a BMS system."@en ,
+                          "Een door de gebruiker gedefinieerd datapunt in een BMS systeem."@nl ;
+             rdfs:label "Door de gebruiker gedefinieerd"@nl ,
+                        "User defined"@en ;
+             skos:example "Door de gebruiker gedefinieerde datapunten in een BMS systeem zijn vaak parameters die zijn ingesteld door mensen of wettelijke voorschriften. Ze worden gebruikt om de staat van eigenschappen de beïnvloeden, zoals temperatuurinstelpunten."@nl ,
+                          "User defined data points in BMS are often parameters set by humans or regulations which are used to control the state of properties, such temperature set points."@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://orcid.org/0000-0002-8809-3277
+<https://orcid.org/0000-0002-8809-3277> rdf:type owl:NamedIndividual ,
+                                                 foaf:Person ;
+                                        rdfs:label "Alex Donkers" ;
+                                        foaf:name "Alex Donkers" ;
+                                        foaf:weblog "https://linktr.ee/AlexDonkers" .
+
+
+###  https://w3id.org/bop#
+<https://w3id.org/bop#> rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Database
+                :Execution
+                :Executor
+                :FeatureOfInterest
+                :Platform
+                :Procedure
+                :Property
+                :PropertySet
+                :Result
+                :Unit
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

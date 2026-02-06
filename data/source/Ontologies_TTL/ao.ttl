@@ -1,0 +1,462 @@
+@prefix : <http://bimerr.iot.linkeddata.es/def/annotation-objects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://bimerr.iot.linkeddata.es/def/annotation-objects#> .
+
+<http://bimerr.iot.linkeddata.es/def/annotation-objects#> rdf:type owl:Ontology ;
+                                                           <http://purl.org/dc/elements/1.1/created> "2020-11-01" ;
+                                                           <http://purl.org/dc/elements/1.1/creator> "María Poveda-Villalón" ,
+                                                                                                     "Serge Chávez-Feria" ;
+                                                           <http://purl.org/dc/elements/1.1/license> "http://purl.org/NET/rdflicense/cc-by4.0" ;
+                                                           <http://purl.org/dc/elements/1.1/publisher> "http://www.oeg-upm.net/" ;
+                                                           <http://purl.org/dc/elements/1.1/title> "Annotations Ontology" ;
+                                                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "ao" ;
+                                                           rdfs:comment "The Annotation Objects ontology aims to model the annotations and comments made during a renovation project with respect to specific building elements, spaces, etc."@en ;
+                                                           owl:versionInfo "0.0.2" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/created
+<http://purl.org/dc/elements/1.1/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/license
+<http://purl.org/dc/elements/1.1/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/publisher
+<http://purl.org/dc/elements/1.1/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#hasComment
+:hasComment rdf:type owl:ObjectProperty ;
+            rdfs:domain :Topic ;
+            rdfs:range :Comment ;
+            rdfs:comment "Relates a topic with a comment."@en ;
+            rdfs:label "has comment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#hasTopic
+:hasTopic rdf:type owl:ObjectProperty ;
+          rdfs:domain <http://bimerr.iot.linkeddata.es/def/key-performance-indicator#Project> ;
+          rdfs:range :Topic ;
+          rdfs:comment "Relates the project to topics/issues"@en ;
+          rdfs:label "has topic"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedAudioFile
+:relatedAudioFile rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Topic ;
+                  rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                  rdfs:comment "Relates to an audio file."@en ;
+                  rdfs:label "related audio file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedComponent
+:relatedComponent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Topic ;
+                  rdfs:range <http://bimerr.iot.linkeddata.es/def/building#Element> ;
+                  rdfs:comment "Relates a topic to an element."@en ;
+                  rdfs:label "related component"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedDocumentation
+:relatedDocumentation rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Topic ;
+                      rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                      rdfs:comment "Links a topic to extra document references, such as additional payloads, or links."@en ;
+                      rdfs:label "related documentation"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedIFCFile
+:relatedIFCFile rdf:type owl:ObjectProperty ;
+                rdfs:domain :Topic ;
+                rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                rdfs:comment "Relates to an IFC file."@en ;
+                rdfs:label "related IFC file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedImageFile
+:relatedImageFile rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Topic ;
+                  rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                  rdfs:comment "Relates to an image file."@en ;
+                  rdfs:label "related image file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedSpace
+:relatedSpace rdf:type owl:ObjectProperty ;
+              rdfs:domain :Topic ;
+              rdfs:range <http://bimerr.iot.linkeddata.es/def/building#Space> ;
+              rdfs:comment "Relates a topic to a space."@en ;
+              rdfs:label "related  space"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#relatedVideoFile
+:relatedVideoFile rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Topic ;
+                  rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                  rdfs:comment "Relates to a video file."@en ;
+                  rdfs:label "related video file"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#assignedTo
+:assignedTo rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Topic ;
+            rdfs:range xsd:string ;
+            rdfs:comment "The user to whom this topic is assigned to. Recommended to be in email format."@en ;
+            rdfs:label "assigned to" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#comment
+:comment rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Comment ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Large description of the comment."@en ;
+         rdfs:label "comment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#creationAuthor
+:creationAuthor rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Indicates the creator of the entity."@en ;
+                rdfs:label "creation author" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#creationDate
+:creationDate rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:dateTime ;
+              rdfs:comment "Indicates the creation date of the entity."@en ;
+              rdfs:label "creation date" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Provides a description of the topic."@en ;
+             rdfs:label "description" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#dueDate
+:dueDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Topic ;
+         rdfs:range xsd:dateTime ;
+         rdfs:comment "Date until when the topics issue needs to be resolved."@en ;
+         rdfs:label "due date" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#identifier
+:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Attribute to uniquely identify the topics, comments."@en ;
+            rdfs:label "identifier" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#ifcIdentifier
+:ifcIdentifier rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Global ID of the space in the IFC file"@en ;
+               rdfs:label "ifc identifier"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#label
+:label rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Topic ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Label of the topic: Architecture, Structure, Mechanical, Electrical, Specifications, Technology."@en ;
+       rdfs:label "label"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#location
+:location rdf:type owl:DatatypeProperty ;
+          rdfs:domain <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+          rdfs:range xsd:anyURI ;
+          rdfs:comment "Location of the file."@en ;
+          rdfs:label "location"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#modifiedAuthor
+:modifiedAuthor rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Indicates who modified the entity."@en ;
+                rdfs:label "modified author" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#modifiedDate
+:modifiedDate rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:dateTime ;
+              rdfs:comment "Indicates the last time the entity was modified."@en ;
+              rdfs:label "modified date" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#priority
+:priority rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Topic ;
+          rdfs:range xsd:integer ;
+          rdfs:comment "Priority of the topic indicated by an integer number: 1, 2, 3, 4."@en ;
+          rdfs:label "priority" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#stage
+:stage rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Topic ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Stage of the project: Preliminary Planning End, Construction Start, Construction End."@en ;
+       rdfs:label "stage"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#taskId
+:taskId rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Topic ;
+        rdfs:range xsd:string ;
+        rdfs:comment "Relates the topic/issue to an specific task id."@en ;
+        rdfs:label "task id"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Topic ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Title of the topic."@en ;
+       rdfs:label "title" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#topicStatus
+:topicStatus rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Topic ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Status of the topic: Open, In Progress, Closed, ReOpened."@en ;
+             rdfs:label "topic status"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#topicType
+:topicType rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Topic ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Comment, Issue, Request, Solution"@en ;
+           rdfs:label "topic type"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#xCoordinate
+:xCoordinate rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "X component of a 3D coordinate."@en ;
+             rdfs:label "x coordinate" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#yCoordinate
+:yCoordinate rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Y component of a 3D coordinate."@en ;
+             rdfs:label "y coordinate" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#zCoordinate
+:zCoordinate rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Z component of a 3D coordinate."@en ;
+             rdfs:label "z coordinate" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#Comment
+:Comment rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :comment ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :creationAuthor ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :creationDate ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :identifier ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :modifiedAuthor ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :modifiedDate ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         rdfs:comment "Their purpose is to record discussion between different parties related to the topic."@en ;
+         rdfs:label "Comment"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/annotation-objects#Topic
+:Topic rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasComment ;
+                         owl:allValuesFrom :Comment
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedAudioFile ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedComponent ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/building#Element>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedDocumentation ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedIFCFile ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedImageFile ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedVideoFile ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedSpace ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :creationAuthor ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :creationDate ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :identifier ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :label ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :taskId ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :title ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :topicStatus ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :topicType ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :assignedTo ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :description ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :dueDate ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :modifiedAuthor ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :modifiedDate ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :priority ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :stage ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ;
+       rdfs:comment "Topic contains reference information of the topic."@en ;
+       rdfs:label "Topic"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Element
+<http://bimerr.iot.linkeddata.es/def/building#Element> rdf:type owl:Class ;
+                                                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty :ifcIdentifier ;
+                                                                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ;
+                                                       rdfs:comment "An element is a generalization of all components that make up an AEC product."@en ;
+                                                       rdfs:label "Element"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Space
+<http://bimerr.iot.linkeddata.es/def/building#Space> rdf:type owl:Class ;
+                                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty :ifcIdentifier ;
+                                                                       owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ;
+                                                     rdfs:comment "A space represents an area or volume bounded actually or theoretically. Spaces are areas or volumes that provide for certain functions within a building."@en ;
+                                                     rdfs:label "Space"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject
+<http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty :location ;
+                                                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ;
+                                                                            rdfs:comment "Class that represents any type of file."@en ;
+                                                                            rdfs:label "Information Object"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/key-performance-indicator#Project
+<http://bimerr.iot.linkeddata.es/def/key-performance-indicator#Project> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :hasTopic ;
+                                                                                          owl:allValuesFrom :Topic
+                                                                                        ] ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :identifier ;
+                                                                                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                        ] ;
+                                                                        rdfs:comment "A project is a temporary endeavor undertaken to achieve defined objectives."@en ;
+                                                                        rdfs:label "Project"@en .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

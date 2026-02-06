@@ -1,0 +1,87 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Units#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qkdv: <http://qudt.org/vocab/dimensionvector/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sou: <http://qudt.org/vocab/sou/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix vaem: <http://www.linkedmodel.org/schema/vaem#> .
+@prefix voag: <http://voag.linkedmodel.org/schema/voag#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://w3id.org/digitalconstruction/0.5/Units> a owl:Ontology ;
+  rdfs:label "Digital Construction Units" ;
+  owl:imports <https://w3id.org/digitalconstruction/0.5/Variables/variables.ttl> ;
+  vann:preferredNamespacePrefix "dicu" ;
+  vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Units" ;
+  rdfs:comment "Digital Construction Units vocabulary defines units and quantity kinds that are specific to construction and renovation projects, for instance, concerning energy simulation results." ;
+  rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5/>.
+
+#######
+
+:EnergyPerAreaTime rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		   rdfs:label "EnergyPerAreaTime" ;
+  		   qudt:applicableUnit :KiloW-HR-PER-M2-YR .
+
+:KiloW-HR-PER-M2-YR rdf:type dicv:Unit ;
+		    rdfs:label "KiloW-HR-PER-M2-YR".
+#######
+
+:TimeRatio rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+	   rdfs:label "TimeRatio" ;
+  	   qudt:applicableUnit :HR-PER-YR .
+
+:HR-PER-YR rdf:type dicv:Unit, owl:NamedIndividual ;
+	   rdfs:label "HR-PER-YR".
+
+#######
+
+:EnergyRatio rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+	   rdfs:label "EnergyRatio" ;
+  	   qudt:applicableUnit unit:PERCENT .
+
+#######
+
+:CurrencyPerAreaTime rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		   rdfs:label "CurrencyPerAreaTime" ;
+  		   qudt:applicableUnit :Euro-PER-M2-YR .
+
+:Euro-PER-M2-YR rdf:type dicv:Unit, owl:NamedIndividual ;
+		rdfs:label "Euro-PER-M2-YR" .
+
+#######
+
+:CurrencyPerArea rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		 rdfs:label "CurrencyPerArea" ;
+  		 qudt:applicableUnit :Euro-PER-M2 .
+
+:Euro-PER-M2 rdf:type dicv:Unit, owl:NamedIndividual ;
+	     rdfs:label "Euro-PER-M2" .
+
+#######
+
+:CurrencyPerTime rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		 rdfs:label "CurrencyPerTime" ;
+  		 qudt:applicableUnit :Euro-PER-MO .
+
+:Euro-PER-MO rdf:type dicv:Unit, owl:NamedIndividual ;
+	     rdfs:label "Euro-PER-MO" .
+
+
+#######
+
+:CurrencyPerEnergy rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		 rdfs:label "CurrencyPerEnergy" ;
+  		 qudt:applicableUnit :Euro-PER-KiloW-HR .
+
+:Euro-Per-KiloW-HR rdf:type dicv:QuantityKind, owl:NamedIndividual ;
+		 rdfs:label "Euro-PER-KiloW-HR" .
+		 

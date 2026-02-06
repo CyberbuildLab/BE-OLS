@@ -1,0 +1,1246 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Materials#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dicm: <https://w3id.org/digitalconstruction/0.5/Materials#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix dicu: <https://w3id.org/digitalconstruction/0.5/Units#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix quantitykind: <http://qudt.org/2.1/vocab/quantitykind/> . 
+@base <https://w3id.org/digitalconstruction/0.5/Materials> .
+
+<https://w3id.org/digitalconstruction/0.5/Materials> rdf:type owl:Ontology ;
+						      owl:imports <https://w3id.org/digitalconstruction/0.5/Entities/entities.ttl> ;
+                                                      owl:versionIRI <https://w3id.org/digitalconstruction/0.5/Materials> ;
+                                                      dc:license "<http://creativecommons.org/licenses/by/4.0/>"^^rdfs:Literal ;
+                                                      dct:creator "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)"^^xsd:string ,
+                                                                  "Prathap Valluru (prathap.valluru@tu-dresden.de)"^^xsd:string ;
+						      dct:contributor "Seppo Törmä (seppo.torma@visualynk.com)"^^xsd:string  ;
+                                                      dct:description "The Material Ontology defining the main concepts of building material, type and its properties."^^rdfs:Literal ;
+                                                      dct:issued "2021-04-21T16:00:00"^^xsd:dateTime ;
+                                                      dct:title "Digital Construction Materials"^^rdfs:Literal ;
+                                                      vann:preferredNamespacePrefix "dicm"^^rdfs:Literal ;
+                                                      vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Materials"^^rdfs:Literal ;
+                                                      owl:versionInfo "0.5"^^rdfs:Literal .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/license
+dc:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+dct:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dct:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dct:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#hasMaterial
+# dice:hasMaterial rdf:type owl:ObjectProperty ;
+#                  owl:equivalentProperty dicm:hasMaterial ;
+# 		 rdfs:label "hasMaterial" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#InnerLayer
+dicm:hasInnerLayer rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf dicm:hasLayer ;
+                owl:inverseOf dicm:isInnerLayerOf ;
+                rdfs:range dicm:Layer ;
+		rdfs:label "InnerLayer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#IsInnerLayerOf
+dicm:isInnerLayerOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain dicm:Layer ;
+		    rdfs:label "IsInnerLayerOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#IsOuterLayerOf
+dicm:isOuterLayerOf rdf:type owl:ObjectProperty ;
+                    owl:inverseOf dicm:hasOuterLayer ;
+                    rdfs:domain dicm:Layer ;
+		    rdfs:label "IsOuterLayerOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#OuterLayer
+dicm:hasOuterLayer rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf dicm:hasLayer ;
+                rdfs:range dicm:Layer ;
+                owl:propertyChainAxiom ( [ owl:inverseOf dicm:adjacentElement
+                                         ]
+                                         dicm:adjacentElementLayer
+                                       ) ;
+		rdfs:label "OuterLayer" .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Materials#adjacentElement
+# dice:hasAdjacentElement rdf:type owl:ObjectProperty ;
+#                      rdfs:range dice:BuildingObject ;
+# 		     rdfs:label "hasAdjacentElement" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#adjacentElementLayer
+dicm:hasAdjacentElementLayer rdf:type owl:ObjectProperty ;
+                          rdfs:range dicm:Layer ;
+			  rdfs:label "hasAdjacentElementLayer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#adjacentLayer
+dicm:hasAdjacentLayer rdf:type owl:ObjectProperty ,
+                            owl:SymmetricProperty ;
+                   rdfs:domain dicm:Layer ;
+                   rdfs:range dicm:Layer ;
+		   rdfs:label "hasAdjacentLayer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasAcidityConcentration
+dicm:hasAcidityConcentration rdf:type owl:DatatypeProperty ;
+                             rdfs:comment "Maximum CaCO3 equivalent that would neutralize the acid;"^^xsd:string ;
+			     rdfs:label "hasAcidityConcentration" .
+
+dicm:AcidityConcentration rdf:type owl:Class ;
+                          rdfs:subClassOf dicm:MaterialChemicalProperty ;
+			  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasAcidityConcentration ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Concentration ] ;
+                          rdfs:comment "Maximum CaCO3 equivalent that would neutralize the acid;"^^xsd:string ;
+			  rdfs:label "AcidityConcentration" .
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasAlkalinityConcentration
+dicm:hasAlkalinityConcentration rdf:type owl:DatatypeProperty ;
+                                rdfs:comment "Maximum alkalinity concentration (maximum sum of concentrations of each of the negative ions substances measured as CaCO3)"^^xsd:string ;
+				rdfs:label "hasAlkalinityConcentration" .
+
+dicm:AlkalinityConcentration rdf:type owl:Class ;
+			     rdfs:subClassOf dicm:MaterialChemicalProperty ;
+			     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasAlkalinityConcentration ] ;
+			     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Concentration ] ;
+                             rdfs:comment "Maximum alkalinity concentration (maximum sum of concentrations of each of the negative ions substances measured as CaCO3)"^^xsd:string ;
+			     rdfs:label "AlkalinityConcentration" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasBoilingPoint
+dicm:hasBoilingPoint rdf:type owl:DatatypeProperty ;
+                     rdfs:domain dicm:Material ;
+		     rdfs:label "hasBoilingPoint" .
+
+dicm:BoilingPoint rdf:type owl:Class ;
+                  rdfs:subClassOf dicm:MaterialThermalProperty ;
+		  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasBoilingPoint ] ;
+		  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Temperature ] ;
+		  rdfs:label "BoilingPoint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasCO2Content
+dicm:hasCO2Content rdf:type owl:DatatypeProperty ;
+                   rdfs:domain dicm:Material ;
+		   rdfs:label "hasCO2Content" .
+
+dicm:CO2Content rdf:type owl:Class ;
+                rdfs:subClassOf dicm:MaterialCombustionProperty ;
+		owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasCO2Content ] ;
+		rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DimensionlessRatio  ] ;
+		rdfs:label "CO2Content".
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasCOContent
+dicm:hasCOContent rdf:type owl:DatatypeProperty ;
+                  rdfs:domain dicm:Material ;
+		  rdfs:label "hasCOContent" .
+
+dicm:COContent rdf:type owl:Class ;
+                  rdfs:subClassOf dicm:MaterialCombustionProperty ;
+		  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasCOContent ] ;
+		  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue  quantitykind:DimensionlessRatio ] ;
+		  rdfs:label "COContent" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasCarbonContent
+dicm:hasCarbonContent rdf:type owl:DatatypeProperty ;
+                      rdfs:domain dicm:Material ;
+                      rdfs:comment "The carbon content in the fuel; This is measured in weight of carbon per unit weight of fuel and is therefore unitless [ISO 16739-1:2018]"^^xsd:string ;
+		      rdfs:label "hasCarbonContent" .
+
+dicm:CarbonContent rdf:type owl:Class ;
+                      rdfs:subClassOf dicm:MaterialFuelProperty ;
+		      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasCarbonContent ] ;
+		      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DimensionlessRatio ] ;
+                      rdfs:comment "The carbon content in the fuel; This is measured in weight of carbon per unit weight of fuel and is therefore unitless [ISO 16739-1:2018]"^^xsd:string ;
+		      rdfs:label "CarbonContent" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasCombustionTemperature
+dicm:hasCombustionTemperature rdf:type owl:DatatypeProperty ;
+                              rdfs:domain dicm:Material ;
+                              rdfs:comment "Combustion temperature of the material when air is at 298 K and 100 kPa [ISO 16739-1:2018]"^^xsd:string ;
+			      rdfs:label "hasCombustionTemperature" .
+
+dicm:CombustionTemperature rdf:type owl:Class ;
+                              rdfs:subClassOf dicm:MaterialFuelProperty ;
+			      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasCombustionTemperature ] ;
+			      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Temperature ] ;
+                              rdfs:comment "Combustion temperature of the material when air is at 298 K and 100 kPa [ISO 16739-1:2018]"^^xsd:string ;
+			      rdfs:label "CombustionTemperature".
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasConstituent
+dicm:hasConstituent rdf:type owl:DatatypeProperty ;
+		    rdfs:range dicm:Constituent ; 
+                    owl:propertyChainAxiom ( dicm:hasConstituentSet
+                                             dicm:hasConstituent ) ;
+		    rdfs:label "hasConstituent" .
+
+# error
+# dicm:Constituent rdf:type owl:Class ;
+#                     rdfs:subClassOf dicm:Constituent ;
+# 		    owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasConstituent ] ;
+# 		    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue   ] ;
+# 		    rdfs:label "Constituent".
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasConstituentSet
+dicm:hasConstituentSet rdf:type owl:ObjectProperty ;
+                       rdfs:range dicm:ConstituentSet ;
+		       rdfs:label "hasConstituentSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasDynamicViscosity
+dicm:hasDynamicViscosity rdf:type owl:DatatypeProperty ;
+                         rdfs:domain dicm:Material ;
+                         rdfs:comment "A measure of the viscous resistance of the material [ISO 16739-1:2018]"^^xsd:string ;
+			 rdfs:label "hasDynamicViscosity" .
+
+dicm:DynamicViscosity rdf:type owl:Class ;
+                         rdfs:subClassOf dicm:MaterialMechanicalProperty ;
+			 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasDynamicViscosity ] ;
+			 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DynamicViscosity  ] ;
+                         rdfs:comment "A measure of the viscous resistance of the material [ISO 16739-1:2018]"^^xsd:string ;
+			 rdfs:label "DynamicViscosity" . 
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasFreezingPoint
+dicm:hasFreezingPoint rdf:type owl:DatatypeProperty ;
+                      rdfs:domain dicm:Material ;
+		      rdfs:label "hasFreezingPoint" .
+
+dicm:FreezingPoint rdf:type owl:Class ;
+                   rdfs:subClassOf dicm:MaterialThermalProperty ;
+		   owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasFreezingPoint ] ;
+		   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Temperature ] ;
+		   rdfs:label "FreezingPoint".
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasGasPressure
+dicm:hasGasPressure rdf:type owl:DatatypeProperty ;
+                    rdfs:domain dicm:Material ;
+                    rdfs:comment "Fill pressure (for insance, for between-pane gas fills): the pressure exerted by a mass of gas confined in a constant volume [ISO 16739-1:2018]"^^xsd:string ;
+		    rdfs:label "hasGasPressure" .
+
+dicm:GasPressure rdf:type owl:Class ;
+                 rdfs:subClassOf dicm:MaterialEnergyProperty ;
+		 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasGasPressure ] ;
+		 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Pressure ] ;
+                 rdfs:comment "Fill pressure (for insance, for between-pane gas fills): the pressure exerted by a mass of gas confined in a constant volume [ISO 16739-1:2018]"^^xsd:string ;
+		 rdfs:label "GasPressure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasHardness
+dicm:hasHardness rdf:type owl:DatatypeProperty ;
+                 rdfs:domain dicm:Material ;
+                 rdfs:comment "Water hardness as positive, multivalent ion concentration in the water (usually concentrations of calcium and magnesium ions in terms of calcium carbonate)"^^xsd:string ;
+		 rdfs:label "hasHardness" .
+
+dicm:Hardness rdf:type owl:Class ;
+              rdfs:subClassOf dicm:MaterialChemicalProperty ;
+	      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasHardness ] ;
+	      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue  quantitykind:Concentration ] ;
+              rdfs:comment "Water hardness as positive, multivalent ion concentration in the water (usually concentrations of calcium and magnesium ions in terms of calcium carbonate)"^^xsd:string ;
+	      rdfs:label "Hardness" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasHigherHeatingValue
+dicm:hasHigherHeatingValue rdf:type owl:DatatypeProperty ;
+                           rdfs:domain dicm:Material ;
+                           rdfs:comment "Higher Heating Value is defined as the amount of energy released (MJ/kg) when a fuel is burned completely, and H2O is in liquid form in the combustion products [ISO 16739-1:2018]"^^xsd:string ;
+			   rdfs:label "hasHigherHeatingValue" .
+
+dicm:HigherHeatingValue rdf:type owl:Class ;
+                        rdfs:subClassOf dicm:MaterialFuelProperty ;
+			owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasHigherHeatingValue ] ;
+			rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:SpecificInternalEnergy ] ;
+                        rdfs:comment "Higher Heating Value is defined as the amount of energy released (MJ/kg) when a fuel is burned completely, and H2O is in liquid form in the combustion products [ISO 16739-1:2018]"^^xsd:string ;
+			rdfs:label "HigherHeatingValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasIsothermalMoistureCapacity
+dicm:hasIsothermalMoistureCapacity rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain dicm:Material ;
+                                   rdfs:comment "Based on water vapor density [ISO 16739-1:2018]"^^xsd:string ;
+				   rdfs:label "hasIsothermalMoistureCapacity" .
+
+dicm:IsothermalMoistureCapacity rdf:type owl:Class ;
+                                rdfs:subClassOf dicm:MaterialHygroscopicProperty ;
+				owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasIsothermalMoistureCapacity ] ;
+				rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Density  ] ;
+                                rdfs:comment "Based on water vapor density [ISO 16739-1:2018]"^^xsd:string ;
+				rdfs:label "IsothermalMoistureCapacity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasLayer
+dicm:hasLayer rdf:type owl:ObjectProperty ;
+              rdfs:range dicm:Layer ;
+              owl:propertyChainAxiom ( dicm:hasLayerSet
+                                       dicm:hasInnerLayer
+                                     ) ,
+                                     ( dicm:hasLayerSet
+                                       dicm:hasOuterLayer
+                                     ) ,
+                                     ( dicm:hasLayerSet
+                                       dicm:hasLayer
+                                     ) ;
+ 	     rdfs:label "hasLayer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasLayerSet
+dicm:hasLayerSet rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:range dicm:LayerSet ;
+		 rdfs:label "hasLayerSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasLowerHeatingValue
+dicm:hasLowerHeatingValue rdf:type owl:DatatypeProperty ;
+                          rdfs:domain dicm:Material ;
+                          rdfs:comment "Lower Heating Value is defined as the amount of energy released (MJ/kg) when a fuel is burned completely, and H2O is in vapor form in the combustion products [ISO 16739-1:2018]"^^xsd:string ;
+			  rdfs:label "hasLowerHeatingValue" .
+
+dicm:LowerHeatingValue rdf:type owl:Class ;
+                       rdfs:subClassOf dicm:MaterialFuelProperty ;
+		       owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasLowerHeatingValue ] ;
+		       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:SpecificInternalEnergy ] ;
+                       rdfs:comment "Lower Heating Value is defined as the amount of energy released (MJ/kg) when a fuel is burned completely, and H2O is in vapor form in the combustion products [ISO 16739-1:2018]"^^xsd:string ;
+		       rdfs:label "LowerHeatingValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasLowerVaporResistanceFactor
+dicm:hasLowerVaporResistanceFactor rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain dicm:Material ;
+                                   rdfs:comment "The vapor permeability relationship of air/material (typically value > 1), measured in low relative humidity (typically in 0/50 % RH) [ISO 16739-1:2018]"^^xsd:string ;
+				   rdfs:label "hasLowerVaporResistanceFactor" .
+
+dicm:LowerVaporResistanceFactor rdf:type owl:Class ;
+                                rdfs:subClassOf dicm:MaterialHygroscopicProperty ;
+				owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasLowerVaporResistanceFactor ] ;
+				rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DimensionlessRatio  ] ;
+                                rdfs:comment "The vapor permeability relationship of air/material (typically value > 1), measured in low relative humidity (typically in 0/50 % RH) [ISO 16739-1:2018]"^^xsd:string ;
+				rdfs:label "LowerVaporResistanceFactor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMassDensity
+dicm:hasMassDensity rdf:type owl:DatatypeProperty ;
+                    rdfs:domain dicm:Material ;
+                    rdfs:comment "Material mass density [ISO 16739-1:2018]"^^xsd:string ;
+		    rdfs:label "hasMassDensity" .
+
+dicm:MassDensity rdf:type owl:Class ;
+                 rdfs:subClassOf dicm:MaterialPhysicalProperty ;
+		 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasMassDensity ] ;
+		 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:MassDensity ] ;
+                 rdfs:comment "Material mass density [ISO 16739-1:2018]"^^xsd:string ;
+		 rdfs:label "MassDensity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMaterial
+dicm:hasMaterial rdf:type owl:ObjectProperty ;
+                 rdfs:range dicm:Material ;
+                 owl:propertyChainAxiom ( dicm:hasConstituent
+                                          dicm:hasMaterial
+                                        ) ,
+                                        ( dicm:hasLayer
+                                          dicm:hasMaterial
+                                        ) ,
+                                        ( dicm:hasProfile
+                                          dicm:hasMaterial
+                                        ) ;
+		rdfs:label "hasMaterial" .
+
+###  https://w3id.org/digitalconstruction/Entities#hasMaterial
+:hasMaterialBatch rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dice:hasParticipant ;
+             owl:inverseOf dice:isMateriaBatchlIn ;
+             rdfs:domain dice:Process ;
+             rdfs:range :MaterialBatch ;
+             rdfs:label "hasMaterialBatch" .
+
+:isMaterialBatchIn rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf dice:participatesIn ;
+	      owl:inverseOf dice:hasMaterialBatch ;
+              rdfs:domain :MaterialBatch ;
+              rdfs:range dice:Process ;
+              rdfs:label "isMaterialBatchIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMaterialType
+# dicm:hasMaterialType rdf:type owl:ObjectProperty ;
+#                      rdfs:domain dicm:Material ;
+#                      rdfs:range dicm:MaterialType .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMoistureCapacityThermalGradient
+dicm:hasMoistureCapacityThermalGradient rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain dicm:Material ;
+                                        rdfs:comment "Thermal gradient coefficient for moisture capacity. Based on water vapor density.[ISO 16739-1:2018]"^^xsd:string ;
+					rdfs:label "hasMoistureCapacityThermalGradient" .
+
+dicm:MoistureCapacityThermalGradient rdf:type owl:Class ;
+                                     rdfs:subClassOf dicm:MaterialEnergyProperty ;
+				     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasMoistureCapacityThermalGradient ] ;
+				     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ThermalDiffusionFactor ] ;
+                                     rdfs:comment "Thermal gradient coefficient for moisture capacity. Based on water vapor density.[ISO 16739-1:2018]"^^xsd:string ;
+				     rdfs:label "MoistureCapacityThermalGradient" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMoistureDiffusivity
+dicm:hasMoistureDiffusivity rdf:type owl:DatatypeProperty ;
+                            rdfs:domain dicm:Material ;
+                            rdfs:comment "Moisture diffusivity is a transport property that is frequently used in the hygrothermal analysis of building envelope components. Moisture diffusivity is a transport property that is frequently used in the hygrothermal analysis of building envelope components. [ISO 16739-1:2018]"^^xsd:string ;
+  	 	     	    rdfs:label "hasMoistureDiffusivity" .
+
+dicm:MoistureDiffusivity rdf:type owl:Class ;
+                         rdfs:subClassOf dicm:MaterialHygroscopicProperty ;
+			 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasMoistureDiffusivity ] ;
+			 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue dicu:ThermalDiffusivity  ] ;
+                            rdfs:comment "Moisture diffusivity is a transport property that is frequently used in the hygrothermal analysis of building envelope components. Moisture diffusivity is a transport property that is frequently used in the hygrothermal analysis of building envelope components. [ISO 16739-1:2018]"^^xsd:string ;
+			 rdfs:label "MoistureDiffusivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMolecularWeight
+dicm:hasMolecularWeight rdf:type owl:DatatypeProperty ;
+                        rdfs:domain dicm:Material ;
+			rdfs:label "hasMolecularWeight" .
+
+dicm:MolecularWeight rdf:type owl:Class ;
+                     rdfs:subClassOf dicm:MaterialPhysicalProperty ;
+		     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasMolecularWeight ] ;
+		     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:MolecularMass  ] ;
+		     rdfs:label "MolecularWeight" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasN20Content
+dicm:hasN20Content rdf:type owl:DatatypeProperty ;
+                   rdfs:domain dicm:Material ;
+		   rdfs:label "hasN20Content" .
+
+dicm:N20Content rdf:type owl:Class ;
+                rdfs:subClassOf dicm:MaterialCombustionProperty ;
+		owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasN20Content ] ;
+		rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DimensionlessRatio ] ;
+		rdfs:label "N20Content" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasPHLevel
+dicm:hasPHLevel rdf:type owl:DatatypeProperty ;
+                rdfs:domain dicm:Material ;
+	     	rdfs:comment "Maximum water PH in a range from 0-14."^^xsd:string ;
+		rdfs:label "hasPHLevel" .
+
+dicm:PHLevel rdf:type owl:Class ;
+             rdfs:subClassOf dicm:MaterialChemicalProperty ;
+	     rdfs:comment "Maximum water PH in a range from 0-14."^^xsd:string ;
+	     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasPHLevel ] ;
+ 	     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Dimensionless  ] ; 
+	     rdfs:label "PHLevel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasPoissonRatio
+dicm:hasPoissonRatio rdf:type owl:DatatypeProperty ;
+                     rdfs:domain dicm:Material ;
+		     rdfs:comment "A measure of the lateral deformations in the elastic range. [ISO 16739-1:2018]"^^xsd:string ;
+		     rdfs:label "hasPoissonRatio" .
+
+dicm:PoissonRatio rdf:type owl:Class ;
+                  rdfs:subClassOf dicm:MaterialMechanicalProperty ;
+		  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasPoissonRatio ] ;
+		  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:PoissonRatio  ] ;
+		  rdfs:comment "A measure of the lateral deformations in the elastic range. [ISO 16739-1:2018]"^^xsd:string ;
+		  rdfs:label "PoissonRatio" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasPorosity
+dicm:hasPorosity rdf:type owl:DatatypeProperty ;
+                 rdfs:domain dicm:Material ;
+		 rdfs:label "hasPorosity" .
+
+dicm:Porosity rdf:type owl:Class ;
+              rdfs:subClassOf dicm:MaterialPhysicalProperty ;
+	      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasPorosity ] ;
+	      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:DimensionlessRatio  ] ;
+	      rdfs:label "Porosity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasProfile
+dicm:hasProfile rdf:type owl:ObjectProperty ;
+                rdfs:range dicm:Profile ;
+                owl:propertyChainAxiom ( dicm:hasProfileSet
+                                         dicm:hasProfile
+                                       ) ;
+	       rdfs:label "hasProfile" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasProfileSet
+dicm:hasProfileSet rdf:type owl:ObjectProperty ;
+                   rdfs:range dicm:ProfileSet ;
+		   rdfs:label "hasProfileSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasProperty
+# dicm:hasProperty rdf:type owl:ObjectProperty ;
+#                  owl:equivalentProperty <https://w3id.org/digitalconstruction/Variables#hasProperty> ;
+#                  rdfs:range dicm:Property .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasShearModulus
+dicm:hasShearModulus rdf:type owl:DatatypeProperty ;
+                     rdfs:domain dicm:Material ;
+                     rdfs:comment "A measure of the shear modulus of elasticity of the material. [ISO 16739-1:2018]"^^xsd:string ;
+		     rdfs:label "hasShearModulus" .
+
+dicm:ShearModulus rdf:type owl:Class ;
+                  rdfs:subClassOf dicm:MaterialMechanicalProperty ;
+		  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasShearModulus ] ;
+		  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ShearModulus  ] ;
+                     rdfs:comment "A measure of the shear modulus of elasticity of the material. [ISO 16739-1:2018]"^^xsd:string ;
+		  rdfs:label "ShearModulus" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSolarReflectanceBack
+dicm:hasSolarReflectanceBack rdf:type owl:DatatypeProperty ;
+                             rdfs:domain dicm:Material ;
+                             rdfs:comment "Reflectance at normal incidence (solar): back side. Defines the fraction of the solar ray that is reflected and not transmitted when the ray passes from one medium into another, at the backside of the other material, perpendicular to the surface. Dependent on material and surface characteristics. [ISO 16739-1:2018]"^^xsd:string ;
+			     rdfs:label "hasSolarReflectanceBack" .
+
+dicm:SolarReflectanceBack rdf:type owl:Class ;
+                          rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSolarReflectanceBack ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ReflectanceFactor ] ;
+                             rdfs:comment "Reflectance at normal incidence (solar): back side. Defines the fraction of the solar ray that is reflected and not transmitted when the ray passes from one medium into another, at the backside of the other material, perpendicular to the surface. Dependent on material and surface characteristics. [ISO 16739-1:2018]"^^xsd:string ;
+			  rdfs:label "SolarReflectanceBack" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSolarReflectanceFront
+dicm:hasSolarReflectanceFront rdf:type owl:DatatypeProperty ;
+                              rdfs:domain dicm:Material ;
+                              rdfs:comment "Reflectance at normal incidence (solar): front side. Defines the fraction of the solar ray that is reflected and not transmitted when the ray passes from one medium into another, at the frontside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+			      rdfs:label "hasSolarReflectanceFront" .
+
+dicm:SolarReflectanceFront rdf:type owl:Class ;
+			   rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			   owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSolarReflectanceFront ] ;
+			   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ReflectanceFactor  ] ;
+                              rdfs:comment "Reflectance at normal incidence (solar): front side. Defines the fraction of the solar ray that is reflected and not transmitted when the ray passes from one medium into another, at the frontside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+			   rdfs:label "SolarReflectanceFront" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSolarRefractionIndex
+dicm:hasSolarRefractionIndex rdf:type owl:DatatypeProperty ;
+                             rdfs:domain dicm:Material ;
+                             rdfs:comment "Index of refraction (solar) defines the bending of the solar ray when it passes from one medium into another. [ISO 16739-1:2018]"^^xsd:string ;
+			     rdfs:label "hasSolarRefractionIndex" .
+
+dicm:SolarRefractionIndex rdf:type owl:Class ;
+			  rdfs:subClassOf dicm:MaterialEnergyProperty ;
+			  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSolarRefractionIndex ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue  quantitykind:RefractiveIndex ] ;
+                             rdfs:comment "Index of refraction (solar) defines the bending of the solar ray when it passes from one medium into another. [ISO 16739-1:2018]"^^xsd:string ;
+			  rdfs:label "SolarRefractionIndex" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSolarTransmittance
+dicm:hasSolarTransmittance rdf:type owl:DatatypeProperty ;
+                           rdfs:domain dicm:Material ;
+                           rdfs:comment "Transmittance at normal incidence (solar). Defines the fraction of solar radiation that passes through per unit area, perpendicular to the surface. [ISO 16739-1:2018]"^^xsd:string ;
+			   rdfs:label "hasSolarTransmittance" .
+
+dicm:SolarTransmittance rdf:type owl:Class ;
+			rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSolarTransmittance ] ;
+			rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Transmittance  ] ;
+                           rdfs:comment "Transmittance at normal incidence (solar). Defines the fraction of solar radiation that passes through per unit area, perpendicular to the surface. [ISO 16739-1:2018]"^^xsd:string ;
+			rdfs:label "SolarTransmittance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSpecificHeatCapacity
+dicm:hasSpecificHeatCapacity rdf:type owl:DatatypeProperty ;
+                             rdfs:domain dicm:Material ;
+			     rdfs:label "hasSpecificHeatCapacity" .
+
+dicm:SpecificHeatCapacity rdf:type owl:Class ;
+			  rdfs:subClassOf dicm:MaterialThermalProperty ;
+			  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSpecificHeatCapacity ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:SpecificHeatCapacity  ] ;
+			  rdfs:label "SpecificHeatCapacity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasSpecificHeatTemperatureDerivative
+dicm:hasSpecificHeatTemperatureDerivative rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain dicm:Material ;
+                                          rdfs:comment "Specific heat temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+					  rdfs:label "hasSpecificHeatTemperatureDerivative" .
+
+dicm:SpecificHeatTemperatureDerivative rdf:type owl:Class ;
+				       rdfs:subClassOf dicm:MaterialEnergyProperty ;
+				       owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasSpecificHeatTemperatureDerivative ] ;
+				       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Dimensionless  ] ;
+                                          rdfs:comment "Specific heat temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+				       rdfs:label "SpecificHeatTemperatureDerivative" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalCapacity
+dicm:hasThermalCapacity rdf:type owl:DatatypeProperty ;
+			rdfs:label "hasThermalCapacity" .
+
+dicm:ThermalCapacity rdf:type owl:Class ;
+		     rdfs:subClassOf dicm:MaterialThermalProperty ;
+		     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalCapacity ] ;
+		     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ThermalEnergy  ] ;
+		     rdfs:label "ThermalCapacity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalConductivity
+dicm:hasThermalConductivity rdf:type owl:DatatypeProperty ;
+                            rdfs:domain dicm:Material ;
+			    rdfs:label "hasThermalConductivity" .
+
+dicm:ThermalConductivity rdf:type owl:Class ;
+			 rdfs:subClassOf dicm:MaterialThermalProperty ;
+			 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalConductivity ] ;
+			 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ThermalConductance ] ;
+			 rdfs:label "ThermalConductivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalConductivityTemperatureDerivative
+dicm:hasThermalConductivityTemperatureDerivative rdf:type owl:DatatypeProperty ;
+                                                 rdfs:domain dicm:Material ;
+                                                 rdfs:comment "Thermal conductivity temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+						 rdfs:label "hasThermalConductivityTemperatureDerivative" .
+
+dicm:ThermalConductivityTemperatureDerivative rdf:type owl:Class ;
+					      rdfs:subClassOf dicm:MaterialEnergyProperty ;
+					      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalConductivityTemperatureDerivative ] ;
+					      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Dimensionless  ] ;
+                                                 rdfs:comment "Thermal conductivity temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+					      rdfs:label "ThermalConductivityTemperatureDerivative" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalExpansionCoefficient
+dicm:hasThermalExpansionCoefficient rdf:type owl:DatatypeProperty ;
+                                    rdfs:domain dicm:Material ;
+                                    rdfs:comment "A measure of the expansion coefficient for warming up the material about one Kelvin. [ISO 16739-1:2018]"^^xsd:string ;
+				    rdfs:label "hasThermalExpansionCoefficient" .
+
+dicm:ThermalExpansionCoefficient rdf:type owl:Class ;
+				 rdfs:subClassOf dicm:MaterialMechanicalProperty ;
+				 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalExpansionCoefficient ] ;
+				 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:VolumeThermalExpansion ] ;
+                                    rdfs:comment "A measure of the expansion coefficient for warming up the material about one Kelvin. [ISO 16739-1:2018]"^^xsd:string ;
+				 rdfs:label "ThermalExpansionCoefficient" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalIrEmissivityBack
+dicm:hasThermalIrEmissivityBack rdf:type owl:DatatypeProperty ;
+                                rdfs:domain dicm:Material ;
+                                rdfs:comment "Thermal IR emissivity: back side. Defines the fraction of thermal energy emitted per unit area to blackbody at the same temperature, through the back side of the material. [ISO 16739-1:2018]"^^xsd:string ;
+				rdfs:label "hasThermalIrEmissivityBack" .
+
+dicm:ThermalIrEmissivityBack rdf:type owl:Class ;
+			     rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalIrEmissivityBack ] ;
+			     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Emissivity  ] ;
+                                rdfs:comment "Thermal IR emissivity: back side. Defines the fraction of thermal energy emitted per unit area to blackbody at the same temperature, through the back side of the material. [ISO 16739-1:2018]"^^xsd:string ;
+			     rdfs:label "ThermalIrEmissivityBack" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalIrEmissivityFront
+dicm:hasThermalIrEmissivityFront rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain dicm:Material ;
+                                 rdfs:comment "Thermal IR emissivity: front side. Defines the fraction of thermal energy emitted per unit area to blackbody at the same temperature, through the frontside of the material.[ISO 16739-1:2018]"^^xsd:string ;
+				 rdfs:label "hasThermalIrEmissivityFront" .
+
+dicm:ThermalIrEmissivityFront rdf:type owl:Class ;
+                              rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			      owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalIrEmissivityFront ] ;
+			      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Emissivity  ] ;
+                                 rdfs:comment "Thermal IR emissivity: front side. Defines the fraction of thermal energy emitted per unit area to blackbody at the same temperature, through the frontside of the material.[ISO 16739-1:2018]"^^xsd:string ;
+			      rdfs:label "ThermalIrEmissivityFront" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalMass
+dicm:hasThermalMass rdf:type owl:DatatypeProperty ;
+		    rdfs:label "hasThermalMass" .
+
+dicm:ThermalMass rdf:type owl:Class ;
+		 rdfs:subClassOf dicm:MaterialThermalProperty ;
+		 owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalMass ] ;
+		 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Mass  ] ;
+		 rdfs:label "ThermalMass" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalResistivity
+dicm:hasThermalResistivity rdf:type owl:DatatypeProperty ;
+			   rdfs:label "hasThermalResistivity" .
+
+dicm:ThermalResistivity rdf:type owl:Class ;
+                        rdfs:subClassOf dicm:MaterialThermalProperty ;
+			owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalResistivity ] ;
+			rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ThermalResistivity  ] ;
+			rdfs:label "ThermalResistivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThermalTransmittance
+dicm:hasThermalTransmittance rdf:type owl:DatatypeProperty ;
+			     rdfs:label "hasThermalTransmittance" .
+
+dicm:ThermalTransmittance rdf:type owl:Class ;
+			  rdfs:subClassOf dicm:MaterialThermalProperty ;
+			  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThermalTransmittance ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:CoefficientOfHeatTransfer ] ;
+			  rdfs:label "ThermalTransmittance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasThickness
+dicm:hasThickness rdf:type owl:DatatypeProperty ;
+		  rdfs:label "hasThickness" .
+
+dicm:Thickness rdf:type owl:Class ;
+	       rdfs:subClassOf dicm:MaterialPhysicalProperty ;
+	       owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasThickness ] ;
+	       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Length  ] ;
+	       rdfs:label "Thickness" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasUnit
+# dicm:hasUnit rdf:type owl:ObjectProperty ;
+#              owl:equivalentProperty dicv:hasUnit ;
+#              rdfs:range dicv:Unit ;
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasUpperVaporResistanceFactor
+dicm:hasUpperVaporResistanceFactor rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain dicm:Material ;
+                                   rdfs:comment "The vapor permeability relationship of air/material (typically value > 1), measured in high relative humidity (typically in 95/50 % RH). [ISO 16739-1:2018]"^^xsd:string ;
+				   rdfs:label "hasUpperVaporResistanceFactor" .
+
+dicm:UpperVaporResistanceFactor rdf:type owl:Class ;
+                           	rdfs:subClassOf dicm:MaterialHygroscopicProperty ;
+				owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasUpperVaporResistanceFactor ] ;
+				rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:PermeabilityRatio  ] ;
+                                   rdfs:comment "The vapor permeability relationship of air/material (typically value > 1), measured in high relative humidity (typically in 95/50 % RH). [ISO 16739-1:2018]"^^xsd:string ;
+				rdfs:label "UpperVaporResistanceFactor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasVaporPermeability
+dicm:hasVaporPermeability rdf:type owl:DatatypeProperty ;
+                          rdfs:domain dicm:Material ;
+                          rdfs:comment "The rate of water vapor transmission per unit area per unit of vapor pressure differential under test conditions. [ISO 16739-1:2018]"^^xsd:string ;
+			  rdfs:label "hasVaporPermeability" .
+
+dicm:VaporPermeability rdf:type owl:Class ;
+		       rdfs:subClassOf dicm:MaterialHygroscopicProperty ;
+		       owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasVaporPermeability ] ;
+		       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Permeability  ] ;
+                          rdfs:comment "The rate of water vapor transmission per unit area per unit of vapor pressure differential under test conditions. [ISO 16739-1:2018]"^^xsd:string ;
+		       rdfs:label "VaporPermeability" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasViscosityTemperatureDerivative
+dicm:hasViscosityTemperatureDerivative rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain dicm:Material ;
+                                       rdfs:comment "Viscosity temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+				       rdfs:label "hasViscosityTemperatureDerivative" .
+
+dicm:ViscosityTemperatureDerivative rdf:type owl:Class ;
+				    rdfs:subClassOf dicm:MaterialEnergyProperty ;
+				    owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasViscosityTemperatureDerivative ] ;
+				    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Dimensionless  ] ;
+                                       rdfs:comment "Viscosity temperature derivative. [ISO 16739-1:2018]"^^xsd:string ;
+				    rdfs:label "ViscosityTemperatureDerivative" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasVisibleReflectanceBack
+dicm:hasVisibleReflectanceBack rdf:type owl:DatatypeProperty ;
+                               rdfs:domain dicm:Material ;
+                               rdfs:comment "Reflectance at normal incidence (visible): back side. Defines the fraction of the solar ray in the visible spectrum that is reflected and not transmitted when the ray passes from one medium into another, at the backside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+			       rdfs:label "hasVisibleReflectanceBack" .
+
+dicm:VisibleReflectanceBack rdf:type owl:Class ;
+                            rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			    owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasVisibleReflectanceBack ] ;
+			    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ReflectanceFactor ] ;
+                               rdfs:comment "Reflectance at normal incidence (visible): back side. Defines the fraction of the solar ray in the visible spectrum that is reflected and not transmitted when the ray passes from one medium into another, at the backside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+			    rdfs:label "VisibleReflectanceBack" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasVisibleReflectanceFront
+dicm:hasVisibleReflectanceFront rdf:type owl:DatatypeProperty ;
+                                rdfs:domain dicm:Material ;
+                                rdfs:comment "Reflectance at normal incidence (visible): front side. Defines the fraction of the solar ray in the visible spectrum that is reflected and not transmitted when the ray passes from one medium into another, at the frontside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+				rdfs:label "hasVisibleReflectanceFront" .
+
+dicm:VisibleReflectanceFront rdf:type owl:Class ;
+			     rdfs:subClassOf dicm:MaterialOpticalProperty ;
+			     owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasVisibleReflectanceFront ] ;
+			     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ReflectanceFactor  ] ;
+                                rdfs:comment "Reflectance at normal incidence (visible): front side. Defines the fraction of the solar ray in the visible spectrum that is reflected and not transmitted when the ray passes from one medium into another, at the frontside of the other material, perpendicular to the surface. Dependent on material and surface characteristics.[ISO 16739-1:2018]"^^xsd:string ;
+			     rdfs:label "VisibleReflectanceFront" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasVisibleRefractionIndex
+dicm:hasVisibleRefractionIndex rdf:type owl:DatatypeProperty ;
+                               rdfs:domain dicm:Material ;
+                               rdfs:comment "Index of refraction (visible) defines the bending of the solar ray in the visible spectrum when it passes from one medium into another. [ISO 16739-1:2018]"^^xsd:string ;
+			       rdfs:label "hasVisibleRefractionIndex" .
+
+dicm:VisibleRefractionIndex rdf:type owl:Class ;
+                     	    rdfs:subClassOf dicm:MaterialEnergyProperty ;
+			    owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasVisibleRefractionIndex ] ;
+			    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:RefractiveIndex ] ;
+                               rdfs:comment "Index of refraction (visible) defines the bending of the solar ray in the visible spectrum when it passes from one medium into another. [ISO 16739-1:2018]"^^xsd:string ;
+			    rdfs:label "VisibleRefractionIndex" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasVisibleTransmittance
+dicm:hasVisibleTransmittance rdf:type owl:DatatypeProperty ;
+                             rdfs:domain dicm:Material ;
+                             rdfs:comment "Transmittance at normal incidence (visible). Defines the fraction of the visible spectrum of solar radiation that passes through per unit area, perpendicular to the surface. [ISO 16739-1:2018]"^^xsd:string ;
+			     rdfs:label "hasVisibleTransmittance" .
+
+dicm:VisibleTransmittance rdf:type owl:Class ;
+                   	  rdfs:subClassOf dicm:MaterialOpticalProperty ;
+		    	  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasVisibleTransmittance ] ;
+			  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:Transmittance  ] ;
+                             rdfs:comment "Transmittance at normal incidence (visible). Defines the fraction of the visible spectrum of solar radiation that passes through per unit area, perpendicular to the surface. [ISO 16739-1:2018]"^^xsd:string ;
+			  rdfs:label "VisibleTransmittance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasYoungModulus
+dicm:hasYoungModulus rdf:type owl:DatatypeProperty ;
+                     rdfs:domain dicm:Material ;
+                     rdfs:comment "A measure of the Young's modulus of elasticity of the material. [ISO 16739-1:2018]"^^xsd:string ;
+		     rdfs:label "hasYoungModulus" .
+
+dicm:YoungModulus rdf:type owl:Class ;
+		  rdfs:subClassOf dicm:MaterialMechanicalProperty ;
+		  owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue dicm:hasYoungModulus ] ;
+		  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dicv:hasQuantityKind ; owl:hasValue quantitykind:ModulusOfElasticity ] ;
+                     rdfs:comment "A measure of the Young's modulus of elasticity of the material. [ISO 16739-1:2018]"^^xsd:string ;
+		  rdfs:label "YoungModulus" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasUnit
+# dicv:hasUnit rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/Variables#hasProperty
+# <https://w3id.org/digitalconstruction/Variables#hasProperty> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#hasLabel
+# dice:hasLabel rdf:type owl:DatatypeProperty ;
+#               owl:equivalentProperty dicm:Name .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Materials#IsExternal
+# dicm:IsExternal rdf:type owl:DatatypeProperty ;
+#                 rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Name
+# dicm:Name rdf:type owl:DatatypeProperty ;
+#           rdfs:range xsd:string .
+
+###  https://w3id.org/digitalconstruction/Entities#hasAmount
+:hasAmount rdf:type owl:DatatypeProperty ;
+           rdfs:domain :MaterialBatch ;
+           rdfs:range owl:real ;
+           rdfs:label "hasAmount" .
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#NumberOfLayers
+dicm:NumberOfLayers rdf:type owl:DatatypeProperty ;
+                    rdfs:range xsd:integer ;
+		    rdfs:label "NumberOfLayers" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#UsedFor
+dicm:UsedFor rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string ;
+	     rdfs:label "UsedFor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasDefinedValue
+dicm:hasDefinedValue rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf dicm:hasValue ;
+                     rdfs:range xsd:double ;
+                     rdfs:comment "Defined value is the standard value taken from the authenticated sources. For example, it is a value taken from the standards."^^xsd:string ;
+		     rdfs:label "hasDefinedValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasEstimatedValue
+dicm:hasEstimatedValue rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf dicm:hasValue ;
+                       rdfs:range xsd:double ;
+                       rdfs:comment "Estimated value is the derived value or calculated value by using other property values"^^xsd:string ;
+		       rdfs:label "hasEstimatedValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasMeasuredValue
+dicm:hasMeasuredValue rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf dicm:hasValue ;
+                      rdfs:range xsd:double ;
+                      rdfs:comment "Measured Value is the resulted value from the measurement process"^^xsd:string ;
+		      rdfs:label "hasMeasuredValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasReference
+dicm:hasReference rdf:type owl:DatatypeProperty ;
+                  rdfs:domain dicv:QuantitativeProperty ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "hasRefrence: is used to represent the relation between property and the source from where it is taken."^^xsd:string ;
+		  rdfs:label "hasReference" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#hasValue
+# dicm:hasValue rdf:type owl:DatatypeProperty ;
+#               rdfs:range xsd:double ;
+# 	      rdfs:label "hasValue" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#MaterialBatch
+:MaterialBatch rdf:type owl:Class ;
+               rdfs:subClassOf dice:MaterialEntity ;
+               rdfs:comment "Material batch refers to the collection of homogeneous physical substance that participates in the construction project as the input of a process." ;
+               rdfs:label "MaterialBatch" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#CompositeMaterial
+dicm:CompositeMaterial rdf:type owl:Class ;
+                       rdfs:subClassOf dicm:Material ;
+		       rdfs:label "CompositeMaterial" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Constituent
+dicm:Constituent rdf:type owl:Class ;
+                 rdfs:subClassOf dicm:MaterialObjectStructure ;
+                 dct:description "Constituent is a single and identifiable part of an element which is constructed of a number of part (one or more) each having an individual material. (Source:IFC)"^^xsd:string ;
+		 rdfs:label "Constituent" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#ConstituentSet
+dicm:ConstituentSet rdf:type owl:Class ;
+                    rdfs:subClassOf dicm:MaterialObjectStructure ;
+                    dct:description "ConstituentSet is a collection of individual material constituents, each assigning a material to a part of an element. (Source:IFC)"^^xsd:string ;
+		    rdfs:label "ConstituentSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#InorganicNonMetallicMaterial
+dicm:InorganicNonMetallicMaterial rdf:type owl:Class ;
+                                  rdfs:subClassOf dicm:Material ;
+				  rdfs:label "InorganicNonMetallicMaterial" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Layer
+dicm:Layer rdf:type owl:Class ;
+           rdfs:subClassOf dicm:MaterialObjectStructure ;
+           dct:description "Layer is a single and identifiable part of an element which is constructed of a number of layers (one or more). (Source:IFC)"^^xsd:string ;
+           rdfs:comment "The concept to represent a layer of an element"^^xsd:string ;
+	   rdfs:label "Layer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#LayerSet
+dicm:LayerSet rdf:type owl:Class ;
+              rdfs:subClassOf dicm:MaterialObjectStructure ;
+              dct:description "LayerSet is a designation by which materials of an element constructed of a number of material layers is known and through which the relative positioning of individual layers can be expressed. (Source:IFC)"^^xsd:string ;
+	      rdfs:label "LayerSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Material
+dicm:Material rdf:type owl:Class ;
+	      rdfs:subClassOf dice:MaterialEntity ;
+              dct:description "a homogeneous or inhomogeneous substance that can be used to form elements (physical products or their components). [ISO 16739]"^^xsd:string ;
+	      rdfs:label "Material" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialChemicalProperty
+dicm:MaterialChemicalProperty rdf:type owl:Class ;
+                              rdfs:subClassOf dicm:MaterialProperty ;
+			      rdfs:label "MaterialChemicalProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialCombustionProperty
+dicm:MaterialCombustionProperty rdf:type owl:Class ;
+                                rdfs:subClassOf dicm:MaterialProperty ;
+				rdfs:label "MaterialCombustionProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialDefinition
+dicm:MaterialObjectStructure rdf:type owl:Class ;
+			     rdfs:subClassOf dice:BuildingObject ;
+                             dct:description "A concept to represent material related information that has material related properties"^^xsd:string ;
+			     rdfs:label "MaterialObjectStructure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialEnergyProperty
+dicm:MaterialEnergyProperty rdf:type owl:Class ;
+                            rdfs:subClassOf dicm:MaterialProperty ;
+			    rdfs:label "MaterialEnergyProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialFuelProperty
+dicm:MaterialFuelProperty rdf:type owl:Class ;
+                          rdfs:subClassOf dicm:MaterialProperty ;
+			  rdfs:label "MaterialFuelProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialHygroscopicProperty
+dicm:MaterialHygroscopicProperty rdf:type owl:Class ;
+                                 rdfs:subClassOf dicm:MaterialProperty ;
+				 rdfs:label "MaterialHygroscopicProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialMechanicalProperty
+dicm:MaterialMechanicalProperty rdf:type owl:Class ;
+                                rdfs:subClassOf dicm:MaterialProperty ;
+				rdfs:label "MaterialMechanicalProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialOpticalProperty
+dicm:MaterialOpticalProperty rdf:type owl:Class ;
+                             rdfs:subClassOf dicm:MaterialProperty ;
+			     rdfs:label "MaterialOpticalProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialPhysicalProperty
+dicm:MaterialPhysicalProperty rdf:type owl:Class ;
+                              rdfs:subClassOf dicm:MaterialProperty ;
+			      rdfs:label "MaterialPhysicalProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialProperty
+dicm:MaterialProperty rdf:type owl:Class ;
+                      rdfs:subClassOf dicv:QuantitativeProperty ;
+                      dct:description "A characterstic of a material"^^xsd:string ;
+		      rdfs:label "MaterialProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialThermalProperty
+dicm:MaterialThermalProperty rdf:type owl:Class ;
+                             rdfs:subClassOf dicm:MaterialProperty ;
+			     rdfs:label "MaterialThermalProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MaterialType
+# dicm:MaterialType rdf:type owl:Class ;
+# 		  rdfs:subClassOf 
+#                   dct:description "It represents the different types of a material."^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#MetallicMaterial
+dicm:MetallicMaterial rdf:type owl:Class ;
+                      rdfs:subClassOf dicm:Material ;
+		      rdfs:label "MetallicMaterial" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#OrganicaMaterial
+dicm:OrganicaMaterial rdf:type owl:Class ;
+                      rdfs:subClassOf dicm:Material ;
+		      rdfs:label "OrganicaMaterial" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Profile
+dicm:Profile rdf:type owl:Class ;
+             rdfs:subClassOf dicm:MaterialObjectStructure ;
+             dct:description "Profile is a single and identifiable cross section of an element which is constructed of a number of profiles (one or more) (Source:IFC)."^^xsd:string ;
+	     rdfs:label "Profile" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#ProfileSet
+dicm:ProfileSet rdf:type owl:Class ;
+                rdfs:subClassOf dicm:MaterialObjectStructure ;
+                dct:description "ProfileSet is a designation by which individual material(s) of a prismatic element (for example, beam or column) constructed of a single or multiple material profiles is known. (Source:IFC)"^^xsd:string ;
+		rdfs:label "ProfileSet" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Property
+# dicm:Property rdf:type owl:Class ;
+#               owl:equivalentClass <https://w3id.org/digitalconstruction/Variables#Property> ;
+#               dct:description "An objectified property"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Unit
+# dicm:Unit rdf:type owl:Class ;
+#           owl:equivalentClass dicv:Unit ;
+#           dct:description "Unit of Measure"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Variables#Unit
+# dicv:Unit rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/Variables#Property
+# <https://w3id.org/digitalconstruction/Variables#Property> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Aluminium
+dicm:Aluminium rdf:type owl:NamedIndividual ,
+                        dicm:MetallicMaterial ;
+			rdfs:label "Aluminium" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Bitumen
+dicm:Bitumen rdf:type owl:NamedIndividual ,
+                      dicm:InorganicNonMetallicMaterial ;
+		      rdfs:label "Bitumen" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#CastIron
+dicm:CastIron rdf:type owl:NamedIndividual ,
+                       dicm:MetallicMaterial ;
+		       rdfs:label "CastIron" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#CementStone
+dicm:CementStone rdf:type owl:NamedIndividual ,
+                          dicm:OrganicaMaterial ;
+			  rdfs:label "CementStone" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Ceramic
+dicm:Ceramic rdf:type owl:NamedIndividual ,
+                      dicm:OrganicaMaterial ;
+		      rdfs:label "Ceramic" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Concrete
+dicm:Concrete rdf:type owl:NamedIndividual ,
+                       dicm:CompositeMaterial ;
+		       rdfs:label "Concrete" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Copper
+dicm:Copper rdf:type owl:NamedIndividual ,
+                     dicm:MetallicMaterial ;
+		     rdfs:label "Copper" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Glass
+dicm:Glass rdf:type owl:NamedIndividual ,
+                    dicm:OrganicaMaterial ;
+		    rdfs:label "Glass" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Masonry
+dicm:Masonry rdf:type owl:NamedIndividual ,
+                      dicm:CompositeMaterial ;
+		      rdfs:label "Masonry" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Polymer
+dicm:Polymer rdf:type owl:NamedIndividual ,
+                      dicm:InorganicNonMetallicMaterial ;
+		      rdfs:label "Polymer" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Steel
+dicm:Steel rdf:type owl:NamedIndividual ,
+                    dicm:MetallicMaterial ;
+		    rdfs:label "Steel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Materials#Wood
+dicm:Wood rdf:type owl:NamedIndividual ,
+                   dicm:InorganicNonMetallicMaterial ;
+		   rdfs:label "Wood" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( dicm:CompositeMaterial
+                dicm:InorganicNonMetallicMaterial
+                dicm:MetallicMaterial
+                dicm:OrganicaMaterial
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( dicm:Constituent
+                dicm:ConstituentSet
+                dicm:Layer
+                dicm:LayerSet
+                dicm:Profile
+                dicm:ProfileSet
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( dicm:hasDefinedValue
+                dicm:hasEstimatedValue
+                dicm:hasMeasuredValue
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

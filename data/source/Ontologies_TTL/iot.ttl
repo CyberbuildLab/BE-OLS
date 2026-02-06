@@ -1,0 +1,233 @@
+@prefix : <https://cogito.iot.linkeddata.es/def/iot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://cogito.iot.linkeddata.es/def/iot#> .
+
+<https://cogito.iot.linkeddata.es/def/iot#> rdf:type owl:Ontology ;
+                                             <http://purl.org/dc/elements/1.1/creator> "María Poveda Villalón" ,
+                                                                                       "Raúl García Castro" ,
+                                                                                       "Socorro  Bernardos Galindo" ;
+                                             <http://purl.org/dc/elements/1.1/description> "The COGITO IoT ontology aims at modelling IoT devices and their measurements in the construction domain." ;
+                                             <http://purl.org/dc/elements/1.1/title> "IoT ontology" ;
+                                             <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
+                                             owl:versionInfo "0.5.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://cogito.iot.linkeddata.es/def/iot#belongsToTagGroup
+:belongsToTagGroup rdf:type owl:ObjectProperty ;
+                   rdfs:range :TrackingTagGroup ;
+                   rdfs:comment "Property relating an entity (especially an iot:TrackingTag) to an iot:TrackingTagGroup" ;
+                   rdfs:label "belongs to tag group" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#hasLocation
+:hasLocation rdf:type owl:ObjectProperty ;
+             rdfs:comment "Property that relates an entity (especially a saref:Measurement) to the geo:Point it is located at" ;
+             rdfs:label "has location" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#hasLocationKF
+:hasLocationKF rdf:type owl:ObjectProperty ;
+               rdfs:comment "Property that relates an entity (especially a saref:Measurement) to the geo:Point it is located at using a KF transformation" ;
+               rdfs:label "has location KF" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#hasLocationMA
+:hasLocationMA rdf:type owl:ObjectProperty ;
+               rdfs:comment "Property that relates an entity (especially a saref:Measurement) to the geo:Point it is located at using a MA transformation" ;
+               rdfs:label "has location MA" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#measuresLocation
+:measuresLocation rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf <https://saref.etsi.org/core#makesMeasurement> ;
+                  rdfs:range :LocationMeasurement ;
+                  rdfs:comment "Property relating an entity (especially an iot:TrackingTag) to an iot:LocationMeasurement" ;
+                  rdfs:label "measures location" .
+
+
+###  https://saref.etsi.org/core#isMeasurementOf
+<https://saref.etsi.org/core#isMeasurementOf> rdf:type owl:ObjectProperty ;
+                                              rdfs:isDefinedBy <https://saref.etsi.org/core#> ;
+                                              rdfs:label "is measurement of" .
+
+
+###  https://saref.etsi.org/core#makesMeasurement
+<https://saref.etsi.org/core#makesMeasurement> rdf:type owl:ObjectProperty ;
+                                               rdfs:isDefinedBy <https://saref.etsi.org/core#> ;
+                                               rdfs:label "makes measurement" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/terms/identifier
+<http://purl.org/dc/terms/identifier> rdf:type owl:DatatypeProperty ;
+                                      rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                      rdfs:label "identifier" .
+
+
+###  http://purl.org/dc/terms/titile
+<http://purl.org/dc/terms/titile> rdf:type owl:DatatypeProperty ;
+                                  rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                  rdfs:label "title" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#coordX
+:coordX rdf:type owl:DatatypeProperty ;
+        rdfs:comment "Property referring to the coordinate x of a location measured by a tracking tag" ;
+        rdfs:label "coordinate x" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#coordY
+:coordY rdf:type owl:DatatypeProperty ;
+        rdfs:comment "Property referring to the coordinate y of a location measured by a tracking tag" ;
+        rdfs:label "coordinate y" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#coordZ
+:coordZ rdf:type owl:DatatypeProperty ;
+        rdfs:comment "Property referring to the coordinate z of a location measured by a tracking tag" ;
+        rdfs:label "coordinate z" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#inferredAccuracy
+:inferredAccuracy rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "Property referring to the accuracy of a location measured by  a tracking tag" ;
+                  rdfs:label "inferred accuracy" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#inferredMovement
+:inferredMovement rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "Property referring to the movement  associated to a location measured by a tracking tag" ;
+                  rdfs:label "inferred movement" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#inferredSpeed
+:inferredSpeed rdf:type owl:DatatypeProperty ;
+               rdfs:comment "Property referring to the speed  associated to a location measured by a tracking tag" ;
+               rdfs:label "inferred speed" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#locationRadius
+:locationRadius rdf:type owl:DatatypeProperty ;
+                rdfs:comment "Property referring to the location radius associated to a location measured by a tracking tag" ;
+                rdfs:label "location radius" .
+
+
+###  https://saref.etsi.org/core#hasTimestamp
+<https://saref.etsi.org/core#hasTimestamp> rdf:type owl:DatatypeProperty ;
+                                           rdfs:comment "has timestamp" ;
+                                           rdfs:isDefinedBy <https://saref.etsi.org/core#> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.opengis.net/ont/sfl#Point
+<http://www.opengis.net/ont/sfl#Point> rdf:type owl:Class ;
+                                       rdfs:isDefinedBy <http://www.opengis.net/ont/geosparq#> ;
+                                       rdfs:label "Point" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#SpatialZone
+<https://cogito.iot.linkeddata.es/def/facility#SpatialZone> rdf:type owl:Class ;
+                                                            rdfs:comment "A subclass of bot:Zone and, as such, a part of the physical or a virtual world that is inherently both located in this world and has a 3D spatial extent." ;
+                                                            rdfs:label "Spatial Zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#EquipmentTagGroup
+:EquipmentTagGroup rdf:type owl:Class ;
+                   rdfs:subClassOf :TrackingTagGroup ;
+                   rdfs:comment "A tracking tag group belonging to a piece of equipment" ;
+                   rdfs:label "Equipment Tag Group" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#HumanTagGroup
+:HumanTagGroup rdf:type owl:Class ;
+               rdfs:subClassOf :TrackingTagGroup ;
+               rdfs:comment "A tracking tag group belonging to a human" ;
+               rdfs:label "Human Tag Group" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#LocationMeasurement
+:LocationMeasurement rdf:type owl:Class ;
+                     rdfs:subClassOf <https://saref.etsi.org/core/Measurement> ;
+                     rdfs:comment "The location measured by an entity (especially an iot:TrackingTag)" ;
+                     rdfs:label "Location Measurement" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#TrackedZone
+:TrackedZone rdf:type owl:Class ;
+             rdfs:subClassOf <https://cogito.iot.linkeddata.es/def/facility#SpatialZone> ;
+             rdfs:comment "An entity used to represent zones used by the IoT preprocessing module" ;
+             rdfs:label "Tracked Zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#TrackingTag
+:TrackingTag rdf:type owl:Class ;
+             rdfs:subClassOf <https://saref.etsi.org/core/Device> ;
+             rdfs:comment "A subclass of saref:Device and, as such, a tangible object designed to accomplish a particular task; in this case signalling its location" ,
+                          "An entity" ;
+             rdfs:label "Tracking Tag" .
+
+
+###  https://cogito.iot.linkeddata.es/def/iot#TrackingTagGroup
+:TrackingTagGroup rdf:type owl:Class ;
+                  rdfs:comment "An entity used to group tracking tags" ;
+                  rdfs:label "Tracking Tag Group" .
+
+
+###  https://cogito.iot.linkeddata.es/def/resource#Resource
+<https://cogito.iot.linkeddata.es/def/resource#Resource> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://saref.etsi.org/core/FeatureOfInterest> ;
+                                                         rdfs:comment "A source of supply, support, or aid, especially one that can be readily drawn upon when needed; and from which a property is measured" .
+
+
+###  https://saref.etsi.org/core/Device
+<https://saref.etsi.org/core/Device> rdf:type owl:Class ;
+                                     rdfs:isDefinedBy <https://saref.etsi.org/core#> ;
+                                     rdfs:label "Device" .
+
+
+###  https://saref.etsi.org/core/FeatureOfInterest
+<https://saref.etsi.org/core/FeatureOfInterest> rdf:type owl:Class ;
+                                                rdfs:isDefinedBy <https://saref.etsi.org/core#> ;
+                                                rdfs:label "Feature of Interest" .
+
+
+###  https://saref.etsi.org/core/Measurement
+<https://saref.etsi.org/core/Measurement> rdf:type owl:Class ;
+                                          rdfs:isDefinedBy <https://saref.etsi.org/core#> ;
+                                          rdfs:label "Measurement" .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

@@ -1,0 +1,515 @@
+# baseURI: https://w3id.org/bpo
+# prefix: bpo
+
+@prefix bpo: <https://w3id.org/bpo#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix seas: <https://w3id.org/seas/> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/bpo>
+  rdf:type owl:Ontology ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Christoph Maurer" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Gesa Benndorf" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Johannes Eisenlohr" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Marouane Boudhaim" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Tillmann E. Kuhn" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Tim Rist" ;
+    ] ;
+  dcterms:contributor [
+      rdf:type foaf:Person ;
+      foaf:name "Wendelin Sprenger" ;
+    ] ;
+  dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Anna Wagner" ;
+    ] ;
+  dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Christian Eller" ;
+    ] ;
+  dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Christian Leifgen" ;
+    ] ;
+  dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Laura Kristina Moeller" ;
+    ] ;
+  dcterms:description """The Building Product Ontology defines concepts to describe (building) products in a schematic way. It provides methods to describe assembly structures and attach properties to any component without restricting their types, as is often the case in template-driven product descriptions. To allow the description of complex properties, it also contains terms for unordered, two-dimensional lists.
+
+The BPO's bpo is on the schematic description of product only, not including geometry or material compositions. Therefore, it can be used to describe theoretical product components without geometric representations as well as those with geometric representations without restrictions. For classification purposes, it uses the buildingSMART Data Dictionary (bSDD) by referencing to the terms' bSDD GUID. If geometric descriptions are desired for components, the authors suggest to use the Ontology for Managing Geometry (OMG, https://w3id.org/omg) resp. the File Ontology for Geometry formats (FOG, https://w3id.org/omg).
+
+The BPO is based on the SolConPro ontology, which was first presented in:
+Wagner, A., Moeller, L.K., Leifgen, C., Rueppel, U., (2018). SolConPro: Describing multi-functional building products using semantic web technologies. In: European Conference on Product and Process Modelling, 12-14 September 2018, Copenhagen, Denmark. In: 12 . CRC Press 
+
+This work is part of the research project Semantic Construction Project Engineering (www.projekt-bpo.de), founded by the German Federal Ministry for Economic Affairs and Energy (BMWi)."""@en ;
+  dcterms:issued "2019-03-02"^^xsd:date ;
+  dcterms:license <https://creativecommons.org/licenses/by/1.0/> ;
+  dcterms:modified "2019-11-04"^^xsd:date ;
+  dcterms:title "Building Product Ontology"@en ;
+  vann:preferredNamespacePrefix "bpo" ;
+  vann:preferredNamespaceUri bpo: ;
+  owl:priorVersion <https://w3id.org/bpo/1-1> ;
+  owl:versionIRI <https://w3id.org/bpo/1-2> ;
+  owl:versionInfo "1.2" ;
+.
+bpo:Assembly
+  rdf:type owl:Class ;
+  rdfs:comment """An assembly is the description of a structure that is composed of (at least two) other components, including other assemblies, elements and products. 
+An assembly can never be an element as well, however it can be a product."""@en ;
+  rdfs:label "assembly"@en ;
+  rdfs:subClassOf bpo:Component ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "2"^^xsd:nonNegativeInteger ;
+      owl:onProperty bpo:consistsOf ;
+    ] ;
+  owl:disjointWith bpo:Element ;
+.
+bpo:Attribute
+  rdf:type owl:Class ;
+  rdfs:comment "Attributes describe components' quantitative and qualitative properties with single point values. Every property holds exactly one value and may be linked to a measurement unit using the QUDT."@en ;
+  rdfs:label "attribute"@en ;
+  rdfs:subClassOf schema:PropertyValue ;
+  rdfs:subClassOf bpo:ClassifiedObject ;
+  rdfs:subClassOf seas:Property ;
+  rdfs:subClassOf [
+      rdf:type owl:Class ;
+      owl:intersectionOf (
+          [
+            rdf:type owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty schema:value ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty qudt:unit ;
+          ]
+        ) ;
+    ] ;
+  owl:disjointWith bpo:Component ;
+  owl:disjointWith bpo:ComponentConnection ;
+  owl:disjointWith bpo:RangedAttribute ;
+.
+bpo:ClassifiedObject
+  rdf:type owl:Class ;
+  rdfs:comment "The ClassifiedObject class groups all classes that should be classified and poses the restriction that every individual of these classes musts have at least one classification using the schema:additionalType property. The restriction is passed on the other classes via inheritance."@en ;
+  rdfs:label "classified object"@en ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty schema:additionalType ;
+    ] ;
+  owl:disjointWith bpo:Entity ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:Interval ;
+  owl:disjointWith bpo:List2D ;
+.
+bpo:Component
+  rdf:type owl:Class ;
+  rdfs:comment """A component represents the description of an object that is part of a product assembly or the product itself. Whenever such an object is modelled, it should ideally be given one of the subclasses of scp:Component to further specialise the object's characteristics. This class is to be understood as an abstract superclass with the purpose of grouping all product assembly relevant classes. 
+All components may, but do not need to, hold additional information regarding their geometry and material composition."""@en ;
+  rdfs:label "component"@en ;
+  rdfs:subClassOf bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Attribute ;
+  owl:disjointWith bpo:ComponentConnection ;
+  owl:disjointWith bpo:RangedAttribute ;
+.
+bpo:ComponentConnection
+  rdf:type owl:Class ;
+  rdfs:comment "A component connection defines a connection between two components in more detail. This connection can contain additional information like the type of the connection (electrical, physical, etc.) or resistances and allows the modelling of more complex connections where multiple entities are connected in the same node."@en ;
+  rdfs:label "component connection"@en ;
+  rdfs:subClassOf bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Attribute ;
+  owl:disjointWith bpo:Component ;
+  owl:disjointWith bpo:RangedAttribute ;
+.
+bpo:DynamicEntity
+  rdf:type owl:Class ;
+  rdfs:comment "A dynamic entity represents a (given) number of instances of one component that can be placed dynamically. However, a differentiation between the instances that are summarised in a dynamic entity is not possible: in the perspective of geometry, they have to be transformed identically in form of repetitions; they must have the same component connections, properties and material derivations."@en ;
+  rdfs:label "dynamic entity"@en ;
+  rdfs:subClassOf bpo:Entity ;
+  owl:disjointWith bpo:SingularEntity ;
+.
+bpo:Element
+  rdf:type owl:Class ;
+  rdfs:comment """An element is the description of an object that cannot be or is not composed of other components. Elements do not necessarily have to be non decomposable, since in some cases, objects may be simplified. Since this class does not have any predefined connection towards the element's material, no restriction regarding its material composition is in effect.
+An element can never be an assembly as well, however it can be a product."""@en ;
+  rdfs:label "element"@en ;
+  rdfs:subClassOf bpo:Component ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty bpo:consistsOf ;
+    ] ;
+  owl:disjointWith bpo:Assembly ;
+.
+bpo:Entity
+  rdf:type owl:Class ;
+  rdfs:comment """Entities represent instances of a specific component that are placed within one assembly. Such an entity can be used to differentiate specific instances of a type from the (more generic) type's description in aspects as geometry (e.g. transformations), component connections, properties, or material structure.
+An entity can only refer to one component."""@en ;
+  rdfs:label "entity"@en ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty bpo:realisesObject ;
+    ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:Interval ;
+  owl:disjointWith bpo:List2D ;
+.
+bpo:Entry2D
+  rdf:type owl:Class ;
+  rdfs:comment "A 2D entry is a value-value pair for property values. Besides the values, the resp. attributes that are described in the pair must be known to the entry."@en ;
+  rdfs:label "2D entry"@en ;
+  rdfs:subClassOf schema:StructuredValue ;
+  rdfs:subClassOf [
+      rdf:type owl:Class ;
+      owl:intersectionOf (
+          [
+            rdf:type owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:hasValue1 ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:hasValue2 ;
+          ]
+        ) ;
+    ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
+  owl:disjointWith bpo:Interval ;
+  owl:disjointWith bpo:List2D ;
+.
+bpo:Interval
+  rdf:type owl:Class ;
+  rdfs:comment "An interval is an intermediate node between a property and its disordered list of possible values. This may be used when the property's value range cannot be described using mininum and maximum values (in combination with step sizes). The interval values should be connected via the schema:value property."@en ;
+  rdfs:label "interval"@en ;
+  rdfs:subClassOf schema:StructuredValue ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty schema:value ;
+    ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:List2D ;
+.
+bpo:List2D
+  rdf:type owl:Class ;
+  rdfs:comment "A 2D list is an disordered list containing value-value pairs. This can be used to describe properties that are dependent on each other and commonly presented in tables. Besides the 2d entries, the attributes that are described by the list must be known."@en ;
+  rdfs:label "2D list"@en ;
+  rdfs:subClassOf schema:StructuredValue ;
+  rdfs:subClassOf [
+      rdf:type owl:Class ;
+      owl:intersectionOf (
+          [
+            rdf:type owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:describesAttributeInFirstColumn ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:describesAttributeInSecondColumn ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:hasEntry ;
+          ]
+        ) ;
+    ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:Interval ;
+.
+bpo:Product
+  rdf:type owl:Class ;
+  rdfs:comment "A product is a description of any item that can be or is offered for sale by vendors or manufacturers. Products can be assembled or modelled as an element. In any case, the product's structure should be clarified by giving the individual the according type (scp:Assembly or scp:Element) as well."@en ;
+  rdfs:label "product"@en ;
+  rdfs:subClassOf gr:ProductOrServiceModel ;
+  rdfs:subClassOf schema:ProductModel ;
+  rdfs:subClassOf bpo:Component ;
+.
+bpo:RangedAttribute
+  rdf:type owl:Class ;
+  rdfs:comment "Ranged attributes describe components' quantitative and qualitative properties that have value ranges or multiple values. Value ranges can be defines by their minimal or maximal value and step sizes (in case not every value between the min and max is valid). Additionally, a ranged attribute may be linked to one specific value, which could represent the default value for parametric descriptions. The ranged value can also be linked to a measurement unit by using the QUDT."@en ;
+  rdfs:label "ranged attribute"@en ;
+  rdfs:subClassOf schema:PropertyValue ;
+  rdfs:subClassOf bpo:ClassifiedObject ;
+  rdfs:subClassOf seas:Property ;
+  rdfs:subClassOf [
+      rdf:type owl:Class ;
+      owl:intersectionOf (
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty schema:value ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty schema:minValue ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty schema:maxValue ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty bpo:permittedStepSize ;
+          ]
+          [
+            rdf:type owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty qudt:unit ;
+          ]
+        ) ;
+    ] ;
+  owl:disjointWith bpo:Attribute ;
+  owl:disjointWith bpo:Component ;
+  owl:disjointWith bpo:ComponentConnection ;
+.
+bpo:SingularEntity
+  rdf:type owl:Class ;
+  rdfs:comment "A singular entity represents one instance of a specific component."@en ;
+  rdfs:label "singular entity"@en ;
+  rdfs:subClassOf bpo:Entity ;
+  owl:disjointWith bpo:DynamicEntity ;
+.
+bpo:connectsInputOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a component connection and its upstream connected entity. This connection would connect to the entity's input interface (if existing)."@en ;
+  rdfs:domain bpo:ComponentConnection ;
+  rdfs:label "connects input of"@en ;
+  rdfs:range bpo:Entity ;
+.
+bpo:consistsOf
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:TransitiveProperty ;
+  rdfs:comment """Object property to describe an assembly relation between components. Since an assembly can also contain of other assemblies, the range of this property is defined as component, the superclass of both assemblies and elements in this ontology. It can also be inferred by a chain axiom stating that an assembly consists of any component that is realised by an entity that is connected to the considered assembly ([scp:hasObjectWith,scp:realisesObject]).
+Also, this property is transitive, allowing to easily identify every component that is part of a considered assembly."""@en ;
+  rdfs:domain bpo:Assembly ;
+  rdfs:label "consits of"@en ;
+  rdfs:range bpo:Component ;
+  owl:inverseOf bpo:isPartOf ;
+  owl:propertyChainAxiom (
+      bpo:isComposedOfEntity
+      bpo:realisesObject
+    ) ;
+.
+bpo:describesAttribute
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a 2D unordered list and the attributes that are described by it."@en ;
+  rdfs:domain bpo:List2D ;
+  rdfs:label "describes attribute"@en ;
+  rdfs:range bpo:RangedAttribute ;
+.
+bpo:describesAttributeFirstValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a value-value pair and the attribute that is described in its first value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the first column ([bpo:isPartOfList, bpo:describesAttributeInFirstColumn])"@en ;
+  rdfs:domain bpo:Entry2D ;
+  rdfs:label "describes attribute at first value"@en ;
+  rdfs:range bpo:RangedAttribute ;
+  owl:propertyChainAxiom (
+      bpo:isPartOfList
+      bpo:describesAttributeInFirstColumn
+    ) ;
+.
+bpo:describesAttributeInFirstColumn
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a 2D unstructured list and the attribute that is represented by the first column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list."@en ;
+  rdfs:label "described attribute in first column"@en ;
+  rdfs:subPropertyOf bpo:describesAttribute ;
+  owl:propertyDisjointWith bpo:describesAttributeInSecondColumn ;
+.
+bpo:describesAttributeInSecondColumn
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a 2D unstructured list and the attribute that is represented by the second column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list."@en ;
+  rdfs:label "describes attribute in second column"@en ;
+  rdfs:subPropertyOf bpo:describesAttribute ;
+  owl:propertyDisjointWith bpo:describesAttributeInFirstColumn ;
+.
+bpo:describesAttributeSecondValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a value-value pair and the attribute that is described in its second value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the second column ([bpo:isPartOfList, bpo:describesAttributeInSecondColumn])"@en ;
+  rdfs:domain bpo:Entry2D ;
+  rdfs:label "describes attribute at second value"@en ;
+  rdfs:range bpo:RangedAttribute ;
+  owl:propertyChainAxiom (
+      bpo:isPartOfList
+      bpo:describesAttributeInSecondColumn
+    ) ;
+.
+bpo:hasAttribute
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property to connect components to their (ranged) attributes. As both the attribute and the ranged attribute are subclasses of schema:PropertyValue, that class is given as range of this property, though this is theoretically already given by inheritance."@en ;
+  rdfs:domain bpo:Component ;
+  rdfs:label "has attribute"@en ;
+  rdfs:range schema:PropertyValue ;
+  rdfs:subPropertyOf schema:additionalProperty ;
+  rdfs:subPropertyOf seas:hasProperty ;
+.
+bpo:hasBSDDGUID
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Property to add a classified object's globally unique identifier of the buildingSMART Data Dictionary as string. To translate and read the term, the GUID must be accessed in the bSDD itself (http://bsdd.buildingsmart.org/#concept/search)."@en ;
+  rdfs:domain bpo:ClassifiedObject ;
+  rdfs:label "has bSDD globally unique identifier"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf schema:additionalType ;
+.
+bpo:hasEntry
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a disordered 2D list and its entry (value-value pair)."@en ;
+  rdfs:domain bpo:List2D ;
+  rdfs:label "has entry"@en ;
+  rdfs:range bpo:Entry2D ;
+  rdfs:subPropertyOf schema:value ;
+.
+bpo:hasInterval
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a ranged attribute and an interval containing possible values for the attribute."@en ;
+  rdfs:domain bpo:RangedAttribute ;
+  rdfs:label "has interval"@en ;
+  rdfs:range bpo:Interval ;
+  rdfs:subPropertyOf schema:value ;
+.
+bpo:hasList2D
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a ranged attribute and a 2D disordered list containing possible values of the attribute. This property is defined to be inverse to the bpo:describesAttribute property, which is the superproperty of bpo:describesAttributeInFirstColumn and bpo:describesAttributeInSecondColumn."@en ;
+  rdfs:domain bpo:RangedAttribute ;
+  rdfs:label "has 2D disordered list"@en ;
+  rdfs:range bpo:List2D ;
+  rdfs:subPropertyOf schema:value ;
+  owl:inverseOf bpo:describesAttribute ;
+.
+bpo:hasOutgoingConnection
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between an entity and its component connection that is leading downstream. This connection would connect to the entity's output interface (if existing)."@en ;
+  rdfs:domain bpo:Entity ;
+  rdfs:label "has outgoing connection"@en ;
+  rdfs:range bpo:ComponentConnection ;
+.
+bpo:hasQuantity
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Property to define the quantity of dynamically placed individuals within one dynamic entity. If the product description is linked with the product's geometry description, this property might become redundant and thus should be related to the geometric repetition quantity (e.g. via the omg:isExplicitlyDerivedFrom property)."@en ;
+  rdfs:domain bpo:DynamicEntity ;
+  rdfs:label "has quantity"@en ;
+  rdfs:range xsd:integer ;
+.
+bpo:hasValue1
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "A value-value pair's first value."@en ;
+  rdfs:domain bpo:Entry2D ;
+  rdfs:label "has first value"@en ;
+.
+bpo:hasValue2
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "A value-value pair's second value"@en ;
+  rdfs:domain bpo:Entry2D ;
+  rdfs:label "has second value"@en ;
+.
+bpo:isComposedOfEntity
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Object Property between an assembly and an entity that is part of the assembly."@en ;
+  rdfs:domain bpo:Assembly ;
+  rdfs:label "is composed of entity"@en ;
+  rdfs:range bpo:Entity ;
+.
+bpo:isConnectedFrom
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment """Property between two entities where the first (subject) entity is downstream of the second (object) entity. This property can be inferred as the inverse property of the bpo:isConnectedTo property.
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."""@en ;
+  rdfs:domain bpo:Entity ;
+  rdfs:label "is connected from"@en ;
+  rdfs:range bpo:Entity ;
+  owl:inverseOf bpo:isConnectedTo ;
+.
+bpo:isConnectedTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment """Property between two entities where the first (subject) entity is upstream of the second (object) entity. This property can be inferred by its chain axiom that uses every entity as object if the first entity's outgoing component connection connects to the second's input interface ([bpo:hasOutgoingConnection, bpo:connectsInputOf]).
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."""@en ;
+  rdfs:domain bpo:Entity ;
+  rdfs:label "is connected to"@en ;
+  rdfs:range bpo:Entity ;
+  owl:propertyChainAxiom (
+      bpo:hasOutgoingConnection
+      bpo:connectsInputOf
+    ) ;
+.
+bpo:isConnectedWith
+  rdf:type owl:SymmetricProperty ;
+  rdfs:comment """Property between two entities that are connected disorderly. Since this property is symmetric, it cannot hold information about the direction of the connection. 
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."""@en ;
+  rdfs:domain bpo:Entity ;
+  rdfs:label "is connected with"@en ;
+  rdfs:range bpo:Entity ;
+.
+bpo:isPartOf
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:TransitiveProperty ;
+  rdfs:comment "Property between a component and an assembly, where the component is (directly or indirectly) part of the assembly. This property is inverse to the bpo:consistsOf property and transitive. Thus, it also connects components to an assembly that are not directly a part of the assembly, but part of one of its sub(sub,...)assemblies."@en ;
+  rdfs:domain bpo:Component ;
+  rdfs:label "is part of"@en ;
+  rdfs:range bpo:Assembly ;
+  owl:inverseOf bpo:consistsOf ;
+.
+bpo:isPartOfList
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property between a value-value pair and a list that contains it. This property is inverse of the bpo:hasEntry property."@en ;
+  rdfs:domain bpo:Entry2D ;
+  rdfs:label "is part of list"@en ;
+  rdfs:range bpo:List2D ;
+  owl:inverseOf bpo:hasEntry ;
+.
+bpo:permittedStepSize
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "A ranged attribute's permitted step size to calculate allowed values between the minimum and maximum value by adding / subtracting the step size from the minimum / maximum value. This can be used in cases, where not every value in between min and max is admissible and permitted values are equidistant."@en ;
+  rdfs:domain bpo:RangedAttribute ;
+  rdfs:label "permitted step size"@en ;
+.
+bpo:realisesObject
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Object property between an entity and a component to define the type (component) of the considered instance (entity)."@en ;
+  rdfs:domain bpo:Entity ;
+  rdfs:label "realises object"@en ;
+  rdfs:range bpo:Component ;
+.

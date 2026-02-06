@@ -1,0 +1,435 @@
+@prefix : <https://w3id.org/fso#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
+@prefix fso: <https://w3id.org/fso#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://w3id.org/fso#> .
+
+<https://w3id.org/fso#> rdf:type owl:Ontology ;
+                         owl:versionIRI <https://w3id.org/fso/0.1.0> ;
+                         dcterms:creator "Ali Kücükavci" ,
+                                         "Mads Holten Rasmussen" ,
+                                         "Ville Kukkonen" ;
+                         dcterms:description "The Flow Systems Ontology (FSO) is an ontology for describing interconnected systems with material or energy flow connections, and their components."@en ;
+                         dcterms:issued "2020-01-01T12:00:00"^^xsd:dateTime ;
+                         dcterms:license <https://creativecommons.org/licenses/by/1.0/> ;
+                         dcterms:modified "2020-08-06T12:00:00"^^xsd:dateTime ;
+                         dcterms:title "The Flow Systems Ontology (FSO)"@en ;
+                         vann:preferredNamespacePrefix "fso" ;
+                         vann:preferredNamespaceUri <https://w3id.org/fso#> ;
+                         owl:priorVersion <https://w3id.org/fso/0.0.1> ;
+                         owl:versionInfo "0.1.0"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dcterms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/fso#connectedWith
+fso:connectedWith rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:SymmetricProperty ;
+                  owl:propertyChainAxiom ( fso:hasComponent
+                                           fso:connectedWith
+                                           fso:isComponentOf
+                                         ) ;
+                  rdfs:comment "A generic \"connection\" relation between things."@en ;
+                  rdfs:label "connected with"@en .
+
+
+###  https://w3id.org/fso#exchangesElectricChargeWith
+fso:exchangesElectricChargeWith rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf fso:connectedWith ;
+                                owl:propertyChainAxiom ( fso:hasComponent
+                                                         fso:exchangesElectricChargeWith
+                                                         fso:isComponentOf
+                                                       ) ;
+                                rdfs:comment "Relation between things that exchange electric charge, i.e. have electrical current between them."@en ;
+                                rdfs:label "exchanges electric charge with"@en .
+
+
+###  https://w3id.org/fso#exchangesFluidWith
+fso:exchangesFluidWith rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf fso:connectedWith ;
+                       rdf:type owl:SymmetricProperty ;
+                       owl:propertyChainAxiom ( fso:hasComponent
+                                                fso:exchangesFluidWith
+                                                fso:isComponentOf
+                                              ) ;
+                       rdfs:comment "Relation between two things which have a fluid exchange connection"@en ;
+                       rdfs:label "exchanges fluid with"@en ,
+                                  "udveksler fluid med"@da .
+
+
+###  https://w3id.org/fso#exchangesHeatWith
+fso:exchangesHeatWith rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf fso:connectedWith ;
+                      rdf:type owl:SymmetricProperty ;
+                      owl:propertyChainAxiom ( fso:hasComponent
+                                               fso:exchangesHeatWith
+                                               fso:isComponentOf
+                                             ) ;
+                      rdfs:comment "Relation between two things which have a heat exchange connection"@en ;
+                      rdfs:label "exchanges heat with"@en ,
+                                 "udveksler varme med"@da .
+
+
+###  https://w3id.org/fso#feedsFluidTo
+fso:feedsFluidTo rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf fso:exchangesFluidWith ;
+                 owl:inverseOf fso:hasFluidFedBy ;
+                 owl:propertyChainAxiom ( fso:hasComponent
+                                          fso:feedsFluidTo
+                                          fso:isComponentOf
+                                        ) ;
+                 rdfs:comment "Relation from a thing feeding fluid to the thing it is feeding fluid to."@en ;
+                 rdfs:label "feeds fluid to"@en ,
+                            "føder"@da .
+
+
+###  https://w3id.org/fso#hasComponent
+fso:hasComponent rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf fso:isComponentOf ;
+                 rdf:type owl:AsymmetricProperty ;
+                 rdfs:domain fso:System ;
+                 rdfs:range fso:Component ;
+                 owl:propertyChainAxiom ( fso:hasSubSystem
+                                          fso:hasComponent
+                                        ) ;
+                 rdfs:comment "Relates a system to a component it contains"@en ,
+                              "Relates a system to a component it contains. If system A has a subsystem B, which has a component C, then system A is said to have component C as well."@en ;
+                 rdfs:label "har komponent"@da ,
+                            "has component"@en .
+
+
+###  https://w3id.org/fso#hasConsumerComponent
+fso:hasConsumerComponent rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf fso:hasComponent ;
+                         owl:inverseOf fso:isConsumerComponentOf ;
+                         rdfs:comment "Relation between a fso:System and a fso:Component acting as a consumer of energy or matter from the system. For example, a faucet is a consumer for a water system and an air terminal is a consumer for a ventilation system."@en ;
+                         rdfs:label "has consumer component"@en .
+
+
+###  https://w3id.org/fso#hasFluidFedBy
+fso:hasFluidFedBy rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf fso:exchangesFluidWith ;
+                  owl:propertyChainAxiom ( fso:hasComponent
+                                           fso:hasFluidFedBy
+                                           fso:isComponentOf
+                                         ) ;
+                  rdfs:comment "Relation from a thing that is fed fluid to the thing feeding the fluid."@en ;
+                  rdfs:label "has fluid fed by"@en .
+
+
+###  https://w3id.org/fso#hasFluidReturnedBy
+fso:hasFluidReturnedBy rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf fso:hasFluidFedBy ;
+                       owl:inverseOf fso:returnsFluidTo ;
+                       owl:propertyChainAxiom ( fso:hasComponent
+                                                fso:hasFluidReturnedBy
+                                                fso:isComponentOf
+                                              ) ;
+                       rdfs:comment "Relation between a thing that has fluid returned to it and the thing returning the fluid."@en ;
+                       rdfs:label "has fluid returned by"@en .
+
+
+###  https://w3id.org/fso#hasFluidSuppliedBy
+fso:hasFluidSuppliedBy rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf fso:hasFluidFedBy ;
+                       owl:inverseOf fso:suppliesFluidTo ;
+                       owl:propertyChainAxiom ( fso:hasComponent
+                                                fso:hasFluidSuppliedBy
+                                                fso:isComponentOf
+                                              ) ;
+                       rdfs:comment "Relation between a thing that has fluid supplied to it and the thing supplying the fluid."@en ;
+                       rdfs:label "has fluid supplied by"@en .
+
+
+###  https://w3id.org/fso#hasReturnSystem
+fso:hasReturnSystem rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fso:hasSubSystem ;
+                    rdf:type owl:AsymmetricProperty ;
+                    rdfs:domain fso:System ;
+                    rdfs:range fso:ReturnSystem ;
+                    rdfs:comment "Relation between a system and its return system."@en ;
+                    rdfs:label "has return system"@en .
+
+
+###  https://w3id.org/fso#hasSourceComponent
+fso:hasSourceComponent rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf fso:hasComponent ;
+                       owl:inverseOf fso:isSourceComponentOf ;
+                       rdfs:comment "Relation between a fso:System and a fso:Component acting as a source of energy or matter to the system. For example, a district heating heat exchanger may act as a source of heat for a building heating system, while the district heating system will see the same heat exchanger as a consumer. Similarly, an AHU may have a heating coil as a source of heat, while the heating system will consider that coil as a consumer."@en ;
+                       rdfs:label "has source component"@en .
+
+
+###  https://w3id.org/fso#hasSubSystem
+fso:hasSubSystem rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf fso:isSubSystemOf ;
+                 rdf:type owl:AsymmetricProperty ;
+                 rdfs:domain fso:System ;
+                 rdfs:range fso:System ;
+                 rdfs:comment "Relation between a system and its subsystem"@en ;
+                 rdfs:label "har delsystem"@da ,
+                            "has subsystem"@en .
+
+
+###  https://w3id.org/fso#hasSupplySystem
+fso:hasSupplySystem rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fso:hasSubSystem ;
+                    rdf:type owl:AsymmetricProperty ;
+                    rdfs:domain fso:System ;
+                    rdfs:range fso:SupplySystem ;
+                    rdfs:comment "Relation between a system and its supply system"@en ;
+                    rdfs:label "har fremløbssystem"@da ,
+                               "has supply system"@en .
+
+
+###  https://w3id.org/fso#isComponentOf
+fso:isComponentOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:AsymmetricProperty ;
+                  rdfs:domain fso:Component ;
+                  rdfs:range fso:System ;
+                  owl:propertyChainAxiom ( fso:isComponentOf
+                                           fso:isSubSystemOf
+                                         ) .
+
+
+###  https://w3id.org/fso#isConsumerComponentOf
+fso:isConsumerComponentOf rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf fso:isComponentOf ;
+                          rdfs:label "is consumer component of"@en .
+
+
+###  https://w3id.org/fso#isSourceComponentOf
+fso:isSourceComponentOf rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf fso:isComponentOf ;
+                        rdfs:label "is source component of"@en .
+
+
+###  https://w3id.org/fso#isSubSystemOf
+fso:isSubSystemOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain fso:System ;
+                  rdfs:range fso:System .
+
+
+###  https://w3id.org/fso#returnsFluidTo
+fso:returnsFluidTo rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf fso:feedsFluidTo ;
+                   owl:propertyChainAxiom ( fso:hasComponent
+                                            fso:returnsFluidTo
+                                            fso:isComponentOf
+                                          ) ;
+                   rdfs:comment "Relation implying logical return flow from a thing to another."@en ;
+                   rdfs:label "returnerer fluid til"@da ,
+                              "returns fluid to"@en .
+
+
+###  https://w3id.org/fso#suppliesFluidTo
+fso:suppliesFluidTo rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fso:feedsFluidTo ;
+                    owl:propertyChainAxiom ( fso:hasComponent
+                                             fso:suppliesFluidTo
+                                             fso:isComponentOf
+                                           ) ;
+                    rdfs:comment "Relation implying logical supply flow from a thing to another."@en ;
+                    rdfs:label "forsyner fluid til"@da ,
+                               "supplies fluid to"@en .
+
+
+###  https://w3id.org/fso#transfersHeatFrom
+fso:transfersHeatFrom rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf fso:exchangesHeatWith ;
+                      owl:inverseOf fso:transfersHeatTo ;
+                      owl:propertyChainAxiom ( fso:hasComponent
+                                               fso:transfersHeatFrom
+                                               fso:isComponentOf
+                                             ) ;
+                      rdfs:comment "Relation signifying heat exchange with intended or actual direction of heat transfer from the second entity to the first. For example, a cooling coil is intended to absorb the heat from air."@en ;
+                      rdfs:label "transfers heat from"@en .
+
+
+###  https://w3id.org/fso#transfersHeatTo
+fso:transfersHeatTo rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fso:exchangesHeatWith ;
+                    owl:propertyChainAxiom ( fso:hasComponent
+                                             fso:transfersHeatTo
+                                             fso:isComponentOf
+                                           ) ;
+                    rdfs:comment "Relation signifying heat exchange with intended or actual direction of heat transfer from the first entity to the second. For example, a radiator is intended to transfer heat to the surroundings."@en ;
+                    rdfs:label "transfers heat to"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/vocommons/voaf#Vocabulary
+voaf:Vocabulary rdf:type owl:Class .
+
+
+###  https://w3id.org/fso#Component
+fso:Component rdf:type owl:Class ;
+              rdfs:comment "A component contained by a fso:System"@en ;
+              rdfs:label "Component"@en ,
+                         "Komponent"@da .
+
+
+###  https://w3id.org/fso#DistributionSystem
+fso:DistributionSystem rdf:type owl:Class ;
+                       rdfs:subClassOf fso:System ;
+                       rdfs:comment "A system that distributes energy and/or mass"@en ;
+                       rdfs:label "Distribution system"@en ,
+                                  "Fordelingssystem"@da .
+
+
+###  https://w3id.org/fso#EnergyConversionDevice
+fso:EnergyConversionDevice rdf:type owl:Class ;
+                           rdfs:subClassOf fso:Component ;
+                           rdfs:comment "A device that is used to convert energy from one form to another, or move it from one system to another. Potential examples include motors and heat exhangers."@en ;
+                           rdfs:label "Energikonverteringsenhed"@da ,
+                                      "Energy conversion device"@en .
+
+
+###  https://w3id.org/fso#Fitting
+fso:Fitting rdf:type owl:Class ;
+            rdfs:subClassOf fso:Component ;
+            rdfs:comment "A component used to connect segments to each other, or to other components. For example, a junction in a pipe system."@en ;
+            rdfs:label "Fitting"@da ,
+                       "Fitting"@en .
+
+
+###  https://w3id.org/fso#FlowController
+fso:FlowController rdf:type owl:Class ;
+                   rdfs:subClassOf fso:Component ;
+                   rdfs:comment "A device that has the potential to control the flow in a network. For example, valves and dampers."@en ;
+                   rdfs:label "Flow controller"@en ,
+                              "Flow regulator"@da .
+
+
+###  https://w3id.org/fso#FlowMovingDevice
+fso:FlowMovingDevice rdf:type owl:Class ;
+                     rdfs:subClassOf fso:Component ;
+                     rdfs:comment "A device used to induce movement in a network. For example, pumps and fans."@en ;
+                     rdfs:label "Flow bevægende enhed"@da ,
+                                "Flow moving device"@en .
+
+
+###  https://w3id.org/fso#ReturnSystem
+fso:ReturnSystem rdf:type owl:Class ;
+                 rdfs:subClassOf fso:DistributionSystem ;
+                 rdfs:comment "A system that returns energy and/or mass from consumers"@en ;
+                 rdfs:label "Return system"@en ,
+                            "Retursystem"@da .
+
+
+###  https://w3id.org/fso#Segment
+fso:Segment rdf:type owl:Class ;
+            rdfs:subClassOf fso:Component ;
+            rdfs:comment "A component used to enable the passage of material or energy. For example, pipes and ducts."@en ;
+            rdfs:label "Segment"@da ,
+                       "Segment"@en .
+
+
+###  https://w3id.org/fso#StorageDevice
+fso:StorageDevice rdf:type owl:Class ;
+                  rdfs:subClassOf fso:Component ;
+                  rdfs:comment "A device used to store mass or energy. For example, a water tank or a battery."@en ;
+                  rdfs:label "Opbevaringsenhed"@da ,
+                             "Storage device"@en .
+
+
+###  https://w3id.org/fso#SupplySystem
+fso:SupplySystem rdf:type owl:Class ;
+                 rdfs:subClassOf fso:DistributionSystem ;
+                 rdfs:comment "A system that supplies energy and/or mass to consumers"@en ;
+                 rdfs:label "Forsyningssystem"@da ,
+                            "Supply system"@en .
+
+
+###  https://w3id.org/fso#System
+fso:System rdf:type owl:Class ;
+           rdfs:comment "A system is a placeholder for properties that are valid for the components of the system and hence serves as an aggregation function. Common system properties include fluid properties such as the fluid type, temperature and thermal properties."@en ;
+           rdfs:label "System"@da ,
+                      "System"@en .
+
+
+###  https://w3id.org/fso#Terminal
+fso:Terminal rdf:type owl:Class ;
+             rdfs:subClassOf fso:Component ;
+             rdfs:comment "A component used to allow material flow out of a distribution system. For example, faucets and air vents."@en ;
+             rdfs:label "Terminal"@da ,
+                        "Terminal"@en .
+
+
+###  https://w3id.org/fso#TreatmentDevice
+fso:TreatmentDevice rdf:type owl:Class ;
+                    rdfs:subClassOf fso:Component ;
+                    rdfs:comment "A device used to change the properties of material flowing through it. For example, filters."@en ;
+                    rdfs:label "Behandlingsenhed"@da ,
+                               "Treatment device"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/fso#
+<https://w3id.org/fso#> rdf:type owl:NamedIndividual ,
+                                 voaf:Vocabulary .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

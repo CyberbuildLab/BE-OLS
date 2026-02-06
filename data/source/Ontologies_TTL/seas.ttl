@@ -1,0 +1,99 @@
+@prefix : <https://w3id.org/seas/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pep: <https://w3id.org/pep/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfp: <https://w3id.org/rdfp/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix seas: <https://w3id.org/seas/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix void: <https://www.w3.org/TR/void/> .
+@base <https://w3id.org/seas/> .
+
+<https://w3id.org/seas/> rdf:type owl:Ontology ;
+                          owl:versionIRI seas:seas-1.0 ;
+                          owl:imports pep: ,
+                                      rdfp: ,
+                                      seas:ActorOntology ,
+                                      seas:ActorVocabulary ,
+                                      seas:ArchitectureOntology ,
+                                      seas:AreaOntology ,
+                                      seas:BuildingCategoriesOntology ,
+                                      seas:BuildingCategoriesVocabulary ,
+                                      seas:BuildingEnergyOntology ,
+                                      seas:BuildingLoadsOntology ,
+                                      seas:BuildingOntology ,
+                                      seas:ElectricPowerSystemVocabulary ,
+                                      seas:ElectricVehicleVocabulary ,
+                                      seas:ElectricityPlayerOntology ,
+                                      seas:EnergyFormVocabulary ,
+                                      seas:EnergyOntology ,
+                                      seas:EnergyUnitVocabulary ,
+                                      seas:EvaluationOntology ,
+                                      seas:FailableVocabulary ,
+                                      seas:FeatureOfInterestOntology ,
+                                      seas:FlexibilityVocabulary ,
+                                      seas:FourierVocabulary ,
+                                      seas:GeolocationVocabulary ,
+                                      seas:GeometryVocabulary ,
+                                      seas:GraphOntology ,
+                                      seas:GreenKPIVocabulary ,
+                                      seas:LightSystemOntology ,
+                                      seas:LightSystemVocabulary ,
+                                      seas:MarketOntology ,
+                                      seas:MonetaryVocabulary ,
+                                      seas:OperatingVocabulary ,
+                                      seas:PhotovoltaicOntology ,
+                                      seas:PhotovoltaicVocabulary ,
+                                      seas:SmartGridArchitectureVocabulary ,
+                                      seas:StatisticsVocabulary ,
+                                      seas:SystemOntology ,
+                                      seas:TechnicalSystemOntology ,
+                                      seas:ThermodynamicSystemOntology ,
+                                      seas:ThermodynamicSystemVocabulary ,
+                                      seas:TimeSeriesOntology ,
+                                      seas:TimeVocabulary ,
+                                      seas:UpperOntology ,
+                                      seas:WeatherOntology ;
+                          cc:license <https://creativecommons.org/licenses/by/4.0> ;
+                          dc:contributor <http://www.vtt.fi/JarmoKalaoja> ,
+                                         <http://zimmer.aprilfoolsreview.com/antoine#me> ,
+                                         <https://w3id.org/people/brigidateixeira#> ,
+                                         <https://w3id.org/people/franciscosilva#> ,
+                                         <https://w3id.org/people/gabrieljlsantos#> ,
+                                         [ rdf:type foaf:Person ;
+                                           foaf:name "Marc Girod-Genet"
+                                         ] ,
+                                         [ rdf:type foaf:Person ;
+                                           foaf:name "Takoua Ghariani"
+                                         ] ,
+                                         [ rdf:type foaf:Person ;
+                                           foaf:name "Erkki Siira"
+                                         ] ;
+                          dc:creator <http://maxime-lefrancois.info/me#> ;
+                          dc:description """The SEAS ontology, that glues together all of the SEAS modules.
+
+  The core modules are [seas:FeatureOfInterestOntology](https://w3id.org/seas/FeatureOfInterestOntology), [seas:EvaluationOntology](https://w3id.org/seas/EvaluationOntology), [seas:SystemOntology](https://w3id.org/seas/SystemOntology) [the RDFP Presentation ontology](https://w3id.org/rdfp/), [the Process Execution Platform ontology](https://w3id.org/pep/).
+  """@en ;
+                          dc:issued "2016-05-25"^^xsd:date ;
+                          dc:title "SEAS Ontology"@en ;
+                          vann:preferredNamespacePrefix "seas" ;
+                          vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+                          owl:versionInfo "v1.0" .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/seas/
+<https://w3id.org/seas/> rdf:type owl:NamedIndividual ,
+                                  voaf:Vocabulary .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

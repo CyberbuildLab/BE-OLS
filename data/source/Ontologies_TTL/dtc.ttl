@@ -1,0 +1,1213 @@
+@prefix : <https://dtc-ontology.cms.ed.tum.de/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://dtc-ontology.cms.ed.tum.de/ontology#> .
+
+<https://dtc-ontology.cms.ed.tum.de/ontology> rdf:type owl:Ontology ;
+                                               owl:versionIRI <https://dtc-ontology.cms.ed.tum.de/ontology> ;
+                                               owl:imports <http://www.opengis.net/ont/geosparql/1.1> ,
+                                                           <https://pi.pauwel.be/voc/buildingelement> ,
+                                                           <https://w3id.org/bot-0.3.2> ;
+                                               <http://purl.org/dc/terms/contributor> "André Borrmann" ,
+                                                                                      "Jhonathan Martinez" ,
+                                                                                      "Jonas Schlenger" ,
+                                                                                      "Nicolas Bus" ,
+                                                                                      "Rafael Sacks" ,
+                                                                                      "Timson Yeung" ;
+                                               <http://purl.org/dc/terms/description> "The Digital Twin Construction Ontology is an ontology focused on construction management during the execution phase for digital twin use cases."@en ;
+                                               <http://purl.org/dc/terms/modified> "2023-11-00" ;
+                                               <http://purl.org/dc/terms/title> "Digital Twin Construction Ontology"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
+<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:AnnotationProperty ;
+                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+above the local reference ellipsoid).""" ;
+                                              rdfs:label "altitude" ;
+                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:AnnotationProperty ;
+                                              rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
+                                              rdfs:label "latitude" ;
+                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:AnnotationProperty ;
+                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
+                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:AnnotationProperty ;
+                                               rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
+                                               rdfs:label "longitude" ;
+                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+<http://www.w3.org/2004/02/skos/core#example> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+<http://www.w3.org/2004/02/skos/core#note> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+<http://www.w3.org/2004/02/skos/core#scopeNote> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#fn
+<http://www.w3.org/2006/vcard/ns#fn> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#HTML
+rdf:HTML rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#hasBoundingBox
+<http://www.opengis.net/ont/geosparql#hasBoundingBox> rdf:type owl:ObjectProperty .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+<http://www.opengis.net/ont/geosparql#hasGeometry> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#applies
+:applies rdf:type owl:ObjectProperty ;
+         rdfs:domain :ResourceApplication ;
+         rdfs:range :AsPerformedResource ;
+         rdfs:comment "Connection between a resource application or resource assignment and the resources that are part of it."@en ;
+         rdfs:label "applies"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#consistsOfZone
+:consistsOfZone rdf:type owl:ObjectProperty ;
+                rdfs:domain :LocationBreakdownStructure ;
+                rdfs:range :WorkingZone ;
+                rdfs:comment "Relating a location breakdown structure with the zones it consists of."@en ;
+                rdfs:label "consistsOfZone"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasAction
+:hasAction rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasSubprocess ;
+           rdfs:domain :Operation ;
+           rdfs:range :Action ;
+           rdfs:comment "Connects a operation with its actions."@en ;
+           rdfs:label "has action"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasActivity
+:hasActivity rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasSubprocess ;
+             rdfs:domain :WorkPackage ;
+             rdfs:range :Activity ;
+             rdfs:comment "Connects a work package with the activities that are part of it."@en ;
+             rdfs:label "has activity"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasBoundingBox
+:hasBoundingBox rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasBoundingBox> ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range <http://www.opengis.net/ont/geosparql#Geometry> ;
+                rdfs:comment "Connection between a spatial object and its bounding box that fully contains the object's geometry."@en ;
+                rdfs:label "has bounding box"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasConstruction
+:hasConstruction rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasSubprocess ;
+                 rdfs:domain :ConstructionSchedule ;
+                 rdfs:range :Construction ;
+                 rdfs:comment "Connection between a construction schedule and a construction that is part of it."@en ;
+                 rdfs:label "has construction"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasDefect
+:hasDefect rdf:type owl:ObjectProperty ;
+           rdfs:range :Defect ;
+           rdfs:comment "Connecting an object with some sort of defect."@en ;
+           rdfs:label "has defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasDefectStatusType
+:hasDefectStatusType rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasType ;
+                     rdfs:domain :Defect ;
+                     rdfs:range :DefectStatusType ;
+                     rdfs:comment "Type of defect status."@en ;
+                     rdfs:label "has defect status type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasGeometricDefect
+:hasGeometricDefect rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasDefect ;
+                    rdfs:domain <https://w3id.org/bot#Element> ;
+                    rdfs:range :GeometricDefect ;
+                    rdfs:comment "Connecting an element with a detected geometric defect."@en ;
+                    rdfs:label "has geometric defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasGeometry
+:hasGeometry rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+             rdfs:domain :WorkingZone ;
+             rdfs:range <http://www.opengis.net/ont/geosparql#Geometry> ;
+             rdfs:comment "Connection between spatial object and its geometry."@en ;
+             rdfs:label "has geometry"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasGeometryStatusType
+:hasGeometryStatusType rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasType ;
+                       rdfs:domain <https://w3id.org/bot#Element> ;
+                       rdfs:range :GeometryStatusType ;
+                       rdfs:comment "Type of status of an building elements geometry."@en ;
+                       rdfs:label "has geometry status type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasOperation
+:hasOperation rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasSubprocess ;
+              rdfs:domain :Construction ;
+              rdfs:range :Operation ;
+              rdfs:comment "Connection between a construction and the operations that are part of it."@en ;
+              rdfs:label "has operation"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasPrecondition
+:hasPrecondition rdf:type owl:ObjectProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Process ;
+                 rdfs:range :Precondition ;
+                 rdfs:comment "Connects a process with its requirements that need to be fulfilled for the process to be able to start."@en ;
+                 rdfs:label "has precondition"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasResourceApplication
+:hasResourceApplication rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( :Action
+                                                    :Operation
+                                                  )
+                                    ] ;
+                        rdfs:range :ResourceApplication ;
+                        rdfs:comment "Connects an as-performed process with the resource application that defines one used resources for this specific process."@en ;
+                        rdfs:label "has resource application"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasResourceAssignment
+:hasResourceAssignment rdf:type owl:ObjectProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( :Activity
+                                                   :Task
+                                                 )
+                                   ] ;
+                       rdfs:range :ResourceAssignment ;
+                       rdfs:comment "Connects an as-planned process with the resource assignment that defines one required resources for this specific process."@en ;
+                       rdfs:label "has resource assignment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasSequenceType
+:hasSequenceType rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasType ;
+                 rdfs:domain :ProcessPrecondition ;
+                 rdfs:range :SequenceType ;
+                 rdfs:comment "Type of process sequence describing how the start and end of two process depend on each other."@en ;
+                 rdfs:label "has sequence type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasStatusType
+:hasStatusType rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasType ;
+               rdfs:domain :Action ;
+               rdfs:range :StatusType ;
+               rdfs:comment "Type of status."@en ;
+               rdfs:label "has status type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasSubprocess
+:hasSubprocess rdf:type owl:ObjectProperty ;
+               rdfs:domain :Process ;
+               rdfs:range :Process ;
+               rdfs:comment "Connects a process with its subprocesses that describe it in a higher level of detail."@en ;
+               rdfs:label "has subprocess"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasTarget
+:hasTarget rdf:type owl:ObjectProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Action
+                                       :Task
+                                     )
+                       ] ;
+           rdfs:range <https://w3id.org/bot#Element> ;
+           rdfs:comment "Link between a task and the construction element that results from its completion."@en ;
+           rdfs:label "has target"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasTask
+:hasTask rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasSubprocess ;
+         rdfs:domain :Activity ;
+         rdfs:range :Task ;
+         rdfs:comment "Connects an activity with the tasks that form part of it."@en ;
+         rdfs:label "has task"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasType
+:hasType rdf:type owl:ObjectProperty ;
+         rdfs:range :Type ;
+         rdfs:comment "Connection between an class and its type (enumeration of different possible types)."@en ;
+         rdfs:label "has type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#hasWorkPackage
+:hasWorkPackage rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasSubprocess ;
+                rdfs:domain :ConstructionSchedule ;
+                rdfs:range :WorkPackage ;
+                rdfs:comment "Connection between a construction schedule and a work package that is part of it."@en ;
+                rdfs:label "has work package"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#intentStatusRelation
+:intentStatusRelation rdf:type owl:ObjectProperty ;
+                      rdfs:comment "Connecting a class instance belonging to the project intent (as-planned and as-designed) to its equivalent class instance belonging to the project status(as-performed and as-built). This directed relation needs to start from instance related to the project intent and point to an instance related to the project status."@en ;
+                      rdfs:label "intent-status relation"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain :WorkingZone ;
+             rdfs:range <https://w3id.org/bot#Zone> ;
+             rdfs:comment "Forms the link between a working zone that is part of the location breakdown structure with a space or storey of the building. While often working zones align with spaces or storeys of a building this is not necesarily the case."@en ;
+             rdfs:label "is located in"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#isPerformedIn
+:isPerformedIn rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Construction
+                                           :WorkPackage
+                                         )
+                           ] ;
+               rdfs:range :WorkingZone ;
+               rdfs:comment "Links a process with working zone in which it is performed in."@en ;
+               rdfs:label "is performed in"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#location
+:location rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf <http://www.w3.org/2003/01/geo/wgs84_pos#location> ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :AsPerformedResource
+                                      :Defect
+                                      <https://w3id.org/bot#Zone>
+                                    )
+                      ] ;
+          rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+          rdfs:comment "Connecting an object with its location expressed as coordinated in a specific coordinate reference system."@en ;
+          rdfs:label "location"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#requires
+:requires rdf:type owl:ObjectProperty ;
+          rdfs:domain :Precondition ;
+          rdfs:comment "Parent class for all connections between a specific type of precondition and the object that forms a requirement for a specific process."@en ;
+          rdfs:label "requires"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#requiresProcess
+:requiresProcess rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :requires ;
+                 rdf:type owl:TransitiveProperty ;
+                 rdfs:domain :ProcessPrecondition ;
+                 rdfs:range :Process ;
+                 rdfs:comment "Link between a process precondition and the process that is required to have a certain status."@en ;
+                 rdfs:label "requires process"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#requiresResource
+:requiresResource rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :requires ;
+                  rdfs:domain :ResourceAssignment ;
+                  rdfs:range :AsPlannedResource ;
+                  rdfs:comment "Link between a process and the resource assignment that groups all of the required resources."@en ;
+                  rdfs:label "requires resource"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#requiresZone
+:requiresZone rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :requires ;
+              rdfs:domain :ZonePrecondition ;
+              rdfs:range :AsPlannedWorkingZone ;
+              rdfs:comment "Link betwenn a zone precondition and the as-planned working zone that needs to be available for the precondition to be fulfilled."@en ;
+              rdfs:label "requires zone"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#workesInCrew
+:workesInCrew rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :AsPerformedWorker
+                                          :AsPlannedWorker
+                                        )
+                          ] ;
+              rdfs:range [ rdf:type owl:Class ;
+                           owl:unionOf ( :AsPerformedWorkerCrew
+                                         :AsPlannedWorkerCrew
+                                       )
+                         ] ;
+              rdfs:comment "Connection between a worker and the crew he is part of."@en ;
+              rdfs:label "workes in crew"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#workesInZone
+:workesInZone rdf:type owl:ObjectProperty ;
+              rdfs:domain :AsPerformedWorker ;
+              rdfs:range :AsPerformedWorkingZone ;
+              rdfs:comment "Connects a worker with the zone that he is currenty located in."@en ;
+              rdfs:label "workes in zone"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#availableFrom
+:availableFrom rdf:type owl:DatatypeProperty ;
+               rdfs:domain :ZonePrecondition ;
+               rdfs:range xsd:dateTime ;
+               rdfs:comment "The starting time when a working zone needs to be available according to the formulated precondition."@en ;
+               rdfs:label "available from"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#availableTill
+:availableTill rdf:type owl:DatatypeProperty ;
+               rdfs:domain :ZonePrecondition ;
+               rdfs:range xsd:dateTime ;
+               rdfs:comment "The end time until which a working zone needs to be available as part of a zone precondition."@en ;
+               rdfs:label "available till"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#baselinePlanFrom
+:baselinePlanFrom rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ConstructionSchedule ;
+                  rdfs:range xsd:dateTime ;
+                  rdfs:comment "Starting point when a specific construction schedule is starting to be the baseline plan."@en ;
+                  rdfs:label "baseline plan from"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#baselinePlanTill
+:baselinePlanTill rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ConstructionSchedule ;
+                  rdfs:range xsd:dateTime ;
+                  rdfs:comment "Point in time when a specific construction schedule stopps to be the baseline plan."@en ;
+                  rdfs:label "baseline plan till"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#classificationCode
+:classificationCode rdf:type owl:DatatypeProperty ;
+                    rdfs:domain owl:Thing ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment """Code of a classification system to specify the type of object or process. It is recommended to be used only when existing ontologies do not provide classes in the required level of detail.
+This data property is directly related with the data property classification system that specifies the classification systems that defines the used classification code."""@en ;
+                    rdfs:label "classification code"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#classificationSystem
+:classificationSystem rdf:type owl:DatatypeProperty ;
+                      rdfs:domain owl:Thing ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment """A classification system to specify the type of object or process. It is recommended to be used only when existing ontologies do not provide classes in the required level of detail.
+This data property is directly related with the data property classification code that specifies the code which refers to a specific object or process, while the classification system specifies the system which defines the used code."""@en ;
+                      rdfs:label "classification system"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#contractedEnd
+:contractedEnd rdf:type owl:DatatypeProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :AsPerformedResource
+                                           :AsPlannedResource
+                                         )
+                           ] ;
+               rdfs:range xsd:dateTime ;
+               rdfs:comment "End time of a contracted resource. The resource will only be available on the construction site during the time span described by the start and end time."@en ;
+               rdfs:label "contracted end"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#contractedStart
+:contractedStart rdf:type owl:DatatypeProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :AsPerformedResource
+                                             :AsPlannedResource
+                                           )
+                             ] ;
+                 rdfs:range xsd:dateTime ;
+                 rdfs:comment "Start time for which a resource is contracted. The resource will only be available on the construction site during the time span described by the start and end time."@en ;
+                 rdfs:label "contracted start"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#contractor
+:contractor rdf:type owl:DatatypeProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Action
+                                        :Resource
+                                        :Task
+                                      )
+                        ] ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Contractor of a process or resource."@en ;
+            rdfs:label "contractor"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#cost
+:cost rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Resource ;
+      rdfs:range xsd:double ;
+      rdfs:comment "Cost for a specific construction resource."@en ;
+      rdfs:label "cost"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#criticality
+:criticality rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Defect ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Level of criticality of a defect."@en ;
+             rdfs:label "criticality"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#endTime
+:endTime rdf:type owl:DatatypeProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Process
+                                     :ResourceApplication
+                                     :ResourceAssignment
+                                   )
+                     ] ;
+         rdfs:range xsd:dateTime ;
+         rdfs:comment "End time when a construction process actually finished based on observations made on the construction site."@en ;
+         rdfs:label "end time"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#fulfilled
+:fulfilled rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Precondition ;
+           rdfs:range xsd:boolean ;
+           rdfs:comment "Boolean attribute which describes if a precondition is fulfilled."@en ;
+           rdfs:label "fulfilled"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Unique identifier of a subject."@en ;
+    rdfs:label "id"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#isAsDesigned
+:isAsDesigned rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "Boolean attribute which describes if a building element is part of the project intent (as-designed) or project status (as-built)."@en ;
+              rdfs:label "is as-designed"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#progress
+:progress rdf:type owl:DatatypeProperty ;
+          rdfs:domain <https://w3id.org/bot#Element> ;
+          rdfs:range xsd:decimal ;
+          rdfs:comment "Percentage that expresses how much of a building element has already been constructed, 0 being not started yet and 100 being completely finished."@en ;
+          rdfs:label "progress"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#quantity
+:quantity rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Resource
+                                      :ResourceApplication
+                                      :ResourceAssignment
+                                    )
+                      ] ;
+          rdfs:range xsd:double ;
+          rdfs:comment "Quantity describing the amount of a construction resources."@en ;
+          rdfs:label "quantity"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#startTime
+:startTime rdf:type owl:DatatypeProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Process
+                                       :ResourceApplication
+                                       :ResourceAssignment
+                                     )
+                       ] ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "Starting time when a construction process actually started based on observations made on the construction site."@en ;
+           rdfs:label "start time"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#thresholdValue
+:thresholdValue rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ExternalFactorPrecondition ;
+                rdfs:range xsd:double ;
+                rdfs:comment "Threshold value that is required (minimum or maximum)."@en ;
+                rdfs:label "threshold value"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#timeStamp
+:timeStamp rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( <http://www.w3.org/2003/01/geo/wgs84_pos#Point>
+                                       :Defect
+                                       :Operation
+                                       <https://w3id.org/bot#Element>
+                                     )
+                       ] ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "Time stamp when a certain information has been captured."@en ;
+           rdfs:label "time stamp"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#utilizationRate
+:utilizationRate rdf:type owl:DatatypeProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :ResourceApplication
+                                             :ResourceAssignment
+                                           )
+                             ] ;
+                 rdfs:range xsd:double ;
+                 rdfs:comment "Utilization rate of a resource. This can apply to the planned utilization rate according to the construction schedule but also to the actual utilization rate observed on the construction site."@en ;
+                 rdfs:label "utilization rate"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+<http://www.opengis.net/ont/geosparql#Geometry> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                                rdfs:comment """ 
+Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
+  """ ,
+                                                             """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  """ ;
+                                                rdfs:label "point" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class ;
+                                                       rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
+ e.g. people, places, bowling balls, as well as abstract areas like cubes.
+""" ;
+                                                       rdfs:label "SpatialThing" .
+
+
+###  http://www.w3.org/2006/vcard/ns#Individual
+<http://www.w3.org/2006/vcard/ns#Individual> rdf:type owl:Class .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Action
+:Action rdf:type owl:Class ;
+        rdfs:subClassOf :Process ;
+        rdfs:comment "An executed construction process that represents a specific step in a production method related to one specific object on the construction site, e.g., placing the formwork for one specific column. While the task expresses as-planned processes, the action represents processes the way they were actually executed on the construction site."@en ;
+        rdfs:label "Action"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf :Process ;
+          rdfs:comment "A planned construction process that represents a specific step of a production method for a group of building elements, e.g., place the formwork for all columns on the first floor. For slabs or other large building elements the activity could also be related to a single object. The relation between the process and the building element is, however, formed between a task and the element."@en ;
+          rdfs:label "Activity"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedEquipment
+:AsPerformedEquipment rdf:type owl:Class ;
+                      rdfs:subClassOf :AsPerformedResource ;
+                      rdfs:comment "Light or heavy machinery monitored or observed on the construction site."@en ;
+                      rdfs:label "As-performed Equipment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedMaterial
+:AsPerformedMaterial rdf:type owl:Class ;
+                     rdfs:subClassOf :AsPerformedResource ;
+                     rdfs:comment "Material that has been delivered to the construction site."@en ;
+                     rdfs:label "As-performed Material"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedResource
+:AsPerformedResource rdf:type owl:Class ;
+                     rdfs:subClassOf :Resource ;
+                     owl:disjointWith :AsPlannedResource ;
+                     rdfs:comment "A construction resource that was monitored or observed on the construction site. While the as-planned resources express the planning information, the as-performed resources represent the actual situation on the construction site."@en ;
+                     rdfs:label "As-performed Resource"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedTemporaryEquipment
+:AsPerformedTemporaryEquipment rdf:type owl:Class ;
+                               rdfs:subClassOf :AsPerformedResource ;
+                               rdfs:comment "Temporary equipment, like guardrails and formwork available on the construction site."@en ;
+                               rdfs:label "As-performed Temporary Equipment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedWorker
+:AsPerformedWorker rdf:type owl:Class ;
+                   rdfs:subClassOf :AsPerformedResource ;
+                   rdfs:comment "Worker present on the construction site."@en ;
+                   rdfs:label "As-performed Worker"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedWorkerCrew
+:AsPerformedWorkerCrew rdf:type owl:Class ;
+                       rdfs:subClassOf :AsPerformedResource ;
+                       rdfs:comment "Worker crew present on the construction site."@en ;
+                       rdfs:label "As-performed Worker Crew"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPerformedWorkingZone
+:AsPerformedWorkingZone rdf:type owl:Class ;
+                        rdfs:subClassOf :WorkingZone ;
+                        rdfs:comment "A working zone as it is actually used during the monitored construction process."@en ;
+                        rdfs:label "As-performed Working Zone"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedEquipment
+:AsPlannedEquipment rdf:type owl:Class ;
+                    rdfs:subClassOf :AsPlannedResource ;
+                    rdfs:comment "Light and heavy machinery planned to be on the construction site."@en ;
+                    rdfs:label "As-planned Equipment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedMaterial
+:AsPlannedMaterial rdf:type owl:Class ;
+                   rdfs:subClassOf :AsPlannedResource ;
+                   rdfs:comment "Material planned to be on the construction site."@en ;
+                   rdfs:label "As-planned Material"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedResource
+:AsPlannedResource rdf:type owl:Class ;
+                   rdfs:subClassOf :Resource ;
+                   rdfs:comment "Represents a construction resource according to the project intent formulated during the planning phase. While the as-planned resources express the planning information, the as-performed resources represent the actual situation on the construction site."@en ;
+                   rdfs:label "As-planned Resource"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedTemporaryEquipment
+:AsPlannedTemporaryEquipment rdf:type owl:Class ;
+                             rdfs:subClassOf :AsPlannedResource ;
+                             rdfs:comment "Temporary equipment, like guardrails and formwork planned to be on the construction site."@en ;
+                             rdfs:label "As-planned Temporary Equipment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedWorker
+:AsPlannedWorker rdf:type owl:Class ;
+                 rdfs:subClassOf :AsPlannedResource ;
+                 rdfs:comment "Worker planned to be on the construction site."@en ;
+                 rdfs:label "As-planned Worker"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedWorkerCrew
+:AsPlannedWorkerCrew rdf:type owl:Class ;
+                     rdfs:subClassOf :AsPlannedResource ;
+                     rdfs:comment "Worker crew planned to be on the construction site."@en ;
+                     rdfs:label "As-planned Worker Crew"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#AsPlannedWorkingZone
+:AsPlannedWorkingZone rdf:type owl:Class ;
+                      rdfs:subClassOf :WorkingZone ;
+                      rdfs:comment "A working zone as it is planned during the planning phase."@en ;
+                      rdfs:label "As-planned Working Zone"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Construction
+:Construction rdf:type owl:Class ;
+              rdfs:subClassOf :Process ;
+              rdfs:comment "An executed construction process for a group of elements including all production steps that were needed to build the building elements completely, e.g., building all of the columns on the first floor. While the work package expresses as-planned processes, the construction represents processes the way they were actually executed on the construction site."@en ;
+              rdfs:label "Construction"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ConstructionSchedule
+:ConstructionSchedule rdf:type owl:Class ;
+                      rdfs:comment "A construction schedule aggregating all of the proceses of a construction project."@en ;
+                      rdfs:label "Construction Schedule"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Defect
+:Defect rdf:type owl:Class ;
+        rdfs:comment "A damage, violation of a regulation or any sort of deviation from the plan."@en ;
+        rdfs:label "Defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#DefectStatusType
+:DefectStatusType rdf:type owl:Class ;
+                  rdfs:subClassOf :Type ;
+                  rdfs:comment "Type class to define different types defect statuses."@en ;
+                  rdfs:label "Defect status type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ExternalFactorPrecondition
+:ExternalFactorPrecondition rdf:type owl:Class ;
+                            rdfs:subClassOf :Precondition ;
+                            rdfs:comment "External factors that need to be met for a specific process. External factors can not be influenced by the stakeholders of the construction project, like weather-related parameters."@en ;
+                            rdfs:label "External Factor Precondition"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#GeometricDefect
+:GeometricDefect rdf:type owl:Class ;
+                 rdfs:subClassOf :Defect ;
+                 rdfs:comment """Defect regarding the geometry of a building element.
+Deviation between as-designed and as-built."""@en ;
+                 rdfs:label "Geometric Defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#GeometryStatusType
+:GeometryStatusType rdf:type owl:Class ;
+                    rdfs:subClassOf :Type ;
+                    rdfs:comment "Type class to define different types of geometric states."@en ;
+                    rdfs:label "Geometry Status Type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#InformationPrecondition
+:InformationPrecondition rdf:type owl:Class ;
+                         rdfs:subClassOf :Precondition ;
+                         rdfs:comment "Pieces of information that are required for a construction process. This usually refers to documents created during the planning phase that are required by the construction workers, so that they know what needs to be done. However, it can also related to any other type of document, whos information is needed at the starting point of a process."@en ;
+                         rdfs:label "Information Precondition"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#LocationBreakdownStructure
+:LocationBreakdownStructure rdf:type owl:Class ;
+                            rdfs:comment "Breakdown of the construction site into areas where specific types of work are executed. One construction project can make use of several different work breakdown structures."@en ;
+                            rdfs:label "Location Breakdown Structure"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Operation
+:Operation rdf:type owl:Class ;
+           rdfs:subClassOf :Process ;
+           rdfs:comment "An executed construction process that represents a specific step of a production method that was used for a group of connected building elements, e.g., placing the formwork for all columns on the first floor. While the activity expresses as-planned processes, the operation represents processes the way they were actually executed on the construction site."@en ;
+           rdfs:label "Operation"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#PositionDefect
+:PositionDefect rdf:type owl:Class ;
+                rdfs:subClassOf :GeometricDefect ;
+                rdfs:comment "Deviation of a building element from its as-designed position."@en ;
+                rdfs:label "Position Defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Precondition
+:Precondition rdf:type owl:Class ;
+              rdfs:comment "Requirements of a process that need to be fulfilled to be able to be start it. The subclasses detail further the type of requirement."@en ;
+              rdfs:label "Precondition"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Process
+:Process rdf:type owl:Class ;
+         rdfs:comment "Generic class to represent any type of process related to the execution phase of a construction project."@en ;
+         rdfs:label "Process"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ProcessPrecondition
+:ProcessPrecondition rdf:type owl:Class ;
+                     rdfs:subClassOf :Precondition ;
+                     rdfs:comment "Dependencies on processes that need to be in a specific state in order for another process to be started.  These dependencies can, e.g., be used to represent the order of construction steps that is necessary to build a particular building element."@en ;
+                     rdfs:label "Process Precondition"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Resource
+:Resource rdf:type owl:Class ;
+          rdfs:comment "A resource is a person or object that is used for the execution of a construction process. This includes material, workers, worker crews, equipment, and temporary equipment."@en ;
+          rdfs:label "Resource"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ResourceApplication
+:ResourceApplication rdf:type owl:Class ;
+                     rdfs:comment "The resource application gives information about the amount of resources that are used on the construction site for a specific process. It forms the connection between the process and the resource, giving indication about the amount or the time for which the resource was used in the process. In comparsion to the resource assignment, the resource application represents the monitored situation on the construction site and not the planned information originating from the planning phase."@en ;
+                     rdfs:label "Resource Application"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ResourceAssignment
+:ResourceAssignment rdf:type owl:Class ;
+                    rdfs:subClassOf :Precondition ;
+                    rdfs:comment "Resources that are required for the execution of a specific process."@en ;
+                    rdfs:label "Resource Assignment"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#SequenceType
+:SequenceType rdf:type owl:Class ;
+              rdfs:subClassOf :Type ;
+              rdfs:comment "Type class to define different types of construction sequences."@en ;
+              rdfs:label "Sequence Type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#StatusType
+:StatusType rdf:type owl:Class ;
+            rdfs:subClassOf :Type ;
+            rdfs:comment "Type class to define different types of states."@en ;
+            rdfs:label "Status Type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#SurfaceDefect
+:SurfaceDefect rdf:type owl:Class ;
+               rdfs:subClassOf :GeometricDefect ;
+               rdfs:comment "Superficial defect of a building element."@en ;
+               rdfs:label "Surface Defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Task
+:Task rdf:type owl:Class ;
+      rdfs:subClassOf :Process ;
+      rdfs:comment "A planned construction process that represents a specific step in a production method related to one specific building element on the construction site, e.g, place the formwork for one specific concrete column."@en ;
+      rdfs:label "Task"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Type
+:Type rdf:type owl:Class ;
+      rdfs:comment "Type class that serves as a basis for enumerations of different types of class instances."@en ;
+      rdfs:label "Type"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#VolumetricDefect
+:VolumetricDefect rdf:type owl:Class ;
+                  rdfs:subClassOf :GeometricDefect ;
+                  rdfs:comment "Volumetric deviation from the as-designed building element (e.g., in size or shape)."@en ;
+                  rdfs:label "Volumetric Defect"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#WorkPackage
+:WorkPackage rdf:type owl:Class ;
+             rdfs:subClassOf :Process ;
+             rdfs:comment "A planned construction process for a group of elements including all production steps that are required to build the building elements completely using a specific construction method, e.g., build all of the columns on the  first floor. For large building elements, the work package can also be related to only a single building element."@en ;
+             rdfs:label "Work Package"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#WorkingZone
+:WorkingZone rdf:type owl:Class ;
+             rdfs:comment "A working zone according to the location breakdown structure. Construction sites are divided into zones in order break down the processes into small pieces that can be managed easier."@en ;
+             rdfs:label "Working Zone"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#ZonePrecondition
+:ZonePrecondition rdf:type owl:Class ;
+                  rdfs:subClassOf :Precondition ;
+                  rdfs:comment "Represents the dependency between a process and the working zone where is executed. In case a working zone is already occupied by a worker crew this could mean that other workers crews do not have enough space to perform further processes simultaneously in the same zone."@en ;
+                  rdfs:label "Zone Precondition"@en .
+
+
+###  https://pi.pauwel.be/voc/buildingelement#BuildingElement
+<https://pi.pauwel.be/voc/buildingelement#BuildingElement> rdfs:subClassOf <https://w3id.org/bot#Element> .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class .
+
+
+###  https://w3id.org/bot#Zone
+<https://w3id.org/bot#Zone> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#CompletelyDetected
+:CompletelyDetected rdf:type owl:NamedIndividual ,
+                             :GeometryStatusType ;
+                    rdfs:label "Completely detected"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#EndEnd
+:EndEnd rdf:type owl:NamedIndividual ,
+                 :SequenceType ;
+        rdfs:label "End-End"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#EndStart
+:EndStart rdf:type owl:NamedIndividual ,
+                   :SequenceType ;
+          rdfs:label "End-Start"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Finished
+:Finished rdf:type owl:NamedIndividual ,
+                   :StatusType ;
+          rdfs:label "Finished"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#InWork
+:InWork rdf:type owl:NamedIndividual ,
+                 :StatusType ;
+        rdfs:label "In work"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#NotDetected
+:NotDetected rdf:type owl:NamedIndividual ,
+                      :GeometryStatusType ;
+             rdfs:label "Not detected"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#NotStarted
+:NotStarted rdf:type owl:NamedIndividual ,
+                     :StatusType ;
+            rdfs:label "Not started"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Ongoing
+:Ongoing rdf:type owl:NamedIndividual ,
+                  :DefectStatusType ;
+         rdfs:label "Ongoing"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#PartiallyDetected
+:PartiallyDetected rdf:type owl:NamedIndividual ,
+                            :GeometryStatusType ;
+                   rdfs:label "Partially detected"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Paused
+:Paused rdf:type owl:NamedIndividual ,
+                 :StatusType ;
+        rdfs:label "Paused"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#Resolved
+:Resolved rdf:type owl:NamedIndividual ,
+                   :DefectStatusType ;
+          rdfs:label "Resolved"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#StartEnd
+:StartEnd rdf:type owl:NamedIndividual ,
+                   :SequenceType ;
+          rdfs:label "Start-End"@en .
+
+
+###  https://dtc-ontology.cms.ed.tum.de/ontology#StartStart
+:StartStart rdf:type owl:NamedIndividual ,
+                     :SequenceType ;
+            rdfs:label "Start-Start"@en .
+
+
+###  https://orcid.org/0000-0001-6715-4440
+<https://orcid.org/0000-0001-6715-4440> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Jhonattan G. Martinez" ;
+                                        <https://schema.org/name> "Jhonattan G. Martinez" .
+
+
+###  https://orcid.org/0000-0001-9427-5053
+<https://orcid.org/0000-0001-9427-5053> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Rafael Sacks" ;
+                                        <https://schema.org/name> "Rafael Sacks" .
+
+
+###  https://orcid.org/0000-0002-2195-0801
+<https://orcid.org/0000-0002-2195-0801> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Timson Yeung" ;
+                                        <https://schema.org/name> "Timson Yeung" .
+
+
+###  https://orcid.org/0000-0002-4875-5117
+<https://orcid.org/0000-0002-4875-5117> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Jonas Schlenger" ;
+                                        <https://schema.org/name> "Jonas Schlenger" .
+
+
+###  https://orcid.org/0000-0003-2088-7254
+<https://orcid.org/0000-0003-2088-7254> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "André Borrmann" ;
+                                        <https://schema.org/name> "André Borrmann" .
+
+
+###  https://orcid.org/0000-0003-4271-2076
+<https://orcid.org/0000-0003-4271-2076> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Simon Vilgertshofer" ;
+                                        <https://schema.org/name> "Simon Vilgertshofer" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+                                           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
+                                           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
+                                           rdfs:comment """
+Recent changes to this namespace:
+$Log: wgs84_pos.rdf,v $
+Revision 1.22  2009/04/20 15:00:30  timbl
+Remove the time bits which have been deal with elsewhere eg in iCal.
+
+Revision 1.21  2009/04/20 12:52:47  timbl
+try again
+
+Revision 1.20  2009/04/20 12:42:11  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.19  2009/04/20 12:36:31  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.18  2006/02/01 22:01:04  danbri
+Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
+
+Revision 1.17  2004/02/06 17:38:12  danbri
+Fixed a bad commit screwup
+
+Revision 1.15  2003/04/19 11:24:08  danbri
+Fixed the typo even more.
+
+Revision 1.14  2003/04/19 11:16:56  danbri
+fixed a typo
+
+Revision 1.13  2003/02/19 22:27:27  connolly
+relaxed domain constraints on lat/long/alt from Point to SpatialThing
+
+Revision 1.12  2003/01/12 01:41:41  danbri
+Trying local copy of XSLT doc.
+
+Revision 1.11  2003/01/12 01:20:18  danbri
+added a link to morten's xslt rdfs viewer.
+
+Revision 1.10  2003/01/11 18:56:49  danbri
+Removed datatype range from lat and long properties, since they would
+have required each occurance of the property to mention the datatype.
+
+Revision 1.9  2003/01/11 11:41:31  danbri
+Another typo; repaired rdfs:Property to rdf:Property x4
+
+Revision 1.8  2003/01/11 11:05:02  danbri
+Added an rdfs:range for each lat/long/alt property,
+http://www.w3.org/2001/XMLSchema#float
+
+Revision 1.7  2003/01/10 20:25:16  danbri
+Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
+coordinate system(s) at the same time. Feedback welcomed.
+
+Revision 1.6  2003/01/10 20:18:30  danbri
+Added CVS log comments into the RDF/XML as an rdfs:comment property of the
+vocabulary. Note that this is not common practice (but seems both harmless
+and potentially useful).
+
+
+revision 1.5
+date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
+Updated schema:
+Added a dc:date, added url for more info. Changed the rdfs:label of the
+namespace from gp to geo. Added a class Point, set as the rdfs:domain of
+each property. Added XML comment on the lat_long property suggesting that
+we might not need it (based on #rdfig commentary from implementors).
+
+revision 1.4
+date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
+Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
+#rdfig for catching this error.
+
+revision 1.3
+date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
+fixed buglet in vocab, added more wgs links
+
+revision 1.2
+date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
+Removed alt from the as-a-flat-string property, and switched from
+space separated to comma separated.
+
+revision 1.1
+date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
+basic geo vocab
+
+""" ;
+                                           rdfs:label "geo" .
+
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
+                                                   rdfs:label "lat/long" .
+
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+                                                   rdfs:label "location" .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

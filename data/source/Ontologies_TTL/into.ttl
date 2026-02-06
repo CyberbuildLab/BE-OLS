@@ -1,0 +1,281 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix into: <https://app.korfin.de/ontology/into#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://app.korfin.de/ontology/into> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Al-Hakam Hamdan" ;
+    ] ;
+  dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Jens Bartnitzek" ;
+  ] ;
+	owl:versionIRI <https://app.korfin.de/ontology/into/0.8> ;
+	owl:versionInfo "0.1" ;
+  dcterms:description "Ontology that defines the topology infrastructure networks."@en ;
+	dcterms:license "https://creativecommons.org/licenses/by/1.0" ;
+	dcterms:modified "2024-05-10"^^xsd:date ;
+	dcterms:issued "2024-05-10"^^xsd:date ;
+	dcterms:title "Infrastructure Topology Ontology"@en ;
+	vann:preferredNamespacePrefix "into" ;
+	vann:preferredNamespaceUri "https://app.korfin.de/ontology/into#" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://app.korfin.de/ontology/into#aggregatesTopologicalElement
+into:aggregatesTopologicalElement rdf:type owl:ObjectProperty ;
+                                  owl:inverseOf into:isAggregatedByTopologicalElement ;
+                                  rdfs:domain into:TopologicalElement ;
+                                  rdfs:range into:TopologicalElement ;
+                                  rdfs:comment "An aggregating relationship between an instance of Topological Element and its consisting Topological Element instance."@en ;
+                                  rdfs:label "aggregates Topological Element"@en .
+
+
+###  https://app.korfin.de/ontology/into#assignedToAlignment
+into:assignedToAlignment rdf:type owl:ObjectProperty ;
+                         rdfs:domain into:AlignmentEdge ;
+                         rdfs:range into:Alignment ;
+                         owl:propertyChainAxiom ( into:assignedToSection
+                                                  into:partOfAlignment
+                                                ) ;
+                         rdfs:comment "Relationship that assigns an instance of Alignment Edge to a corresponding instance of Alignment."@en ;
+                         rdfs:label "assigned to Alignment"@en .
+
+
+###  https://app.korfin.de/ontology/into#assignedToSection
+into:assignedToSection rdf:type owl:ObjectProperty ;
+                       rdfs:domain into:AlignmentEdge ;
+                       rdfs:range into:AlignmentSection ;
+                       rdfs:comment "Relationship that assigns an instance of Alignment Edge to a corresponding instance of Alignment Section."@en ;
+                       rdfs:label "assigned to Section"@en .
+
+
+###  https://app.korfin.de/ontology/into#connectsToEdge
+into:connectsToEdge rdf:type owl:ObjectProperty ;
+                    owl:inverseOf into:connectsToNode ;
+                    rdfs:domain into:Node ;
+                    rdfs:range into:Edge ;
+                    rdfs:comment "A connecting relationship between an instance of Node and its connecting Edge instance."@en ;
+                    rdfs:label "connects to Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#connectsToNode
+into:connectsToNode rdf:type owl:ObjectProperty ;
+                    rdfs:domain into:Edge ;
+                    rdfs:range into:Node ;
+                    rdfs:comment "A connecting relationship between an instance of Edge and its connecting Node instance."@en ;
+                    rdfs:label "connects to Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#containsEdge
+into:containsEdge rdf:type owl:ObjectProperty ;
+                  rdfs:domain into:Topology ;
+                  rdfs:range into:Edge ;
+                  rdfs:comment "An aggregating relationship between an instance of Topology and its consisting Edge instance."@en ;
+                  rdfs:label "contains Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#containsNode
+into:containsNode rdf:type owl:ObjectProperty ;
+                  rdfs:domain into:Topology ;
+                  rdfs:range into:Node ;
+                  rdfs:comment "An aggregating relationship between an instance of Topology and its consisting Node instance."@en ;
+                  rdfs:label "contains Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#containsStation
+into:containsStation rdf:type owl:ObjectProperty ;
+                     rdfs:domain into:Alignment ;
+                     rdfs:range into:AlignmentStation ;
+                     owl:propertyChainAxiom ( into:dividedBySection
+                                              into:endsAtStation
+                                            ) ,
+                                            ( into:dividedBySection
+                                              into:startsAtStation
+                                            ) ;
+                     rdfs:comment "An aggregating relationship between an instance of Alignment and its consisting Alignment Station instance."@en ;
+                     rdfs:label "contains Station"@en .
+
+
+###  https://app.korfin.de/ontology/into#dividedBySection
+into:dividedBySection rdf:type owl:ObjectProperty ;
+                      owl:inverseOf into:partOfAlignment ;
+                      rdfs:domain into:Alignment ;
+                      rdfs:range into:AlignmentSection ;
+                      rdfs:comment "A relationship between an instance of Alignment and its consisting Alignment Section instance that represents a division of the Alignment."@en ;
+                      rdfs:label "divided by Section"@en .
+
+
+###  https://app.korfin.de/ontology/into#endsAtNode
+into:endsAtNode rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf into:connectsToNode ;
+                rdfs:domain into:Edge ;
+                rdfs:range into:Node ;
+                rdfs:comment "A connecting relationship between an instance of Edge and the connecting Node instance that defines the end of the edge."@en ;
+                rdfs:label "ends at Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#endsAtStation
+into:endsAtStation rdf:type owl:ObjectProperty ;
+                   rdfs:domain into:AlignmentSection ;
+                   rdfs:range into:AlignmentStation ;
+                   rdfs:comment "A connecting relationship between an instance of Alignment Section and the connecting Alignment Station instance that defines the end of the alignment section."@en ;
+                   rdfs:label "ends at Station"@en .
+
+
+###  https://app.korfin.de/ontology/into#inverseToEdge
+into:inverseToEdge rdf:type owl:ObjectProperty ,
+                            owl:SymmetricProperty ;
+                   rdfs:domain into:Edge ;
+                   rdfs:range into:Edge ;
+                   rdfs:comment "Relationship that assigns an instance of Edge to another Edge instance that has inverse start nodes and end nodes. This means that the start node of one Edge instance is the end node of the other Edge instance and vice versa."@en ;
+                   rdfs:label "inverse to Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#isAggregatedByTopologicalElement
+into:isAggregatedByTopologicalElement rdf:type owl:ObjectProperty ;
+                                      rdfs:domain into:TopologicalElement ;
+                                      rdfs:range into:TopologicalElement ;
+                                      rdfs:comment "An aggregating relationship between an instance of Topological Element and the Topological Element instance in which it is aggregated."@en ;
+                                      rdfs:label "is aggregated by Topological Element"@en .
+
+
+###  https://app.korfin.de/ontology/into#isConnected
+into:isConnected rdf:type owl:ObjectProperty ,
+                          owl:IrreflexiveProperty ;
+                 rdfs:domain into:Node ;
+                 rdfs:range into:Node ;
+                 owl:propertyChainAxiom ( into:connectsToEdge
+                                          into:connectsToNode
+                                        ) ;
+                 rdfs:comment "A relationship that connects two instances of Node with each other."@en ;
+                 rdfs:label "is connected"@en .
+
+
+###  https://app.korfin.de/ontology/into#partOfAlignment
+into:partOfAlignment rdf:type owl:ObjectProperty ;
+                     rdfs:domain into:AlignmentSection ;
+                     rdfs:range into:Alignment ;
+                     rdfs:comment "Relationship that assigns an instance of Alignment Section to a corresponding instance of Alignment."@en ;
+                     rdfs:label "part of Alignment"@en .
+
+
+###  https://app.korfin.de/ontology/into#startsAtNode
+into:startsAtNode rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf into:connectsToNode ;
+                  rdfs:domain into:Edge ;
+                  rdfs:range into:Node ;
+                  rdfs:comment "A connecting relationship between an instance of Edge and the connecting Node instance that defines the start of the edge."@en ;
+                  rdfs:label "starts at Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#startsAtStation
+into:startsAtStation rdf:type owl:ObjectProperty ;
+                     rdfs:domain into:AlignmentSection ;
+                     rdfs:range into:AlignmentStation ;
+                     rdfs:comment "A connecting relationship between an instance of Alignment Section and the connecting Alignment Station instance that defines the start of the alignment section."@en ;
+                     rdfs:label "starts at Station"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://app.korfin.de/ontology/into#direction
+into:direction rdf:type owl:DatatypeProperty ;
+               rdfs:domain into:AlignmentEdge ;
+               rdfs:comment "Defines the course of an Alignment Edge."@en ;
+               rdfs:label "direction"@en .
+
+
+###  https://app.korfin.de/ontology/into#station
+into:station rdf:type owl:DatatypeProperty ;
+             rdfs:domain into:AlignmentStation ;
+             rdfs:comment "A number for identifying the station position in relation to the start station inside an Alignment or Alignment Section."@en ;
+             rdfs:label "station"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://app.korfin.de/ontology/into#Alignment
+into:Alignment rdf:type owl:Class ;
+               rdfs:comment "Abstract routing of infrastructure, such as roads, railroad lines or canals. The course of an alignment is represented with the help of a mathematically defined axis in the terrain."@en ;
+               rdfs:label "Alignment"@en .
+
+
+###  https://app.korfin.de/ontology/into#AlignmentEdge
+into:AlignmentEdge rdf:type owl:Class ;
+                   rdfs:subClassOf into:Edge ;
+                   rdfs:comment "Specialized Edge that is related to the Alignment through corresponding Alignment Sections, thus having a relation to the infrastructure geometry."@en ;
+                   rdfs:label "Alignment Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#AlignmentNode
+into:AlignmentNode rdf:type owl:Class ;
+                   rdfs:subClassOf into:Node ;
+                   rdfs:comment "Specialized Node that is related to the Alignment through corresponding Alignment Stations, thus having a relation to the infrastructure geometry."@en ;
+                   rdfs:label "Alignment Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#AlignmentSection
+into:AlignmentSection rdf:type owl:Class ;
+                      rdfs:comment "An Alignment Section consists of a start and end position (from and to) in relation to the same Alignment. As the positions are reused, they are realized as separate objects(the end of a section is usually the start of the next section for the same alignment). The positions are defined in relation to an Alignment."@en ;
+                      rdfs:label "Alignment Section"@en .
+
+
+###  https://app.korfin.de/ontology/into#AlignmentStation
+into:AlignmentStation rdf:type owl:Class ;
+                      rdfs:comment "Define the beginning and end of an Alignment Section and are part of the Alignment."@en ;
+                      rdfs:label "Alignment Station"@en .
+
+
+###  https://app.korfin.de/ontology/into#Edge
+into:Edge rdf:type owl:Class ;
+          rdfs:subClassOf into:TopologicalElement ;
+          rdfs:comment "Describes the direct link between two Nodes."@en ;
+          rdfs:label "Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#MacroEdge
+into:MacroEdge rdf:type owl:Class ;
+               rdfs:subClassOf into:Edge ;
+               rdfs:comment "Specialized Edge that is linked to corresponding nodes and edges of the lower topology level."@en ;
+               rdfs:label "Macro Edge"@en .
+
+
+###  https://app.korfin.de/ontology/into#MacroNode
+into:MacroNode rdf:type owl:Class ;
+               rdfs:subClassOf into:Node ;
+               rdfs:comment "Specialized Node that is linked to corresponding nodes and edges of the lower topology level."@en ;
+               rdfs:label "Macro Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#Node
+into:Node rdf:type owl:Class ;
+          rdfs:subClassOf into:TopologicalElement ;
+          rdfs:comment "Serves as connective point in a topology that is connected to other Nodes through Edges."@en ;
+          rdfs:label "Node"@en .
+
+
+###  https://app.korfin.de/ontology/into#TopologicalElement
+into:TopologicalElement rdf:type owl:Class ;
+                        rdfs:comment "An abstraction of an element used for defining a topology."@en ;
+                        rdfs:label "Topological Element"@en .
+
+
+###  https://app.korfin.de/ontology/into#Topology
+into:Topology rdf:type owl:Class ;
+              rdfs:comment "Abstraction of an infrastructure network as logical node and edge structures separated from its geometric references."@en ;
+              rdfs:label "Topology"@en .

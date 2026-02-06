@@ -1,0 +1,348 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Levels#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dicl: <https://w3id.org/digitalconstruction/0.5/Lifecycle#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@base <https://w3id.org/digitalconstruction/0.5/Levels> .
+
+<https://w3id.org/digitalconstruction/0.5/Levels> rdf:type owl:Ontology ;
+                                                   owl:imports <https://w3id.org/digitalconstruction/0.5/Lifecycle/lifecycle.ttl> ;
+                                                   terms:creator "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)"^^xsd:string ,
+                                                                 "Prathap Valluru (prathap.valluru@tu-dresden.de)"^^xsd:string ;
+                                                   terms:date "2020-04-15T15:47:00"^^xsd:dateTime ;
+                                                   rdfs:comment "A vocabulary for LOD levels"^^xsd:string ;
+                                                   rdfs:label "A vocabulary for LOD levels"^^xsd:string ;
+						   vann:preferredNamespacePrefix "diclvl" ;
+                                                   vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Levels" ;
+                                                   rdfs:seeAlso "https://w3id.org/digitalconstruction/0.5"^^xsd:string ;
+                                                   owl:versionInfo "0.5"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+terms:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#AsBuilt
+:AsBuilt rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasSubLevel :LOD_500 .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#AsDesigned
+:AsDesigned rdf:type owl:NamedIndividual ,
+                     dicl:LODLevel ;
+            dicl:hasNextLevel :AsBuilt ;
+            dicl:hasSubLevel :LOD_100 ,
+                             :LOD_200 ,
+                             :LOD_300 ,
+                             :LOD_350 ,
+                             :LOD_400 .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#Italy_Level_of_Development
+:Italy_Level_of_Development rdf:type owl:NamedIndividual ,
+                                     dicl:LOD_Framework ;
+                            dicl:hasLevel :LOG_Geometrical_Object ,
+                                          :LOI_Information_Object ;
+                            terms:description "Italy - Level of Development of Objects"^^xsd:string ;
+                            rdfs:label "Italy Level of Development"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_1
+:LOD_1 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOD_2 ;
+       rdfs:label "LOD 1"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_100
+:LOD_100 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasNextLevel :LOD_200 ;
+         rdfs:label "LOD 100"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_2
+:LOD_2 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOD_3 ;
+       rdfs:label "LOD 2"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_200
+:LOD_200 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasNextLevel :LOD_300 ;
+         rdfs:label "LOD 200"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_3
+:LOD_3 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOD_4 ;
+       rdfs:label "LOD 3"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_300
+:LOD_300 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasNextLevel :LOD_350 ;
+         rdfs:label "LOD 300"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_350
+:LOD_350 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasNextLevel :LOD_400 ;
+         rdfs:label "LOD 350"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_4
+:LOD_4 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOD_5 ;
+       rdfs:label "LOD 4"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_400
+:LOD_400 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         dicl:hasNextLevel :LOD_500 ;
+         rdfs:label "LOD 400"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_5
+:LOD_5 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       rdfs:label "LOD 5"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOD_500
+:LOD_500 rdf:type owl:NamedIndividual ,
+                  dicl:LODLevel ;
+         rdfs:label "LOD 500"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_A
+:LOG_A rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_B ;
+       rdfs:label "LOG A"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_B
+:LOG_B rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_C ;
+       rdfs:label "LOG B"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_C
+:LOG_C rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_D ;
+       rdfs:label "LOG C"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_D
+:LOG_D rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_E ;
+       rdfs:label "LOG D"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_E
+:LOG_E rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_F ;
+       rdfs:label "LOG E"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_F
+:LOG_F rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOG_G ;
+       rdfs:label "LOG F"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_G
+:LOG_G rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       rdfs:label "LOG G"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOG_Geometrical_Object
+:LOG_Geometrical_Object rdf:type owl:NamedIndividual ,
+                                 dicl:LODLevel ;
+                        dicl:hasSubLevel :LOG_A ,
+                                         :LOG_B ,
+                                         :LOG_C ,
+                                         :LOG_D ,
+                                         :LOG_E ,
+                                         :LOG_F ,
+                                         :LOG_G ;
+                        terms:description "Describes about the level of geometrical information of an object"^^xsd:string ;
+                        rdfs:label "LOG - Geometry"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_1
+:LOI_1 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_2 ;
+       rdfs:label "LOI 1"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_2
+:LOI_2 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_3 ;
+       rdfs:label "LOI 2"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_3
+:LOI_3 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_4 ;
+       rdfs:label "LOI 3"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_4
+:LOI_4 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_5 ;
+       rdfs:label "LOI 4"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_5
+:LOI_5 rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       rdfs:label "LOI 5"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_A
+:LOI_A rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_B ;
+       rdfs:label "LOI A"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_B
+:LOI_B rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_C ;
+       rdfs:label "LOI B"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_C
+:LOI_C rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_D ;
+       rdfs:label "LOI C"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_D
+:LOI_D rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_E ;
+       rdfs:label "LOI D"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_E
+:LOI_E rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_F ;
+       rdfs:label "LOI E"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_F
+:LOI_F rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       dicl:hasNextLevel :LOI_G ;
+       rdfs:label "LOI F"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_G
+:LOI_G rdf:type owl:NamedIndividual ,
+                dicl:LODLevel ;
+       rdfs:label "LOI G"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#LOI_Information_Object
+:LOI_Information_Object rdf:type owl:NamedIndividual ,
+                                 dicl:LODLevel ;
+                        dicl:hasSubLevel :LOI_A ,
+                                         :LOI_B ,
+                                         :LOI_C ,
+                                         :LOI_D ,
+                                         :LOI_E ,
+                                         :LOI_F ,
+                                         :LOI_G ;
+                        terms:description "Decribes about the attribute information about the object"^^xsd:string ;
+                        rdfs:label "LOI - Information"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#Level_of_Detail
+:Level_of_Detail rdf:type owl:NamedIndividual ,
+                          dicl:LODLevel ;
+                 dicl:hasSubLevel :LOD_1 ,
+                                  :LOD_2 ,
+                                  :LOD_3 ,
+                                  :LOD_4 ,
+                                  :LOD_5 ;
+                 rdfs:label "Level of Detail"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#Level_of_Information
+:Level_of_Information rdf:type owl:NamedIndividual ,
+                               dicl:LODLevel ;
+                      dicl:hasSubLevel :LOI_1 ,
+                                       :LOI_2 ,
+                                       :LOI_3 ,
+                                       :LOI_4 ,
+                                       :LOI_5 ;
+                      rdfs:label "Level of Information"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#UK_Level_of_Definition
+:UK_Level_of_Definition rdf:type owl:NamedIndividual ,
+                                 dicl:LOD_Framework ;
+                        dicl:hasLevel :Level_of_Detail ,
+                                      :Level_of_Information ;
+                        terms:description "From the standards BS 1192-1 and PAS 1192-2 and 3"^^xsd:string ;
+                        rdfs:label "UK Level of Definition"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Levels#USA_BIMForum
+:USA_BIMForum rdf:type owl:NamedIndividual ,
+                       dicl:LOD_Framework ;
+              dicl:hasLevel :AsBuilt ,
+                            :AsDesigned ;
+              terms:description "USA Level of Development"^^xsd:string ;
+              rdfs:label "USA BIMForum"^^xsd:string .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

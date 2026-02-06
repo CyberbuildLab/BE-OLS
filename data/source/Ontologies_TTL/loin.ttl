@@ -1,0 +1,1774 @@
+# baseURI: https://w3id.org/loin
+# imports: https://w3id.org/tempo
+# prefix: loin
+
+@prefix Container: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix Linkset: <https://standards.iso.org/iso/21597/-1/ed-1/en/Linkset#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dt: <https://w3id.org/dt#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1#> .
+@prefix icdd4loin: <https://w3id.org/loin/v2/icdd#> .
+@prefix ids4loin: <https://w3id.org/loin/v2/ids#> .
+@prefix loin: <https://w3id.org/loin#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dt:isDataTemplateFor
+  owl:inverseOf loin:hasDataTemplate ;
+.
+<https://w3id.org/loin>
+  rdf:type owl:Ontology ;
+  dc:contributor [
+      rdf:type schema:Person ;
+      schema:email <mailto:sven.zentgraf@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0001-6058-7614> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/sven_zentgraf.html.en> ;
+          schema:name "Ruhr University Bochum" ;
+        ] ;
+      schema:name "Sven Zentgraf" ;
+    ] ;
+  dc:created "2023-01-30"^^xsd:date ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:liu.liu-m6r@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0001-5907-7609> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/liu_liu.html.en> ;
+          schema:name "Ruhr University Bochum" ;
+        ] ;
+      schema:name "Liu Liu" ;
+    ] ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:philipp.hagedorn-n6v@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-6249-243X> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          schema:name "Ruhr University Bochum" ;
+        ] ;
+      schema:name "Philipp Hagedorn" ;
+    ] ;
+  dc:issued "2024-03-15"^^xsd:date ;
+  dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dc:modified "2025-01-15"^^xsd:date ;
+  dc:publisher [
+      rdf:type schema:Organization ;
+      schema:identifier <https://www.inf.bi.rub.de> ;
+      schema:name "Chair of Computing in Engineering, Ruhr University Bochum" ;
+      schema:parentOrganization [
+          rdf:type schema:Organization ;
+          schema:name "Ruhr University Bochum, Germany" ;
+        ] ;
+    ] ;
+  dc:rights "Copyright 2023 by Chair of Computing in Engineering, Ruhr University Bochum" ;
+  dc:source <https://linkedbuildingdata.net/ldac2024/files/papers/LDAC2024_Camera_8.pdf> ;
+  dc:title "Level of Information Need (LOIN) Ontology"@en ;
+  vann:preferredNamespacePrefix "loin" ;
+  vann:preferredNamespaceUri "https://w3id.org/loin#" ;
+  rdfs:comment """The Level of Information Need (LOIN) Ontology is defined for specifying information requirements for delivery of data in a buildings' life cycle. The LOIN ontology is based on the standard BS EN 17412-1 (2020). Furthermore, it is extended with vocabulary for connecing Information Delivery Specifications (IDS) and Information containers for linked document delivery (ICDD) as per ISO 21597-1 (2020). 
+
+The namespace for LOIN terms is [https://w3id.org/loin](https://w3id.org/loin)
+
+The preferred prefix for the LOIN Ontology namespace is `loin`.
+
+## Ontology Overview 
+![LOIN Ontology](figures/OntologyOverview.svg \"Ontology\")
+
+""" ;
+  owl:imports <https://w3id.org/tempo> ;
+  owl:versionInfo "3.0" ;
+  <http://www.w3.org/2004/02/skos/core#historyNote> """v3.0: Adjustments due to the update of the IR Ontology Network
+v2.0: Updated and aligned within the IR-Ontology Network
+v1.0: Creation of LOIN Ontology""" ;
+.
+loin:Actor
+  rdf:type owl:Class ;
+  rdfs:comment "Actor is a contextual aspect according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Actor" ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:AlphanumericalInformation
+  rdf:type owl:Class ;
+  rdfs:comment "Alphanumerical information is a term for specifying the information need according to ISO 7817-3"@en ;
+  rdfs:label "Alphanumerical information"@en ;
+  rdfs:subClassOf loin:Information ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:requested ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasGroupOfProperties ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasProperty ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasQuantityKind ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasReferenceDocument ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasUnit ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Appearance
+  rdf:type owl:Class ;
+  rdfs:comment "Appearance as a geometrical information specification for information need according to ISO 7817-3"@en ;
+  rdfs:label "Appearance"@en ;
+  rdfs:subClassOf loin:GeometrySpecification ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange [
+          rdf:type rdfs:Datatype ;
+          owl:oneOf (
+              "NoColor"
+              "SingleColor"
+              "MaterialColor"
+              "Textures"
+            ) ;
+        ] ;
+      owl:onProperty loin:hasAppearance ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Bounds
+  rdf:type ids4loin:RestrictionType ;
+  rdfs:comment "Bounds restriction specifies that the value is a number and has to fall within a range of values. It is defined by complex restriction of IDS. In this ontology, it is defined as a restriction type, which specifies the restriction formulation."@en ;
+  rdfs:label "Bounds restriction"@en ;
+  vs:term_status "stable" ;
+.
+loin:BreakdownStructure
+  rdf:type owl:Class ;
+  rdfs:comment "Breakdown structure is a term for positioning the object in a structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Breakdown structure"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasIdentifier ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:BreakdownStructureType
+  rdf:type owl:Class ;
+  rdfs:comment "Breakdown structure type is a term to specify the structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Breakdown structure type"@en ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:ClassificationSystem
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Classification system"@en ;
+  vs:term_status "stable" ;
+.
+loin:Codification
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "An example of identifier type from a breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Codification of an item in a breakdown structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:Detail
+  rdf:type owl:Class ;
+  rdfs:comment "Detail as a geometrical information specification for information need according to ISO 7817-3"@en ;
+  rdfs:label "Detail"@en ;
+  rdfs:subClassOf loin:GeometrySpecification ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange [
+          rdf:type rdfs:Datatype ;
+          owl:oneOf (
+              "L1"
+              "L2"
+              "L3"
+              "L4"
+              "L5"
+            ) ;
+        ] ;
+      owl:onProperty loin:hasDetail ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Dimensionality
+  rdf:type owl:Class ;
+  rdfs:comment "Dimensionality as a geometrical information specification for information need according to ISO 7817-3"@en ;
+  rdfs:label "Dimensionality"@en ;
+  rdfs:subClassOf loin:GeometrySpecification ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange [
+          rdf:type rdfs:Datatype ;
+          owl:oneOf (
+              "D0"
+              "D1"
+              "D2"
+              "D3"
+            ) ;
+        ] ;
+      owl:onProperty loin:hasDimensionality ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:DocumentContent
+  rdf:type owl:Class ;
+  rdfs:comment "Document specification for content for information need according to ISO 7817-3"@en ;
+  rdfs:label "Document content"@en ;
+  rdfs:subClassOf loin:DocumentSpecification ;
+  vs:term_status "stable" ;
+.
+loin:DocumentPurpose
+  rdf:type owl:Class ;
+  rdfs:comment "Document purpose is a extension according to ISO 7817-3. It specifies the use of document"@en ;
+  rdfs:label "Document purpose"@en ;
+  rdfs:subClassOf loin:DocumentSpecification ;
+  vs:term_status "stable" ;
+.
+loin:DocumentSpecification
+  rdf:type owl:Class ;
+  rdfs:comment "Additional specification of document for information need according to ISO 7817-3"@en ;
+  rdfs:label "Document specification"@en ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:DocumentType
+  rdf:type owl:Class ;
+  rdfs:comment "Specifies the file typ of the required document"@en ;
+  rdfs:label "Document type"@en ;
+  rdfs:subClassOf loin:DocumentSpecification ;
+  vs:term_status "stable" ;
+.
+loin:Documentation
+  rdf:type owl:Class ;
+  rdfs:comment "Documentation is a term for specifying the information need according to ISO 7817-3"@en ;
+  rdfs:label "Documentation"@en ;
+  rdfs:subClassOf loin:Information ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass loin:RequiredDocument ;
+      owl:onProperty loin:hasDocument ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:boolean ;
+      owl:onProperty loin:requested ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:EngineeringPrinciple
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Engineering principle"@en ;
+  vs:term_status "stable" ;
+.
+loin:Enumeration
+  rdf:type ids4loin:RestrictionType ;
+  rdfs:comment "Enumeration restriction specifies that the value must be one of a list of allowed values. It is defined by complex restriction of IDS. In this ontology, it is defined as a restriction type, which specifies the restriction formulation."@en ;
+  rdfs:label "Enumeration restriction"@en ;
+  vs:term_status "stable" ;
+.
+loin:FederationStrategy
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Federation strategy"@en ;
+  vs:term_status "stable" ;
+.
+loin:Functional
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Functional structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:GeometricalInformation
+  rdf:type owl:Class ;
+  rdfs:comment "Geometrical information is a term for specifying the information need according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Geometrical information"@en ;
+  rdfs:subClassOf loin:Information ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:requested ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasGeometrySpecification ;
+      owl:someValuesFrom loin:Appearance ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasGeometrySpecification ;
+      owl:someValuesFrom loin:Detail ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasGeometrySpecification ;
+      owl:someValuesFrom loin:Dimensionality ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasGeometrySpecification ;
+      owl:someValuesFrom loin:Location ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasGeometrySpecification ;
+      owl:someValuesFrom loin:ParametricBehaviour ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:GeometrySpecification
+  rdf:type owl:Class ;
+  rdfs:comment "Additional specification of geometrical information for information need according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Geometrical information specification"@en ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:Handdrawn_Sketches
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as such as initial sketches, site plans according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Handdrawn sketches"@en ;
+  vs:term_status "stable" ;
+.
+loin:Hard_Copy
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents of geometrical information or alphanumerical information can also be considered as documents according to notes of BS EN 17412-1 (2020)."@en ;
+  rdfs:label "Hand copy"@en ;
+  vs:term_status "stable" ;
+.
+loin:Identification
+  rdf:type owl:Class ;
+  rdfs:comment "Identification is a term for positioning the object in a breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Identification"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasBreakdownStructure ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Identifier
+  rdf:type owl:Class ;
+  rdfs:comment "Identifier is used to assiging a vaule for positioning the object in a breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Identifier"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasBreakdownStructure ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasIdentifierType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:value ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:IdentifierType
+  rdf:type owl:Class ;
+  rdfs:comment "Identifier type is used to specify the identifier in a breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Identifier type"@en ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:Index
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "Index, an identifier type according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Index of an item in a breakdown structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:Information
+  rdf:type rdfs:Class ;
+  rdfs:comment "Proxy class for the three information specifications Alphanumerical Information, Geometrical Information, and Documentation"@en ;
+  rdfs:label "Information"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+loin:InformationContent
+  rdf:type owl:Class ;
+  rdfs:comment "Alphanumerical information content is a term for specifying the alphanumerical information according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Alphanumerical information content"@en ;
+  rdfs:subClassOf owl:Thing ;
+  vs:term_status "stable" ;
+.
+loin:Length
+  rdf:type ids4loin:RestrictionType ;
+  rdfs:comment "Length restriction specifies the exact number of characters allowed in a value. It is defined by complex restriction of IDS. In this ontology, it is defined as a restriction type, which specifies the restriction formulation."@en ;
+  rdfs:label "Length restriction"@en ;
+  vs:term_status "stable" ;
+.
+loin:LevelOfInformationNeed
+  rdf:type owl:Class ;
+  rdfs:comment "Level of Information Need as defined by ISO 7817"@en ;
+  rdfs:label "Level Of Information Need"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasSpecification ;
+    ] ;
+.
+loin:Location
+  rdf:type owl:Class ;
+  rdfs:comment "Location as a geometrical information specification for information need according to ISO 7817-3"@en ;
+  rdfs:label "Location"@en ;
+  rdfs:subClassOf loin:GeometrySpecification ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange [
+          rdf:type rdfs:Datatype ;
+          owl:oneOf (
+              "Absolute"
+              "Relative"
+            ) ;
+        ] ;
+      owl:onProperty loin:hasLocation ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Manual
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as maintenance and user manuals according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Manual" ;
+  vs:term_status "stable" ;
+.
+loin:Name
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "Name, an identifier type in a breakdown structure according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Name of an item in a breakdown structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:NotRequested
+  rdf:type loin:GeometricalInformation ;
+  rdfs:comment "Geometry information is not requested"@en ;
+  rdfs:label "Geometry not requested"@en ;
+  vs:term_status "stable" ;
+  loin:requested "false"^^xsd:boolean ;
+.
+loin:Numbering
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "Numbering, an identifier type in a breakdown structure according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Numbering of an item in a breakdown structure" ;
+  vs:term_status "stable" ;
+.
+loin:OntologyDataDefinition
+  rdf:type owl:Class ;
+  rdfs:comment "Ontology data definition is an extension of BS EN 17412-1 (2020). It is used to specify the alphanumerical information according to a published or customized ontology"@en ;
+  rdfs:label "Ontology data definition"@en ;
+  rdfs:subClassOf loin:InformationContent ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:specifiedByIdentifier ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:ParametricBehaviour
+  rdf:type owl:Class ;
+  rdfs:comment "Parametric behaviour as a geometrical information specification for information need according to ISO 7817-3"@en ;
+  rdfs:label "Parametric behaviour"@en ;
+  rdfs:subClassOf loin:GeometrySpecification ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange [
+          rdf:type rdfs:Datatype ;
+          owl:oneOf (
+              "ExplicitGeometry"
+              "ConstructiveGeometry"
+              "ParametricGeometry"
+            ) ;
+        ] ;
+      owl:onProperty loin:hasParametricBehaviour ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Pattern
+  rdf:type ids4loin:RestrictionType ;
+  rdfs:comment "Pattern restriction with regex method specifies advanced pattern matching. In this ontology, it is defined as a restriction type, which specifies the restriction formulation."@en ;
+  rdfs:label "Pattern restriction"@en ;
+  vs:term_status "stable" ;
+.
+loin:Photograph
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as records of work done, records of existing conditions according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Photograph" ;
+  vs:term_status "stable" ;
+.
+loin:Prerequisites
+  rdf:type owl:Class ;
+  rdfs:comment "Prerequisites is a term for specifying the prerequisites of a corresponding specification according to ISO 7817-3"@en ;
+  rdfs:label "Prerequisites"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:informationDeliveryMilestone ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:purpose ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:receivingActor ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:sendingActor ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:informationDeliveryMilestone ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:purpose ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:receivingActor ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty loin:sendingActor ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+.
+loin:Provided_As_Information
+  rdf:type loin:DocumentPurpose ;
+  rdfs:comment "The document delivered by Inquirer as percondition or information"@en ;
+  rdfs:label "The document provided as information"@en ;
+  vs:term_status "stable" ;
+.
+loin:Purpose
+  rdf:type owl:Class ;
+  rdfs:comment "Purpose is a contextual aspect according to ISO 7817-3"@en ;
+  rdfs:label "Purpose" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasDescriptionInLanguage ;
+    ] ;
+.
+loin:ReceivingActor
+  rdf:type owl:Class ;
+  rdfs:comment "Receiving actor is a party for information delivery according to ISO 19650-1 (2018)"@en ;
+  rdfs:label "Receiving actor"@en ;
+  rdfs:subClassOf loin:Actor ;
+  vs:term_status "stable" ;
+.
+loin:ReferenceOfStructure
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "Reference, an identifier type in a breakdown structure according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Reference of an item in a breakdown structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:Report
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as geotechnical reports, reports of existing building conditions, soil surveys, pre calculations according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Report" ;
+  vs:term_status "stable" ;
+.
+loin:RequiredDocument
+  rdf:type owl:Class ;
+  rdfs:comment "Document is a term for specifying the documentation of information need according to ISO 7817-3"@en ;
+  rdfs:label "Document"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:belongsToInformationContent ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty icdd4loin:isRelatedToContainerDocument ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty icdd4loin:isRelatedToContainerLinkset ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasDocumentSpecification ;
+      owl:someValuesFrom loin:DocumentContent ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasDocumentSpecification ;
+      owl:someValuesFrom loin:DocumentPurpose ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty loin:hasDocumentSpecification ;
+      owl:someValuesFrom loin:DocumentType ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:Required_For_Approval
+  rdf:type loin:DocumentPurpose ;
+  rdfs:comment "The document required by deliverer is for getting approval"@en ;
+  rdfs:label "document required for approval"@en ;
+  vs:term_status "stable" ;
+.
+loin:Required_with_Supplement
+  rdf:type loin:DocumentPurpose ;
+  rdfs:comment "The document required by deliverer with supplement of information"@en ;
+  rdfs:label "document required with supplement"@en ;
+  vs:term_status "stable" ;
+.
+loin:Semantic
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Semantic structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:SendingActor
+  rdf:type owl:Class ;
+  rdfs:comment "Sending actor is a party for information delivery according to ISO 19650-1 (2018)"@en ;
+  rdfs:label "Sending actor"@en ;
+  rdfs:subClassOf loin:Actor ;
+  vs:term_status "stable" ;
+.
+loin:Signed_Document
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as test certificates, insurance policies, delivery notes according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Signed document"@en ;
+  vs:term_status "stable" ;
+.
+loin:SimpleValue
+  rdf:type ids4loin:RestrictionType ;
+  rdfs:comment "Simple value restriction specifies the exact allowed value. In this ontology, it is defined as a restriction type, which specifies the restriction formulation."@en ;
+  rdfs:label "Simple value restriction"@en ;
+  vs:term_status "stable" ;
+.
+loin:Spatial
+  rdf:type loin:BreakdownStructureType ;
+  rdfs:comment "An example of breakdown structure type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Spatial structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:Specification
+  rdf:type owl:Class ;
+  rdfs:label "has Reference Type"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:langString ;
+      owl:onProperty loin:hasDescriptionInLanguage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:langString ;
+      owl:onProperty loin:hasDescriptionInLanguage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:langString ;
+      owl:onProperty loin:hasNameInLanguage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass loin:Prerequisites ;
+      owl:onProperty loin:hasPrerequisites ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass loin:SpecificationPerObjectType ;
+      owl:onProperty loin:hasSpecificationPerObjectType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:langString ;
+      owl:onProperty loin:hasNameInLanguage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange <https://w3id.org/tempo#GUIDType> ;
+      owl:onProperty <https://w3id.org/tempo#conceptGUID> ;
+    ] ;
+.
+loin:SpecificationInstance
+  rdf:type loin:DocumentContent ;
+  rdfs:comment "Documents such as technical specifications according to notes according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Specification"@en ;
+  vs:term_status "stable" ;
+.
+loin:SpecificationPerObjectType
+  rdf:type owl:Class ;
+  rdfs:comment "SpecificationPerObjectType is a contextual aspect according to  ISO 7817-3"@en ;
+  rdfs:label "Specification per Object Type"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf <https://w3id.org/tempo#ConceptType> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasDocumentation ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasGeometricalInformation ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasObjectType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass loin:AlphanumericalInformation ;
+      owl:onProperty loin:hasAlphanumericalInformation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+loin:TypeName
+  rdf:type loin:IdentifierType ;
+  rdfs:comment "Type name, an identifier type in a breakdown structure according to notes of BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Type name of an item in a breakdown structure"@en ;
+  vs:term_status "stable" ;
+.
+loin:Used_As_Template
+  rdf:type loin:DocumentPurpose ;
+  rdfs:comment "The document required by deliverer should be used as template"@en ;
+  rdfs:label "The document as template"@en ;
+  vs:term_status "stable" ;
+.
+loin:absolute
+  rdf:type loin:Location ;
+  rdfs:comment "An example of location according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "Absolute location"@en ;
+  vs:term_status "stable" ;
+.
+loin:belongsToInformationContent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Specification of document, that relates with a respective person"@en ;
+  rdfs:domain loin:RequiredDocument ;
+  rdfs:label "belongs to information content"@en ;
+  rdfs:range loin:InformationContent ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:constructive
+  rdf:type loin:ParametricBehaviour ;
+  rdfs:comment "An example of parametric behaviour according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "constructive"@en ;
+  vs:term_status "stable" ;
+.
+loin:coordination
+  rdf:type loin:Purpose ;
+  rdfs:comment "coordination, an example of IDM purpose from BS EN 17412-1 (2020) - Annex B"@en ;
+  rdfs:label "Coordination"@en ;
+  vs:term_status "stable" ;
+.
+loin:costEstimation
+  rdf:type loin:Purpose ;
+  rdfs:comment "Cost estimation, an example of IDM purpose from BS EN 17412-1 (2020) - Annex B"@en ;
+  rdfs:label "Cost estimation"@en ;
+  vs:term_status "stable" ;
+.
+loin:detailed
+  rdf:type loin:Detail ;
+  rdfs:comment "Detail, an example of detail aspect according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "detailed"@en ;
+  vs:term_status "stable" ;
+.
+loin:explicit
+  rdf:type loin:ParametricBehaviour ;
+  rdfs:comment "Explicit, an example of parametric behaviour according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "explicit"@en ;
+  vs:term_status "stable" ;
+.
+loin:fireSmokeSimulation
+  rdf:type loin:Purpose ;
+  rdfs:comment "Fire and smoke simulation, an example of IDM purpose from BS EN 17412-1 (2020) - Annex B"@en ;
+  rdfs:label "Fire and smoke simulation"@en ;
+  vs:term_status "stable" ;
+.
+loin:hasAgent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Information of the information delivery actor defined by foaf ontology mit class foaf:Agent"@en ;
+  rdfs:domain loin:Actor ;
+  rdfs:label "has agent"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasAlphanumericalInformation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates an alphanumerical information with a LOIN object according to ISO 7817-3"@en ;
+  rdfs:domain loin:SpecificationPerObjectType ;
+  rdfs:label "has alphanumerical information"@en ;
+  rdfs:range loin:AlphanumericalInformation ;
+  rdfs:subPropertyOf loin:hasInformation ;
+  vs:term_status "stable" ;
+.
+loin:hasAppearance
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:Appearance ;
+  rdfs:label "has appearance"@en ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "NotRequested"
+          "NoColor"
+          "SingleColor"
+          "MaterialColor"
+          "Textures"
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasBreakdownStructure
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the identification with a breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:Identification ;
+  rdfs:label "has breakdown structure"@en ;
+  rdfs:range loin:BreakdownStructure ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasBreakdownStructureType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates a specific type with the breakdown structure according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:BreakdownStructure ;
+  rdfs:label "has breakdown structure type"@en ;
+  rdfs:range loin:BreakdownStructureType ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasDataTemplate
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "has data template" ;
+  rdfs:range dt:DataTemplate ;
+  rdfs:subPropertyOf loin:hasAlphanumericalInformation ;
+  owl:inverseOf dt:isDataTemplateFor ;
+.
+loin:hasDescriptionInLanguage
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Description in Language"@en ;
+  rdfs:range rdf:langString ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  owl:equivalentProperty <https://w3id.org/isoprops#hasDescriptionInLanguage> ;
+.
+loin:hasDetail
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:Detail ;
+  rdfs:label "has detail"@en ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "NotRequested"
+          "L1"
+          "L2"
+          "L3"
+          "L4"
+          "L5"
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasDimensionality
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:Dimensionality ;
+  rdfs:label "has detail"@en ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "D0"
+          "D1"
+          "D2"
+          "D3"
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasDocument
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates a set of documents with documentation according to ISO 7817-3"@en ;
+  rdfs:domain loin:Documentation ;
+  rdfs:label "has document"@en ;
+  rdfs:range loin:RequiredDocument ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasDocumentSpecification
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the document specifications with a document according to ISO 7817-3"@en ;
+  rdfs:domain loin:RequiredDocument ;
+  rdfs:label "has documentaton specification"@en ;
+  rdfs:range loin:DocumentSpecification ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasDocumentation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the documentation with a LOIN object according to ISO 7817-3"@en ;
+  rdfs:domain loin:SpecificationPerObjectType ;
+  rdfs:label "has documentation"@en ;
+  rdfs:range loin:Documentation ;
+  rdfs:subPropertyOf loin:hasInformation ;
+  vs:term_status "stable" ;
+.
+loin:hasGeometricalInformation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the geometrical information with a LOIN object according to ISO 7817-3"@en ;
+  rdfs:domain loin:SpecificationPerObjectType ;
+  rdfs:label "has geometrical information"@en ;
+  rdfs:range loin:GeometricalInformation ;
+  rdfs:subPropertyOf loin:hasInformation ;
+  vs:term_status "stable" ;
+.
+loin:hasGeometrySpecification
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the specific aspects with geometrical information according to ISO 7817-3"@en ;
+  rdfs:comment """[\"Appearance\",
+\"Detail\",
+\"Dimensionality\",
+\"Location\",
+\"ParametricBehaviour\"]""" ;
+  rdfs:domain loin:GeometricalInformation ;
+  rdfs:label "has geometrical specification"@en ;
+  rdfs:range loin:GeometrySpecification ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasGroupOfProperties
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "The object property relates the alphanumerical information with the set of properties  according to ISO 7817"@en ;
+  rdfs:range <https://w3id.org/tempo#GroupOfProperties> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:equivalentProperty <https://w3id.org/tempo#hasSetOfProperties> ;
+.
+loin:hasIdentification
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the identification of a breakdown structure with an alphanumerical information according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "has identification"@en ;
+  rdfs:range loin:Identification ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates a breakdown structure with its identifier according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:BreakdownStructure ;
+  rdfs:label "has identifier"@en ;
+  rdfs:range loin:Identifier ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasIdentifierType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates an identifier of breakdown structure with a specific type according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:Identifier ;
+  rdfs:label "has identifier type"@en ;
+  rdfs:range loin:IdentifierType ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasInformation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Proxy property for the three information specification relationships"@en ;
+  rdfs:domain loin:SpecificationPerObjectType ;
+  rdfs:label "has information"@en ;
+  rdfs:range loin:Information ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasInformationContent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the detailed content with alphanumerical information according to BS EN 17412-1 (2020)"@en ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "has alphanumerical informaton content"@en ;
+  rdfs:range loin:InformationContent ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasIntendedUse
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the alphanumerical information with the intened use"@en ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "has Intended Use"@en ;
+  rdfs:range <https://w3id.org/tempo#IntendedUse> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:equivalentProperty <https://w3id.org/tempo#hasIntendedUse> ;
+.
+loin:hasLocation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:Location ;
+  rdfs:label "has location"@en ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "NotRequested"
+          "Absolute"
+          "Relative"
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasNameInLanguage
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Lageplan"@de ;
+  rdfs:label "Site plan"@en ;
+  rdfs:range rdf:langString ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+loin:hasObjectType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the specification per object type with the object type"@en ;
+  rdfs:domain loin:SpecificationPerObjectType ;
+  rdfs:label "has object type"@en ;
+  rdfs:range <https://w3id.org/tempo#ObjectType> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasParametricBehaviour
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:ParametricBehaviour ;
+  rdfs:label "has parametric behaviour"@en ;
+  rdfs:range [
+      rdf:type rdfs:Datatype ;
+      owl:oneOf (
+          "NotRequested"
+          "ExplicitGeometry"
+          "ConstructiveGeometry"
+          "ParametricGeometry"
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasPrerequisites
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the specification with the prerequisites"@en ;
+  rdfs:domain loin:Specification ;
+  rdfs:label "has Prerequisites"@en ;
+  rdfs:range loin:Prerequisites ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain <https://w3id.org/tempo#DataTemplate> ;
+  rdfs:label "The object property relates the data template with the properties"@en ;
+  rdfs:range <https://w3id.org/isoprops#Property> ;
+  rdfs:range <https://w3id.org/tempo#Property> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:equivalentProperty <https://w3id.org/tempo#hasProperty> ;
+.
+loin:hasPurpose
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the purpose with the prerequisites according to ISO 7817-3"@en ;
+  rdfs:domain loin:Prerequisites ;
+  rdfs:label "has purpose"@en ;
+  rdfs:range loin:Purpose ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasQuantityKind
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "The object property relates the alphanumerical information with the quantitiy kind according to ISO 7817-3"@en ;
+  rdfs:range <https://w3id.org/tempo#QuantityKind> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasReceivingActor
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the prerequisites with the receiving actor according to ISO 7817-3"@en ;
+  rdfs:domain loin:Prerequisites ;
+  rdfs:label "has receiving actor"@en ;
+  rdfs:range loin:ReceivingActor ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasReferenceDocument
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the alphanumerical information with the reference document according to ISO 7817-3"@en ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "has reference document" ;
+  rdfs:range <https://w3id.org/tempo#ReferenceDocument> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:equivalentProperty <https://w3id.org/tempo#hasReferenceDocument> ;
+.
+loin:hasReferenceSource
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          loin:BreakdownStructure
+          loin:OntologyDataDefinition
+        ) ;
+    ] ;
+  rdfs:label "has reference source"@en ;
+  rdfs:range xsd:anyURI ;
+  rdfs:range owl:Thing ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasRequirementType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "relates the requirement type with the defined requirements in IDS data definition"@en ;
+  rdfs:domain ids4loin:FacetDefinition ;
+  rdfs:label "has requirement type"@en ;
+  rdfs:range ids4loin:RequirementType ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasSendingActor
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the  with the sending actor  according to ISO 7817"@en ;
+  rdfs:domain loin:Prerequisites ;
+  rdfs:label "has Sending Actor"@en ;
+  rdfs:range loin:SendingActor ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasSpecification
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the LOIN with the specification according to ISO 7817"@en ;
+  rdfs:domain loin:LevelOfInformationNeed ;
+  rdfs:label "Specification"@en ;
+  rdfs:range loin:Specification ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:hasSpecificationPerObjectType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the specification with the specification per object type according to ISO 7817"@en ;
+  rdfs:domain loin:Specification ;
+  rdfs:label "has specification per object type"@en ;
+  rdfs:range loin:SpecificationPerObjectType ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:hasUnit
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:label "The object property relates the alphanumerical information with the unit according to ISO 7817"@en ;
+  rdfs:range <https://w3id.org/tempo#Unit> ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+loin:informationDeliveryMilestone
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Information delivery milestone"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+loin:isRelatedToLoinDocument
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the alphanumerical information content with document according to BS EN 17412-1(2020)"@en ;
+  rdfs:domain loin:InformationContent ;
+  rdfs:label "is related to Loin document" ;
+  rdfs:range loin:RequiredDocument ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:one-dimensional
+  rdf:type loin:Dimensionality ;
+  rdfs:comment "one-dimensional, an example of dimensionality according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "one-dimensional"@en ;
+  vs:term_status "stable" ;
+.
+loin:parametric
+  rdf:type loin:ParametricBehaviour ;
+  rdfs:comment "Parametric, an example of parametric behaviour according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "parametric"@en ;
+  vs:term_status "stable" ;
+.
+loin:purpose
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "purpose"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+loin:real-world
+  rdf:type loin:Appearance ;
+  rdfs:comment "Real-world, an example of appearance according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "real-world"@en ;
+  vs:term_status "stable" ;
+.
+loin:realistic
+  rdf:type loin:Appearance ;
+  rdfs:comment "realistic, an example of appearance according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "realistic"@en ;
+  vs:term_status "stable" ;
+.
+loin:receivingActor
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Receiving actor"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+loin:relative
+  rdf:type loin:Location ;
+  rdfs:comment "Relative, an example of location according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "relative location"@en ;
+  vs:term_status "stable" ;
+.
+loin:requested
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain loin:AlphanumericalInformation ;
+  rdfs:domain loin:GeometricalInformation ;
+  rdfs:domain loin:GeometrySpecification ;
+  rdfs:label "requested as boolean, specifys if Geometrical information is needed according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "requested" ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:sendingActor
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Sending actor"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+loin:simplified
+  rdf:type loin:Detail ;
+  rdfs:comment "simplified, an example of detail according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "simplified"@en ;
+  vs:term_status "stable" ;
+.
+loin:specifiedByIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain loin:InformationContent ;
+  rdfs:label "specified by identifier" ;
+  rdfs:range loin:Identifier ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  vs:term_status "stable" ;
+.
+loin:structuralAnalysis
+  rdf:type loin:Purpose ;
+  rdfs:comment "Structural analysis, an example of IDM purpose from BS EN 17412-1 (2020) - Annex B"@en ;
+  rdfs:label "Structural analysis"@en ;
+  vs:term_status "stable" ;
+.
+loin:symbolic
+  rdf:type loin:Appearance ;
+  rdfs:comment "symbolic, an example of appearance according to notes of geometrical information specification for information need in BS EN 17412-1 (2020)"@en ;
+  rdfs:label "symbolic"@en ;
+  vs:term_status "stable" ;
+.
+loin:three-dimensional
+  rdf:type loin:Dimensionality ;
+  rdfs:comment "Three-dimensional, an example of dimensionality from a geometrical information specification for information need according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "three-dimensional"@en ;
+  vs:term_status "stable" ;
+.
+loin:two-dimensional
+  rdf:type loin:Dimensionality ;
+  rdfs:comment "Two-dimensional, an example of dimensionality from a geometrical information specification for information need according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "two-dimensional"@en ;
+  vs:term_status "stable" ;
+.
+loin:value
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "value for general definition"@en ;
+  rdfs:label "value"@en ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  vs:term_status "stable" ;
+.
+loin:visualization
+  rdf:type loin:Purpose ;
+  rdfs:comment "Visualization, an example of IDM purpose from BS EN 17412-1 (2020) - Annex B"@en ;
+  rdfs:label "Visualization" ;
+  vs:term_status "stable" ;
+.
+loin:zero-dimensional
+  rdf:type loin:Dimensionality ;
+  rdfs:comment "zero-dimensional, an example of dimensionality from a geometrical information specification for information need according to BS EN 17412-1 (2020)"@en ;
+  rdfs:label "zero-dimensional"@en ;
+  vs:term_status "stable" ;
+.
+icdd4loin:isRelatedToContainerDescription
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property is an extension with ICDD. It relates the information delivery milestone defined by BS EN 17412-1(2020) with container description"@en ;
+  rdfs:domain loin:Purpose ;
+  rdfs:label "is related to container description"@en ;
+  rdfs:range Container:ContainerDescription ;
+  vs:term_status "stable" ;
+.
+icdd4loin:isRelatedToContainerDocument
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:SymmetricProperty ;
+  rdfs:comment "The object property is an extension with ICDD. It relates documents defined by BS EN 17412-1(2020) with container documents"@en ;
+  rdfs:domain loin:RequiredDocument ;
+  rdfs:label "is related to container document"@en ;
+  rdfs:range Container:Document ;
+  vs:term_status "stable" ;
+.
+icdd4loin:isRelatedToContainerLinkset
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property is an extension with ICDD. It relates ontological document defined by BS EN 17412-1(2020) with container linkset or data set"@en ;
+  rdfs:domain loin:RequiredDocument ;
+  rdfs:label "is related to container linkset"@en ;
+  rdfs:range Container:Linkset ;
+  vs:term_status "stable" ;
+.
+icdd4loin:isRelatedToContainerParty
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property is an extension with ICDD. It relates the actors defined by BS EN 17412-1(2020) with container party"@en ;
+  rdfs:domain loin:Actor ;
+  rdfs:label "is related to container party"@en ;
+  rdfs:range Container:Party ;
+  vs:term_status "stable" ;
+.
+icdd4loin:isRelatedToLinksetIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property is an extension with ICDD. It relates the identifier type defined by BS EN 17412-1(2020) with linkset identifier"@en ;
+  rdfs:domain loin:IdentifierType ;
+  rdfs:label "is related to linkset identifier"@en ;
+  rdfs:range Linkset:Identifier ;
+  vs:term_status "stable" ;
+.
+ids4loin:Attribute
+  rdf:type owl:Class ;
+  rdfs:comment "Attribute is a facet of Information Delivery Specification (IDS), a standard developed by buildingSMART International"@en ;
+  rdfs:label "Attribute of IDS"@en ;
+  rdfs:subClassOf ids4loin:FacetDefinition ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasAttributeName ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:AttributeName
+  rdf:type owl:Class ;
+  rdfs:comment "Attribute name must be a valid attribute name from the IFC schema according to the definition of IDS developed by buildingSMART International. Example AttributeName = \"Description\""@en ;
+  rdfs:label "Attribute name"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:Classification
+  rdf:type owl:Class ;
+  rdfs:comment "Classification is is a facet of Information Delivery Specification (IDS), a standard developed by buildingSMART International. In this ontology, it is defined as an equivalent class of Indentification according to BS EN 17412-1"@en ;
+  rdfs:label "Classification of IDS"@en ;
+  rdfs:subClassOf ids4loin:FacetDefinition ;
+  owl:equivalentClass loin:Identification ;
+  vs:term_status "stable" ;
+.
+ids4loin:DataDefinition
+  rdf:type owl:Class ;
+  rdfs:comment "IDS data definition is used to specify the alphanumerical information according to Information Delivery Specification (IDS) developed by buildingSMART International"@en ;
+  rdfs:label "IDS data definition"@en ;
+  rdfs:subClassOf loin:InformationContent ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty loin:hasDescriptionInLanguage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasApplicability ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRequirement ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty ids4loin:hasApplicability ;
+      owl:someValuesFrom ids4loin:Entity ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:Entity
+  rdf:type owl:Class ;
+  rdfs:comment "Entity is a facet of Information Delivery Specification (IDS), a standard developed by buildingSMART International"@en ;
+  rdfs:label "Entity"@en ;
+  rdfs:subClassOf ids4loin:FacetDefinition ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasEntityName ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:EntityName
+  rdf:type owl:Class ;
+  rdfs:comment "Entity name must be a valid IFC class from the IFC schema according to IDS developed by buildingSMART International. Example EntityName = \"IFCWALL\""@en ;
+  rdfs:label "Entity name"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:FacetDefinition
+  rdf:type owl:Class ;
+  rdfs:comment "IDS facet definition is used to define a facet to apply the requirement or to require the information according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "IDS facet definition"@en ;
+  rdfs:subClassOf rdfs:Resource ;
+  vs:term_status "stable" ;
+.
+ids4loin:FacetParameter
+  rdf:type owl:Class ;
+  rdfs:comment "IDS facet parameter is used to specify a facet definition according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "IDS facet parameter"@en ;
+  rdfs:subClassOf rdfs:Resource ;
+  vs:term_status "stable" ;
+.
+ids4loin:IFCDataType
+  rdf:type owl:Class ;
+  rdfs:comment "IFC data type must be a valid predefined type from the IFC schema according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "IFC data type"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:Material
+  rdf:type owl:Class ;
+  rdfs:comment "Material is a facet of Information Delivery Specification(IDS), a standard developed by buildingSMART International"@en ;
+  rdfs:label "Material"@en ;
+  rdfs:subClassOf ids4loin:FacetDefinition ;
+  vs:term_status "stable" ;
+.
+ids4loin:PredefinedType
+  rdf:type owl:Class ;
+  rdfs:comment "Predefined type must be a valid predefined type from the IFC schema, or any custom text value according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "Predefined type"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:Property
+  rdf:type owl:Class ;
+  rdfs:comment "Property is a facet of Information Delivery Specification(IDS), a standard developed by buildingSMART International"@en ;
+  rdfs:label "Property"@en ;
+  rdfs:subClassOf ids4loin:FacetDefinition ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:belongsToPset ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasIFCDataType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasPropertyName ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:PropertyName
+  rdf:type owl:Class ;
+  rdfs:comment "Property name must be a valid name from the IFC schema, or any custom text value according to IDS stan developed by buildingSMART International"@en ;
+  rdfs:label "Property name"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:hasValue loin:SimpleValue ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:PsetName
+  rdf:type owl:Class ;
+  rdfs:comment "Property set name must be a valid name from the IFC schema, or any custom text value according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "Property set name"@en ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:RequirementType
+  rdf:type owl:Class ;
+  rdfs:comment "IDS requirement type is used to specify a requirement, if it is optional or mandatory according to IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "IDS requirement type"@en ;
+  rdfs:subClassOf rdfs:Resource ;
+  owl:oneOf (
+      "Required"
+      "Optional"
+      "Prohibited"
+    ) ;
+  vs:term_status "stable" ;
+.
+ids4loin:RestrictionType
+  rdf:type owl:Class ;
+  rdfs:comment "Restriction type is used to specify the value of IDS facet parameter, that is defined in restriction formulation. The restriction types are based on IDS standard developed by buildingSMART International"@en ;
+  rdfs:label "Restriction type"@en ;
+  rdfs:subClassOf rdfs:Resource ;
+  vs:term_status "stable" ;
+.
+ids4loin:Value
+  rdf:type owl:Class ;
+  rdfs:comment "Value can be any custom value according to IDS standard developed by buildingSMART International" ;
+  rdfs:label "Value" ;
+  rdfs:subClassOf ids4loin:FacetParameter ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:hasRestrictionType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty ids4loin:restrictionFormulation ;
+    ] ;
+  vs:term_status "stable" ;
+.
+ids4loin:belongsToPset
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Specification is used for facet property of IDS data definition."@en ;
+  rdfs:domain ids4loin:Property ;
+  rdfs:label "A property belongs to Property set"@en ;
+  rdfs:range ids4loin:PsetName ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasApplicability
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property describes the applicability of a facet for the specification according to IDS definition"@en ;
+  rdfs:domain ids4loin:DataDefinition ;
+  rdfs:label "has applicability"@en ;
+  rdfs:range ids4loin:FacetDefinition ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasAttributeName
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the attribute name with the facet attribute according to IDS definition"@en ;
+  rdfs:domain ids4loin:Attribute ;
+  rdfs:label "has attribute name"@en ;
+  rdfs:range ids4loin:AttributeName ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasEntityName
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the entity name with the facet entity according to IDS definition"@en ;
+  rdfs:domain ids4loin:Entity ;
+  rdfs:label "has entity name"@en ;
+  rdfs:range ids4loin:EntityName ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasIFCDataType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the IFC data type with the facet property according to IDS definition"@en ;
+  rdfs:domain ids4loin:Property ;
+  rdfs:label "has IFC data type"@en ;
+  rdfs:range ids4loin:IFCDataType ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasPredefinedType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates a predefined type with the facet entity according to IDS definition"@en ;
+  rdfs:domain ids4loin:Entity ;
+  rdfs:label "has predefined type"@en ;
+  rdfs:range ids4loin:PredefinedType ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasPropertyName
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates a property name type with the facet property according to IDS definition"@en ;
+  rdfs:domain ids4loin:Property ;
+  rdfs:label "has property name"@en ;
+  rdfs:range ids4loin:PropertyName ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasRequirement
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The object property relates the requirements with the IDS data definition"@en ;
+  rdfs:domain ids4loin:DataDefinition ;
+  rdfs:label "has requirement"@en ;
+  rdfs:range ids4loin:FacetDefinition ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasRestrictionType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "relates the restriction type with the facet parameter in IDS data definition"@en ;
+  rdfs:domain ids4loin:FacetParameter ;
+  rdfs:label "has restriction type"@en ;
+  rdfs:range ids4loin:RestrictionType ;
+  vs:term_status "stable" ;
+.
+ids4loin:hasValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "relates the value with a facet in IDS data definition"@en ;
+  rdfs:domain ids4loin:Attribute ;
+  rdfs:domain ids4loin:Material ;
+  rdfs:domain ids4loin:Property ;
+  rdfs:label "has value" ;
+  rdfs:range ids4loin:Value ;
+  vs:term_status "stable" ;
+.
+ids4loin:restrictionFormulation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Restriction formulation is for formulating facet parameter value, that is used by IDS definition."@en ;
+  rdfs:domain ids4loin:FacetParameter ;
+  rdfs:label "Constraint text formulated for facet parameters"@en ;
+  rdfs:range xsd:string ;
+  vs:term_status "stable" ;
+.

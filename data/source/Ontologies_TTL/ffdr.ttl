@@ -1,0 +1,3472 @@
+@prefix : <https://purl.org/ffdr-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://purl.org/ffdr-ontology> .
+
+<https://purl.org/ffdr-ontology> rdf:type owl:Ontology ;
+                                  owl:versionIRI <https://purl.org/ffdr-ontology/2.0.0> ;
+                                  <http://purl.org/dc/terms/abstract> """Abstract
+
+Firefighters require accurate and timely information regarding a building and its
+environment to perform their duty safely and effectively during a fire emergency. However, due to the chaotic nature of building fires, firefighters often receive erroneous, conflicting, or delayed information that can affect the outcome of a hazard. In this paper, we propose a solution in the form of an ontology that defines building and environmental data needed by firefighters during a building
+fire emergency. The ontology can be a basis for developing intelligent tools and systems that collect building and environmental data from different data sources and provide comprehensive information to firefighters. It can also facilitate the data exchange process between the different personnel involved in emergency response. The ontology was developed by following the METHONTOLOGY method, and it was implemented using the web ontology language (OWL) in
+Protégé 5.5.0."""@en ;
+                                  <http://purl.org/dc/terms/creator> """Eyosias Guyo
+
+Technische Universität Berlin, Germany
+Trimble Solutions Oy, Finland
+
+eyosias.guyo@trimble.com"""@en ,
+                                                                     """Timo Hartmann
+
+Technische Universität Berlin, Germany"""@en ;
+                                  <http://purl.org/dc/terms/language> "English"@en ;
+                                  <http://purl.org/dc/terms/license> """This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International.
+ 
+License: https://creativecommons.org/licenses/by-nc/4.0/"""@en ;
+                                  <http://purl.org/dc/terms/title> "Firefighters' Data Requirements Ontology"@en ;
+                                  rdfs:comment """Domain: 
+
+Building fire emergency"""@en ,
+                                               """Intended use:
+
+The ontology can be a basis for developing tools and systems that gather essential data about a building and its surroundings and provide the collected data to firefighters in an integrated form. 
+It can also facilitate the data exchange process between different personnel involved in emergency response."""@en ,
+                                               """Purpose:
+
+Building an ontology to represent data regarding several features and components of a building and its surroundings that firefighters need when responding to building fires."""@en ,
+                                               """Scope:
+
+The focus is on data about an affected building, its different components, and its surrounding."""@en ;
+                                  rdfs:label "Firefighters' Data Requirements Ontology"@en ;
+                                  owl:versionInfo "V 2.0.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+<http://purl.org/dc/terms/language> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://purl.org/ffdr-ontology#contains
+:contains rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          owl:inverseOf :isContainedBy ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :FireCommandCenter
+                                      :IncidentSite
+                                    )
+                      ] ;
+          rdfs:range [ rdf:type owl:Class ;
+                       owl:unionOf ( :ControlPanel
+                                     :EnvironmentalElement
+                                     :FireCommandCenter
+                                     :IncidentBuilding
+                                     :SurroundingTerrain
+                                   )
+                     ] ;
+          rdfs:comment "The 'contains' object property represents a relationship where an entity contains another entity."@en ;
+          rdfs:label "contains"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasAddress
+:hasAddress rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isAddressOf ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :BuildingUtilitySystem
+                                        :EmergencyServiceProvider
+                                        :IncidentBuilding
+                                        :IncidentSite
+                                      )
+                        ] ;
+            rdfs:range [ rdf:type owl:Class ;
+                         owl:unionOf ( :Address
+                                       :EmergencyServiceProviderContactAddress
+                                       :PublicSafetyAgencyContactAddress
+                                       :UtilityContactAddress
+                                     )
+                       ] ;
+            rdfs:comment "The 'hasAddress' object property represents a relationship between an entity and its address."@en ;
+            rdfs:label "hasAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasBuildingPlan
+:hasBuildingPlan rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :isBuildingPlanOf ;
+                 rdfs:domain :IncidentBuilding ;
+                 rdfs:range :BuildingPlan ;
+                 rdfs:comment "The 'hasBuildingPlan' object property represents a relationship between a building and its plan."@en ;
+                 rdfs:label "hasBuildingPlan"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasComponent
+:hasComponent rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isComponentOf ;
+              rdfs:domain :IncidentBuilding ;
+              rdfs:range :BuildingComponent ;
+              rdfs:comment "The 'hasComponent' object property represents a relationship between a building and its components."@en ;
+              rdfs:label "hasComponent"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasConnectionWith
+:hasConnectionWith rdf:type owl:ObjectProperty ,
+                            owl:SymmetricProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :AutomaticFireExtinguishingSystem
+                                               :FireAlarmSystem
+                                             )
+                               ] ;
+                   rdfs:range [ rdf:type owl:Class ;
+                                owl:unionOf ( :AutomaticFireExtinguishingSystem
+                                              :FireAlarmSystem
+                                            )
+                              ] ;
+                   rdfs:comment "The 'hasConnectionWith' object property represents a relationship where two elements or systems are connected."@en ;
+                   rdfs:label "hasConnectionWith"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasConstructionType
+:hasConstructionType rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isConstructionTypeOf ;
+                     rdfs:domain :IncidentBuilding ;
+                     rdfs:range :ConstructionType ;
+                     rdfs:comment "The 'hasConstructionType' object property represents a relationship between a building and its construction type."@en ;
+                     rdfs:label "hasConstructionType"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasControlPanel
+:hasControlPanel rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :isControlPanelOf ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :BuildingUtilitySystem
+                                             :Door
+                                             :Elevator
+                                             :FarsFillStation
+                                             :FireAlarmSystem
+                                             :MassNotificationSystem
+                                             :SmokeControlSystem
+                                           )
+                             ] ;
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( :AlarmSystemAnnunciatorPanel
+                                            :DoorUnlockingSystemControlPanel
+                                            :ElevatorOverrideControlPanel
+                                            :FarsControlPanel
+                                            :MassNotificationSystemControlPanel
+                                            :SmokeControlSystemControlPanel
+                                            :UtilityControlPanel
+                                          )
+                            ] ;
+                 rdfs:comment "The 'hasControlPanel' object property represents a relationship between a system or an element and its control panel."@en ;
+                 rdfs:label "hasControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFireExtinguishingSystem
+:hasFireExtinguishingSystem rdf:type owl:ObjectProperty ;
+                            owl:inverseOf :isFireExtinguishingSystemOf ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( :ConcealedSpace
+                                                        :Elevator
+                                                        :Ramp
+                                                        :Stairway
+                                                      )
+                                        ] ;
+                            rdfs:range :AutomaticFireExtinguishingSystem ;
+                            rdfs:comment "The 'hasFireExtinguishingSystem' object property represents a relationship between an area or an element and its fire extinguishing system."@en ;
+                            rdfs:label "hasFireExtinguishingSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasHazardousOperation
+:hasHazardousOperation rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :isHazardousOperationIn ;
+                       rdfs:domain :IncidentBuilding ;
+                       rdfs:range :HazardousOperation ;
+                       rdfs:comment "The 'hasHazardousOperation' object property represents a relationship between a building and hazardous operations in the building."@en ;
+                       rdfs:label "hasHazardousOperation" .
+
+
+###  https://purl.org/ffdr-ontology#hasHoseConnection
+:hasHoseConnection rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isHoseConnectionOf ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :FireDepartmentConnection
+                                               :FireHoseConnection
+                                               :FireHydrant
+                                             )
+                               ] ;
+                   rdfs:range :HoseConnection ;
+                   rdfs:comment "The 'hasHoseConnection' object property represents a relationship between an element and its hose connection."@en ;
+                   rdfs:label "hasHoseConnection"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasMaterial
+:hasMaterial rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isMaterialOf ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :FireandSmokeProtectionElement
+                                         :NonStructuralElement
+                                         :Road
+                                         :StructuralElement
+                                       )
+                         ] ;
+             rdfs:range :Material ;
+             rdfs:comment "The 'hasMaterial' object property represents a relationship between an element and the material its made of."@en ;
+             rdfs:label "hasMaterial"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasOccupancy
+:hasOccupancy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isOccupancyOf ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :Building
+                                          :IncidentBuilding
+                                        )
+                          ] ;
+              rdfs:range :BuildingOccupancy ;
+              rdfs:comment "The 'hasOccupancy' object property represents a relationship between a building and its occupancy."@en ;
+              rdfs:label "hasOccupancy"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasShaftEnclosure
+:hasShaftEnclosure rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isShaftEnclosureOf ;
+                   rdfs:domain :VerticalOpening ;
+                   rdfs:range :ShaftEnclosure ;
+                   rdfs:comment "The 'hasShaftEnclosure' object property represents a relationship between a shaft (vertical opening) and its enclosure."@en ;
+                   rdfs:label "hasShaftEnclosure"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasWaterSource
+:hasWaterSource rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isWaterSourceOf ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( :AutomaticSprinklerSystem
+                                            :FireDepartmentConnection
+                                            :FireHoseConnection
+                                            :FireHydrant
+                                            :StandpipeSystem
+                                          )
+                            ] ;
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( :StandpipeSystem
+                                           :WaterSource
+                                         )
+                           ] ;
+                rdfs:comment "The 'hasWaterSource' object property represents a relationship between an element or a system and its water source."@en ;
+                rdfs:label "hasWaterSource"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasWeatherCondition
+:hasWeatherCondition rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isWeatherConditionOf ;
+                     rdfs:domain :IncidentSite ;
+                     rdfs:range :WeatherCondition ;
+                     rdfs:comment "The 'hasWeatherCondition' object property represents a relationship between a site and its weather condition."@en ;
+                     rdfs:label "hasWeatherCondition"@en .
+
+
+###  https://purl.org/ffdr-ontology#isAddressOf
+:isAddressOf rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Address
+                                         :EmergencyServiceProviderContactAddress
+                                         :PublicSafetyAgencyContactAddress
+                                         :UtilityContactAddress
+                                       )
+                         ] ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( :BuildingUtilitySystem
+                                        :EmergencyServiceProvider
+                                        :IncidentBuilding
+                                        :IncidentSite
+                                      )
+                        ] ;
+             rdfs:label "isAddressOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isBuildingPlanOf
+:isBuildingPlanOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :BuildingPlan ;
+                  rdfs:range :IncidentBuilding ;
+                  rdfs:label "isBuildingPlanOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isComponentOf
+:isComponentOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :BuildingComponent ;
+               rdfs:range :IncidentBuilding ;
+               rdfs:label "isComponentOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isConstructionTypeOf
+:isConstructionTypeOf rdf:type owl:ObjectProperty ;
+                      rdfs:domain :ConstructionType ;
+                      rdfs:range :IncidentBuilding ;
+                      rdfs:label "isConstructionTypeOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isContainedBy
+:isContainedBy rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :ControlPanel
+                                           :EnvironmentalElement
+                                           :FireCommandCenter
+                                           :IncidentBuilding
+                                           :SurroundingTerrain
+                                         )
+                           ] ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :FireCommandCenter
+                                          :IncidentSite
+                                        )
+                          ] ;
+               rdfs:label "isContainedBy"@en .
+
+
+###  https://purl.org/ffdr-ontology#isControlPanelOf
+:isControlPanelOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain [ rdf:type owl:Class ;
+                                owl:unionOf ( :AlarmSystemAnnunciatorPanel
+                                              :DoorUnlockingSystemControlPanel
+                                              :ElevatorOverrideControlPanel
+                                              :FarsControlPanel
+                                              :MassNotificationSystemControlPanel
+                                              :SmokeControlSystemControlPanel
+                                              :UtilityControlPanel
+                                            )
+                              ] ;
+                  rdfs:range [ rdf:type owl:Class ;
+                               owl:unionOf ( :BuildingUtilitySystem
+                                             :Door
+                                             :Elevator
+                                             :FarsFillStation
+                                             :FireAlarmSystem
+                                             :MassNotificationSystem
+                                             :SmokeControlSystem
+                                           )
+                             ] ;
+                  rdfs:label "isControlPanelOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isFireExtinguishingSystemOf
+:isFireExtinguishingSystemOf rdf:type owl:ObjectProperty ;
+                             rdfs:domain :AutomaticFireExtinguishingSystem ;
+                             rdfs:range [ rdf:type owl:Class ;
+                                          owl:unionOf ( :ConcealedSpace
+                                                        :Elevator
+                                                        :Ramp
+                                                        :Stairway
+                                                      )
+                                        ] ;
+                             rdfs:label "isFireExtinguishingSystemOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isHazardousOperationIn
+:isHazardousOperationIn rdf:type owl:ObjectProperty ;
+                        rdfs:domain :HazardousOperation ;
+                        rdfs:range :IncidentBuilding .
+
+
+###  https://purl.org/ffdr-ontology#isHoseConnectionOf
+:isHoseConnectionOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain :HoseConnection ;
+                    rdfs:range [ rdf:type owl:Class ;
+                                 owl:unionOf ( :FireDepartmentConnection
+                                               :FireHoseConnection
+                                               :FireHydrant
+                                             )
+                               ] ;
+                    rdfs:label "isHoseConnectionOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isMaterialOf
+:isMaterialOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Material ;
+              rdfs:range [ rdf:type owl:Class ;
+                           owl:unionOf ( :FireandSmokeProtectionElement
+                                         :NonStructuralElement
+                                         :Road
+                                         :StructuralElement
+                                       )
+                         ] ;
+              rdfs:label "isMaterialOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isOccupancyOf
+:isOccupancyOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :BuildingOccupancy ;
+               rdfs:range :IncidentBuilding ;
+               rdfs:label "isOccupancyOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isShaftEnclosureOf
+:isShaftEnclosureOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain :ShaftEnclosure ;
+                    rdfs:range :VerticalOpening ;
+                    rdfs:label "isShaftEnclosureOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isWaterSourceOf
+:isWaterSourceOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :StandpipeSystem
+                                             :WaterSource
+                                           )
+                             ] ;
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( :AutomaticSprinklerSystem
+                                            :FireDepartmentConnection
+                                            :FireHoseConnection
+                                            :FireHydrant
+                                            :StandpipeSystem
+                                          )
+                            ] ;
+                 rdfs:label "isWaterSourceOf"@en .
+
+
+###  https://purl.org/ffdr-ontology#isWeatherConditionOf
+:isWeatherConditionOf rdf:type owl:ObjectProperty ;
+                      rdfs:domain :WeatherCondition ;
+                      rdfs:range :IncidentSite ;
+                      rdfs:label "isWeatherConditionOf"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://purl.org/ffdr-ontology#hasAccessBarrierType
+:hasAccessBarrierType rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :FireLane ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Access barrier type could be a gate, bollards, or none."@en ,
+                                   "The 'hasAccessBarrierType' data property represents the types of barriers that can block access."@en ;
+                      rdfs:label "hasAccessBarrierType"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasAnglesOfApproach
+:hasAnglesOfApproach rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :FireLane ;
+                     rdfs:range xsd:double ;
+                     rdfs:comment "The 'hasAnglesOfApproach' data property represents a given road's angle of approach or departure."@en ;
+                     rdfs:label "hasAnglesOfApproach"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasArea
+:hasArea rdf:type owl:DatatypeProperty ;
+         rdfs:domain :ParkingLot ;
+         rdfs:range xsd:double ;
+         rdfs:comment "The 'hasArea' data property represents the area of a given space."@en ;
+         rdfs:label "hasArea"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasBuildingArea
+:hasBuildingArea rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :IncidentBuilding ;
+                 rdfs:range xsd:double ;
+                 rdfs:comment "The 'hasBuildingArea' data property represents a building's area."@en ;
+                 rdfs:label "hasBuildingArea"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasBuildingHeight
+:hasBuildingHeight rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :IncidentBuilding ;
+                   rdfs:range xsd:double ;
+                   rdfs:comment "The 'hasBuildingHeight' data property represents a building's height."@en ;
+                   rdfs:label "hasBuildingHeight"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasCapacity
+:hasCapacity rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :AreaOfRefuge
+                                         :Balcony
+                                         :Elevator
+                                         :Hallway
+                                         :ParkingArea
+                                         :Ramp
+                                         :Stairway
+                                       )
+                         ] ;
+             rdfs:range xsd:int ;
+             rdfs:comment "The 'hasCapacity' data property represents the number of people or objects (such as vehicles) a given area or room can support."@en ;
+             rdfs:label "hasCapacity"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasClass
+:hasClass rdf:type owl:DatatypeProperty ;
+          rdfs:domain :StandpipeSystem ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The 'hasClass' data property represents the class of a given system."@en ;
+          rdfs:label "hasClass"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasCondition
+:hasCondition rdf:type owl:DatatypeProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :IncidentBuilding
+                                          :Road
+                                        )
+                          ] ;
+              rdfs:range xsd:string ;
+              rdfs:comment "The 'hasCondition' data property represents the state of a given structure."@en ;
+              rdfs:label "hasCondition"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasCoverageZone
+:hasCoverageZone rdf:type owl:DatatypeProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :AutomaticFireExtinguishingSystem
+                                             :FireAlarmSystem
+                                             :FireDepartmentConnection
+                                             :MassNotificationSystem
+                                             :SensorDetector
+                                             :SmokeControlSystem
+                                             :StandpipeSystem
+                                           )
+                             ] ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The 'hasCoverageZone' data property represents a zone covered by a given system."@en ;
+                 rdfs:label "hasCoverageZone"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDemography
+:hasDemography rdf:type owl:DatatypeProperty ;
+               rdfs:domain :IncidentSite ;
+               rdfs:range xsd:string ;
+               rdfs:comment "The 'hasDemography' data property represents the demography of a population at a given location."@en ;
+               rdfs:label "hasDemography"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( :BuildingOccupancy
+                                            :ConcealedSpace
+                                            :ConstructionType
+                                            :ControlPanel
+                                            :Hazard
+                                            :Obstruction
+                                            :RestrictedArea
+                                            :RoofTopElement
+                                            :SmokeandHeatRemovalSystem
+                                            :VerticalOpening
+                                          )
+                            ] ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The 'hasDescription' data property represents a description."@en ;
+                rdfs:label "hasDescription"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDirectionToExit
+:hasDirectionToExit rdf:type owl:DatatypeProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( :Ramp
+                                                :Stairway
+                                              )
+                                ] ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "The 'hasDirectionToExit' data property represents the exit direction of a stairway or ramp."@en ;
+                    rdfs:label "hasDirectionToExit"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDischargeLevel
+:hasDischargeLevel rdf:type owl:DatatypeProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Elevator
+                                               :Ramp
+                                               :Stairway
+                                             )
+                               ] ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "The 'hasDischargeLevel' data property represents the level where a stairway,  a ramp, or an elevator discharge."@en ;
+                   rdfs:label "hasDischargeLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDistanceFromFDC
+:hasDistanceFromFDC rdf:type owl:DatatypeProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( :FireHydrant
+                                                :StaticWaterSource
+                                              )
+                                ] ;
+                    rdfs:range xsd:double ;
+                    rdfs:comment "The 'hasDistanceFromFDC' data property represents the distance between a given element and a fire department connection (FDS)."@en ;
+                    rdfs:label "hasDistanceFromFDC"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDistanceFromIncidentBuilding
+:hasDistanceFromIncidentBuilding rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( :EmergencyServiceProvider
+                                                             :EnvironmentalElement
+                                                             :StaticWaterSource
+                                                           )
+                                             ] ;
+                                 rdfs:range xsd:double ;
+                                 rdfs:comment "The 'hasDistanceFromIncidentBuilding' data property represents the distance between a given element and the incident building."@en ;
+                                 rdfs:label "hasDistanceFromIncidentBuilding"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasDistanceFromWaterSource
+:hasDistanceFromWaterSource rdf:type owl:DatatypeProperty ;
+                            rdfs:domain :FireDepartmentConnection ;
+                            rdfs:range xsd:double ;
+                            rdfs:comment "The 'hasDistanceFromWaterSource' data property represents the distance between a given element and a water source."@en ;
+                            rdfs:label "hasDistanceFromWaterSource"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasEnclosedArea
+:hasEnclosedArea rdf:type owl:DatatypeProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :FireBarrier
+                                             :FirePartition
+                                             :Firewall
+                                             :SmokeBarrier
+                                             :SmokePartition
+                                           )
+                             ] ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The 'hasEnclosedArea' data property represents an area enclosed and bounded by walls."@en ;
+                 rdfs:label "hasEnclosedArea"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasExitTravelDistances
+:hasExitTravelDistances rdf:type owl:DatatypeProperty ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( :Door
+                                                    :Elevator
+                                                    :Ramp
+                                                    :Stairway
+                                                  )
+                                    ] ;
+                        rdfs:range xsd:double ;
+                        rdfs:comment "The 'hasExitTravelDistances' data property represents the distance between a given element and a building exit."@en ;
+                        rdfs:label "hasExitTravelDistances"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFillPressure
+:hasFillPressure rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :FarsFillStation ;
+                 rdfs:range xsd:double ;
+                 rdfs:comment "The 'hasFillPressure' data property represents the pressure required to fill a given system or container."@en ;
+                 rdfs:label "hasFillPressure"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFillTime
+:hasFillTime rdf:type owl:DatatypeProperty ;
+             rdfs:domain :FarsFillStation ;
+             rdfs:range xsd:double ;
+             rdfs:comment "The 'hasFillTime' data property represents the time required to fill a given system or container."@en ;
+             rdfs:label "hasFillTime"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFireExtinguisherRating
+:hasFireExtinguisherRating rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :PortableFireExtinguisher ;
+                           rdfs:range xsd:string ;
+                           rdfs:comment "The 'hasFireExtinguisherRating' data property represents the rating of a given portable fire extinguisher."@en ;
+                           rdfs:label "hasFireExtinguisherRating"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFireFlow
+:hasFireFlow rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :FireHydrant
+                                         :WaterSource
+                                       )
+                         ] ;
+             rdfs:range xsd:double ;
+             rdfs:comment "The 'hasFireFlow' data property represents the flow rate available at 20 psi (the minimum desired pressure) available for firefighting."@en ;
+             rdfs:label "hasFireFlow"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFireResistanceRating
+:hasFireResistanceRating rdf:type owl:DatatypeProperty ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( :FireandSmokeProtectionElement
+                                                     :NonStructuralElement
+                                                     :StructuralElement
+                                                   )
+                                     ] ;
+                         rdfs:range xsd:double ;
+                         rdfs:comment "The 'hasFireResistanceRating' data property represents the fire-resistance rating of a given element."@en ;
+                         rdfs:label "hasFireResistanceRating"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFlammabilityLevel
+:hasFlammabilityLevel rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :hasHazardLevel ;
+                      rdfs:range xsd:int ;
+                      rdfs:comment """The 'hasFlammabilityLevel' data property represents flammable hazard level based on NFPA 704's hazard communication standard. 
+
+Levels from 0 to 4
+
+
+0 - Materials that will not burn under typical fire conditions, including intrinsically non-combustible materials such as concrete, stone, and sand.
+
+1 - Materials that must be preheated before ignition can occur. 
+
+Materials in this degree require considerable preheating, under all ambient temperature conditions, before ignition and combustion can occur. Materials in this degree also include finely divided suspended solids that do not require heating before ignition can occur.
+
+2 - Materials that must be moderately heated or exposed to relatively high ambient temperatures before ignition can occur. 
+
+Under normal conditions, these materials would not form hazardous atmospheres with air, but under high ambient temperatures or under moderate heating, they could release vapour in sufficient quantities to produce hazardous atmospheres with air. Materials in this degree also include finely divided suspended solids that do not require heating before ignition can occur.
+
+3 - Liquids and solids (including finely divided suspended solids) that can be ignited under almost all ambient temperature conditions. 
+
+Materials in this degree produce hazardous atmospheres with air under almost all ambient temperatures are readily ignited under almost all conditions.
+
+4 - Materials that rapidly or completely vaporize at atmospheric pressure and normal ambient temperature or that are readily dispersed in air and burn readily.
+
+
+Source: NFPA 704, 2022"""@en ;
+                      rdfs:label "hasFlammabilityLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasFloorsServed
+:hasFloorsServed rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :Elevator
+                                             :Ramp
+                                             :Stairway
+                                           )
+                             ] ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The 'hasFloorsServed' data property represents the floors served by a given stairway, ramp, or elevator."@en ;
+                 rdfs:label "hasFloorsServed"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasHazardLevel
+:hasHazardLevel rdf:type owl:DatatypeProperty ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:unionOf ( xsd:int
+                                           xsd:string
+                                         )
+                           ] ;
+                rdfs:comment """The 'hasHazardLevel' data property represents a hazard level based on NFPA 704's hazard communication standard. 
+
+Levels from 0 to 4
+
+0-least hazardous
+4-most hazardous"""@en ;
+                rdfs:label "hasHazardLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasHealthHazardSeverityLevel
+:hasHealthHazardSeverityLevel rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf :hasHazardLevel ;
+                              rdfs:range xsd:int ;
+                              rdfs:comment """The 'hasHealthHazardSeverityLevel' data property represents the severity of a health hazard based on NFPA 704's hazard communication standard. 
+
+Levels from 0 to 4
+
+0 - Materials that, under emergency conditions, would offer no hazard beyond that of ordinary combustible materials
+
+1 - Materials that, under emergency conditions, can cause significant irritation
+
+2 - Materials that, under emergency conditions, can cause temporary incapacitation or residual injury
+
+3 - Material that, under emergency conditions, can cause serious or permanent injury
+
+4 - Materials that, under emergency conditions, can be lethal
+
+
+Source: NFPA 704, 2022"""@en ;
+                              rdfs:label "hasHealthHazardSeverityLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasHeight
+:hasHeight rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Window ;
+           rdfs:range xsd:double ;
+           rdfs:comment "The 'hasHeight' data property represents the height of a given element."@en ;
+           rdfs:label "hasHeight"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasID
+:hasID rdf:type owl:DatatypeProperty ;
+       rdfs:domain :NonStructuralElement ;
+       rdfs:range xsd:string ;
+       rdfs:comment "The 'hasID' data property represents the ID of a given element."@en ;
+       rdfs:label "hasID"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasInstabilityLevel
+:hasInstabilityLevel rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :hasHazardLevel ;
+                     rdfs:range xsd:int ;
+                     rdfs:comment """The 'hasInstabilityLevel' data property represents the instability level of a hazard based on NFPA 704's hazard communication standard. 
+
+Levels from 0 to 4
+
+0 - Materials that in themselves are normally stable, even under fire conditions
+
+1 - Materials that in themselves are normally stable but that can become unstable at elevated temperatures and pressures
+
+2 - Materials that readily undergo a violent chemical change at elevated temperatures and pressures
+
+3 -Materials that in themselves are capable of detonation or explosive decomposition or explosive reaction but that require a strong initiating source or must be heated under confinement before initiation
+
+4 - Materials that in themselves are readily capable of detonation or explosive decomposition or explosive reaction at normal temperatures and pressures.
+
+Source: NFPA 704, 2022"""@en ;
+                     rdfs:label "hasInstabilityLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasIsolationValveLocation
+:hasIsolationValveLocation rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :StandpipeSystem ;
+                           rdfs:range xsd:string ;
+                           rdfs:comment "The 'hasIsolationValveLocation' data property represents the location of isolation valves on a standpipe system."@en ;
+                           rdfs:label "hasIsolationValveLocation"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasKey
+:hasKey rdf:type owl:DatatypeProperty ;
+        rdfs:domain :KeyBox ;
+        rdfs:range xsd:string ;
+        rdfs:comment "The 'hasKey' data property represents the keys found inside a given element."@en ;
+        rdfs:label "hasKey"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasKeyLocated
+:hasKeyLocated rdf:type owl:DatatypeProperty ;
+               rdfs:domain :FireCommandCenter ;
+               rdfs:range xsd:string ;
+               rdfs:comment "The 'hasKeyLocated' data property represents the location of the keys to a given room."@en ;
+               rdfs:label "hasKeyLocated"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasLandUse
+:hasLandUse rdf:type owl:DatatypeProperty ;
+            rdfs:domain :IncidentSite ;
+            rdfs:range xsd:string ;
+            rdfs:comment "The 'hasLandUse' data property represents the human activity at a given location."@en ;
+            rdfs:label "hasLandUse"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasLocation
+:hasLocation rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :AirSupply
+                                         :AreaOfRefuge
+                                         :BuildingPlan
+                                         :ConcealedSpace
+                                         :ControlPanel
+                                         :EmergencyPowerOutlet
+                                         :EmergencyServiceProvider
+                                         :EnvironmentalElement
+                                         :ExtremelyValuableMaterial
+                                         :FarsFillStation
+                                         :FireCommandCenter
+                                         :FireDepartmentConnection
+                                         :FireHoseConnection
+                                         :FirePump
+                                         :FireandSmokeProtectionElement
+                                         :Hazard
+                                         :HazardousMaterial
+                                         :Helipad
+                                         :KeyBox
+                                         :NonStructuralElement
+                                         :ParkingArea
+                                         :PortableFireExtinguisher
+                                         :RestrictedArea
+                                         :RoofTopElement
+                                         :SmokeandHeatRemovalSystem
+                                         :StaticWaterSource
+                                         :StructuralElement
+                                         :VerticalOpening
+                                       )
+                         ] ;
+             rdfs:range xsd:string ;
+             rdfs:comment "The 'hasLocation' data property represents the location of a given element or area."@en ;
+             rdfs:label "hasLocation"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasLocationOfControlValve
+:hasLocationOfControlValve rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :AutomaticFireExtinguishingSystem ;
+                           rdfs:range xsd:string ;
+                           rdfs:comment "The 'hasLocationOfControlValve' data property represents the location of the control valves of a given system."@en ;
+                           rdfs:label "hasLocationOfControlValve"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasMachineRoomLocation
+:hasMachineRoomLocation rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Elevator ;
+                        rdfs:range xsd:string ;
+                        rdfs:comment "The 'hasMachineRoomLocation' data property represents the location of the machine room of a given elevator system."@en ;
+                        rdfs:label "hasMachineRoomLocation"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfExit
+:hasNumberOfExit rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :IncidentBuilding ;
+                 rdfs:range xsd:int ;
+                 rdfs:comment "The 'hasNumberOfExit' data property represents the number of exits a given building has."@en ;
+                 rdfs:label "hasNumberOfExit"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfInlet
+:hasNumberOfInlet rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :FireDepartmentConnection ;
+                  rdfs:range xsd:int ;
+                  rdfs:comment "The 'hasNumberOfInlet' data property represents the number of inlets a given connection has."@en ;
+                  rdfs:label "hasNumberOfInlet"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfOutlet
+:hasNumberOfOutlet rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :FireHydrant ;
+                   rdfs:range xsd:int ;
+                   rdfs:comment "The 'hasNumberOfOutlet' data property represents the number of outlets a given connection has."@en ;
+                   rdfs:label "hasNumberOfOutlet"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfParkedCars
+:hasNumberOfParkedCars rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :ParkingArea ;
+                       rdfs:range xsd:int ;
+                       rdfs:comment "The 'hasNumberOfParkedCars' data property represents the number of cars currently parked at a parking area."@en ;
+                       rdfs:label "hasNumberOfParkedCars"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfSimultaneousFill
+:hasNumberOfSimultaneousFill rdf:type owl:DatatypeProperty ;
+                             rdfs:domain :FarsFillStation ;
+                             rdfs:range xsd:int ;
+                             rdfs:comment "The 'hasNumberOfSimultaneousFill' data property represents the number of simultaneous fills provided by a given fill station or panel."@en ;
+                             rdfs:label "hasNumberOfSimultaneousFill"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfStory
+:hasNumberOfStory rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :IncidentBuilding ;
+                  rdfs:range xsd:int ;
+                  rdfs:comment "The 'hasNumberOfStory' data property represents the number of stories in a building."@en ;
+                  rdfs:label "hasNumberOfStory"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasNumberOfSublevel
+:hasNumberOfSublevel rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :IncidentBuilding ;
+                     rdfs:range xsd:int ;
+                     rdfs:comment "The 'hasNumberOfSublevel' data property represents the number of sublevels in a building."@en ;
+                     rdfs:label "hasNumberOfSublevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasOccupantLoad
+:hasOccupantLoad rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :IncidentBuilding ;
+                 rdfs:range xsd:int ;
+                 rdfs:comment "The 'hasOccupantLoad' data property represents the occupant load of a building."@en ;
+                 rdfs:label "hasOccupantLoad"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasOpeningDirection
+:hasOpeningDirection rdf:type owl:DatatypeProperty ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Door
+                                                 :Window
+                                               )
+                                 ] ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "The 'hasOpeningDirection' data property represents the opening direction of a given door or window."@en ;
+                     rdfs:label "hasOpeningDirection"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasPrecipitationValue
+:hasPrecipitationValue rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :WeatherCondition ;
+                       rdfs:range xsd:double ;
+                       rdfs:comment "The 'hasPrecipitationValue' data property represents precipitation value (drizzling, rain, sleet, snow, ice pellets, graupel, or hail) at a given time."@en ;
+                       rdfs:label "hasPrecipitationValue"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasPressure
+:hasPressure rdf:type owl:DatatypeProperty ;
+             rdfs:domain :MunicipalDistributionSystem ;
+             rdfs:range xsd:double ;
+             rdfs:comment "The 'hasPressure' data property represents the pressure of a given system."@en ;
+             rdfs:label "hasPressure"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasRelativeHumidity
+:hasRelativeHumidity rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :WeatherCondition ;
+                     rdfs:range xsd:double ;
+                     rdfs:comment "The 'hasRelativeHumidity' data property represents the relative humidity at a given time."@en ;
+                     rdfs:label "hasRelativeHumidity"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasRequiredMaximumPressure
+:hasRequiredMaximumPressure rdf:type owl:DatatypeProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( :AutomaticSprinklerSystem
+                                                        :StandpipeSystem
+                                                      )
+                                        ] ;
+                            rdfs:range xsd:double ;
+                            rdfs:comment "The 'hasRequiredMaximumPressure' data property represents the maximum pressure required by a given system."@en ;
+                            rdfs:label "hasRequiredMaximumPressure"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasRequiredMinimumPressure
+:hasRequiredMinimumPressure rdf:type owl:DatatypeProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( :AutomaticSprinklerSystem
+                                                        :StandpipeSystem
+                                                      )
+                                        ] ;
+                            rdfs:range xsd:double ;
+                            rdfs:comment "The 'hasRequiredMinimumPressure' data property represents the minimum pressure required by a given system."@en ;
+                            rdfs:label "hasRequiredMinimumPressure"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasSize
+:hasSize rdf:type owl:DatatypeProperty ;
+         rdfs:domain :HoseConnection ;
+         rdfs:range xsd:double ;
+         rdfs:comment "The 'hasSize' data property represents the size of a given element."@en ;
+         rdfs:label "hasSize"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasSlope
+:hasSlope rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Road
+                                      :SurroundingTerrain
+                                    )
+                      ] ;
+          rdfs:range xsd:double ;
+          rdfs:comment "The 'hasSlope' data property represents the slope of a given terrain."@en ;
+          rdfs:label "hasSlope"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasSpecialHazard
+:hasSpecialHazard rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "The 'hasSpecialHazard' data property represents a special type of hazard based on NFPA 704's hazard communication standard."@en ;
+                  rdfs:label "hasSpecialHazard"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasSpecies
+:hasSpecies rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Vegetation ;
+            rdfs:range xsd:string ;
+            rdfs:comment "The 'hasSpecies' data property represents the species of given vegetation."@en ;
+            rdfs:label "hasSpecies"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasStatus
+:hasStatus rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Road ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The 'hasStatus' data property represents the status of a given structure."@en ;
+           rdfs:label "hasStatus"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasTemperature
+:hasTemperature rdf:type owl:DatatypeProperty ;
+                rdfs:domain :WeatherCondition ;
+                rdfs:range xsd:double ;
+                rdfs:comment "The 'hasTemperature' data property represents the temperature at a given time."@en ;
+                rdfs:label "hasTemperature"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasThickness
+:hasThickness rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Wall ;
+              rdfs:range xsd:double ;
+              rdfs:comment "The 'hasThickness' data property represents the thickness of a given element."@en ;
+              rdfs:label "hasThickness"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasTimeMark
+:hasTimeMark rdf:type owl:DatatypeProperty ;
+             rdfs:domain :WeatherCondition ;
+             rdfs:range xsd:dateTimeStamp ;
+             rdfs:comment "The 'hasTimeMark' data property represents a specific time."@en ;
+             rdfs:label "hasTimeMark"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasTrafficLevel
+:hasTrafficLevel rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :RoadToIncident ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The 'hasTrafficLevel' data property represents the traffic level on a given road"@en ;
+                 rdfs:label "hasTrafficLevel"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasTurningRadius
+:hasTurningRadius rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :FireLane ;
+                  rdfs:range xsd:double ;
+                  rdfs:comment "The 'hasTurningRadius' data property represents the inside or outside turning radius of a given road."@en ;
+                  rdfs:label "hasTurningRadius"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasType
+:hasType rdf:type owl:DatatypeProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :AirSupply
+                                     :BuildingPlan
+                                     :ConstructionType
+                                     :EmergencyPowerOutlet
+                                     :FireHydrant
+                                     :Hazard
+                                     :HoseConnection
+                                     :MassNotificationSystem
+                                     :Obstruction
+                                     :PortableFireExtinguisher
+                                     :Road
+                                     :RoofTopElement
+                                     :SmokeControlSystem
+                                     :SmokeandHeatRemovalSystem
+                                     :StandpipeSystem
+                                     :StaticWaterSource
+                                   )
+                     ] ;
+         rdfs:range xsd:string ;
+         rdfs:comment "The 'hasType' data property represents a type."@en ;
+         rdfs:label "hasType"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasTypeOfSignalInitiator
+:hasTypeOfSignalInitiator rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :FireAlarmSystem ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment """Possible types of alarm signal initiator:
+
+- Manual pull stations,
+- Sprinkler flow detectors,
+- Smoke detector
+- Heat detectors
+- Flame detectors
+- Optical detectors"""@en ,
+                                       "The 'hasTypeOfSignalInitiator' data property represents the type of alarm signal initiator."@en ;
+                          rdfs:label "hasTypeOfSignalInitiator"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasVerticalClearance
+:hasVerticalClearance rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :FireLane ;
+                      rdfs:range xsd:double ;
+                      rdfs:comment "The 'hasVerticalClearance' data property represents the vertical clearance of a given road."@en ;
+                      rdfs:label "hasVerticalClearance"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasWidth
+:hasWidth rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Balcony
+                                      :Door
+                                      :Hallway
+                                      :Ramp
+                                      :Road
+                                      :Stairway
+                                      :Window
+                                    )
+                      ] ;
+          rdfs:range xsd:double ;
+          rdfs:comment "The 'hasWidth' data property represents width."@en ;
+          rdfs:label "hasWidth"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasWindDirection
+:hasWindDirection rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :WeatherCondition ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "The 'hasWindDirection' data property represents wind direction at a given time."@en ;
+                  rdfs:label "hasWindDirection"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasWindSpeed
+:hasWindSpeed rdf:type owl:DatatypeProperty ;
+              rdfs:domain :WeatherCondition ;
+              rdfs:range xsd:double ;
+              rdfs:comment "The 'hasWindSpeed' data property represents wind speed at a given time."@en ;
+              rdfs:label "hasWindSpeed"@en .
+
+
+###  https://purl.org/ffdr-ontology#hasYearOfConstruction
+:hasYearOfConstruction rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :IncidentBuilding ;
+                       rdfs:range xsd:int ;
+                       rdfs:label "The 'hasYearOfConstruction ' data property represents the construction year of a building"@en ,
+                                  "hasYearOfConstruction"@en .
+
+
+###  https://purl.org/ffdr-ontology#includeHazardousOperation
+:includeHazardousOperation rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :IncidentBuilding ;
+                           rdfs:range xsd:boolean ;
+                           rdfs:comment "The 'includeHazardousOperation' data property represents hazardous operations taking place in a given building."@en ;
+                           rdfs:label "includeHazardousOperation"@en .
+
+
+###  https://purl.org/ffdr-ontology#isAbandoned
+:isAbandoned rdf:type owl:DatatypeProperty ;
+             rdfs:domain :BuildingOccupancy ;
+             rdfs:range xsd:boolean ;
+             rdfs:comment "The 'isAbandoned' data property checks whether a given building is abandoned or not."@en ;
+             rdfs:label "isAbandoned"@en .
+
+
+###  https://purl.org/ffdr-ontology#isAccessible
+:isAccessible rdf:type owl:DatatypeProperty ;
+              rdfs:domain :RoofAssembly ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "The 'isAccessible' data property checks whether a given area is accessible or not."@en ;
+              rdfs:label "isAccessible"@en .
+
+
+###  https://purl.org/ffdr-ontology#isControlValveOn
+:isControlValveOn rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :AutomaticSprinklerSystem ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:comment "The 'isControlValveOn' data property checks whether the control valve of a given system is turned on or not."@en ;
+                  rdfs:label "isControlValveOn"@en .
+
+
+###  https://purl.org/ffdr-ontology#isDecontaminationRequired
+:isDecontaminationRequired rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :HazardousMaterial ;
+                           rdfs:range xsd:boolean ;
+                           rdfs:comment "The 'isDecontaminationRequired' data property checks whether decontamination is required or not."@en ;
+                           rdfs:label "isDecontaminationRequired"@en .
+
+
+###  https://purl.org/ffdr-ontology#isExit
+:isExit rdf:type owl:DatatypeProperty ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( :Door
+                                    :Ramp
+                                    :Stairway
+                                  )
+                    ] ;
+        rdfs:range xsd:boolean ;
+        rdfs:comment "The 'isExit' data property checks whether a given element is an exit or not."@en ;
+        rdfs:label "isExit"@en .
+
+
+###  https://purl.org/ffdr-ontology#isFunctional
+:isFunctional rdf:type owl:DatatypeProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :Door
+                                          :Elevator
+                                          :FireHydrant
+                                          :WaterSource
+                                          :Window
+                                        )
+                          ] ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "The 'isFunctional' data property checks whether a given element or system is functional or not."@en ;
+              rdfs:label "isFunctional"@en .
+
+
+###  https://purl.org/ffdr-ontology#isInAlarm
+:isInAlarm rdf:type owl:DatatypeProperty ;
+           rdfs:domain :SensorDetector ;
+           rdfs:range xsd:boolean ;
+           rdfs:comment "The 'isInAlarm' data property checks whether a given element's or system's alarm is activated or not."@en ;
+           rdfs:label "isInAlarm"@en .
+
+
+###  https://purl.org/ffdr-ontology#isIsolationValveOpen
+:isIsolationValveOpen rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :StandpipeSystem ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:comment "The 'isIsolationValveOpen' data property checks whether the isolation valve of a given element or system is open or not."@en ;
+                      rdfs:label "isIsolationValveOpen"@en .
+
+
+###  https://purl.org/ffdr-ontology#isLightweightConstruction
+:isLightweightConstruction rdf:type owl:DatatypeProperty ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( :FloorAssembly
+                                                       :RoofAssembly
+                                                     )
+                                       ] ;
+                           rdfs:range xsd:boolean ;
+                           rdfs:comment "The 'isLightweightConstruction' data property checks whether a given assembly is made of lightweight construction or not."@en ;
+                           rdfs:label "isLightweightConstruction"@en .
+
+
+###  https://purl.org/ffdr-ontology#isOnExterior
+:isOnExterior rdf:type owl:DatatypeProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :ExteriorWall
+                                          :ExteriorWindow
+                                          :Window
+                                        )
+                          ] ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "The 'isOnExterior' data property checks whether a given element is on the exterior of a building or not."@en ;
+              rdfs:label "isOnExterior"@en .
+
+
+###  https://purl.org/ffdr-ontology#isPrimaryFireServiceEntryPoint
+:isPrimaryFireServiceEntryPoint rdf:type owl:DatatypeProperty ;
+                                rdfs:domain :Door ;
+                                rdfs:range xsd:boolean ;
+                                rdfs:comment "The 'isPrimaryFireServiceEntryPoint' data property checks whether a given entry is the primary fire service entry point or not."@en ;
+                                rdfs:label "isPrimaryFireServiceEntryPoint"@en .
+
+
+###  https://purl.org/ffdr-ontology#isQualifiedForEvacuation
+:isQualifiedForEvacuation rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :Elevator ;
+                          rdfs:range xsd:boolean ;
+                          rdfs:comment "The 'isQualifiedForEvacuation' data property checks whether an element or system can be used for evacuation or not."@en ;
+                          rdfs:label "isQualifiedForEvacuation"@en .
+
+
+###  https://purl.org/ffdr-ontology#isRoofAccess
+:isRoofAccess rdf:type owl:DatatypeProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :Ramp
+                                          :Stairway
+                                        )
+                          ] ;
+              rdfs:range xsd:boolean ;
+              rdfs:comment "The 'isRoofAccess' data property checks whether a given element or system can provide access to a roof or not."@en ;
+              rdfs:label "isRoofAccess"@en .
+
+
+###  https://purl.org/ffdr-ontology#isShaftway
+:isShaftway rdf:type owl:DatatypeProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Door
+                                        :Window
+                                      )
+                        ] ;
+            rdfs:range xsd:boolean ;
+            rdfs:comment "The 'isShaftway' data property checks whether a given element has a shaft (vertical opening) behind it or not."@en ;
+            rdfs:label "isShaftway"@en .
+
+
+###  https://purl.org/ffdr-ontology#isSystemActivated
+:isSystemActivated rdf:type owl:DatatypeProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :AutomaticFireExtinguishingSystem
+                                               :FireAlarmSystem
+                                               :SmokeControlSystem
+                                               :SmokeandHeatRemovalSystem
+                                             )
+                               ] ;
+                   rdfs:range xsd:boolean ;
+                   rdfs:comment "The 'isSystemActivated' data property checks whether a given system is activated or not."@en ;
+                   rdfs:label "isSystemActivated"@en .
+
+
+###  https://purl.org/ffdr-ontology#isUtilityRunning
+:isUtilityRunning rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :BuildingUtilitySystem ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:comment "The 'isUtilityRunning' data property checks whether a given utility is running or not."@en ;
+                  rdfs:label "isUtilityRunning"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://purl.org/ffdr-ontology#Address
+:Address rdf:type owl:Class ;
+         owl:disjointWith :BuildingComponent ,
+                          :EnvironmentalElement ,
+                          :Hazard ;
+         rdfs:comment "The 'Address' class represents different types of addresses needed during a building fire emergency."@en ;
+         rdfs:label "Address"@en .
+
+
+###  https://purl.org/ffdr-ontology#AirSupply
+:AirSupply rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasLocation ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasType ;
+                             owl:someValuesFrom xsd:string
+                           ] ;
+           owl:disjointWith :BuildingComponent ,
+                            :EnvironmentalElement ,
+                            :Hazard ;
+           rdfs:comment "Air supply type: Fire department connection panel (FDCP) or fixed air storage system"@en ,
+                        "The 'AirSupply' class represents an air supply system used to fill firefighters' breathing apparatus cylinders."@en ;
+           rdfs:label "AirSupply"@en .
+
+
+###  https://purl.org/ffdr-ontology#AlarmSystemAnnunciatorPanel
+:AlarmSystemAnnunciatorPanel rdf:type owl:Class ;
+                             rdfs:subClassOf :ControlPanel ;
+                             rdfs:comment "The 'AlarmSystemAnnunciatorPanel' class represents annunciator panels that display information about the type and location of an active alarm."@en ;
+                             rdfs:label "AlarmSystemAnnunciatorPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#AlternativeAutomaticFireExtinguishingSystem
+:AlternativeAutomaticFireExtinguishingSystem rdf:type owl:Class ;
+                                             rdfs:subClassOf :AutomaticFireExtinguishingSystem ;
+                                             owl:disjointWith :AutomaticSprinklerSystem ;
+                                             rdfs:comment "The 'AlternativeAutomaticFireExtinguishingSystem' class represents an automatic fire extinguishing system installed in a building instead of a sprinkler system."@en ;
+                                             rdfs:label "AlternativeAutomaticFireExtinguishingSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#AreaOfRefuge
+:AreaOfRefuge rdf:type owl:Class ;
+              rdfs:subClassOf :BuildingComponent ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasCapacity ;
+                                owl:someValuesFrom xsd:int
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasLocation ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+              owl:disjointWith :Facade ;
+              rdfs:comment "The 'AreaOfRefuge' class represents an area where persons unable to use stairways can remain temporarily to await instructions or assistance during emergency evacuation (2018 International Fire Code)."@en ;
+              rdfs:label "AreaOfRefuge"@en .
+
+
+###  https://purl.org/ffdr-ontology#AutomaticFireExtinguishingSystem
+:AutomaticFireExtinguishingSystem rdf:type owl:Class ;
+                                  rdfs:subClassOf :BuildingSafetySystem ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :hasConnectionWith ;
+                                                    owl:someValuesFrom :FireAlarmSystem
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :hasCoverageZone ;
+                                                    owl:someValuesFrom xsd:string
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :hasLocationOfControlValve ;
+                                                    owl:someValuesFrom xsd:string
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :isSystemActivated ;
+                                                    owl:someValuesFrom xsd:boolean
+                                                  ] ;
+                                  rdfs:comment "The 'AutomaticFireExtinguishingSystem' class represents an automatic fire extinguishing system installed in a building."@en ;
+                                  rdfs:label "AutomaticFireExtinguishingSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#AutomaticSprinklerSystem
+:AutomaticSprinklerSystem rdf:type owl:Class ;
+                          rdfs:subClassOf :AutomaticFireExtinguishingSystem ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasWaterSource ;
+                                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                 owl:unionOf ( :FireDepartmentConnection
+                                                                               :WaterSource
+                                                                             )
+                                                               ]
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasRequiredMaximumPressure ;
+                                            owl:someValuesFrom xsd:double
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasRequiredMinimumPressure ;
+                                            owl:someValuesFrom xsd:double
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :isControlValveOn ;
+                                            owl:someValuesFrom xsd:boolean
+                                          ] ;
+                          rdfs:comment "The 'AutomaticSprinklerSystem' class represents an integrated system of underground and overhead piping designed in accordance with fire protection engineering standards (2018 International Fire Code)."@en ;
+                          rdfs:label "AutomaticSprinklerSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#BackUpPowerSupplySystem
+:BackUpPowerSupplySystem rdf:type owl:Class ;
+                         rdfs:subClassOf :BuildingUtilitySystem ;
+                         rdfs:comment "The 'BackUpPowerSupplySystem' class represents a building's backup power supply system."@en ;
+                         rdfs:label "BackUpPowerSupplySystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#Balcony
+:Balcony rdf:type owl:Class ;
+         rdfs:subClassOf :NonStructuralElement ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasCapacity ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:int
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasWidth ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:double
+                         ] ;
+         rdfs:comment "The 'Balcony' class represents an exterior floor projecting from, and supported by, a structure without additional independent supports (NFPA Glossary of Terms)."@en ;
+         rdfs:label "Balcony"@en .
+
+
+###  https://purl.org/ffdr-ontology#Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf :EnvironmentalElement ;
+          rdfs:comment "The 'Building' any structure utilized or intended for supporting or sheltering any occupancy (2018 International Fire Code)."@en ;
+          rdfs:label "Building"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingAddress
+:BuildingAddress rdf:type owl:Class ;
+                 rdfs:subClassOf :Address ;
+                 rdfs:comment "The 'BuildingAddress' class represents a building's address."@en ;
+                 rdfs:label "BuildingAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingComponent
+:BuildingComponent rdf:type owl:Class ;
+                   owl:disjointWith :BuildingOccupancy ,
+                                    :BuildingPlan ,
+                                    :ConstructionType ,
+                                    :ControlPanel ,
+                                    :EmergencyServiceProvider ,
+                                    :FireCommandCenter ,
+                                    :HoseConnection ,
+                                    :IncidentBuilding ,
+                                    :IncidentSite ,
+                                    :Material ,
+                                    :Road ,
+                                    :SurroundingTerrain ,
+                                    :WaterSource ,
+                                    :WeatherCondition ;
+                   rdfs:comment "The 'BuildingComponent' class represents different building components that firefighters may interact with during a building fire emergency."@en ;
+                   rdfs:label "BuildingComponent"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingEngineerContactAddress
+:BuildingEngineerContactAddress rdf:type owl:Class ;
+                                rdfs:subClassOf :Address ;
+                                rdfs:comment "The 'BuildingEngineerContactAddress' class represents a building engineer's contact address."@en ;
+                                rdfs:label "BuildingEngineerContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingManagerContactAddress
+:BuildingManagerContactAddress rdf:type owl:Class ;
+                               rdfs:subClassOf :Address ;
+                               rdfs:comment "The 'BuildingManagerContactAddress' class represents a building manager's contact address."@en ;
+                               rdfs:label "BuildingManagerContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingOccupancy
+:BuildingOccupancy rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( :Assembly
+                                                     :Business
+                                                     :Educational
+                                                     :FactoryAndIndustrial
+                                                     :HighHazard
+                                                     :Institutional
+                                                     :Mercantile
+                                                     :Residential
+                                                     :Storage
+                                                     :UtilityAndMiscellaneous
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDescription ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isAbandoned ;
+                                     owl:someValuesFrom xsd:boolean
+                                   ] ;
+                   owl:disjointWith :EnvironmentalElement ,
+                                    :Hazard ;
+                   rdfs:comment "The 'BuildingOccupancy' class represents the purpose of a building based on the classification given in the International Building Code (2018)."@en ;
+                   rdfs:label "BuildingOccupancy"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingPlan
+:BuildingPlan rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasLocation ;
+                                owl:someValuesFrom xsd:string
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasType ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+              owl:disjointWith :EnvironmentalElement ,
+                               :Hazard ;
+              rdfs:comment "The 'BuildingPlan' class represents building plans such as schematic plans of the building and a fire emergency evacuation plan."@en ;
+              rdfs:label "BuildingPlan"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingSafetySystem
+:BuildingSafetySystem rdf:type owl:Class ;
+                      rdfs:subClassOf :BuildingComponent ;
+                      rdfs:comment "The 'BuildingSafetySystem' class represents components of a building geared towards building safety."@en ;
+                      rdfs:label "BuildingSafetySystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#BuildingUtilitySystem
+:BuildingUtilitySystem rdf:type owl:Class ;
+                       rdfs:subClassOf :BuildingComponent ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasAddress ;
+                                         owl:someValuesFrom :UtilityContactAddress
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasControlPanel ;
+                                         owl:someValuesFrom :UtilityControlPanel
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :isUtilityRunning ;
+                                         owl:someValuesFrom xsd:boolean
+                                       ] ;
+                       owl:disjointWith :Facade ;
+                       rdfs:comment "The 'BuildingUtilitySystem' class represents utilities found in a building."@en ;
+                       rdfs:label "BuildingUtilitySystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#CarbonMonoxideDetector
+:CarbonMonoxideDetector rdf:type owl:Class ;
+                        rdfs:subClassOf :SensorDetector ;
+                        rdfs:comment "The 'CarbonMonoxideDetector' class represents a device with an integral sensor to detect carbon monoxide gas and transmit an alarm signal to a connected alarm control unit (2018 International Fire Code)."@en ;
+                        rdfs:label "CarbonMonoxideDetector"@en .
+
+
+###  https://purl.org/ffdr-ontology#CbrSensor
+:CbrSensor rdf:type owl:Class ;
+           rdfs:subClassOf :SensorDetector ;
+           rdfs:comment "The 'CbrSensor' class represents Chemical/Biological/Radiation (CBR) sensors installed in a building."@en ;
+           rdfs:label "CbrSensor"@en .
+
+
+###  https://purl.org/ffdr-ontology#ConcealedSpace
+:ConcealedSpace rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingComponent ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasFireExtinguishingSystem ;
+                                  owl:someValuesFrom :AutomaticFireExtinguishingSystem
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasDescription ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasLocation ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                owl:disjointWith :Facade ;
+                rdfs:comment "The 'ConcealedSpace' class represents that portion(s) of a building behind walls, over suspended ceilings, in pipe chases, and in attics whose size might normally range from 44.45 mm (13∕ 4 in.) stud spaces to 2.44 m (8 ft.) interstitial truss spaces and that might contain combustible materials such as building structural members, thermal and/or electrical insulation, and ducting (NFPA Glossary of Terms)."@en ;
+                rdfs:label "ConcealedSpace"@en .
+
+
+###  https://purl.org/ffdr-ontology#ConstructionType
+:ConstructionType rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Class ;
+                                        owl:oneOf ( :TypeI
+                                                    :TypeII
+                                                    :TypeIII
+                                                    :TypeIV
+                                                    :TypeV
+                                                  )
+                                      ] ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasDescription ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasType ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ;
+                  owl:disjointWith :EnvironmentalElement ,
+                                   :Hazard ;
+                  rdfs:comment "The 'ConstructionType' class represents the combination of materials used in the construction of a building or structure, based on the varying degrees of fire resistance and combustibility (NFPA Glossary of Terms)"@en ;
+                  rdfs:label "ConstructionType"@en .
+
+
+###  https://purl.org/ffdr-ontology#ControlPanel
+:ControlPanel rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDescription ;
+                                owl:someValuesFrom xsd:string
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasLocation ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+              owl:disjointWith :EnvironmentalElement ,
+                               :Hazard ;
+              rdfs:comment "The 'ControlPanel' class represents different control panels used to control several building systems and utilities."@en ;
+              rdfs:label "ControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#Door
+:Door rdf:type owl:Class ;
+      rdfs:subClassOf :NonStructuralElement ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasControlPanel ;
+                        owl:someValuesFrom :DoorUnlockingSystemControlPanel
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasOpeningDirection ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isFunctional ;
+                        owl:someValuesFrom xsd:boolean
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isPrimaryFireServiceEntryPoint ;
+                        owl:someValuesFrom xsd:boolean
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isShaftway ;
+                        owl:someValuesFrom xsd:boolean
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasExitTravelDistances ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:double
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasWidth ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:double
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isExit ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:boolean
+                      ] ;
+      rdfs:comment "The 'Door' class represents doors in a building."@en ;
+      rdfs:label "Door"@en .
+
+
+###  https://purl.org/ffdr-ontology#DoorUnlockingSystemControlPanel
+:DoorUnlockingSystemControlPanel rdf:type owl:Class ;
+                                 rdfs:subClassOf :ControlPanel ;
+                                 rdfs:comment "The 'DoorUnlockingSystemControlPanel' class represents a control panel used to unlock some or all doors in a building."@en ;
+                                 rdfs:label "DoorUnlockingSystemControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#Elevator
+:Elevator rdf:type owl:Class ;
+          rdfs:subClassOf :NonStructuralElement ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasControlPanel ;
+                            owl:someValuesFrom :ElevatorOverrideControlPanel
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFireExtinguishingSystem ;
+                            owl:someValuesFrom :AutomaticFireExtinguishingSystem
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCapacity ;
+                            owl:someValuesFrom xsd:int
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDischargeLevel ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFloorsServed ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasMachineRoomLocation ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isFunctional ;
+                            owl:someValuesFrom xsd:boolean
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isQualifiedForEvacuation ;
+                            owl:someValuesFrom xsd:boolean
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasExitTravelDistances ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:double
+                          ] ;
+          rdfs:comment "The 'Elevator' class represents elevators that may be found in a building."@en ;
+          rdfs:label "Elevator"@en .
+
+
+###  https://purl.org/ffdr-ontology#ElevatorOverrideControlPanel
+:ElevatorOverrideControlPanel rdf:type owl:Class ;
+                              rdfs:subClassOf :ControlPanel ;
+                              rdfs:comment "The 'ElevatorOverrideControlPanel' class represents a control panel used to override elevators in a building."@en ;
+                              rdfs:label "ElevatorOverrideControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#EmergencyPowerOutlet
+:EmergencyPowerOutlet rdf:type owl:Class ;
+                      rdfs:subClassOf :BuildingSafetySystem ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasLocation ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasType ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ;
+                      rdfs:comment "The 'EmergencyPowerOutlet' class represents emergency power outlets built into a building that can provide power to electric-operated firefighting equipment (OSHA, 2015)."@en ;
+                      rdfs:label "EmergencyPowerOutlet"@en .
+
+
+###  https://purl.org/ffdr-ontology#EmergencyServiceProvider
+:EmergencyServiceProvider rdf:type owl:Class ;
+                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasAddress ;
+                                            owl:someValuesFrom :EmergencyServiceProviderContactAddress
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasDistanceFromIncidentBuilding ;
+                                            owl:someValuesFrom xsd:double
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasLocation ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ;
+                          owl:disjointWith :EnvironmentalElement ,
+                                           :Hazard ;
+                          rdfs:comment "The 'EmergencyServiceProvider' class represents emergency service providers involved in a building fire emergency response."@en ;
+                          rdfs:label "EmergencyServiceProvider"@en .
+
+
+###  https://purl.org/ffdr-ontology#EmergencyServiceProviderContactAddress
+:EmergencyServiceProviderContactAddress rdf:type owl:Class ;
+                                        rdfs:subClassOf :Address ;
+                                        rdfs:comment "The 'EmergencyServiceProviderContactAddress' class represents different emergency service provider's contact address."@en ;
+                                        rdfs:label "EmergencyServiceProviderContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#EnvironmentalElement
+:EnvironmentalElement rdf:type owl:Class ;
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasDistanceFromIncidentBuilding ;
+                                        owl:someValuesFrom xsd:double
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasLocation ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ;
+                      owl:disjointWith :FireCommandCenter ,
+                                       :HoseConnection ,
+                                       :IncidentSite ,
+                                       :Material ,
+                                       :SurroundingTerrain ,
+                                       :WaterSource ,
+                                       :WeatherCondition ;
+                      rdfs:comment "The 'EnvironmentalElement' class represents environmental elements surrounding an incident building (the building with a fire emergency)."@en ;
+                      rdfs:label "EnvironmentalElement"@en .
+
+
+###  https://purl.org/ffdr-ontology#ExteriorDoor
+:ExteriorDoor rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Door
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :isExit ;
+                                                           owl:hasValue "true"^^xsd:boolean
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Facade ;
+              rdfs:comment "The 'ExteriorDoor' class represents doors found on the exterior of a building."@en ;
+              rdfs:label "ExteriorDoor"@en .
+
+
+###  https://purl.org/ffdr-ontology#ExteriorWall
+:ExteriorWall rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Wall
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :isOnExterior ;
+                                                           owl:hasValue "true"^^xsd:boolean
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Facade ;
+              rdfs:comment "The 'ExteriorWall' class represents A wall, bearing or nonbearing, that is used as an enclosing wall for a building, other than a fire wall, and that has a slope of 60 degrees (1.05 rad) or greater with the horizontal plane (2018 International Fire Code)"@en ;
+              rdfs:label "ExteriorWall"@en .
+
+
+###  https://purl.org/ffdr-ontology#ExteriorWindow
+:ExteriorWindow rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Window
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :isOnExterior ;
+                                                             owl:hasValue "true"^^xsd:boolean
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Facade ;
+                rdfs:comment "The 'ExteriorWindow' class represents windows found on the exterior of a building."@en ;
+                rdfs:label "ExteriorWindow"@en .
+
+
+###  https://purl.org/ffdr-ontology#ExtremelyValuableMaterial
+:ExtremelyValuableMaterial rdf:type owl:Class ;
+                           rdfs:subClassOf :BuildingComponent ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :hasLocation ;
+                                             owl:someValuesFrom xsd:string
+                                           ] ;
+                           owl:disjointWith :Facade ;
+                           rdfs:comment "The 'ExtremelyValuableMaterial' class represents extremely valuable materials that may be found in a building."@en ;
+                           rdfs:label "ExtremelyValuableMaterial"@en .
+
+
+###  https://purl.org/ffdr-ontology#Facade
+:Facade rdf:type owl:Class ;
+        rdfs:subClassOf :BuildingComponent ;
+        owl:disjointWith :HazardousMaterial ,
+                         :Helipad ,
+                         :KeyBox ,
+                         :ParkingArea ,
+                         :RestrictedArea ,
+                         :RoofTopElement ,
+                         :StructuralElement ,
+                         :VerticalOpening ;
+        rdfs:comment "The 'Facade' class represents the facade of a building."@en ;
+        rdfs:label "Facade"@en .
+
+
+###  https://purl.org/ffdr-ontology#FarsControlPanel
+:FarsControlPanel rdf:type owl:Class ;
+                  rdfs:subClassOf :ControlPanel ;
+                  rdfs:comment "The 'FarsControlPanel' class represents a control panel used to control a firefighter's air replenishment system (FARS)  that may be found in a building."@en ;
+                  rdfs:label "FarsControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#FarsFillStation
+:FarsFillStation rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingSafetySystem ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasControlPanel ;
+                                   owl:someValuesFrom :FarsControlPanel
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasFillPressure ;
+                                   owl:someValuesFrom xsd:double
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasFillTime ;
+                                   owl:someValuesFrom xsd:double
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasLocation ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasNumberOfSimultaneousFill ;
+                                   owl:someValuesFrom xsd:int
+                                 ] ;
+                 rdfs:comment "The 'FarsFillStation' class represents firefighter air replenishment system (FARS) filling stations or panels that allow firefighters to replenish their breathing apparatus cylinders (OSHA, 2015)."@en ;
+                 rdfs:label "FarsFillStation"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireAlarmSystem
+:FireAlarmSystem rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingSafetySystem ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasControlPanel ;
+                                   owl:someValuesFrom :AlarmSystemAnnunciatorPanel
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCoverageZone ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTypeOfSignalInitiator ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isSystemActivated ;
+                                   owl:someValuesFrom xsd:boolean
+                                 ] ;
+                 rdfs:comment "The 'FireAlarmSystem' class represents a system or portion of a combination system consisting of components and circuits arranged to monitor and annunciate the status of fire alarm or supervisory signal-initiating devices and to initiate the appropriate response to those signals (2018 International Fire Code)."@en ;
+                 rdfs:label "FireAlarmSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireBarrier
+:FireBarrier rdf:type owl:Class ;
+             rdfs:subClassOf :FireandSmokeProtectionElement ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasEnclosedArea ;
+                               owl:someValuesFrom xsd:string
+                             ] ;
+             rdfs:comment "The 'FireBarrier' class represents a fire barrier, which is a fire-resistance-rated wall assembly of materials designed to restrict the spread of fire in which continuity of the wall is maintained (2018 International Fire Code)."@en ;
+             rdfs:label "FireBarrier"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireCommandCenter
+:FireCommandCenter rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :contains ;
+                                     owl:someValuesFrom :ControlPanel
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasKeyLocated ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasLocation ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ;
+                   owl:disjointWith :Hazard ;
+                   rdfs:comment "The 'FireCommandCenter' class represents The principal attended or unattended location where the status of detection, alarm communications and control systems is displayed, and from which the system(s) can be manually controlled. (2018 International Fire Code)."@en ;
+                   rdfs:label "FireCommandCenter"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireDepartmentCommunicationSystemPanel
+:FireDepartmentCommunicationSystemPanel rdf:type owl:Class ;
+                                        rdfs:subClassOf :ControlPanel ;
+                                        rdfs:comment "The 'FireDepartmentCommunicationSystemPanel' class represents a control panel used to control a fire department communication system that may be found in a building."@en ;
+                                        rdfs:label "FireDepartmentCommunicationSystemPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireDepartmentConnection
+:FireDepartmentConnection rdf:type owl:Class ;
+                          rdfs:subClassOf :BuildingSafetySystem ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasHoseConnection ;
+                                            owl:someValuesFrom :HoseConnection
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasWaterSource ;
+                                            owl:someValuesFrom :WaterSource
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasCoverageZone ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasDistanceFromWaterSource ;
+                                            owl:someValuesFrom xsd:double
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasLocation ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasNumberOfInlet ;
+                                            owl:someValuesFrom xsd:int
+                                          ] ;
+                          rdfs:comment "The 'FireDepartmentConnection' class represents a connection through which the fire department can pump supplemental water into the fixed water-based fire-fighting system, sprinkler system, standpipe system, or other systems furnishing water for fire suppression and extinguishment to supplement existing water supplies (NFPA Glossary of Terms)."@en ;
+                          rdfs:label "FireDepartmentConnection"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireHoseConnection
+:FireHoseConnection rdf:type owl:Class ;
+                    rdfs:subClassOf :BuildingSafetySystem ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasHoseConnection ;
+                                      owl:someValuesFrom :HoseConnection
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasWaterSource ;
+                                      owl:someValuesFrom :StandpipeSystem
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasLocation ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ;
+                    rdfs:comment "The 'FireHoseConnection' class represents fire hose connections which are outlets of a standpipe system where firefighters connect their fire hose (NFPA 14)."@en ;
+                    rdfs:label "FireHoseConnection"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireHydrant
+:FireHydrant rdf:type owl:Class ;
+             rdfs:subClassOf :EnvironmentalElement ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasHoseConnection ;
+                               owl:someValuesFrom :HoseConnection
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasWaterSource ;
+                               owl:someValuesFrom :WaterSource
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDistanceFromFDC ;
+                               owl:someValuesFrom xsd:double
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFireFlow ;
+                               owl:someValuesFrom xsd:double
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasNumberOfOutlet ;
+                               owl:someValuesFrom xsd:int
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasType ;
+                               owl:someValuesFrom xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :isFunctional ;
+                               owl:someValuesFrom xsd:boolean
+                             ] ;
+             rdfs:comment "The 'FireHydrant' class represents a valved connection on a water supply system having one or more outlets and that is used to supply hose and fire department pumpers with water (NFPA Glossary of Terms)."@en ,
+                          "Type: Wet barrel hydrants (on pressurized water distribution systems), Dry barrel hydrants (used on static water supply sources)"@en ;
+             rdfs:label "FireHydrant"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireLane
+:FireLane rdf:type owl:Class ;
+          rdfs:subClassOf :EnvironmentalElement ,
+                          :Road ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAccessBarrierType ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAnglesOfApproach ;
+                            owl:someValuesFrom xsd:double
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTurningRadius ;
+                            owl:someValuesFrom xsd:double
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasVerticalClearance ;
+                            owl:someValuesFrom xsd:double
+                          ] ;
+          owl:disjointWith :RoadToIncident ;
+          rdfs:comment "The 'FireLane' class represents a road or other passageway developed to allow the passage of fire apparatus. A fire lane is not necessarily intended for vehicular traffic other than fire apparatus (2018 International Fire Code)."@en ;
+          rdfs:label "FireLane"@en .
+
+
+###  https://purl.org/ffdr-ontology#FirePartition
+:FirePartition rdf:type owl:Class ;
+               rdfs:subClassOf :FireandSmokeProtectionElement ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasEnclosedArea ;
+                                 owl:someValuesFrom xsd:string
+                               ] ;
+               rdfs:comment "The 'FirePartition' class represents a fire partition, which is a vertical assembly of materials designed to restrict the spread of fire while protecting openings (2018 International Fire Code)."@en ;
+               rdfs:label "FirePartition"@en .
+
+
+###  https://purl.org/ffdr-ontology#FirePump
+:FirePump rdf:type owl:Class ;
+          rdfs:subClassOf :BuildingSafetySystem ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasLocation ;
+                            owl:someValuesFrom xsd:string
+                          ] ;
+          rdfs:comment "The 'FirePump' class represents a pump that is a provider of liquid flow and pressure dedicated to fire protection (NFPA Glossary of Terms)."@en ;
+          rdfs:label "FirePump"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireServiceOrganization
+:FireServiceOrganization rdf:type owl:Class ;
+                         rdfs:subClassOf :EmergencyServiceProvider ;
+                         rdfs:comment "The 'FireServiceOrganization' class represents fire service organizations involved in a building fire emergency response."@en ;
+                         rdfs:label "FireServiceOrganization"@en .
+
+
+###  https://purl.org/ffdr-ontology#FireandSmokeProtectionElement
+:FireandSmokeProtectionElement rdf:type owl:Class ;
+                               rdfs:subClassOf :BuildingSafetySystem ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasMaterial ;
+                                                 owl:someValuesFrom :Material
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasLocation ;
+                                                 owl:someValuesFrom xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasFireResistanceRating ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:double
+                                               ] ;
+                               rdfs:comment "The 'FireandSmokeProtectionElement' class represents fire and smoke protection elements that can protect firefighters and building occupants (OSHA, 2015)."@en ;
+                               rdfs:label "FireandSmokeProtectionElement"@en .
+
+
+###  https://purl.org/ffdr-ontology#Firewall
+:Firewall rdf:type owl:Class ;
+          rdfs:subClassOf :Facade ,
+                          :FireandSmokeProtectionElement ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasEnclosedArea ;
+                            owl:someValuesFrom xsd:string
+                          ] ;
+          rdfs:comment "The 'Firewall' class represents a firewall, which is a fire-resistance-rated wall that restricts the spread of fire while protecting openings and extending continuously from the foundation to or through the roof. It has sufficient structural stability under fire conditions to allow the structure to collapse without the collapse of the wall (2018 International Fire Code)."@en ;
+          rdfs:label "Firewall"@en .
+
+
+###  https://purl.org/ffdr-ontology#FloorAssembly
+:FloorAssembly rdf:type owl:Class ;
+               rdfs:subClassOf :NonStructuralElement ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isLightweightConstruction ;
+                                 owl:someValuesFrom xsd:boolean
+                               ] ;
+               rdfs:comment "The 'FloorAssembly' class represents the floor assembly in a building."@en ;
+               rdfs:label "FloorAssembly"@en .
+
+
+###  https://purl.org/ffdr-ontology#GasDetector
+:GasDetector rdf:type owl:Class ;
+             rdfs:subClassOf :SensorDetector ;
+             rdfs:comment "The 'GasDetector' class represents an instrument that samples the local atmosphere and indicates the presence of ignitable vapors or gases within the flammable or explosive range expressed as a volume percent in air (2018 International Fire Code)."@en ;
+             rdfs:label "GasDetector"@en .
+
+
+###  https://purl.org/ffdr-ontology#GasSupplySystem
+:GasSupplySystem rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingUtilitySystem ;
+                 rdfs:comment "The 'GasSupplySystem' class represents a building's gas supply system."@en ;
+                 rdfs:label "GasSupplySystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#Hallway
+:Hallway rdf:type owl:Class ;
+         rdfs:subClassOf :NonStructuralElement ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasCapacity ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:int
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasWidth ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:double
+                         ] ;
+         rdfs:comment "The 'Hallway' class represents hallways in a building."@en ;
+         rdfs:label "Hallway"@en .
+
+
+###  https://purl.org/ffdr-ontology#Hazard
+:Hazard rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasDescription ;
+                          owl:someValuesFrom xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasLocation ;
+                          owl:someValuesFrom xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasType ;
+                          owl:someValuesFrom xsd:string
+                        ] ;
+        owl:disjointWith :HoseConnection ,
+                         :IncidentBuilding ,
+                         :IncidentSite ,
+                         :Material ,
+                         :Road ,
+                         :SurroundingTerrain ,
+                         :WaterSource ,
+                         :WeatherCondition ;
+        rdfs:comment "The 'Hazard' class represents real or potential condition that can cause injury (NFPA Glossary of Terms)."@en ;
+        rdfs:label "Hazard"@en .
+
+
+###  https://purl.org/ffdr-ontology#HazardousMaterial
+:HazardousMaterial rdf:type owl:Class ;
+                   rdfs:subClassOf :BuildingComponent ,
+                                   :EnvironmentalElement ,
+                                   :Hazard ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isDecontaminationRequired ;
+                                     owl:someValuesFrom xsd:boolean
+                                   ] ;
+                   owl:disjointWith :HazardousOperation ;
+                   rdfs:comment "The 'HazardousMaterial' class represents a substance that, by reason of being explosive, flammable, poisonous, corrosive, oxidizing, irritating, or otherwise harmful, is likely to cause death or injury (NFPA Glossary of Terms)."@en ;
+                   rdfs:label "HazardousMaterial"@en .
+
+
+###  https://purl.org/ffdr-ontology#HazardousOperation
+:HazardousOperation rdf:type owl:Class ;
+                    rdfs:subClassOf :Hazard ;
+                    rdfs:comment "The 'HazardousOperation' class represents different types of hazardous operations in a building."@en ;
+                    rdfs:label "HazardousOperation" .
+
+
+###  https://purl.org/ffdr-ontology#Helipad
+:Helipad rdf:type owl:Class ;
+         rdfs:subClassOf :BuildingComponent ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasLocation ;
+                           owl:someValuesFrom xsd:string
+                         ] ;
+         rdfs:comment "The 'Helipad' class represents a  structural surface that is used for the land- ing, taking off, taxiing and parking of helicopters (2018 International Building Code)"@en ;
+         rdfs:label "Helipad"@en .
+
+
+###  https://purl.org/ffdr-ontology#HoseConnection
+:HoseConnection rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasSize ;
+                                  owl:someValuesFrom xsd:double
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasType ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                rdfs:comment "The 'HoseConnection' class represents different hose connections used by firefighters during building fire emergencies."@en ,
+                             "Type could be threaded or quick- connect."@en ;
+                rdfs:label "HoseConnection"@en .
+
+
+###  https://purl.org/ffdr-ontology#Hospital
+:Hospital rdf:type owl:Class ;
+          rdfs:subClassOf :EmergencyServiceProvider ;
+          rdfs:comment "The 'Hospital' class represents a building or portion thereof used on a 24-⁠hour basis for the medical, psychiatric, obstetrical, or surgical care of four or more inpatients (NFPA Glossary of Terms)."@en ;
+          rdfs:label "Hospital"@en .
+
+
+###  https://purl.org/ffdr-ontology#HvacSystem
+:HvacSystem rdf:type owl:Class ;
+            rdfs:subClassOf :BuildingUtilitySystem ;
+            rdfs:comment "The 'HvacSystem' class represents a building's heating, ventilation, and air conditioning (HVAC) system."@en ;
+            rdfs:label "HvacSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#IncidentBuilding
+:IncidentBuilding rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasAddress ;
+                                    owl:someValuesFrom :Address
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasBuildingPlan ;
+                                    owl:someValuesFrom :BuildingPlan
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasComponent ;
+                                    owl:someValuesFrom :BuildingComponent
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasHazardousOperation ;
+                                    owl:someValuesFrom :HazardousOperation
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasOccupancy ;
+                                    owl:someValuesFrom :BuildingOccupancy
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasConstructionType ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :ConstructionType
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasBuildingArea ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasBuildingHeight ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasCondition ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasYearOfConstruction ;
+                                    owl:someValuesFrom xsd:int
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :includeHazardousOperation ;
+                                    owl:someValuesFrom xsd:boolean
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasNumberOfExit ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:int
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasNumberOfStory ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:int
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasNumberOfSublevel ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:int
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasOccupantLoad ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:int
+                                  ] ;
+                  rdfs:comment "The 'Incidentbuilding' class represents a building with a fire emergency."@en ;
+                  rdfs:label "IncidentBuilding"@en .
+
+
+###  https://purl.org/ffdr-ontology#IncidentSite
+:IncidentSite rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :contains ;
+                                owl:someValuesFrom :EnvironmentalElement
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :contains ;
+                                owl:someValuesFrom :FireCommandCenter
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :contains ;
+                                owl:someValuesFrom :IncidentBuilding
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :contains ;
+                                owl:someValuesFrom :SurroundingTerrain
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasAddress ;
+                                owl:someValuesFrom :PublicSafetyAgencyContactAddress
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasWeatherCondition ;
+                                owl:someValuesFrom :WeatherCondition
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDemography ;
+                                owl:someValuesFrom xsd:string
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasLandUse ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+              rdfs:comment "The 'IncidentSite' class represents a site where a building fire emergency has occurred."@en ;
+              rdfs:label "IncidentSite"@en .
+
+
+###  https://purl.org/ffdr-ontology#KeyBox
+:KeyBox rdf:type owl:Class ;
+        rdfs:subClassOf :BuildingComponent ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasKey ;
+                          owl:someValuesFrom xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasLocation ;
+                          owl:someValuesFrom xsd:string
+                        ] ;
+        rdfs:comment "The 'KeyBox' class represents a secure device with a lock operable only by a fire department master key, and containing building entry keys and other keys that may be required for access in an emergency (2018 International Fire Code)."@en ;
+        rdfs:label "KeyBox"@en .
+
+
+###  https://purl.org/ffdr-ontology#MassNotificationSystem
+:MassNotificationSystem rdf:type owl:Class ;
+                        rdfs:subClassOf :BuildingSafetySystem ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasControlPanel ;
+                                          owl:someValuesFrom :MassNotificationSystemControlPanel
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCoverageZone ;
+                                          owl:someValuesFrom xsd:string
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasType ;
+                                          owl:someValuesFrom xsd:string
+                                        ] ;
+                        rdfs:comment "Notification type could be auditory or visual or both."@en ,
+                                     "The 'MassNotificationSystem' class represents a system used to provide information and instructions to people in a building(s) or other space using intelligible voice communications and including visual signals, text, graphics, tactile, or other communication methods (NFPA Glossary of Terms)."@en ;
+                        rdfs:label "MassNotificationSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#MassNotificationSystemControlPanel
+:MassNotificationSystemControlPanel rdf:type owl:Class ;
+                                    rdfs:subClassOf :ControlPanel ;
+                                    rdfs:comment "The 'MassNotificationSystemControlPanel' class represents a control panel used to control a mass notification system that may be found in a building."@en ;
+                                    rdfs:label "MassNotificationSystemControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#Material
+:Material rdf:type owl:Class ;
+          rdfs:comment "The 'Material' class represents the constituting materials of different elements."@en ;
+          rdfs:label "Material"@en .
+
+
+###  https://purl.org/ffdr-ontology#MunicipalDistributionSystem
+:MunicipalDistributionSystem rdf:type owl:Class ;
+                             rdfs:subClassOf :WaterSource ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :hasPressure ;
+                                               owl:someValuesFrom xsd:double
+                                             ] ;
+                             owl:disjointWith :StaticWaterSource ;
+                             rdfs:comment "The 'MunicipalDistributionSystem' class represents a water distribution system provided and maintained by municipalities or similar entities."@en ;
+                             rdfs:label "MunicipalDistributionSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#NonStructuralElement
+:NonStructuralElement rdf:type owl:Class ;
+                      rdfs:subClassOf :BuildingComponent ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasMaterial ;
+                                        owl:someValuesFrom :Material
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasID ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasLocation ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasFireResistanceRating ;
+                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange xsd:double
+                                      ] ;
+                      rdfs:comment "The 'NonStructuralElement' class represents the non-structural elements of a building."@en ;
+                      rdfs:label "NonStructuralElement"@en .
+
+
+###  https://purl.org/ffdr-ontology#Obstruction
+:Obstruction rdf:type owl:Class ;
+             rdfs:subClassOf :EnvironmentalElement ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDescription ;
+                               owl:someValuesFrom xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasType ;
+                               owl:someValuesFrom xsd:string
+                             ] ;
+             rdfs:comment "The 'Obstruction' class represents structures nearby the building, such as fences that can obstruct firefighters' and fire trucks' movement."@en ;
+             rdfs:label "Obstruction"@en .
+
+
+###  https://purl.org/ffdr-ontology#OwnerContactAddress
+:OwnerContactAddress rdf:type owl:Class ;
+                     rdfs:subClassOf :Address ;
+                     rdfs:comment "The 'OwnerContactAddress' class represents a building owner's contact address."@en ;
+                     rdfs:label "OwnerContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#ParkingArea
+:ParkingArea rdf:type owl:Class ;
+             rdfs:subClassOf :BuildingComponent ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCapacity ;
+                               owl:someValuesFrom xsd:int
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasLocation ;
+                               owl:someValuesFrom xsd:string
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasNumberOfParkedCars ;
+                               owl:someValuesFrom xsd:int
+                             ] ;
+             rdfs:comment "The 'ParkingArea' class represents a part of a building used for parking vehicles."@en ;
+             rdfs:label "ParkingArea"@en .
+
+
+###  https://purl.org/ffdr-ontology#ParkingLot
+:ParkingLot rdf:type owl:Class ;
+            rdfs:subClassOf :EnvironmentalElement ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasArea ;
+                              owl:someValuesFrom xsd:double
+                            ] ;
+            rdfs:comment "The 'ParkingLot' class represents parking lots."@en ;
+            rdfs:label "ParkingLot"@en .
+
+
+###  https://purl.org/ffdr-ontology#Pipeline
+:Pipeline rdf:type owl:Class ;
+          rdfs:subClassOf :EnvironmentalElement ;
+          rdfs:comment "The 'Pipeline' class represents a length of pipe including pumps, valves, flanges, control devices, strainers, and/or similar equipment for conveying fluids (NFPA Glossary of Terms)."@en ;
+          rdfs:label "Pipeline"@en .
+
+
+###  https://purl.org/ffdr-ontology#PoliceDepartment
+:PoliceDepartment rdf:type owl:Class ;
+                  rdfs:subClassOf :EmergencyServiceProvider ;
+                  rdfs:comment "The 'PoliceDepartment' class represents police departments."@en ;
+                  rdfs:label "PoliceDepartment"@en .
+
+
+###  https://purl.org/ffdr-ontology#PortableFireExtinguisher
+:PortableFireExtinguisher rdf:type owl:Class ;
+                          rdfs:subClassOf :BuildingSafetySystem ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasFireExtinguisherRating ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasLocation ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasType ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ;
+                          rdfs:comment "Has different type such as:   Air-Water;  Air-Foam;  Wet Chemical;  Dry Chemical Powder; Carbon Dioxide and Vaporising Liquid."@en ,
+                                       "The 'PortableFireExtinguisher' class represents portable device, carried or on wheels and operated by hand, containing an extinguishing agent that can be expelled under pressure for the purpose of suppressing or extinguishing fire (NFPA Glossary of Terms)."@en ;
+                          rdfs:label "PortableFireExtinguisher"@en .
+
+
+###  https://purl.org/ffdr-ontology#PowerLine
+:PowerLine rdf:type owl:Class ;
+           rdfs:subClassOf :EnvironmentalElement ;
+           rdfs:comment "The 'PowerLine' class represents power lines located near an incident building."@en ;
+           rdfs:label "PowerLine"@en .
+
+
+###  https://purl.org/ffdr-ontology#PrimaryPowerSupplySystem
+:PrimaryPowerSupplySystem rdf:type owl:Class ;
+                          rdfs:subClassOf :BuildingUtilitySystem ;
+                          rdfs:comment "The 'PrimaryPowerSupplySystem' class represents a building's primary power supply system."@en ;
+                          rdfs:label "PrimaryPowerSupplySystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#PublicSafetyAgencyContactAddress
+:PublicSafetyAgencyContactAddress rdf:type owl:Class ;
+                                  rdfs:subClassOf :Address ;
+                                  rdfs:comment "The 'PublicSafetyAgencyContactAddress' class represents public safety agencies's contact address."@en ;
+                                  rdfs:label "PublicSafetyAgencyContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#Ramp
+:Ramp rdf:type owl:Class ;
+      rdfs:subClassOf :NonStructuralElement ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFireExtinguishingSystem ;
+                        owl:someValuesFrom :AutomaticFireExtinguishingSystem
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasDirectionToExit ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasDischargeLevel ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFloorsServed ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isRoofAccess ;
+                        owl:someValuesFrom xsd:boolean
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasCapacity ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:int
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasExitTravelDistances ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:double
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasWidth ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:double
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isExit ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:boolean
+                      ] ;
+      rdfs:comment "The 'Ramp' class represents a walking surface that has a running slope steeper than one unit vertical in 20 units horizontal (5-percent slope) (2018 International Building Code)"@en ;
+      rdfs:label "Ramp"@en .
+
+
+###  https://purl.org/ffdr-ontology#RestrictedArea
+:RestrictedArea rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingComponent ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasDescription ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasLocation ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                rdfs:comment "The 'RestrictedArea' class represents a room, office, building, or facility to which access is strictly and tightly controlled (NFPA Glossary of Terms)."@en ;
+                rdfs:label "RestrictedArea"@en .
+
+
+###  https://purl.org/ffdr-ontology#Road
+:Road rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasMaterial ;
+                        owl:someValuesFrom :Material
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasCondition ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSlope ;
+                        owl:someValuesFrom xsd:double
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasType ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasWidth ;
+                        owl:someValuesFrom xsd:double
+                      ] ;
+      rdfs:comment "The 'Road' class represents any accessway, not including a driveway, that gives access to more than one parcel and is primarily intended for vehicular access (NFPA Glossary of Terms)."@en ;
+      rdfs:label "Road"@en .
+
+
+###  https://purl.org/ffdr-ontology#RoadToIncident
+:RoadToIncident rdf:type owl:Class ;
+                rdfs:subClassOf :Road ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasTrafficLevel ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                rdfs:comment "The 'RoadToIncident' class represents a road that leads to an incident site."@en ;
+                rdfs:label "RoadToIncident"@en .
+
+
+###  https://purl.org/ffdr-ontology#RoofAssembly
+:RoofAssembly rdf:type owl:Class ;
+              rdfs:subClassOf :NonStructuralElement ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :isAccessible ;
+                                owl:someValuesFrom xsd:boolean
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :isLightweightConstruction ;
+                                owl:someValuesFrom xsd:boolean
+                              ] ;
+              rdfs:comment "The 'RoofAssembly' class represents the component(s) above the roof structural framing including the roof deck, vapor barrier, insulation, roof cover, coatings, toppings, or any combination thereof (NFPA Glossary of Terms)"@en ;
+              rdfs:label "RoofAssembly"@en .
+
+
+###  https://purl.org/ffdr-ontology#RoofTopElement
+:RoofTopElement rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingComponent ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasDescription ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasLocation ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasType ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                rdfs:comment "The 'RoofTopElement' class represents roof-top elements, such as skylights, photovoltaic panels, vegetation, and Other Obstructions (cables, wires, ropes)."@en ;
+                rdfs:label "RoofTopElement"@en .
+
+
+###  https://purl.org/ffdr-ontology#SensorDetector
+:SensorDetector rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingSafetySystem ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasCoverageZone ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isInAlarm ;
+                                  owl:someValuesFrom xsd:boolean
+                                ] ;
+                rdfs:comment "The 'SensorDetector' class represents different sensors and detectors installed in a building."@en ;
+                rdfs:label "SensorDetector"@en .
+
+
+###  https://purl.org/ffdr-ontology#ShaftEnclosure
+:ShaftEnclosure rdf:type owl:Class ;
+                rdfs:subClassOf :FireandSmokeProtectionElement ;
+                rdfs:comment "The 'ShaftEnclosure' class represents The walls or construction forming the boundaries of a shaft (2018 International Building Code)."@en ;
+                rdfs:label "ShaftEnclosure"@en .
+
+
+###  https://purl.org/ffdr-ontology#SmokeBarrier
+:SmokeBarrier rdf:type owl:Class ;
+              rdfs:subClassOf :FireandSmokeProtectionElement ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasEnclosedArea ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+              rdfs:comment "The 'SmokeBarrier' class represents a smoke barrier, which is a continuous vertical or horizontal membrane (such as a wall, floor, or ceiling assembly) that restricts the movement of smoke (2018 International Fire Code)."@en ;
+              rdfs:label "SmokeBarrier"@en .
+
+
+###  https://purl.org/ffdr-ontology#SmokeControlSystem
+:SmokeControlSystem rdf:type owl:Class ;
+                    rdfs:subClassOf :BuildingSafetySystem ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasControlPanel ;
+                                      owl:someValuesFrom :SmokeControlSystemControlPanel
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasCoverageZone ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasType ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :isSystemActivated ;
+                                      owl:someValuesFrom xsd:boolean
+                                    ] ;
+                    rdfs:comment "System type could be: smoke exhaust systems and stair pressurization systems"@en ,
+                                 "The 'SmokeControlSystem' class represents an engineered system that includes all methods that can be used singly or in combinatin to modify smoke movement (NFPA Glossary of Terms)."@en ;
+                    rdfs:label "SmokeControlSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#SmokeControlSystemControlPanel
+:SmokeControlSystemControlPanel rdf:type owl:Class ;
+                                rdfs:subClassOf :ControlPanel ;
+                                rdfs:comment "The 'SmokeControlSystemControlPanel' class represents a control panel used to control a smoke control system that may be found in a building."@en ;
+                                rdfs:label "SmokeControlSystemControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#SmokePartition
+:SmokePartition rdf:type owl:Class ;
+                rdfs:subClassOf :FireandSmokeProtectionElement ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasEnclosedArea ;
+                                  owl:someValuesFrom xsd:string
+                                ] ;
+                rdfs:comment "The 'SmokePartition' class represents a smoke partition, which is a wall assembly that limits the transfer of smoke (2018 International Fire Code)."@en ;
+                rdfs:label "SmokePartition"@en .
+
+
+###  https://purl.org/ffdr-ontology#SmokeandHeatRemovalSystem
+:SmokeandHeatRemovalSystem rdf:type owl:Class ;
+                           rdfs:subClassOf :BuildingSafetySystem ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :hasDescription ;
+                                             owl:someValuesFrom xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :hasLocation ;
+                                             owl:someValuesFrom xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :hasType ;
+                                             owl:someValuesFrom xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :isSystemActivated ;
+                                             owl:someValuesFrom xsd:boolean
+                                           ] ;
+                           rdfs:comment "The 'SmokeandHeatRemovalSystem' class represents a smoke and heat removal system that assists firefighters in removing smoke after a fire is extinguished (OSHA, 2015)."@en ;
+                           rdfs:label "SmokeandHeatRemovalSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#Stairway
+:Stairway rdf:type owl:Class ;
+          rdfs:subClassOf :NonStructuralElement ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFireExtinguishingSystem ;
+                            owl:someValuesFrom :AutomaticFireExtinguishingSystem
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDirectionToExit ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDischargeLevel ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFloorsServed ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isRoofAccess ;
+                            owl:someValuesFrom xsd:boolean
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCapacity ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:int
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasExitTravelDistances ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:double
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasWidth ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:double
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isExit ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:boolean
+                          ] ;
+          rdfs:comment "The 'Stairway' class represents stairways that may be found in a building."@en ;
+          rdfs:label "Stairway"@en .
+
+
+###  https://purl.org/ffdr-ontology#StandpipeSystem
+:StandpipeSystem rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingSafetySystem ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasWaterSource ;
+                                   owl:someValuesFrom [ rdf:type owl:Class ;
+                                                        owl:unionOf ( :FireDepartmentConnection
+                                                                      :WaterSource
+                                                                    )
+                                                      ]
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasClass ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCoverageZone ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasIsolationValveLocation ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasRequiredMaximumPressure ;
+                                   owl:someValuesFrom xsd:double
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasRequiredMinimumPressure ;
+                                   owl:someValuesFrom xsd:double
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasType ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isIsolationValveOpen ;
+                                   owl:someValuesFrom xsd:boolean
+                                 ] ;
+                 rdfs:comment """Properties:
+
+has water source: Automatic water supply, manual supply through FDC, Or both
+
+has Class: fire service use (Class I), occupant use (Class II), or combined fire service and occupant use (Class III)
+
+has type: Wet (automatic or manual) and Dry"""@en ,
+                              "The 'StandpipeSystem' class represents an arrangement of piping, valves, hose connections, and allied equipment installed in a building or structure such that, when supplied with adequate water, allows attached hose lines to be used to extinguish a fire (NFPA Glossary of Terms)."@en ;
+                 rdfs:label "StandpipeSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#StaticWaterSource
+:StaticWaterSource rdf:type owl:Class ;
+                   rdfs:subClassOf :WaterSource ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDistanceFromFDC ;
+                                     owl:someValuesFrom xsd:double
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDistanceFromIncidentBuilding ;
+                                     owl:someValuesFrom xsd:double
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasLocation ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasType ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ;
+                   rdfs:comment "The 'StaticWaterSource' class represents static water sources that can be used for fire suppression."@en ,
+                                "Type: Lakes, ponds, cisterns, fountains, swimming pools, reservoirs, pressure tanks, and elevated tanks."@en ;
+                   rdfs:label "StaticWaterSource"@en .
+
+
+###  https://purl.org/ffdr-ontology#StructuralElement
+:StructuralElement rdf:type owl:Class ;
+                   rdfs:subClassOf :BuildingComponent ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasMaterial ;
+                                     owl:someValuesFrom :Material
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasLocation ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasFireResistanceRating ;
+                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onDataRange xsd:double
+                                   ] ;
+                   rdfs:comment "The 'StructuralElement' class represents the columns and girders, beams, trusses, joists, braced frames, moment-resistant frames, and vertical and lateral resisting elements, and other framing members that are designed to carry any portion of the dead or live load and lateral forces, that are essential to the stability of the building or structure (NFPA Glossary of Terms)."@en ;
+                   rdfs:label "StructuralElement"@en .
+
+
+###  https://purl.org/ffdr-ontology#SurroundingTerrain
+:SurroundingTerrain rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasSlope ;
+                                      owl:someValuesFrom xsd:double
+                                    ] ;
+                    rdfs:comment "The 'SurroundingTerrain' class represents terrain surrounding an incident building (the building with a fire emergency)."@en ;
+                    rdfs:label "SurroundingTerrain"@en .
+
+
+###  https://purl.org/ffdr-ontology#UtilityContactAddress
+:UtilityContactAddress rdf:type owl:Class ;
+                       rdfs:subClassOf :Address ;
+                       rdfs:comment "The 'UtilityContactAddress' class represents the address of people that manage the utilities in a building." ;
+                       rdfs:label "UtilityContactAddress"@en .
+
+
+###  https://purl.org/ffdr-ontology#UtilityControlPanel
+:UtilityControlPanel rdf:type owl:Class ;
+                     rdfs:subClassOf :ControlPanel ;
+                     rdfs:comment "The 'UtilityControlPanel' class represents control panels used to control different utilities found in a building."@en ;
+                     rdfs:label "UtilityControlPanel"@en .
+
+
+###  https://purl.org/ffdr-ontology#Vegetation
+:Vegetation rdf:type owl:Class ;
+            rdfs:subClassOf :EnvironmentalElement ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlammabilityLevel ;
+                              owl:someValuesFrom xsd:int
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasSpecies ;
+                              owl:someValuesFrom xsd:string
+                            ] ;
+            rdfs:comment "The 'vegetation' class represents vegetation nearby an incident building."@en ;
+            rdfs:label "Vegetation"@en .
+
+
+###  https://purl.org/ffdr-ontology#VerticalOpening
+:VerticalOpening rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingComponent ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasShaftEnclosure ;
+                                   owl:someValuesFrom :ShaftEnclosure
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDescription ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasLocation ;
+                                   owl:someValuesFrom xsd:string
+                                 ] ;
+                 rdfs:comment "The 'VerticalOpening' class represents an opening through a floor or roof (NFPA Glossary of Terms)."@en ;
+                 rdfs:label "VerticalOpening"@en .
+
+
+###  https://purl.org/ffdr-ontology#Wall
+:Wall rdf:type owl:Class ;
+      rdfs:subClassOf :NonStructuralElement ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasThickness ;
+                        owl:someValuesFrom xsd:double
+                      ] ;
+      rdfs:comment "The 'Wall' class represents a component that has a slope of 60 degrees or greater with the horizontal plane used to enclose or divide space (NFPA Glossary of Terms)."@en ;
+      rdfs:label "Wall"@en .
+
+
+###  https://purl.org/ffdr-ontology#WaterSource
+:WaterSource rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFireFlow ;
+                               owl:someValuesFrom xsd:double
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :isFunctional ;
+                               owl:someValuesFrom xsd:boolean
+                             ] ;
+             rdfs:comment "The 'WaterSource' class represents different water sources that can be used for fire suppression."@en ;
+             rdfs:label "WaterSource" .
+
+
+###  https://purl.org/ffdr-ontology#WaterSupplyandSewerageSystem
+:WaterSupplyandSewerageSystem rdf:type owl:Class ;
+                              rdfs:subClassOf :BuildingUtilitySystem ;
+                              rdfs:comment "The 'WaterSupplyandSewerageSystem' class represents a building's water supply and sewerage system."@en ;
+                              rdfs:label "WaterSupplyandSewerageSystem"@en .
+
+
+###  https://purl.org/ffdr-ontology#WeatherCondition
+:WeatherCondition rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasPrecipitationValue ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasRelativeHumidity ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTemperature ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTimeMark ;
+                                    owl:someValuesFrom xsd:dateTimeStamp
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasWindDirection ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasWindSpeed ;
+                                    owl:someValuesFrom xsd:double
+                                  ] ;
+                  rdfs:comment "The 'WeatherCondition' class represents weather-related information."@en ;
+                  rdfs:label "WeatherCondition"@en .
+
+
+###  https://purl.org/ffdr-ontology#Window
+:Window rdf:type owl:Class ;
+        rdfs:subClassOf :NonStructuralElement ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasHeight ;
+                          owl:someValuesFrom xsd:double
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasOpeningDirection ;
+                          owl:someValuesFrom xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isFunctional ;
+                          owl:someValuesFrom xsd:boolean
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isOnExterior ;
+                          owl:someValuesFrom xsd:boolean
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isShaftway ;
+                          owl:someValuesFrom xsd:boolean
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasWidth ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:double
+                        ] ;
+        rdfs:comment "The 'Window' class represents integral fabricated units, placed in an opening in a wall, primarily intended for the admission of light, or light and air, and not intended primarily for human entrance or exit (NFPA Glossary of Terms)."@en ;
+        rdfs:label "Window"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://purl.org/ffdr-ontology#Assembly
+:Assembly rdf:type owl:NamedIndividual ,
+                   :BuildingOccupancy ;
+          rdfs:comment "The 'Assembly' class represents assembly occupancy, which includes, among others, the use of a building for the gathering of people (IBC, 2018)."@en ;
+          rdfs:label "Assembly"@en .
+
+
+###  https://purl.org/ffdr-ontology#Business
+:Business rdf:type owl:NamedIndividual ,
+                   :BuildingOccupancy ;
+          rdfs:comment "The 'Business' class represents business occupancy, which includes, among others,  the use of a building for office, professional or service-type transactions, including storage of records and accounts (IBC, 2018)."@en ;
+          rdfs:label "Business"@en .
+
+
+###  https://purl.org/ffdr-ontology#Educational
+:Educational rdf:type owl:NamedIndividual ,
+                      :BuildingOccupancy ;
+             rdfs:comment "The 'Educational' class represents educational occupancy, which includes, among others, the use of a building for educational purposes (IBC, 2018)."@en ;
+             rdfs:label "Educational"@en .
+
+
+###  https://purl.org/ffdr-ontology#FactoryAndIndustrial
+:FactoryAndIndustrial rdf:type owl:NamedIndividual ,
+                               :BuildingOccupancy ;
+                      rdfs:comment """The 'FactoryAndIndustrial' class represents factory and industrial occupancy, which includes, among others, the use of a building for: 
+  - assembling, 
+  - disassembling, 
+  - fabricating, 
+  - finishing, 
+  - manufacturing, 
+  - packaging, 
+  - repair or 
+  - processing 
+operations that are not classified as hazardous or storage occupancy (IBC, 2018)."""@en ;
+                      rdfs:label "FactoryAndIndustrial"@en .
+
+
+###  https://purl.org/ffdr-ontology#HighHazard
+:HighHazard rdf:type owl:NamedIndividual ,
+                     :BuildingOccupancy ;
+            rdfs:comment "The 'HighHazard' class represents high-hazard occupancy, which includes, among others, the use of a building that involves the manufacturing, processing, generation, or storage of materials that constitute a physical or health hazard (IBC, 2018)."@en ;
+            rdfs:label "HighHazard"@en .
+
+
+###  https://purl.org/ffdr-ontology#Institutional
+:Institutional rdf:type owl:NamedIndividual ,
+                        :BuildingOccupancy ;
+               rdfs:comment "The 'Institutional' class represents institutional occupancy, which includes, among others, the use of a building where supervision is provided to people who may or may not need physical assistance for self-preservation. Additionally, it represents occupancies where the liberty of occupants is restricted (such as correction facilities) (IBC, 2018)."@en ;
+               rdfs:label "Institutional"@en .
+
+
+###  https://purl.org/ffdr-ontology#Mercantile
+:Mercantile rdf:type owl:NamedIndividual ,
+                     :BuildingOccupancy ;
+            rdfs:comment "The 'Mercantile' class represents mercantile occupancy, which includes, among others, the use of a building for the display and sale of merchandise (IBC, 2018)."@en ;
+            rdfs:label "Mercantile"@en .
+
+
+###  https://purl.org/ffdr-ontology#Residential
+:Residential rdf:type owl:NamedIndividual ,
+                      :BuildingOccupancy ;
+             rdfs:comment "The 'Residential' class represents residential occupancy, which includes, among others, the use of a building for sleeping purposes when not classified as an institutional (IBC, 2018)."@en ;
+             rdfs:label "Residential"@en .
+
+
+###  https://purl.org/ffdr-ontology#Storage
+:Storage rdf:type owl:NamedIndividual ,
+                  :BuildingOccupancy ;
+         rdfs:comment "The 'Storage' class represents storage occupancy, which includes, among others, the use of a building for storage that is not classified as a hazardous occupancy (IBC, 2018)."@en ;
+         rdfs:label "Storage"@en .
+
+
+###  https://purl.org/ffdr-ontology#TypeI
+:TypeI rdf:type owl:NamedIndividual ,
+                :ConstructionType ;
+       :hasDescription "Fire-resistive: types of construction in which the building elements are of noncombustible materials." ;
+       :hasType "Type I" ;
+       rdfs:label "TypeI"@en .
+
+
+###  https://purl.org/ffdr-ontology#TypeII
+:TypeII rdf:type owl:NamedIndividual ,
+                 :ConstructionType ;
+        :hasDescription "Non-combustible: Walls, partitions, columns, floors, and roofs are noncombustible. However, they provide less fire resistance and do not withstand the effects or spreading of fire as well as Type I." ;
+        :hasType "Type II" ;
+        rdfs:label "TypeII"@en .
+
+
+###  https://purl.org/ffdr-ontology#TypeIII
+:TypeIII rdf:type owl:NamedIndividual ,
+                  :ConstructionType ;
+         :hasDescription "Ordinary: construction is that type of construction in which the exterior walls are of noncombustible materials and the interior building elements are of any material." ;
+         :hasType "Type III" ;
+         rdfs:label "TypeIII"@en .
+
+
+###  https://purl.org/ffdr-ontology#TypeIV
+:TypeIV rdf:type owl:NamedIndividual ,
+                 :ConstructionType ;
+        :hasDescription "(Heavy Timber: type of construction in which the exterior walls are of noncombustible materials and the interior building elements are of solid wood, laminated wood, heavy timber (HT) or structural composite lumber (SCL) without concealed spaces." ;
+        :hasType "Type IV" ;
+        rdfs:label "TypeIV"@en .
+
+
+###  https://purl.org/ffdr-ontology#TypeV
+:TypeV rdf:type owl:NamedIndividual ,
+                :ConstructionType ;
+       :hasDescription "Type of construction in which the structural elements, exterior walls and interior walls are of any materials." ;
+       :hasType "Type V" ;
+       rdfs:label "TypeV"@en .
+
+
+###  https://purl.org/ffdr-ontology#UtilityAndMiscellaneous
+:UtilityAndMiscellaneous rdf:type owl:NamedIndividual ,
+                                  :BuildingOccupancy ;
+                         rdfs:comment "The 'Storage' class represents storage occupancy, which includes, among others, the use of a building for storage that is not classified as a hazardous occupancy (IBC, 2018)."@en ;
+                         rdfs:label "UtilityAndMiscellaneous"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Address
+                :AirSupply
+                :BuildingOccupancy
+                :BuildingPlan
+                :ConstructionType
+                :ControlPanel
+                :EmergencyServiceProvider
+                :FireCommandCenter
+                :HoseConnection
+                :IncidentBuilding
+                :IncidentSite
+                :Material
+                :RoadToIncident
+                :SurroundingTerrain
+                :WaterSource
+                :WeatherCondition
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AlarmSystemAnnunciatorPanel
+                :DoorUnlockingSystemControlPanel
+                :ElevatorOverrideControlPanel
+                :FarsControlPanel
+                :FireDepartmentCommunicationSystemPanel
+                :MassNotificationSystemControlPanel
+                :SmokeControlSystemControlPanel
+                :UtilityControlPanel
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AreaOfRefuge
+                :BuildingSafetySystem
+                :BuildingUtilitySystem
+                :ConcealedSpace
+                :ExtremelyValuableMaterial
+                :HazardousMaterial
+                :Helipad
+                :KeyBox
+                :NonStructuralElement
+                :ParkingArea
+                :RestrictedArea
+                :RoofTopElement
+                :StructuralElement
+                :VerticalOpening
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AutomaticFireExtinguishingSystem
+                :EmergencyPowerOutlet
+                :FarsFillStation
+                :FireAlarmSystem
+                :FireDepartmentConnection
+                :FireHoseConnection
+                :FirePump
+                :FireandSmokeProtectionElement
+                :MassNotificationSystem
+                :PortableFireExtinguisher
+                :SensorDetector
+                :SmokeControlSystem
+                :SmokeandHeatRemovalSystem
+                :StandpipeSystem
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BackUpPowerSupplySystem
+                :GasSupplySystem
+                :HvacSystem
+                :PrimaryPowerSupplySystem
+                :WaterSupplyandSewerageSystem
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Balcony
+                :Door
+                :Elevator
+                :FloorAssembly
+                :Hallway
+                :Ramp
+                :RoofAssembly
+                :Stairway
+                :Wall
+                :Window
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Building
+                :FireHydrant
+                :FireLane
+                :HazardousMaterial
+                :Obstruction
+                :ParkingLot
+                :Pipeline
+                :PowerLine
+                :Vegetation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BuildingAddress
+                :BuildingEngineerContactAddress
+                :BuildingManagerContactAddress
+                :EmergencyServiceProviderContactAddress
+                :OwnerContactAddress
+                :PublicSafetyAgencyContactAddress
+                :UtilityContactAddress
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CarbonMonoxideDetector
+                :CbrSensor
+                :GasDetector
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ExteriorDoor
+                :ExteriorWall
+                :ExteriorWindow
+                :Firewall
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :FireBarrier
+                :FirePartition
+                :Firewall
+                :ShaftEnclosure
+                :SmokeBarrier
+                :SmokePartition
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :FireServiceOrganization
+                :Hospital
+                :PoliceDepartment
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

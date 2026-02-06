@@ -1,0 +1,1061 @@
+@prefix : <http://w3id.org/dstv#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://w3id.org/dstv#> .
+
+<http://w3id.org/dstv#> rdf:type owl:Ontology ;
+                         <http://purl.org/dc/terms/creator> "Victoria Jung, Lukas Kirner, Jyrki Oraskari, Timur Kuzu, Individualized Production RWTH Aachen" ;
+                         <http://purl.org/dc/terms/description> "dstv"@en ;
+                         <http://purl.org/dc/terms/issued> "2025-08-04"@en ;
+                         <http://purl.org/dc/terms/title> "DSTV:Steel Construction Ontology"@en ;
+                         <http://purl.org/vocab/vann/preferredNamespacePrefix> "dstv" ;
+                         <http://purl.org/vocab/vann/preferredNamespaceUri> "http://w3id.org/dstv#" ;
+                         owl:versionInfo "1.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/mod#createdWith
+<https://w3id.org/mod#createdWith> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://w3id.org/dstv#hasAdjustedProperty
+:hasAdjustedProperty rdf:type owl:ObjectProperty ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Feature
+                                                 :MeasurableProperties
+                                                 :Process
+                                               )
+                                 ] ;
+                     rdfs:range :PropertyState ;
+                     rdfs:comment "Refers to a property that has been modified or recalculated based on measurements or processing results." ;
+                     rdfs:label "has adjusted property" .
+
+
+###  http://w3id.org/dstv#hasComment
+:hasComment rdf:type owl:ObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Feature
+                                        :Process
+                                      )
+                        ] ;
+            rdfs:range :Comment ;
+            rdfs:comment "Links a feature or process to a descriptive comment or annotation." ;
+            rdfs:label "has comment" .
+
+
+###  http://w3id.org/dstv#hasCreator
+:hasCreator rdf:type owl:ObjectProperty ;
+            rdfs:domain :Workpiece ;
+            rdfs:range :Creator ;
+            rdfs:comment "Indicates the entity (person or organization) responsible for creating the workpiece." ;
+            rdfs:label "has creator" .
+
+
+###  http://w3id.org/dstv#hasDefinedToleranceProperty
+:hasDefinedToleranceProperty rdf:type owl:ObjectProperty ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( :Feature
+                                                         :MeasurableProperties
+                                                         :Process
+                                                       )
+                                         ] ;
+                             rdfs:range :DefinedTolerance ;
+                             rdfs:comment "Connects a feature or process to a defined tolerance specification from a standard or design requirement." ;
+                             rdfs:label "has defined tolerance property" .
+
+
+###  http://w3id.org/dstv#hasDiameter
+:hasDiameter rdf:type owl:ObjectProperty ;
+             rdfs:domain :Feature ;
+             rdfs:range :Diameter ;
+             rdfs:comment "Defines the diameter of a circular feature, such as a hole" ;
+             rdfs:label "has diameter" .
+
+
+###  http://w3id.org/dstv#hasHeight
+:hasHeight rdf:type owl:ObjectProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Feature
+                                       :ProfileDef
+                                     )
+                       ] ;
+           rdfs:range :Height ;
+           rdfs:comment "Specifies the height of a feature or a profile." ;
+           rdfs:label "has height" .
+
+
+###  http://w3id.org/dstv#hasInformaiton
+:hasInformaiton rdf:type owl:ObjectProperty ;
+                rdfs:domain :Workpiece ;
+                rdfs:range :Information ;
+                rdfs:comment "Links a workpiece to supplementary information." ;
+                rdfs:label "has information" .
+
+
+###  http://w3id.org/dstv#hasLowerToleranceLimit
+:hasLowerToleranceLimit rdf:type owl:ObjectProperty ;
+                        rdfs:domain :ToleranceLimit ;
+                        rdfs:range :PropertyState ;
+                        rdfs:comment "Specifies the lower boundary of an acceptable dimensional range." ;
+                        rdfs:label "has lower tolerance limit" .
+
+
+###  http://w3id.org/dstv#hasMaterial
+:hasMaterial rdf:type owl:ObjectProperty ;
+             rdfs:domain :Workpiece ;
+             rdfs:range :Material ;
+             rdfs:comment "Specifies the material from which the workpiece is made." ;
+             rdfs:label "has material" .
+
+
+###  http://w3id.org/dstv#hasMaterialInventory
+:hasMaterialInventory rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Material ;
+                      rdfs:range :MaterialInventory ;
+                      rdfs:comment "Connects a material to its inventory or stock information." ;
+                      rdfs:label "has material inventory" .
+
+
+###  http://w3id.org/dstv#hasMeasuredProperty
+:hasMeasuredProperty rdf:type owl:ObjectProperty ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Feature
+                                                 :MeasurableProperties
+                                                 :Process
+                                               )
+                                 ] ;
+                     rdfs:range :PropertyState ;
+                     rdfs:comment "Links a measurable property that was recorded during or after production." ;
+                     rdfs:label "has measured property" .
+
+
+###  http://w3id.org/dstv#hasNominalsize
+:hasNominalsize rdf:type owl:ObjectProperty ;
+                rdfs:domain :ToleranceLimit ;
+                rdfs:range :NominalSize ;
+                rdfs:comment "Indicates the target or nominal size from which tolerances are derived." ;
+                rdfs:label "has nominalsize" .
+
+
+###  http://w3id.org/dstv#hasNormReference
+:hasNormReference rdf:type owl:ObjectProperty ;
+                  rdfs:domain :DefinedTolerance ;
+                  rdfs:range :NormReference ;
+                  rdfs:comment "References a normative document or standard that defines the tolerance." ;
+                  rdfs:label "has norm reference" .
+
+
+###  http://w3id.org/dstv#hasPlannedProperty
+:hasPlannedProperty rdf:type owl:ObjectProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( :Feature
+                                                :MeasurableProperties
+                                                :Process
+                                              )
+                                ] ;
+                    rdfs:range :PropertyState ;
+                    rdfs:comment "Specifies a property value that is planned during the design or production phase." ;
+                    rdfs:label "has planned property" .
+
+
+###  http://w3id.org/dstv#hasPosition
+:hasPosition rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Feature
+                                         :Process
+                                       )
+                         ] ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( :VertexX
+                                        :VertexY
+                                      )
+                        ] ;
+             rdfs:comment "Indicates the position of a feature or process within the coordinate system of the workpiece." ;
+             rdfs:label "has position" .
+
+
+###  http://w3id.org/dstv#hasProfileDef
+:hasProfileDef rdf:type owl:ObjectProperty ;
+               rdfs:domain :Workpiece ;
+               rdfs:range :ProfileDef ;
+               rdfs:comment "Connects a workpiece or structural part to its profile definition, such as an I-beam or U-profile." ;
+               rdfs:label "has profile def" .
+
+
+###  http://w3id.org/dstv#hasProject
+:hasProject rdf:type owl:ObjectProperty ;
+            rdfs:domain :Workpiece ;
+            rdfs:range :Project ;
+            rdfs:comment "Associates the workpiece with a specific construction or production project." ;
+            rdfs:label "has project" .
+
+
+###  http://w3id.org/dstv#hasProperties
+:hasProperties rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Feature
+                                           :Process
+                                           :ProfileDef
+                                         )
+                           ] ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :ProcessProperties
+                                          <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#ProfileProperties>
+                                        )
+                          ] ;
+               rdfs:comment "Links an object to a set of technical or geometric properties relevant for manufacturing or analysis." ;
+               rdfs:label "has properties" .
+
+
+###  http://w3id.org/dstv#hasReference
+:hasReference rdf:type owl:ObjectProperty ;
+              rdfs:domain :Feature ;
+              rdfs:range :DimensionalReference ;
+              rdfs:comment "Defines a reference that a feature is based on." ;
+              rdfs:label "has dimensional reference" .
+
+
+###  http://w3id.org/dstv#hasToleranceLimit
+:hasToleranceLimit rdf:type owl:ObjectProperty ;
+                   rdfs:domain :DefinedTolerance ;
+                   rdfs:range :ToleranceLimit ;
+                   rdfs:comment "Links a tolerance specification to its actual dimensional limit values." ;
+                   rdfs:label "has tolerance limit" .
+
+
+###  http://w3id.org/dstv#hasUpperToleranceLimit
+:hasUpperToleranceLimit rdf:type owl:ObjectProperty ;
+                        rdfs:domain :ToleranceLimit ;
+                        rdfs:range :PropertyState ;
+                        rdfs:comment "Specifies the upper boundary of an acceptable dimensional range." ;
+                        rdfs:label "has upper tolerance limit" .
+
+
+###  http://w3id.org/dstv#hasView
+:hasView rdf:type owl:ObjectProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Feature
+                                     :Process
+                                   )
+                     ] ;
+         rdfs:range :Reference ;
+         rdfs:comment "Points to the view of the profile where the process and feature is planned on." ;
+         rdfs:label "has reference view" .
+
+
+###  http://w3id.org/dstv#hasWidth
+:hasWidth rdf:type owl:ObjectProperty ;
+          rdfs:domain :Feature ;
+          rdfs:range :Width ;
+          rdfs:comment "Defines the width of a feature or a profile." ;
+          rdfs:label "has width" .
+
+
+###  http://w3id.org/dstv#hasfeature
+:hasfeature rdf:type owl:ObjectProperty ;
+            rdfs:domain :Workpiece ;
+            rdfs:range :Feature ;
+            rdfs:comment "Associates a workpiece with its geometric or functional features." ;
+            rdfs:label "has feature" .
+
+
+###  http://w3id.org/dstv#hasfeaturevalues
+:hasfeaturevalues rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Feature ;
+                  rdfs:range :FeatureValues ;
+                  rdfs:comment "Points to concrete values that describe the feature, such as dimensions or angles." ;
+                  rdfs:label "has feature values" .
+
+
+###  http://w3id.org/dstv#hasgeneralinformation
+:hasgeneralinformation rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Workpiece ;
+                       rdfs:range :GeneralInformation ;
+                       rdfs:comment "Links a workpiece to general metadata such as date, client, or job description." ;
+                       rdfs:label "has general information" .
+
+
+###  http://w3id.org/dstv#preDefinedType
+:preDefinedType rdf:type owl:ObjectProperty ;
+                rdfs:domain :ToleranceLimit ;
+                rdfs:range :ToleranceClasses ;
+                rdfs:comment "Refers to a predefined tolerance class." ;
+                rdfs:label "pre defined type" .
+
+
+###  http://w3id.org/ioc#hasInputElement
+<http://w3id.org/ioc#hasInputElement> rdf:type owl:ObjectProperty ;
+                                      rdfs:domain :Process ;
+                                      rdfs:range :Workpiece ;
+                                      rdfs:comment "Denotes the input workpiece to a process step." ;
+                                      rdfs:label "has input element" .
+
+
+###  http://w3id.org/ioc#hasOutputElement
+<http://w3id.org/ioc#hasOutputElement> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain :Process ;
+                                       rdfs:range :Feature ;
+                                       rdfs:comment "Indicates the result or product of a process, typically a new or modified feature." ;
+                                       rdfs:label "has output element" .
+
+
+###  https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Identification
+<https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Identification> rdf:type owl:ObjectProperty ;
+                                                                               rdfs:domain :Workpiece ;
+                                                                               rdfs:range <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Identifier> ;
+                                                                               rdfs:comment "Provides a unique identifier for the workpiece in compliance with IFC standards." ;
+                                                                               rdfs:label "identification" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://schema.org#Value
+<http://schema.org#Value> rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :PropertyState ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Represents the actual value of a planned, measured, calculated or defined tolerance property." ;
+                          rdfs:label "value" .
+
+
+###  http://w3id.org/dstv#AdditionalTolerance1
+:AdditionalTolerance1 rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :ToleranceClasses ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Specifies the first additional tolerance value applied to the basic tolerance." ;
+                      rdfs:label "additional tolerance 1" .
+
+
+###  http://w3id.org/dstv#AdditionalTolerance2
+:AdditionalTolerance2 rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :ToleranceClasses ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Specifies the second additional tolerance value applied to the basic tolerance." ;
+                      rdfs:label "additional tolerance 2" .
+
+
+###  http://w3id.org/dstv#BasicTolerance
+:BasicTolerance rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ToleranceClasses ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Defines the base tolerance value for a particular tolerance class." ;
+                rdfs:label "basic tolerance" .
+
+
+###  http://w3id.org/dstv#Company
+:Company rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Creator ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "Name of the company or organization that created the element." ;
+         rdfs:label "company" .
+
+
+###  http://w3id.org/dstv#DrawingNumber
+:DrawingNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Information ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Identifies the engineering or technical drawing number related to the workpiece." ;
+               rdfs:label "drawing number" .
+
+
+###  http://w3id.org/dstv#MaterialDelivery
+:MaterialDelivery rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :MaterialInventory ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Indicates the delivery status or date of the material." ;
+                  rdfs:label "material delivery" .
+
+
+###  http://w3id.org/dstv#MaterialGrade
+:MaterialGrade rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Material ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Specifies the classification or quality grade of the material." ;
+               rdfs:label "material grade" .
+
+
+###  http://w3id.org/dstv#MaterialID
+:MaterialID rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Material ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Unique identifier for the material used in the workpiece." ;
+            rdfs:label "material i d" .
+
+
+###  http://w3id.org/dstv#MaterialQuality
+:MaterialQuality rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Material ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Describes the quality condition or specification of the material." ;
+                 rdfs:label "material quality" .
+
+
+###  http://w3id.org/dstv#MaterialStock
+:MaterialStock rdf:type owl:DatatypeProperty ;
+               rdfs:domain :MaterialInventory ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Amount of material currently in inventory or stock." ;
+               rdfs:label "material stock" .
+
+
+###  http://w3id.org/dstv#MaterialSupplier
+:MaterialSupplier rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :MaterialInventory ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Name or identifier of the supplier providing the material." ;
+                  rdfs:label "material supplier" .
+
+
+###  http://w3id.org/dstv#Object
+:Object rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Project ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Specifies the construction or production object name related to the project." ;
+        rdfs:label "object" .
+
+
+###  http://w3id.org/dstv#Order
+:Order rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Project ;
+       rdfs:range rdfs:Literal ;
+       rdfs:comment "Represents the production or project order identifier." ;
+       rdfs:label "order" .
+
+
+###  http://w3id.org/dstv#OrderNumber
+:OrderNumber rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Information ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Unique number used to track or identify the order associated with the component." ;
+             rdfs:label "order number" .
+
+
+###  http://w3id.org/dstv#Orderer
+:Orderer rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Project ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "Entity (person or organization) who placed the order for the project." ;
+         rdfs:label "orderer" .
+
+
+###  http://w3id.org/dstv#PartNumber
+:PartNumber rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Information ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Unique part number assigned to the workpiece or component." ;
+            rdfs:label "part number" .
+
+
+###  http://w3id.org/dstv#PositionNumber
+:PositionNumber rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Information ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Identifies the position number of the component within the assembly or drawing. Here, the part can be identified as either a main part or a sub-part." ;
+                rdfs:label "position number" .
+
+
+###  http://w3id.org/dstv#Release
+:Release rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Creator ;
+         rdfs:range xsd:dateTimeStamp ;
+         rdfs:comment "Specifies the date and time when the detailing of the steel element was officially released." ;
+         rdfs:label "release" .
+
+
+###  http://w3id.org/dstv#SupplyCondition
+:SupplyCondition rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Material ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Describes the delivery or supply condition of the raw material." ;
+                 rdfs:label "supply condition" .
+
+
+###  http://w3id.org/dstv#System
+:System rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Creator ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Refers to the system or application used during creation of the component or model." ;
+        rdfs:label "system" .
+
+
+###  http://w3id.org/dstv#User
+:User rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Creator ;
+      rdfs:range rdfs:Literal ;
+      rdfs:comment "Identifies the user who created or edited the element." ;
+      rdfs:label "user" .
+
+
+###  http://w3id.org/dstv#Weightpm
+:Weightpm rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Information ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment "Weight per meter of the component or profile." ;
+          rdfs:label "weightpm" .
+
+
+###  http://www.w3.org/ns/prov#GeneratedAtTime
+<http://www.w3.org/ns/prov#GeneratedAtTime> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain :PropertyState ;
+                                            rdfs:range xsd:dateTimeStamp ;
+                                            rdfs:comment "Timestamp when the property state or measurement was generated." ;
+                                            rdfs:label "generated at time" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://w3id.org/dstv#AdjustmentProcess
+:AdjustmentProcess rdf:type owl:Class ;
+                   rdfs:subClassOf :Process ;
+                   rdfs:comment "A process in which existing properties are corrected or adjusted, e.g. alignment or re-measurement after initial fabrication." ;
+                   rdfs:label "Adjustment Process" .
+
+
+###  http://w3id.org/dstv#Assembly
+:Assembly rdf:type owl:Class ;
+          rdfs:subClassOf :ProductionProcess ;
+          rdfs:comment "A production process where multiple components are joined or assembled into a final workpiece." ;
+          rdfs:label "Assembly" .
+
+
+###  http://w3id.org/dstv#Beam
+:Beam rdf:type owl:Class ;
+      rdfs:subClassOf :Profile ;
+      rdfs:comment "A Beam is usually a horizontal or almost horizontal component that can be loaded primarily by bending. For steel construction fabrication, the Beam must have a parametric profile and the volume geometry must consist of an extrusion. The extrusion direction must correspond to the x-direction of the local coordinate system." ;
+      rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcBeam> ;
+      rdfs:label "Beam" .
+
+
+###  http://w3id.org/dstv#Bending
+:Bending rdf:type owl:Class ;
+         rdfs:subClassOf :ProductionProcess ;
+         rdfs:comment "A process where material is plastically deformed into a curved shape." ;
+         rdfs:label "Bending" .
+
+
+###  http://w3id.org/dstv#BlindHoleDrill
+:BlindHoleDrill rdf:type owl:Class ;
+                rdfs:subClassOf :Drill ;
+                rdfs:comment "A drilling process that creates a hole which does not pass completely through the material." ;
+                rdfs:label "Blind Hole Drill" .
+
+
+###  http://w3id.org/dstv#Bolting
+:Bolting rdf:type owl:Class ;
+         rdfs:subClassOf :Assembly ;
+         rdfs:comment "An assembly process using bolts to join components." ;
+         rdfs:label "Bolting" .
+
+
+###  http://w3id.org/dstv#BottomReference
+:BottomReference rdf:type owl:Class ;
+                 rdfs:subClassOf :DimensionalReference ;
+                 rdfs:comment "A reference datum positioned at the bottom edge or surface of a component." ;
+                 rdfs:isDefinedBy <http://w3id.org/dstv#> ;
+                 rdfs:label "Bottom Reference" .
+
+
+###  http://w3id.org/dstv#BottomView
+:BottomView rdf:type owl:Class ;
+            rdfs:subClassOf :Reference ;
+            rdfs:comment "A view representing the bottom side of a workpiece." ;
+            rdfs:label "Bottom View" .
+
+
+###  http://w3id.org/dstv#Column
+:Column rdf:type owl:Class ;
+        rdfs:subClassOf :Profile ;
+        rdfs:comment "A Column is a vertical structural member which often is aligned with a structural grid intersection. For steel construction fabrication, the Column must have a parametric profile and the volume geometry must consist of an extrusion. The extrusion direction must correspond to the x-direction of the local coordinate system." ;
+        rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcColumn> ;
+        rdfs:label "Column" .
+
+
+###  http://w3id.org/dstv#Comment
+:Comment rdf:type owl:Class ;
+         rdfs:subClassOf :GeneralInformation ;
+         rdfs:comment "An annotation or remark associated with a feature, process, or workpiece. Specifications between two entities can be exchanged here" ;
+         rdfs:label "Comment" .
+
+
+###  http://w3id.org/dstv#CountersinkHoleDrill
+:CountersinkHoleDrill rdf:type owl:Class ;
+                      rdfs:subClassOf :Drill ;
+                      rdfs:comment "A drilling process that creates a countersunk hole, typically for flush bolt heads." ;
+                      rdfs:label "Countersink Hole Drill" .
+
+
+###  http://w3id.org/dstv#Creator
+:Creator rdf:type owl:Class ;
+         rdfs:subClassOf :GeneralInformation ;
+         rdfs:comment "Information about the person or organization that produced the workpiece." ;
+         rdfs:label "Creator" .
+
+
+###  http://w3id.org/dstv#Cutting
+:Cutting rdf:type owl:Class ;
+         rdfs:subClassOf :ProductionProcess ;
+         rdfs:comment "A production process where material is removed or separated by cutting." ;
+         rdfs:label "Cutting" .
+
+
+###  http://w3id.org/dstv#DefinedTolerance
+:DefinedTolerance rdf:type owl:Class ;
+                  rdfs:comment "A specification of allowable deviation from nominal dimensions." ;
+                  rdfs:label "Defined Tolerance" .
+
+
+###  http://w3id.org/dstv#Depth
+:Depth rdf:type owl:Class ;
+       rdfs:subClassOf :FeatureValues ;
+       rdfs:comment "A dimensional value representing how deep a feature extends into the material." ;
+       rdfs:label "Depth" .
+
+
+###  http://w3id.org/dstv#Diameter
+:Diameter rdf:type owl:Class ;
+          rdfs:subClassOf :FeatureValues ;
+          rdfs:comment "A dimensional value describing the width across a circular feature." ;
+          rdfs:label "Diameter" .
+
+
+###  http://w3id.org/dstv#DimensionalReference
+:DimensionalReference rdf:type owl:Class ;
+                      rdfs:comment "A reference geometry or datum used to define dimensions relative to features." ;
+                      rdfs:label "Dimensional Reference" .
+
+
+###  http://w3id.org/dstv#Drill
+:Drill rdf:type owl:Class ;
+       rdfs:subClassOf :ProductionProcess ;
+       rdfs:comment "A fabrication process to produce holes using a drill tool." ;
+       rdfs:label "Drill" .
+
+
+###  http://w3id.org/dstv#Feature
+:Feature rdf:type owl:Class ;
+         rdfs:comment "A geometric or functional element of a workpiece which represents a steel fabrication output element of a specific process" ;
+         rdfs:label "Feature" .
+
+
+###  http://w3id.org/dstv#FeatureValues
+:FeatureValues rdf:type owl:Class ;
+               rdfs:comment "A container class for planned, actual measured or nominal geometric dimensions of a feature." ;
+               rdfs:label "Feature Values" .
+
+
+###  http://w3id.org/dstv#FrontView
+:FrontView rdf:type owl:Class ;
+           rdfs:subClassOf :Reference ;
+           rdfs:comment "A view representing the front side of a workpiece." ;
+           rdfs:label "Front View" .
+
+
+###  http://w3id.org/dstv#GeneralInformation
+:GeneralInformation rdf:type owl:Class ;
+                    rdfs:comment "A superclass for metadata or descriptive information about entities." ;
+                    rdfs:label "General Information" .
+
+
+###  http://w3id.org/dstv#Height
+:Height rdf:type owl:Class ;
+        rdfs:subClassOf :FeatureValues ;
+        rdfs:comment "A dimensional value measuring vertical extent of a feature or profile" ;
+        rdfs:label "Height" .
+
+
+###  http://w3id.org/dstv#Information
+:Information rdf:type owl:Class ;
+             rdfs:subClassOf :GeneralInformation ;
+             rdfs:comment "General metadata describing aspects of a workpiece." ;
+             rdfs:label "Information" .
+
+
+###  http://w3id.org/dstv#InternalContouring
+:InternalContouring rdf:type owl:Class ;
+                    rdfs:subClassOf :Cutting ;
+                    rdfs:comment "A cutting process to produce internal shapes or voids within a workpiece." ;
+                    rdfs:label "Internal Contouring" .
+
+
+###  http://w3id.org/dstv#InternalCountour
+:InternalCountour rdf:type owl:Class ;
+                  rdfs:subClassOf :VoidingFeature ;
+                  rdfs:comment "An internal cutout (creating an opening) or external cutout (creating a recess) of arbitrary shape. The edges between cutting planes may be overcut or undercut, i.e. rounded." ;
+                  rdfs:label "Internal Countour" .
+
+
+###  http://w3id.org/dstv#Material
+:Material rdf:type owl:Class ;
+          rdfs:subClassOf <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Material> ;
+          rdfs:comment "A class representing physical material of a workpiece." ;
+          rdfs:label "Material" .
+
+
+###  http://w3id.org/dstv#MaterialInventory
+:MaterialInventory rdf:type owl:Class ;
+                   rdfs:subClassOf :GeneralInformation ;
+                   rdfs:comment "Metadata about material stock, delivery, and supplier." ;
+                   rdfs:label "Material Inventory" .
+
+
+###  http://w3id.org/dstv#MeasurableProcessProperties
+:MeasurableProcessProperties rdf:type owl:Class ;
+                             rdfs:subClassOf :MeasurableProperties ;
+                             rdfs:comment "Quantifiable attributes of a process, such as feed rate or speed." ;
+                             rdfs:label "Measurable Process Properties" .
+
+
+###  http://w3id.org/dstv#MeasurableProfileProperties
+:MeasurableProfileProperties rdf:type owl:Class ;
+                             rdfs:subClassOf :MeasurableProperties ;
+                             rdfs:comment "Quantifiable properties of a profile or a feature" ;
+                             rdfs:label "Measurable Profile Properties" .
+
+
+###  http://w3id.org/dstv#MeasurableProperties
+:MeasurableProperties rdf:type owl:Class ;
+                      rdfs:comment "Superclass grouping measurable features or properties." ;
+                      rdfs:label "Measurable Properties" .
+
+
+###  http://w3id.org/dstv#Milling
+:Milling rdf:type owl:Class ;
+         rdfs:subClassOf :ProductionProcess ;
+         rdfs:comment "A machining process using rotary cutting tools to remove material." ;
+         rdfs:label "Milling" .
+
+
+###  http://w3id.org/dstv#Mitre
+:Mitre rdf:type owl:Class ;
+       rdfs:subClassOf :ProductionProcess ;
+       rdfs:comment "A process producing angled cuts (miter joints) between components." ;
+       rdfs:label "Mitre" .
+
+
+###  http://w3id.org/dstv#NominalSize
+:NominalSize rdf:type owl:Class ;
+             rdfs:subClassOf :DefinedTolerance ;
+             rdfs:comment "The target dimension from which tolerances are defined." ;
+             rdfs:label "Nominal Size" .
+
+
+###  http://w3id.org/dstv#NormReference
+:NormReference rdf:type owl:Class ;
+               rdfs:subClassOf :DefinedTolerance ;
+               rdfs:comment "A reference to a normative standard defining tolerance classes." ;
+               rdfs:label "Norm Reference" .
+
+
+###  http://w3id.org/dstv#Plate
+:Plate rdf:type owl:Class ;
+       rdfs:subClassOf :Workpiece ;
+       rdfs:comment "An Plate is a planar and often flat part with constant thickness. A plate may carry loads between or beyond points of support, or provide stiffening. The location of the plate (being horizontal, vertical or sloped) is not relevant to its definition. For steel construction fabrication, the Plate must have a  profile and the volume geometry must consist of an extrusion." ;
+       rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcPlate> ;
+       rdfs:label "Plate" .
+
+
+###  http://w3id.org/dstv#Process
+:Process rdf:type owl:Class ;
+         rdfs:comment "The generic class process serves as the central element of the construction process ontology. It can represent a classical process or a subfield common in some definitions such as an activity or a task. Here it is used to describe processes in steel fabrication." ;
+         rdfs:isDefinedBy <http://w3id.org/ioc#Process> ;
+         rdfs:label "Process" .
+
+
+###  http://w3id.org/dstv#ProcessProperties
+:ProcessProperties rdf:type owl:Class ;
+                   rdfs:subClassOf :MeasurableProcessProperties ;
+                   rdfs:comment "Specific measurable parameters of a process step." ;
+                   rdfs:label "Process Properties" .
+
+
+###  http://w3id.org/dstv#ProductionProcess
+:ProductionProcess rdf:type owl:Class ;
+                   rdfs:subClassOf :Process ;
+                   rdfs:comment "A process directly involved in fabrication or modification of the workpiece." ;
+                   rdfs:label "Production Process" .
+
+
+###  http://w3id.org/dstv#Profile
+:Profile rdf:type owl:Class ;
+         rdfs:subClassOf :Workpiece ;
+         rdfs:comment "A linear structural member with a standardized cross-section." ;
+         rdfs:label "Profile" .
+
+
+###  http://w3id.org/dstv#ProfileDef
+:ProfileDef rdf:type owl:Class ;
+            rdfs:comment "Definition of a profile shape according to IFC standard." ;
+            rdfs:isDefinedBy "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcProfileDef" ;
+            rdfs:label "Profile Def" .
+
+
+###  http://w3id.org/dstv#Project
+:Project rdf:type owl:Class ;
+         rdfs:subClassOf :GeneralInformation ;
+         rdfs:comment "Metadata about the production or construction project." ;
+         rdfs:label "Project" .
+
+
+###  http://w3id.org/dstv#PropertyState
+:PropertyState rdf:type owl:Class ;
+               rdfs:comment "Represents an instance of a measurable property at a given time or condition." ;
+               rdfs:label "Property State" .
+
+
+###  http://w3id.org/dstv#Punching
+:Punching rdf:type owl:Class ;
+          rdfs:subClassOf :ProductionProcess ;
+          rdfs:comment "A process removing material using a punch press to create holes or shapes." ;
+          rdfs:label "Punching" .
+
+
+###  http://w3id.org/dstv#QualityCheck
+:QualityCheck rdf:type owl:Class ;
+              rdfs:subClassOf :Process ;
+              rdfs:comment "A process step intended to assess or validate conformity of features." ;
+              rdfs:label "Quality Check" .
+
+
+###  http://w3id.org/dstv#RearView
+:RearView rdf:type owl:Class ;
+          rdfs:subClassOf :Reference ;
+          rdfs:comment "A view representing the rear side of a workpiece." ;
+          rdfs:label "Rear View" .
+
+
+###  http://w3id.org/dstv#Reference
+:Reference rdf:type owl:Class ;
+           rdfs:comment "A general viewpoint or reference projection used for feature specification." ;
+           rdfs:label "Reference View" .
+
+
+###  http://w3id.org/dstv#Sawing
+:Sawing rdf:type owl:Class ;
+        rdfs:subClassOf :ProductionProcess ;
+        rdfs:comment "A cutting process using a saw to separate material." ;
+        rdfs:label "Sawing" .
+
+
+###  http://w3id.org/dstv#Scanning
+:Scanning rdf:type owl:Class ;
+          rdfs:subClassOf :QualityCheck ;
+          rdfs:comment "A process where measurement equipment captures feature dimensions or geometry." ;
+          rdfs:label "Measurement Process" .
+
+
+###  http://w3id.org/dstv#Signing
+:Signing rdf:type owl:Class ;
+         rdfs:subClassOf :ProductionProcess ;
+         rdfs:comment "The process of marking or labeling components, e.g. engraving or stamping identification." ;
+         rdfs:label "Signing" .
+
+
+###  http://w3id.org/dstv#SurfaceFeature
+:SurfaceFeature rdf:type owl:Class ;
+                rdfs:subClassOf :Feature ;
+                rdfs:comment "A surface feature is a modification at (onto, or into) of the surface of an element. Parts of the surface of the entire surface may be affected. The volume and mass of the element may be increased, remain unchanged, or be decreased by the surface feature, depending on manufacturing technology. However, any increase or decrease of volume is small compared to the total volume of the element. In steel fabrication each surface feature is representing a fabrication process step which manipulates the surface of the workpiece e.g. blasting, painting, marking." ;
+                rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcSurfaceFeature> ;
+                rdfs:label "Surface Feature" .
+
+
+###  http://w3id.org/dstv#SurfaceTreatment
+:SurfaceTreatment rdf:type owl:Class ;
+                  rdfs:subClassOf :ProductionProcess ;
+                  rdfs:comment "Processes such as painting, galvanizing, or coating applied to the surface." ;
+                  rdfs:label "Surface Treatment" .
+
+
+###  http://w3id.org/dstv#SymmetricalReference
+:SymmetricalReference rdf:type owl:Class ;
+                      rdfs:subClassOf :DimensionalReference ;
+                      rdfs:comment "A reference datum centered or mirrored along a symmetry plane." ;
+                      rdfs:isDefinedBy <http://w3id.org/dstv#> ;
+                      rdfs:label "Symmetrical Reference" .
+
+
+###  http://w3id.org/dstv#ThreadedHoleDrill
+:ThreadedHoleDrill rdf:type owl:Class ;
+                   rdfs:subClassOf :Drill ;
+                   rdfs:comment "A drilling process that creates a threaded hole with internal screw threads." ;
+                   rdfs:label "Threaded Hole Drill" .
+
+
+###  http://w3id.org/dstv#ThroughHole
+:ThroughHole rdf:type owl:Class ;
+             rdfs:subClassOf :VoidingFeature ;
+             rdfs:comment "A circular or slotted or threaded hole, typically but not necessarily of smaller dimension than what would be considered a cutout." ;
+             rdfs:isDefinedBy "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#HOLE" ;
+             rdfs:label "Through Hole" .
+
+
+###  http://w3id.org/dstv#ThroughHoleDrill
+:ThroughHoleDrill rdf:type owl:Class ;
+                  rdfs:subClassOf :Drill ;
+                  rdfs:comment "A drilling process that produces a hole through the entire workpiece." ;
+                  rdfs:label "Through Hole Drill" .
+
+
+###  http://w3id.org/dstv#ToleranceClasses
+:ToleranceClasses rdf:type owl:Class ;
+                  rdfs:subClassOf :DefinedTolerance ;
+                  rdfs:comment "Classes categorizing tolerance ranges" ;
+                  rdfs:label "Tolerance Classes" .
+
+
+###  http://w3id.org/dstv#ToleranceLimit
+:ToleranceLimit rdf:type owl:Class ;
+                rdfs:subClassOf :DefinedTolerance ;
+                rdfs:comment "A specific upper or lower bound defined for a tolerance class." ;
+                rdfs:label "Tolerance Limit" .
+
+
+###  http://w3id.org/dstv#TopReference
+:TopReference rdf:type owl:Class ;
+              rdfs:subClassOf :DimensionalReference ;
+              rdfs:comment "A reference datum at the top edge or surface of a component." ;
+              rdfs:isDefinedBy <http://w3id.org/dstv#> ;
+              rdfs:label "Top Reference" .
+
+
+###  http://w3id.org/dstv#TopView
+:TopView rdf:type owl:Class ;
+         rdfs:subClassOf :Reference ;
+         rdfs:comment "A view representing the top side of a workpiece." ;
+         rdfs:label "Top View" .
+
+
+###  http://w3id.org/dstv#ValidationProcess
+:ValidationProcess rdf:type owl:Class ;
+                   rdfs:subClassOf :QualityCheck ;
+                   rdfs:comment "A specific quality check process verifying compliance to specifications." ;
+                   rdfs:label "Validation Process" .
+
+
+###  http://w3id.org/dstv#VertexX
+:VertexX rdf:type owl:Class ;
+         rdfs:subClassOf :FeatureValues ;
+         rdfs:comment "The X‑coordinate value of a vertex point defining a feature location." ;
+         rdfs:label "Vertex X" .
+
+
+###  http://w3id.org/dstv#VertexY
+:VertexY rdf:type owl:Class ;
+         rdfs:subClassOf :FeatureValues ;
+         rdfs:comment "The Y‑coordinate value of a vertex point defining a feature location." ;
+         rdfs:label "Vertex Y" .
+
+
+###  http://w3id.org/dstv#VoidingFeature
+:VoidingFeature rdf:type owl:Class ;
+                rdfs:subClassOf :Feature ;
+                rdfs:comment "A voiding feature is a modification of an element which reduces its volume. Such a feature may be manufactured in different ways, for example by cutting, drilling, or milling of members made of various materials, or by inlays into the formwork of cast members made of materials such as concrete. In steel fabrication each voiding element representation a fabrication process step, which significantly reduces the volume e.g. drilling, milling, sawing." ;
+                rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcVoidingFeature> ;
+                rdfs:label "Voiding Feature" .
+
+
+###  http://w3id.org/dstv#Welding
+:Welding rdf:type owl:Class ;
+         rdfs:subClassOf :Assembly ;
+         rdfs:comment "An assembly process using fusion to join metal components." ;
+         rdfs:label "Welding" .
+
+
+###  http://w3id.org/dstv#Width
+:Width rdf:type owl:Class ;
+       rdfs:subClassOf :FeatureValues ;
+       rdfs:comment "A dimensional value representing how wide a feature or profile is." ;
+       rdfs:label "Width" .
+
+
+###  http://w3id.org/dstv#Workpiece
+:Workpiece rdf:type owl:Class ;
+           rdfs:comment "A physical element or component to be manufactured within a structural project." ;
+           rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcBuildingElement> ;
+           rdfs:label "Workpiece" .
+
+
+###  https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Identifier
+<https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Identifier> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf :GeneralInformation ;
+                                                                           rdfs:comment "An identifier is an alphanumeric string which allows an individual thing to be identified. It may not provide natural-language meaning." ;
+                                                                           rdfs:isDefinedBy <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcIdentifier> ;
+                                                                           rdfs:label "Identifier" .
+
+
+###  https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Material
+<https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#Material> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf :GeneralInformation ;
+                                                                         rdfs:comment "Material is a homogeneous or inhomogeneous substance that can be used to form elements (physical products or their components). Material is the basic entity for material designation and definition; this includes identification by name and classification (via reference to an external classification). Material must have a name (=material grade e.g. S355JR) and a category (=material e.g. Steel, Aluminium etc.). Material defines the planned/proposed material. The finally used material is stored in the property set." ;
+                                                                         rdfs:label "Material" .
+
+
+###  https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#ProfileProperties
+<https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#ProfileProperties> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf :MeasurableProfileProperties ;
+                                                                                  rdfs:comment "IFC-defined measurable properties associated with profile elements." ;
+                                                                                  rdfs:isDefinedBy "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcProfileProperties" ;
+                                                                                  rdfs:label "Profile Properties" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BottomView
+                :FrontView
+                :RearView
+                :TopView
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

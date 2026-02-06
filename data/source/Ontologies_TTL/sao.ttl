@@ -1,0 +1,718 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix DUL: <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix muo: <http://purl.oclc.org/NET/muo/muo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qoi: <http://purl.oclc.org/NET/UASO/qoi#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sao: <http://purl.oclc.org/NET/UNIS/sao/sao#> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@base <http://purl.oclc.org/NET/UNIS/sao/sao#> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/terms/description
+
+dc:description rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#beginsAtLocation
+
+sao:beginsAtLocation rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Describes dynamic location of a sensor using a relation from ssn:FeatureOfInterest to geo:SpatialThing to describe the beginning location of the sensory measurement." ;
+
+rdfs:domain ssn:FeatureOfInterest ;
+
+rdfs:range geo:SpatialThing .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#endsAtLocation
+
+sao:endsAtLocation rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Describes dynamic location of a sensor using a relation from ssn:FeatureOfInterest to geo:SpatialThing to describe the ending location of the sensory measurement." ;
+
+rdfs:domain ssn:FeatureOfInterest ;
+
+rdfs:range geo:SpatialThing .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasPoint
+
+sao:hasPoint rdf:type owl:ObjectProperty ;
+
+rdfs:range sao:Point ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasSegment
+
+sao:hasSegment rdf:type owl:ObjectProperty ;
+
+rdfs:range sao:Segment ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasUnitOfMeasurement
+
+sao:hasUnitOfMeasurement rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a stream data to Unit Of Measurement" ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range muo:UnitOfMeasurement .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#quality
+
+sao:quality rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a stream data to an information entity regarding the quality" ;
+
+rdfs:domain sao:StreamData ;
+
+rdfs:range DUL:InformationEntity .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#time
+
+sao:time rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a segment to the time interval concept in tl Ontology" ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ,
+sao:StreamEvent ;
+
+rdfs:subPropertyOf event:time ;
+
+rdfs:range tl:Instant ,
+tl:Interval .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#hasLocation
+
+ssn:hasLocation rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a stream data to an obervation or an event to a geographical locaton" ;
+
+rdfs:domain sao:StreamEvent ,
+ssn:FeatureOfInterest ;
+
+rdfs:range geo:SpatialThing .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#observationResultTime
+
+ssn:observationResultTime rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a data point to a time instant or a time interval concept in tl Ontology" ;
+
+rdfs:domain sao:StreamData ,
+sao:StreamEvent ;
+
+rdfs:range tl:Instant ,
+tl:Interval .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#observationSamplingTime
+
+ssn:observationSamplingTime rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a Stream Analysis or Stream Event output to a time instant or a time interval concept in tl Ontology" ;
+
+rdfs:domain sao:StreamData ,
+sao:StreamEvent ;
+
+rdfs:range tl:Instant ,
+tl:Interval .
+
+
+
+###  http://purl.org/NET/c4dm/event.owl#time
+
+event:time rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.w3.org/ns/prov#used
+
+prov:used rdf:type owl:ObjectProperty ;
+
+rdfs:comment """It describes usage of an entity by an activity.
+""" ;
+
+rdfs:range sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:domain sao:StreamEvent .
+
+
+
+###  http://www.w3.org/ns/prov#wasAssociatedWith
+
+prov:wasAssociatedWith rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a stream analysis to associated entity" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range ssn:Property ,
+ssn:Sensor ,
+prov:Agent .
+
+
+
+###  http://www.w3.org/ns/prov#wasAttributedTo
+
+prov:wasAttributedTo rdf:type owl:ObjectProperty ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range ssn:Property ,
+ssn:Sensor .
+
+
+
+###  http://www.w3.org/ns/prov#wasDerivedFrom
+
+prov:wasDerivedFrom rdf:type owl:ObjectProperty ;
+
+rdfs:comment "Relates a stream data to an obervation" ;
+
+rdfs:domain sao:StreamAnalysis ;
+
+rdfs:range sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:domain sao:StreamData ,
+ssn:Observation .
+
+
+
+###  http://www.w3.org/ns/prov#wasGeneratedBy
+
+prov:wasGeneratedBy rdf:type owl:ObjectProperty ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range sao:StreamEvent .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#Timestamp
+
+sao:Timestamp rdf:type owl:DatatypeProperty ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ,
+sao:StreamEvent ;
+
+rdfs:range xs:dateTimeStamp .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#alphabetsize
+
+sao:alphabetsize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the alphabet size that have been used for a stream analysis technique (e.g. SymbolicAggregateApproximation)" ;
+
+rdfs:domain sao:SensorSAX ,
+sao:SymbolicAggregateApproximation ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#causeArea
+
+sao:causeArea rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the cause area as a bunch of coordinates" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#clustersize
+
+sao:clustersize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "Describes the cluster size of KMeans clustering algorithm" ;
+
+rdfs:domain sao:KMeans ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#comments
+
+sao:comments rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the comments regarding an event" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasDatatype
+
+sao:hasDatatype rdf:type owl:DatatypeProperty ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasID
+
+sao:hasID rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the identification of the stream data" ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#hasURI
+
+sao:hasURI rdf:type owl:DatatypeProperty ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#levelOfInterest
+
+sao:levelOfInterest rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the level of an interest for an event, such as High, Medium, Low" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#minwindowsize
+
+sao:minwindowsize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the window size that is used for Adaptive SensorSAX algorithm" ;
+
+rdfs:domain sao:SensorSAX ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#nColumns
+
+sao:nColumns rdf:type owl:DatatypeProperty ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#nRows
+
+sao:nRows rdf:type owl:DatatypeProperty ;
+
+rdfs:domain sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#name
+
+sao:name rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the name of event, such as Road works, Festival, Concert" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#samplesize
+
+sao:samplesize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the number of samples that a stream data involve; or used for a stream analysis technique" ;
+
+rdfs:domain sao:StreamData ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#samplingrate
+
+sao:samplingrate rdf:type owl:DatatypeProperty ;
+
+rdfs:domain sao:StreamData ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#segmentsize
+
+sao:segmentsize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "Describes the number of segments that have been used for a stream data/analysis" ;
+
+rdfs:domain sao:StreamAnalysis ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#sensitivity
+
+sao:sensitivity rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the threshold of the sensitivity that is used for Adaptive SensorSAX algorithm" ;
+
+rdfs:domain sao:SensorSAX ;
+
+rdfs:range xs:float .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#severity
+
+sao:severity rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the severity of an event, such as Serious, Moderate" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#status
+
+sao:status rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the status of an event, such as Active, Scheduled" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#stepsize
+
+sao:stepsize rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "Describes the step size in other words the size of overlapping frames that have been used for a stream data/analysis" ;
+
+rdfs:domain sao:StreamAnalysis ;
+
+rdfs:range xs:int .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#type
+
+sao:type rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "It describes the type of event, such as Traffic, Cultural Event" ;
+
+rdfs:domain sao:StreamEvent ;
+
+rdfs:range xs:string .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#value
+
+sao:value rdf:type owl:DatatypeProperty ;
+
+rdfs:comment "describes the value of the stream data or stream analysis output; it can be an array of values" ;
+
+rdfs:domain sao:Point ,
+sao:Segment ,
+sao:StreamAnalysis ,
+sao:StreamData ;
+
+rdfs:range xs:string .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteCosineTransform
+
+sao:DiscreteCosineTransform rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteFourierTransform
+
+sao:DiscreteFourierTransform rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteWaveletTransform
+
+sao:DiscreteWaveletTransform rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#KMeans
+
+sao:KMeans rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#Mean
+
+sao:Mean rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis ;
+
+dc:description "Mean calculate the mean of each row of observations" .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#Median
+
+sao:Median rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis ;
+
+dc:description "Median calculate the median of each row of observations" .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#MovingAverage
+
+sao:MovingAverage rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#PiecewiseAggregateApproximation
+
+sao:PiecewiseAggregateApproximation rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#Point
+
+sao:Point rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamData .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#Segment
+
+sao:Segment rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamData .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#SensorSAX
+
+sao:SensorSAX rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamAnalysis
+
+sao:StreamAnalysis rdf:type owl:Class ;
+
+rdfs:subClassOf ssn:Observation ,
+prov:Entity .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamData
+
+sao:StreamData rdf:type owl:Class ;
+
+rdfs:subClassOf ssn:Observation ,
+prov:Entity ,
+[ rdf:type owl:Restriction ;
+owl:onProperty sao:quality ;
+owl:allValuesFrom DUL:InformationEntity
+] .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamEvent
+
+sao:StreamEvent rdf:type owl:Class ;
+
+rdfs:subClassOf prov:Activity .
+
+
+
+###  http://purl.oclc.org/NET/UNIS/sao/sao#SymbolicAggregateApproximation
+
+sao:SymbolicAggregateApproximation rdf:type owl:Class ;
+
+rdfs:subClassOf sao:StreamAnalysis .
+
+
+
+###  http://purl.oclc.org/NET/muo/muo#UnitOfMeasurement
+
+muo:UnitOfMeasurement rdf:type owl:Class .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#FeatureOfInterest
+
+ssn:FeatureOfInterest rdf:type owl:Class .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#Observation
+
+ssn:Observation rdf:type owl:Class .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#Property
+
+ssn:Property rdf:type owl:Class ;
+
+rdfs:subClassOf prov:Agent .
+
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#Sensor
+
+ssn:Sensor rdf:type owl:Class ;
+
+rdfs:subClassOf prov:Agent .
+
+
+
+###  http://purl.org/NET/c4dm/timeline.owl#Instant
+
+tl:Instant rdf:type owl:Class .
+
+
+
+###  http://purl.org/NET/c4dm/timeline.owl#Interval
+
+tl:Interval rdf:type owl:Class .
+
+
+
+###  http://www.loa-cnr.it/ontologies/DUL.owl#InformationEntity
+
+DUL:InformationEntity rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2003/01/geo/geo#SpatialThing
+
+geo:SpatialThing rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/prov#Activity
+
+prov:Activity rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/prov#Agent
+
+prov:Agent rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/prov#Entity
+
+prov:Entity rdf:type owl:Class .

@@ -1,0 +1,1040 @@
+@prefix : <http://w3id.org/ci#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://w3id.org/ci#> .
+
+<http://w3id.org/ci> rdf:type owl:Ontology ;
+                      owl:imports <http://w3id.org/cterm> ;
+                      <http://purl.org/dc/terms/bibliographicCitation> "" ;
+                      <http://purl.org/dc/terms/contributor> _:genid1 ,
+                                                             _:genid3 ;
+                      <http://purl.org/dc/terms/created> "2024-10-12"^^xsd:date ;
+                      <http://purl.org/dc/terms/creator> _:genid5 ,
+                                                         _:genid7 ;
+                      <http://purl.org/dc/terms/description> "The Cost Item (CI) Ontology is based on concepts and principles of construction project cost estimation an can be used together with the Construction Resources (CR) ontology and can use terminology from the Construction Terminology (CTERM)."@en ;
+                      <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                      <http://purl.org/dc/terms/modified> "2025-04-07"^^xsd:date ;
+                      <http://purl.org/dc/terms/rights> "Copyright 2025 by DABC, PoliMi" ;
+                      <http://purl.org/dc/terms/title> "The Cost Item (CI) Ontology"@en ;
+                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "ci" ;
+                      <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                      owl:versionInfo "0.2" ;
+                      <https://schema.org/schema:codeRepository> <https://github.com/cpm-ont-network/cost> .
+
+_:genid1 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:claudio.mirarchi@polimi.it> ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-9288-8662> ;
+          <https://schema.org/memberOf> _:genid2 ;
+          <https://schema.org/name> "Mirarchi, Claudio" .
+
+_:genid3 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:katharina.sigalov@rub.de> ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-3070-0759> ;
+          <https://schema.org/memberOf> _:genid4 ;
+          <https://schema.org/name> "Sigalov, Katharina" .
+
+_:genid5 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:jacopo.cassandro@polimi.it> ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-1487-8178> ;
+          <https://schema.org/memberOf> _:genid6 ;
+          <https://schema.org/name> "Cassandro, Jacopo" .
+
+_:genid7 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:philipp.hagedorn-n6v@rub.de> ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-6249-243X> ;
+          <https://schema.org/memberOf> _:genid8 ,
+                                        [ <https://schema.org/name> "Politecnico di Milano"
+                                        ] ;
+          <https://schema.org/name> "Hagedorn, Philipp" .
+
+_:genid2 <https://schema.org/identifier> <https://www.dabc.polimi.it/persona/claudio-mirarchi/> ;
+          <https://schema.org/name> "Politecnico di Milano, Dipartimento ABC" .
+
+_:genid4 <https://schema.org/identifier> <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/katharina_sigalov.html.en> ;
+          <https://schema.org/name> "Ruhr University Bochum" .
+
+_:genid6 <https://schema.org/identifier> <https://www.dabc.polimi.it/persona/jacopo-cassandro/> ;
+          <https://schema.org/name> "Politecnico di Milano" .
+
+_:genid8 <https://schema.org/identifier> <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          <https://schema.org/name> "Ruhr University Bochum, Computing in Engineering" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/bibliographicCitation
+<http://purl.org/dc/terms/bibliographicCitation> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+<http://purl.org/dc/terms/rights> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/email
+<https://schema.org/email> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/identifier
+<https://schema.org/identifier> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/memberOf
+<https://schema.org/memberOf> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/name
+<https://schema.org/name> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/schema:codeRepository
+<https://schema.org/schema:codeRepository> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/ci#activityOf
+<https://w3id.org/ci#activityOf> rdf:type owl:ObjectProperty ;
+                                 owl:inverseOf <https://w3id.org/ci#hasActivity> ;
+                                 rdfs:domain <https://w3id.org/ci#Activity> ;
+                                 rdfs:range <https://w3id.org/ci#CostComponent> ;
+                                 rdfs:label "activity of" .
+
+
+###  https://w3id.org/ci#hasActivity
+<https://w3id.org/ci#hasActivity> rdf:type owl:ObjectProperty ;
+                                  rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                                  rdfs:range <https://w3id.org/ci#Activity> ;
+                                  rdfs:label "hasActivity" .
+
+
+###  https://w3id.org/ci#hasPart
+<https://w3id.org/ci#hasPart> rdf:type owl:ObjectProperty ;
+                              rdfs:domain [ rdf:type owl:Class ;
+                                            owl:unionOf ( <https://w3id.org/ci#CostItem>
+                                                          <https://w3id.org/ci#ProductionResult>
+                                                        )
+                                          ] ;
+                              rdfs:range <https://w3id.org/ci#CostComponent> ;
+                              rdfs:label "hasPart" .
+
+
+###  https://w3id.org/ci#hasSubComponent
+<https://w3id.org/ci#hasSubComponent> rdf:type owl:ObjectProperty ;
+                                      rdfs:domain [ rdf:type owl:Class ;
+                                                    owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                                  <https://w3id.org/ci#CostComponent>
+                                                                  <https://w3id.org/ci#Work>
+                                                                )
+                                                  ] ;
+                                      rdfs:range [ rdf:type owl:Class ;
+                                                   owl:unionOf ( <https://w3id.org/ci#CostComponent>
+                                                                 <https://w3id.org/cr#Resource>
+                                                               )
+                                                 ] ;
+                                      rdfs:label "hasSubComponent" .
+
+
+###  https://w3id.org/ci#hasUnit
+<https://w3id.org/ci#hasUnit> rdf:type owl:ObjectProperty ;
+                              rdfs:domain [ rdf:type owl:Class ;
+                                            owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                          <https://w3id.org/ci#CostComponent>
+                                                          <https://w3id.org/ci#Work>
+                                                        )
+                                          ] ;
+                              rdfs:range <http://qudt.org/schema/qudt/Unit> ;
+                              rdfs:label "hasUnit" .
+
+
+###  https://w3id.org/ci#hasWork
+<https://w3id.org/ci#hasWork> rdf:type owl:ObjectProperty ;
+                              owl:inverseOf <https://w3id.org/ci#workOf> ;
+                              rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                              rdfs:range <https://w3id.org/ci#Work> ;
+                              rdfs:label "hasWork" .
+
+
+###  https://w3id.org/ci#partOf
+<https://w3id.org/ci#partOf> rdf:type owl:ObjectProperty ;
+                             owl:inverseOf <https://w3id.org/ci#hasPart> ;
+                             rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                             rdfs:range [ rdf:type owl:Class ;
+                                          owl:unionOf ( <https://w3id.org/ci#CostItem>
+                                                        <https://w3id.org/ci#ProductionResult>
+                                                      )
+                                        ] ;
+                             rdfs:label "partOf" .
+
+
+###  https://w3id.org/ci#subComponentOf
+<https://w3id.org/ci#subComponentOf> rdf:type owl:ObjectProperty ;
+                                     owl:inverseOf <https://w3id.org/ci#hasSubComponent> ;
+                                     rdfs:domain [ rdf:type owl:Class ;
+                                                   owl:unionOf ( <https://w3id.org/ci#CostComponent>
+                                                                 <https://w3id.org/cr#Resource>
+                                                               )
+                                                 ] ;
+                                     rdfs:range [ rdf:type owl:Class ;
+                                                  owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                                <https://w3id.org/ci#CostComponent>
+                                                                <https://w3id.org/ci#Work>
+                                                              )
+                                                ] ;
+                                     rdfs:label "subComponentOf" .
+
+
+###  https://w3id.org/ci#unitOf
+<https://w3id.org/ci#unitOf> rdf:type owl:ObjectProperty ;
+                             owl:inverseOf <https://w3id.org/ci#hasUnit> ;
+                             rdfs:domain <http://qudt.org/schema/qudt/Unit> ;
+                             rdfs:range [ rdf:type owl:Class ;
+                                          owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                        <https://w3id.org/ci#CostComponent>
+                                                        <https://w3id.org/ci#Work>
+                                                      )
+                                        ] ;
+                             rdfs:label "unitOf" .
+
+
+###  https://w3id.org/ci#workOf
+<https://w3id.org/ci#workOf> rdf:type owl:ObjectProperty ;
+                             rdfs:domain <https://w3id.org/ci#Work> ;
+                             rdfs:range <https://w3id.org/ci#CostComponent> ;
+                             rdfs:label "workOf" .
+
+
+###  https://w3id.org/cterm#hasAspect
+<https://w3id.org/cterm#hasAspect> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasCategory
+<https://w3id.org/cterm#hasCategory> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasClassification
+<https://w3id.org/cterm#hasClassification> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasDimensionParameter
+<https://w3id.org/cterm#hasDimensionParameter> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasFamily
+<https://w3id.org/cterm#hasFamily> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasFinishing
+<https://w3id.org/cterm#hasFinishing> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasFunction
+<https://w3id.org/cterm#hasFunction> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasMaterial
+<https://w3id.org/cterm#hasMaterial> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasObject
+<https://w3id.org/cterm#hasObject> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasOtherStandard
+<https://w3id.org/cterm#hasOtherStandard> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasPerformanceParameter
+<https://w3id.org/cterm#hasPerformanceParameter> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasPhysicalParameter
+<https://w3id.org/cterm#hasPhysicalParameter> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasType
+<https://w3id.org/cterm#hasType> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/cterm#hasUse
+<https://w3id.org/cterm#hasUse> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/ci#cam
+<https://w3id.org/ci#cam> rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <https://w3id.org/ci#Work> ;
+                          rdfs:range xsd:boolean ;
+                          rdfs:label "environmental and ecological requirements defined by the Italian Ministry of Environment" .
+
+
+###  https://w3id.org/ci#code
+<https://w3id.org/ci#code> rdf:type owl:DatatypeProperty ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                       <https://w3id.org/ci#CostComponent>
+                                                       <https://w3id.org/ci#CostItem>
+                                                       <https://w3id.org/ci#Work>
+                                                     )
+                                       ] ;
+                           rdfs:range xsd:string ;
+                           rdfs:label "code" .
+
+
+###  https://w3id.org/ci#descriptionDetail
+<https://w3id.org/ci#descriptionDetail> rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:label "descriptionDetail" .
+
+
+###  https://w3id.org/ci#descriptionGeneral
+<https://w3id.org/ci#descriptionGeneral> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:label "descriptionGeneral" .
+
+
+###  https://w3id.org/ci#excluded
+<https://w3id.org/ci#excluded> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                           <https://w3id.org/ci#Work>
+                                                         )
+                                           ] ;
+                               rdfs:range xsd:string ;
+                               rdfs:label "excluded" .
+
+
+###  https://w3id.org/ci#included
+<https://w3id.org/ci#included> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                           <https://w3id.org/ci#Work>
+                                                         )
+                                           ] ;
+                               rdfs:range xsd:string ;
+                               rdfs:label "included" .
+
+
+###  https://w3id.org/ci#keywords
+<https://w3id.org/ci#keywords> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                           <https://w3id.org/ci#Work>
+                                                         )
+                                           ] ;
+                               rdfs:range xsd:string ;
+                               rdfs:label "keywords" .
+
+
+###  https://w3id.org/ci#law
+<https://w3id.org/ci#law> rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <https://w3id.org/ci#Work> ;
+                          rdfs:range xsd:string ;
+                          rdfs:label "law" .
+
+
+###  https://w3id.org/ci#measurementRules
+<https://w3id.org/ci#measurementRules> rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                                       rdfs:range xsd:string ;
+                                       rdfs:label "measurementRules" .
+
+
+###  https://w3id.org/ci#prefix
+<https://w3id.org/ci#prefix> rdf:type owl:DatatypeProperty ;
+                             rdfs:domain <https://w3id.org/ci#CostItem> ;
+                             rdfs:range xsd:string ;
+                             rdfs:label "prefisso"@it ,
+                                        "prefix"@en .
+
+
+###  https://w3id.org/ci#quantityUnitOfMeasure
+<https://w3id.org/ci#quantityUnitOfMeasure> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain <https://w3id.org/ci#CostComponent> ;
+                                            rdfs:range xsd:integer ;
+                                            rdfs:label "quantityUnitOfMeasure" .
+
+
+###  https://w3id.org/ci#techSpecs
+<https://w3id.org/ci#techSpecs> rdf:type owl:DatatypeProperty ;
+                                rdfs:domain [ rdf:type owl:Class ;
+                                              owl:unionOf ( <https://w3id.org/ci#Activity>
+                                                            <https://w3id.org/ci#Work>
+                                                          )
+                                            ] ;
+                                rdfs:range xsd:string ;
+                                rdfs:label "tech specs" .
+
+
+###  https://w3id.org/ci#unitPrice
+<https://w3id.org/ci#unitPrice> rdf:type owl:DatatypeProperty ;
+                                rdfs:domain <https://w3id.org/ci#CostItem> ;
+                                rdfs:range xsd:decimal ;
+                                rdfs:label "unit price" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://qudt.org/schema/qudt/Unit
+<http://qudt.org/schema/qudt/Unit> rdf:type owl:Class .
+
+
+###  http://qudt.org/schema/qudt/unit
+<http://qudt.org/schema/qudt/unit> rdf:type owl:Class .
+
+
+###  https://schema.org/Person
+<https://schema.org/Person> rdf:type owl:Class .
+
+
+###  https://w3id.org/ci#Activity
+<https://w3id.org/ci#Activity> rdf:type owl:Class ;
+                               rdfs:subClassOf owl:Thing ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                 owl:someValuesFrom <https://w3id.org/ci#TemporaryComponent>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                 owl:someValuesFrom <https://w3id.org/cr#EquipmentResource>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                 owl:someValuesFrom <https://w3id.org/cr#LabourResource>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasFunction> ;
+                                                 owl:someValuesFrom <https://w3id.org/cterm#FunctionOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasUse> ;
+                                                 owl:someValuesFrom <https://w3id.org/cterm#UseOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasCategory> ;
+                                                 owl:allValuesFrom <https://w3id.org/cterm#CategoryOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasFamily> ;
+                                                 owl:allValuesFrom <https://w3id.org/cterm#FamilyOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasObject> ;
+                                                 owl:allValuesFrom <https://w3id.org/cterm#ObjectOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasType> ;
+                                                 owl:allValuesFrom <https://w3id.org/cterm#TypeOfActivity>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasUnit> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass <http://qudt.org/schema/qudt/Unit>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#code> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#descriptionGeneral> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#quantityUnitOfMeasure> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:integer
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#descriptionDetail> ;
+                                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#techSpecs> ;
+                                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ;
+                               rdfs:label "Activity" .
+
+
+###  https://w3id.org/ci#ConstructionComponent
+<https://w3id.org/ci#ConstructionComponent> rdf:type owl:Class ;
+                                            rdfs:subClassOf <https://w3id.org/ci#CostComponent> ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://w3id.org/ci#hasWork> ;
+                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass <https://w3id.org/ci#WorkOfConstructionComponent>
+                                                            ] ;
+                                            owl:disjointWith <https://w3id.org/ci#ProductComponent> ,
+                                                             <https://w3id.org/ci#TemporaryComponent> ;
+                                            rdfs:label "Construction Work" .
+
+
+###  https://w3id.org/ci#CostComponent
+<https://w3id.org/ci#CostComponent> rdf:type owl:Class ;
+                                    rdfs:subClassOf owl:Thing ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#partOf> ;
+                                                      owl:someValuesFrom <https://w3id.org/ci#CostItem>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/cterm#hasClassification> ;
+                                                      owl:someValuesFrom <https://w3id.org/cterm#Classification>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/cterm#hasCategory> ;
+                                                      owl:allValuesFrom <https://w3id.org/cterm#CategoryOfCostComponent>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/cterm#hasFamily> ;
+                                                      owl:allValuesFrom <https://w3id.org/cterm#FamilyOfCostComponent>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/cterm#hasMaterial> ;
+                                                      owl:allValuesFrom <https://w3id.org/cterm#Material>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/cterm#hasObject> ;
+                                                      owl:allValuesFrom <https://w3id.org/cterm#ObjectOfCostComponent>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#hasActivity> ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass <https://w3id.org/ci#Activity>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#hasUnit> ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass <http://qudt.org/schema/qudt/Unit>
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#code> ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:string
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#descriptionGeneral> ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:string
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#quantityUnitOfMeasure> ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:integer
+                                                    ] ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <https://w3id.org/ci#descriptionDetail> ;
+                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:string
+                                                    ] ;
+                                    rdfs:label "CostComponent" .
+
+
+###  https://w3id.org/ci#CostItem
+<https://w3id.org/ci#CostItem> rdf:type owl:Class ;
+                               owl:equivalentClass <https://w3id.org/ci#ProductionResult> ;
+                               rdfs:subClassOf owl:Thing ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasPart> ;
+                                                 owl:someValuesFrom <https://w3id.org/ci#CostComponent>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/cterm#hasClassification> ;
+                                                 owl:someValuesFrom <https://w3id.org/cterm#Classification>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#hasUnit> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass <http://qudt.org/schema/qudt/unit>
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#code> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#descriptionDetail> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#descriptionGeneral> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#prefix> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:string
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#quantityUnitOfMeasure> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:integer
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <https://w3id.org/ci#unitPrice> ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:decimal
+                                               ] ;
+                               rdfs:label "CostItem" .
+
+
+###  https://w3id.org/ci#ProductComponent
+<https://w3id.org/ci#ProductComponent> rdf:type owl:Class ;
+                                       rdfs:subClassOf <https://w3id.org/ci#CostComponent> ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <https://w3id.org/ci#hasWork> ;
+                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass <https://w3id.org/ci#WorkOfProductComponent>
+                                                       ] ;
+                                       owl:disjointWith <https://w3id.org/ci#TemporaryComponent> ;
+                                       rdfs:label "Product Work" .
+
+
+###  https://w3id.org/ci#ProductionResult
+<https://w3id.org/ci#ProductionResult> rdf:type owl:Class ;
+                                       rdfs:subClassOf owl:Thing ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <https://w3id.org/ci#hasPart> ;
+                                                         owl:someValuesFrom <https://w3id.org/ci#CostComponent>
+                                                       ] ;
+                                       rdfs:label "ProductionResult" .
+
+
+###  https://w3id.org/ci#TemporaryComponent
+<https://w3id.org/ci#TemporaryComponent> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/ci#CostComponent> ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://w3id.org/ci#hasWork> ;
+                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                           owl:onClass <https://w3id.org/ci#WorkOfTemporaryComponent>
+                                                         ] ;
+                                         rdfs:label "Temporary Work" .
+
+
+###  https://w3id.org/ci#Work
+<https://w3id.org/ci#Work> rdf:type owl:Class ;
+                           rdfs:subClassOf owl:Thing ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasDimensionParameter> ;
+                                             owl:someValuesFrom <https://w3id.org/cterm#DimensionParameter>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasOtherStandard> ;
+                                             owl:someValuesFrom <https://w3id.org/cterm#Standard>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasPerformanceParameter> ;
+                                             owl:someValuesFrom <https://w3id.org/cterm#PerformanceParameter>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasPhysicalParameter> ;
+                                             owl:someValuesFrom <https://w3id.org/cterm#PhysicalParameter>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasFamily> ;
+                                             owl:allValuesFrom <https://w3id.org/cterm#FamilyOfWork>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/cterm#hasMaterial> ;
+                                             owl:allValuesFrom <https://w3id.org/cterm#Material>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#hasUnit> ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass <http://qudt.org/schema/qudt/Unit>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#law> ;
+                                             owl:someValuesFrom xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#code> ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#descriptionGeneral> ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#quantityUnitOfMeasure> ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:integer
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#cam> ;
+                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:boolean
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#descriptionDetail> ;
+                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:string
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <https://w3id.org/ci#techSpecs> ;
+                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:string
+                                           ] ;
+                           rdfs:label "Work" .
+
+
+###  https://w3id.org/ci#WorkOfConstructionComponent
+<https://w3id.org/ci#WorkOfConstructionComponent> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://w3id.org/ci#Work> ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                    owl:someValuesFrom <https://w3id.org/ci#ConstructionComponent>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                    owl:someValuesFrom <https://w3id.org/ci#ProductComponent>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                    owl:someValuesFrom <https://w3id.org/cr#MaterialResource>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasAspect> ;
+                                                                    owl:someValuesFrom <https://w3id.org/cterm#AspectOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasFinishing> ;
+                                                                    owl:someValuesFrom <https://w3id.org/cterm#FinishingOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasFunction> ;
+                                                                    owl:someValuesFrom <https://w3id.org/cterm#FunctionOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasUse> ;
+                                                                    owl:someValuesFrom <https://w3id.org/cterm#UseOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasCategory> ;
+                                                                    owl:allValuesFrom <https://w3id.org/cterm#CategoryOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasObject> ;
+                                                                    owl:allValuesFrom <https://w3id.org/cterm#ObjectOfWorkOfConstructionWork>
+                                                                  ] ,
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <https://w3id.org/cterm#hasType> ;
+                                                                    owl:allValuesFrom <https://w3id.org/cterm#TypeOfWorkOfConstructionWork>
+                                                                  ] ;
+                                                  owl:disjointWith <https://w3id.org/ci#WorkOfProductComponent> ,
+                                                                   <https://w3id.org/ci#WorkOfTemporaryComponent> ;
+                                                  rdfs:label "WorkOfConstructionWork" .
+
+
+###  https://w3id.org/ci#WorkOfProductComponent
+<https://w3id.org/ci#WorkOfProductComponent> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/ci#Work> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                               owl:someValuesFrom <https://w3id.org/cr#MaterialResource>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasAspect> ;
+                                                               owl:someValuesFrom <https://w3id.org/cterm#AspectOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasFinishing> ;
+                                                               owl:someValuesFrom <https://w3id.org/cterm#FinishingOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasFunction> ;
+                                                               owl:someValuesFrom <https://w3id.org/cterm#FunctionOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasUse> ;
+                                                               owl:someValuesFrom <https://w3id.org/cterm#UseOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasCategory> ;
+                                                               owl:allValuesFrom <https://w3id.org/cterm#CategoryOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasObject> ;
+                                                               owl:allValuesFrom <https://w3id.org/cterm#ObjectOfWorkOfProductWork>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://w3id.org/cterm#hasType> ;
+                                                               owl:allValuesFrom <https://w3id.org/cterm#TypeOfWorkOfProductWork>
+                                                             ] ;
+                                             owl:disjointWith <https://w3id.org/ci#WorkOfTemporaryComponent> ;
+                                             rdfs:label "WorkOfProductWork" .
+
+
+###  https://w3id.org/ci#WorkOfTemporaryComponent
+<https://w3id.org/ci#WorkOfTemporaryComponent> rdf:type owl:Class ;
+                                               rdfs:subClassOf <https://w3id.org/ci#Work> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                 owl:someValuesFrom <https://w3id.org/ci#ProductComponent>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cr#EquipmentResource>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/ci#hasSubComponent> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cr#MaterialResource>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasAspect> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cterm#AspectOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasFinishing> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cterm#FinishingOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasFunction> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cterm#FunctionOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasUse> ;
+                                                                 owl:someValuesFrom <https://w3id.org/cterm#UseOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasCategory> ;
+                                                                 owl:allValuesFrom <https://w3id.org/cterm#CategoryOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasObject> ;
+                                                                 owl:allValuesFrom <https://w3id.org/cterm#ObjectOfWorkOfTemporaryWork>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/cterm#hasType> ;
+                                                                 owl:allValuesFrom <https://w3id.org/cterm#TypeOfWorkOfTemporaryWork>
+                                                               ] ;
+                                               rdfs:label "WorkOfTemporaryWork" .
+
+
+###  https://w3id.org/cr#EquipmentResource
+<https://w3id.org/cr#EquipmentResource> rdf:type owl:Class .
+
+
+###  https://w3id.org/cr#LabourResource
+<https://w3id.org/cr#LabourResource> rdf:type owl:Class .
+
+
+###  https://w3id.org/cr#MaterialResource
+<https://w3id.org/cr#MaterialResource> rdf:type owl:Class .
+
+
+###  https://w3id.org/cr#Resource
+<https://w3id.org/cr#Resource> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#AspectOfWorkOfConstructionWork
+<https://w3id.org/cterm#AspectOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#AspectOfWorkOfProductWork
+<https://w3id.org/cterm#AspectOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#AspectOfWorkOfTemporaryWork
+<https://w3id.org/cterm#AspectOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#CategoryOfActivity
+<https://w3id.org/cterm#CategoryOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#CategoryOfCostComponent
+<https://w3id.org/cterm#CategoryOfCostComponent> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#CategoryOfWorkOfConstructionWork
+<https://w3id.org/cterm#CategoryOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#CategoryOfWorkOfProductWork
+<https://w3id.org/cterm#CategoryOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#CategoryOfWorkOfTemporaryWork
+<https://w3id.org/cterm#CategoryOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#Classification
+<https://w3id.org/cterm#Classification> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#DimensionParameter
+<https://w3id.org/cterm#DimensionParameter> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FamilyOfActivity
+<https://w3id.org/cterm#FamilyOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FamilyOfCostComponent
+<https://w3id.org/cterm#FamilyOfCostComponent> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FamilyOfWork
+<https://w3id.org/cterm#FamilyOfWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FinishingOfWorkOfConstructionWork
+<https://w3id.org/cterm#FinishingOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FinishingOfWorkOfProductWork
+<https://w3id.org/cterm#FinishingOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FinishingOfWorkOfTemporaryWork
+<https://w3id.org/cterm#FinishingOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FunctionOfActivity
+<https://w3id.org/cterm#FunctionOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FunctionOfWorkOfConstructionWork
+<https://w3id.org/cterm#FunctionOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FunctionOfWorkOfProductWork
+<https://w3id.org/cterm#FunctionOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#FunctionOfWorkOfTemporaryWork
+<https://w3id.org/cterm#FunctionOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#Material
+<https://w3id.org/cterm#Material> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#ObjectOfActivity
+<https://w3id.org/cterm#ObjectOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#ObjectOfCostComponent
+<https://w3id.org/cterm#ObjectOfCostComponent> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#ObjectOfWorkOfConstructionWork
+<https://w3id.org/cterm#ObjectOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#ObjectOfWorkOfProductWork
+<https://w3id.org/cterm#ObjectOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#ObjectOfWorkOfTemporaryWork
+<https://w3id.org/cterm#ObjectOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#PerformanceParameter
+<https://w3id.org/cterm#PerformanceParameter> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#PhysicalParameter
+<https://w3id.org/cterm#PhysicalParameter> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#Standard
+<https://w3id.org/cterm#Standard> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#TypeOfActivity
+<https://w3id.org/cterm#TypeOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#TypeOfWorkOfConstructionWork
+<https://w3id.org/cterm#TypeOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#TypeOfWorkOfProductWork
+<https://w3id.org/cterm#TypeOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#TypeOfWorkOfTemporaryWork
+<https://w3id.org/cterm#TypeOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#UseOfActivity
+<https://w3id.org/cterm#UseOfActivity> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#UseOfWorkOfConstructionWork
+<https://w3id.org/cterm#UseOfWorkOfConstructionWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#UseOfWorkOfProductWork
+<https://w3id.org/cterm#UseOfWorkOfProductWork> rdf:type owl:Class .
+
+
+###  https://w3id.org/cterm#UseOfWorkOfTemporaryWork
+<https://w3id.org/cterm#UseOfWorkOfTemporaryWork> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

@@ -1,0 +1,174 @@
+@prefix aoi: <https://w3id.org/aoi#> .
+@prefix dot: <https://w3id.org/dot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/aoi#> rdf:type owl:Ontology ;
+                                  owl:versionIRI <https://w3id.org/aoi/0.2> ;
+                                  dcterms:creator [ rdf:type foaf:Person ;
+                                                    foaf:name "Al-Hakam Hamdan"
+                                                  ] ;
+                                  dcterms:description "Auxiliary ontology that defines areas of interests on a component which can be affected by damages(defined in DOT)"@en ;
+                                  dcterms:license "https://creativecommons.org/licenses/by/1.0" ;
+                                  dcterms:title "Areas of Interests"@en ;
+                                  vann:preferredNamespacePrefix "aoi" ;
+                                  vann:preferredNamespaceUri "https://w3id.org/aoi#" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/aoi#locates
+aoi:locates rdf:type owl:ObjectProperty ;
+			rdfs:domain aoi:AreaOfInterest ;
+			rdfs:comment "Defines the relationship between an AOI and an Individual, which is somehow topologically connected with a component that has the AOI."@en ;
+			rdfs:label "locates"@en .
+
+
+###  https://w3id.org/aoi#locatesDamage
+aoi:locatesDamage rdf:type owl:ObjectProperty ;
+				  rdfs:subPropertyOf aoi:locates ;
+                   rdfs:domain aoi:AreaOfInterest ;
+                   rdfs:range dot:Damage ;
+                   rdfs:comment "Defines the relationship between an AOI and a Damage."@en ;
+                   rdfs:label "locates Damage"@en .
+
+
+###  https://w3id.org/aoi#hasAreaOfInterest
+aoi:hasAreaOfInterest rdf:type owl:ObjectProperty ;
+                      rdfs:range aoi:AreaOfInterest ;
+                      owl:propertyChainAxiom ( aoi:hasSide
+                                               aoi:hasAreaOfInterest
+                                             ) ;
+                      rdfs:comment "Defines the relationship between an affected component or structure (e.g. bot:Element) and an AOI."@en ;
+                      rdfs:label "has Area of Interest"@en .
+
+
+###  https://w3id.org/aoi#hasSide
+aoi:hasSide rdf:type owl:ObjectProperty ;
+                      rdfs:range aoi:ComponentSide ;
+                      rdfs:comment "Defines the relationship between a component or structure (e.g. bot:Element) and its side."@en ;
+                      rdfs:label "has component side"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/aoi#AreaOfInterest
+aoi:AreaOfInterest rdf:type owl:Class ;
+                   rdfs:comment "Area of a construction component that is of specific interest, e.g. for assignment of damages"@en ;
+                   rdfs:label "Area of Interest (AOI)"@en .
+
+
+###  https://w3id.org/aoi#ComponentSide
+aoi:ComponentSide rdf:type owl:Class ;
+                   rdfs:comment "Area of a construction component that represents a specific horizontal side of a component"@en ;
+                   rdfs:label "Component Side"@en .
+
+
+###  https://w3id.org/aoi#Bottom
+aoi:Bottom rdf:type owl:Class ;
+           rdfs:subClassOf aoi:LowerArea ,
+                           aoi:Surface ;
+           rdfs:comment "AOI that defines the bottom a construction component based on its local coordinate system. No lower located AOI is allowed."@en ;
+           rdfs:label "Bottom"@en .
+
+
+###  https://w3id.org/aoi#Edge
+aoi:Edge rdf:type owl:Class ;
+         rdfs:subClassOf aoi:ExteriorArea ;
+         rdfs:comment "Defines an interface, where two AOI intersect."@en ;
+         rdfs:label "Edge"@en .
+
+
+###  https://w3id.org/aoi#ExteriorArea
+aoi:ExteriorArea rdf:type owl:Class ;
+                 rdfs:subClassOf aoi:AreaOfInterest ;
+                 owl:disjointWith aoi:InternalArea ;
+                 rdfs:comment "AOI that defines the outer areal of a construction component based on its local coordinate system."@en ;
+                 rdfs:label "Exterior Area"@en .
+
+
+###  https://w3id.org/aoi#HorizontalCentralArea
+aoi:HorizontalCentralArea rdf:type owl:Class ;
+                          rdfs:subClassOf aoi:AreaOfInterest ;
+                          owl:disjointWith aoi:PeripheralArea ;
+                          rdfs:comment "AOI that defines the horizontal central area of a construction component."@en ;
+                          rdfs:label "Horizontal Central Area"@en .
+
+
+###  https://w3id.org/aoi#InternalArea
+aoi:InternalArea rdf:type owl:Class ;
+                 rdfs:subClassOf aoi:AreaOfInterest ;
+                 rdfs:comment "AOI that defines the inner areal of a construction component based on its local coordinate system."@en ;
+                 rdfs:label "Internal Area"@en .
+
+
+###  https://w3id.org/aoi#LowerArea
+aoi:LowerArea rdf:type owl:Class ;
+              rdfs:subClassOf aoi:AreaOfInterest ;
+              rdfs:comment "AOI that defines the lower area of a construction component based on its local coordinate system."@en ;
+              rdfs:label "Lower Area"@en .
+
+
+###  https://w3id.org/aoi#PeripheralArea
+aoi:PeripheralArea rdf:type owl:Class ;
+                   rdfs:subClassOf aoi:AreaOfInterest ;
+                   rdfs:comment "AOI that defines the peripheral horizontal area of a construction component based on its local coordinate system."@en ;
+                   rdfs:label "Peripheral Area"@en .
+
+
+###  https://w3id.org/aoi#Periphery
+aoi:Periphery rdf:type owl:Class ;
+              rdfs:subClassOf aoi:PeripheralArea ,
+                              aoi:Surface ;
+              rdfs:comment "AOI that defines a periphery of a construction component based on its local coordinate system."@en ;
+              rdfs:label "Periphery"@en .
+
+
+###  https://w3id.org/aoi#Surface
+aoi:Surface rdf:type owl:Class ;
+            rdfs:subClassOf aoi:ExteriorArea ;
+            rdfs:comment "AOI that defines the vertical central area of a construction component based on its local coordinate system."@en ;
+            rdfs:label "Surface"@en .
+
+
+###  https://w3id.org/aoi#Top
+aoi:Top rdf:type owl:Class ;
+        rdfs:subClassOf aoi:Surface ,
+                        aoi:UpperArea ;
+        rdfs:comment "AOI that defines the top a construction component based on its local coordinate system. No higher located AOI is allowed."@en ;
+        rdfs:label "Top"@en .
+
+
+###  https://w3id.org/aoi#UpperArea
+aoi:UpperArea rdf:type owl:Class ;
+              rdfs:subClassOf aoi:AreaOfInterest ;
+              rdfs:comment "AOI that defines the upper area of a construction component based on its local coordinate system."@en ;
+              rdfs:label "Upper Area"@en .
+
+
+###  https://w3id.org/aoi#VerticalCentralArea
+aoi:VerticalCentralArea rdf:type owl:Class ;
+                        rdfs:subClassOf aoi:AreaOfInterest ;
+                        rdfs:comment "AOI that defines the vertical central area of a construction component based on its local coordinate system."@en ;
+                        rdfs:label "Vertical Central Area"@en .
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+   owl:members ( aoi:LowerArea
+                 aoi:UpperArea
+                 aoi:VerticalCentralArea
+               )
+ ] .

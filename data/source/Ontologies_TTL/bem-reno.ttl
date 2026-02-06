@@ -1,0 +1,2090 @@
+@prefix : <http://www.semanticweb.org/bimspeed/ontologies/2020/6/epa_ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@base <http://www.semanticweb.org/bimspeed/ontologies/2020/6/epa_ontology#> .
+
+<http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology> rdf:type owl:Ontology ;
+                                                                           terms:contributor "bim-speed/Timo Hartmann" ;
+                                                                           terms:creator "bim-speed/Jerson Pinzon" ;
+                                                                           terms:description "The BEM-Reno ontology was developed to represent concepts related to the building energy model of a building under renovation, the goal is to support the development of BEM models with the sufficient information required to perform building energy analysis in the context of renovation projects, especially to support the manual tasks that make part of BIMtoBEM approaches. The ontology covers concepts and relations regarding the existing conditions of the building, material features, building systems, operational schedules, and thermal characteristics." ;
+                                                                           terms:issued "2020-10-31T12:00:00"^^xsd:dateTime ;
+                                                                           terms:tittle "BEM-Reno Ontology: An ontology for BEM development in renovation projects" ;
+                                                                           rdfs:seeAlso "https://www.bim-speed.eu/en/results" ;
+                                                                           owl:versionInfo "0.1.1" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+terms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+terms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/tittle
+terms:tittle rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#AdjacentZone
+:AdjacentZone rdf:type owl:ObjectProperty ,
+                       owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#connects
+:connects rdf:type owl:ObjectProperty ,
+                   owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#contains
+:contains rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasAirAttribute
+:hasAirAttribute rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasRoomOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasAlternative
+:hasAlternative rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBIMModel
+:hasBIMModel rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuilding
+:hasBuilding rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuildingElement
+:hasBuildingElement rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuildingExternalElement
+:hasBuildingExternalElement rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :hasBuildingElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuildingInnerElement
+:hasBuildingInnerElement rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasBuildingElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuildingOperationalAttribute
+:hasBuildingOperationalAttribute rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasBuildingSystem
+:hasBuildingSystem rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasCoolingSchedule
+:hasCoolingSchedule rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasDHWElement
+:hasDHWElement rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasDHWSystem
+:hasDHWSystem rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasBuildingSystem .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasDataSource
+:hasDataSource rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasEnergySource
+:hasEnergySource rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasEnvironmentalInformation
+:hasEnvironmentalInformation rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasEquipmentSchedule
+:hasEquipmentSchedule rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasGeneralAttribute
+:hasGeneralAttribute rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasRoomOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasGeneralInformation
+:hasGeneralInformation rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasGeometryAttribute
+:hasGeometryAttribute rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasGlazing
+:hasGlazing rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACAttribute
+:hasHVACAttribute rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACElement
+:hasHVACElement rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACNetworkElement
+:hasHVACNetworkElement rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasHVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACProductionElement
+:hasHVACProductionElement rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :hasHVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACRoomElement
+:hasHVACRoomElement rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasHVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHVACSystem
+:hasHVACSystem rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasBuildingSystem .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasHeatingSchedule
+:hasHeatingSchedule rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasInternalLoads
+:hasInternalLoads rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasRoomOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLayer
+:hasLayer rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLightingElement
+:hasLightingElement rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLightingNetworkElement
+:hasLightingNetworkElement rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :hasLightingElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLightingRoomElement
+:hasLightingRoomElement rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasLightingElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLightingSchedule
+:hasLightingSchedule rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLightingSystem
+:hasLightingSystem rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasBuildingSystem .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasMaterialAttribute
+:hasMaterialAttribute rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasNetworkElementAttribute
+:hasNetworkElementAttribute rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :hasHVACAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasOccupancySchedule
+:hasOccupancySchedule rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasProductionElementAttribute
+:hasProductionElementAttribute rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf :hasHVACAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasRoomElementAttribute
+:hasRoomElementAttribute rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasHVACAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasRoomOperationalAttribute
+:hasRoomOperationalAttribute rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasRoom_Space
+:hasRoom_Space rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasSchedule
+:hasSchedule rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasStorey
+:hasStorey rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasSystemsRequirements
+:hasSystemsRequirements rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasRoomOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasTemperatureAttribute
+:hasTemperatureAttribute rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasRoomOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasVentilationSchedule
+:hasVentilationSchedule rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasSchedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#interfaceOf
+:interfaceOf rdf:type owl:ObjectProperty ,
+                      owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#intersects
+:intersects rdf:type owl:ObjectProperty ,
+                     owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#isMadeOf
+:isMadeOf rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasAuthor
+:hasAuthor rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasCO2EmissionsFactor
+:hasCO2EmissionsFactor rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasCoordinates
+:hasCoordinates rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasDayDescription
+:hasDayDescription rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasFileExportFormats
+:hasFileExportFormats rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasFileNativeFormat
+:hasFileNativeFormat rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasLocation
+:hasLocation rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasName
+:hasName rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasNo_Layers
+:hasNo_Layers rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasNonRenewableFactor
+:hasNonRenewableFactor rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasPowerDensity
+:hasPowerDensity rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasPrimary-FinalEnergyFactor
+:hasPrimary-FinalEnergyFactor rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasProvidedCoolingLevel
+:hasProvidedCoolingLevel rdf:type owl:DatatypeProperty ,
+                                  owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasProvidedHeatingLevel
+:hasProvidedHeatingLevel rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasProvidedLightingLevel
+:hasProvidedLightingLevel rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasProvidedVentilationLevel
+:hasProvidedVentilationLevel rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf owl:topDataProperty ;
+                             rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasPsi
+:hasPsi rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasRenewableFactor
+:hasRenewableFactor rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasTotalNonRenewableFactor
+:hasTotalNonRenewableFactor rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasType
+:hasType rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasUnit
+:hasUnit rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasValue
+:hasValue rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasWeekDescription
+:hasWeekDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#hasYearDescription
+:hasYearDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#includedInBIMModel
+:includedInBIMModel rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Absorptance
+:Absorptance rdf:type owl:Class ;
+             rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#AirAttribute
+:AirAttribute rdf:type owl:Class ;
+              rdfs:subClassOf :RoomOperationalAttibute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#AirchangesPerHour
+:AirchangesPerHour rdf:type owl:Class ;
+                   rdfs:subClassOf :AirAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Area
+:Area rdf:type owl:Class ;
+      rdfs:subClassOf :GeometryAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#AreaPerPerson
+:AreaPerPerson rdf:type owl:Class ;
+               rdfs:subClassOf :GeneralAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Assumption
+:Assumption rdf:type owl:Class ;
+            rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#AttachedShadingArea
+:AttachedShadingArea rdf:type owl:Class ;
+                     rdfs:subClassOf :ShadedArea ;
+                     owl:disjointWith :DetachedShadingArea .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BIMModel
+:BIMModel rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAuthor ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFileExportFormats ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFileNativeFormat ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasName ;
+                            owl:someValuesFrom xsd:string
+                          ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BalconyBridge
+:BalconyBridge rdf:type owl:Class ;
+               rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Biomass
+:Biomass rdf:type owl:Class ;
+         rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasBIMModel ;
+                            owl:someValuesFrom :BIMModel
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasBuildingOperationalAttribute ;
+                            owl:someValuesFrom :BuildingOperationalAttribute
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasBuildingSystem ;
+                            owl:someValuesFrom :BuildingSystem
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasGeneralInformation ;
+                            owl:someValuesFrom :BuildingGeneralInformation
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasStorey ;
+                            owl:someValuesFrom :Storey
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasLocation ;
+                            owl:someValuesFrom xsd:string
+                          ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingElement
+:BuildingElement rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasGeometryAttribute ;
+                                   owl:someValuesFrom :GeometryAttribute
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasLayer ;
+                                   owl:someValuesFrom :Layer
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isMadeOf ;
+                                   owl:someValuesFrom :Material
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasName ;
+                                   owl:someValuesFrom xsd:string
+                                 ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingGeneralInformation
+:BuildingGeneralInformation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingOperationalAttribute
+:BuildingOperationalAttribute rdf:type owl:Class ;
+                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasDataSource ;
+                                                owl:someValuesFrom :DataSource
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasUnit ;
+                                                owl:someValuesFrom xsd:string
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasValue ;
+                                                owl:someValuesFrom xsd:double
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :includedInBIMModel ;
+                                                owl:someValuesFrom xsd:boolean
+                                              ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingOrientation
+:BuildingOrientation rdf:type owl:Class ;
+                     rdfs:subClassOf :ShadingInformation ;
+                     owl:disjointWith :ShadedArea .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingSystem
+:BuildingSystem rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#BuildingType
+:BuildingType rdf:type owl:Class ;
+              rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Carbon
+:Carbon rdf:type owl:Class ;
+        rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CirculatingPump_Configuration
+:CirculatingPump_Configuration rdf:type owl:Class ;
+                               rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CirculatingPump_Control
+:CirculatingPump_Control rdf:type owl:Class ;
+                         rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CirculatingPump_Ratedhead
+:CirculatingPump_Ratedhead rdf:type owl:Class ;
+                           rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CirculatingPump_Type
+:CirculatingPump_Type rdf:type owl:Class ;
+                      rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ClimateInformation
+:ClimateInformation rdf:type owl:Class ;
+                    rdfs:subClassOf :EnvironmentalInformation ;
+                    owl:disjointWith :ShadingInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Connection
+:Connection rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :connects ;
+                              owl:someValuesFrom :HVACElement
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :connects ;
+                              owl:someValuesFrom :LightingElement
+                            ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ConstructionYear
+:ConstructionYear rdf:type owl:Class ;
+                  rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CoolingNetworkElement
+:CoolingNetworkElement rdf:type owl:Class ;
+                       rdfs:subClassOf :HVACNetworkElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CoolingProductionElement
+:CoolingProductionElement rdf:type owl:Class ;
+                          rdfs:subClassOf :HVACProductionElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CoolingRequiredLevel
+:CoolingRequiredLevel rdf:type owl:Class ;
+                      rdfs:subClassOf :SystemsRequirements .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CoolingRoomElement
+:CoolingRoomElement rdf:type owl:Class ;
+                    rdfs:subClassOf :HVACRoomElement ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasProvidedCoolingLevel ;
+                                      owl:someValuesFrom xsd:double
+                                    ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CoolingSchedule
+:CoolingSchedule rdf:type owl:Class ;
+                 rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CornerBridge
+:CornerBridge rdf:type owl:Class ;
+              rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#CurrentEnergyRating
+:CurrentEnergyRating rdf:type owl:Class ;
+                     rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DHWDemand
+:DHWDemand rdf:type owl:Class ;
+           rdfs:subClassOf :BuildingOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DHWProductionElement
+:DHWProductionElement rdf:type owl:Class ;
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasHVACAttribute ;
+                                        owl:someValuesFrom :HVACElementAttribute
+                                      ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DHWRequired
+:DHWRequired rdf:type owl:Class ;
+             rdfs:subClassOf :SystemsRequirements .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DHWSystem
+:DHWSystem rdf:type owl:Class ;
+           rdfs:subClassOf :BuildingSystem ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasDHWElement ;
+                             owl:someValuesFrom :DHWProductionElement
+                           ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DataBase
+:DataBase rdf:type owl:Class ;
+          rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DataSource
+:DataSource rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasDescription ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasName ;
+                              owl:someValuesFrom xsd:string
+                            ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DensifiedBiomass
+:DensifiedBiomass rdf:type owl:Class ;
+                  rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Density
+:Density rdf:type owl:Class ;
+         rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DesignSupplyTemperature
+:DesignSupplyTemperature rdf:type owl:Class ;
+                         rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DesignThermalDifference
+:DesignThermalDifference rdf:type owl:Class ;
+                         rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DesigndeltaTemperature
+:DesigndeltaTemperature rdf:type owl:Class ;
+                        rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DesignsetpointTemperature
+:DesignsetpointTemperature rdf:type owl:Class ;
+                           rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DetachedShadingArea
+:DetachedShadingArea rdf:type owl:Class ;
+                     rdfs:subClassOf :ShadedArea .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Diesel
+:Diesel rdf:type owl:Class ;
+        rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DistrictCooling
+:DistrictCooling rdf:type owl:Class ;
+                 rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#DistrictHeating
+:DistrictHeating rdf:type owl:Class ;
+                 rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ElectricPowerInput
+:ElectricPowerInput rdf:type owl:Class ;
+                    rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ElectricPowerInputTOT
+:ElectricPowerInputTOT rdf:type owl:Class ;
+                       rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Electricity
+:Electricity rdf:type owl:Class ;
+             rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Emissivity
+:Emissivity rdf:type owl:Class ;
+            rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Emittance
+:Emittance rdf:type owl:Class ;
+           rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EnergyConsumption
+:EnergyConsumption rdf:type owl:Class ;
+                   rdfs:subClassOf :BuildingOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EnergyFuel
+:EnergyFuel rdf:type owl:Class ;
+            rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EnergySources
+:EnergySources rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCO2EmissionsFactor ;
+                                 owl:someValuesFrom xsd:double
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasNonRenewableFactor ;
+                                 owl:someValuesFrom xsd:double
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPrimary-FinalEnergyFactor ;
+                                 owl:someValuesFrom xsd:double
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasRenewableFactor ;
+                                 owl:someValuesFrom xsd:double
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTotalNonRenewableFactor ;
+                                 owl:someValuesFrom xsd:double
+                               ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Envelope
+:Envelope rdf:type owl:Class ;
+          rdfs:subClassOf :ExternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EnvironmentalInformation
+:EnvironmentalInformation rdf:type owl:Class ;
+                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasDataSource ;
+                                            owl:someValuesFrom :DataSource
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :includedInBIMModel ;
+                                            owl:someValuesFrom xsd:boolean
+                                          ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EquipmentOperation
+:EquipmentOperation rdf:type owl:Class ;
+                    rdfs:subClassOf :BuildingOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EquipmentSchedule
+:EquipmentSchedule rdf:type owl:Class ;
+                   rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#EquipmentThermalLoad
+:EquipmentThermalLoad rdf:type owl:Class ;
+                      rdfs:subClassOf :InternalLoads .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ExistingDrawing
+:ExistingDrawing rdf:type owl:Class ;
+                 rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ExternalDoor
+:ExternalDoor rdf:type owl:Class ;
+              rdfs:subClassOf :ExternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ExternalElement
+:ExternalElement rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingElement ;
+                 owl:disjointWith :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ExternalWindow
+:ExternalWindow rdf:type owl:Class ;
+                rdfs:subClassOf :ExternalElement ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasGlazing ;
+                                  owl:someValuesFrom :Glazing
+                                ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Facade
+:Facade rdf:type owl:Class ;
+        rdfs:subClassOf :Envelope ;
+        owl:disjointWith :Roof .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#FacadeVentilationType
+:FacadeVentilationType rdf:type owl:Class ;
+                       rdfs:subClassOf :BuildingOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#FalseCelling
+:FalseCelling rdf:type owl:Class ;
+              rdfs:subClassOf :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#FalseFloor
+:FalseFloor rdf:type owl:Class ;
+            rdfs:subClassOf :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Floor
+:Floor rdf:type owl:Class ;
+       rdfs:subClassOf :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#FloorBridge
+:FloorBridge rdf:type owl:Class ;
+             rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#FluidType
+:FluidType rdf:type owl:Class ;
+           rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#GeneralAttribute
+:GeneralAttribute rdf:type owl:Class ;
+                  rdfs:subClassOf :RoomOperationalAttibute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#GeometryAttribute
+:GeometryAttribute rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDataSource ;
+                                     owl:someValuesFrom :DataSource
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasUnit ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasValue ;
+                                     owl:someValuesFrom xsd:double
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :includedInBIMModel ;
+                                     owl:someValuesFrom xsd:boolean
+                                   ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Glazing
+:Glazing rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasGeometryAttribute ;
+                           owl:someValuesFrom :GeometryAttribute
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :isMadeOf ;
+                           owl:someValuesFrom :Material
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasNo_Layers ;
+                           owl:someValuesFrom xsd:integer
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasType ;
+                           owl:someValuesFrom xsd:string
+                         ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#GroundFloorBridge
+:GroundFloorBridge rdf:type owl:Class ;
+                   rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACElement
+:HVACElement rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasHVACAttribute ;
+                               owl:someValuesFrom :HVACElementAttribute
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasName ;
+                               owl:someValuesFrom xsd:string
+                             ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACElementAttribute
+:HVACElementAttribute rdf:type owl:Class ;
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasDataSource ;
+                                        owl:someValuesFrom :DataSource
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasUnit ;
+                                        owl:someValuesFrom xsd:string
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasValue ;
+                                        owl:someValuesFrom xsd:double
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :includedInBIMModel ;
+                                        owl:someValuesFrom xsd:boolean
+                                      ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACNetworkElement
+:HVACNetworkElement rdf:type owl:Class ;
+                    rdfs:subClassOf :HVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACProductionElement
+:HVACProductionElement rdf:type owl:Class ;
+                       rdfs:subClassOf :HVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACRoomElement
+:HVACRoomElement rdf:type owl:Class ;
+                 rdfs:subClassOf :HVACElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HVACSystem
+:HVACSystem rdf:type owl:Class ;
+            rdfs:subClassOf :BuildingSystem ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasHVACElement ;
+                              owl:someValuesFrom :HVACElement
+                            ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingCapacity
+:HeatingCapacity rdf:type owl:Class ;
+                 rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingNetworkElement
+:HeatingNetworkElement rdf:type owl:Class ;
+                       rdfs:subClassOf :HVACNetworkElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingProductionElement
+:HeatingProductionElement rdf:type owl:Class ;
+                          rdfs:subClassOf :HVACProductionElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingRequiredLevel
+:HeatingRequiredLevel rdf:type owl:Class ;
+                      rdfs:subClassOf :SystemsRequirements .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingRoomElement
+:HeatingRoomElement rdf:type owl:Class ;
+                    rdfs:subClassOf :HVACRoomElement ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasProvidedHeatingLevel ;
+                                      owl:someValuesFrom xsd:double
+                                    ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HeatingSchedule
+:HeatingSchedule rdf:type owl:Class ;
+                 rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Height
+:Height rdf:type owl:Class ;
+        rdfs:subClassOf :GeometryAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#HistoricalData
+:HistoricalData rdf:type owl:Class ;
+                rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Humidity
+:Humidity rdf:type owl:Class ;
+          rdfs:subClassOf :ClimateInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InSituSurvey
+:InSituSurvey rdf:type owl:Class ;
+              rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#IndoorDesignTemperature
+:IndoorDesignTemperature rdf:type owl:Class ;
+                         rdfs:subClassOf :TemperatureAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InfiltrationRate
+:InfiltrationRate rdf:type owl:Class ;
+                  rdfs:subClassOf :BuildingOperationalAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InnerSpace
+:InnerSpace rdf:type owl:Class ;
+            rdfs:subClassOf :PositionType ;
+            owl:disjointWith :PerimeterSpace .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Interface
+:Interface rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :interfaceOf ;
+                             owl:someValuesFrom :BuildingElement
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :interfaceOf ;
+                             owl:someValuesFrom :ThermalZone
+                           ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalDoor
+:InternalDoor rdf:type owl:Class ;
+              rdfs:subClassOf :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalElement
+:InternalElement rdf:type owl:Class ;
+                 rdfs:subClassOf :BuildingElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalLoads
+:InternalLoads rdf:type owl:Class ;
+               rdfs:subClassOf :RoomOperationalAttibute ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasSchedule ;
+                                 owl:someValuesFrom :Schedule
+                               ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalSummerTemperature
+:InternalSummerTemperature rdf:type owl:Class ;
+                           rdfs:subClassOf :TemperatureAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalWallBridge
+:InternalWallBridge rdf:type owl:Class ;
+                    rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalWindow
+:InternalWindow rdf:type owl:Class ;
+                rdfs:subClassOf :InternalElement ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasGlazing ;
+                                  owl:someValuesFrom :Glazing
+                                ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#InternalWinterTemperature
+:InternalWinterTemperature rdf:type owl:Class ;
+                           rdfs:subClassOf :TemperatureAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LPG
+:LPG rdf:type owl:Class ;
+     rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LatentHeatGainPerPerson
+:LatentHeatGainPerPerson rdf:type owl:Class ;
+                         rdfs:subClassOf :OccupantsThermalLoad ;
+                         owl:disjointWith :SensibleHeatGainPerPerson .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Layer
+:Layer rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasGeometryAttribute ;
+                         owl:someValuesFrom :GeometryAttribute
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :isMadeOf ;
+                         owl:someValuesFrom :Material
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasName ;
+                         owl:someValuesFrom xsd:string
+                       ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Lenght
+:Lenght rdf:type owl:Class ;
+        rdfs:subClassOf :GeometryAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingElement
+:LightingElement rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasName ;
+                                   owl:someValuesFrom xsd:string
+                                 ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingNetworkElement
+:LightingNetworkElement rdf:type owl:Class ;
+                        rdfs:subClassOf :LightingElement ;
+                        owl:disjointWith :LightingRoomElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingRequiredLevel
+:LightingRequiredLevel rdf:type owl:Class ;
+                       rdfs:subClassOf :SystemsRequirements .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingRoomElement
+:LightingRoomElement rdf:type owl:Class ;
+                     rdfs:subClassOf :LightingElement ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasPowerDensity ;
+                                       owl:someValuesFrom xsd:double
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasProvidedLightingLevel ;
+                                       owl:someValuesFrom xsd:double
+                                     ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingSchedule
+:LightingSchedule rdf:type owl:Class ;
+                  rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingSystem
+:LightingSystem rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingSystem ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasLightingElement ;
+                                  owl:someValuesFrom :LightingElement
+                                ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LightingThermalLoad
+:LightingThermalLoad rdf:type owl:Class ;
+                     rdfs:subClassOf :InternalLoads .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Loaddistributionscheme
+:Loaddistributionscheme rdf:type owl:Class ;
+                        rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LocationofGenerator
+:LocationofGenerator rdf:type owl:Class ;
+                     rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#LossesCoefficient
+:LossesCoefficient rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Manufacturer
+:Manufacturer rdf:type owl:Class ;
+              rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Material
+:Material rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAlternative ;
+                            owl:someValuesFrom :Material
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasMaterialAttribute ;
+                            owl:someValuesFrom :MaterialAttribute
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasName ;
+                            owl:someValuesFrom xsd:double
+                          ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#MaterialAttribute
+:MaterialAttribute rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDataSource ;
+                                     owl:someValuesFrom :DataSource
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasUnit ;
+                                     owl:someValuesFrom xsd:string
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasValue ;
+                                     owl:someValuesFrom xsd:double
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :includedInBIMModel ;
+                                     owl:someValuesFrom xsd:boolean
+                                   ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#MaximumComfortTemperature
+:MaximumComfortTemperature rdf:type owl:Class ;
+                           rdfs:subClassOf :TemperatureAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#MaximumPartloadratio
+:MaximumPartloadratio rdf:type owl:Class ;
+                      rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#MinimumComfortTemperature
+:MinimumComfortTemperature rdf:type owl:Class ;
+                           rdfs:subClassOf :TemperatureAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#MinimumPartloadratio
+:MinimumPartloadratio rdf:type owl:Class ;
+                      rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Model
+:Model rdf:type owl:Class ;
+       rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#NaturalGas
+:NaturalGas rdf:type owl:Class ;
+            rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#NetworkElementAttribute
+:NetworkElementAttribute rdf:type owl:Class ;
+                         rdfs:subClassOf :HVACElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#NumberOfFloors
+:NumberOfFloors rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#NumberOfUnits
+:NumberOfUnits rdf:type owl:Class ;
+               rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OccupancySchedule
+:OccupancySchedule rdf:type owl:Class ;
+                   rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OccupantsThermalLoad
+:OccupantsThermalLoad rdf:type owl:Class ;
+                      rdfs:subClassOf :InternalLoads .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OperableWindows
+:OperableWindows rdf:type owl:Class ;
+                 rdfs:subClassOf :GeneralAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OptimumPartloadratio
+:OptimumPartloadratio rdf:type owl:Class ;
+                      rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OutdoorAirMethod
+:OutdoorAirMethod rdf:type owl:Class ;
+                  rdfs:subClassOf :AirAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OutdoorAirPerArea
+:OutdoorAirPerArea rdf:type owl:Class ;
+                   rdfs:subClassOf :AirAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#OutdoorAirPerPerson
+:OutdoorAirPerPerson rdf:type owl:Class ;
+                     rdfs:subClassOf :AirAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#PerformanceCurves
+:PerformanceCurves rdf:type owl:Class ;
+                   rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#PerimeterSpace
+:PerimeterSpace rdf:type owl:Class ;
+                rdfs:subClassOf :PositionType .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#PositionType
+:PositionType rdf:type owl:Class ;
+              rdfs:subClassOf :GeneralAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ProductionElementAttribute
+:ProductionElementAttribute rdf:type owl:Class ;
+                            rdfs:subClassOf :HVACElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#RatedCapacity_Nominaloutput
+:RatedCapacity_Nominaloutput rdf:type owl:Class ;
+                             rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#RatedEfficiency_Thermalefficiency
+:RatedEfficiency_Thermalefficiency rdf:type owl:Class ;
+                                   rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Reflection
+:Reflection rdf:type owl:Class ;
+            rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#RenovationYear
+:RenovationYear rdf:type owl:Class ;
+                rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Roof
+:Roof rdf:type owl:Class ;
+      rdfs:subClassOf :Envelope .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#RoomElementAttribute
+:RoomElementAttribute rdf:type owl:Class ;
+                      rdfs:subClassOf :HVACElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#RoomOperationalAttibute
+:RoomOperationalAttibute rdf:type owl:Class ;
+                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasDataSource ;
+                                           owl:someValuesFrom :DataSource
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasUnit ;
+                                           owl:someValuesFrom xsd:string
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasValue ;
+                                           owl:someValuesFrom xsd:double
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :includedInBIMModel ;
+                                           owl:someValuesFrom xsd:boolean
+                                         ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Room_Space
+:Room_Space rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :contains ;
+                              owl:someValuesFrom :HVACRoomElement
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :contains ;
+                              owl:someValuesFrom :LightingRoomElement
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasBuildingElement ;
+                              owl:someValuesFrom :BuildingElement
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGeometryAttribute ;
+                              owl:someValuesFrom :GeometryAttribute
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasRoomOperationalAttribute ;
+                              owl:someValuesFrom :RoomOperationalAttibute
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasSchedule ;
+                              owl:someValuesFrom :Schedule
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasName ;
+                              owl:someValuesFrom xsd:string
+                            ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Schedule
+:Schedule rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDataSource ;
+                            owl:someValuesFrom :DataSource
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDayDescription ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasName ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasUnit ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasWeekDescription ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasYearDescription ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :includedInBIMModel ;
+                            owl:someValuesFrom xsd:boolean
+                          ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SensibleHeatGainPerPerson
+:SensibleHeatGainPerPerson rdf:type owl:Class ;
+                           rdfs:subClassOf :OccupantsThermalLoad .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SetpointTemperatureControl
+:SetpointTemperatureControl rdf:type owl:Class ;
+                            rdfs:subClassOf :NetworkElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ShadedArea
+:ShadedArea rdf:type owl:Class ;
+            rdfs:subClassOf :ShadingInformation ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCoordinates ;
+                              owl:someValuesFrom xsd:string
+                            ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ShadingInformation
+:ShadingInformation rdf:type owl:Class ;
+                    rdfs:subClassOf :EnvironmentalInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Site
+:Site rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBuilding ;
+                        owl:someValuesFrom :Building
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasEnergySource ;
+                        owl:someValuesFrom :EnergySources
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasEnvironmentalInformation ;
+                        owl:someValuesFrom :EnvironmentalInformation
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasLocation ;
+                        owl:someValuesFrom xsd:string
+                      ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Software
+:Software rdf:type owl:Class ;
+          rdfs:subClassOf :DataSource .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SolarPhotovoltaic
+:SolarPhotovoltaic rdf:type owl:Class ;
+                   rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SolarRadiation
+:SolarRadiation rdf:type owl:Class ;
+                rdfs:subClassOf :ClimateInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SolarThermal
+:SolarThermal rdf:type owl:Class ;
+              rdfs:subClassOf :EnergySources .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Solar_Transmittance
+:Solar_Transmittance rdf:type owl:Class ;
+                     rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SpecificHeat
+:SpecificHeat rdf:type owl:Class ;
+              rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#StorageTemperature
+:StorageTemperature rdf:type owl:Class ;
+                    rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Storey
+:Storey rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasRoom_Space ;
+                          owl:someValuesFrom :Room_Space
+                        ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SunShade
+:SunShade rdf:type owl:Class ;
+          rdfs:subClassOf :ExternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SystemType
+:SystemType rdf:type owl:Class ;
+            rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#SystemsRequirements
+:SystemsRequirements rdf:type owl:Class ;
+                     rdfs:subClassOf :RoomOperationalAttibute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Temperature
+:Temperature rdf:type owl:Class ;
+             rdfs:subClassOf :ClimateInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#TemperatureAttribute
+:TemperatureAttribute rdf:type owl:Class ;
+                      rdfs:subClassOf :RoomOperationalAttibute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ThermalBridge
+:ThermalBridge rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :intersects ;
+                                 owl:someValuesFrom :BuildingElement
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :intersects ;
+                                 owl:someValuesFrom :Room_Space
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPsi ;
+                                 owl:someValuesFrom xsd:double
+                               ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ThermalConductivity
+:ThermalConductivity rdf:type owl:Class ;
+                     rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#ThermalZone
+:ThermalZone rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :AdjacentZone ;
+                               owl:someValuesFrom :ThermalZone
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :contains ;
+                               owl:someValuesFrom :Building
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :contains ;
+                               owl:someValuesFrom :Room_Space
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :contains ;
+                               owl:someValuesFrom :Storey
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasName ;
+                               owl:someValuesFrom xsd:string
+                             ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Thickness
+:Thickness rdf:type owl:Class ;
+           rdfs:subClassOf :GeometryAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Transmittance
+:Transmittance rdf:type owl:Class ;
+               rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Typology
+:Typology rdf:type owl:Class ;
+          rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#UsageType
+:UsageType rdf:type owl:Class ;
+           rdfs:subClassOf :GeneralAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#UseCategory
+:UseCategory rdf:type owl:Class ;
+             rdfs:subClassOf :BuildingGeneralInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationNetworkElement
+:VentilationNetworkElement rdf:type owl:Class ;
+                           rdfs:subClassOf :HVACNetworkElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationProductionElement
+:VentilationProductionElement rdf:type owl:Class ;
+                              rdfs:subClassOf :HVACProductionElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationRequiredLevel
+:VentilationRequiredLevel rdf:type owl:Class ;
+                          rdfs:subClassOf :SystemsRequirements .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationRoomElement
+:VentilationRoomElement rdf:type owl:Class ;
+                        rdfs:subClassOf :HVACRoomElement ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasProvidedVentilationLevel ;
+                                          owl:someValuesFrom xsd:double
+                                        ] .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationSchedule
+:VentilationSchedule rdf:type owl:Class ;
+                     rdfs:subClassOf :Schedule .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#VentilationType
+:VentilationType rdf:type owl:Class ;
+                 rdfs:subClassOf :GeneralAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Visible_Transmittance
+:Visible_Transmittance rdf:type owl:Class ;
+                       rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Volume
+:Volume rdf:type owl:Class ;
+        rdfs:subClassOf :GeometryAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Wall
+:Wall rdf:type owl:Class ;
+      rdfs:subClassOf :InternalElement .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#WaterOutletUpperTempeperatureLimit
+:WaterOutletUpperTempeperatureLimit rdf:type owl:Class ;
+                                    rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#WindDirection
+:WindDirection rdf:type owl:Class ;
+               rdfs:subClassOf :ClimateInformation .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#WindowBridge
+:WindowBridge rdf:type owl:Class ;
+              rdfs:subClassOf :ThermalBridge .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#YearofInstallation
+:YearofInstallation rdf:type owl:Class ;
+                    rdfs:subClassOf :ProductionElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#g_value
+:g_value rdf:type owl:Class ;
+         rdfs:subClassOf :MaterialAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#nTOT
+:nTOT rdf:type owl:Class ;
+      rdfs:subClassOf :RoomElementAttribute .
+
+
+###  http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Tsupply/return
+<http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Tsupply/return> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf :ProductionElementAttribute .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Absorptance
+                :Density
+                :Emissivity
+                :Emittance
+                :Reflection
+                :Solar_Transmittance
+                :SpecificHeat
+                :ThermalConductivity
+                :Transmittance
+                :Visible_Transmittance
+                :g_value
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AirAttribute
+                :GeneralAttribute
+                :InternalLoads
+                :SystemsRequirements
+                :TemperatureAttribute
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AirchangesPerHour
+                :OutdoorAirMethod
+                :OutdoorAirPerArea
+                :OutdoorAirPerPerson
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Area
+                :Height
+                :Lenght
+                :Thickness
+                :Volume
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AreaPerPerson
+                :OperableWindows
+                :PositionType
+                :UsageType
+                :VentilationType
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Assumption
+                :DataBase
+                :ExistingDrawing
+                :HistoricalData
+                :InSituSurvey
+                :Manufacturer
+                :Software
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BIMModel
+                :Building
+                :BuildingElement
+                :BuildingGeneralInformation
+                :BuildingOperationalAttribute
+                :BuildingSystem
+                :Connection
+                :DHWProductionElement
+                :DataSource
+                :EnergySources
+                :EnvironmentalInformation
+                :GeometryAttribute
+                :Glazing
+                :HVACElement
+                :HVACElementAttribute
+                :Interface
+                :Layer
+                :LightingElement
+                :Material
+                :MaterialAttribute
+                :RoomOperationalAttibute
+                :Room_Space
+                :Schedule
+                :Site
+                :Storey
+                :ThermalBridge
+                :ThermalZone
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BalconyBridge
+                :CornerBridge
+                :FloorBridge
+                :GroundFloorBridge
+                :InternalWallBridge
+                :WindowBridge
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Biomass
+                :Carbon
+                :DensifiedBiomass
+                :Diesel
+                :DistrictCooling
+                :DistrictHeating
+                :Electricity
+                :LPG
+                :NaturalGas
+                :SolarPhotovoltaic
+                :SolarThermal
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BuildingType
+                :ConstructionYear
+                :CurrentEnergyRating
+                :NumberOfFloors
+                :NumberOfUnits
+                :RenovationYear
+                :UseCategory
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CirculatingPump_Configuration
+                :CirculatingPump_Control
+                :CirculatingPump_Ratedhead
+                :CirculatingPump_Type
+                :DesigndeltaTemperature
+                :DesignsetpointTemperature
+                :FluidType
+                :Loaddistributionscheme
+                :SetpointTemperatureControl
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CoolingNetworkElement
+                :HeatingNetworkElement
+                :VentilationNetworkElement
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CoolingProductionElement
+                :HeatingProductionElement
+                :VentilationProductionElement
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CoolingRequiredLevel
+                :DHWRequired
+                :HeatingRequiredLevel
+                :LightingRequiredLevel
+                :VentilationRequiredLevel
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CoolingRoomElement
+                :HeatingRoomElement
+                :VentilationRoomElement
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CoolingSchedule
+                :EquipmentSchedule
+                :HeatingSchedule
+                :LightingSchedule
+                :OccupancySchedule
+                :VentilationSchedule
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DHWDemand
+                :EnergyConsumption
+                :EquipmentOperation
+                :FacadeVentilationType
+                :InfiltrationRate
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DHWSystem
+                :HVACSystem
+                :LightingSystem
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DesignSupplyTemperature
+                :DesignThermalDifference
+                :ElectricPowerInput
+                :ElectricPowerInputTOT
+                :HeatingCapacity
+                :Typology
+                :nTOT
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EnergyFuel
+                :LocationofGenerator
+                :LossesCoefficient
+                :MaximumPartloadratio
+                :MinimumPartloadratio
+                :Model
+                :OptimumPartloadratio
+                :PerformanceCurves
+                :RatedCapacity_Nominaloutput
+                :RatedEfficiency_Thermalefficiency
+                :StorageTemperature
+                :SystemType
+                :WaterOutletUpperTempeperatureLimit
+                :YearofInstallation
+                <http://www.semanticweb.org/bimspeed/ontologies/2020/6/bem-reno_ontology#Tsupply/return>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Envelope
+                :ExternalDoor
+                :ExternalWindow
+                :SunShade
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EquipmentThermalLoad
+                :LightingThermalLoad
+                :OccupantsThermalLoad
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :FalseCelling
+                :FalseFloor
+                :Floor
+                :InternalDoor
+                :InternalWindow
+                :Wall
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :HVACNetworkElement
+                :HVACProductionElement
+                :HVACRoomElement
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Humidity
+                :SolarRadiation
+                :Temperature
+                :WindDirection
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :IndoorDesignTemperature
+                :InternalSummerTemperature
+                :InternalWinterTemperature
+                :MaximumComfortTemperature
+                :MinimumComfortTemperature
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :NetworkElementAttribute
+                :ProductionElementAttribute
+                :RoomElementAttribute
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

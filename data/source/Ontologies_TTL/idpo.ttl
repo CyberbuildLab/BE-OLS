@@ -1,0 +1,476 @@
+# baseURI: http://w3id.org/idpo
+# imports: http://purl.org/dc/elements/1.1/
+# imports: http://www.w3.org/ns/shacl#
+# imports: https://standards.iso.org/iso/21597/-1/ed-1/en/Container.rdf
+# prefix: idpo
+
+@prefix bpmn: <http://www.omg.org/spec/BPMN/20100524/MODEL#> .
+@prefix ct: <https://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix idpo: <http://w3id.org/idpo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://w3id.org/idpo>
+  rdf:type voaf:Vocabulary ;
+  rdf:type owl:Ontology ;
+  dcterms:created "2020-03-30"^^xsd:date ;
+  dcterms:creator [
+      rdf:type sdo:Person ;
+      sdo:email <mailto:philipp.hagedorn-n6v@rub.de> ;
+      sdo:identifier <https://orcid.org/0000-0002-6249-243X> ;
+      sdo:memberOf [
+          sdo:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          sdo:name "Ruhr University Bochum" ;
+        ] ;
+      sdo:name "Philipp Hagedorn" ;
+    ] ;
+  dcterms:description "The Information Delivery Processes Ontology (IDPO) Ontology is defined for modeling information delivery in the construction planning based on BPMN processes and the PROV-Ontology. It provides SHACL templates for validating information requirements and delivery specifications." ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:modified "2023-02-20"^^xsd:date ;
+  dcterms:publisher [
+      rdf:type sdo:Organization ;
+      rdf:type sdo:ResearchOrganization ;
+      sdo:identifier <https://www.inf.bi.rub.de> ;
+      sdo:name "Chair of Computing in Engineering, Ruhr University Bochum" ;
+      sdo:parentOrganization [
+          rdf:type sdo:Organization ;
+          rdf:type sdo:ResearchOrganization ;
+          sdo:name "Ruhr University Bochum, Germany" ;
+        ] ;
+    ] ;
+  dcterms:source "https://git.inf.bi.ruhr-uni-bochum.de/semweb-ontology/idpo/" ;
+  dcterms:title "Information Delivery Processes Ontology (IDPO)" ;
+  vann:preferredNamespacePrefix "idpo" ;
+  vann:preferredNamespaceUri idpo: ;
+  owl:imports dc: ;
+  owl:imports sh: ;
+  owl:imports <https://standards.iso.org/iso/21597/-1/ed-1/en/Container.rdf> ;
+  owl:versionInfo "v0.2" ;
+  sh:declare idpo:PrefixDeclaration ;
+  sh:declare bpmn:PrefixDeclaration ;
+.
+idpo:Actor
+  rdf:type rdfs:Class ;
+  idpo:isMemberOf idpo:Project ;
+  rdfs:comment "ISO 19650-1 3.2.1 actor: person, organization or organizational unit involved in a construction process" ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/68078.html> ;
+  rdfs:label "Actor" ;
+  rdfs:subClassOf prov:Agent ;
+  rdfs:subClassOf ct:Party ;
+.
+idpo:AppointedParty
+  rdf:type rdfs:Class ;
+  rdfs:comment "ISO 19650-1 3.2.3 appointed party: provider of information (3.3.1) concerning works, goods or services. Is equivalent to idpo:InformationProvider." ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/68078.html> ;
+  rdfs:label "AppointedParty" ;
+  rdfs:subClassOf idpo:Actor ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:isAppointedForDelivery ;
+    ] ;
+  owl:equivalentClass idpo:InformationProvider ;
+.
+idpo:AppointingParty
+  rdf:type rdfs:Class ;
+  rdfs:comment "ISO 19650-1 3.2.4 appointing party: receiver of information (3.3.1) concerning works, goods or services from a lead appointed party (3.2.3). Is equivalent to idpo:InformationReceiver." ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/68078.html> ;
+  rdfs:label "AppointingParty" ;
+  rdfs:subClassOf idpo:Actor ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:appointsUsage ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:defines ;
+    ] ;
+  owl:equivalentClass idpo:InformationReceiver ;
+.
+idpo:ExchangeInformationRequirement
+  rdf:type owl:Class ;
+  rdfs:comment "ISO 19650-1 3.3.6 exchange information requirements (EIR): information requirements in relation to an appointment" ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/68078.html> ;
+  rdfs:label "ExchangeInformationRequirement" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:dueDate ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:priority ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:suitability ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:hasInformationConstraint ;
+    ] ;
+.
+idpo:InformationContainer
+  rdf:type owl:Class ;
+  rdfs:comment "ISO 19650-1 3.3.12 information container: named persistent set of information retrievable from within a file, system or application storage hierarchy. This class is used to represent a set of data summarized as an information container. Information containers can be generated and used. Instances of this class can be derived from bpmn2:DataObject individuals. This class is a subClass of prov:Entity which allows to associate additional provenance information. It is equivalent to the ct:ContainerDescription class from ICDD." ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/68078.html> ;
+  rdfs:label "InformationContainer" ;
+  rdfs:seeAlso bpmn:DataObject ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf prov:Entity ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:derivedFromBPMN ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:hasStatus ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:contains ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:hasRequirement ;
+    ] ;
+  owl:equivalentClass ct:ContainerDescription ;
+.
+idpo:InformationDelivery
+  rdf:type owl:Class ;
+  rdfs:comment "This class is used to represent the activity of generation information regarding defined information requirements and delivery specifications. Instances of this class can be derived from bpmn2:Task individuals. This class is a subClass of prov:Activity which allows to associate additional provenance information." ;
+  rdfs:label "InformationDelivery" ;
+  rdfs:seeAlso bpmn:Activity ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:derivedFromBPMN ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:provides ;
+    ] ;
+.
+idpo:InformationProvider
+  rdf:type rdfs:Class ;
+  rdfs:comment "ISO 19650-4 3.2.1 information provider: actor who provides information in an information container according to the requirements. Is equivalent to idpo:AppointedParty." ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/78246.html> ;
+  rdfs:label "InformationProvider" ;
+  rdfs:subClassOf idpo:Actor ;
+  owl:equivalentClass idpo:AppointedParty ;
+  skos:example "  A maintenance team will prepare an inspection report on an asset during an operational event." ;
+  skos:example "  A structural engineer will prepare a detailed proposal during a detailed design stage." ;
+.
+idpo:InformationReceipt
+  rdf:type owl:Class ;
+  rdfs:comment "This class is used to represent the activity of using information regarding defined information requirements and delivery specifications. Instances of this class can be derived from bpmn2:Task individuals. This class is a subClass of prov:Activity which allows to associate additional provenance information." ;
+  rdfs:label "InformationReceipt" ;
+  rdfs:seeAlso bpmn:Activity ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:derivedFromBPMN ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:receives ;
+    ] ;
+.
+idpo:InformationReceiver
+  rdf:type rdfs:Class ;
+  rdfs:comment "ISO 19650-4 3.2.2 information receiver: actor who receives information in an information container. Is equivalent to idpo:AppointingParty." ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/78246.html> ;
+  rdfs:label "InformationReceiver" ;
+  rdfs:subClassOf idpo:Actor ;
+  owl:equivalentClass idpo:AppointingParty ;
+.
+idpo:PrefixDeclaration
+  rdf:type sh:PrefixDeclaration ;
+  sh:namespace "http://w3id.org/idpo#"^^xsd:anyURI ;
+  sh:prefix "idpo" ;
+.
+idpo:Project
+  rdf:type owl:Class ;
+  rdfs:comment "This class represents a project and hosts the activities for generating and using information and the related persons." ;
+  rdfs:label "Project" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:hasMember ;
+    ] ;
+  skos:prefLabel "Project" ;
+.
+idpo:Status
+  rdf:type owl:Class ;
+  rdfs:comment "This class represents the status of information." ;
+  rdfs:label "Status" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:status ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty idpo:statusSystem ;
+    ] ;
+.
+idpo:appointsUsage
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates an idpo:AppointingParty to a information Receipt" ;
+  rdfs:domain idpo:AppointingParty ;
+  rdfs:label "appointsUsage" ;
+  rdfs:range idpo:InformationReceipt ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  skos:prefLabel "appointsUsage" ;
+.
+idpo:belongsTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents the usage of an information inside a project" ;
+  rdfs:domain idpo:InformationDelivery ;
+  rdfs:domain idpo:InformationReceipt ;
+  rdfs:label "belongsTo" ;
+  rdfs:range idpo:Project ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+idpo:contains
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates any kind of data to an information container" ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:label "contains" ;
+  rdfs:range rdfs:Resource ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+idpo:defines
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain idpo:AppointingParty ;
+  rdfs:label "defines" ;
+  rdfs:range idpo:ExchangeInformationRequirement ;
+  owl:inverseOf idpo:isDefinedBy ;
+  skos:prefLabel "defines" ;
+.
+idpo:derivedFromBPMN
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates the BPMN object from which this individual has been derived" ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:domain idpo:InformationDelivery ;
+  rdfs:domain idpo:InformationReceipt ;
+  rdfs:label "derivedFromBPMN" ;
+  rdfs:range bpmn:Activity ;
+  rdfs:range bpmn:DataObject ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+idpo:dueDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The due date of an information requirement" ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "dueDate" ;
+  rdfs:range xsd:dateTime ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+idpo:hasInformationConstraint
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "ISO 29481-1 3.5 information constraint: statement that formally defines or constrains the scope of a piece of information due to some aspect of the business, a rule under which an organisation operates or a policy or decision that influences a process. Represents the concrete specification of delivered information as a sh:NodeShape." ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:isDefinedBy <https://www.iso.org/standard/60553.html> ;
+  rdfs:label "hasInformationConstraint" ;
+  rdfs:range sh:NodeShape ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+idpo:hasMember
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates a idpo:Actor to a project" ;
+  rdfs:domain idpo:Project ;
+  rdfs:label "hasMember" ;
+  rdfs:range idpo:Actor ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:isMemberOf ;
+  skos:prefLabel "hasMember" ;
+.
+idpo:hasRequirement
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates a requirement to an information" ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:label "hasRequirement" ;
+  rdfs:range idpo:ExchangeInformationRequirement ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:isRequirementOf ;
+.
+idpo:hasStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates a status to an information" ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:label "hasStatus" ;
+  rdfs:range idpo:Status ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:isStatusOf ;
+  skos:prefLabel "hasStatus" ;
+.
+idpo:isAppointedForDelivery
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates an idpo:AppointedParty to an idpo:InformationDelivery" ;
+  rdfs:domain idpo:AppointedParty ;
+  rdfs:label "isAppointedForDelivery" ;
+  rdfs:range idpo:InformationDelivery ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  skos:prefLabel "isAppointedForDelivery" ;
+.
+idpo:isDefinedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "isDefinedBy" ;
+  rdfs:range idpo:AppointingParty ;
+  owl:inverseOf idpo:defines ;
+  skos:prefLabel "isDefinedBy" ;
+.
+idpo:isMemberOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates a project to an idpo:Actor" ;
+  rdfs:domain idpo:Actor ;
+  rdfs:label "isMemberOf" ;
+  rdfs:range idpo:Project ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:hasMember ;
+  skos:prefLabel "isMemberOf" ;
+.
+idpo:isProvidedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates the originating information delivery to an information container. Inverse of idpo:provides." ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:label "isProvidedBy" ;
+  rdfs:range idpo:InformationDelivery ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:subPropertyOf prov:wasGeneratedBy ;
+  owl:inverseOf idpo:provides ;
+.
+idpo:isReceivedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents the reception of an information container. Inverse of idpo:receives." ;
+  rdfs:domain idpo:InformationContainer ;
+  rdfs:label "isReceivedBy" ;
+  rdfs:range idpo:InformationReceipt ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:receives ;
+  owl:propertyDisjointWith idpo:provides ;
+.
+idpo:isRequirementOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates the originating information to a requirement" ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "isRequirementOf" ;
+  rdfs:range idpo:InformationContainer ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:hasRequirement ;
+  skos:prefLabel "isRequirementOf" ;
+.
+idpo:isStatusOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates the information that uses a status" ;
+  rdfs:domain idpo:Status ;
+  rdfs:label "isStatusOf" ;
+  rdfs:range idpo:InformationContainer ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf idpo:hasStatus ;
+  skos:prefLabel "isStatusOf" ;
+.
+idpo:priority
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the priority of an information requirement, e. g. high, low, none" ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "priority" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+idpo:provides
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates provided information containers to an information delivery. Inverse of idpo:isProvidedBy." ;
+  rdfs:domain idpo:InformationDelivery ;
+  rdfs:label "provides" ;
+  rdfs:range idpo:InformationContainer ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:subPropertyOf prov:generated ;
+  owl:inverseOf idpo:isProvidedBy ;
+  owl:propertyDisjointWith idpo:receives ;
+.
+idpo:receives
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Associates an received information container to an information receipt. Inverse of idpo:isReceivedBy" ;
+  rdfs:domain idpo:InformationReceipt ;
+  rdfs:label "receives" ;
+  rdfs:range idpo:InformationContainer ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:subPropertyOf prov:used ;
+  owl:inverseOf idpo:isReceivedBy ;
+  owl:propertyDisjointWith idpo:provides ;
+.
+idpo:requires
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents the concrete requirement of delivered information as a sh:NodeShape oder any other rdfs:Resource on the dataset and/or document level" ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "requires" ;
+  rdfs:range sh:Shape ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+.
+idpo:status
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the status string of a status individual, e. g. Work in Progess, Shared, Published, Archived" ;
+  rdfs:domain idpo:Status ;
+  rdfs:label "status" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+idpo:statusSystem
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the status system string of a status individual, e. g. ISO19650 or an URI to the originating status system" ;
+  rdfs:domain idpo:Status ;
+  rdfs:label "statusSystem" ;
+  rdfs:range [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          xsd:string
+          xsd:anyURI
+        ) ;
+    ] ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+idpo:suitability
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the suitability of information within an information requirement, e. g. regarding to ISO19650" ;
+  rdfs:domain idpo:ExchangeInformationRequirement ;
+  rdfs:label "suitablity" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+.
+bpmn:PrefixDeclaration
+  rdf:type sh:PrefixDeclaration ;
+  sh:namespace "http://www.omg.org/spec/BPMN/20100524/MODEL#"^^xsd:anyURI ;
+  sh:prefix "bpmn2" ;
+.

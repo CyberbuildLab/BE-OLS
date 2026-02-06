@@ -1,0 +1,1359 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Energy#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dici: <https://w3id.org/digitalconstruction/0.5/Information#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix dicu: <https://w3id.org/digitalconstruction/0.5/Units#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix quantitykind: <http://qudt.org/2.1/vocab/quantitykind/> .
+@base <https://w3id.org/digitalconstruction/0.5/Energy> .
+
+<https://w3id.org/digitalconstruction/0.5/Energy> rdf:type owl:Ontology ;
+                                                   owl:imports <https://w3id.org/digitalconstruction/0.5/Information/information.ttl> ;
+                                                   dc:creator "Kostas Tsatsakis" ,
+                                                              "Spiros Kousouris" ;
+                                                   terms:abstract "An ontology for energy systems and energy efficiency in the construction and renovation domain" ;
+                                                   terms:description "An ontology for energy systems and energy efficiency in the construction and renovation domain" ;
+                                                   terms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                                   terms:publisher "SUITE5" ;
+                                                   terms:title "Digital Construction Energy" ;
+                                                   vann:preferredNamespacePrefix "dices:" ;
+                                                   vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Energy" ;
+                                                   rdfs:label "Digital Construction Energy" ;
+                                                   rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/abstract
+terms:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+terms:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasConsumptionType
+:hasConsumptionType rdf:type owl:ObjectProperty ;
+                    rdfs:range :EnergyConsumption ;
+                    rdfs:label "hasConsumptionType" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyMeter
+:hasEnergyMeter rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isEnergyMeterOf ;
+                rdfs:domain :DeliveredEnergyMeteringData ;
+                rdfs:range :EnergyMeter ;
+                rdfs:label "hasEnergyMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyStatistics
+:hasEnergyStatistics rdf:type owl:ObjectProperty ;
+                     rdfs:range :EnergyData ;
+                     rdfs:comment "The has energy statistics associated with an entity" ;
+                     rdfs:label "hasEnergyStatistics" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasFlexibility
+:hasFlexibility rdf:type owl:ObjectProperty ;
+                rdfs:comment "Flexibility value associated with a specific service" ;
+                rdfs:label "hasFlexibility" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasGeographicArea
+:hasGeographicArea rdf:type owl:ObjectProperty ;
+                   rdfs:domain :DeliveredEnergyMeteringData ;
+                   rdfs:range dice:Location ;
+                   rdfs:label "hasGeographicArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasLifeCycleImpact
+:hasLifeCycleImpact rdf:type owl:ObjectProperty ;
+                    rdfs:domain :LifeCycleAssessment ;
+                    rdfs:range :LifeCycleImpact ;
+                    rdfs:label "hasLifeCycleImpact" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasLifeCycleInventory
+:hasLifeCycleInventory rdf:type owl:ObjectProperty ;
+                       rdfs:domain :LifeCycleAssessment ;
+                       rdfs:range :LifeCycleInventory ;
+                       rdfs:label "hasLifeCycleInventory" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasLifeCyclePhase
+:hasLifeCyclePhase rdf:type owl:ObjectProperty ;
+                   rdfs:domain :LifeCycleInventory ;
+                   rdfs:range :DeviceLifecyclePhase ;
+                   rdfs:label "hasLifeCyclePhase" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasLifecycleCost
+:hasLifecycleCost rdf:type owl:ObjectProperty ;
+                  rdfs:range :LifeCycleCost ;
+                  rdfs:comment "The relationship between LCA and LCC" ;
+                  rdfs:label "hasLifecycleCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasLifecycleParameters
+:hasLifecycleParameters rdf:type owl:ObjectProperty ;
+                        rdfs:comment "Relationship of a device and its LCA" ;
+                        rdfs:label "hasLifecycleParameters" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasMeteringPeriod
+:hasMeteringPeriod rdf:type owl:ObjectProperty ;
+                   rdfs:domain :DeliveredEnergyMeteringData ;
+                   rdfs:range dice:TimeInterval ;
+                   rdfs:label "hasMeteringPeriod" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPowerStatistics
+:hasPowerStatistics rdf:type owl:ObjectProperty ;
+                    rdfs:range :EnergyData ;
+                    rdfs:comment "The power statistics associated with an entity" ;
+                    rdfs:label "hasPowerStatistics" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasRenovationMeasure
+:hasRenovationMeasure rdf:type owl:ObjectProperty ;
+                      rdfs:domain :RenovationScenario ;
+                      rdfs:label "hasRenovationMeasure" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasReward
+:hasReward rdf:type owl:ObjectProperty ;
+           rdfs:comment "A service of the energy system is associated with a reward for this service" ;
+           rdfs:label "hasReward" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasScenarioQuality
+:hasScenarioQuality rdf:type owl:ObjectProperty ;
+                    rdfs:domain :RenovationScenario ;
+                    rdfs:label "hasScenarioQuality" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#isEnergyMeterOf
+:isEnergyMeterOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :EnergyMeter ;
+                 rdfs:range :DeliveredEnergyMeteringData ;
+                 rdfs:label "isEnergyMeterOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#offersService
+:offersService rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf dice:participatesIn ;
+               rdfs:domain dice:Device ;
+               rdfs:range :DeviceService ;
+               rdfs:label "offersService" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyProperty
+:EnergyProperty rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualCoolingEnergyConsumptionPerArea
+:hasAnnualCoolingEnergyConsumptionPerArea rdf:type owl:DatatypeProperty ;
+                                          rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualElectricityConsumptionPerArea
+:hasAnnualElectricityConsumptionPerArea rdf:type owl:DatatypeProperty ;
+                                        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualHeatingEnergyConsumptionPerArea
+:hasAnnualHeatingEnergyConsumptionPerArea rdf:type owl:DatatypeProperty ;
+                                          rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualOperationalCostPerArea
+:hasAnnualOperationalCostPerArea rdf:type owl:DatatypeProperty ;
+                                 rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualPrimaryEnergyConsumptionPerArea
+:hasAnnualPrimaryEnergyConsumptionPerArea rdf:type owl:DatatypeProperty ;
+                                          rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasBasicFee
+:hasBasicFee rdf:type owl:DatatypeProperty ;
+             rdfs:domain :EnergyMeter ;
+             rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasDuration
+:hasDuration rdf:type owl:DatatypeProperty ;
+             rdfs:comment "The total duration of the process" ;
+             rdfs:label "hasDuration" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEmissions
+:hasEmissions rdf:type owl:DatatypeProperty ;
+              rdfs:comment "The amount of Emissions in LCA analysis" ;
+              rdfs:label "hasEmissions" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyFee
+:hasEnergyFee rdf:type owl:DatatypeProperty ;
+              rdfs:domain :EnergyMeter ;
+              rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyMax
+:hasEnergyMax rdf:type owl:DatatypeProperty ;
+              rdfs:comment "The max value for the energy (daily) profile of an energy system" ;
+              rdfs:label "hasEnergyMax" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyMin
+:hasEnergyMin rdf:type owl:DatatypeProperty ;
+              rdfs:comment "The min value for the energy (daily) profile of an energy system" ;
+              rdfs:label "hasEnergyMin" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyUse
+:hasEnergyUse rdf:type owl:DatatypeProperty ;
+              rdfs:label "hasEnergyUse" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasInvestmentPaybackTime
+:hasInvestmentPaybackTime rdf:type owl:DatatypeProperty ;
+                          rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasInvestmentUnitCost
+:hasInvestmentUnitCost rdf:type owl:DatatypeProperty ;
+                       rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedCoolingEnergyConsumption
+:hasNormalizedCoolingEnergyConsumption rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedElectricityConsumption
+:hasNormalizedElectricityConsumption rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedHeatingEnergyConsumption
+:hasNormalizedHeatingEnergyConsumption rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedInvestmentCosts
+:hasNormalizedInvestmentCosts rdf:type owl:DatatypeProperty ;
+                              rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedOperationalEnergyCosts
+:hasNormalizedOperationalEnergyCosts rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedPrimaryEnergyConsumption
+:hasNormalizedPrimaryEnergyConsumption rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPowerMax
+:hasPowerMax rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "The max value for the power profile of an energy system" ;
+             rdfs:label "hasPowerMax" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPowerMin
+:hasPowerMin rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "The min value for the power profile of an energy system" ;
+             rdfs:label "hasPowerMin" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPowerSTD
+:hasPowerSTD rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:float ;
+             rdfs:comment "Power Standard deviation of a device" ;
+             rdfs:label "hasPowerSTD" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPowerSkewness
+:hasPowerSkewness rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:float ;
+                  rdfs:comment "Power Skewness of a device power profile" ;
+                  rdfs:label "hasPowerSkewness" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPrimaryEnergyFactor
+:hasPrimaryEnergyFactor rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :EnergyMeter ;
+                        rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ActuatorLevel
+:ActuatorLevel rdf:type owl:Class ;
+               rdfs:subClassOf dice:Actuator ;
+               rdfs:comment "Independent from the ActuatorSwitch class, the ActuatorLevel class enables a user or application to model LEVEL commands (start, up, percentageAbsolute, relative, etc.). This can be used to dim a light, set the speed of an electric motor, etc." ;
+               rdfs:label "ActuatorLevel" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AgriculturalLandOccupationPotential
+:AgriculturalLandOccupationPotential rdf:type owl:Class ;
+                                     rdfs:subClassOf :EcosystemImpact ;
+                                     rdfs:label "AgriculturalLandOccupationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AnnualCoolingEnergyConsumptionPerArea
+:AnnualCoolingEnergyConsumptionPerArea rdf:type owl:Class ;
+                                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                             owl:onProperty dicv:isPropertyFor ;
+                                                             owl:hasValue :hasAnnualCoolingEnergyConsumptionPerArea
+                                                           ] ;
+                                       rdfs:subClassOf :EnergyConsumptionQuality ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasQuantityKind ;
+                                                         owl:hasValue dicu:EnergyPerAreaTime
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasUnit ;
+                                                         owl:hasValue dicu:KiloW-HR-PER-M2-YR
+                                                       ] ;
+                                       rdfs:comment "Annual cooling energy consumption of a building, in kWh/m2/yr" ;
+                                       rdfs:label "AnnualCoolingEnergyConsumptionPerArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AnnualElectricityConsumptionPerArea
+:AnnualElectricityConsumptionPerArea rdf:type owl:Class ;
+                                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                           owl:onProperty dicv:isPropertyFor ;
+                                                           owl:hasValue :hasAnnualElectricityConsumptionPerArea
+                                                         ] ;
+                                     rdfs:subClassOf :EnergyConsumptionQuality ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty dicv:hasQuantityKind ;
+                                                       owl:hasValue dicu:EnergyPerAreaTime
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty dicv:hasUnit ;
+                                                       owl:hasValue dicu:KiloW-HR-PER-M2-YR
+                                                     ] ;
+                                     rdfs:comment "Annual electricity consumption of a building, in kWh/m2/yr" ;
+                                     rdfs:label "AnnualElectricityConsumptionPerArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AnnualHeatingEnergyConsumptionPerArea
+:AnnualHeatingEnergyConsumptionPerArea rdf:type owl:Class ;
+                                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                             owl:onProperty dicv:isPropertyFor ;
+                                                             owl:hasValue :hasAnnualHeatingEnergyConsumptionPerArea
+                                                           ] ;
+                                       rdfs:subClassOf :EnergyConsumptionQuality ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasQuantityKind ;
+                                                         owl:hasValue dicu:EnergyPerAreaTime
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasUnit ;
+                                                         owl:hasValue dicu:KiloW-HR-PER-M2-YR
+                                                       ] ;
+                                       rdfs:comment "Annual heating energy consumption of a building, in kWh/m2/yr" ;
+                                       rdfs:label "AnnualHeatingEnergyConsumptionPerArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AnnualOperationalCostPerArea
+:AnnualOperationalCostPerArea rdf:type owl:Class ;
+                              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                    owl:onProperty dicv:isPropertyFor ;
+                                                    owl:hasValue :hasAnnualOperationalCostPerArea
+                                                  ] ;
+                              rdfs:subClassOf dicp:CostProperty ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty dicv:hasQuantityKind ;
+                                                owl:hasValue dicu:CurrencyPerAreaTime
+                                              ] ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty dicv:hasUnit ;
+                                                owl:hasValue dicu:Euro-PER-M2-YR
+                                              ] ;
+                              rdfs:comment "Annual operational energy costs in €/floor-m2/yr" ;
+                              rdfs:label "AnnualOperationalCostPerArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#AnnualPrimaryEnergyConsumptionPerArea
+:AnnualPrimaryEnergyConsumptionPerArea rdf:type owl:Class ;
+                                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                             owl:onProperty dicv:isPropertyFor ;
+                                                             owl:hasValue :hasAnnualPrimaryEnergyConsumptionPerArea
+                                                           ] ;
+                                       rdfs:subClassOf :EnergyConsumptionQuality ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasQuantityKind ;
+                                                         owl:hasValue dicu:EnergyPerAreaTime
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty dicv:hasUnit ;
+                                                         owl:hasValue dicu:KiloW-HR-PER-M2-YR
+                                                       ] ;
+                                       rdfs:comment "Annual primary energy consumption of a building, in kWh/m2/yr" ;
+                                       rdfs:label "AnnualPrimaryEnergyConsumptionPerArea" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#BaselineProfile
+:BaselineProfile rdf:type owl:Class ;
+                 rdfs:subClassOf dici:Profile ;
+                 rdfs:comment "Baseline profile is gathered before changes and it acts as a reference to evaluate the impact of the changes" ;
+                 rdfs:label "BaselineProfile" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#BasicFee
+:BasicFee rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                owl:onProperty dicv:isPropertyFor ;
+                                owl:hasValue :hasBasicFee
+                              ] ;
+          rdfs:subClassOf :EnergyConsumptionQuality ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty dicv:hasQuantityKind ;
+                            owl:hasValue dicu:CurrencyPerTime
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty dicv:hasUnit ;
+                            owl:hasValue <https://w3id.org/digitalconstruction/0.5/Units#:Euro-PER-MO>
+                          ] ;
+          rdfs:label "BasicFee" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#BatteryStorage
+:BatteryStorage rdf:type owl:Class ;
+                rdfs:subClassOf :Storage ;
+                rdfs:comment "Residential, behind the meter battery system" ;
+                rdfs:label "BatteryStorage" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#CapitalCost
+:CapitalCost rdf:type owl:Class ;
+             rdfs:subClassOf :LifeCycleCost ;
+             rdfs:comment "The capital cost required for the investment on Energy Systems" ;
+             rdfs:label "CapitalCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#CombinedHeatPower
+:CombinedHeatPower rdf:type owl:Class ;
+                   rdfs:subClassOf :Generator ;
+                   rdfs:label "CombinedHeatPower" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ComfortManagement
+:ComfortManagement rdf:type owl:Class ;
+                   rdfs:subClassOf :DeviceService ;
+                   rdfs:comment "An automation service offered to the users on the way to ensure comfort preservation" ;
+                   rdfs:label "ComfortManagement" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Construction
+:Construction rdf:type owl:Class ;
+              rdfs:subClassOf :DeviceLifecyclePhase ;
+              rdfs:comment "Construction phase of renovation" ;
+              rdfs:label "DeviceConstruction" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#CostParameter
+:CostParameter rdf:type owl:Class ;
+               rdfs:subClassOf dicp:CostProperty ;
+               rdfs:label "CostParameter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Deconstruction
+:Deconstruction rdf:type owl:Class ;
+                rdfs:subClassOf :EndofLife ;
+                rdfs:comment "The deconstruction of Energy System" ;
+                rdfs:label "DeviceDeconstruction" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeliveredEnergyMeteringData
+:DeliveredEnergyMeteringData rdf:type owl:Class ;
+                             rdfs:subClassOf :EnergyData ;
+                             rdfs:label "DeliveredEnergyMeteringData" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceDisposal
+:DeviceDisposal rdf:type owl:Class ;
+                rdfs:subClassOf :EndofLife .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceInstallation
+:DeviceInstallation rdf:type owl:Class ;
+                    rdfs:subClassOf :Construction ;
+                    rdfs:comment "Installation of the energy system" ;
+                    rdfs:label "DeviceInstallation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceLifecyclePhase
+:DeviceLifecyclePhase rdf:type owl:Class ;
+                      rdfs:subClassOf dice:Process ;
+                      rdfs:comment "Device lifecycle phases cover the whole lifecycle of a device" ;
+                      rdfs:label "DeviceLifecyclePhase" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceMaintenance
+:DeviceMaintenance rdf:type owl:Class ;
+                   rdfs:subClassOf :DeviceUse ;
+                   rdfs:label "DeviceMaintenance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceManufacturing
+:DeviceManufacturing rdf:type owl:Class ;
+                     rdfs:subClassOf :DeviceProduction ;
+                     rdfs:comment "Manufacturing stage for the Energy System" ;
+                     rdfs:label "DeviceManufacturing" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceMaterialSupply
+:DeviceMaterialSupply rdf:type owl:Class ;
+                      rdfs:subClassOf :DeviceProduction ;
+                      rdfs:comment "Material Supply is the early stage of the Energy System production" ;
+                      rdfs:label "DeviceMaterialSupply" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceOperation
+:DeviceOperation rdf:type owl:Class ;
+                 rdfs:subClassOf :DeviceUse ;
+                 rdfs:comment "Actual Operation of the energy system" ;
+                 rdfs:label "DeviceOperation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DevicePerformance
+:DevicePerformance rdf:type owl:Class ;
+                   rdfs:subClassOf dicv:QuantitativeProperty ;
+                   rdfs:label "DevicePerformance" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceProduction
+:DeviceProduction rdf:type owl:Class ;
+                  rdfs:subClassOf :DeviceLifecyclePhase ;
+                  rdfs:comment "Production phase for the Energy System" ;
+                  rdfs:label "DeviceProduction" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceRepair
+:DeviceRepair rdf:type owl:Class ;
+              rdfs:subClassOf :DeviceUse ;
+              rdfs:label "DeviceRepair" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceReplacement
+:DeviceReplacement rdf:type owl:Class ;
+                   rdfs:subClassOf :DeviceUse ;
+                   rdfs:label "DeviceReplacement" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceService
+:DeviceService rdf:type owl:Class ;
+               rdfs:subClassOf dicp:Service ;
+               rdfs:label "DeviceService" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceTransport
+:DeviceTransport rdf:type owl:Class ;
+                 rdfs:subClassOf :Construction ;
+                 rdfs:comment "Transport of Energy System to the destination" ;
+                 rdfs:label "DeviceTransport" ,
+                            "DeviceTransportation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceUse
+:DeviceUse rdf:type owl:Class ;
+           rdfs:subClassOf :DeviceLifecyclePhase ;
+           rdfs:comment "Operational phase of the energy system" ;
+           rdfs:label "DeviceUse" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DieselGen
+:DieselGen rdf:type owl:Class ;
+           rdfs:subClassOf :Generator ;
+           rdfs:comment "Small Diesel Generator for back up" ;
+           rdfs:label "DieselGenerator" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DistrictCoolMeter
+:DistrictCoolMeter rdf:type owl:Class ;
+                   rdfs:subClassOf :EnergyMeter ;
+                   rdfs:label "DistrictCoolMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DistrictHeatMeter
+:DistrictHeatMeter rdf:type owl:Class ;
+                   rdfs:subClassOf :EnergyMeter ;
+                   rdfs:label "DistrictHeatMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EV
+:EV rdf:type owl:Class ;
+    rdfs:subClassOf :Storage ;
+    rdfs:comment "Charging points and the associated EVs" ;
+    rdfs:label "ElectricVehicle" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EcosystemAffectingPhotochemicalOxidantFormationPotential
+:EcosystemAffectingPhotochemicalOxidantFormationPotential rdf:type owl:Class ;
+                                                          rdfs:subClassOf :EcosystemImpact ;
+                                                          rdfs:label "EcosystemAffectingPhotochemicalOxidantFormationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EcosystemImpact
+:EcosystemImpact rdf:type owl:Class ;
+                 rdfs:subClassOf :LifeCycleImpact ;
+                 rdfs:label "EcosystemImpact" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EcotoxicityPotential
+:EcotoxicityPotential rdf:type owl:Class ;
+                      rdfs:subClassOf :EcosystemImpact ;
+                      rdfs:label "EcotoxicityPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ElectricalEnergyMeter
+:ElectricalEnergyMeter rdf:type owl:Class ;
+                       rdfs:subClassOf :EnergyMeter ;
+                       rdfs:label "ElectricalEnergyMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EndOfLifeCost
+:EndOfLifeCost rdf:type owl:Class ;
+               rdfs:subClassOf :LifeCycleCost ;
+               rdfs:label "EndOfLifeCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EndofLife
+:EndofLife rdf:type owl:Class ;
+           rdfs:subClassOf :DeviceLifecyclePhase ;
+           rdfs:comment "End of life period for the Energy System" ;
+           rdfs:label "DeviceEndOfLife" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyConsumption
+:EnergyConsumption rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( :ApplianceConsumption
+                                                     :CoolingConsumption
+                                                     :HeatPumpConsumption
+                                                     :HeatingConsumption
+                                                     :LightingConsumption
+                                                     :SpaceHeatingConsumption
+                                                     :WaterHeatingConsumption
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf dice:Process ;
+                   rdfs:label "EnergyConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyConsumptionQuality
+:EnergyConsumptionQuality rdf:type owl:Class ;
+                          rdfs:subClassOf :EnergyProperty ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty dicv:hasQuantityKind ;
+                                            owl:hasValue dicu:EnergyPerAreaTime
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty dicv:hasUnit ;
+                                            owl:hasValue dicu:KiloW-HR-PER-M2-YR
+                                          ] ;
+                          rdfs:label "EnergyConsumptionQuality" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyConsumptionStatistics
+:EnergyConsumptionStatistics rdf:type owl:Class ;
+                             rdfs:subClassOf dici:Statistics ;
+                             rdfs:label "EnergyConsumptionStatistics" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyData
+:EnergyData rdf:type owl:Class ;
+            rdfs:subClassOf dici:InformationContentEntity ;
+            rdfs:comment "Energy and power data that characterize the energy delivery and consumption" ;
+            rdfs:label "EnergyData" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyFee
+:EnergyFee rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty dicv:isPropertyFor ;
+                                 owl:hasValue :hasEnergyFee
+                               ] ;
+           rdfs:subClassOf :EnergyConsumptionQuality ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty dicv:hasQuantityKind ;
+                             owl:hasValue dicu:CurrencyPerEnergy
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty dicv:hasUnit ;
+                             owl:hasValue <https://w3id.org/digitalconstruction/0.5/Units#:Euro-Per-KiloW-HR>
+                           ] ;
+           rdfs:label "EnergyFee" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyMeter
+:EnergyMeter rdf:type owl:Class ;
+             rdfs:subClassOf dici:PropertyHistory ;
+             rdfs:label "EnergyMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EnergyProperty
+:EnergyProperty rdf:type owl:Class ;
+                rdfs:subClassOf dicv:QuantitativeProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#EngineeringCost
+:EngineeringCost rdf:type owl:Class ;
+                 rdfs:subClassOf :LifeCycleCost ;
+                 rdfs:comment "Engineering and operation cost for the device" ;
+                 rdfs:label "EngineeringCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Flexibility
+:Flexibility rdf:type owl:Class ;
+             rdfs:subClassOf dicv:Property ;
+             rdfs:comment "Energy System Flexibility" ;
+             rdfs:label "Flexibility" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#FlexibilityReward
+:FlexibilityReward rdf:type owl:Class ;
+                   rdfs:subClassOf dicv:Property ;
+                   rdfs:comment "The reward for participating in innovative energy services (like demand-response)" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#FossilFuelMeter
+:FossilFuelMeter rdf:type owl:Class ;
+                 rdfs:subClassOf :EnergyMeter ;
+                 rdfs:label "FossilFuelMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#FossilFuelPotential
+:FossilFuelPotential rdf:type owl:Class ;
+                     rdfs:subClassOf :ResourceUseImpact ;
+                     rdfs:label "FossilFuelPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#FreshwaterEutrophicationPotential
+:FreshwaterEutrophicationPotential rdf:type owl:Class ;
+                                   rdfs:subClassOf :EcosystemImpact ;
+                                   rdfs:label "FreshwaterEutrophicationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Generator
+:Generator rdf:type owl:Class ;
+           rdfs:subClassOf :HVACDevice .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#GlobalWarmingPotential
+:GlobalWarmingPotential rdf:type owl:Class ;
+                        rdfs:subClassOf :HumanHealthImpact ;
+                        rdfs:label "GlobalWarmingPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HVACDevice
+:HVACDevice rdf:type owl:Class ;
+            rdfs:subClassOf dice:Device ;
+            rdfs:label "HVACDevice" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HumanAffectingPhotochemicalOxidantFormationPotential
+:HumanAffectingPhotochemicalOxidantFormationPotential rdf:type owl:Class ;
+                                                      rdfs:subClassOf :HumanHealthImpact ;
+                                                      rdfs:label "HumanAffectingPhotochemicalOxidantFormationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HumanHealthImpact
+:HumanHealthImpact rdf:type owl:Class ;
+                   rdfs:subClassOf :LifeCycleImpact ;
+                   rdfs:label "HumanHealthImpact" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HumanToxicityPotential
+:HumanToxicityPotential rdf:type owl:Class ;
+                        rdfs:subClassOf :HumanHealthImpact ;
+                        rdfs:label "HumanToxicityPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#InterestRate
+:InterestRate rdf:type owl:Class ;
+              rdfs:subClassOf :CostParameter ;
+              rdfs:label "InterestRate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#InvestmentPaybackTime
+:InvestmentPaybackTime rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty dicv:isPropertyFor ;
+                                             owl:hasValue :hasInvestmentPaybackTime
+                                           ] ;
+                       rdfs:subClassOf dicp:CostProperty ;
+                       rdfs:comment "The number of years it takes to pay back the costs of renovation, that is, the time the savings equal to the investment" ;
+                       rdfs:label "InvestmentPaybackTime" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#InvestmentUnitCost
+:InvestmentUnitCost rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty dicv:isPropertyFor ;
+                                          owl:hasValue :hasInvestmentUnitCost
+                                        ] ;
+                    rdfs:subClassOf dicp:CostProperty ;
+                    rdfs:comment "Unit cost of investment" ;
+                    rdfs:label "InvestmentUnitCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#IonisingRadiationPotential
+:IonisingRadiationPotential rdf:type owl:Class ;
+                            rdfs:subClassOf :HumanHealthImpact ;
+                            rdfs:label "IonisingRadiationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#LifeCycleAssessment
+:LifeCycleAssessment rdf:type owl:Class ;
+                     rdfs:subClassOf dici:InformationContentEntity ;
+                     rdfs:label "LifeCycleAssessment" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#LifeCycleCost
+:LifeCycleCost rdf:type owl:Class ;
+               rdfs:subClassOf dicp:CostProperty ;
+               rdfs:comment "Lifecycle Cost Parameters for the Energy Systems" ;
+               rdfs:label "LifeCycleCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#LifeCycleImpact
+:LifeCycleImpact rdf:type owl:Class ;
+                 rdfs:subClassOf dicv:Property ;
+                 rdfs:label "LifeCycleImpact" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#LifeCycleInventory
+:LifeCycleInventory rdf:type owl:Class ;
+                    rdfs:subClassOf dici:InformationContentEntity .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Load
+:Load rdf:type owl:Class ;
+      rdfs:subClassOf dice:Device ;
+      rdfs:label "Load" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#MaintenanceCost
+:MaintenanceCost rdf:type owl:Class ;
+                 rdfs:subClassOf :OperationalCost ;
+                 rdfs:comment "Maintenance Costs for the Energy System" ;
+                 rdfs:label "MaintenanceCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Meter
+:Meter rdf:type owl:Class ;
+       rdfs:subClassOf dice:Sensor .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedCoolingEnergyConsumption
+:NormalizedCoolingEnergyConsumption rdf:type owl:Class ;
+                                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                          owl:onProperty dicv:isPropertyFor ;
+                                                          owl:hasValue :hasNormalizedCoolingEnergyConsumption
+                                                        ] ;
+                                    rdfs:subClassOf :EnergyConsumptionQuality ;
+                                    rdfs:comment "Annual cooling energy consumption of a building, in kWh/m2" ;
+                                    rdfs:label "NormalizedCoolingEnergyConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedElectricityConsumption
+:NormalizedElectricityConsumption rdf:type owl:Class ;
+                                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                        owl:onProperty dicv:isPropertyFor ;
+                                                        owl:hasValue :hasNormalizedElectricityConsumption
+                                                      ] ;
+                                  rdfs:subClassOf :EnergyConsumptionQuality ;
+                                  rdfs:comment "Annual electricity consumption of a building, in kWh/m2" ;
+                                  rdfs:label "NormalizedElectricityConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedHeatingEnergyConsumption
+:NormalizedHeatingEnergyConsumption rdf:type owl:Class ;
+                                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                          owl:onProperty dicv:isPropertyFor ;
+                                                          owl:hasValue :hasNormalizedHeatingEnergyConsumption
+                                                        ] ;
+                                    rdfs:subClassOf :EnergyConsumptionQuality ;
+                                    rdfs:comment "Annual heating energy consumption of a building, in kWh/m2" ;
+                                    rdfs:label "NormalizedHeatingEnergyConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedInvestmentCosts
+:NormalizedInvestmentCosts rdf:type owl:Class ;
+                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dicv:isPropertyFor ;
+                                                 owl:hasValue :hasNormalizedInvestmentCosts
+                                               ] ;
+                           rdfs:subClassOf dicp:CostProperty ;
+                           rdfs:comment "Investment costs of a renovation project as $/floor-m2" ;
+                           rdfs:label "NormalizedInvestmentCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedOperationalEnergyCosts
+:NormalizedOperationalEnergyCosts rdf:type owl:Class ;
+                                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                        owl:onProperty dicv:isPropertyFor ;
+                                                        owl:hasValue :hasNormalizedOperationalEnergyCosts
+                                                      ] ;
+                                  rdfs:subClassOf dicp:CostProperty ;
+                                  rdfs:comment "Annual operational energy cost of a building in €/floor-m2" ;
+                                  rdfs:label "NormalizedOperationalEnergyCosts" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#NormalizedPrimaryEnergyConsumption
+:NormalizedPrimaryEnergyConsumption rdf:type owl:Class ;
+                                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                          owl:onProperty dicv:isPropertyFor ;
+                                                          owl:hasValue :hasNormalizedPrimaryEnergyConsumption
+                                                        ] ;
+                                    rdfs:subClassOf :EnergyConsumptionQuality ;
+                                    rdfs:comment "Annual primary energy consumption of a building, in kWhpr/m2" ;
+                                    rdfs:label "NormalizedPrimaryEnergyConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#OperationalCost
+:OperationalCost rdf:type owl:Class ;
+                 rdfs:subClassOf :LifeCycleCost ;
+                 rdfs:comment "The operational costs for the Energy System" ;
+                 rdfs:label "OperationalCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#OzoneDepletionPotential
+:OzoneDepletionPotential rdf:type owl:Class ;
+                         rdfs:subClassOf :HumanHealthImpact ;
+                         rdfs:label "OzoneDepletionPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ParticulateMatterFormationPotential
+:ParticulateMatterFormationPotential rdf:type owl:Class ;
+                                     rdfs:subClassOf :HumanHealthImpact ;
+                                     rdfs:label "ParticulateMatterFormationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Photovoltaics
+:Photovoltaics rdf:type owl:Class ;
+               rdfs:subClassOf :Generator ;
+               rdfs:label "Photovoltaics" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#PowerStatistics
+:PowerStatistics rdf:type owl:Class ;
+                 rdfs:subClassOf dici:Statistics ;
+                 rdfs:label "PowerStatistics" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#PrimaryEnergyFactor
+:PrimaryEnergyFactor rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty dicv:isPropertyFor ;
+                                           owl:hasValue :hasPrimaryEnergyFactor
+                                         ] ;
+                     rdfs:subClassOf :EnergyConsumptionQuality ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty dicv:hasQuantityKind ;
+                                       owl:hasValue quantitykind:Dimensionless
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty dicv:hasUnit ;
+                                       owl:hasValue unit:UNITLESS
+                                     ] ;
+                     rdfs:label "PrimaryEnergyFactor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#RenewableEnergySupplyShare
+:RenewableEnergySupplyShare rdf:type owl:Class ;
+                            rdfs:subClassOf :EnergyProperty ;
+                            rdfs:comment "The percentage of energy consumption that comes from renewable energy sources" ;
+                            rdfs:label "RenewableEnergySupplyShare" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#RenewableFuelMeter
+:RenewableFuelMeter rdf:type owl:Class ;
+                    rdfs:subClassOf :EnergyMeter ;
+                    rdfs:label "RenewableFuelMeter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#RenovationScenario
+:RenovationScenario rdf:type owl:Class ;
+                    rdfs:subClassOf dici:Scenario ;
+                    rdfs:comment "A Scenario - a description and analysis of a potential future of an entity - where that entity is a Location (a building or a building zone) that is subject to a set of RenovationMeasures (activities to dismantel, modify, or replace existing structure or to install additional structures), and the characteristics of implied by the application of those Measures." ;
+                    rdfs:label "RenovationScenario" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ResourceUseImpact
+:ResourceUseImpact rdf:type owl:Class ;
+                   rdfs:subClassOf :LifeCycleImpact ;
+                   rdfs:label "ResourceUseImpact" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#SelfConsumptionOptimization
+:SelfConsumptionOptimization rdf:type owl:Class ;
+                             rdfs:subClassOf :DeviceService ;
+                             rdfs:comment "The service of self consumption optimization to balance local generation with demand" ;
+                             rdfs:label "SelfConsumptionOptimization" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ServiceAggregation
+:ServiceAggregation rdf:type owl:Class ;
+                    rdfs:subClassOf :DeviceService ;
+                    rdfs:comment "The load control from 3rd party aggregators to enable participation in demand-response markets. For example, services to distribution service operators" ;
+                    rdfs:label "ServiceAggregation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Storage
+:Storage rdf:type owl:Class ;
+         rdfs:subClassOf :HVACDevice ;
+         rdfs:label "Storage" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#SurplusOrePotential
+:SurplusOrePotential rdf:type owl:Class ;
+                     rdfs:subClassOf :ResourceUseImpact ;
+                     rdfs:label "SurplusOrePotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#TaxRate
+:TaxRate rdf:type owl:Class ;
+         rdfs:subClassOf :CostParameter ;
+         rdfs:label "TaxRate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#TerrestrialAcidificationPotential
+:TerrestrialAcidificationPotential rdf:type owl:Class ;
+                                   rdfs:subClassOf :EcosystemImpact ;
+                                   rdfs:label "TerrestrialAcidificationPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#WaterConsumptionPotential
+:WaterConsumptionPotential rdf:type owl:Class ;
+                           rdfs:subClassOf :EcosystemImpact ;
+                           rdfs:label "WaterConsumptionPotential" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#WaterHeater
+:WaterHeater rdf:type owl:Class ;
+             rdfs:subClassOf :Storage ;
+             rdfs:label "WaterHeater" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#WindTurbine
+:WindTurbine rdf:type owl:Class ;
+             rdfs:subClassOf :Generator ;
+             rdfs:comment "Wind Turbines (small scale)" ;
+             rdfs:label "WindTurbine" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#Device
+dice:Device rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Information#Statistics
+dici:Statistics rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Property
+dicv:Property rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#QuantitativeProperty
+dicv:QuantitativeProperty rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://qudt.org/2.1/vocab/quantitykind/Dimensionless
+quantitykind:Dimensionless rdf:type owl:NamedIndividual .
+
+
+###  http://qudt.org/2.1/vocab/unit/UNITLESS
+unit:UNITLESS rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#ApplianceConsumption
+:ApplianceConsumption rdf:type owl:NamedIndividual ,
+                               :EnergyConsumption ;
+                      rdfs:label "ApplianceConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#CoolingConsumption
+:CoolingConsumption rdf:type owl:NamedIndividual ,
+                             :EnergyConsumption ;
+                    rdfs:label "CoolingConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceDisposal
+:DeviceDisposal rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#DeviceRelocation
+:DeviceRelocation rdf:type owl:NamedIndividual ;
+                  rdfs:label "DeviceRelocation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HeatPumpConsumption
+:HeatPumpConsumption rdf:type owl:NamedIndividual ,
+                              :EnergyConsumption ;
+                     rdfs:label "HeatPumpConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#HeatingConsumption
+:HeatingConsumption rdf:type owl:NamedIndividual ,
+                             :EnergyConsumption .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#LightingConsumption
+:LightingConsumption rdf:type owl:NamedIndividual ,
+                              :EnergyConsumption ;
+                     rdfs:label "LightingConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#Production
+:Production rdf:type owl:NamedIndividual ;
+            rdfs:label "Production" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#SpaceHeatingConsumption
+:SpaceHeatingConsumption rdf:type owl:NamedIndividual ,
+                                  :EnergyConsumption ;
+                         rdfs:label "SpaceHeatingConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#WaterHeatingConsumption
+:WaterHeatingConsumption rdf:type owl:NamedIndividual ,
+                                  :EnergyConsumption ;
+                         rdfs:label "WaterHeatingConsumption" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualCoolingEnergyConsumptionPerArea
+:hasAnnualCoolingEnergyConsumptionPerArea rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualElectricityConsumptionPerArea
+:hasAnnualElectricityConsumptionPerArea rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualHeatingEnergyConsumptionPerArea
+:hasAnnualHeatingEnergyConsumptionPerArea rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualOperationalCostPerArea
+:hasAnnualOperationalCostPerArea rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasAnnualPrimaryEnergyConsumptionPerArea
+:hasAnnualPrimaryEnergyConsumptionPerArea rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasBasicFee
+:hasBasicFee rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasEnergyFee
+:hasEnergyFee rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasInvestmentPaybackTime
+:hasInvestmentPaybackTime rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasInvestmentUnitCost
+:hasInvestmentUnitCost rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedCoolingEnergyConsumption
+:hasNormalizedCoolingEnergyConsumption rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedElectricityConsumption
+:hasNormalizedElectricityConsumption rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedHeatingEnergyConsumption
+:hasNormalizedHeatingEnergyConsumption rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedInvestmentCosts
+:hasNormalizedInvestmentCosts rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedOperationalEnergyCosts
+:hasNormalizedOperationalEnergyCosts rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasNormalizedPrimaryEnergyConsumption
+:hasNormalizedPrimaryEnergyConsumption rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Energy#hasPrimaryEnergyFactor
+:hasPrimaryEnergyFactor rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#CurrencyPerAreaTime
+dicu:CurrencyPerAreaTime rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#CurrencyPerEnergy
+dicu:CurrencyPerEnergy rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#CurrencyPerTime
+dicu:CurrencyPerTime rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#EnergyPerAreaTime
+dicu:EnergyPerAreaTime rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#Euro-PER-M2-YR
+dicu:Euro-PER-M2-YR rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#HR-PER-YR
+dicu:HR-PER-YR rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#KiloW-HR-PER-M2-YR
+dicu:KiloW-HR-PER-M2-YR rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#TimeRatio
+dicu:TimeRatio rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#:Euro-PER-MO
+<https://w3id.org/digitalconstruction/0.5/Units#:Euro-PER-MO> rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Units#:Euro-Per-KiloW-HR
+<https://w3id.org/digitalconstruction/0.5/Units#:Euro-Per-KiloW-HR> rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:DeviceDisposal rdfs:label "DeviceDisposal" ;
+                rdfs:comment "Special process required for the management of disposals" .
+
+
+:EnergyProperty rdfs:label "EnergyProperty" .
+
+
+:hasAnnualCoolingEnergyConsumptionPerArea rdfs:comment "Annual cooling energy consumption of a building, in kWh/m2/yr" ;
+                                          rdfs:label "hasAnnualCoolingEnergyConsumptionPerArea" .
+
+
+:hasAnnualElectricityConsumptionPerArea rdfs:label "hasAnnualElectricityConsumptionPerArea" ;
+                                        rdfs:comment "Annual electricity consumption of a building, in kWh/m2/yr" .
+
+
+:hasAnnualHeatingEnergyConsumptionPerArea rdfs:label "hasAnnualHeatingEnergyConsumptionPerArea" ;
+                                          rdfs:comment "Annual heating energy consumption of a building, in kWh/m2/yr" .
+
+
+:hasAnnualOperationalCostPerArea rdfs:comment "Annual operational energy costs in €/floor-m2/yr" ;
+                                 rdfs:label "hasAnnualOperationalCostPerArea" .
+
+
+:hasAnnualPrimaryEnergyConsumptionPerArea rdfs:comment "Annual primary energy consumption of a building, in kWh/m2/yr" ;
+                                          rdfs:label "hasAnnualPrimaryEnergyConsumptionPerArea" .
+
+
+:hasBasicFee rdfs:label "hasBasicFee" ;
+             rdfs:comment "The fixed fee charged from delivered energy" .
+
+
+:hasEnergyFee rdfs:label "hasEnergyFee" ;
+              rdfs:comment "The consumption-related fee charged from delivered energy" .
+
+
+:hasInvestmentPaybackTime rdfs:label "hasInvestmentPaybackTime" .
+
+
+:hasInvestmentUnitCost rdfs:label "hasInvestmentUnitCost" .
+
+
+:hasNormalizedCoolingEnergyConsumption rdfs:label "hasNormalizedCoolingEnergyConsumption" ;
+                                       rdfs:comment "Annual cooling energy consumption of a building, in kWh/m2" .
+
+
+:hasNormalizedElectricityConsumption rdfs:comment "Annual electricity consumption of a building, in kWh/m2" ;
+                                     rdfs:label "hasNormalizedElectricityConsumption" .
+
+
+:hasNormalizedHeatingEnergyConsumption rdfs:label "hasNormalizedHeatingEnergyConsumption" ;
+                                       rdfs:comment "Annual heating energy consumption of a building, in kWh/m2" .
+
+
+:hasNormalizedInvestmentCosts rdfs:label "hasNormalizedInvestmentCost" ;
+                              rdfs:comment "Investment costs of a renovation project as $/floor-m2" .
+
+
+:hasNormalizedOperationalEnergyCosts rdfs:label "hasNormalizedOperationalEnergyCosts" ;
+                                     rdfs:comment "Annual operational energy cost of a building in €/floor-m2" .
+
+
+:hasNormalizedPrimaryEnergyConsumption rdfs:comment "Annual primary energy consumption of a building, in kWhpr/m2" ;
+                                       rdfs:label "hasNormalizedPrimaryEnergyConsumption" .
+
+
+:hasPrimaryEnergyFactor rdfs:label "hasPrimaryEnergyFactor" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

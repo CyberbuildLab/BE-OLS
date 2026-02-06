@@ -1,0 +1,266 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Contexts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/digitalconstruction/0.5/Contexts> .
+
+<https://w3id.org/digitalconstruction/0.5/Contexts> rdf:type owl:Ontology ;
+                                                 <http://purl.org/dc/elements/1.1/creator> "Seppo Törmä" ,
+                                                                                           "Yuan Zheng" ;
+                                                 <http://purl.org/dc/elements/1.1/date> "2020-03-20" ;
+                                                 <http://purl.org/dc/elements/1.1/title> "Digital Construction Contexts" ;
+                                                 <http://purl.org/dc/terms/abstract> "Context ontology provides the basic representation mechanisms for multi-context information present in all contruction and renovation projects, including planned and actual values, as-designed and as-built models, and different levels of detail/development. The ontology allows the definition of different context frameworks, to create contexts withing the frameworks, and associating content to contexts. At the implementation level, the content is stored in different named graphs of an RDF Dataset and the representation of context frameworks anbd contexts are managed in the default graph of the RDF Dataset." ;
+                                                 <http://purl.org/dc/terms/created> "2019-12-20" ;
+                                                 <http://purl.org/dc/terms/description> "Context ontology provides the basic representation mechanisms for multi-context information in contruction and renovation projects" ;
+                                                 <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                                 <http://purl.org/vocab/vann/preferredNamespacePrefix> "dicc" ;
+                                                 <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/digitalconstruction/0.5/Contexts" ;
+                                                 rdfs:label "Digital Construction Contexts" ;
+                                                 rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/Contexts#dependsOn
+:dependsOn rdf:type owl:ObjectProperty ;
+           owl:inverseOf :hasDependent ;
+           rdfs:domain :Context ;
+           rdfs:range :Context ;
+           rdfs:label "dependsOn" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasActiveContext
+:hasActiveContext rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isActiveInSet ;
+                  rdfs:domain :ContextSet ;
+                  rdfs:range :Context ;
+                  rdfs:comment "A context that is active in the ContextSet" ;
+                  rdfs:label "hasActiveContext" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasActualContext
+:hasActualContext rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasActiveContext ;
+                  rdfs:domain :ContextSet ;
+                  rdfs:range :Context ;
+                  rdfs:comment "A context that contains data about intentions or expectations: plans, designs, simulation results, and so on." ;
+                  rdfs:label "hasActualContext" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasContext
+:hasContext rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isContextOf ;
+            rdfs:domain :ContextFramework ;
+            rdfs:range :Context ;
+            rdfs:label "hasContext" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasDependent
+:hasDependent rdf:type owl:ObjectProperty ;
+              rdfs:domain :Context ;
+              rdfs:range :Context ;
+              rdfs:comment "Association between two contexts in different context frameworks, indicating that the content of the first context depends on or is based on the content in the second context. For example, a construction plan can be based on a particular LOD model of the design." ;
+              rdfs:label "hasDependent" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasModalContext
+:hasModalContext rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasActiveContext ;
+                 rdfs:domain :ContextSet ;
+                 rdfs:range :Context ;
+                 rdfs:comment "A context that contains data about actually happened activities or implemented entities" ;
+                 rdfs:label "hasModalContext" .
+
+###  https://w3id.org/digitalconstruction/Contexts#hasPropertyWithUnit
+:hasPropertyWithUnit rdf:type owl:ObjectProperty ;
+                     rdfs:domain :UnitAssignment ;
+                     rdfs:label "hasPropertyWithUnit" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasQuantityKind
+:hasQuantityKind rdf:type owl:ObjectProperty ;
+                 rdfs:domain :UnitAssignment ;
+		 # rdfs:range <http://qudt.org/schema/qudt/QuantityKind> ;
+                 rdfs:label "hasQuantityKind" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasSubContext
+:hasSubContext rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isSubContextOf ;
+               rdfs:domain :Context ;
+               rdfs:range :Context ;
+               rdfs:label "hasSubContext" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasUnit
+:hasUnit rdf:type owl:ObjectProperty ;
+         rdfs:domain :UnitAssignment ;
+         # rdfs:range <http://qudt.org/schema/qudt/Unit> ;
+         rdfs:label "hasUnit" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasUnitAssignment
+:hasUnitAssignment rdf:type owl:ObjectProperty ;
+                   rdfs:domain :UnitFramework ;
+                   rdfs:range :UnitAssignment ;
+                   rdfs:label "hasUnitAssignment" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#hasUnitFramework
+:hasUnitFramework rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isUnitFrameworkOf ;
+                  rdfs:domain :Context ;
+                  rdfs:range :UnitFramework ;
+                  rdfs:comment "Relation of a Context to a UnitFramework" ;
+                  rdfs:label "hasUnitFramework" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#isActiveInSet
+:isActiveInSet rdf:type owl:ObjectProperty ;
+               rdfs:domain :Context ;
+               rdfs:range :ContextSet ;
+               rdfs:label "isActiveInSet" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#isContextOf
+:isContextOf rdf:type owl:ObjectProperty ;
+             rdfs:domain :Context ;
+             rdfs:range :ContextFramework ;
+             rdfs:label "isContextOf" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#isSubContextOf
+:isSubContextOf rdf:type owl:ObjectProperty ;
+                rdfs:domain :Context ;
+                rdfs:range :Context ;
+                rdfs:label "isSubContextOf" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#isUnitFrameworkOf
+:isUnitFrameworkOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :UnitFramework ;
+                   rdfs:range :Context ;
+                   rdfs:label "isUnitFrameworkOf" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#nextContext
+:nextContext rdf:type owl:ObjectProperty ;
+             owl:inverseOf :previousContext ;
+             rdfs:domain :Context ;
+             rdfs:range :Context ;
+             rdfs:label "nextContext" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#previousContext
+:previousContext rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Context ;
+                 rdfs:range :Context ;
+                 rdfs:label "previousContext" .
+
+:hasContent rdf:type owl:ObjectProperty ;
+            rdfs:domain :Context ;
+            rdfs:range rdfs:Resource ;
+    	    rdfs:comment "Association of a context to the named graph that contains the contents of the context." ;
+    	    rdfs:label "hasContent" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/Contexts#hasContent
+# :hasContent rdf:type owl:DatatypeProperty ;
+#             rdfs:domain :Context ;
+#             rdfs:range xsd:anyURI ;
+#     rdfs:comment "Association of a context to the named graph that contains the contents of the context. A context may have multiple content graphs." ;
+#     rdfs:label                   "hasContent" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+# ###  http://qudt.org/schema/qudt/QuantityKind
+# <http://qudt.org/schema/qudt/QuantityKind> rdf:type owl:Class ;
+#                                            rdfs:label "qudt:QuantityKind" .
+
+
+# ###  http://qudt.org/schema/qudt/Unit
+# <http://qudt.org/schema/qudt/Unit> rdf:type owl:Class ;
+#                                    rdfs:label "qudt:Unit" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#Context
+:Context rdf:type owl:Class ;
+         rdfs:comment "An identified realm of data, representing the circumstances in which the data can be considered true. Examples are (1) intentional contexts such as a requirement definition, a plan or a design, (2) actual contexts such as actual activity execution or a model of constructed building (as-built model), or (3) a time period when a statement holds." ;
+         rdfs:label "Context" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#ContextFramework
+:ContextFramework rdf:type owl:Class ;
+                  rdfs:comment "Context framework is an identified collection of contexts that belong together. Examples are (1) a framework of design contexts consisting of as-is, as-designed, and as-built contexts, (2) a framework of management contexts consisting of contexts for planned and actual execution, and (3) a framework for levels of detail such as BIMForum2018 LOD model." ;
+                  rdfs:label "ContextFramework" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#ContextSet
+:ContextSet rdf:type owl:Class ;
+            rdfs:comment "A set of active contexts. It can include a compatible set of contexts for design information (e.g., LOD400 BIM models), organizational structures (e.g., location breakdown structure), a currenty valid master plan, compatible lookahead plan, the week plan for current week, and a context for actual execution data. The can be a unique \"current ContexSet\" and there can be ContextSet for different periods of time or for different renovation scenarios." ;
+            rdfs:label "ContextSet" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#UnitAssignment
+:UnitAssignment rdf:type owl:Class ;
+                rdfs:comment "Specifies what units and quantity kinds are used for a specified property in the content graph. " ;
+                rdfs:label "UnitAssignment" .
+
+
+###  https://w3id.org/digitalconstruction/Contexts#UnitFramework
+:UnitFramework rdf:type owl:Class ;
+               rdfs:comment "A collection of Specifies what units and quantity kinds are used for a specified property in the content graph" ;
+               rdfs:label "UnitFramework" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

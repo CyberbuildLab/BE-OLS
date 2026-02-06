@@ -1,0 +1,473 @@
+# baseURI: https://w3id.org/cdc
+# prefix: cdc
+
+@prefix : <https://w3id.org/cdc#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix cdc: <https://w3id.org/cdc#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dot: <https://w3id.org/dot#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+schema:domainIncludes
+  rdf:type rdf:Property ;
+.
+schema:rangeIncludes
+  rdf:type rdf:Property ;
+.
+vs:term_status
+  rdf:type rdf:Property ;
+.
+vcard:Individual
+  rdf:type owl:Class ;
+.
+vcard:Organization
+  rdf:type owl:Class ;
+.
+dcat:Catalog
+  rdf:type owl:Class ;
+.
+dcat:DataService
+  rdf:type owl:Class ;
+.
+dcat:Dataset
+  rdf:type owl:Class ;
+.
+dcat:Distribution
+  rdf:type owl:Class ;
+.
+dcat:Relation
+  rdf:type owl:Class ;
+.
+dcat:Role
+  rdf:type owl:Class ;
+.
+dcat:qualifiedRelation
+  rdf:type owl:ObjectProperty ;
+.
+<https://w3id.org/cdc>
+  rdf:type voaf:Vocabulary ;
+  rdf:type owl:Ontology ;
+  cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:creator [
+      rdf:type vcard:Individual ;
+      vcard:family-name "Bonduel" ;
+      vcard:fn "Mathias Bonduel" ;
+      vcard:given-name "Mathias" ;
+      vcard:hasOrganizationName [
+          rdf:type vcard:Organization ;
+          owl:sameAs dbr:Katholieke_Universiteit_Leuven ;
+          vcard:hasURL <https://www.kuleuven.be> ;
+          vcard:organization-name "KU Leuven" ;
+        ] ;
+      vcard:hasURL <https://orcid.org/0000-0002-3313-924X> ;
+      vcard:hasURL <https://www.kuleuven.be/wieiswie/nl/person/00110827> ;
+      vcard:hasURL <https://www.researchgate.net/profile/Mathias_Bonduel> ;
+    ] ;
+  dcterms:description "The Construction Dataset Context (CDC) ontology is an extension of DCAT v2.0, a W3C Recommendation ontology for describing (RDF and non-RDF) datasets published on the Web.  Using this extension, it becomes possible to describe a context for construction-related datasets that are being distributed using Web technology as well as datasets that are not shared outside an organization such as local copies, work in progress and other datasets that remain internal. This dataset metadata encompasses the temporal context (period or snapshot), the type of content of the dataset (as-built, design, etc.) and relations between contextualized datasets (previous as-built, requirements related to a design, etc.). In addition, this DCAT extension also provides terminology for managing dataset distributions that are scoped to a certain (named or default) graph of an RDF file or quadstore."@en ;
+  dcterms:issued "2020-12-18"^^xsd:date ;
+  dcterms:title "CDC: Construction Dataset Context ontology"@en ;
+  vann:preferredNamespacePrefix "cdc" ;
+  vann:preferredNamespaceUri "https://w3id.org/cdc#" ;
+  rdfs:comment "- Version 0.0.1: initial version"@en ;
+  owl:versionInfo "0.0.1" ;
+.
+cdc:AdditionAndDeletionDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A cdc:AdditionAndDeletionDistribution is used to classify a distribution of a dataset B that complements another dataset A (connected using the cdc:complements relation). One of the two subdistributions (cdc:hasSubDistribution) of this direct distribution of dataset B is classified as cdc:AdditionDistribution, while the other is classified as cdc:DeletionDistribution."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "addition and deletion distribution (complement)"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+  owl:disjointWith cdc:AdditionDistribution ;
+  owl:disjointWith cdc:DeletionDistribution ;
+  vs:term_status "unstable" ;
+.
+cdc:AdditionDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A cdc:AdditionDistribution is used to classify a distribution of a dataset B that complements another dataset A (connected using the cdc:complements relation). The content of the addition complement distribution of dataset B should be added to the entire content of dataset A to form dataset B. When the dataset B is the result of both additions and deletions on dataset A, dataset B should have a direct distribution with two subdistributions (cdc:hasSubDistribution): one containing triples to be deleted (cdc:DeletetionDistribution) from the source dataset and another containing triples that should be added (cdc:AdditionDistribution) to the source dataset."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "addition distribution (complement)"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+  owl:disjointWith cdc:DeletionDistribution ;
+.
+cdc:ArchitecturalDesignDS
+  rdf:type owl:Class ;
+  rdfs:comment "A dataset describing a (part of a) planned construction that is the result of an architectural design process."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "architectural design dataset"@en ;
+  rdfs:subClassOf cdc:DesignDS ;
+.
+cdc:AsBuiltDS
+  rdf:type owl:Class ;
+  rdfs:comment "A construction dataset reflecting the physical as-built situation at a certain moment in time (snapshot or a period of time), e.g. before an intervention, during an intervention (progress monitoring) or after an intervention. Use its subclasses to be more specific about the type of as-built situation."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "as-built dataset"@en ;
+  rdfs:subClassOf dcat:Dataset ;
+  owl:disjointWith cdc:DesignDS ;
+  owl:disjointWith cdc:OwnerRequirementsDS ;
+.
+cdc:ConstructionPlanningDS
+  rdf:type owl:Class ;
+  rdfs:comment "A construction planning dataset, made by a designer or contractor. This type of dataset typically contains construction tasks (cto:Task) that are planned."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "construction planning dataset"@en ;
+  rdfs:subClassOf cdc:DesignDS ;
+.
+cdc:ConstructionProgressDS
+  rdf:type owl:Class ;
+  rdfs:comment "A construction progress dataset, maintained by a construction site supervisor selected by the owner (e.g. the architect) or a contractor. This type of dataset contains construction tasks (cto:Task) that are already executed. It can be used on a dataset already classified as cdc:ContemporaryAsBuiltDS (during construction progress monitoring of a running or relatively recent project) or cdc:HistoricalAsBuiltDS (for describing the results of a historical study regarding the construction process)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "construction progress dataset"@en ;
+  rdfs:subClassOf cdc:AsBuiltDS ;
+.
+cdc:ContemporaryAsBuiltDS
+  rdf:type owl:Class ;
+  rdfs:comment "A contemporary as-built dataset depicts the construction as-is based on directly verifiable facts (e.g. a geometry survey). It typically forms the basis for managing maintenance information or construction progress monitoring. It can also be the starting point for a construction project."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "contemporary as-built dataset"@en ;
+  rdfs:subClassOf cdc:AsBuiltDS ;
+  owl:disjointWith cdc:HistoricalAsBuiltDS ;
+.
+cdc:DataManagementTag
+  rdf:type owl:Class ;
+  rdfs:comment "A tag that is linked to a DCAT catalog, dataset, distribution or data service instance node using the cdc:hasDataManagementTag property. CDC predefines three instances of this class, i.e. cdc:incoming, cdc:internal and cdc:outgoing. Each catalog, dataset, distribution or data service can only have one tag that is not supposed to change over the lifetime of the described resource unless it considers a dataset (that is not a catalog). When necessary, qualified relations between DCAT entities can also get a tag."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "data management tag"@en ;
+.
+cdc:DefaultGraphDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A DCAT distribution of an RDF dataset, where the content of the dataset can be found in the default graph of an RDF quad file (connected with dcat:downloadURL) or quadstore (connected with dcat:accessService)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "default graph distribution"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+.
+cdc:DeletionDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A cdc:DeletionDistribution is used to classify a distribution of a dataset B that complements another dataset A (connected using the cdc:complements relation). The content of the deletion complement distribution of dataset B should be subtracted from the entire content of dataset A to form dataset B. When the dataset B is the result of both additions and deletions on dataset A, dataset B should have a direct distribution with two subdistributions (cdc:hasSubDistribution): one containing triples to be deleted (cdc:DeletetionDistribution) from the source dataset and another containing triples that should be added (cdc:AdditionDistribution) to the source dataset."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "deletion distribution (complement)"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+.
+cdc:DesignDS
+  rdf:type owl:Class ;
+  rdfs:comment "In contrast to an as-built dataset (cdc:AsBuiltDS), this type of construction dataset describes a future situation that is the outcome of some type of design process. Use its subclasses to be more specific about the type of design/planning."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "design dataset"@en ;
+  rdfs:subClassOf dcat:Dataset ;
+  owl:disjointWith cdc:OwnerRequirementsDS ;
+.
+cdc:DistributionRelation
+  rdf:type owl:Class ;
+  rdfs:comment "An instance of this class represents a qualified relation from a dataset distribution to another DCAT entity. It is connected to a cdc:DistributionRole instance via cdc:hadDistributionRole."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "distribution relation"@en ;
+  owl:disjointWith dcat:Relation ;
+  vs:term_status "unstable" ;
+.
+cdc:DistributionRole
+  rdf:type owl:Class ;
+  rdfs:comment "A distribution role defines the kind of qualified relation between two dataset distributions."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "distribution role"@en ;
+  owl:disjointWith dcat:Role ;
+  vs:term_status "unstable" ;
+.
+cdc:HistoricalAsBuiltDS
+  rdf:type owl:Class ;
+  rdfs:comment "A historical as-built dataset contains a description of a construction in the past based on historical research."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "historical as-built dataset"@en ;
+  rdfs:subClassOf cdc:AsBuiltDS ;
+.
+cdc:InspectionAsBuiltDS
+  rdf:type owl:Class ;
+  rdfs:comment "An inspection as-built dataset, created by a construction inspector. This type of dataset contains detailed information about inspections, including inspection tasks (cto:InspectionTask) that are already executed. It can be used on a dataset already classified as cdc:ContemporaryAsBuiltDS."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "inspection as-built dataset"@en ;
+  rdfs:subClassOf cdc:AsBuiltDS ;
+.
+cdc:InspectionPlanningDS
+  rdf:type owl:Class ;
+  rdfs:comment "An inspection planning dataset, made by a construction inspector. This type of dataset typically contains inspection tasks (cto:InspectionTask, subclasses of cto:Task) that are planned, indicating which parts of the construction will be inspected."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "inspection planning dataset"@en ;
+  rdfs:subClassOf cdc:DesignDS ;
+.
+cdc:MEPDesignDS
+  rdf:type owl:Class ;
+  rdfs:comment "A dataset describing a (part of a) planned construction that is the result of a MEP engineering (mechanical, electrical and plumbing) design process."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "MEP design dataset"@en ;
+  rdfs:subClassOf cdc:DesignDS ;
+.
+cdc:NamedGraphDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A DCAT distribution of an RDF dataset, where the content of the dataset can be found in a single named graph (specified using cdc:graphURI) of an RDF quad file (connected with dcat:downloadURL) or quadstore (connected with dcat:accessService)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "named graph distribution"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+.
+cdc:OwnerRequirementsDS
+  rdf:type owl:Class ;
+  rdfs:comment "A dataset describing the requirements imposed by the construction owner at the start of a construction project. Such a dataset, when using RDF, can for example be described using SHACL shapes or a graph describing the components and spatial zones (and their properties) that should be provided in the delivered construction."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "owner requirements dataset"@en ;
+  rdfs:subClassOf dcat:Dataset ;
+.
+cdc:StandaloneDistribution
+  rdf:type owl:Class ;
+  rdfs:comment "A cdc:StandaloneDistribution is applied to classify a distribution as being standalone, meaning that it does not complement to the content of another dataset. Consequently, the content served by this distribution is equal to the entire content represented by its dataset. If a standalone distribution is derived from a complementing distribution of the same dataset, it can be connected using the cdc:standaloneOf relation."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "standalone distribution"@en ;
+  rdfs:subClassOf dcat:Distribution ;
+  owl:disjointWith cdc:AdditionAndDeletionDistribution ;
+  owl:disjointWith cdc:AdditionDistribution ;
+  owl:disjointWith cdc:DeletionDistribution ;
+.
+cdc:StructuralDesignDS
+  rdf:type owl:Class ;
+  rdfs:comment "A dataset describing a (part of a) planned construction that is the result of a structural engineering design process."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "structural design dataset"@en ;
+  rdfs:subClassOf cdc:DesignDS ;
+.
+cdc:ValidationReport
+  rdf:type owl:Class ;
+  rdfs:comment "An instance of this class is used to describe the result of a comparison between a design, a construction planning or a finalized as-built dataset and a dataset with requirements it tries to fulfill. The validation report node can be equal to the top node of a SHACL validation report RDF graph (e.g. owner requirements vs. design), or it can point to either two RDF datasets (cdc:onlyInSourceDS or cdc:onlyInTargetDS) containing the result of a subtraction (e.g. design vs. as-built) or a free text explanation of the comparison result (rdfs:comment)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "validation report"@en ;
+.
+cdc:alternative
+  rdf:type owl:SymmetricProperty ;
+  schema:domainIncludes cdc:DesignDS ;
+  schema:domainIncludes cdc:HistoricalAsBuiltDS ;
+  schema:rangeIncludes cdc:DesignDS ;
+  schema:rangeIncludes cdc:HistoricalAsBuiltDS ;
+  rdfs:comment "A property to directly connect a dataset to another dataset that proposes an alternative for the same construction context. This means that there is an overlap between the contexts of both datasets such as the construction described, the content type (e.g. two alternative designs (cdc:DesignDS) or two historical as built situations based on different sources (cdc:HistoricalAsBuiltDS)) and/or the timing. In the case of two alternative designs, the related owner requirements should be the same. When considering two alternative historical as-built situations, the temporal context should have an overlap."@en ;
+  rdfs:domain dcat:Dataset ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "alternative"@en ;
+  rdfs:range dcat:Dataset ;
+.
+cdc:complementLink
+  rdf:type cdc:DistributionRole ;
+  rdfs:comment """A role of a qualified relation between a distribution of a dataset B that complements another dataset A, where the source distribution (subject of cdc:qualifiedDistributionRelation) complements the target dataset (object of dcterms:relation). The intermediate node between the distribution of dataset B and dataset A has a property cdc:hadDistributionRole pointing to cdc:complementLink. 
+
+When the dataset B is the result of both additions and deletions on dataset A, dataset B should have a direct distribution with two subdistributions (cdc:hasSubDistribution): one containing triples to be deleted (cdc:DeletetionDistribution) from the source dataset and another containing triples that should be added (cdc:AdditionDistribution) to the source dataset. The qualified relation described above is established between the direct distribution of dataset B and dataset A ."""@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "complement link"@en ;
+  vs:term_status "unstable" ;
+.
+cdc:complements
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes cdc:AdditionAndDeletionDistribution ;
+  schema:domainIncludes cdc:AdditionDistribution ;
+  schema:domainIncludes cdc:DeletionDistribution ;
+  rdfs:comment "A property to directly connect a snapshot dataset (temporal context represents a single moment, dcat:startDate and dcat:endDate are equal to each other) to a dataset that contains tasks (temporal context represents a period)."@en ;
+  rdfs:domain dcat:Distribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "complements"@en ;
+  rdfs:range dcat:Dataset ;
+.
+cdc:copiedDistributionLink
+  rdf:type cdc:DistributionRole ;
+  rdfs:comment "By connecting this node to a cdc:DistributionRelation instance, the source distribution (subject of cdc:qualifiedDistributionRelation) is marked as a copy of the target distribution (object of dcterms:relation)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "copied distribution of link"@en ;
+  vs:term_status "unstable" ;
+.
+cdc:copiedDistributionOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A property to directly connect two distributions of the same dataset, where the source distribution is a content-wise copy of the target distribution. Examples are a received dataset accompanied by an incoming distribution. The content served by this incoming distribution can be copied to an internal distribution of the same dataset to improve accessability."@en ;
+  rdfs:domain dcat:Distribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "copied distribution of"@en ;
+  rdfs:range dcat:Distribution ;
+.
+cdc:distributedDatasetVersion
+  rdf:type owl:DatatypeProperty ;
+  schema:rangeIncludes xsd:dateTime ;
+  schema:rangeIncludes xsd:string ;
+  rdfs:comment "Connects a distribution to the version of the dataset it distributes. The dataset version can be identified via a dateTime or a string identifier."@en ;
+  rdfs:domain dcat:Distribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "distributed dataset version"@en ;
+  vs:term_status "unstable" ;
+.
+cdc:fulfilsRequirements
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "A Boolean property to assert if a certain set of requirements contained in a dataset is fulfilled by another dataset. It should only be used on instances of dcat:Relation with a dcat:hadRole property pointing to cdc:requirementLink."@en ;
+  rdfs:domain dcat:Relation ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "fulfils requirements"@en ;
+  rdfs:range xsd:boolean ;
+.
+cdc:graphURI
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The URI of the named graph related to a cdc:NamedGraphDistribution."@en ;
+  rdfs:domain cdc:NamedGraphDistribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "a (named) graph URI"@en ;
+.
+cdc:hadDistributionRole
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A property to connect an instance of cdc:DistributionRelation to an instance of cdc:DistributionRole. The object of this property defines the type of the qualified distribution relation (cdc:qualifiedDistributionRelation) between a source distribution and another target DCAT entity."@en ;
+  rdfs:domain cdc:DistributionRelation ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "had distribution role"@en ;
+  rdfs:range cdc:DistributionRole ;
+.
+cdc:hasDataManagementTag
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes dcat:Catalog ;
+  schema:domainIncludes dcat:DataService ;
+  schema:domainIncludes dcat:Dataset ;
+  schema:domainIncludes dcat:Distribution ;
+  schema:domainIncludes dcat:Relation ;
+  schema:domainIncludes cdc:DistributionRelation ;
+  rdfs:comment "Connects a DCAT catalog, dataset, distribution, data service or qualified relation (cdc:DistributionRelation or dcat:Relation) to exactly one of the following predefined data management tags: cdc:internal, cdc:incoming or cdc:outgoing."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "has data management tag"@en ;
+  rdfs:range cdc:DataManagementTag ;
+.
+cdc:hasSubDistribution
+  rdf:type owl:ObjectProperty ;
+  schema:rangeIncludes cdc:AdditionDistribution ;
+  schema:rangeIncludes cdc:DeletionDistribution ;
+  rdfs:comment "A property to connect two dcat:Distribution instances of a dataset, where the object node (instance of cdc:AdditionDistribution or cdc:DeletionDistribtion) is the sub distribution of the subject node (instance of class cdc:AdditionAndDeletionDistribution). A subdistribution is only defined when a dataset distribution complenents another dataset and the complement exists of an addition and a deletion part."@en ;
+  rdfs:domain cdc:AdditionAndDeletionDistribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "has sub distribution"@en ;
+  rdfs:range dcat:Distribution ;
+.
+cdc:hasValidationReport
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A property connecting a qualified relation between two datasets (instance of dcat:Relation) with cdc:requirementLink as role to a node representing the validation report (instance of cdc:ValidationReport)."@en ;
+  rdfs:domain dcat:Relation ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "has validation report"@en ;
+  rdfs:range cdc:ValidationReport ;
+.
+cdc:incoming
+  rdf:type cdc:DataManagementTag ;
+  rdfs:comment "A predefined tag to mark an incoming catalog, dataset, distribution or data service. It can also be used to annotate qualified relations between DCAT entities."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "incoming"@en ;
+.
+cdc:internal
+  rdf:type cdc:DataManagementTag ;
+  rdfs:comment "A predefined tag to mark an internal (= not exchanged) catalog, dataset, distribution or data service. It can also be used to annotate qualified relations between DCAT entities.{"@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "internal"@en ;
+.
+cdc:onlyInSourceDS
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "When the validation is done by comparing a descriptive RDF dataset A (source) containing the proposed design or executed construction to an RDF dataset B (target) containing the requirements, a diff is calculated between the two datasets. The triples that are only available in dataset A should be contained in a dataset that is connected using this property."@en ;
+  rdfs:domain cdc:ValidationReport ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "only in source dataset"@en ;
+  rdfs:range dcat:Dataset ;
+  vs:term_status "unstable" ;
+.
+cdc:onlyInTargetDS
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "When the validation is done by comparing a descriptive RDF dataset A (source) containing the proposed design or executed construction to an RDF dataset B (target) containing the requirements, a diff is calculated between the two datasets. The triples that are only available in dataset B should be contained in a dataset that is connected using this property."@en ;
+  rdfs:domain cdc:ValidationReport ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "only in target dataset "@en ;
+  rdfs:range dcat:Dataset ;
+  vs:term_status "unstable" ;
+.
+cdc:outgoing
+  rdf:type cdc:DataManagementTag ;
+  rdfs:comment "A predefined tag to mark an outgoing catalog, dataset, distribution or data service. It can also be used to annotate qualified relations between DCAT entities.{"@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "outgoing"@en ;
+.
+cdc:qualifiedDistributionRelation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A property to connect a source distribution to an instance of cdc:DistributionRelation, to form a qualified relation towards another DCAT entity."@en ;
+  rdfs:domain dcat:Distribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "a qualified distribution relation "@en ;
+  rdfs:range cdc:DistributionRelation ;
+  owl:propertyDisjointWith dcat:qualifiedRelation ;
+  vs:term_status "unstable" ;
+.
+cdc:requirementLink
+  rdf:type dcat:Role ;
+  rdfs:comment "A role of a qualified relation between two datasets A and B. Dataset A has an outgoing dcat:qualifiedRelation property to an intermediate node that has an outgoing dcterms:relation property to dataset B. The intermediate node is connected using dcat:hadRole to cdc:requirementLink. The proposal contained in the source dataset (e.g. a cdc:DesignDS or a cdc:AsBuiltDS after delivery) tries to answer the requirements contained in the target dataset (e.g. respectively a cdc:OwnerRequirementsDS, and a cdc:OwnerRequirementsDS or a cdc:DesignDS)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "requirement link"@en ;
+.
+cdc:requirementsRelatedTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A direct connection between owner requirements (cdc:OwnerRequirementsDS) and the as-built situation (cdc:AsBuiltDS or subclasses) before the start of a possible intervention."@en ;
+  rdfs:domain cdc:OwnerRequirementsDS ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "requirements related to "@en ;
+  rdfs:range cdc:AsBuiltDS ;
+.
+cdc:snapshotOf
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes cdc:AsBuiltDS ;
+  schema:domainIncludes cdc:DesignDS ;
+  schema:rangeIncludes cdc:AsBuiltDS ;
+  schema:rangeIncludes cdc:DesignDS ;
+  rdfs:comment "A property to directly connect a snapshot dataset (temporal context represents a single moment, dcat:startDate and dcat:endDate are equal to each other) to a dataset that contains tasks (temporal context represents a period)."@en ;
+  rdfs:domain dcat:Dataset ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "snapshot dataset of"@en ;
+  rdfs:range dcat:Dataset ;
+.
+cdc:standaloneLink
+  rdf:type cdc:DistributionRole ;
+  rdfs:comment "A role of a qualified relation between a standalone distribution (cdc:StandaloneDistribution) and a complementing distribution (cdc:AdditionDistribution, cdc:DeletionDistribution or cdc:AdditionAndDeletionDistribution) of the same dataset."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "standalone link"@en ;
+  vs:term_status "unstable" ;
+.
+cdc:standaloneOf
+  rdf:type owl:ObjectProperty ;
+  schema:rangeIncludes cdc:AdditionAndDeletionDistribution ;
+  schema:rangeIncludes cdc:AdditionDistribution ;
+  schema:rangeIncludes cdc:DeletionDistribution ;
+  rdfs:comment "A property to directly connect a standalone distribution to a complementing distribution. Both distributions are serving the same dataset."@en ;
+  rdfs:domain cdc:StandaloneDistribution ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "standalone distribution of"@en ;
+  rdfs:range dcat:Distribution ;
+.
+cdc:versionSourceDS
+  rdf:type owl:DatatypeProperty ;
+  schema:domainIncludes dcat:Distribution ;
+  schema:domainIncludes dcat:Relation ;
+  schema:domainIncludes cdc:DistributionRelation ;
+  schema:rangeIncludes xsd:dateTime ;
+  schema:rangeIncludes xsd:string ;
+  rdfs:comment "Connects a qualified relation between datasets (instance of dcat:Relation) and/or distributions of a dataset (instance of cdc:DistributionRelation) with a version identifier of the source dataset or the dataset served by the source distribution. The dataset version can be identified via a dateTime or a string identifier."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "version of source dataset"@en ;
+.
+cdc:versionTargetDS
+  rdf:type owl:DatatypeProperty ;
+  schema:domainIncludes dcat:Distribution ;
+  schema:domainIncludes dcat:Relation ;
+  schema:domainIncludes cdc:DistributionRelation ;
+  schema:rangeIncludes xsd:dateTime ;
+  schema:rangeIncludes xsd:string ;
+  rdfs:comment "Connects a qualified relation between datasets (instance of dcat:Relation) and/or distributions of a dataset (instance of cdc:DistributionRelation) with a version identifier of the target dataset or the dataset served by the target distribution. The dataset version can be identified via a dateTime or a string identifier."@en ;
+  rdfs:isDefinedBy <https://w3id.org/cdc> ;
+  rdfs:label "version of target dataset"@en ;
+.

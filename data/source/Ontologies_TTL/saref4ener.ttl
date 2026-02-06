@@ -1,0 +1,3057 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s4ener: <https://saref.etsi.org/saref4ener/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dcterms:contributor
+  a owl:AnnotationProperty ;
+.
+vann:preferredNamespacePrefix
+  a owl:AnnotationProperty ;
+.
+vann:preferredNamespaceUri
+  a owl:AnnotationProperty ;
+.
+time:DurationDescription
+  a owl:Class ;
+.
+time:Interval
+  a owl:Class ;
+.
+time:TemporalEntity
+  a owl:Class ;
+.
+foaf:Agent
+  a owl:Class ;
+.
+s4ener:
+  a owl:Ontology ;
+  dcterms:contributor <https://www.linkedin.com/in/ana%C3%AFs-walle-050baa159/> ;
+  dcterms:contributor <https://www.linkedin.com/in/george-hallak-368301157/> ;
+  dcterms:contributor <https://www.linkedin.com/in/georgjung/> ;
+  dcterms:contributor <https://www.linkedin.com/in/josef-baumeister-a221422/> ;
+  dcterms:contributor <https://www.linkedin.com/in/mente-konsman-b0a1711/> ;
+  dcterms:contributor <https://www.linkedin.com/in/wilco-wijbrandi-3994ab4b/> ;
+  dcterms:creator <https://www.linkedin.com/in/bouterca/> ;
+  dcterms:creator <https://www.linkedin.com/in/giulia-biagioni> ;
+  dcterms:creator <https://www.linkedin.com/in/lauradaniele> ;
+  dcterms:description """The flexibility ontology module (ic-flex) is by design tightly integrated with SAREF, 
+SAREF4ENER and the following InterConnect modules: power limit (ic-pwlm), 
+incentive table (ic-inc), S2 (ic-s2), data-point (ic-data) and forecast (ic-fc) 
+
+The main concept of the ic-flex module is the s4ener:FlexOffer, which allows to 
+represent a flexibility offer (or schedule) as a combination of multiple time-series, data-points and forecasts. 
+
+It also allows to specify a creation time (s4ener:hasCreationTime), validity 
+period (s4ener:hasEffectivePeriod) and provenance (s4ener:producedBy) for 
+the offer, on top of the creation time, validity period and provenance already specified for the time-series and data-points included in the offer.
+
+The additional key aspect captured in the ic-flex module is that a flex offer can also include various categories of flexibility, which are modelled as subclasses of the s4ener:FlexibilityProfile class, as follows:
+- Power Profile flexibilty is modelled as s4ener:PowerProfile based on the EEBUS spec
+- Tariff based flexibility (s4ener:TariffBased) is implemented using the incentive table (ic-inc) ontology based on the EEBUS spec (note that tariif-based felxibility does note exist in S2)
+- Power limit flexibility (ic-pwlm:PowerLimit) is implemented using  thepower limit (ic-pwlm) ontology based on the EEBUS spec (and compliant also with S2)
+- Power Envelope flexibility (s4ener:PowerEnvelope) is implemented using theS2 (ic-s2) that follows the S2 specification (and compliant also with EEBUS)
+- Demand driven flexibility (s4ener:DemandDriven)  flexibility (s4ener:PowerEnvelope) is implemented using theS2 (ic-s2) that follows the S2 specification (and compliant also with EEBUS)
+- Operation mode flexibility (s4ener:OperationMode) is implemented using theS2 (ic-s2) that follows the S2 specification (and compliant also with S2)
+- Fill rate based flexibility (s4ener:FillRateBased is implemented using theS2 (ic-s2) that follows the S2 specification (and compliant also with S2)"""@en ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:modified "2025-06-05"^^xsd:date ;
+  dcterms:issued "2025-06-05"^^xsd:date ;
+  dcterms:publisher <https://www.etsi.org/> ;
+  dcterms:source <https://saref.etsi.org/sources/saref4ener/> ;
+  dcterms:title "SAREF for Energy Flexibility"@en ;
+  vann:preferredNamespacePrefix "s4ener" ;
+  vann:preferredNamespaceUri "https://saref.etsi.org/saref4ener/" ;
+  owl:imports <https://saref.etsi.org/core/v4.1.1/> ;
+  owl:versionIRI <https://saref.etsi.org/saref4ener/v2.1.1/> ;
+  owl:versionInfo "v2.1.1" ;
+  owl:priorVersion <https://saref.etsi.org/saref4ener/v1.2.1/> ;
+  rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341001/02.01.01_60/ts_10341001v020101p.pdf> ;
+.
+s4ener:Aborted
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  a s4ener:PowerSequenceStatus ;
+  rdfs:comment "Instruction was aborted."@en ;
+  rdfs:comment "The selected PPBC.PowerSequence was aborted by the device and will not continue"@en ;
+  rdfs:label "Aborted"@en ;
+.
+s4ener:AbsoluteCost
+  a owl:NamedIndividual ;
+  a s4ener:IncentiveType ;
+  rdfs:comment "The incentive type ''absolute cost''  defined in the incentive table."@en ;
+  rdfs:label "Absolute cost"@en ;
+.
+s4ener:Accepted
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction has been accepted"@en ;
+  rdfs:label "Accepted"@en ;
+.
+s4ener:ActuatorLevel
+  a owl:Class ;
+  rdfs:comment "Independent from the ActuatorSwitch class, the ActuatorLevel class enables a user or application to model LEVEL commands (start, up, percentageAbsolute, relative, etc.). This can be used to dim a light, set the speed of an electric motor, etc."@en ;
+  rdfs:label "Actuator level"@en ;
+  rdfs:subClassOf saref:Actuator ;
+.
+s4ener:ActuatorSwitch
+  a owl:Class ;
+  rdfs:comment "Basic on/off operations on a simple actuator can be modelled with the ActuatorSwitch class. Whether the function turns a device itself ON or OFF, or whether it switches a specific feature, depends on the implementation. For example, one could model the super freeze program of a freezer using ActuatorSwitch class. An ON command would then activate the super freeze program and an OFF command would deactivate it. This example shall just give an idea how ActuatorSwitch can be used for more purposes than only turning devices on and off."@en ;
+  rdfs:label "Actuator switch"@en ;
+  rdfs:subClassOf saref:Actuator ;
+.
+s4ener:AllowedLimitRange
+  a rdfs:Class ;
+  rdfs:comment "The actual constraints of an Power Envelope Based Profile."@en ;
+  rdfs:label "Allowed limit range"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:AlternativesGroup
+  a owl:Class ;
+  rdfs:comment "A collection of power sequences for a certain profile"@en ;
+  rdfs:label "Alternatives group"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:PowerProfile ;
+      owl:onProperty s4ener:belongsTo ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:PowerSequence ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:someValuesFrom s4ener:PowerSequence ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass s4ener:PowerProfile ;
+      owl:onProperty s4ener:belongsTo ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onDataRange xsd:unsignedInt ;
+      owl:onProperty saref:hasIdentifier ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+s4ener:Average
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "The datapoint indicates an average value aggregated over a number of values."@en ;
+  rdfs:label "Average"@en ;
+.
+s4ener:BaseLine
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates the baseline."@en ;
+  rdfs:label "Baseline"@en ;
+.
+s4ener:BatteryPowerSource
+  a s4ener:PowerSource ;
+  rdfs:comment "This Power Source codelist element indicates that a battery is the power source of this device."@en ;
+  rdfs:label "Battery power source"@en ;
+.
+s4ener:CO2Emission
+  a owl:NamedIndividual ;
+  a s4ener:IncentiveType ;
+  rdfs:comment "The incentive type ''CO2 Emission'' defined in the incentive table."@en ;
+  rdfs:label "CO2 Emission"@en ;
+.
+s4ener:Calculated
+  a s4ener:ValueSource ;
+  rdfs:comment "This value source codelist element indicates that this observation has been calculated instead of measured or empirical."@en ;
+  rdfs:label "Calculated"@en ;
+.
+s4ener:Committed
+  a owl:NamedIndividual ;
+  a s4ener:ScopeType ;
+  rdfs:comment "The committed version of this concept, usually an incentive table or power plan"@en ;
+  rdfs:label "Committed"@en ;
+.
+s4ener:Completed
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'completed'"@en ;
+  rdfs:label "Completed"@en ;
+.
+s4ener:Consumption
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates the consumption."@en ;
+  rdfs:label "Consumption"@en ;
+.
+s4ener:ContractualPowerLimit
+  a owl:Class ;
+  rdfs:comment "The contractual power limit of a device"@en ;
+  rdfs:label "Contractual Power Limit"@en ;
+  rdfs:subClassOf s4ener:PowerLimit ;
+.
+s4ener:DCPowerSource
+  a s4ener:PowerSource ;
+  rdfs:comment "This Power Source codelist element indicates that the type of power source is DC."@en ;
+  rdfs:label "DC Power source"@en ;
+.
+s4ener:DDBCInstruction
+  a owl:Class ;
+  rdfs:comment "An Instruction as specified for an Demand Driven Based Control Profile."@en ;
+  rdfs:label "Demand Driven Based Control Instruction"@en ;
+  rdfs:subClassOf s4ener:FlexibilityInstruction ;
+.
+s4ener:DataPoint
+  a owl:Class ;
+  rdfs:comment """A data point is a quantity that is extended with various pieces of process information, namely
+ 
+- A creation time (instant). This is the point in time when the data point was created, which is not necessarily the time for which it is valid. In the case of soft-sensors or forecasters, a data point might have been created ahead of time, in the case of a direct observation a data point might created at its time of validity (or at the end of its validity time interval) and in the case of an archived value the data point might have been created after the fact.
+
+ - A validity time (temporal entity) which will be named \"time stamp\". The validity time is the instant or interval in time in which a specific quantity is in effect. For example a room temperature might be measured at 12:00, which means it is in effect at this very instant. A specific amount of energy might me expended within the time-slot between 12:30 and 12:45, which means that the energy observation is in effect during this time interval.
+
+ - A location or topological association. For example, an observation might be taken in a specific room, a power avarage might have been measured by a specific meter, a forecast might be valid for a specific region or grid segment. This association is therefore not always a location."""@en ;
+  rdfs:label "Data point"@en ;
+  rdfs:subClassOf saref:Observation ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Usage ;
+      owl:onProperty s4ener:hasUsage ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasCreationTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasQuantile ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasUpdateRate ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass time:Interval ;
+      owl:onProperty s4ener:hasEffectivePeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+s4ener:Defer
+  a owl:NamedIndividual ;
+  a s4ener:PowerEnvelopeConsequenceType ;
+  rdfs:comment "Indicating that the limited load or generation will be postponed to a later moment "@en ;
+  rdfs:label "Defer"@en ;
+.
+s4ener:DemandDrivenProfile
+  a owl:Class ;
+  rdfs:comment "The Flexibility Profile following the Demand Driven strategy."@en ;
+  rdfs:label "Demand driven control"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+.
+s4ener:Device
+  a owl:Class ;
+  rdfs:comment "A specialization of a saref:Device that exposes a power profile with power sequences to the CEM. Most of the existing devices can expose at most one power profile, but there are special cases in which more than one power profiles can be exposed by the same device. For example, consider the case of a combined fridge-freezer in which there are 2 logical devices (fridge and freezer) combined in 1 physical device. This combined device can expose 2 power profiles, one for the fridge and one for the freezer. A s4ee:Device (e.g. a household appliance or a smart meter) can also receive events about overload warning severity level and related load control commands (LoadControlEventData)"@en ;
+  rdfs:label "Device"@en ;
+  rdfs:subClassOf saref:Device ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:LoadControlEventData ;
+      owl:onProperty s4ener:receives ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:brandName ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:deviceCode ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:deviceName ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hardwareRevision ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty saref:hasManufacturer;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:serialNumber ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:softwareRevision ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:vendorCode ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:vendorName ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasPowerSource ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:LoadControlEventData ;
+      owl:onProperty s4ener:receives ;
+    ] ;
+.
+s4ener:Downflex
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates the down flexibility."@en ;
+  rdfs:label "Downflex"@en ;
+.
+s4ener:hasElapsedSlotTime
+  a owl:ObjectProperty;
+  rdfs:comment "If state is set to 'running' or 'paused' AND the slot is determined, this property CAN contain the time the slot has already been in 'running' state (this also means the value remains constant during a 'paused' state). Otherwise it SHALL be omitted."@en ;
+  rdfs:label "has elapsed slot time"@en ;
+  rdfs:range time:TemporalEntity ;
+.
+s4ener:ElectricPower3PhaseSymmetric
+  a saref:Commodity ;
+  rdfs:comment "Electric power described in Watt on when power is equally shared among the three phases. Only applicable for 3 phase devices."@en ;
+  rdfs:label "Electric Power 3 Phase Symmetric"@en ;
+.
+s4ener:ElectricPowerL1
+  a saref:Commodity ;
+  rdfs:comment "Electric power described in Watt on phase 1. If a device utilizes only one phase it should always use L1."@en ;
+  rdfs:label "Electric Power L1"@en ;
+.
+s4ener:ElectricPowerL2
+  a saref:Commodity ;
+  rdfs:comment "Electric power described in Watt on phase 2. Only applicable for 3 phase devices."@en ;
+  rdfs:label "Electric Power L2"@en ;
+.
+s4ener:ElectricPowerL3
+  a saref:Commodity ;
+  rdfs:comment "Electric power described in Watt on phase 3. Only applicable for 3 phase devices."@en ;
+  rdfs:label "Electric Power L3"@en ;
+.
+s4ener:Electricity
+  a saref:Commodity ;
+  rdfs:comment "Identifier for Commodity ELECTRICITY"@en ;
+  rdfs:label "Electricity"@en ;
+.
+s4ener:Emergency
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "Load control event action with value 'emergency'"@en ;
+  rdfs:label "Emergency"@en ;
+.
+s4ener:Empirical
+  a s4ener:ValueSource ;
+  rdfs:comment "This value source codelist element indicates this value is an empirical value instead of a calculated or measured value."@en ;
+  rdfs:label "Empirical"@en ;
+.
+s4ener:EndInterruptionInstruction
+  a owl:Class ;
+  rdfs:comment "An Instruction message indicating when an interruption can end."@en ;
+  rdfs:label "End Interruption Instruction"@en ;
+  rdfs:subClassOf s4ener:InterruptionInstruction ;
+.
+s4ener:EndTimeDurationDescription
+  a owl:Class ;
+  rdfs:comment "The duration description for the end time duration temporal entities"@en ;
+  rdfs:label "End time duration Description"@en ;
+  rdfs:subClassOf time:DurationDescription ;
+.
+s4ener:EnergyConstraint
+  a owl:Class ;
+  rdfs:comment "The energy constraint described in the Allowed Limit Range or Power Limit."@en ;
+  rdfs:label "Energy Constraint"@en ;
+.
+s4ener:EnergyConsumer
+  a owl:NamedIndividual ;
+  a s4ener:RoleType ;
+  rdfs:comment "Identifier for RoleType Consumer"@en ;
+  rdfs:label "Energy Consumer"@en ;
+.
+s4ener:EnergyProducer
+  a owl:NamedIndividual ;
+  a s4ener:RoleType ;
+  rdfs:comment "Identifier for RoleType Producer"@en ;
+  rdfs:label "Energy Producer"@en ;
+.
+s4ener:EnergyStorage
+  a owl:NamedIndividual ;
+  a s4ener:RoleType ;
+  rdfs:comment "Identifier for RoleType Storage"@en ;
+  rdfs:label "Energy Storage"@en ;
+.
+s4ener:EuroPerKilowattHour
+  a saref:UnitOfMeasure ;
+  rdfs:comment "Unit of Measure to represent euro's per kilowatt per hour"@en ;
+  rdfs:label "Euro per kilo watt hour"@en ;
+.
+s4ener:EventAccepted
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event accepted'"@en ;
+  rdfs:label "Event accepted"@en ;
+.
+s4ener:EventActionConsume
+  a owl:Class ;
+  rdfs:comment "An action type used to express a consume action to be performed as a consequence of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Event action consume"@en ;
+  rdfs:subClassOf s4ener:LoadControlEventAction ;
+  owl:oneOf (
+      s4ener:Pause
+      s4ener:Resume
+      s4ener:Reduce
+      s4ener:Increase
+      s4ener:Emergency
+      s4ener:Normal
+    ) ;
+.
+s4ener:EventActionProduce
+  a owl:Class ;
+  rdfs:comment "An action type used to express a produce action to be performed as a consequence of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Event action produce"@en ;
+  rdfs:subClassOf s4ener:LoadControlEventAction ;
+  owl:oneOf (
+      s4ener:Pause
+      s4ener:Resume
+      s4ener:Reduce
+      s4ener:Increase
+      s4ener:Emergency
+      s4ener:Normal
+    ) ;
+.
+s4ener:EventCancelled
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event cancelled'"@en ;
+  rdfs:label "Event cancelled"@en ;
+.
+s4ener:EventError
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event error'"@en ;
+  rdfs:label "Event error"@en ;
+.
+s4ener:EventRejected
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event rejected'"@en ;
+  rdfs:label "Event rejected"@en ;
+.
+s4ener:EventStarted
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event started'"@en ;
+  rdfs:label "Event started"@en ;
+.
+s4ener:EventStateConsume
+  a owl:Class ;
+  rdfs:comment "In the load control, it expresses a consume state of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Event state consume"@en ;
+  rdfs:subClassOf s4ener:LoadControlEventState ;
+  owl:oneOf (
+      s4ener:EventAccepted
+      s4ener:EventStarted
+      s4ener:EventStopped
+      s4ener:EventRejected
+      s4ener:EventCancelled
+      s4ener:EventError
+    ) ;
+.
+s4ener:EventStateProduce
+  a owl:Class ;
+  rdfs:comment "In the load control, it expresses a produce state of an event an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Event state produce"@en ;
+  rdfs:subClassOf s4ener:LoadControlEventState ;
+  owl:oneOf (
+      s4ener:EventAccepted
+      s4ener:EventStarted
+      s4ener:EventStopped
+      s4ener:EventRejected
+      s4ener:EventCancelled
+      s4ener:EventError
+    ) ;
+.
+s4ener:EventStopped
+  a owl:NamedIndividual ;
+  a s4ener:EventStateConsume ;
+  a s4ener:EventStateProduce ;
+  rdfs:comment "Load control state with value 'event stopped'"@en ;
+  rdfs:label "Event stopped"@en ;
+.
+s4ener:Executing
+  a s4ener:PowerSequenceStatus ;
+  rdfs:comment "The selected PPBC.PowerSequence is currently being executed"@en ;
+  rdfs:label "EXECUTING"@en ;
+.
+s4ener:FRBCInstruction
+  a owl:Class ;
+  rdfs:comment "A Fill Rate Based Instruction message. "@en ;
+  rdfs:label "Fill Rate Based Control Instruction"@en ;
+  rdfs:subClassOf s4ener:FlexibilityInstruction ;
+.
+s4ener:FailsafePowerLimit
+  a owl:Class ;
+  rdfs:comment "In case the communication between a device and the energy manager is interrupted, fail-safe values apply  and the device enters fail-safe state until the communication is re-established."@en ;
+  rdfs:label "Failsafe Power Limit"@en ;
+  rdfs:subClassOf s4ener:PowerLimit ;
+.
+s4ener:FailsafeState
+  a owl:Class ;
+  rdfs:comment "State that indicates that the device currently is in its Fail-safe state. This means that it has lost its connection to a central energy manager. This may result in the device following stricter power limits."@en ;
+  rdfs:label "Fail-safe state"@en ;
+.
+s4ener:Falling
+  a s4ener:ValueTendency ;
+  rdfs:comment "This value tendency codelist element indicates that the tendency of this observation indicates that the value is decreasing (i.e., falling)."@en ;
+  rdfs:label "Falling"@en ;
+.
+s4ener:FillLevelTargetProfile
+  a owl:Class ;
+  rdfs:comment "The target profile that a fill rate based control flexibility profile tries to follow."@en ;
+  rdfs:label "Fill level target profile"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:FillLevelTargetProfileElement
+  a owl:Class ;
+  rdfs:comment "A description of the various Elements detailing the Fill Level Target Profile consists."@en ;
+  rdfs:label "Fill level target profile element"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:FillRateProfile
+  a owl:Class ;
+  rdfs:comment "A flexibility profile specified through a Fill Rate Based Profile."@en ;
+  rdfs:label "Fill rate control"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+.
+s4ener:Finished
+  a s4ener:PowerSequenceStatus ;
+  rdfs:comment "The selected PPBC.PowerSequence was executed and finished successfully"@en ;
+  rdfs:label "Finished"@en ;
+.
+s4ener:FlexOffer
+  a owl:Class ;
+  rdfs:comment "It  allows to represent a flexibility offer (or schedule) as a combination of multiple time-series, data-points and forecasts. For example, we can create a flexibility offer that includes a time-series ex:T-power of power values, combined with a time-series ex:T-costs of associated costs."@en ;
+  rdfs:label "Flex offer"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              foaf:Agent
+              saref:Device
+            ) ;
+        ] ;
+      owl:onProperty s4ener:hasRecipient ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              foaf:Agent
+              saref:Device
+            ) ;
+        ] ;
+      owl:onProperty s4ener:producedBy ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              s4ener:DataPoint
+              s4ener:TimeSeries
+              s4ener:FlexibilityProfile
+            ) ;
+        ] ;
+      owl:onProperty s4ener:includes ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasCreationTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:Interval ;
+      owl:onProperty s4ener:hasEffectivePeriod ;
+    ] ;
+.
+s4ener:FlexRequest
+  a owl:Class ;
+  rdfs:comment "The flexibility request"@en ;
+  rdfs:label "Flex request"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:dateTime ;
+      owl:onProperty s4ener:hasCreationTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom time:Interval ;
+      owl:onProperty s4ener:hasEffectivePeriod ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              foaf:Agent
+              saref:Device
+            ) ;
+        ] ;
+      owl:onProperty s4ener:hasRecipient ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              foaf:Agent
+              saref:Device
+            ) ;
+        ] ;
+      owl:onProperty s4ener:producedBy ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              s4ener:DataPoint
+              s4ener:TimeSeries
+              s4ener:FlexibilityProfile
+              s4ener:IncentiveTableProfile
+            ) ;
+        ] ;
+      owl:onProperty s4ener:includes ;
+    ] ;
+.
+s4ener:FlexibilityInstruction
+  a owl:Class ;
+  rdfs:comment "The various types of instructions Flexibility Sources can send and/or receive."@en ;
+  rdfs:label "Flexibility Instruction"@en ;
+.
+s4ener:FlexibilityProfile
+  a owl:Class ;
+  rdfs:comment """Different control types to describe the energy flexibility that a device has to offer.  Charging of an EV for instance, may be controlled by power profile-based control or fill-rate -based control. It is not allowed to mix different control types at the same time, but different control types may be used sequentially.
+Control Types dictates flexibility instructions. Control Type provides Flexibility options."""@en ;
+  rdfs:label "Flexibility Profile"@en ;
+  rdfs:subClassOf saref:Profile ;
+.
+s4ener:Gas
+  a saref:Commodity ;
+  rdfs:comment "Identifier for Commodity GAS"@en ;
+  rdfs:label "Gas"@en ;
+.
+s4ener:GaussianDataPoint
+  a owl:Class ;
+  rdfs:comment "A data point whose quantity is a standard deviation."@en ;
+  rdfs:label "Gaussian data point"@en ;
+  rdfs:subClassOf s4ener:DataPoint ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onProperty s4ener:hasStandardDeviation ;
+      owl:someValuesFrom xsd:decimal ;
+    ] ;
+.
+s4ener:Heat
+  a saref:Commodity ;
+  rdfs:comment "Identifier for Commodity Heat"@en ;
+  rdfs:label "Heat"@en ;
+.
+s4ener:HeatFlowRate
+  a saref:Commodity ;
+  rdfs:comment "Flow rate of heat carrying gas or liquid in liters per second"@en ;
+  rdfs:label "Heat Flow Rate"@en ;
+.
+s4ener:HeatTemperature
+  a saref:Commodity ;
+  rdfs:comment "Heat described in degrees Celsius"@en ;
+  rdfs:label "Heat Temperature"@en ;
+.
+s4ener:HeatThermalPower
+  a saref:Commodity ;
+  rdfs:comment "Thermal power in Watt"@en ;
+  rdfs:label "Heat Thermal Power"@en ;
+.
+s4ener:HydrogenFlowRate
+  a saref:Commodity ;
+  rdfs:comment "Gas flow rate described in grams per second"@en ;
+  rdfs:label "Hydrogen Flow Rate"@en ;
+.
+s4ener:Inactive
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'inactive'"@en ;
+  rdfs:label "Inactive"@en ;
+.
+s4ener:Incentive
+  a owl:Class ;
+  rdfs:comment "An Incentive indicates the intersection of a tier with a slot. In this particular combination of slot and tier there are a particular costs to draw this type of energy. For example, drawing power from the grid costs 0.30 euro per kilowatthour during the afternoon, but will only be activated from a lower boundary of 3000W."@en ;
+  rdfs:label "Incentive"@en ;
+  rdfs:subClassOf s4ener:DataPoint ;
+.
+s4ener:IncentiveTableProfile
+  a owl:Class ;
+  rdfs:comment "This flexibility profile describes the usage of an incentive table to describe an incentive type in the form of costs (relative or absolute), CO2 emissions or renewable energy percentage that can be associated to power values (expressed as a time-series of power data-points)."@en ;
+  rdfs:label "Incentive table based profile"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:boolean ;
+      owl:onProperty s4ener:isChangeable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:boolean ;
+      owl:onProperty s4ener:requiresUpdate ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:ScopeType ;
+      owl:onProperty s4ener:hasScopeType ;
+    ] ;
+.
+s4ener:IncentiveTableSlot
+  a owl:Class ;
+  rdfs:comment "This concept describes a slot that belongs to a Incentive Table. Each slot of the Incentive Table consists of a series of (lower) boundaries, each indicating the power at which a change to another incentive takes place. Additionally, each boundary is associated with a IncentiveTableTier."@en ;
+  rdfs:label "Incentive table slot"@en ;
+  rdfs:subClassOf s4ener:Slot ;
+.
+s4ener:IncentiveTableTier
+  a owl:Class ;
+  rdfs:comment "This concept specifies a Tier that an Incentive Table consists of. Each Tier indicates through a series of Boundaries the price per kilowatthour this incentive costs. For example, a tier may describe grid power, solar panel power, or surplus power."@en ;
+  rdfs:label "Incentive table tier"@en ;
+  rdfs:subClassOf s4ener:TimeSeries ;
+.
+s4ener:IncentiveType
+  a owl:Class ;
+  rdfs:comment "In the incentive table, an incentive type is defined  in the form of costs (relative or absolute), CO2 emissions or renewable energy percentage."@en ;
+  rdfs:label "Incentive Type"@en ;
+.
+s4ener:Increase
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "Load control event action with value 'increase'"@en ;
+  rdfs:label "Increase"@en ;
+.
+s4ener:InstructionStatus
+  a owl:Class ;
+  rdfs:comment "The status an instruction has at a specific moment."@en ;
+  rdfs:label "Instruction Status"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Interrupted
+  a s4ener:PowerSequenceStatus ;
+  rdfs:comment "The selected PPBC.PowerSequence is being executed, but is currently interrupted and will continue afterwards"@en ;
+  rdfs:label "Interrupted"@en ;
+.
+s4ener:InterruptionInstruction
+  a owl:Class ;
+  rdfs:comment "An instruction indicating an interruption to the process."@en ;
+  rdfs:label "Interruption Instruction"@en ;
+  rdfs:subClassOf s4ener:PPBCInstruction ;
+.
+s4ener:Invalid
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'invalid'"@en ;
+  rdfs:label "Invalid"@en ;
+.
+s4ener:LeakageBehaviour
+  a owl:Class ;
+  rdfs:comment "A description of the Leakage Behaviour associated with this Fill Rate Flexibility Profile."@en ;
+  rdfs:label "Leakage behaviour"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:LeakageBehaviourElement
+  a owl:Class ;
+  rdfs:comment "An element detailing the leakage behaviour of a storage."@en ;
+  rdfs:label "Leakage behaviour element"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:LoadControlEventAction
+  a owl:Class ;
+  rdfs:comment "An action type used to express the action to be performed as a consequence of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Load Control event action"@en ;
+.
+s4ener:LoadControlEventData
+  a owl:Class ;
+  rdfs:comment "An event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Load control event data"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:dateTime ;
+      owl:onProperty saref:hasTimestamp ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Device ;
+      owl:onProperty s4ener:hasDevice ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventActionConsume ;
+      owl:onProperty s4ener:triggersEventActionConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventActionProduce ;
+      owl:onProperty s4ener:triggersEventActionProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty saref:hasIdentifier ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventActionConsume ;
+      owl:onProperty s4ener:triggersEventActionConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventActionProduce ;
+      owl:onProperty s4ener:triggersEventActionProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:Device ;
+      owl:onProperty s4ener:hasDevice ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime ;
+      owl:onProperty saref:hasTimestamp ;
+    ] ;
+.
+s4ener:LoadControlEventState
+  a owl:Class ;
+  rdfs:subClassOf saref:State ;
+  rdfs:comment "In the load control, it expresses the possible states of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Load control event state "@en ;
+.
+s4ener:LoadControlStateData
+  a owl:Class ;
+  rdfs:comment "The representation of the state of an event used to send overload warning severity level and related load control commands to a device (e.g. a household appliance or a smart meter)."@en ;
+  rdfs:label "Load control state data"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:dateTime ;
+      owl:onProperty saref:hasTimestamp ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventActionConsume ;
+      owl:onProperty s4ener:hasAppliedEventActionConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventActionProduce ;
+      owl:onProperty s4ener:hasAppliedEventActionProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventStateConsume ;
+      owl:onProperty s4ener:hasEventStateConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:EventStateProduce ;
+      owl:onProperty s4ener:hasEventStateProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventActionConsume ;
+      owl:onProperty s4ener:hasAppliedEventActionConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventActionProduce ;
+      owl:onProperty s4ener:hasAppliedEventActionProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventStateConsume ;
+      owl:onProperty s4ener:hasEventStateConsume ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:EventStateProduce ;
+      owl:onProperty s4ener:hasEventStateProduce ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt ;
+      owl:onProperty saref:hasIdentifier ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime ;
+      owl:onProperty saref:hasTimestamp ;
+    ] ;
+.
+s4ener:LowerLimit
+  a owl:NamedIndividual ;
+  a s4ener:PowerEnvelopeLimitType ;
+  a s4ener:Usage ;
+  rdfs:comment "The PowerEnvelopeLimitType codelist element indicating the lower limit."@en ;
+  rdfs:comment "This data point indicates the lower limit, for example of a PowerEnvelopeLimitType."@en ;
+  rdfs:label "Lower Limit"@en ;
+.
+s4ener:Mains3Phase
+  a s4ener:PowerSource ;
+  rdfs:comment "This Power Source codelist element indicates that the power source of this device is Mains 3 Phase."@en ;
+  rdfs:label "Mains3Phase"@en ;
+.
+s4ener:MainsSinglePhase
+  a s4ener:PowerSource ;
+  rdfs:comment "This codelist element of power source indicates that the power source is the mains single phase."@en ;
+  rdfs:label "Mains single phase"@en ;
+.
+s4ener:Maximum
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "The usage of this datapoint is the Maximum value."@en ;
+  rdfs:label "Maximum"@en ;
+.
+s4ener:Skewness
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "The usage of this datapoint is the power skewness (assymetry of the distribution)."@en  ;
+  rdfs:label "Skewness"@en ;
+.
+s4ener:Measured
+  a s4ener:ValueSource ;
+  rdfs:comment "The value source type indicates that this data point has been measured by a device."@en ;
+  rdfs:label "Measured"@en ;
+.
+s4ener:Minimum
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "The usage of this datapoint is the Minimum value."@en ;
+  rdfs:label "Minimum"@en ;
+.
+s4ener:NaturalGasFlowRate
+  a saref:Commodity ;
+  rdfs:comment "Gas flow rate described in liters per second"@en ;
+  rdfs:label "Natural Gas Flow Rate"@en ;
+.
+s4ener:New
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction was newly created"@en ;
+  rdfs:label "New"@en ;
+.
+s4ener:NominalPowerLimit
+  a owl:Class ;
+  rdfs:comment "A device may have nominal power consumption and/or production values that are defined by the manufacturer and must not be exceeded, so that the power limit must stay within these constraints."@en ;
+  rdfs:label "Nominal Power Limit"@en ;
+  rdfs:subClassOf s4ener:PowerLimit ;
+.
+s4ener:Normal
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "The value NORMAL used to instantiate the Load Control Event Action class and MeasurandState class"@en ;
+  rdfs:label "Normal"@en ;
+.
+s4ener:NotScheduled
+  a s4ener:PowerSequenceStatus ;
+  rdfs:comment "No PPBC.PowerSequence within the PPBC.PowerSequenceContainer is scheduled"@en ;
+  rdfs:label "NotScheduled"@en ;
+.
+s4ener:NumberRange
+  a owl:Class ;
+  rdfs:comment "This class describes a range via a datatype property indicating the start of the range and another datatype property indicating the end of the range."@en ;
+  rdfs:label "Number range"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:OMBCInstruction
+  a owl:Class ;
+  rdfs:comment "An instruction following the Operation Mode Based Profile."@en ;
+  rdfs:label "Operation Mode Based Control Instruction"@en ;
+  rdfs:subClassOf s4ener:FlexibilityInstruction ;
+.
+s4ener:Oil
+  a saref:Commodity ;
+  rdfs:comment "Identifier for Commodity OIL"@en ;
+  rdfs:label "Oil"@en ;
+.
+s4ener:OilFlowRate
+  a saref:Commodity ;
+  rdfs:comment "Oil flow rate described in liters per hour"@en ;
+  rdfs:label "Oil Flow Rate"@en ;
+.
+s4ener:OperationMode
+  a owl:Class ;
+  rdfs:subClassOf saref:State ;
+  rdfs:comment "A resource manager can declare multiple operation modes for a device. An operation mode is a mode/state that a device can find itself in, that is associated with a specific power value."@en ;
+  rdfs:label "Operation Mode"@en ;
+.
+s4ener:OperationModeElement
+  a owl:Class ;
+  rdfs:comment "Operation Mode Elements of a Fill Rate Based Control"@en ;
+  rdfs:label "Operation Mode Element"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:OperationModeProfile
+  a owl:Class ;
+  rdfs:comment "A resource manager can declare multiple operation modes for a device. An operation mode is a mode/state that a device can find itself in, that is associated with a specific power value."@en ;
+  rdfs:label "Operation mode control"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+.
+s4ener:PEBCInstruction
+  a owl:Class ;
+  rdfs:comment "An instruction for the Power Envelope Based Profile."@en ;
+  rdfs:label "Power Envelop Based Control Instruction"@en ;
+  rdfs:subClassOf s4ener:FlexibilityInstruction ;
+.
+s4ener:PPBCInstruction
+  a owl:Class ;
+  rdfs:comment "An instruction for a Power Profile Based Flexibility Profile."@en ;
+  rdfs:label "Power Profile Based Control Instruction"@en ;
+  rdfs:subClassOf s4ener:FlexibilityInstruction ;
+.
+s4ener:Pause
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "Load control event action with value 'pause'"@en ;
+  rdfs:label "Pause"@en ;
+.
+s4ener:Paused
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state or sensor state with value 'paused'"@en ;
+  rdfs:label "Paused"@en ;
+.
+s4ener:Pending
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'pending'"@en ;
+  rdfs:label "Pending"@en ;
+.
+s4ener:PowerConstraint
+  a owl:Class ;
+  rdfs:comment "The actual power constraint contained in the Allowed Limit Range or Power limit."@en ;
+  rdfs:label "Power constraint"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerEnvelope
+  a owl:Class ;
+  rdfs:comment "A specific Power Envelope to be followed by an energy manager"@en ;
+  rdfs:label "Power Envelope"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerEnvelopeConsequenceType
+  a owl:Class ;
+  rdfs:comment "The type of consequence of limiting power, which can be Defer or Vanish."@en ;
+  rdfs:label "Power Envelope Consequence Type"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerEnvelopeLimitType
+  a owl:Class ;
+  rdfs:comment "An enumeration containing the codelist for Power Envelope Limit Types, which may be Lower limit or Upper limit."@en ;
+  rdfs:label "Power Envelope Limit Type"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerEnvelopeProfile
+  a owl:Class ;
+  rdfs:comment "A Flexibility Profile described through a Power Envelope Profile."@en ;
+  rdfs:label "Power envelope control"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+.
+s4ener:PowerLimit
+  a owl:Class ;
+  rdfs:comment "A power limit is defined as the maximum value for power consumption and/or production that must not be exceeded by e.g. a (group of) device(s), a building, or also a district."@en ;
+  rdfs:label "Power Limit"@en ;
+  rdfs:subClassOf s4ener:AllowedLimitRange ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:boolean ;
+      owl:onProperty s4ener:isChangeable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:boolean ;
+      owl:onProperty s4ener:isObligatory ;
+    ] ;
+.
+s4ener:PowerLimitProfile
+  a owl:Class ;
+  rdfs:comment "This profile describes the energy flexibility of a device via a set of power limits, following the SPINE documentation"@en ;
+  rdfs:label "Power limit profile"@en ;
+  rdfs:subClassOf s4ener:FlexibilityProfile ;
+.
+s4ener:PowerPlan
+  a owl:Class ;
+  rdfs:comment "The Power Plan that an energy manager creates for a device. It contains three timeseries indicating the minimum, average, and maximum respectively."@en ;
+  rdfs:label "Power plan"@en ;
+  rdfs:subClassOf s4ener:TimeSeries ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onProperty saref:consistsOf ;
+      owl:someValuesFrom s4ener:TimeSeries ;
+    ] 
+.
+s4ener:PowerProfile
+  a owl:Class ;
+  rdfs:comment "A way to model curves of power and energy over time, which also provides definitions for the modelling of power scheduling including alternative plans. With a PowerProfile, a device (or power sequences server) exposes the power sequences that are potentially relevant for the CEM (or power sequences client). "@en ;
+  rdfs:comment "PPBC.PowerProfileDefinition"@en ;
+  rdfs:label "Power profile control"@en ;
+  rdfs:subClassOf saref:Profile ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:AlternativesGroup ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Device ;
+      owl:onProperty s4ener:belongsTo ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:nodeRemoteControllable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:supportsReselection ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:supportsSingleSlotSchedulingOnly ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:totalSequencesCountMax ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:someValuesFrom s4ener:AlternativesGroup ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass s4ener:Device ;
+      owl:onProperty s4ener:belongsTo ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+s4ener:PowerRange
+  a owl:Class ;
+  rdfs:comment "A class describing a power range, containing a start of range, an end of range, and a saref:Property indicating the type of power involved."@en ;
+  rdfs:label "Power range"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerSequence
+  a owl:Class ;
+  rdfs:comment "A Power Sequence following S2 is a container containing one or more PowerSequenceElements among which the EMS can choose the Element with the best fit to the current energy demands."@en ;
+  rdfs:comment "The specification of a task, such as wash or tumble dry, according to user preferences and/or manufacturer's settings for a certain device.  It is the most 'coarse' view, a power sequence can represent all single steps of a whole task,where the single steps are represented by slots. If the power sequence is pausable by the bound power sequences client, the property 'saref:isInterrupteble' SHALL be present and set to true. Otherwise it SHALL be omitted. If the power sequence is stoppable by the bound power sequences client, the property 'saref:isFlexible' SHALL be present and set to true. Otherwise it SHALL be omitted."@en ;
+  rdfs:label "Power sequence"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:AlternativesGroup ;
+      owl:onProperty s4ener:belongsTo ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:PowerSequenceState ;
+      owl:onProperty saref:hasState ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom saref:PropertyValue ;
+      owl:onProperty s4ener:hasResumeCostEstimated ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom saref:PropertyValue ;
+      owl:onProperty s4ener:hasResumeEnergyEstimated ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Slot ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty saref:hasIdentifier ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:sequenceRemoteControllable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:activeRepetitionNumber ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:activeSlotNumber ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:cheapest ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:greenest ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:isPausable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:isStoppable ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:maxCyclesPerDay ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:repetitionsTotal ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasActiveDurationMax ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasActiveDurationMin ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasActiveDurationSumMax ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasActiveDurationSumMin ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasEarliestStartTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasElapsedSlotTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasEndTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasLatestEndTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasPauseDurationMax ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasPauseDurationMin ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasRemainingSlotTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass saref:PropertyValue ;
+      owl:onProperty s4ener:hasResumeCostEstimated ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass saref:PropertyValue ;
+      owl:onProperty s4ener:hasResumeEnergyEstimated ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasValueSource ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:someValuesFrom s4ener:Slot ;
+      owl:onProperty saref:consistsOf ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasStartTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass s4ener:AlternativesGroup ;
+      owl:onProperty s4ener:belongsTo ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+s4ener:PowerSequenceContainer
+  a owl:Class ;
+  rdfs:comment "A container containing the various Power Sequences among which the EMS may choose for the appropriate Power Sequence at a given time."@en ;
+  rdfs:label "Power profile container"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerSequenceElement
+  a owl:Class ;
+  rdfs:comment "An element of a power sequence, roughly equivalent to slots in the existing S4ener."@en ;
+  rdfs:label "Power sequence element"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:PowerSequenceState
+  a owl:Class ;
+  rdfs:subClassOf saref:State ;
+  rdfs:comment "The current state of the power sequence. It can assume one of the values 'running', 'paused', 'scheduled', 'scheduled paused', 'pending', 'inactive', 'completed',  or 'invalid'."@en ;
+  rdfs:label "Power sequence state"@en ;
+.
+s4ener:PowerSequenceStatus
+  a owl:Class ;
+  rdfs:comment "A codelist for the various Power Sequence statuses."@en ;
+  rdfs:label "Power sequence status"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Power 
+  a saref:Property ;
+  rdfs:comment "The Property of Power that a Value Property may be about. This concept can be related to observation or property values that are characterized by a certain value that is measured in a power unit (such as watt or kilowatt)."@en ;
+  rdfs:label "Power"@en ;
+.
+s4ener:Energy 
+  a saref:Property ;
+  rdfs:comment "The Property of Energy that a Value Property may be about. This concept can be related to observations and property values that are characterized by a certain value measured in an energy unit (such as Kilowatt_Hour or Watt_hour)."@en ;
+  rdfs:label "Energy"@en ;
+.
+s4ener:PowerSource
+  a owl:Class ;
+  rdfs:comment "Indicates the power source of a device. Possible values are e.g. mainsSinglePhase or battery"@en ;
+  rdfs:label "Power source"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Preliminary
+  a owl:NamedIndividual ;
+  a s4ener:ScopeType ;
+  rdfs:comment "The preliminary version of this concept, usually an incentive table or power plan"@en ;
+  rdfs:label "Preliminary"@en ;
+.
+s4ener:Production
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates the energy production."@en ;
+  rdfs:label "Production"@en ;
+.
+s4ener:Reduce
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "Load control event action with value 'reduce'"@en ;
+  rdfs:label "Reduce"@en ;
+.
+s4ener:Rejected
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction was rejected"@en ;
+  rdfs:label "Rejected"@en ;
+.
+s4ener:RelativeCost
+  a owl:NamedIndividual ;
+  a s4ener:IncentiveType ;
+  rdfs:comment "The incentive type ''relative cost'' defined in the incentive table."@en ;
+  rdfs:label "Relative cost"@en ;
+.
+s4ener:RenewableEnergyPercentage
+  a owl:NamedIndividual ;
+  a s4ener:IncentiveType ;
+  rdfs:comment "The  incentive type ''renewable energy percentage'' defined in the incentive table."@en ;
+  rdfs:label "Renewable energy percentage"@en ;
+.
+s4ener:Resume
+  a owl:NamedIndividual ;
+  a s4ener:EventActionConsume ;
+  a s4ener:EventActionProduce ;
+  rdfs:comment "Load control event action with value 'resume'"@en ;
+  rdfs:label "Resume"@en ;
+.
+s4ener:hasResumeCostEstimated
+  a owl:ObjectProperty ;
+  rdfs:comment "In a power sequence the additional costs for the resumption of a device to its normal operation (after a pause)."@en ;
+  rdfs:label "Resume cost estimated"@en ;
+  rdfs:subPropertyOf saref:hasPropertyValue ;
+.
+s4ener:hasResumeEnergyEstimated
+  a owl:ObjectProperty ;
+  rdfs:comment "In a power sequence the additional energy for the resumption of a device to its normal operation (after a pause)."@en ;
+  rdfs:label "Resume energy estimated"@en ;
+  rdfs:subPropertyOf saref:hasPropertyValue ;
+.
+s4ener:Revoked
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction was revoked"@en ;
+  rdfs:label "Revoked"@en ;
+.
+s4ener:Rising
+  a s4ener:ValueTendency ;
+  rdfs:comment "This value tendency codelist element indicates that the tendency of this observation indicates that the value is increasing (i.e., rising)."@en ;
+  rdfs:label "Rising"@en ;
+.
+s4ener:Role
+  a owl:Class ;
+  rdfs:comment "A codelist containing the various roles a device can take: producer, consumer, and storage."@en ;
+  rdfs:label "Role"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:RoleType
+  a owl:Class ;
+  rdfs:comment "An enumeration containing the various roles a device can take up: consumer, producer, or storage."@en ;
+  rdfs:label "Role Type"@en ;
+.
+s4ener:Running
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'running'"@en ;
+  rdfs:label "Running"@en ;
+.
+s4ener:ScheduleInstruction
+  a owl:Class ;
+  rdfs:comment "Schedule instruction for a power profile flexibility profile."@en ;
+  rdfs:label "Schedule Instruction"@en ;
+  rdfs:subClassOf s4ener:PPBCInstruction ;
+.
+s4ener:Scheduled
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'scheduled'"@en ;
+  rdfs:label "Scheduled"@en ;
+.
+s4ener:ScheduledPaused
+  a owl:NamedIndividual ;
+  a s4ener:PowerSequenceState ;
+  rdfs:comment "Power sequence state with value 'scheduled paused'"@en ;
+  rdfs:label "Scheduled paused"@en ;
+.
+s4ener:ScopeType
+  a owl:Class ;
+  rdfs:comment "An incentive table may additionally define a scope type to indicate whether it is a preliminary or committed version."@en ;
+  rdfs:label "Scope Type"@en ;
+.
+s4ener:SetPoint
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates a setpoint."@en ;
+  rdfs:label "Setpoint"@en ;
+.
+s4ener:Slot
+  a owl:Class ;
+  rdfs:comment "The single steps of a power sequence are represented by slots. A slot is associated with a slot number (while a power sequence is associated with a power sequence identifier). The slot numbers of two power sequences should be considered independent from each other, i.e., slot number 7 of sequence 1 describes a different slot than slot number 7 of sequence 2. Therefore a slot is only uniquely identified in combination with a sequence ID. "@en ;
+  rdfs:label "Slot"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Usage ;
+      owl:onProperty s4ener:hasUsage ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:PowerSequence ;
+      owl:onProperty s4ener:belongsTo ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:slotNumber ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:optionalSlot ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:slotActivated ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasDefaultDuration ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasDurationUncertainty ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasEarliestStartTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasEndTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasLatestEndTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasMaxDuration ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasMinDuration ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasRemainingPauseTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasStartTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:Usage ;
+      owl:onProperty s4ener:hasUsage ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass s4ener:PowerSequence ;
+      owl:onProperty s4ener:belongsTo ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+s4ener:Stable
+  a s4ener:ValueTendency ;
+  rdfs:comment "This value tendency codelist element indicates that the tendency this observation has is to stay stable, instead of rising or falling."@en ;
+  rdfs:label "Stable"@en ;
+.
+s4ener:StartInterruptionInstruction
+  a owl:Class ;
+  rdfs:comment "An instruction or message indicating the start of an interruption."@en ;
+  rdfs:label "Start Interruption Instruction"@en ;
+  rdfs:subClassOf s4ener:InterruptionInstruction ;
+.
+s4ener:Started
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction was executed"@en ;
+  rdfs:label "Started"@en ;
+.
+s4ener:Storage
+  a owl:Class ;
+  rdfs:comment "storage device which is the main component of Fill Rate Based Control type.). In the context of flexibility control and instructuons, a device shall be able to inform the CEM about its fill level, a measure of how full the storage is, and the lower and upper boundaries that the fill level should remain within. "@en ;
+  rdfs:label "Storage"@en ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf s4ener:Device ;
+.
+s4ener:Succeeded
+  a owl:NamedIndividual ;
+  a s4ener:InstructionStatus ;
+  rdfs:comment "Instruction finished successfully"@en ;
+  rdfs:label "Succeeded"@en ;
+.
+s4ener:TimeSeries
+  a owl:Class ;
+  rdfs:comment "An ordered sequence of data points of a quantity observed at spaced time intervals is referred to as a time series. Time series can be a result of prediction algorithm."@en ;
+  rdfs:label "Time Series"@en ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom time:Interval ;
+      owl:onProperty s4ener:hasEffectivePeriod ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom s4ener:Usage ;
+      owl:onProperty s4ener:hasUsage ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasCreationTime ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasTemporalResolution ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty s4ener:hasUpdateRate ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onClass s4ener:DataPoint ;
+      owl:onProperty s4ener:hasDataPoint ;
+    ] ;
+.
+s4ener:Timer
+  a owl:Class ;
+  rdfs:comment "A timer for time-based operation mode and transition constraints."@en ;
+  rdfs:label "Timer"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Transition
+  a owl:Class ;
+  rdfs:comment "Possible transitions to switch from one Operation Mode to another or to set new parameters."@en ;
+  rdfs:label "Transition"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Upflex
+  a owl:NamedIndividual ;
+  a s4ener:Usage ;
+  rdfs:comment "This datapoint indicates the upper flexibility."@en ;
+  rdfs:label "Upflex"@en ;
+.
+s4ener:UpperLimit
+  a owl:NamedIndividual ;
+  a s4ener:PowerEnvelopeLimitType ;
+  a s4ener:Usage ;
+  rdfs:comment "The PowerEnvelopeLimitType enumeration for the upper limit."@en ;
+  rdfs:comment "This datapoint indicates the upperlimit."@en ;
+  rdfs:label "Upper Limit"@en ;
+  rdfs:label "Upper limit"@en ;
+.
+s4ener:Usage
+  a owl:Class ;
+  rdfs:comment "The usage of a datapoint, time series or message."@en ;
+  rdfs:label "Usage"@en ;
+.
+s4ener:ValueSource
+  a owl:Class ;
+  rdfs:comment "Indicates the source (origin/foundation) of the observation forecasted values for a power sequence. If absent, the source is undefined. Remark: This element shall express the reliability of the forecast."@en ;
+  rdfs:label "Value source"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:ValueTendency
+  a owl:Class ;
+  rdfs:comment "This type indicates a codelist for the s4ener:valueTendency property about whether the tendency of an observation is rising, stable or falling."@en ;
+  rdfs:label "Value tendency"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+s4ener:Vanish
+  a owl:NamedIndividual ;
+  a s4ener:PowerEnvelopeConsequenceType ;
+  rdfs:comment "The load or generation that is limited will vanish. This is for example the case with curtailing production from solar panels; the potentially generated energy is lost and will never reappear."@en ;
+  rdfs:label "Vanish"@en ;
+.
+s4ener:abnormalCondition
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates if this is an instruction during an abnormal condition"@en ;
+  rdfs:domain s4ener:FlexibilityInstruction ;
+  rdfs:label "abnormal condition"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:abnormalConditionOnly
+  a owl:DatatypeProperty ;
+  rdfs:comment """Indicates if this element can only be used during an abnormal condition.
+
+In SAREF4ENER this property is intended to be used on the following properties:
+- s4ener:OperationMode
+- s4ener:Transition
+- s4ener:AllowedLimitRange
+- s4ener:PowerSequence"""@en ;
+  rdfs:label "Abnormal Condition Only"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:activateSlot
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether a slot is used (activateSlot = true) or not (activateSlot = false). SHALL be present if a slot is optional (i.e., the property s4ee:optionalSlot is TRUE), otherwise SHALL be absent (i.e. in case the slot is mandatory)."@en ;
+  rdfs:label "activate slot"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:activeRepetitionNumber
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the current repetition of the sequence of slots. SHALL be present if a power sequence can repeat its sequence of slots (i.e., if s4ee:repetitionTotal is present and has a value > 1). Otherwise, it SHALL be absent. "@en ;
+  rdfs:label "active repetition number"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:activeSlotNumber
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the currently active slot number, if the power sequence state is set to 'running' or 'paused'. Otherwise it SHALL be omitted."@en ;
+  rdfs:label "active slot number"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:allowedLimitRange
+  a owl:ObjectProperty ;
+  rdfs:comment "This property indicates the various AllowedLimitRanges or PowerLimits that this PowerConstraint object consists of."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:PowerConstraint
+          s4ener:EnergyConstraint
+        ) ;
+    ] ;
+  rdfs:label "allowed limit range"@en ;
+  rdfs:range s4ener:AllowedLimitRange ;
+.
+s4ener:belongsTo
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship identifying the ownership of an entity. In particular, a slot belongs to a power sequence, a power sequence belongs to an alternative, an alternative  belongs to a power profile, a power profile belongs to a device.  "@en ;
+  rdfs:label "belongs to"@en ;
+.
+s4ener:belongsToTimeSeries
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship that connects a data point to a time series."@en ;
+  rdfs:domain s4ener:DataPoint ;
+  rdfs:label "belongs to time series"@en ;
+  rdfs:range s4ener:TimeSeries ;
+  owl:inverseOf s4ener:hasDataPoint ;
+.
+s4ener:brandName
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides the name of the brand of a device. Useful where the name of the brand and the vendor differs."@en ;
+  rdfs:label "brand name"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:cheapest
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether a power sequence applies a configuration that minimises the user's energy bill (if set to TRUE). MAY be present. Absence of this element is equal to the presence with value FALSE. "@en ;
+  rdfs:label "cheapest"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:deviceCode
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides a device code for the device as defined by the manufacturer."@en ;
+  rdfs:label "device code"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:deviceName
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides the name of the device as defined by the manufacturer."@en ;
+  rdfs:label "device name"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:endOfRange
+  a owl:ObjectProperty ;
+  rdfs:comment "This property indicates the end of a number range."@en ;
+  rdfs:domain s4ener:NumberRange ;
+  rdfs:label "end of range"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:fillRate
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates the change in fill_level per second. The lower_boundary of the NumberRange is associated with an operation_mode_factor of 0, the upper_boundary is associated with an operation_mode_factor of 1."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:Storage
+          s4ener:OperationModeElement
+        ) ;
+    ] ;
+  rdfs:label "Fill Rate Level"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:firmwareVersion
+  a owl:DatatypeProperty ;
+  rdfs:comment "Version identifier of the firmware used in the device (provided by the manufacturer)"@en ;
+  rdfs:domain s4ener:Device ;
+  rdfs:label "has firmware version"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:fromOperationMode
+  a owl:ObjectProperty ;
+  rdfs:comment "ID of the OperationMode (exact type differs per ControlType) that should be switched from."@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "from operation mode"@en ;
+  rdfs:range s4ener:OperationMode ;
+.
+s4ener:greenest
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether a power sequence optimises the configuration towards the maximum availability of renewable energy (if set to TRUE). MAY be present. Absence of this element is equal to the presence with value FALSE. "@en ;
+  rdfs:label "greenest"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:hardwareRevision
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the hardware revision of the device as defined by the manufacturer."@en ;
+  rdfs:label "hardware revision "@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:hasActiveDurationMax
+  a owl:DatatypeProperty ;
+  rdfs:comment """The active maximum duration a power sequence can run without interruption.
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has active duration max"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasActiveDurationMin
+  a owl:DatatypeProperty ;
+  rdfs:comment """The active mininum duration a power sequence can run without interruption.
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has active duration min"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasActiveDurationSumMax
+  a owl:DatatypeProperty ;
+  rdfs:comment """The active maximum duration a power sequence can run in total (summation of all active times).
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has active duration sum max"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasActiveDurationSumMin
+  a owl:DatatypeProperty ;
+  rdfs:comment """The active minimum duration a power sequence must run in total (summation of all active times).
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has active duration sum min"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasActiveOperationMode
+  a owl:ObjectProperty ;
+  rdfs:comment "A reference to the OperationMode that is presently active"@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:OperationMode
+          saref:Actuator
+        ) ;
+    ] ;
+  rdfs:label "has active operation mode"@en ;
+  rdfs:range s4ener:OperationMode ;
+.
+s4ener:hasAppliedEventActionConsume
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between the state of a load control event consume and the action to be performed as a consequence of this event."@en ;
+  rdfs:label "has applied event action consume"@en ;
+.
+s4ener:hasAppliedEventActionProduce
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between the state of a load control event produce and the action to be performed as a consequence of this event."@en ;
+  rdfs:label "has applied event action produce"@en ;
+.
+s4ener:hasCommodity
+  a owl:ObjectProperty ;
+  rdfs:comment "An indication of which commodity this Role is a consumer, producer, or storer of."@en ;
+  rdfs:domain s4ener:Role ;
+  rdfs:label "Uses commodity"@en ;
+  rdfs:range saref:Commodity ;
+.
+s4ener:hasConsequenceType
+  a owl:ObjectProperty ;
+  rdfs:comment "The consequence type associated with this Power Constraint, which can be Defer or Vanish."@en ;
+  rdfs:domain s4ener:PowerConstraint ;
+  rdfs:label "Has Consequence Type"@en ;
+  rdfs:range s4ener:PowerEnvelopeConsequenceType ;
+.
+s4ener:hasConstraints
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates a Power Envelop Instruction or Profile to the constraints it needs to follow. There are two types of constraints modelled: Power constraints and energy constraints."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:PEBCInstruction
+          s4ener:PowerEnvelopeProfile
+        ) ;
+    ] ;
+  rdfs:label "has constraints"@en ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:PowerConstraint
+          s4ener:EnergyConstraint
+        ) ;
+    ] ;
+.
+s4ener:hasContractualConsumptionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the contractual power limit and the value indicating the max limit consumption."@en ;
+  rdfs:domain s4ener:ContractualPowerLimit ;
+  rdfs:label "has contractual consumption Max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitConsumptionMax ;
+.
+s4ener:hasContractualProductionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the contractual power limit and the value indicating the max limit production."@en ;
+  rdfs:domain s4ener:ContractualPowerLimit ;
+  rdfs:label "has contractual production Max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitProductionMax ;
+.
+s4ener:hasCost
+  a owl:ObjectProperty ;
+  rdfs:comment " Additional costs per second (e.g. wear, services) associated with this operation mode in the currency defined by the ResourceManagerDetails , excluding the commodity cost. The range is expressing uncertainty and is not linked to the operation_mode_factor."@en ;
+  rdfs:comment "The relationship between the s4ener:FlexibilityInstruction and s4ener:DataPoint"@en ;
+  rdfs:domain s4ener:FlexibilityInstruction ;
+  rdfs:domain s4ener:OperationMode ;
+  rdfs:label "has cost"@en ;
+  rdfs:label "hasCost"@en ;
+  rdfs:range s4ener:DataPoint ;
+.
+s4ener:hasCreationTime
+  a owl:DatatypeProperty ;
+  rdfs:comment """The time instant that defines the creation time of a data point or quantity or forecast or similar entities. This is not the same as the time at which the quantity is in effect. For example, if a temperature is forecasted today at 12:30 (creation time of the forecast) for the following day at 14:45 (time when the temperature is expected to be in effect), the this instant should be 12:30 of today.
+
+A creation time (instant). This is the point in time when the data point was created, which is not necessarily the time for which it is valid. In the case of soft-sensors or forecasters, a data point might have been created ahead of time, in the case of a direct observation a data point might created at its time of validity (or at the end of its validity time interval) and in the case of an archived value the data point might have been created after the fact."""@en ;
+  rdfs:label "has creation time"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+.
+s4ener:hasDataPoint
+  a owl:ObjectProperty ;
+  rdfs:comment "This relationship connects a time series to data point."@en ;
+  rdfs:domain s4ener:TimeSeries ;
+  rdfs:label "has data point"@en ;
+  rdfs:range s4ener:DataPoint ;
+.
+s4ener:hasDemandRate
+  a owl:ObjectProperty ;
+  rdfs:comment "The present demand rate that needs to be satisfied by the system"@en ;
+  rdfs:domain s4ener:DemandDrivenProfile ;
+  rdfs:label "has demand rate"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:hasDemandRateForecast
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates a Demand Driven Profile to a TimeSeries object that indicates a forecast of the average demand rate."@en ;
+  rdfs:domain s4ener:DemandDrivenProfile ;
+  rdfs:label "has average demand rate forecast"@en ;
+  rdfs:range s4ener:TimeSeries ;
+.
+s4ener:hasDevice
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between a load control event (used to send overload warning severity level and related load control commands) and the device interested by this event."@en ;
+  rdfs:label "has device"@en ;
+.
+s4ener:hasDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment """This property is added to the  time:DurationDescription class to allow to express time duration also as xsd:duration. This is necessary because in the EEBus/E@h model time is always expressed as xsd:duration. We use this property to express the following time information in the EEBus/E@h model:
+
+- the startTime of the power sequence (in the PowerSequence class). SHALL be present
+- the endTime of the power sequence (in the PowerSequence class). If the value is available, it SHALL be denoted here. Otherwise the element SHALL be omitted.
+- the startTime of observation as absolute or relative value (in the Observation class).
+- the endTime of observation as absolute or relative value (in the Observation class).
+
+The duration is expected to be described as in xsd:duration"""@en ;
+  rdfs:comment """This property specifies that the componenrt has a duration attribute further specified in the subproperty
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "duration in xsd "@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasDefaultDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment """The duration of a slot (SHALL be present in case of 'determined slot'). If a slot has a configurable lenght, this element SHALL reflect the currently configured lenght
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has default duration"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasDurationMin
+  a owl:DatatypeProperty ;
+  rdfs:comment """The minimum duration for some component
+
+This property is suggested to be added in SAREF4ENER_V2"""@en ;
+  rdfs:label "duration minimum"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasDurationUncertainty
+  a owl:DatatypeProperty ;
+  rdfs:comment "The uncertainty of the duration given in the s4ener:defaultDuration property."@en ;
+  rdfs:label "Duration uncertainty"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasManufacturerNodeIdentification
+  a owl:DatatypeProperty ;
+  rdfs:comment "A node identification for the device as defined by the manufacturer. This could be used for the identification of a device, even if it was removed from the network and re-joined later with changed node address."@en ;
+  rdfs:label "has manufacturer node identification"@en ;
+  rdfs:subPropertyOf saref:hasIdentifier ;
+  rdfs:domain saref:Device ;
+.
+s4ener:hasTaskIdentifier 
+  a owl:DatatypeProperty ;
+  rdfs:comment "Used by a device that wants to uniquely identify reoccurring types of power sequences. For example, specific types of washing cycles with specific parameters SHOULD have the same s4ener:taskIdentifier value every time they are offered using power sequences."@en ;
+  rdfs:label "has task identifier"@en ;
+  rdfs:subPropertyOf saref:hasIdentifier ;
+  rdfs:domain s4ener:PowerSequence ;
+.
+s4ener:hasEarliestStartTime
+  a owl:DatatypeProperty ;
+  rdfs:comment """The earliest possible start time for a power sequence or a slot. Only 'xs:duration' value types SHALL be used to denote a relative time which relates to 'now' as time 0.
+
+Note: This element applies to the first repetition of the slot number only.
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has earliest start time"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasEffectivePeriod
+  a owl:ObjectProperty ;
+  rdfs:comment """This connects to the temporal entity which describes when (time interval) the quantity of this data point was, is, or will be in effect. This is the time interval which is covered by the forecast.
+This should be equivalent to the time interval covered by the time-series that express the forecast."""@en ;
+  rdfs:label "has effective period"@en ;
+  rdfs:range time:Interval ;
+.
+s4ener:hasEndTime
+  a owl:DatatypeProperty ;
+  rdfs:comment """The endTime of a power sequence. If the value is available, it SHALL be denoted here. Otherwise the element SHALL be omitted.
+The end time of a slot MAY be stated in this element. The following equation SHALL apply: endTime - startTime = defaultDuration."""@en ;
+  rdfs:label "end time"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasEnergy
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between a power sequence and its energy (in terms of value and unit of measure)"@en ;
+  rdfs:label "has energy"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:hasEnvelope
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates a Power Envelope to the Timeseries object that describes the envelope"@en ;
+  rdfs:domain s4ener:PowerEnvelope ;
+  rdfs:label "has envelope"@en ;
+  rdfs:range s4ener:TimeSeries ;
+.
+s4ener:hasEventStateConsume
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between the specification of the state of a load control event consume and the value that this state can assume."@en ;
+  rdfs:label "has event state consume"@en ;
+  rdfs:subPropertyOf saref:hasState ;
+.
+s4ener:hasEventStateProduce
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between the specification of the state of a load control event produce and the value that this state can assume."@en ;
+  rdfs:label "has event state produce"@en ;
+  rdfs:subPropertyOf saref:hasState ;
+.
+s4ener:hasExecutionTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "Start time of the instruction"@en ;
+  rdfs:domain s4ener:FlexibilityInstruction ;
+  rdfs:label "has execution time"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasFailsafeConsumptionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the failsafe power limit and the value indicating its consumption."@en ;
+  rdfs:domain s4ener:FailsafePowerLimit ;
+  rdfs:label "has failsafe consumption max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitConsumptionMax ;
+.
+s4ener:hasFailsafeDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment "The relationship between the failsafe power limit and its duration. This property indicates the minimum duration the fail safe state will take once a device has entered that state."@en ;
+  rdfs:domain s4ener:FailsafeState ;
+  rdfs:label "has failsafe duration"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasFailsafeProductionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the failsafe power limit and the value indicating its production."@en ;
+  rdfs:domain s4ener:FailsafePowerLimit ;
+  rdfs:label "has failsafe production max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitProductionMax ;
+.
+s4ener:hasFillLevelRange
+  a owl:ObjectProperty ;
+  rdfs:comment """The range of the fill level for which this FRBC.OperationModeElement applies. 
+
+If this concept is applied on a Storage it indicated the range in which a storage should remain."""@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:Storage
+          s4ener:OperationModeElement
+          s4ener:LeakageBehaviourElement
+          s4ener:FillLevelTargetProfileElement
+        ) ;
+    ] ;
+  rdfs:label "Fill Level Range"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:hasFillLevelTargetProfile
+  a owl:ObjectProperty ;
+  rdfs:comment """The Fill Level Target Profile of the storage that the current Fill Rate Profile tries to accomodate for. 
+
+NB. This cannot be modelled as a TimeSeries, since the x-axis is not time."""@en ;
+  rdfs:domain s4ener:Storage ;
+  rdfs:label "has fill level target profile"@en ;
+  rdfs:range s4ener:FillLevelTargetProfile ;
+.
+s4ener:hasFillLevelTargetProfileElement
+  a owl:ObjectProperty ;
+  rdfs:comment "The various Fill Level Target Profile Elements detailing the Fill Level Target Profile that the current Fill Level Based Profile tries to accomodate for."@en ;
+  rdfs:domain s4ener:FillLevelTargetProfile ;
+  rdfs:label "has fill level target profile element"@en ;
+  rdfs:range s4ener:FillLevelTargetProfileElement ;
+.
+s4ener:hasIncentive
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates an IncentiveTable element, such as an IncentiveTableSlot or an IncentiveTableTier to the boundaries that it consists of."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:IncentiveTableSlot
+          s4ener:IncentiveTableTier
+        ) ;
+    ] ;
+  rdfs:label "has incentive"@en ;
+  rdfs:range s4ener:Incentive ;
+.
+s4ener:hasIncentiveType
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the tier and its incentive type"@en ;
+  rdfs:domain s4ener:IncentiveTableTier ;
+  rdfs:label "has incentive type"@en ;
+  rdfs:range s4ener:IncentiveType ;
+.
+s4ener:hasIndex
+  a owl:DatatypeProperty ;
+  rdfs:comment "Gives the index for elements that are an array in the S2 specification. Can be used regularly as well as in RDF* manner on properties."@en ;
+  rdfs:label "has index"@en ;
+  rdfs:range xsd:integer ;
+.
+s4ener:hasInstructionStatus
+  a owl:ObjectProperty ;
+  rdfs:comment "Present status of this instruction."@en ;
+  rdfs:label "has Instruction Status"@en ;
+  rdfs:range s4ener:InstructionStatus ;
+.
+s4ener:hasInterruptionEndTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The end time included in an Interruption Instruction message indicating when the interruption should end."@en ;
+  rdfs:domain s4ener:InterruptionInstruction ;
+  rdfs:label "has end time Interruption"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasInterruptionStartTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The start time included in an Interruption Instruction message indicating when the interruption should start."@en ;
+  rdfs:domain s4ener:InterruptionInstruction ;
+  rdfs:label "Has Interruption Start Time"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasLatestEndTime
+  a owl:DatatypeProperty ;
+  rdfs:comment """The latest possible end time for a power sequence or a slot. Only 'xs:duration' value types SHALL be used to denote a relative time which relates to 'now' as time 0.
+
+Note: This element applies to the first repetition of the slot number only.
+
+This property is suggested to be added to SAREF4Ener_v2 to replace the time:TemporalEntity and/or time:DurationDescription."""@en ;
+  rdfs:label "has latest end time"@en ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasLeakageBehaviour
+  a owl:ObjectProperty ;
+  rdfs:comment "The Leakage Behaviour associated with this storage."@en ;
+  rdfs:domain s4ener:Storage ;
+  rdfs:label "has leakage behaviour"@en ;
+  rdfs:range s4ener:LeakageBehaviour ;
+.
+s4ener:hasLeakageBehaviourElement
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates the LeakageBehaviour description to the LeakageBehaviourElements indicating the detailed description."@en ;
+  rdfs:domain s4ener:LeakageBehaviour ;
+  rdfs:label "has leakage behaviour element"@en ;
+  rdfs:range s4ener:LeakageBehaviourElement ;
+.
+s4ener:hasLowerAveragePower
+  a owl:DatatypeProperty ;
+  rdfs:comment "The lower average power associated with this Energy constraint."@en ;
+  rdfs:domain s4ener:EnergyConstraint ;
+  rdfs:label "has lower average power"@en ;
+  rdfs:range xsd:integer ;
+.
+s4ener:hasLowerBoundary
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates an IncentiveTableBoundary to the datapoint describing its lower boundary or starting point at which this boundary becomes active."@en ;
+  rdfs:domain s4ener:Incentive ;
+  rdfs:label "has lower boundary"@en ;
+  rdfs:range s4ener:DataPoint ;
+.
+s4ener:hasMaxDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment "If a slot has a configurable duration, it SHALL be present and denote the maximum supported configuration. Note: This element applies to the first repetition of the slot number only"@en ;
+  rdfs:label "has max duration"@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasMinDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment "If a slot has a configurable duration, it SHALL be present and denote the minimum supported configuration. Note: This element applies to the first repetition of the slot number only."@en ;
+  rdfs:label "has min duration"@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasMaxPauseBefore
+  a owl:DatatypeProperty ;
+  rdfs:comment "The maximum duration for which a device can be paused between the end of the previous running sequence and the start of this one"@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:label "max pause before"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasNominalConsumption
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the nominal power limit and the value indicating the max limit consumption."@en ;
+  rdfs:domain s4ener:NominalPowerLimit ;
+  rdfs:label "has nominal consumption Max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitConsumptionMax ;
+.
+s4ener:hasNominalProduction
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the nominal power limit and the value indicating the max limit production."@en ;
+  rdfs:domain s4ener:NominalPowerLimit ;
+  rdfs:label "has nominal production Max"@en ;
+  rdfs:range saref:PropertyValue ;
+  rdfs:subPropertyOf s4ener:hasPowerLimitProductionMax ;
+.
+s4ener:hasActivationDelay
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The scheduled activation delay for a slot."@en ;
+  rdfs:label "has activation delay"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasNumberRange
+  a owl:ObjectProperty ;
+  rdfs:comment "This property provides the association between a power range and its number range."@en ;
+  rdfs:domain s4ener:PowerRange ;
+  rdfs:label "has number range"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:hasOperationMode
+  a owl:ObjectProperty ;
+  rdfs:comment """This property indicates the s4ener:OperationMode inidicated by this Actuator, Instruction, or OperationModeProfile.
+
+The SAREF4ENER extension expects the following classes to be used as domain:
+- saref:Actuator
+- s4ener:FRBCInstruction
+- s4ener:DDBCInstruction
+- s4ener:OMBCInstruction
+- s4ener:OperationModeProfile"""@en ;
+  rdfs:label "has Operation Modes"@en ;
+  rdfs:range s4ener:OperationMode ;
+.
+s4ener:hasOperationModeElement
+  a owl:ObjectProperty ;
+  rdfs:comment "List of OperationModeElements, which describe the properties of this FRBC.OperationMode depending on the fill_level. The fill_level_ranges of the items in the Array must be contiguous."@en ;
+  rdfs:domain s4ener:OperationMode ;
+  rdfs:label "Has Operation Mode Element"@en ;
+  rdfs:range s4ener:OperationModeElement ;
+.
+s4ener:hasOperationModeFactor
+  a owl:DatatypeProperty ;
+  rdfs:comment """The number indicates the factor with which the FRBC.OperationMode or OMBC.OperationMode is usedconfigured. The factor should be greater than or equal than 0 and less or equal to 1.
+
+Within the SAREF4ENER extension, this property is to be used on the following classes:
+- s4ener:OMBCInstruction
+- s4ener:OperationMode
+- saref:Actuator
+- s4ener:FRBCInstruction
+- s4ener:DDBCInstruction"""@en ;
+  rdfs:label "Has Operation Mode Factor"@en ;
+  rdfs:range xsd:decimal ;
+.
+s4ener:hasPauseDurationMax
+  a owl:DatatypeProperty ;
+  rdfs:comment "The maximum duration a power sequence can pause after the end of an activity."@en ;
+  rdfs:label "has pause duration max"@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasPauseDurationMin
+  a owl:DatatypeProperty ;
+  rdfs:comment "The minimum duration a power sequence can pause after the end of an activity."@en ;
+  rdfs:label "has pause duration min"@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasPowerEnvelope
+  a owl:ObjectProperty ;
+  rdfs:comment "The PEBC.PowerEnvelope(s) that should be followed by the Resource Manager. There shall be at least one PEBC.PowerEnvelope, but at most one PEBC.PowerEnvelope for each Commodity."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:PEBCInstruction
+          s4ener:PowerEnvelopeProfile
+        ) ;
+    ] ;
+  rdfs:label "has power envelope"@en ;
+  rdfs:range s4ener:PowerEnvelope ;
+.
+s4ener:hasPowerEnvelopeElement
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates a PowerEnvelopeProfile to the various specific PowerEnvelops contained in the profile."@en ;
+  rdfs:domain s4ener:PowerEnvelopeProfile ;
+  rdfs:label "has power envelope element"@en ;
+  rdfs:range s4ener:PowerEnvelope ;
+.
+s4ener:hasPowerLimitConsumptionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the power limit and the value indicating the max limit consumption."@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "has power limit consumption Max"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:hasPowerLimitDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment "The relationship between the power limit and its duration. Power limit may come with a time period of validity based on duration"@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "has power limit duration"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasPowerLimitProductionMax
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the power limit and the value indicating the max limit production."@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "has power limit production Max"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:hasPowerLimitState
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the power limit state and its state (active/ inactive)."@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "has power limit state"@en ;
+.
+s4ener:hasPowerPlan 
+  a owl:ObjectProperty ;
+  rdfs:comment "A reference to a power plan indicating the preliminary or committed usage of the energy smart device for a specific period."@en ;
+  rdfs:label "has power plan"@en ;
+  rdfs:domain s4ener:IncentiveTableProfile ;
+  rdfs:range s4ener:PowerPlan ;
+.  
+s4ener:hasPowerRange
+  a owl:ObjectProperty ;
+  rdfs:comment "The power produced or consumed by this operation mode. The start of each PowerRange is associated with an operation_mode_factor of 0, the end is associated with an operation_mode_factor of 1. In the array there must be at least one PowerRange, and at most one PowerRange per Commodity."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:OperationMode
+          s4ener:OperationModeElement
+        ) ;
+    ] ;
+  rdfs:label "has power ranges"@en ;
+  rdfs:range s4ener:PowerRange ;
+.
+s4ener:hasPowerSequence
+  a owl:ObjectProperty ;
+  rdfs:comment "The various Sequences contained in a Power Sequence Container among which the EMS can choose the proper PowerSequence for the current energy demands."@en ;
+  rdfs:domain s4ener:PowerSequenceContainer ;
+  rdfs:label "has power sequence"@en ;
+  rdfs:range s4ener:PowerSequence ;
+.
+s4ener:hasPowerSequenceContainer
+  a owl:ObjectProperty ;
+  rdfs:comment "The various power sequence containers contained within an S2 Power Profile. The containers have to executed one after the other. Each container contains various Power Sequence anong which the EMS can choose the appropriate Power Sequence for the current energy demands."@en ;
+  rdfs:domain s4ener:PowerProfile ;
+  rdfs:label "has power sequence container"@en ;
+  rdfs:range s4ener:PowerSequenceContainer ;
+.
+s4ener:hasPowerSequenceElement
+  a owl:ObjectProperty ;
+  rdfs:comment "A connection between the Power Sequence and the elements (or Slots) describing the exact contents."@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:label "has power sequence element"@en ;
+  rdfs:range s4ener:PowerSequenceElement ;
+.
+s4ener:hasPowerSequenceStatus
+  a owl:ObjectProperty ;
+  rdfs:comment "This property indicates the current status of this Power Sequence."@en ;
+  rdfs:domain s4ener:PowerSequenceContainer ;
+  rdfs:label "has power sequence status"@en ;
+  rdfs:range s4ener:PowerSequenceStatus ;
+.
+s4ener:hasPowerSource
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates the power source of a device. Possible values are e.g. mainsSinglePhase or battery "@en ;
+  rdfs:label "Power source"@en ;
+  rdfs:range s4ener:PowerSource ;
+.
+s4ener:hasPreviousOperationMode
+  a owl:ObjectProperty ;
+  rdfs:comment "The previous operation mode this device was in"@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          saref:Actuator
+          s4ener:OperationMode
+        ) ;
+    ] ;
+  rdfs:label "has previous operation mode"@en ;
+  rdfs:range s4ener:OperationMode ;
+.
+s4ener:hasQuantile
+  a owl:DatatypeProperty ;
+  rdfs:comment "Used to define a quantile for example on a data point of a quantile time series. The quantile must be a ratio, usually a percentage. In a quantile forecast the hasQuantile property cannot be empty. his property assigns to the data point the percentage of values that are below this value. In other words, a data point with quantile 90 indicates that 90 % of other measurements are (estimated to be) lower. "@en ;
+  rdfs:domain s4ener:DataPoint ;
+  rdfs:label "has quantile"@en ;
+  rdfs:range xsd:decimal ;
+.
+s4ener:hasRecipient
+  a owl:ObjectProperty ;
+  rdfs:comment "This property can be used to connect a flexibility offer or/and flexibility request to a foaf:agent or saref:Device."@en ;
+  rdfs:label "has recipient"@en ;
+.
+s4ener:hasRemainingPauseTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The duration that the current slot (s4ee:activeSlotNumber) permits being paused. This element SHALL ONLY be present if the power sequence is interruptible. Otherwise, it SHALL be omitted. In case the power sequence is interruptible the following rules apply: If the element is absent this means there is no explicit pause duration restriction for the current slot; a value of 0s denoted the slot does not permit being paused."@en ;
+  rdfs:label "has remaining pause time"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasRemainingSlotTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "If state is set to 'running' or 'paused' AND the slot is determined, this element SHALL contain the time the slot still needs to be in 'running' state (this also means the value remains constant during a 'paused' state). Otherwise it SHALL be omitted."@en ;
+  rdfs:label "has remaining slot time"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasRole
+  a owl:ObjectProperty ;
+  rdfs:comment "Each Resource Manager provides one or more energy Roles"@en ;
+  rdfs:domain s4ener:Device ;
+  rdfs:label "performs role"@en ;
+  rdfs:range s4ener:Role ;
+.
+s4ener:hasRoleType
+  a owl:ObjectProperty ;
+  rdfs:comment "The type of this specific role"@en ;
+  rdfs:domain s4ener:Role ;
+  rdfs:label "role type"@en ;
+  rdfs:range s4ener:RoleType ;
+.
+s4ener:hasRunningCosts
+  a owl:ObjectProperty ;
+  rdfs:comment "Additional costs per second (e.g. wear, services) associated with this operation mode in the currency defined by the ResourceManagerDetails , excluding the commodity cost. The range is expressing uncertainty and is not linked to the operation_mode_factor."@en ;
+  rdfs:domain s4ener:OperationModeElement ;
+  rdfs:label "has running costs"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:hasScopeType
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the incentive table and the scope type"@en ;
+  rdfs:domain s4ener:IncentiveTableProfile ;
+  rdfs:label "has scope type"@en ;
+  rdfs:range s4ener:ScopeType ;
+.
+s4ener:hasSlotValue
+  a owl:ObjectProperty ;
+  rdfs:comment "This property is intended to specify the power or energy value of a slot in a power sequence as part of a power profile."@en ;
+  rdfs:domain s4ener:Slot ;
+  rdfs:label "has slot value"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:hasStandardDeviation
+  a owl:DatatypeProperty ;
+  rdfs:comment "The standard deviation (i.e. the square root of the average of the squared deviations of the values subtracted from their average value) can be described with this property."@en ;
+  rdfs:domain s4ener:GaussianDataPoint ;
+  rdfs:label "has standard deviation"@en ;
+  rdfs:range xsd:decimal ;
+.
+s4ener:hasStartTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The startTime of a power sequence or slot. SHALL be present"@en ;
+  rdfs:label "has start time"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasStorage
+  a owl:ObjectProperty ;
+  rdfs:comment "The storage regulated by the related Fill Rate Profile."@en ;
+  rdfs:domain s4ener:FillRateProfile ;
+  rdfs:label "has storage"@en ;
+  rdfs:range s4ener:Storage ;
+.
+s4ener:hasSupplyRange
+  a owl:ObjectProperty ;
+  rdfs:comment "The SupplyRange this OperationMode of a Demand Driven Profile can deliver for the CEM to match the DemandRate. The start of the NumberRange is associated with an operation_mode_factor of 0, the end is associated with an operation_mode_factor of 1."@en ;
+  rdfs:domain s4ener:OperationMode ;
+  rdfs:label "Has Supply Range"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:hasTemporalResolution
+  a owl:DatatypeProperty ;
+  rdfs:comment "The resolution is the distance between two observation timestamps. This only makes sense if the observations are equidistant."@en ;
+  rdfs:label "has temporal resolution"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasTier
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the incentive table and the tiers it consists of"@en ;
+  rdfs:domain s4ener:IncentiveTableProfile ;
+  rdfs:label "has tier incentive"@en ;
+.
+s4ener:hasTimer
+  a owl:ObjectProperty ;
+  rdfs:comment "The set of timers that are available in this Actuator or OperationModeProfile"@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          saref:Actuator
+          s4ener:OperationModeProfile
+        ) ;
+    ] ;
+  rdfs:label "Has Timer"@en ;
+  rdfs:range s4ener:Timer ;
+.
+s4ener:hasTransition
+  a owl:ObjectProperty ;
+  rdfs:comment "The transitions between various saref:States or s4ener:OperationModes that either the Actuator or the OperationModeProfile can support."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          saref:Actuator
+          s4ener:OperationModeProfile
+        ) ;
+    ] ;
+  rdfs:label "has transition"@en ;
+  rdfs:range s4ener:Transition ;
+.
+s4ener:hasTransitionCosts
+  a owl:DatatypeProperty ;
+  rdfs:comment "Absolute costs for going through this Transition in the currency as described in the ResourceManagerDetails."@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "has transition costs"@en ;
+  rdfs:range xsd:decimal ;
+.
+s4ener:hasTransitionDuration
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the time between the initiation of this Transition, and the time at which the device behaves according to the Operation Mode which is defined in the appropriate data element. When no value is provided it is assumed the transition duration is negligible."@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "Transition Duration"@en ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf s4ener:hasDuration ;
+.
+s4ener:hasTransitionTimestamp
+  a owl:DatatypeProperty ;
+  rdfs:comment "Time at which the transition from the previous Operation Mode was initiated. This value shall always be provided, unless the active OperationMode is the first OperationMode the Resource Manager is aware of."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:OperationMode
+          saref:Actuator
+        ) ;
+    ] ;
+  rdfs:label "transition Timestamp"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:hasUpdateRate
+  a owl:DatatypeProperty ;
+  rdfs:comment """The rate at which a data point or time-series or forecast or other data entity is being updated.
+
+If the time series gets regularly updated, then the time between two updates can be recorded here."""@en ;
+  rdfs:label "has update rate"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:hasUpperAveragePower
+  a owl:DatatypeProperty ;
+  rdfs:comment "The upper average power of an Energy constraint of a Power Envelope profile."@en ;
+  rdfs:domain s4ener:EnergyConstraint ;
+  rdfs:label "has upper average power"@en ;
+  rdfs:range xsd:integer ;
+.
+s4ener:isWritable
+  a owl:DatatypeProperty ;
+  rdfs:comment "This Boolean value indicates whether this power plan is writable or fixed."@en ;
+  rdfs:label "is writable"@en ;
+  rdfs:domain s4ener:PowerPlan ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:hasUpperBoundary
+  a owl:ObjectProperty ;
+  rdfs:comment "This property relates a boundary to its upper boundary or the value at which this incentive becomes inactive. This value is optional, because the upper boundary can be inferred from the lower boundary of the next boundary."@en ;
+  rdfs:domain s4ener:Incentive ;
+  rdfs:label "has upper boundary"@en ;
+  rdfs:range s4ener:DataPoint ;
+.
+s4ener:hasUsage
+  a owl:ObjectProperty ;
+  rdfs:comment "This property provides the possibility to add some additional information about the usage of a data-point or time-series. For example, a data point or time series can be used as an upper limit, a lower limit, a baseline, a maximum versus minimum value, or a consumption versus a production value."@en ;
+  rdfs:label "has usage"@en ;
+  rdfs:range s4ener:Usage ;
+.
+s4ener:hasUsageForecast
+  a owl:ObjectProperty ;
+  rdfs:comment """Indicates the usage forecast that may be relevant to decide the energy flexibility strategy following a specific flexibility profile, specifically a fill rate based profile or incentive table.
+
+In SAREF4ENER this property is intended to be applied on an s4ener:FlexibilityProfile."""@en ;
+  rdfs:label "Has Usage Forecast"@en ;
+  rdfs:range s4ener:TimeSeries ;
+.
+s4ener:hasValue
+  a owl:DatatypeProperty ;
+  rdfs:comment "Power value expressed in the unit associated with the Commodity of the Power Value."@en ;
+  rdfs:label "has value"@en ;
+  rdfs:range xsd:decimal ;
+.
+s4ener:hasValueSource
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates the source (origin/foundation) of the observation forecasted values for a power sequence. If absent, the source is undefined. Remark: This element shall express the reliability of the forecast."@en ;
+  rdfs:label "has value source"@en ;
+  rdfs:range s4ener:ValueSource ;
+.
+s4ener:includes
+  a owl:ObjectProperty ;
+  rdfs:comment "This property can be used to connect the flexibility offer and/or flexibility request to the flexibility profile. Additionally, it can be used to specify the s4ener:datapoint, s4ener:timeseries and ic-fc:forecast included in the flexibility offer and/or  flexibility request."@en ;
+  rdfs:label "includes"@en ;
+.
+s4ener:isActive
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether the power limit is currently active"@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "is active"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:isActuatedBy
+  a owl:ObjectProperty ;
+  rdfs:comment "A reference to an (external) actuator that can potentially activate this profile or where the instruction originates from."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:DemandDrivenProfile
+          s4ener:FillRateProfile
+          s4ener:FRBCInstruction
+          s4ener:DDBCInstruction
+        ) ;
+    ] ;
+  rdfs:label "is actuated by"@en ;
+  rdfs:range saref:Actuator ;
+.
+s4ener:isBlockedBy
+  a owl:ObjectProperty ;
+  rdfs:comment "The Timers that block this Transition from initiating while at least one of these Timers is not yet finished"@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "is blocked by"@en ;
+  rdfs:range s4ener:Timer ;
+.
+s4ener:isBoundTo
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between a device and its contractual power limit"@en ;
+  rdfs:domain s4ener:PowerLimitProfile ;
+  rdfs:label "is bound to"@en ;
+  rdfs:range s4ener:ContractualPowerLimit ;
+.
+s4ener:isChangeable
+  a owl:DatatypeProperty ;
+  rdfs:comment """A relationship indicating that this element can be changed by its operator. The boolean value indicates whether it is indeed changeable.
+
+In the SAREF4ENER extension this property is intended for PowerLimits and IncentiveTable elements, such as the IncentiveTableProfile, IncentiveTableSlot, and the IncentiveTableTier."""@en ;
+  rdfs:label "is changeable"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:isFinishedAt
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates when the Timer will be finished. If the DateTimeStamp is in the future, the timer is not yet finished. If the DateTimeStamp is in the past, the timer is finished. When the timer was never started, the value can be an arbitrary DateTimeStamp in the past."@en ;
+  rdfs:domain s4ener:Timer ;
+  rdfs:label "is finished at"@en ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:subPropertyOf saref:hasTimestamp ;
+.
+s4ener:isInterruptible
+  a owl:DatatypeProperty ;
+  rdfs:comment "This property indicates whether the PowerSequence is interruptible."@en ;
+  rdfs:domain s4ener:PowerSequence ;
+  rdfs:label "is interruptible"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:isLimitedWith
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between device and failsafe power limit"@en ;
+  rdfs:domain s4ener:PowerLimitProfile ;
+  rdfs:label "is limited with"@en ;
+  rdfs:range s4ener:FailsafePowerLimit ;
+.
+s4ener:isObligatory
+  a owl:DatatypeProperty ;
+  rdfs:comment "A relationship between the power limit and the boolean value indicating whether the power limit is obligatory"@en ;
+  rdfs:domain s4ener:PowerLimit ;
+  rdfs:label "is obligatory"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:isPausable
+  a owl:DatatypeProperty ;
+  rdfs:comment "Specifies if the power sequence is pausable."@en ;
+  rdfs:label "is pausable"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:isProtectedBy
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the device and the nominal power limit"@en ;
+  rdfs:domain s4ener:PowerLimitProfile ;
+  rdfs:label "is protected by"@en ;
+  rdfs:range s4ener:NominalPowerLimit ;
+.
+s4ener:isStoppable
+  a owl:DatatypeProperty ;
+  rdfs:comment "Specifies if the power sequence is stoppable."@en ;
+  rdfs:label "is stoppable"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:leakageRate
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates how fast the momentary fill level will decrease per second due to leakage within the given range of the fill level."@en ;
+  rdfs:domain s4ener:LeakageBehaviourElement ;
+  rdfs:label "Leakage Rate"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:limitType
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates if this ranges applies to the upper limit or the lower limit."@en ;
+  rdfs:domain s4ener:AllowedLimitRange ;
+  rdfs:label "Limit Type"@en ;
+  rdfs:range s4ener:PowerEnvelopeLimitType ;
+.
+s4ener:maxCyclesPerDay
+  a owl:DatatypeProperty ;
+  rdfs:comment "States the maximum amount of starts a power sequence (of a device) allows per day."@en ;
+  rdfs:label "max cycles per day"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:nodeRemoteControllable
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether the power profile of a device is configured for remote control (e.g., by an energy management system).This refers to the selection chosen by the user on the remote control feature of the device. If nodeRemoteControllable is equal to FALSE, all the supported power sequences shall set the sequenceRemoteControllable property to FALSE. If nodeRemoteControllable is equal to TRUE, at least one power sequence shall be remotely controllable by setting the sequenceRemoteControllable property to TRUE."@en ;
+  rdfs:label "node remote controllable"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:optionalSlot
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates whether a slot is optional (if set to TRUE). Otherwise, if a slot is mandatory, SHALL be omitted or set to FALSE. Note: This element applies to every repetition of the slot number."@en ;
+  rdfs:label "optional slot"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:presentFillLevel
+  a owl:ObjectProperty ;
+  rdfs:comment "A saref:PropertyValue with a percentage value indicating the fill level of the storage."@en ;
+  rdfs:domain s4ener:Storage ;
+  rdfs:label "present fill level"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:producedBy
+  a owl:ObjectProperty ;
+  rdfs:comment """A relation between an entity (datapoint, message, timeseries, instruction) that has been produced by a device or other agent.
+  
+  In the context of SAREF4ENER this property is intended for s4ener:DataPoint, s4ener:TimeSeries, and the various types of flexibility instructions, FlexOffers and FlexRequests."""@en ;
+  rdfs:label "produced by"@en ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          foaf:Agent
+          saref:Device
+        ) ;
+    ] ;
+.
+s4ener:progress
+  a owl:DatatypeProperty ;
+  rdfs:comment "Time that has passed since the selected sequence has started. A value must be provided, unless no sequence has been selected or the selected sequence hasn't started yet."@en ;
+  rdfs:domain s4ener:PowerSequenceContainer ;
+  rdfs:label "progress"@en ;
+  rdfs:range xsd:duration ;
+.
+s4ener:rangeBoundary
+  a owl:ObjectProperty ;
+  rdfs:comment "Boundaries of the power range of this PEBC.AllowedLimitRange. The CEM is allowed to choose values within this range for the power envelope for the limit as described in limit_type. The start of the range shall be smaller or equal than the end of the range."@en ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          s4ener:AllowedLimitRange
+          s4ener:EnergyConstraint
+        ) ;
+    ] ;
+  rdfs:label "range boundary"@en ;
+  rdfs:range s4ener:NumberRange ;
+.
+s4ener:receives
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between a device (e.g., an appliance or a smart meter) and a load control event"@en ;
+  rdfs:label "receives"@en ;
+.
+s4ener:receivesPowerLimit
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between a power limit profile and the power limit it has received for its device to follow"@en ;
+  rdfs:domain s4ener:PowerLimitProfile ;
+  rdfs:label "receives power limit"@en ;
+  rdfs:range s4ener:PowerLimit ;
+.
+s4ener:relatesToCommodity
+  a owl:ObjectProperty ;
+  rdfs:comment """Relates the classes to the various commodities introduced by the S2 standard.
+
+In the SAREF4ENER extension this property is intended for the following:
+- s4ener:PowerRange
+- s4ener:AllowedLimitRange
+- s4ener:EnergyConstraint
+- s4ener:PowerEnvelope"""@en ;
+  rdfs:label "relates to commodity quantity"@en ;
+  rdfs:range saref:Commodity ;
+.
+s4ener:relatesToOffer
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the s4ener:FlexibilityInstruction and the flexibility offer."@en ;
+  rdfs:domain s4ener:FlexibilityInstruction ;
+  rdfs:label "relates to offer"@en ;
+  rdfs:range s4ener:FlexOffer ;
+.
+s4ener:relatesToPowerProfile
+  a owl:ObjectProperty ;
+  rdfs:comment "ID of the PPBC.PowerProfileDefinition of which the PPBC.PowerSequence is being selected and scheduled by the CEM."@en ;
+  rdfs:domain s4ener:PPBCInstruction ;
+  rdfs:label "Relates to power profile"@en ;
+  rdfs:range s4ener:PowerProfile ;
+.
+s4ener:relatesToPowerProfileSequence
+  a owl:ObjectProperty ;
+  rdfs:comment "ID of the PPBC.PowerSequence that is being selected and scheduled by the CEM."@en ;
+  rdfs:domain s4ener:PPBCInstruction ;
+  rdfs:label "Relates to power profile sequence"@en ;
+  rdfs:range s4ener:PowerSequence ;
+.
+s4ener:relatesToPowerProfileSequenceContainer
+  a owl:ObjectProperty ;
+  rdfs:comment "ID of the PPBC.PowerSequnceContainer of which the PPBC.PowerSequence is being selected and scheduled by the CEM."@en ;
+  rdfs:domain s4ener:PPBCInstruction ;
+  rdfs:label "Relates to power profile sequence container"@en ;
+  rdfs:range s4ener:PowerSequenceContainer ;
+.
+s4ener:relatesToRequest
+  a owl:ObjectProperty ;
+  rdfs:comment "The relationship between the flexibility offer and flexibility request"@en ;
+  rdfs:domain s4ener:FlexOffer ;
+  rdfs:label "relates to request"@en ;
+  rdfs:range s4ener:FlexRequest ;
+.
+s4ener:repetitionsTotal
+  a owl:DatatypeProperty ;
+  rdfs:comment "Contains the total number of repetitions, if a power sequence repeats its sequence of slots. Absence of the element is equal to a presence with a value of 0 (zero). SHALL be absent if the value is 1. "@en ;
+  rdfs:label "repetition total"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:requiresUpdate
+  a owl:DatatypeProperty ;
+  rdfs:comment """The relationship between the incentive table element and the boolean data indicating whether the incentive table requires an update.
+
+In the SAREF4ENER extension this property is intended for the following classes:
+- IncentiveTableProfile
+- IncentiveTableTier
+- IncentiveTableSlot"""@en ;
+  rdfs:label "requiresUpdate"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:sequenceRemoteControllable
+  a owl:DatatypeProperty ;
+  rdfs:comment "Denotes whether a power sequence is modifiable (if value is TRUE) or not (if value is FALSE). Modifiability is required to configure power sequences and slots. It is also required to change a power sequence state."@en ;
+  rdfs:label "sequence remote controllable"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:serialNumber
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the serial number of a device as defined by the manufacturer. Usually the same as printed on the case."@en ;
+  rdfs:label "serial number"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:slotActivated
+  a owl:DatatypeProperty ;
+  rdfs:comment "If a slot is optional, represents the current status of the slot (true = the slot will be executed, false = the slot will not be executed). If the slot is not optional, this element SHALL be absent."@en ;
+  rdfs:label "slot activated"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:slotNumber
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides a unique slot identifier for a certain power sequence"@en ;
+  rdfs:label "slot number"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:softwareRevision
+  a owl:DatatypeProperty ;
+  rdfs:comment "Indicates the software revision of a device as defined by the manufacturer."@en ;
+  rdfs:label "software revision"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:startOfRange
+  a owl:ObjectProperty ;
+  rdfs:comment "This property indicates the start of a number range."@en ;
+  rdfs:domain s4ener:NumberRange ;
+  rdfs:label "start of range"@en ;
+  rdfs:range saref:PropertyValue ;
+.
+s4ener:startsTimer
+  a owl:ObjectProperty ;
+  rdfs:comment "List of IDs of Timers that will be (re)started when this transition is initiated"@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "Starts Timer"@en ;
+  rdfs:range s4ener:Timer ;
+.
+s4ener:supportsReselection
+  a owl:DatatypeProperty ;
+  rdfs:comment "If set toTRUE, the power profile of a device does not restrict the number of power sequence re-selections by the CEM, i.e. within a given alternative the CEM may first choose one power sequence, alter the selection by configuring another sequence later on, then alter the selection again, etc. (provided the process rules and data still permit configuration). If supportsReselection is set to FALSE, the device permits the CEM to select a power sequence of an alternative only once."@en ;
+  rdfs:label "supports reselection"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:supportsSingleSlotSchedulingOnly
+  a owl:DatatypeProperty ;
+  rdfs:comment "If set toTRUE, the power profile of a device does NOT permit the modification of more than one slot per configuration command."@en ;
+  rdfs:label "supports single slot scheduling only"@en ;
+  rdfs:range xsd:boolean ;
+.
+s4ener:toOperationMode
+  a owl:ObjectProperty ;
+  rdfs:comment "ID of the OperationMode (exact type differs per ControlType) that will be switched to."@en ;
+  rdfs:domain s4ener:Transition ;
+  rdfs:label "to state operation mode"@en ;
+  rdfs:range s4ener:OperationMode ;
+.
+s4ener:totalSequencesCountMax
+  a owl:DatatypeProperty ;
+  rdfs:comment "Represents the total number of power sequences supported by the power profile of a device"@en ;
+  rdfs:label "total sequences count max"@en ;
+  rdfs:range xsd:unsignedInt ;
+.
+s4ener:triggersEventActionConsume
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between a load control event and the consume action triggered by this event"@en ;
+  rdfs:label "triggers event action consume"@en ;
+.
+s4ener:triggersEventActionProduce
+  a owl:ObjectProperty ;
+  rdfs:comment "A relationship between a load control event and the produce action triggered by this event"@en ;
+  rdfs:label "triggers event action produce"@en ;
+.
+s4ener:valueTendency
+  a owl:ObjectProperty ;
+  rdfs:comment "Indicates whether the tendency of an observation is rising, stable, or falling."@en ;
+  rdfs:label "value tendency"@en ;
+  rdfs:range s4ener:ValueTendency ;
+.
+s4ener:vendorCode
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides a code for the vendor of the device as defined by the manufacturer."@en ;
+  rdfs:label "vendor code"@en ;
+  rdfs:range xsd:string ;
+.
+s4ener:vendorName
+  a owl:DatatypeProperty ;
+  rdfs:comment "Provides the name of the vendor of the device as defined by the manufacturer."@en ;
+  rdfs:label "vendor name"@en ;
+  rdfs:range xsd:string ;
+.
+<https://www.linkedin.com/in/ana%C3%AFs-walle-050baa159/>
+  a owl:NamedIndividual ;
+  rdfs:label "Anais Walle" ;
+.
+<https://www.linkedin.com/in/george-hallak-368301157/>
+  a owl:NamedIndividual ;
+  rdfs:label "George Hallak" ;
+.
+<https://www.linkedin.com/in/georgjung/>
+  a owl:NamedIndividual ;
+  rdfs:label "Georg Jung" ;
+.
+<https://www.linkedin.com/in/josef-baumeister-a221422/>
+  a owl:NamedIndividual ;
+  rdfs:label "Josef Baumeister" ;
+.
+<https://www.linkedin.com/in/wilco-wijbrandi-3994ab4b/>
+  a owl:NamedIndividual ;
+  rdfs:label "Wilco Wijbrandi" ;
+.
+
+saref:hasPrice a owl:ObjectProperty .

@@ -1,0 +1,558 @@
+@prefix : <https://alexdonkers.github.io/bao#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://alexdonkers.github.io/bao> .
+
+<https://alexdonkers.github.io/bao> rdf:type owl:Ontology ;
+                                     <http://purl.org/dc/terms/creator> <https://orcid.org/0000-0002-8809-3277> ;
+                                     <http://purl.org/dc/terms/description> """The Building Assessment Ontology is a consice ontology, developed to semantically describe standards, building codes, certification schemes and regulations in the AEC industry. 
+
+It's aim is to make the integration of such schemes with the actual building easier, to automate the performance evaluation of buildings. The ontology could describe both simple assessment criteria and complex algorithms with multiple parameters.
+
+The ontology has been developed based on common certification schemes related to building performance (including LEED v4.1 O+M, BREEAM In-Use, WELL v2, Green Star - Performance, Energy Star, Green Globes EB and BOMA BEST Sustainable Buildings 3.0)"""@en ;
+                                     <http://purl.org/dc/terms/title> "Building Assessment Ontology"@en ;
+                                     <http://purl.org/vocab/vann/preferredNamespacePrefix> "bao"@en ;
+                                     <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                                     rdfs:label "Building Assessment Ontology"@en ;
+                                     owl:versionInfo "1.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+<http://www.w3.org/2004/02/skos/core#example> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/weblog
+<http://xmlns.com/foaf/0.1/weblog> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://alexdonkers.github.io/bao#assesses
+:assesses rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isAssessedBy ;
+          rdfs:domain :Credit ;
+          rdfs:range :FeatureOfInterest ;
+          rdfs:comment "Linking a credit to a feature of interest it assesses."@en ;
+          rdfs:label "assesses"@en ;
+          <http://www.w3.org/2004/02/skos/core#example> "For example, thermal comfort requirements (bao:Credit) could be linked to a room (bao:FeatureOfInterest) using this object property."@en .
+
+
+###  https://alexdonkers.github.io/bao#calculates
+:calculates rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isCalculatedBy ;
+            rdfs:domain :Equation ;
+            rdfs:range :Parameter ;
+            rdfs:comment "Describing the relationship between an equation and the parameter which is calculated by this equation."@en ;
+            rdfs:label "calculates"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasCategory
+:hasCategory rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasPart ;
+             owl:inverseOf :isCategoryOf ;
+             rdf:type owl:AsymmetricProperty ,
+                      owl:TransitiveProperty ;
+             rdfs:range :Category ;
+             rdfs:comment "Describing the relationship between a part and its category."@en ;
+             rdfs:label "has category"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasCredit
+:hasCredit rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasPart ;
+           owl:inverseOf :isCreditOf ;
+           rdf:type owl:AsymmetricProperty ,
+                    owl:TransitiveProperty ;
+           rdfs:range :Credit ;
+           rdfs:comment "Describing the relationship between a part and its credit."@en ;
+           rdfs:label "has credit"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasCriterion
+:hasCriterion rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasPart ;
+              owl:inverseOf :isCriterionOf ;
+              rdf:type owl:AsymmetricProperty ,
+                       owl:TransitiveProperty ;
+              rdfs:range :Criterion ;
+              rdfs:comment "Describing the relationship between a part and its criterion."@en ;
+              rdfs:label "has criterion"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasMetric
+:hasMetric rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isMetricOf ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Criterion ;
+           rdfs:range :Metric ;
+           rdfs:comment "Linking a criterion to its metric. A criterion can only have one metric."@en ;
+           rdfs:label "has metric"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasObjective
+:hasObjective rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isObjectiveOf ;
+              rdfs:domain :Criterion ;
+              rdfs:range :Objective ;
+              rdfs:comment "Linking a criterion to its objective. A criterion can have multiple objectives."@en ;
+              rdfs:label "has objective"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasPart
+:hasPart rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isPartOf ;
+         rdf:type owl:AsymmetricProperty ,
+                  owl:TransitiveProperty ;
+         rdfs:domain <https://alexdonkers.github.io/bao/Part> ;
+         rdfs:range <https://alexdonkers.github.io/bao/Part> ;
+         rdfs:comment "Relationship between parts and sub parts of a standard. Being the superclass of multiple part-of relationships, bao:hasPart could be used to simply query multiple part-of relationships."@en ;
+         rdfs:label "has part"@en ;
+         <http://www.w3.org/2004/02/skos/core#example> "ao:hasPart is a transitive property, implying that if a bao:Standard -bao:hasPart-> bao:Category, and bao:Category -bao:hasPart-> bao:Credit, then reasoners would infer bao:Standard -bao:hasPart-> bao:Credit."@en .
+
+
+###  https://alexdonkers.github.io/bao#hasStandardizationBody
+:hasStandardizationBody rdf:type owl:ObjectProperty ;
+                        owl:inverseOf :isStandardizationBodyOf ;
+                        rdfs:domain :Standard ;
+                        rdfs:range :StandardizationBody ;
+                        rdfs:comment "Linking a standard to a standardization body managing this standard."@en ;
+                        rdfs:label "has standardization body"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasSubCategory
+:hasSubCategory rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasPart ;
+                owl:inverseOf :isSubCategoryOf ;
+                rdf:type owl:AsymmetricProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain :Category ;
+                rdfs:range :Category ;
+                rdfs:comment "Describing the relationship between a category and its sub category."@en ;
+                rdfs:label "has sub category"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasSubCredit
+:hasSubCredit rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasPart ;
+              owl:inverseOf :isSubCreditOf ;
+              rdf:type owl:AsymmetricProperty ,
+                       owl:TransitiveProperty ;
+              rdfs:domain :Credit ;
+              rdfs:range :Credit ;
+              rdfs:comment "Describing the relationship between a credit and its sub credit."@en ;
+              rdfs:label "has sub credit"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasSubCriterion
+:hasSubCriterion rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasPart ;
+                 owl:inverseOf :isSubCriterionOf ;
+                 rdf:type owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Criterion ;
+                 rdfs:range :Criterion ;
+                 rdfs:comment "Describing the relationship between a criterion and its sub criterion."@en ;
+                 rdfs:label "has sub criterion"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasSubStandard
+:hasSubStandard rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasPart ;
+                owl:inverseOf :isSubStandardOf ;
+                rdf:type owl:AsymmetricProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain :Standard ;
+                rdfs:range :Standard ;
+                rdfs:comment "Describing the relationship between a standard and its sub standard."@en ;
+                rdfs:label "has sub standard"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasSymbol
+:hasSymbol rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isSymbolOf ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Parameter ;
+           rdfs:range :Symbol ;
+           rdfs:comment "Linking a parameter to its symbolic representation."@en ;
+           rdfs:label "has symbol"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasUnit
+:hasUnit rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isUnitOf ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain :Parameter ;
+         rdfs:range :Unit ;
+         rdfs:comment "Linking a parameter to a unit."@en ;
+         rdfs:label "has unit"@en .
+
+
+###  https://alexdonkers.github.io/bao#isAssessedBy
+:isAssessedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :FeatureOfInterest ;
+              rdfs:range :Credit ;
+              rdfs:comment "Linking a feature of interest to the credit it is assessed by."@en ;
+              rdfs:label "is assessed by"@en ;
+              <http://www.w3.org/2004/02/skos/core#example> "For example, a room (bao:FeatureOfInterest) could be linked to thermal comfort requirements (bao:Credit) using this object property."@en .
+
+
+###  https://alexdonkers.github.io/bao#isCalculatedBy
+:isCalculatedBy rdf:type owl:ObjectProperty ;
+                rdfs:domain :Parameter ;
+                rdfs:range :Equation ;
+                rdfs:comment "Describing the relationship between a parameter and the equation which calculates this parameter."@en ;
+                rdfs:label "is calculated by"@en .
+
+
+###  https://alexdonkers.github.io/bao#isCategoryOf
+:isCategoryOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isPartOf ;
+              rdf:type owl:AsymmetricProperty ,
+                       owl:TransitiveProperty ;
+              rdfs:domain :Category ;
+              rdfs:comment "Describing the relationship between a category and the part which containts this category."@en ;
+              rdfs:label "is category of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isCreditOf
+:isCreditOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :isPartOf ;
+            rdf:type owl:AsymmetricProperty ,
+                     owl:TransitiveProperty ;
+            rdfs:domain :Credit ;
+            rdfs:comment "Describing the relationship between a credit and the part which containts this credit."@en ;
+            rdfs:label "is credit of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isCriterionOf
+:isCriterionOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isPartOf ;
+               rdf:type owl:AsymmetricProperty ,
+                        owl:TransitiveProperty ;
+               rdfs:domain :Criterion ;
+               rdfs:comment "Describing the relationship between a criterion and the part which containts this criterion."@en ;
+               rdfs:label "is criterion of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isMetricOf
+:isMetricOf rdf:type owl:ObjectProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain :Metric ;
+            rdfs:range :Criterion ;
+            rdfs:comment "Linking a metric to the criterion it belongs to. A criterion can only have one metric."@en ;
+            rdfs:label "is metric of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isObjectiveOf
+:isObjectiveOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :Objective ;
+               rdfs:range :Criterion ;
+               rdfs:comment "Linking an objective to the criterion it belongs to. A criterion can have multiple objectives."@en ;
+               rdfs:label "is objective of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isPartOf
+:isPartOf rdf:type owl:ObjectProperty ,
+                   owl:AsymmetricProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:domain <https://alexdonkers.github.io/bao/Part> ;
+          rdfs:range <https://alexdonkers.github.io/bao/Part> ;
+          rdfs:comment "Relationship between sub parts and parts of a standard."@en ;
+          rdfs:label "is part of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isStandardizationBodyOf
+:isStandardizationBodyOf rdf:type owl:ObjectProperty ;
+                         rdfs:domain :StandardizationBody ;
+                         rdfs:range :Standard ;
+                         rdfs:comment "Linking a standardization body to a standard."@en ;
+                         rdfs:label "is standardization body of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isSubCategoryOf
+:isSubCategoryOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isPartOf ;
+                 rdf:type owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Category ;
+                 rdfs:range :Category ;
+                 rdfs:comment "Describing a part-whole relationship between a sub category and the category it belongs to."@en ;
+                 rdfs:label "is sub category of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isSubCreditOf
+:isSubCreditOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isPartOf ;
+               rdf:type owl:AsymmetricProperty ,
+                        owl:TransitiveProperty ;
+               rdfs:domain :Credit ;
+               rdfs:range :Credit ;
+               rdfs:comment "Describing a part-whole relationship between a sub credit and the credit it belongs to."@en ;
+               rdfs:label "is sub credit of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isSubCriterionOf
+:isSubCriterionOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :isPartOf ;
+                  rdf:type owl:AsymmetricProperty ,
+                           owl:TransitiveProperty ;
+                  rdfs:domain :Criterion ;
+                  rdfs:range :Criterion ;
+                  rdfs:comment "Describing a part-whole relationship between a sub criterion and the criterion it belongs to."@en ;
+                  rdfs:label "is sub criterion of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isSubStandardOf
+:isSubStandardOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isPartOf ;
+                 rdf:type owl:AsymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Standard ;
+                 rdfs:range :Standard ;
+                 rdfs:comment "Describing a part-whole relationship between a sub standard and the standard it belongs to."@en ;
+                 rdfs:label "is sub standard of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isSymbolOf
+:isSymbolOf rdf:type owl:ObjectProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain :Symbol ;
+            rdfs:range :Parameter ;
+            rdfs:comment "Linking a symbolic representation to the parameter it represents."@en ;
+            rdfs:label "is symbol of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isUnitOf
+:isUnitOf rdf:type owl:ObjectProperty ,
+                   owl:InverseFunctionalProperty ;
+          rdfs:domain :Unit ;
+          rdfs:range :Parameter ;
+          rdfs:comment "Linking a unit to a parameter."@en ;
+          rdfs:label "is unit of"@en .
+
+
+###  https://alexdonkers.github.io/bao#isUsedBy
+:isUsedBy rdf:type owl:ObjectProperty ;
+          owl:inverseOf :usesParameter ;
+          rdfs:domain :Parameter ;
+          rdfs:range :Equation ;
+          rdfs:comment "Describing the relationship between a parameter and an equation which uses this parameter."@en ;
+          rdfs:label "is used by"@en .
+
+
+###  https://alexdonkers.github.io/bao#usesParameter
+:usesParameter rdf:type owl:ObjectProperty ;
+               rdfs:domain :Equation ;
+               rdfs:range :Parameter ;
+               rdfs:comment "Describing the relationship between an equation and a parameter which is used in this equation."@en ;
+               rdfs:label "uses parameter"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://alexdonkers.github.io/bao#hasAssessment
+:hasAssessment rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Objective ;
+               rdfs:comment "The assessment corresponding to the objective."@en ;
+               rdfs:label "has assessment"@en ;
+               <http://www.w3.org/2004/02/skos/core#example> "E.g. awarded points, 'Good', 'Acceptable', 'Poor'"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Criterion ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Links a criterion to a textual description."@en ;
+                rdfs:label "has description"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasExpression
+:hasExpression rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Equation ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Links an equation to its expression. The expression is described using a string."@en ;
+               rdfs:label "has expression"@en .
+
+
+###  https://alexdonkers.github.io/bao#hasObjectiveValue
+:hasObjectiveValue rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain :Objective ;
+                   rdfs:comment "Links the objective to its objective value. This value is being compared to the measured value to assess it."@en ;
+                   rdfs:label "has objective value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://alexdonkers.github.io/bao#Category
+:Category rdf:type owl:Class ;
+          rdfs:subClassOf <https://alexdonkers.github.io/bao/Part> ;
+          rdfs:comment "A collection of performance aspects based on their similarities."@en ;
+          rdfs:label "Category"@en .
+
+
+###  https://alexdonkers.github.io/bao#Constant
+:Constant rdf:type owl:Class ;
+          rdfs:subClassOf :Parameter ;
+          owl:disjointWith :Variable ;
+          rdfs:comment "A parameter with a static value."@en ;
+          rdfs:label "Constant"@en .
+
+
+###  https://alexdonkers.github.io/bao#Credit
+:Credit rdf:type owl:Class ;
+        rdfs:subClassOf <https://alexdonkers.github.io/bao/Part> ;
+        rdfs:comment "A performance aspect."@en ;
+        rdfs:label "Credit"@en .
+
+
+###  https://alexdonkers.github.io/bao#Criterion
+:Criterion rdf:type owl:Class ;
+           rdfs:subClassOf <https://alexdonkers.github.io/bao/Part> ;
+           rdfs:comment "A predefined rule by which the actual performance is compared to."@en ;
+           rdfs:label "Criterion"@en .
+
+
+###  https://alexdonkers.github.io/bao#Equation
+:Equation rdf:type owl:Class ;
+          rdfs:comment "A mathematical statement that asserts the equality of two expressions"@en ;
+          rdfs:label "Equation"@en .
+
+
+###  https://alexdonkers.github.io/bao#FeatureOfInterest
+:FeatureOfInterest rdf:type owl:Class ;
+                   rdfs:comment "An abstraction of a real-world phenomenon."@en ;
+                   rdfs:label "Feature of interest"@en .
+
+
+###  https://alexdonkers.github.io/bao#Metric
+:Metric rdf:type owl:Class ;
+        rdfs:subClassOf :Parameter ;
+        rdfs:comment "A parameter which is used to compare the actual performance to the desired performance."@en ;
+        rdfs:label "Metric"@en .
+
+
+###  https://alexdonkers.github.io/bao#Objective
+:Objective rdf:type owl:Class ;
+           rdfs:comment "Describes the desired value of a metric. An objective consists of one value and a corresponding assessment. Next to plain values, we also introduced specialized objectives, such as a minimum value, an average value or a count. A criterion can have multiple objectives."@en ;
+           rdfs:label "Objective"@en .
+
+
+###  https://alexdonkers.github.io/bao#Parameter
+:Parameter rdf:type owl:Class ;
+           rdfs:comment "A physical property which value determines the characteristic of something."@en ;
+           rdfs:label "Parameter"@en .
+
+
+###  https://alexdonkers.github.io/bao#Standard
+:Standard rdf:type owl:Class ;
+          rdfs:subClassOf <https://alexdonkers.github.io/bao/Part> ;
+          rdfs:comment "A document containing predefined criteria to compare the actual performance by a desired performance."@en ;
+          rdfs:label "Standard"@en .
+
+
+###  https://alexdonkers.github.io/bao#StandardizationBody
+:StandardizationBody rdf:type owl:Class ;
+                     rdfs:comment "A social or legal institution managing a standard."@en ;
+                     rdfs:label "Standardization body"@en .
+
+
+###  https://alexdonkers.github.io/bao#Symbol
+:Symbol rdf:type owl:Class ;
+        rdfs:subClassOf :Equation ;
+        owl:disjointWith :Unit ;
+        rdfs:comment "A figure that is used to represent a parameter."@en ;
+        rdfs:label "Symbol"@en .
+
+
+###  https://alexdonkers.github.io/bao#Unit
+:Unit rdf:type owl:Class ;
+      rdfs:comment "A particular quantity value that has been chosen as a scale for measuring other quantities of the same kind."@en ;
+      rdfs:label "Unit"@en .
+
+
+###  https://alexdonkers.github.io/bao#Variable
+:Variable rdf:type owl:Class ;
+          rdfs:subClassOf :Parameter ;
+          rdfs:comment "A parameter with a value that may change over time."@en ;
+          rdfs:label "Variable"@en .
+
+
+###  https://alexdonkers.github.io/bao/Part
+<https://alexdonkers.github.io/bao/Part> rdf:type owl:Class ;
+                                         rdfs:comment "A collective class which is introduced to represent standards and parts of these standards."@en ;
+                                         rdfs:label "Part"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://alexdonkers.github.io/bao#
+: rdf:type owl:NamedIndividual .
+
+
+###  https://orcid.org/0000-0002-8809-3277
+<https://orcid.org/0000-0002-8809-3277> rdf:type owl:NamedIndividual ;
+                                        rdfs:label "Alex Donkers" ;
+                                        <http://xmlns.com/foaf/0.1/name> "Alex Donkers" ;
+                                        <http://xmlns.com/foaf/0.1/weblog> "https://linktr.ee/AlexDonkers" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Category
+                :Credit
+                :Criterion
+                :Standard
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

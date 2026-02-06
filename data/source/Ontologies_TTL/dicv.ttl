@@ -1,0 +1,558 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/digitalconstruction/0.5/Variables> .
+
+<https://w3id.org/digitalconstruction/0.5/Variables> rdf:type owl:Ontology ;
+                                                      <http://purl.org/dc/elements/1.1/creator> "Seppo Törmä" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2021-04-06" ;
+                                                      <http://purl.org/dc/elements/1.1/title> "Digital Construction Variables" ;
+                                                      <http://purl.org/dc/terms/abstract> "Ontology of properties, property states, measurements, constraints, and values. The ontology allows the objectification of basic properties, and therefor the addition of their quantity types, units of measure, value time, variables and constraints." ;
+                                                      <http://purl.org/dc/terms/created> "2020-01-12" ;
+                                                      <http://purl.org/dc/terms/description> "The objectified property representation is orthogonal to the other definitions in the ontologies: any property can be objectified and consequently be subject of constraints. " ;
+                                                      <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "dicv" ;
+                                                      <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/digitalconstruction/0.5/Variables" ;
+                                                      rdfs:label "Digital Construction Variables" ;
+                                                      rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#constrainsProperty
+:constrainsProperty rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isConstrainedBy ;
+                    rdfs:domain :Constraint ;
+                    rdfs:range :Property ;
+                    rdfs:comment "A relation to associate a Constraint with a Property" ;
+                    rdfs:label "constrainsProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#constrainsProperty1
+:constrainsProperty1 rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :constrainsProperty ;
+                     rdfs:domain :QuantitativeConstraint ;
+                     rdfs:range :Property ;
+                     rdfs:comment "The first property associated with a constraint" ;
+                     rdfs:label "constrainsProperty1" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#constrainsProperty2
+:constrainsProperty2 rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :constrainsProperty ;
+                     rdfs:domain :BinaryConstraint ;
+                     rdfs:range :Property ;
+                     rdfs:comment "The second property associated with a constraint" ;
+                     rdfs:label "constrainsProperty2" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#constrainsProperty3
+:constrainsProperty3 rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :constrainsProperty ;
+                     rdfs:domain :TernaryConstraint ;
+                     rdfs:range :Property ;
+                     rdfs:comment "The third property associated with a constraint" ;
+                     rdfs:label "constrainsProperty3" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#dependsOnProperty
+:dependsOnProperty rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Property ;
+                   rdfs:range :Property ;
+                   rdfs:label "dependsOnProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasComparison
+:hasComparison rdf:type owl:ObjectProperty ;
+               rdfs:domain :QuantitativeConstraint ;
+               rdfs:range :Comparison ;
+               rdfs:comment "The Comparison operator of an ArithmeticConstraint. For example, in 'property1 LessThan property2' the Comparison operator is LessThan" ;
+               rdfs:label "hasComparison" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasConstituentConstraint
+:hasConstituentConstraint rdf:type owl:ObjectProperty ;
+                          rdfs:domain :CompositeConstraint ;
+                          rdfs:range :Constraint ;
+                          rdfs:comment "A Constraint that is part of a CompositeConstraint" ;
+                          rdfs:label "hasConstituentConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasObjectValue
+:hasObjectValue rdf:type owl:ObjectProperty ;
+                rdfs:range owl:Thing ;
+                rdfs:comment "Associates an object value (owl:Thing) to a property or property state" ;
+                rdfs:label "hasObjectValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasOperator
+:hasOperator rdf:type owl:ObjectProperty ;
+             rdfs:domain :BinaryConstraint ;
+             rdfs:range :Operator ;
+             rdfs:label "hasOperator" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasParameter
+:hasParameter rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasProperty ;
+              owl:inverseOf :isParameterOf ;
+              rdfs:domain :Subject ;
+              rdfs:range :Property ;
+              rdfs:comment "A relation to a property that is a parameter to the object, that is, an input or a given. For example, a scenario can have a parameter priceIndex" ;
+              rdfs:label "hasParameter" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasPossibleValue
+:hasPossibleValue rdf:type owl:ObjectProperty ;
+                  rdfs:domain :EnumeratedDomain ;
+                  rdfs:label "hasPossibleValue" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasPrediction
+:hasPrediction rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasProperty ;
+               owl:inverseOf :isPredictionOf ;
+               rdfs:domain :Subject ;
+               rdfs:range :Property ;
+               rdfs:comment "A relation to a property that is a prediction generated by the object, that is, an output or a result. For example, a scenario can have a prediction paybackTime" ;
+               rdfs:label "hasPrediction" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasProperty
+:hasProperty rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isPropertyOf ;
+             rdfs:domain :Subject ;
+             rdfs:range :Property ;
+             rdfs:comment "Associates an objectified property to any entity" ;
+             rdfs:label "hasProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasPropertyState
+:hasPropertyState rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Property ;
+                  rdfs:range :PropertyState ;
+                  rdfs:label "hasPropertyState" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasQuantityKind
+:hasQuantityKind rdf:type owl:ObjectProperty ;
+                 rdfs:domain :QuantitativeProperty ;
+                 rdfs:range :QuantityKind ;
+                 rdfs:label "hasQuantityKind" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasUnit
+:hasUnit rdf:type owl:ObjectProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Property
+                                     :PropertyState
+                                   )
+                     ] ;
+         rdfs:range :Unit ;
+         rdfs:comment "Associates a unit of measure to a value" ;
+         rdfs:label "hasUnit" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasValueDomain
+:hasValueDomain rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isValueDomainOf ;
+                rdfs:domain :Property ;
+                rdfs:range :ValueDomain ;
+                rdfs:comment "The relation that associates a Property with a ValueDomain" ;
+                rdfs:label "hasValueDomain" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasValueType
+:hasValueType rdf:type owl:ObjectProperty ;
+              rdfs:domain :ValueDomain ;
+              rdfs:label "hasValueType" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isConstrainedBy
+:isConstrainedBy rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Property ;
+                 rdfs:range :Constraint ;
+                 rdfs:comment "The relation that associates a Property with a Constraint" ;
+                 rdfs:label "isConstrainedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isParameterOf
+:isParameterOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isPropertyOf ;
+               rdfs:domain :Property ;
+               rdfs:range :Subject ;
+               rdfs:comment "A relation to an object whose parameter (an input property or a given) this is. For example, a priceIndex is a parameter of a scenario" ;
+               rdfs:label "isParameterOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isPredictionOf
+:isPredictionOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :isPropertyOf ;
+                rdfs:domain :Property ;
+                rdfs:range :Subject ;
+                rdfs:comment "A relation to an object whose prediction (an output property or a result) this is. For example, paybackTime is a prediction of a scenario " ;
+                rdfs:label "isPredictionOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isPropertyFor
+:isPropertyFor rdf:type owl:ObjectProperty ;
+               rdfs:domain :Property ;
+               rdfs:range rdf:Property ;
+               rdfs:comment "Associates a Property object to the owl:ObjectProperty or owl:DatatypeProperty that it objectifies" ;
+               rdfs:label "isPropertyFor" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isPropertyOf
+:isPropertyOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Property ;
+              rdfs:range :Subject ;
+              rdfs:comment "Associates the Property to the thing whose property it is" ;
+              rdfs:label "isPropertyOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#isValueDomainOf
+:isValueDomainOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ValueDomain ;
+                 rdfs:range :Property ;
+                 rdfs:comment "The relation that associates a ValueDomain with a Property" ;
+                 rdfs:label "isValueDomainOf" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasLowerBound
+:hasLowerBound rdf:type owl:DatatypeProperty ;
+               rdfs:domain :IntervalDomain ;
+               rdfs:label "hasLowerBound" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasPreferenceDegree
+:hasPreferenceDegree rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Constraint ;
+                     rdfs:range xsd:decimal ;
+                     rdfs:comment "Specifies that the constraint is actually a soft constraint with the specified degree of preference for holding. The preference is between [0.0, 1.0], with 0.0 meaning no preference at all and 1.0 that it is mandatory that the constraint holds" ;
+                     rdfs:label "hasPreferenceDegree" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasTimeOfCreation
+:hasTimeOfCreation rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :PropertyState ;
+                   rdfs:range xsd:dateTime ;
+                   rdfs:comment "The time when the value was created. For example, when the value was recorded." ;
+                   rdfs:label "hasTimeOfCreation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasTimeOfValidity
+:hasTimeOfValidity rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :PropertyState ;
+                   rdfs:range xsd:dateTime ;
+                   rdfs:comment "The time when the value specified became valid. For example, the occurrence time of the phenomenon or the event that caused the value." ;
+                   rdfs:label "hasTimeOfValidity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasUpperBound
+:hasUpperBound rdf:type owl:DatatypeProperty ;
+               rdfs:domain :IntervalDomain ;
+               rdfs:label "hasUpperBound" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#hasValue
+:hasValue rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Property
+                                      :PropertyState
+                                      :QuantitativeConstraint
+                                    )
+                      ] ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment "Associates a data value to a Property, a PropertyState, or a QuantitativeConstraint" ;
+          rdfs:label "hasValue" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Property
+rdf:Property rdf:type owl:Class .
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#BinaryConstraint
+:BinaryConstraint rdf:type owl:Class ;
+                  rdfs:subClassOf :QuantitativeConstraint ;
+                  rdfs:label "BinaryConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Comparison
+:Comparison rdf:type owl:Class ;
+            rdfs:comment "Comparison operator between Properties. Examples: equal or less than." ;
+            rdfs:label "Comparison" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#CompositeConstraint
+:CompositeConstraint rdf:type owl:Class ;
+                     rdfs:subClassOf :Constraint ;
+                     owl:disjointWith :ElementaryConstraint ;
+                     rdfs:comment "Combination of other constraints, either elementary or composite ones. Examples are conjunctive composition (and) or negated composition (not)." ;
+                     rdfs:label "CompositeConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#ConjunctiveConstraint
+:ConjunctiveConstraint rdf:type owl:Class ;
+                       rdfs:subClassOf :CompositeConstraint ;
+                       rdfs:comment "Constraint that is a conjuction (logical and) of the constituent constraints" ;
+                       rdfs:label "ConjunctiveConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Constraint
+:Constraint rdf:type owl:Class ;
+            rdfs:comment "A constraint limits the possible values that specified Properties can simultaneously have. Examples: values of a set of Prperties must all be same, or all different, or that the value of first Property is less than the value of second one." ;
+            rdfs:label "Constraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#DifferentValues
+:DifferentValues rdf:type owl:Class ;
+                 rdfs:subClassOf :ElementaryConstraint ;
+                 rdfs:comment "A Constraint that states that the involved Properties (two or more) must have different values." ;
+                 rdfs:label "DifferentValues" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#DisjunctiveConstraint
+:DisjunctiveConstraint rdf:type owl:Class ;
+                       rdfs:subClassOf :CompositeConstraint ;
+                       rdfs:comment "Constraint that is a disjuction (logical ord) of the constituent constraints" ;
+                       rdfs:label "DisjunctiveConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#ElementaryConstraint
+:ElementaryConstraint rdf:type owl:Class ;
+                      rdfs:subClassOf :Constraint ;
+                      rdfs:comment "Constraint that does not have other more simple constraints as its parts." ;
+                      rdfs:label "ElementaryConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#EnumeratedDomain
+:EnumeratedDomain rdf:type owl:Class ;
+                  rdfs:subClassOf :ValueDomain ;
+                  rdfs:comment "A domain of enumerated values. Should be used with object properties" ;
+                  rdfs:label "EnumeratedDomain" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#IntervalDomain
+:IntervalDomain rdf:type owl:Class ;
+                rdfs:subClassOf :OrderedDomain ;
+                rdfs:comment "Ordered domain that is represented with the minimum and maximum limits. Useful for example in temporal reasoning." ;
+                rdfs:label "IntervalDomain" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#NegatedConstraint
+:NegatedConstraint rdf:type owl:Class ;
+                   rdfs:subClassOf :CompositeConstraint ;
+                   rdfs:comment "A composite constraint that is negation of its constituent constraints (conjunctively, if there are multiple)" ;
+                   rdfs:label "NegatedConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#OneOfValues
+:OneOfValues rdf:type owl:Class ;
+             rdfs:subClassOf :ElementaryConstraint ;
+             rdfs:comment "A unary constraint that limits the values of a property to one of the enumerated values" ;
+             rdfs:label "OneOfValues" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Operator
+:Operator rdf:type owl:Class ;
+          rdfs:comment "Artihmetic operators, such as plus, minus, times and divide." ;
+          rdfs:label "Operator" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#OrderedDomain
+:OrderedDomain rdf:type owl:Class ;
+               rdfs:subClassOf :ValueDomain ;
+               rdfs:comment "A domain of ordered values. Should be used with DataProperties that have ordered domains (such as numbers)." ;
+               rdfs:label "OrderedDomain" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Property
+:Property rdf:type owl:Class ;
+          rdfs:comment "An objectified property" ;
+          rdfs:label "Property" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#PropertyState
+:PropertyState rdf:type owl:Class ;
+               rdfs:comment "Defines or constrains the value of a Property." ;
+               rdfs:label "PropertyState" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#QuantitativeConstraint
+:QuantitativeConstraint rdf:type owl:Class ;
+                        rdfs:subClassOf :ElementaryConstraint ;
+                        rdfs:label "QuantitativeConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#QuantitativeProperty
+:QuantitativeProperty rdf:type owl:Class ;
+                      rdfs:subClassOf :Property ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasPropertyState ;
+                                        owl:allValuesFrom :QuantitativeState
+                                      ] ;
+                      rdfs:comment "A Property that can assume quantitative values. Examples: 'height', 'weight', 'number of items'" ;
+                      rdfs:label "QuantitativeProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#QuantitativeState
+:QuantitativeState rdf:type owl:Class ;
+                   rdfs:subClassOf :PropertyState ;
+                   rdfs:label "QuantitativeState" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#QuantityKind
+:QuantityKind rdf:type owl:Class ;
+              rdfs:subClassOf owl:Thing ;
+              rdfs:comment "Quantity Kind - Aligned with qudt:QuantityKind" ;
+              rdfs:label "QuantityKind" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#SameValues
+:SameValues rdf:type owl:Class ;
+            rdfs:subClassOf :ElementaryConstraint ;
+            rdfs:comment "A constraint for all involved Properties must have a same value" ;
+            rdfs:label "SameValues" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Subject
+:Subject rdf:type owl:Class ;
+         rdfs:comment "Anything that can have properties" ;
+         rdfs:label "Subject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#TernaryConstraint
+:TernaryConstraint rdf:type owl:Class ;
+                   rdfs:subClassOf :QuantitativeConstraint ;
+                   rdfs:label "TernaryConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Unit
+:Unit rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:comment "Unit of Measure - Aligned with qudt:Unit" ;
+      rdfs:label "Unit" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#ValueDomain
+:ValueDomain rdf:type owl:Class ;
+             rdfs:comment "An instance/literal level representation for the set of possible values that can be given to the variable" ;
+             rdfs:label "ValueDomain" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Divide
+:Divide rdf:type owl:NamedIndividual ,
+                 :Operator .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Equal
+:Equal rdf:type owl:NamedIndividual ,
+                :Comparison .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Less
+:Less rdf:type owl:NamedIndividual ,
+               :Comparison .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#LessOrEqual
+:LessOrEqual rdf:type owl:NamedIndividual ,
+                      :Comparison .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Minus
+:Minus rdf:type owl:NamedIndividual ,
+                :Operator .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#NotEqual
+:NotEqual rdf:type owl:NamedIndividual ,
+                   :Comparison .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Plus
+:Plus rdf:type owl:NamedIndividual ,
+               :Operator .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Variables#Times
+:Times rdf:type owl:NamedIndividual ,
+                :Operator .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ConjunctiveConstraint
+                :DisjunctiveConstraint
+                :NegatedConstraint
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Constraint
+                :QuantitativeProperty
+                :ValueDomain
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

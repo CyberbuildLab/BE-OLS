@@ -1,0 +1,594 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/digitalconstruction/0.5/Processes> .
+
+<https://w3id.org/digitalconstruction/0.5/Processes> rdf:type owl:Ontology ;
+                                                      owl:imports <https://w3id.org/digitalconstruction/0.5/Entities/entities.ttl> ;
+                                                      <http://purl.org/dc/elements/1.1/creator> "Seppo Törmä" ,
+                                                                                                "Yuan Zheng" ;
+                                                      <http://purl.org/dc/elements/1.1/date> "2021-04-15" ;
+                                                      <http://purl.org/dc/elements/1.1/title> "Digital Construction Processes" ;
+                                                      <http://purl.org/dc/terms/abstract> "Processes ontology defines the concepts and relations for activities and resources. " ;
+                                                      <http://purl.org/dc/terms/created> "2019-12-20" ;
+                                                      <http://purl.org/dc/terms/description> "Process ontology for digital construction" ;
+                                                      <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                                      <http://purl.org/vocab/vann/preferredNamespacePrefix> "dicp" ;
+                                                      <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/digitalconstruction/0.5/Processes" ;
+                                                      rdfs:label "Digital Construction Processes" ;
+                                                      rdfs:seeAlso <https://w3id.org/digitalconstruction/0.5> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#actsOnProperty
+:actsOnProperty rdf:type owl:ObjectProperty ;
+                rdfs:domain :Actuation ;
+                rdfs:range dicv:Property ;
+                rdfs:label "actsOnProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#actuates
+:actuates rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isActuatedBy ;
+          rdfs:domain dice:MaterialEntity ;
+          rdfs:range :Actuation ;
+          rdfs:label "actuates" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasAssignedResource
+:hasAssignedResource rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isResourceIn ;
+                     rdfs:domain :Activity ;
+                     rdfs:range :ResourceRole ;
+                     rdfs:comment "The resource role that is assigned to this activity." ;
+                     rdfs:label "hasAssignedResource" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasCondition
+:hasCondition rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isConditionOf ;
+              rdfs:domain :Activity ;
+              rdfs:range dicv:Constraint ;
+              rdfs:comment "The constraint that has to be in effect at the start of the activity. E.g., the agent has to be in the location of the activity" ;
+              rdfs:label "hasCondition" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasCostUnit
+:hasCostUnit rdf:type owl:ObjectProperty ;
+             rdfs:domain :Resource ;
+             rdfs:range dicv:Unit .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasEffect
+:hasEffect rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :isEffectOf ;
+           rdfs:domain :Activity ;
+           rdfs:comment "The constraint that has to be in effect in the end of the activity. E.g., the moved item has to be in the target location of the activity" ;
+           rdfs:label "hasEffect" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasFinalLocation
+:hasFinalLocation rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasLocation ;
+                  rdfs:label "hasFinalLocation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasInitialLocation
+:hasInitialLocation rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasLocation ;
+                    rdfs:label "hasInitialLocation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasInputObject
+:hasInputObject rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasObject ;
+                owl:inverseOf :isInputObjectIn ;
+                rdfs:domain :Activity ;
+                rdfs:range dice:Entity ;
+                rdfs:comment "The subproperty of :hasObject. An object that an activity has in the beginning but not anymore in the end. For example, demolition has as its input object a building." ;
+                rdfs:label "hasInputObject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasLocation
+:hasLocation rdf:type owl:ObjectProperty ;
+             rdfs:domain :Activity ;
+             rdfs:range dice:Location ;
+             rdfs:comment "The location in which the activity happens. Can be a trajectory if the activity does not stay in the same location" ;
+             rdfs:label "hasLocation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasLocationPhase
+:hasLocationPhase rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasSubActivity ;
+                  owl:inverseOf :isLocationPhaseOf ;
+                  rdfs:domain :Activity ;
+                  rdfs:range :Activity ;
+                  rdfs:comment "A subproperty of :hasSubActivity. A subactivity that corresponds to a location-specific phase. " ;
+                  rdfs:label "hasLocationPhase" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasObject
+:hasObject rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isObjectIn ;
+           rdfs:domain :Activity ;
+           rdfs:range dice:Entity ;
+           rdfs:comment "The object that an activity acts on or is focused to. For example, a transportation activity can have as its object a container, or painting can have as its object a wall." ;
+           rdfs:label "hasObject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasObjectPhase
+:hasObjectPhase rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasSubActivity ;
+                owl:inverseOf :isObjectPhaseOf ;
+                rdfs:domain :Activity ;
+                rdfs:range :Activity ;
+                rdfs:comment "A subproperty of :hasSubActivity. A subactivity that corresponds to an object-specific phase. " ;
+                rdfs:label "hasObjectPhase" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasObservedProperty
+:hasObservedProperty rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Observation ;
+                     rdfs:range dicv:Property ;
+                     rdfs:label "hasObservedProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasObservedResult
+:hasObservedResult rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Observation ;
+                   rdfs:range dicv:QuantitativeState ;
+                   rdfs:label "hasObservedResult" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasOutputObject
+:hasOutputObject rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasObject ;
+                 owl:inverseOf :isOutputObjectIn ;
+                 rdfs:domain :Activity ;
+                 rdfs:range dice:Entity ;
+                 rdfs:comment "The subproperty of :hasObject. An object that an activity has in the end even though it didn't have it in the beginning. For example, procurement has its output object a purchased product." ;
+                 rdfs:label "hasOutputObject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasProcessPhase
+:hasProcessPhase rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasSubActivity ;
+                 owl:inverseOf :isProcessPhaseOf ;
+                 rdfs:domain :Activity ;
+                 rdfs:range :Activity ;
+                 rdfs:comment "A subproperty of :hasSubActivity. A subactivity that corresponds to a phase in the process. " ;
+                 rdfs:label "hasProcessPhase" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasProductionRate
+:hasProductionRate rdf:type owl:ObjectProperty ;
+                   rdfs:domain :CapabilityToWork ;
+                   rdfs:range :ProductionRate ;
+                   rdfs:label "hasProductionRate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasSubActivity
+:hasSubActivity rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf dice:hasProperOccurrentPart ;
+                owl:inverseOf :isSubActivityOf ;
+                rdfs:domain :Activity ;
+                rdfs:range :Activity ;
+                rdfs:label "hasSubActivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isActuatedBy
+:isActuatedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :Actuation ;
+              rdfs:range dice:MaterialEntity ;
+              rdfs:label "isActuatedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isConditionOf
+:isConditionOf rdf:type owl:ObjectProperty ;
+               rdfs:domain dicv:Constraint ;
+               rdfs:range :Activity ;
+               rdfs:label "isConditionOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isEffectOf
+:isEffectOf rdf:type owl:ObjectProperty ;
+            rdfs:domain dicv:Constraint ;
+            rdfs:range :Activity ;
+            rdfs:label "isEffectOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isInputObjectIn
+:isInputObjectIn rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isObjectIn ;
+                 rdfs:domain dice:Entity ;
+                 rdfs:range :Activity ;
+                 rdfs:comment "The subproperty of :isObjectIn. An activity that has the object in the beginning but not anymore in the end. For example, building is the input object in demolition." ;
+                 rdfs:label "isInputObjectIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isLocationPhaseOf
+:isLocationPhaseOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :isSubActivityOf ;
+                   rdfs:domain :Activity ;
+                   rdfs:range :Activity ;
+                   rdfs:comment "A subproperty of :isSubActivityOf. A activity whose location-specific phase this activity is." ;
+                   rdfs:label "isLocationPhaseOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isNeededByActivity
+:isNeededByActivity rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :needsCapability ;
+                    rdfs:domain dice:Capability ;
+                    rdfs:range :Activity ;
+                    rdfs:comment "The activity that needs a capability from some of its ingredients" ;
+                    rdfs:label "isNeededByActivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isObjectIn
+:isObjectIn rdf:type owl:ObjectProperty ;
+            rdfs:domain dice:Entity ;
+            rdfs:range :Activity ;
+            rdfs:comment "The activity that acts on the object. For example, a shipment is the object of transportation." ;
+            rdfs:label "isObjectIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isObjectPhaseOf
+:isObjectPhaseOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :isSubActivityOf ;
+                 rdfs:domain :Activity ;
+                 rdfs:range :Activity ;
+                 rdfs:comment "A subproperty of :isSubActivityOf. A activity whose object-specific phase this activity is." ;
+                 rdfs:label "isObjectPhaseOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isObservedBy
+:isObservedBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :observes ;
+              rdfs:domain :Observation ;
+              rdfs:range dice:MaterialEntity ;
+              rdfs:label "isObservedBy" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isOccupiedByActivity
+:isOccupiedByActivity rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf dice:occupiesTemporalRegion ;
+                      owl:inverseOf :occupiesTimeInterval ;
+                      rdfs:domain dice:TimeInterval ;
+                      rdfs:range :Activity ;
+                      rdfs:label "isOccupiedByActivity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isOutputObjectIn
+:isOutputObjectIn rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :isObjectIn ;
+                  rdfs:domain dice:Entity ;
+                  rdfs:range :Activity ;
+                  rdfs:comment "The subproperty :isObjectIn. An activity that has the object in the end even though it didn't have it in the beginning. For example, a purchased product is an output object of procurement." ;
+                  rdfs:label "isOutputObjectIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isProcessPhaseOf
+:isProcessPhaseOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :isSubActivityOf ;
+                  rdfs:comment "The subproperty of :isSubActivityOf." ;
+                  rdfs:label "isProcessPhaseOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isResourceIn
+:isResourceIn rdf:type owl:ObjectProperty ;
+              rdfs:domain :ResourceRole ;
+              rdfs:range :Activity ;
+              rdfs:comment "The activity in whose execution this entity plays a resource role ." ;
+              rdfs:label "isResourceIn" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#isSubActivityOf
+:isSubActivityOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf dice:properOccurrentPartOf ;
+                 rdfs:domain :Activity ;
+                 rdfs:range :Activity ;
+                 rdfs:label "isSubActivityOf" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#needsCapability
+:needsCapability rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Activity ;
+                 rdfs:range dice:Capability ;
+                 rdfs:comment "A capability that some ingredient of an activity needs to provided to make the execution of the activity possible." ;
+                 rdfs:label "needsCapability" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#observes
+:observes rdf:type owl:ObjectProperty ;
+          rdfs:domain dice:MaterialEntity ;
+          rdfs:range :Observation ;
+          rdfs:label "observes" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#occupiesTimeInterval
+:occupiesTimeInterval rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf dice:occupiesTemporalRegion ;
+                      rdfs:domain :Activity ;
+                      rdfs:range dice:TimeInterval ;
+                      rdfs:label "occupiesTimeInterval" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasActivityCost
+:hasActivityCost rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Activity ;
+                 rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasCostUnit
+:hasCostUnit rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasUnitCost
+:hasUnitCost rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Resource ;
+             rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasUsageAmount
+:hasUsageAmount rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ResourceRole ;
+                rdfs:range xsd:decimal ;
+                rdfs:comment "The amount of resource usage in its resource role with respect to a specific activity. Usage amount can be related to the cost unit and unit cost of the resource. For example, 10 (hours of work as resource in activity1), 20 (kg of material spent in activity2)" ;
+                rdfs:label "hasUsageAmount" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf dice:Process ;
+          rdfs:comment "A process that is intentionally performed by an agent." ;
+          rdfs:label "Activity" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ActivityCost
+:ActivityCost rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty dicv:isPropertyFor ;
+                                    owl:hasValue :hasActivityCost
+                                  ] ;
+              rdfs:subClassOf :CostProperty ;
+              rdfs:label "ActivityCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Actuation
+:Actuation rdf:type owl:Class ;
+           rdfs:subClassOf :Activity ;
+           rdfs:comment "A process of acting on some property of a feature of interest." ;
+           rdfs:label "Actuation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#AutomatedActuation
+:AutomatedActuation rdf:type owl:Class ;
+                    rdfs:subClassOf :Actuation ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :isActuatedBy ;
+                                      owl:allValuesFrom dice:Actuator
+                                    ] ;
+                    rdfs:label "AutomatedActuation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#AutomatedObservation
+:AutomatedObservation rdf:type owl:Class ;
+                      rdfs:subClassOf :Observation ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :isObservedBy ;
+                                        owl:allValuesFrom dice:Sensor
+                                      ] ;
+                      rdfs:label "AutomatedObservation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#BehaviorProcess
+:BehaviorProcess rdf:type owl:Class ;
+                 rdfs:subClassOf dice:Process ;
+                 rdfs:comment "A process in which the agent performs activities in reponse to stimuli." ;
+                 rdfs:label "BehaviorProcess" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#CapabilityConstraint
+:CapabilityConstraint rdf:type owl:Class ;
+                      rdfs:subClassOf dicv:Constraint ;
+                      rdfs:label "CapabilityConstraint" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#CapabilityToUse
+:CapabilityToUse rdf:type owl:Class ;
+                 rdfs:subClassOf dice:Capability ;
+                 rdfs:label "CapabilityToUse" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#CapabilityToWork
+:CapabilityToWork rdf:type owl:Class ;
+                  rdfs:subClassOf dice:Capability ;
+                  rdfs:label "CapabilityToWork" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ConstructionProject
+:ConstructionProject rdf:type owl:Class ;
+                     rdfs:subClassOf :Project ;
+                     rdfs:label "ConstructionProject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#CostItem
+:CostItem rdf:type owl:Class ;
+          rdfs:subClassOf dice:Group ;
+          rdfs:comment "A group of entities (including physical entities, information entities and activities) whose costs are controlled as one whole. The cost associated with a cost item is an aggregation (sum) of the costs of its members and included cost items" ;
+          rdfs:label "CostItem" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#CostProperty
+:CostProperty rdf:type owl:Class ;
+              rdfs:subClassOf dicv:QuantitativeProperty ;
+              rdfs:label "CostProperty" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf :Activity ;
+             rdfs:comment "A process of capturing information about some property of a feature of interest." ;
+             rdfs:label "Observation" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ProcurementPackage
+:ProcurementPackage rdf:type owl:Class ;
+                    rdfs:subClassOf dice:Group ;
+                    rdfs:comment "A group of entities (including physical entities, information entities, and activities) that are procured as one whole" ;
+                    rdfs:label "ProcurementPackage" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ProductionRate
+:ProductionRate rdf:type owl:Class ;
+                rdfs:subClassOf dicv:QuantitativeProperty ;
+		owl:equivalentClass [ a owl:Restriction ; owl:onProperty dicv:isPropertyFor ; owl:hasValue :hasProductionRate ] ;
+
+                rdfs:label "ProductionRate" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Project
+:Project rdf:type owl:Class ;
+         rdfs:subClassOf :Activity ;
+         rdfs:comment "A ObjectActivity with specific goals" ;
+         rdfs:label "Project" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#RenovationProject
+:RenovationProject rdf:type owl:Class ;
+                   rdfs:subClassOf :ConstructionProject ;
+                   rdfs:label "RenovationProject" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Resource
+:Resource rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( dice:Entity
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty dice:hasRole ;
+                                                       owl:someValuesFrom :ResourceRole
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] ;
+          rdfs:comment "Resource is any entity that plays a ResourceRole" ;
+          rdfs:label "Resource" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ResourceCost
+:ResourceCost rdf:type owl:Class ;
+              rdfs:subClassOf :CostProperty ;
+              rdfs:label "ResourceCost" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#ResourceRole
+:ResourceRole rdf:type owl:Class ;
+              rdfs:subClassOf dice:Role ;
+              rdfs:comment "A role in which an entity acts as a resource in an activity" ;
+              rdfs:label "ResourceRole" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Service
+:Service rdf:type owl:Class ;
+         rdfs:subClassOf dice:Process ;
+         rdfs:comment "A process in which service providers perform functions in response to requests of service requestors." ;
+         rdfs:label "Service" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Shipment
+:Shipment rdf:type owl:Class ;
+          rdfs:subClassOf dice:Group ;
+          rdfs:comment "A group of entities (including physical entities and information entities) that are transported and delivered as one whole" ;
+          rdfs:label "Shipment" .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#UnitCost
+:UnitCost rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                owl:onProperty dicv:isPropertyFor ;
+                                owl:hasValue :hasUnitCost
+                              ] ;
+          rdfs:subClassOf :ResourceCost ;
+          rdfs:label "UnitCost" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasActivityCost
+:hasActivityCost rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#hasUnitCost
+:hasUnitCost rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:hasActivityCost rdfs:label "hasActivityCost" ;
+                 rdfs:comment "The cost of an activity" .
+
+
+:hasCostUnit rdfs:label "hasCostUnit" .
+
+
+:hasUnitCost rdfs:label "hasUnitCost" ;
+             rdfs:comment "The unit cost of a resource. Unit cost (e.g., 10€/m2), together with the information about cost unit (here, m2) and usage amount of expressed in cost units (e.g., 32) can be used to compute the total cost (here, 320€). Or if unit cost is 50€/hr and the cost unit is hr and usage amount 12, the total cost is 600€" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
