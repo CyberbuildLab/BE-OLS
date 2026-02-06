@@ -1,4 +1,7 @@
-# Built Environment - Ontology Lookup Service (BE-OLS) [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
+# Built Environment - Ontology Lookup Service (BE-OLS) [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues) ![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS) [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main) ![License](https://img.shields.io/github/license/CyberbuildLab/BE-OLS)
+
+
+
 
 
 This is the repository of the **Built Environment - Ontology Lookup Service (BE-OLS)** that can be accessed at: [(https://cyberbuildlab.github.io/BE-OLS/)]
