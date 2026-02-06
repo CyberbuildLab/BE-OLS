@@ -1,5 +1,5 @@
 # Built Environment - Ontology Lookup Service (BE-OLS) 
-[![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)] [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main)
+![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg) [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main)
 
 
 
