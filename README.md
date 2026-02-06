@@ -1,4 +1,5 @@
-# Built Environment - Ontology Lookup Service (BE-OLS) [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)] [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main)
+# Built Environment - Ontology Lookup Service (BE-OLS) 
+[![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)] [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main)
 
 
 
@@ -56,9 +57,7 @@ or in our [publications folder](https://github.com/CyberbuildLab/BE-OLS/tree/mai
 Lincense [![Licence](https://img.shields.io/badge/Licence-Hybrid%20(Open%20Data%20%2B%20Code)-red)](LICENSE_MAIN.md)
 =========
 This repository is distributed under multiple licences. Please see LICENSE_MAIN.md for a full licence overview and the LICENSES/ directory for individual licence texts. 
-![Code License](https://img.shields.io/badge/Code-Apache--2.0-blue)
-![Metadata License](https://img.shields.io/badge/Metadata-CC--BY--4.0-green)
-![Docs License](https://img.shields.io/badge/Docs-CC--BY--4.0-lightgrey)
+
 
 Contact Us [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
 ==========
