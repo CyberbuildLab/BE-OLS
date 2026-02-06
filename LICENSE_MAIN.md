@@ -1,5 +1,5 @@
 BE-OLS follows a hybrid licensing model that separates code, metadata and curated datasets.
-- Metadata extracted from ontologies is released under CC-4.0. 
+- Metadata extracted from ontologies is released under CC-4.0. [![Metadata License](https://img.shields.io/badge/Metadata-CC--BY--4.0-green)](LICENSES/CC-BY-4.0)
 - BE-OLS’s analysis contributions (e.g. harmonised categories, analyses, JSON/Excel datasets, and visualisations) are licensed under Appo.. 
 - BE-OLS's platform code is released under the Apache-2.0 licence.
 - Documentation is licensed under CC-BY-4.0. 
