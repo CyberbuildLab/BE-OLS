@@ -21,16 +21,16 @@ jobs:
 
             // Map headings exactly to your desired column titles
             const headingMap = {
-              'Name': 'Name',
-              'Acronym': 'Acronym',
+              'Name': 'Title',
+              'Acronym': 'Prefix',
               'Version': 'Version',
-              'Year published': 'Year published',
-              'Short Description': 'Short Description',
-              'URI/Namespace': 'URI/Namespace',
+              'Year published': 'Created',
+              'Short Description': 'Description',
+              'URI/Namespace': 'uri',
               'Reference': 'Reference',
               'Linked-to ontologies AECO': 'Linked-to ontologies AECO',
               'Linked-to ontologies UPPER': 'Linked-to ontologies UPPER',
-              'Linked other professional domain ontologies': 'Linked other professional domain ontologies'
+              'Linked other professional domain ontologies': 'Linked-to ontologies OTHER DOMAINS'
             };
 
             const lines = issue.body.split(/\r?\n/);
