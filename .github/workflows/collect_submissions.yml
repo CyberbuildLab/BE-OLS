@@ -1,4 +1,4 @@
-name: Collect Ontology Submissions
+name: Ontology Submission
 
 on:
   issues:
