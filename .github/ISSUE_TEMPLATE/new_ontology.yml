@@ -67,12 +67,12 @@ body:
     id: link_upper
     attributes:
       label: Linked-to ontologies UPPER
-      description: Prefixes of upper ontologies that the ontology links to. For example: schema, skos, prov, dcterms, foaf, etc.; use semicolons to separate
+      description: Prefixes of upper ontologies that the ontology links to. For example, schema, skos, prov, dcterms, foaf, etc.; use semicolons to separate
       placeholder: schema; skos
 
   - type: input
     id: linked_other
     attributes:
       label: Linked-to ontologies OTHER
-      description: Prefixes of ontologies outside AECO that the ontology links to. For example: eli. Use semicolons to separate
+      description: Prefixes of ontologies outside AECO that the ontology links to. For example, eli. Use semicolons to separate
       placeholder: eli
