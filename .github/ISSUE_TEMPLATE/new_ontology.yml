@@ -10,8 +10,8 @@ body:
   - type: input
     id: title
     attributes:
-      label: Title/Name
-      description: Name of the ontology
+      label: Title
+      description: Title/Name of the ontology
       placeholder: e.g. Modelling and Standards Ontology
 
   - type: input
@@ -73,6 +73,6 @@ body:
   - type: input
     id: linked_other
     attributes:
-      label: Linked other professional domain ontologies
+      label: Linked-to ontologies OTHE
       description: Prefixes of ontologies outside AECO (e.g. eli); use semicolons to separate
       placeholder: eli
