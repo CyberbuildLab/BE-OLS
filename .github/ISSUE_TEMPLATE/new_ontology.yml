@@ -45,7 +45,7 @@ body:
   - type: input
     id: uri
     attributes:
-      label: URI/Namespace
+      label: URI
       placeholder: https://z-arghavan.github.io/MnSOntology/
 
 
