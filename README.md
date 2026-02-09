@@ -54,8 +54,8 @@ Please find our recent [EC3 conference publication ](https://ec-3.org/publicatio
 or in our [publications folder](https://github.com/CyberbuildLab/BE-OLS/tree/main/publications).
 
 
-Lincense [![Licence](https://img.shields.io/badge/Licence-Hybrid%20(Open%20Data%20%2B%20Code)-red)](LICENSE_MAIN.md)
-=========
+License [![Licence](https://img.shields.io/badge/Licence-Hybrid%20(Open%20Data%20%2B%20Code)-red)](LICENSE_MAIN.md)
+=======
 This repository is distributed under multiple licences. Please see LICENSE_MAIN.md for a full licence overview and the LICENSES/ directory for individual licence texts. 
 
 
@@ -63,7 +63,6 @@ Contact Us [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/
 ==========
 For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
 Alternatively, **[open an issue](https://github.com/CyberbuildLab/BE-OLS/issues)** on our GitHub repo.  
-
 
 
 Disclaimer
