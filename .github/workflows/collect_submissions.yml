@@ -21,7 +21,7 @@ jobs:
 
             // Map headings exactly to your desired column titles
             const headingMap = {
-              'Name': 'Title',
+              'Title': 'Title',
               'Acronym': 'Prefix',
               'Version': 'Version',
               'Year published': 'Created',
