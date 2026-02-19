@@ -1,0 +1,1592 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.systemsEngineering.org/jersonpinzon/Reno-Inst.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.systemsEngineering.org/jersonpinzon/Reno-Inst.owl"
+     versionIRI="http://www.systemsEngineering.org/jersonpinzon/Reno-Inst.owl/0.1.1">
+    <Prefix name="" IRI="http://www.systemsEngineering.org/jersonpinzon/Reno-Inst.owl"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/contributor"/>
+        <Literal>bim-speed/Timo Hartmann</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/creator"/>
+        <Literal>bim-speed/Jerson Pinzon</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/description"/>
+        <Literal xml:lang="en">The Reno-Inst ontology was developed to represent concepts related to the installation of renovation elements in order to support the planning and scheduling of construction activities in residential building renovation projects.
+The ontology covers the installation of windows, ETICS panels, and radiators, which are common renovation elements. Other elements could be easily included. The ontology includes information on physical features, general installation procedures, constraints that should be considered, and additional elements such as workforce, time, and tools requirements.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/issued"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2020-10-31T12:00:00</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/tittle"/>
+        <Literal>Reno-Inst Ontology: An ontology for installation of components in building renovation projects</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <Literal>https://depositonce.tu-berlin.de/handle/11303/11088</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <Literal>https://www.bim-speed.eu/en/results</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal>0.1.1</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#AirtightClosureActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Aluminium"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Anchors"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Area"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#As_Built"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Boiler"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BuildingElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BuildingInterface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ceilling"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Claybrick"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Color"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Component"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CompressedAir"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Constraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConstructionMaterials"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConstructiveInterface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CoordinationConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Core"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Craftmen"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Debris"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Diameter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dimension"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Documentation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Drawings"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dust"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ETICS_Panel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ElectricalTool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Electricity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EspecializedPersonnel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExternalElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Facade"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fiberglass"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FixingActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FixingMechanism"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Floor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FloorBasedRadiator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frame"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FunctionalComponent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Glass"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Glazing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HazardousMaterials"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Height"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#High"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Inclination"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InhabitantsCoordinationConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InnerElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InputValve"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InsituTransportationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InstallationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InstallationVerificationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InterfaceComponent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InterfaceState"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LargeEquipment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Length"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LoadCapacity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Low"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ManufacturerInstructions"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Material"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MaterialsAndResources"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Medium"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MinimalAdjustments"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementLimitationCrew"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementLimitationMaterial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Noise"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Odor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Opening"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Orientation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutletValve"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OwnerOperationalConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PPE"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PTFE_Tape"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PVC"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Painting"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysicalAttribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysicalConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pipe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pipeline"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Plaster"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Point"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PollutionConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Preserved"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Radiator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RainProofConnectionActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Regulation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RemovalActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RenovationElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RequiresConstruction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RequiresDemolition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RequiresRenovation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Resources"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Roof"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SafetyConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Sealant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Shape"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SmallTool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SpaceLimitationConstruction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Spacers"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Steel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SunShade"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SurveySheets"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SystemInterface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThermalInsulationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Thickness"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UncertaintyConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UnforeseenConditions"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Valve"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vibration"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Volume"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wall"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WallBrackets"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WallRadiator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WasteDisposalConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Water"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Weight"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Window"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WindowMainInstallationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wood"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkAreaPreparationActivity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Workforce"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkforceAndTools"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#InstallInConjunctionWith"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasCoincidentActivity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasComponent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasConstraint"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDimension"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDocumentation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDrawing"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasFollowingActivity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasFunctionalComponent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInstallationActivity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInterfaceComponent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasManufactureInstructions"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasMaterial"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasOtherPhysicalAttribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPreviousActivity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasStandard"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasState"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasSurveySheet"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLinkedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLinkedToConstructiveInterface"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLinkedToSystemInterface"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLocatedAt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isTime-relatedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresMaterial"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresMaterial_Resources"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresResource"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresTool"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresWorkforce"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresWorkforce_Tools"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasAuthor"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasCost"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasDescription"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasDuration"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasID"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasInstallationPosition"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasManufacturer"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasQuantity"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasType"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasUnit"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isAtStorey"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isInSpace"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/contributor"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/creator"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/description"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/issued"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/tittle"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#AirtightClosureActivity"/>
+        <Class IRI="#WindowMainInstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Aluminium"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Anchors"/>
+        <Class IRI="#ConstructionMaterials"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Area"/>
+        <Class IRI="#ConstructiveInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#As_Built"/>
+        <Class IRI="#UncertaintyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boiler"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasID"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttribute"/>
+            <Class IRI="#PhysicalAttribute"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasDocumentation"/>
+            <Class IRI="#Documentation"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasState"/>
+            <Class IRI="#InterfaceState"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isLocatedAt"/>
+            <Class IRI="#BuildingElement"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDescription"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BuildingInterface"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasID"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ceilling"/>
+        <Class IRI="#InnerElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Claybrick"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Color"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Component"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttribute"/>
+            <Class IRI="#PhysicalAttribute"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CompressedAir"/>
+        <Class IRI="#Resources"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Constraint"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDescription"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConstructionMaterials"/>
+        <Class IRI="#MaterialsAndResources"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ConstructiveInterface"/>
+        <Class IRI="#BuildingInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CoordinationConstraint"/>
+        <Class IRI="#Constraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Core"/>
+        <Class IRI="#FunctionalComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Craftmen"/>
+        <Class IRI="#Workforce"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Debris"/>
+        <Class IRI="#PollutionConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Diameter"/>
+        <Class IRI="#Dimension"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Dimension"/>
+        <Class IRI="#PhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Documentation"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasAuthor"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Documentation"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDescription"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Documentation"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasID"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Drawings"/>
+        <Class IRI="#Documentation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Dust"/>
+        <Class IRI="#PollutionConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ETICS_Panel"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ElectricalTool"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Electricity"/>
+        <Class IRI="#Resources"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EspecializedPersonnel"/>
+        <Class IRI="#Workforce"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ExternalElement"/>
+        <Class IRI="#BuildingElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Facade"/>
+        <Class IRI="#ExternalElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fiberglass"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FixingActivity"/>
+        <Class IRI="#WindowMainInstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FixingMechanism"/>
+        <Class IRI="#InterfaceComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Floor"/>
+        <Class IRI="#InnerElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FloorBasedRadiator"/>
+        <Class IRI="#Radiator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frame"/>
+        <Class IRI="#FunctionalComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FunctionalComponent"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Glass"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Glazing"/>
+        <Class IRI="#FunctionalComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HazardousMaterials"/>
+        <Class IRI="#UncertaintyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Height"/>
+        <Class IRI="#Dimension"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#High"/>
+        <Class IRI="#SafetyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Inclination"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InhabitantsCoordinationConstraint"/>
+        <Class IRI="#CoordinationConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InnerElement"/>
+        <Class IRI="#BuildingElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InnerElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#isAtStorey"/>
+            <Datatype abbreviatedIRI="xsd:integer"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InnerElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#isInSpace"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InputValve"/>
+        <Class IRI="#InterfaceComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InsituTransportationActivity"/>
+        <Class IRI="#InstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasConstraint"/>
+            <Class IRI="#Constraint"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isTime-relatedTo"/>
+            <Class IRI="#InstallationActivity"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#requiresMaterial_Resources"/>
+            <Class IRI="#MaterialsAndResources"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#requiresWorkforce_Tools"/>
+            <Class IRI="#WorkforceAndTools"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDescription"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationActivity"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDuration"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InstallationVerificationActivity"/>
+        <Class IRI="#InstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InterfaceComponent"/>
+        <Class IRI="#Component"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#InterfaceState"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasDescription"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LargeEquipment"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Length"/>
+        <Class IRI="#Dimension"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LoadCapacity"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Low"/>
+        <Class IRI="#SafetyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ManufacturerInstructions"/>
+        <Class IRI="#Documentation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Material"/>
+        <Class IRI="#PhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MaterialsAndResources"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCost"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MaterialsAndResources"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasQuantity"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MaterialsAndResources"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasUnit"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medium"/>
+        <Class IRI="#SafetyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MinimalAdjustments"/>
+        <Class IRI="#InterfaceState"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementLimitationCrew"/>
+        <Class IRI="#PhysicalConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementLimitationMaterial"/>
+        <Class IRI="#PhysicalConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Noise"/>
+        <Class IRI="#PollutionConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Odor"/>
+        <Class IRI="#PollutionConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Opening"/>
+        <Class IRI="#ConstructiveInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Orientation"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OtherPhysicalAttribute"/>
+        <Class IRI="#PhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutletValve"/>
+        <Class IRI="#InterfaceComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OwnerOperationalConstraint"/>
+        <Class IRI="#CoordinationConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PPE"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PTFE_Tape"/>
+        <Class IRI="#ConstructionMaterials"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PVC"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Painting"/>
+        <Class IRI="#ConstructionMaterials"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysicalAttribute"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasUnit"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysicalConstraint"/>
+        <Class IRI="#Constraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pipe"/>
+        <Class IRI="#SystemInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pipeline"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Plaster"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Point"/>
+        <Class IRI="#ConstructiveInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollutionConstraint"/>
+        <Class IRI="#Constraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Preserved"/>
+        <Class IRI="#InterfaceState"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radiator"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RainProofConnectionActivity"/>
+        <Class IRI="#WindowMainInstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Regulation"/>
+        <Class IRI="#Documentation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RemovalActivity"/>
+        <Class IRI="#InstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#InstallInConjunctionWith"/>
+            <Class IRI="#RenovationElement"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasComponent"/>
+            <Class IRI="#Component"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasDocumentation"/>
+            <Class IRI="#Documentation"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasInstallationActivity"/>
+            <Class IRI="#InstallationActivity"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isLinkedTo"/>
+            <Class IRI="#BuildingInterface"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasInstallationPosition"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasManufacturer"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RenovationElement"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasType"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RequiresConstruction"/>
+        <Class IRI="#InterfaceState"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RequiresDemolition"/>
+        <Class IRI="#InterfaceState"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RequiresRenovation"/>
+        <Class IRI="#InterfaceState"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Resources"/>
+        <Class IRI="#MaterialsAndResources"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Roof"/>
+        <Class IRI="#ExternalElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SafetyConstraint"/>
+        <Class IRI="#Constraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Sealant"/>
+        <Class IRI="#ConstructionMaterials"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Shape"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SmallTool"/>
+        <Class IRI="#Tool"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SpaceLimitationConstruction"/>
+        <Class IRI="#PhysicalConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Spacers"/>
+        <Class IRI="#ConstructionMaterials"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Steel"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SunShade"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SurveySheets"/>
+        <Class IRI="#Documentation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SystemInterface"/>
+        <Class IRI="#BuildingInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ThermalInsulationActivity"/>
+        <Class IRI="#WindowMainInstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Thickness"/>
+        <Class IRI="#Dimension"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tool"/>
+        <Class IRI="#WorkforceAndTools"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UncertaintyConstraint"/>
+        <Class IRI="#Constraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UnforeseenConditions"/>
+        <Class IRI="#UncertaintyConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Valve"/>
+        <Class IRI="#SystemInterface"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vibration"/>
+        <Class IRI="#PollutionConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Volume"/>
+        <Class IRI="#Dimension"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wall"/>
+        <Class IRI="#InnerElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WallBrackets"/>
+        <Class IRI="#InterfaceComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WallRadiator"/>
+        <Class IRI="#Radiator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WasteDisposalConstraint"/>
+        <Class IRI="#PhysicalConstraint"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Water"/>
+        <Class IRI="#Resources"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Weight"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Window"/>
+        <Class IRI="#RenovationElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WindowMainInstallationActivity"/>
+        <Class IRI="#InstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wood"/>
+        <Class IRI="#Material"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkAreaPreparationActivity"/>
+        <Class IRI="#InstallationActivity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Workforce"/>
+        <Class IRI="#WorkforceAndTools"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkforceAndTools"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCost"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkforceAndTools"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasName"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkforceAndTools"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasQuantity"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkforceAndTools"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasUnit"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#AirtightClosureActivity"/>
+        <Class IRI="#FixingActivity"/>
+        <Class IRI="#RainProofConnectionActivity"/>
+        <Class IRI="#ThermalInsulationActivity"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Aluminium"/>
+        <Class IRI="#Claybrick"/>
+        <Class IRI="#Fiberglass"/>
+        <Class IRI="#Glass"/>
+        <Class IRI="#PVC"/>
+        <Class IRI="#Plaster"/>
+        <Class IRI="#Steel"/>
+        <Class IRI="#Wood"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Anchors"/>
+        <Class IRI="#PTFE_Tape"/>
+        <Class IRI="#Painting"/>
+        <Class IRI="#Sealant"/>
+        <Class IRI="#Spacers"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Area"/>
+        <Class IRI="#Opening"/>
+        <Class IRI="#Point"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#As_Built"/>
+        <Class IRI="#HazardousMaterials"/>
+        <Class IRI="#UnforeseenConditions"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Boiler"/>
+        <Class IRI="#ETICS_Panel"/>
+        <Class IRI="#Pipeline"/>
+        <Class IRI="#Radiator"/>
+        <Class IRI="#SunShade"/>
+        <Class IRI="#Window"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#BuildingElement"/>
+        <Class IRI="#BuildingInterface"/>
+        <Class IRI="#Component"/>
+        <Class IRI="#Constraint"/>
+        <Class IRI="#Documentation"/>
+        <Class IRI="#InstallationActivity"/>
+        <Class IRI="#InterfaceState"/>
+        <Class IRI="#MaterialsAndResources"/>
+        <Class IRI="#PhysicalAttribute"/>
+        <Class IRI="#RenovationElement"/>
+        <Class IRI="#WorkforceAndTools"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Ceilling"/>
+        <Class IRI="#Floor"/>
+        <Class IRI="#Wall"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Color"/>
+        <Class IRI="#Inclination"/>
+        <Class IRI="#LoadCapacity"/>
+        <Class IRI="#Orientation"/>
+        <Class IRI="#Shape"/>
+        <Class IRI="#Weight"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CompressedAir"/>
+        <Class IRI="#Electricity"/>
+        <Class IRI="#Water"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ConstructionMaterials"/>
+        <Class IRI="#Resources"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ConstructiveInterface"/>
+        <Class IRI="#SystemInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CoordinationConstraint"/>
+        <Class IRI="#PhysicalConstraint"/>
+        <Class IRI="#PollutionConstraint"/>
+        <Class IRI="#SafetyConstraint"/>
+        <Class IRI="#UncertaintyConstraint"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Core"/>
+        <Class IRI="#Frame"/>
+        <Class IRI="#Glazing"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Craftmen"/>
+        <Class IRI="#EspecializedPersonnel"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Debris"/>
+        <Class IRI="#Dust"/>
+        <Class IRI="#Noise"/>
+        <Class IRI="#Odor"/>
+        <Class IRI="#Vibration"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Diameter"/>
+        <Class IRI="#Height"/>
+        <Class IRI="#Length"/>
+        <Class IRI="#Thickness"/>
+        <Class IRI="#Volume"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Dimension"/>
+        <Class IRI="#Material"/>
+        <Class IRI="#OtherPhysicalAttribute"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Drawings"/>
+        <Class IRI="#ManufacturerInstructions"/>
+        <Class IRI="#Regulation"/>
+        <Class IRI="#SurveySheets"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ElectricalTool"/>
+        <Class IRI="#LargeEquipment"/>
+        <Class IRI="#PPE"/>
+        <Class IRI="#SmallTool"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ExternalElement"/>
+        <Class IRI="#InnerElement"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Facade"/>
+        <Class IRI="#Roof"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#FixingMechanism"/>
+        <Class IRI="#InputValve"/>
+        <Class IRI="#OutletValve"/>
+        <Class IRI="#WallBrackets"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#FloorBasedRadiator"/>
+        <Class IRI="#WallRadiator"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#FunctionalComponent"/>
+        <Class IRI="#InterfaceComponent"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#High"/>
+        <Class IRI="#Low"/>
+        <Class IRI="#Medium"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#InhabitantsCoordinationConstraint"/>
+        <Class IRI="#OwnerOperationalConstraint"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#InsituTransportationActivity"/>
+        <Class IRI="#InstallationVerificationActivity"/>
+        <Class IRI="#RemovalActivity"/>
+        <Class IRI="#WindowMainInstallationActivity"/>
+        <Class IRI="#WorkAreaPreparationActivity"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#MinimalAdjustments"/>
+        <Class IRI="#Preserved"/>
+        <Class IRI="#RequiresConstruction"/>
+        <Class IRI="#RequiresDemolition"/>
+        <Class IRI="#RequiresRenovation"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#MovementLimitationCrew"/>
+        <Class IRI="#MovementLimitationMaterial"/>
+        <Class IRI="#SpaceLimitationConstruction"/>
+        <Class IRI="#WasteDisposalConstraint"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Pipe"/>
+        <Class IRI="#Valve"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Tool"/>
+        <Class IRI="#Workforce"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasCoincidentActivity"/>
+        <ObjectProperty IRI="#isTime-relatedTo"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasDimension"/>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasDrawing"/>
+        <ObjectProperty IRI="#hasDocumentation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasFollowingActivity"/>
+        <ObjectProperty IRI="#isTime-relatedTo"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasFunctionalComponent"/>
+        <ObjectProperty IRI="#hasComponent"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasInterfaceComponent"/>
+        <ObjectProperty IRI="#hasComponent"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasManufactureInstructions"/>
+        <ObjectProperty IRI="#hasDocumentation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasMaterial"/>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasOtherPhysicalAttribute"/>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasPreviousActivity"/>
+        <ObjectProperty IRI="#isTime-relatedTo"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasStandard"/>
+        <ObjectProperty IRI="#hasDocumentation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasSurveySheet"/>
+        <ObjectProperty IRI="#hasDocumentation"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isLinkedToConstructiveInterface"/>
+        <ObjectProperty IRI="#isLinkedTo"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isLinkedToSystemInterface"/>
+        <ObjectProperty IRI="#isLinkedTo"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#requiresMaterial"/>
+        <ObjectProperty IRI="#requiresMaterial_Resources"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#requiresResource"/>
+        <ObjectProperty IRI="#requiresMaterial_Resources"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#requiresTool"/>
+        <ObjectProperty IRI="#requiresWorkforce_Tools"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#requiresWorkforce"/>
+        <ObjectProperty IRI="#requiresWorkforce_Tools"/>
+    </SubObjectPropertyOf>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasFunctionalComponent"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasInterfaceComponent"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasMaterial"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasState"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#isLocatedAt"/>
+    </FunctionalObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#InstallInConjunctionWith"/>
+    </SymmetricObjectProperty>
+    <DisjointObjectProperties>
+        <ObjectProperty IRI="#hasDrawing"/>
+        <ObjectProperty IRI="#hasManufactureInstructions"/>
+        <ObjectProperty IRI="#hasStandard"/>
+        <ObjectProperty IRI="#hasSurveySheet"/>
+    </DisjointObjectProperties>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasAuthor"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasCost"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasDescription"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasDuration"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasID"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasInstallationPosition"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasManufacturer"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasName"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasQuantity"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasType"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasUnit"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#isAtStorey"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#isInSpace"/>
+    </FunctionalDataProperty>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasInstallationPosition"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

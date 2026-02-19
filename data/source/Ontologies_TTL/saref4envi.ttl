@@ -1,0 +1,1332 @@
+@prefix : <https://saref.etsi.org/saref4envi/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix s4envi: <https://saref.etsi.org/saref4envi/> .
+@prefix s4syst: <https://saref.etsi.org/saref4syst/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix vcard: <https://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://saref.etsi.org/saref4envi/> .
+
+<https://saref.etsi.org/saref4envi/> a owl:Ontology ;
+  owl:versionIRI <https://saref.etsi.org/saref4envi/v2.1.1/> ;
+  dcterms:description "This ontology extends the SAREF ontology for the environment domain, specifically for the light pollution domain, including concepts like photometers, light, etc."@en ;
+  dcterms:publisher <https://www.etsi.org/> ;
+  dcterms:title "SAREF4ENVI: an extension of SAREF for the Environment domain"@en ;
+  dcterms:issued "2024-10-31"^^xsd:date ;
+  dcterms:modified "2025-04-11"^^xsd:date ;
+  dcterms:creator <http://maxime-lefrancois.info/me#> ;
+  dcterms:creator <https://orcid.org/0000-0002-6540-8547> ;
+  dcterms:contributor <https://orcid.org/0000-0002-2094-0572> ;
+  dcterms:contributor <https://www.linkedin.com/in/fabien-badeig/> ;
+  dcterms:contributor <http://www.garcia-castro.com/foaf.rdf#me> ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  vann:preferredNamespacePrefix "s4envi" ;
+  vann:preferredNamespaceUri "https://saref.etsi.org/saref4envi/" ;
+  rdfs:comment """Information about changes compared to version 1.1.2: 
+- See https://saref.etsi.org/sources/saref4envi/-/milestones/1"""@en ;
+  rdfs:comment """Information about changes compared to version 1.1.1: 
+- Updated namespaces for compatibility with SAREF v3."""@en ;
+  owl:imports <https://saref.etsi.org/core/v4.1.1/> , <https://saref.etsi.org/saref4syst/v1.1.2/> ;
+  dcterms:source <https://saref.etsi.org/sources/saref4envi/> ;
+  owl:priorVersion <https://saref.etsi.org/saref4envi/v1.1.2/> ;
+  rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341002/02.01.01_60/ts_10341002v020101p.pdf> ;
+  owl:versionInfo "v2.1.1" .
+
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:source a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:publisher a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+geo:Feature rdf:type owl:Class .
+
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+geo:Geometry rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#DayOfWeek
+time:DayOfWeek rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Site
+org:Site rdf:type owl:Class .
+
+
+#* General additions to SAREF
+
+##* Digital Representations
+
+:DigitalRepresentation a owl:Class ;
+  rdfs:comment "A digital representation encapsulates a physical object accessible via Web services"@en ;
+  rdfs:label "Digital representation"@en .
+
+:encapsulates a owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:domain :DigitalRepresentation ;
+  rdfs:range [ a owl:Class ; owl:unionOf ( saref:FeatureKind saref:FeatureOfInterest ) ] ;
+  owl:inverseOf :hasDigitalRepresentation ;
+  rdfs:comment "A relation between a digital representation and the physical objects it represents."@en ;
+  rdfs:label "encapsulates"@en .
+
+:hasDigitalRepresentation a owl:ObjectProperty , owl:InverseFunctionalProperty ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( saref:FeatureKind saref:FeatureOfInterest ) ] ;
+  rdfs:range :DigitalRepresentation ;
+  owl:inverseOf :encapsulates ;
+  rdfs:comment "A relation between a physical object and the digital representation in which it is encapsulated."@en ;
+  rdfs:label "has digital representation"@en .
+
+:isAccessibleThrough a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain :DigitalRepresentation ;
+  rdfs:range saref:Service ;
+  rdfs:comment "The relation between a digital representation and the service which it is accessible through."@en ;
+  rdfs:label "is accessible through"@en .
+
+:hasTag a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:comment "A relationship stating the tags that can be assigned to an entity (e.g., a digital representation)."@en ;
+  rdfs:label "has tag"@en .
+
+
+##* Communication interfaces and communication protocols
+
+:CommunicationInterface a owl:Class ;
+  rdfs:subClassOf s4syst:ConnectionPoint ;
+  rdfs:subClassOf [ a owl:Class ; owl:unionOf ( saref:FeatureOfInterest saref:FeatureKind ) ] ;
+  rdfs:comment "An interface defines which primitive operations and services the lower layer makes available to the upper one, when referring to network layers. (Definition adapted from \"Tanenbaum, A. S. (2003). Computer networks, 4-th edition. ed: Prentice Hall.\")"@en ;
+  rdfs:label "Communication interface"@en .
+
+:CommunicationProtocol a owl:Class ;
+  rdfs:subClassOf s4syst:Connection ;
+  rdfs:subClassOf [ a owl:Class ; owl:unionOf ( saref:FeatureOfInterest saref:FeatureKind ) ] ;
+  rdfs:comment "A protocol is an agreement between the communicating parties on how communication is to proceed. (Definition taken from \"Tanenbaum, A. S. (2003). Computer networks, 4-th edition. ed: Prentice Hall.\")"@en ;
+  rdfs:label "Communication protocol"@en .
+
+:usesCommunicationInterface a owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectsAt ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( saref:Device saref:DeviceKind ) ] ;
+  rdfs:range :CommunicationInterface ;
+  rdfs:comment "A relation between a device and the communication interface it uses."@en ;
+  rdfs:label "uses communication interface"@en .
+
+# # a device inherits the communication interfaces of its device kind
+# :usesCommunicationInterface owl:propertyChainAxiom ( saref:hasDeviceKind :usesCommunicationInterface ) .
+# # a device inherits the kinds of its communication interface
+# :usesCommunicationInterface owl:propertyChainAxiom ( :usesCommunicationInterface saref:hasFeatureKind ) .
+
+:usesCommunicationProtocol a owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectedThrough ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( saref:Device saref:DeviceKind ) ] ;
+  rdfs:range :CommunicationProtocol ;
+  rdfs:comment "A relation between a device and the communication protocol it uses."@en ;
+  rdfs:label "uses communication protocol"@en .
+
+# # a device inherits the communication protocol of its device kind
+# :usesCommunicationProtocol owl:propertyChainAxiom ( saref:hasDeviceKind :usesCommunicationProtocol ) .
+# # a device inherits the kinds of its communication protocol
+# :usesCommunicationProtocol owl:propertyChainAxiom ( :usesCommunicationProtocol saref:hasFeatureKind ) .
+
+##* General Purpose Properties
+
+:Frequency a saref:Property ;
+  rdfs:comment "An individual representing the property frequency."@en ;
+  rdfs:label "Frequency"@en .
+
+:ObservationFrequency a saref:Property ;
+  skos:broader :Frequency ;
+  rdfs:comment "The frequency at which a sensor makes observations."@en ;
+  rdfs:label "observation frequency"@en .
+
+:Height a saref:Property ;
+  rdfs:comment "An individual representing the property height."@en ;
+  rdfs:label "Height"@en .
+
+:Period a saref:Property ;
+  rdfs:comment "An individual representing the property period."@en ;
+  rdfs:label "Period"@en .
+
+:TransmissionPeriod a saref:Property ;
+  skos:broader :Period ;
+  rdfs:comment "The period of information transmission by a device."@en ;
+  rdfs:label "transmission period"@en .
+
+
+#* Application of the SAREF patterns
+
+##* Lighting Domain
+
+:LightProperty a owl:Class ;
+  rdfs:subClassOf saref:Property ;
+  rdfs:comment "An aspect of light that can be observable by a sensor."@en ;
+  rdfs:label "Light property"@en .
+
+:Illuminance a :LightProperty ;
+  rdfs:comment "An individual representing the light property illuminance."@en ;
+  rdfs:label "Illuminance"@en .
+
+:Irradiance a :LightProperty ;
+  rdfs:comment "An individual representing the light property irradiance."@en ;
+  rdfs:label "Irradiance"@en .
+
+:LightAbsorption a :LightProperty ;
+  rdfs:comment "An individual representing the light property light absorption."@en ;
+  rdfs:label "Light absorption"@en .
+
+:ScatteringOfLight a :LightProperty ;
+  rdfs:comment "An individual representing the light property scattering of light."@en ;
+  rdfs:label "Scattering of light"@en .
+
+:ReflectionOfLight a :LightProperty ;
+  rdfs:comment "An individual representing the light property reflection of light."@en ;
+  rdfs:label "Reflection of light"@en .
+
+:Fluorescence a :LightProperty ;
+  rdfs:comment "An individual representing the light property fluorescence."@en ;
+  rdfs:label "Fluorescence"@en .
+
+:Phosphorescence a :LightProperty ;
+  rdfs:comment "An individual representing the light property phosphorescence."@en ;
+  rdfs:label "Phosphorescence"@en .
+
+:LightMagnitude a :LightProperty ;
+  rdfs:comment "An individual representing the light property light magnitude."@en ;
+  rdfs:label "Light magnitude"@en .
+
+:Luminescence a :LightProperty ;
+  rdfs:comment "An individual representing the light property luminescence."@en ;
+  rdfs:label "Luminescence"@en .
+
+:Color a :LightProperty ;
+  rdfs:comment "Color of the emitted light. It might be indicated by named colors or using other type of color values like hexadecimal for RGB, color temperature, etc."@en ;
+  rdfs:label "Color"@en .
+
+
+###* Light
+
+:Light a owl:Class, saref:FeatureKind ;
+  saref:hasProperty :Color , :Geometry , :LightProjectionHeight , :LightProjectionDirection ;
+  rdfs:comment "A light source, which may be a lantern, a street light, a floodlight, a signal lamp or any other device whose primary purpose is the generation of light. (Definition taken from http://wiki.openstreetmap.org/wiki/Proposed_features/Key:light_source#Description)"@en ;
+  rdfs:label "Light"@en .
+
+:Geometry a saref:Property ;
+  rdfs:comment "The shape of a light emission. It may be described by individuals like \"spherical\", \"cylindrical\", etc. even though it is open to more complex representation of geometries using other vocabularies."@en ;
+  rdfs:label "Geometry"@en .
+
+:LightProjectionHeight a saref:Property ;
+  skos:broader :Height ;
+  rdfs:comment "The height from which a light is projected."@en ;
+  rdfs:label "light projection height"@en .
+
+:LightProjectionDirection a saref:Property ;
+  rdfs:comment "The direction in which a light is projected."@en ;
+  rdfs:label "light projection direction"@en .
+
+:FlashingLight a saref:FeatureKind ;
+  skos:broader :Light ;
+  rdfs:comment "A light source that has flash."@en ;
+  rdfs:label "Flashing Light"@en .
+
+
+###* Light Point
+
+:LightPoint a owl:Class, saref:FeatureKind ;
+  :projectsLight :Light ;
+  saref:hasProperty :LightProjectionDirection , :LightProjectionHeight ;
+  rdfs:comment "An spatial point from where a light is projected. It might belong to a lamppost."@en ;
+  rdfs:label "Light point"@en .
+
+
+:LightPoint owl:equivalentClass [ owl:unionOf ( 
+    [ a owl:Class ; owl:oneOf ( :LightPoint ) ] # itself
+    [ a owl:Class ; owl:onProperty skos:broader ; owl:hasValue :LightPoint ] # narrower kinds
+    [ a owl:Class ; owl:onProperty saref:hasFeatureKind ; owl:hasValue :LightPoint ] # things of this kind 
+  ) ] .
+
+###* Lamppost
+#- Figure: SAREF4ENVI_figures-Lamppost.drawio.png
+
+:Lamppost a saref:DeviceKind ;
+  :hasLightPoint :LightPoint ;
+  :projectsLight :Light ;
+  rdfs:comment "A tall pole with a light at the top."@en ;
+  rdfs:label "Lamppost"@en .
+
+:Lamppost a owl:Class ;
+  rdfs:subClassOf saref:Device ;
+  owl:equivalentClass [ owl:unionOf ( 
+    [ a owl:Class ; owl:oneOf ( :Lamppost ) ] # itself
+    [ a owl:Class ; owl:onProperty skos:broader ; owl:hasValue :Lamppost ] # narrower kinds
+    [ a owl:Class ; owl:onProperty saref:hasFeatureKind ; owl:hasValue :Lamppost ] # things of this kind 
+  ) ] .
+
+:ShieldedLamppost a saref:DeviceKind ;
+  skos:broader :Lamppost ;
+  rdfs:comment "A lampost with a shield."@en ;
+  rdfs:label "Lamppost"@en .
+
+:ShieldedLamppost a owl:Class ;
+  owl:equivalentClass [ owl:unionOf ( 
+    [ a owl:Class ; owl:oneOf ( :ShieldedLamppost ) ] # itself
+    [ a owl:Class ; owl:onProperty skos:broader ; owl:hasValue :ShieldedLamppost ] # narrower kinds
+    [ a owl:Class ; owl:onProperty saref:hasFeatureKind ; owl:hasValue :ShieldedLamppost ] # things of this kind 
+  ) ] .
+
+:hasLightPoint a owl:ObjectProperty ;
+  rdfs:subPropertyOf saref:consistsOf ;
+  rdfs:domain :Lamppost ;
+  rdfs:range :LightPoint ;
+  rdfs:comment "A relation between a lamppost and its light points"@en ;
+  rdfs:label "has light point"@en .
+
+# a device inherits the communication protocol of its kind
+:hasLightPoint owl:propertyChainAxiom ( saref:hasFeatureKind :hasLightPoint ) .
+# a device inherits the kinds of its communication protocol
+:hasLightPoint owl:propertyChainAxiom ( :hasLightPoint saref:hasFeatureKind ) .
+
+:projectsLight a owl:ObjectProperty ;
+  rdfs:domain [ a owl:Class ; owl:unionOf ( :Lamppost :LightPoint ) ] ;
+  rdfs:range :Light ;
+  rdfs:comment "A relation between a lamppost or a light point and the light (or lights) they might project."@en ;
+  rdfs:label "projects light"@en .
+
+
+###*  Photometer and TESS
+
+:Photometer a saref:DeviceKind ;
+  saref:observes :Illuminance , :Irradiance , :LightAbsorption , :ScatteringOfLight , :ReflectionOfLight , :Fluorescence , :Phosphorescence , :LightMagnitude , :Luminescence , :Color ;
+  rdfs:comment "A photometer, generally, is an instrument that measures light intensity or optical properties of solutions or surfaces."@en ;
+  rdfs:label "Photometer"@en .
+
+:TESS a saref:DeviceKind ;
+  skos:broader :Photometer ;
+  rdfs:comment "The Telescope Encoder and Sky Sensor (TESS) is a Sky Brightness and Cloud detector developed as a device for a remote observatory. A TESS can observe the light magnitude and other properties as ambient temperature and sky temperature."@en ;
+  rdfs:label "TESS (Telescope Encoder and Sky Sensor)"@en .
+
+##* Waste Management Domain
+#- Figure: SAREF4ENVI_figures-SymbologyLegend.drawio.png
+
+###* Waste
+#- Figure: SAREF4ENVI_figures-WasteOverview.drawio.png
+
+geo:hasGeometry rdf:type owl:ObjectProperty .
+
+s4envi:accepts rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( s4envi:WasteProcessingDevice
+                                           s4envi:WasteProcessingSite
+                                           s4envi:Container
+                                           s4envi:WasteCollectionVehicleKind
+                                         )
+                           ] ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( s4envi:ContainerKind
+                                          s4envi:WasteKind
+                                        )
+                          ] ;
+               rdfs:label "accepts"@en ;
+               rdfs:comment "A container, waste processing device, waste processing site or waste collection vehicle kind is intended to accept one or more waste kinds. A waste collection vehicle kind is intended to accept one or more container kinds."@en .
+
+s4envi:isDepositedIn rdf:type owl:ObjectProperty ;
+                     rdfs:domain s4envi:Waste ;
+                     rdfs:range s4envi:Container ;
+                     rdfs:label "is deposited in"@en ;
+               rdfs:comment "Waste is deposited in one container."@en .
+
+s4envi:isProducedBy rdf:type owl:ObjectProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( s4envi:Waste
+                                                s4envi:WasteKind
+                                              )
+                                ] ;
+                    rdfs:range s4envi:WasteProducer ;
+                    rdfs:label "is produced by"@en ;
+               rdfs:comment "Waste is produced by a waste producer. A waste kind is produced by a given waste producer at a given waste generation rate."@en .
+
+s4envi:serves rdf:type owl:ObjectProperty ;
+              rdfs:domain s4envi:Container ;
+              rdfs:range s4envi:Perimeter ;
+              rdfs:label "serves"@en ;
+              rdfs:comment "A container is intended to serve one perimeter."@en .
+
+vcard:hasAddress rdf:type owl:ObjectProperty .
+
+geo:Feature rdf:type owl:Class .
+
+geo:Geometry rdf:type owl:Class .
+
+<http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class .
+
+s4envi:Building rdf:type owl:Class ;
+                rdfs:subClassOf s4envi:Perimeter ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty vcard:hasAddress ;
+                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass vcard:Address
+                                ] ;
+                rdfs:comment "Construction works that has the provision of shelter for its occupants or contents as one of its main purposes, usually partially or totally enclosed and designed to stand permanently in one place (source: ISO 6707-1:2020, clause 3.1.1.3)."@en ;
+                rdfs:label "Building"@en .
+
+s4envi:City rdf:type owl:Class ;
+            rdfs:subClassOf s4envi:Perimeter ;
+            rdfs:comment "Inhabited and urbanised place."@en ;
+            rdfs:label "City"@en .
+
+s4envi:CollectionOfBuildings rdf:type owl:Class ;
+                             rdfs:subClassOf s4envi:Perimeter ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty saref:consistsOf ;
+                                               owl:allValuesFrom s4envi:Building
+                                             ] ;
+                             rdfs:comment "Multiple buildings, not necessarily grouped spatially and not necessarily sharing any characteristics."@en ;
+                             rdfs:label "Collection of buildings"@en .
+
+s4envi:Container rdf:type owl:Class ;
+                 rdfs:subClassOf geo:Feature ,
+                                 saref:FeatureOfInterest ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty s4envi:accepts ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass s4envi:WasteKind
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty s4envi:serves ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass s4envi:Perimeter
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty s4envi:hasCollectionPoint ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass s4envi:CollectionPoint
+                                 ] ;
+                 rdfs:comment "Vessel or receptacle used for the temporary holding of waste (source: ISO 24161:2022, clause 3.2.3.5)."@en ;
+                 rdfs:label "Container"@en .
+
+s4envi:ContainerKind rdf:type owl:Class ;
+                     rdfs:subClassOf saref:FeatureKind ;
+                     rdfs:comment "Category of container."@en ;
+                     rdfs:label "Container kind"@en .
+
+s4envi:House rdf:type owl:Class ;
+             rdfs:subClassOf s4envi:ResidentialBuilding ;
+             rdfs:comment "Building designed as one dwelling (source: ISO 6707-1:2020, clause 3.1.4.5)."@en ;
+             rdfs:label "House"@en .
+
+s4envi:Neighbourhood rdf:type owl:Class ;
+                     rdfs:subClassOf s4envi:Perimeter ;
+                     rdfs:comment "Any spatial subpart of a city."@en ;
+                     rdfs:label "Neighbourhood"@en .
+
+s4envi:NonResidentialBuilding rdf:type owl:Class ;
+                              rdfs:subClassOf s4envi:Building ;
+                              rdfs:comment "Building for any use other than residential."@en ;
+                              rdfs:label "Non-residential building"@en .
+
+s4envi:Perimeter rdf:type owl:Class ;
+                 rdfs:subClassOf geo:Feature ,
+                                 saref:FeatureOfInterest ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty saref:consistsOf ;
+                                   owl:someValuesFrom s4envi:WasteProducer
+                                 ] ;
+                 rdfs:comment "Spatial extent considered as containing (1) the attributee or attributees of a container, or (2) the generator or generators of a waste flux."@en ;
+                 rdfs:label "Perimeter"@en .
+
+s4envi:ResidentialBuilding rdf:type owl:Class ;
+                           rdfs:subClassOf s4envi:Building ;
+                           rdfs:comment "Building for residential use."@en ;
+                           rdfs:label "Residential building"@en .
+
+s4envi:Resource rdf:type owl:Class ;
+                rdfs:subClassOf geo:Feature ,
+                                saref:FeatureOfInterest ;
+                rdfs:comment "Useful substances and objects."@en ;
+                rdfs:label "Resource"@en .
+
+s4envi:ResourceKind rdf:type owl:Class ;
+                    rdfs:subClassOf saref:FeatureKind ;
+                    rdfs:comment "Category of resource."@en ;
+                    rdfs:label "Resource kind"@en .
+
+s4envi:SharedResidentialBuilding rdf:type owl:Class ;
+                                 rdfs:subClassOf s4envi:ResidentialBuilding ;
+                                 rdfs:comment "Building containing more than one dwelling."@en ;
+                                 rdfs:label "Shared residential building"@en .
+
+s4envi:Waste rdf:type owl:Class ;
+             rdfs:subClassOf s4envi:Resource ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:isProducedBy ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass s4envi:WasteProducer
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:isDepositedIn ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass s4envi:Container
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:becomes ;
+                               owl:allValuesFrom s4envi:SecondaryRawResource
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:isProcessedBy ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass s4envi:WasteProcessingDevice
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:isDepositedAt ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass s4envi:WasteProcessingSite
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:processingBeginsOn ;
+                               owl:allValuesFrom xsd:date
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:processingEndsOn ;
+                               owl:allValuesFrom xsd:date
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:isCollectedDuring ;
+                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass s4envi:Journey
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty s4envi:hasCollectionDate ;
+                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:date
+                             ] ;
+             rdfs:comment "Substances or objects which are discarded, are intended to be discarded or are required to be discarded in accordance with national laws. Waste is a potential resource or commodity that could be turned into a useful product, recycled or recovered (source: ISO 24161:2022)."@en ;
+             rdfs:label "Waste"@en ;
+             rdfs:seeAlso envo:00002264 .
+
+s4envi:WasteKind rdf:type owl:Class ;
+                 rdfs:subClassOf s4envi:ResourceKind ;
+                 rdfs:comment "Category of waste."@en ;
+                 rdfs:label "Waste kind"@en .
+
+
+###  https://saref.etsi.org/saref4envi/WasteProducer
+s4envi:WasteProducer rdf:type owl:Class ;
+                     rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ,
+                                     saref:FeatureOfInterest ;
+                     rdfs:comment "Person or organisation which produces waste from their own activities (source: ISO 24161:2022, clause 3.2.1.6)."@en ;
+                     rdfs:label "Waste producer"@en .
+
+vcard:Address rdf:type owl:Class .
+
+s4envi:BiodegradableWaste rdf:type owl:NamedIndividual ,
+                                   s4envi:WasteKind ;
+                          skos:narrower s4envi:FoodWaste ,
+                                        s4envi:GardenParkWaste ;
+                          rdfs:comment "Waste that is biodegradable, such as food waste or waste from green spaces."@en ;
+                          rdfs:label "Biodegradable waste"@en .
+
+s4envi:ConcreteConstructionWaste rdf:type owl:NamedIndividual ,
+                                          s4envi:WasteKind ;
+                                 skos:broader s4envi:ConstructionWaste ;
+                                 rdfs:comment "Waste from discarded products and materials made of concrete, and which arises from construction, renovation or demolition activities (source: ISO 24161:2022, clause 3.1.2.4)."@en ;
+                                 rdfs:label "Concrete construction waste"@en .
+
+s4envi:ConstructionWaste rdf:type owl:NamedIndividual ,
+                                  s4envi:WasteKind ;
+                         skos:narrower s4envi:ConcreteConstructionWaste ,
+                                       s4envi:WoodConstructionWaste ;
+                         rdfs:comment "Waste which arises from construction, renovation or demolition activities (source: ISO 24161:2022, clause 3.1.2.4)."@en ;
+                         rdfs:label "Construction waste"@en .
+
+s4envi:FoodWaste rdf:type owl:NamedIndividual ,
+                          s4envi:WasteKind ;
+                 skos:broader s4envi:BiodegradableWaste ;
+                 rdfs:comment "Food that is discarded along the food chain (source: ISO 24161:2022, clause 3.1.2.7)."@en ;
+                 rdfs:label "Food waste"@en ;
+                 rdfs:seeAlso envo:03600006 .
+
+s4envi:GardenParkWaste rdf:type owl:NamedIndividual ,
+                                s4envi:WasteKind ;
+                       skos:broader s4envi:BiodegradableWaste ;
+                       rdfs:comment "Tree trunks and branches, plant parts and trimmings generated during the maintenance and pruning of trees and plants (source: ISO 24161:2022)."@en ;
+                       rdfs:label "Garden and park waste"@en .
+
+s4envi:GlassWaste rdf:type owl:NamedIndividual ,
+                           s4envi:WasteKind ;
+                  rdfs:comment "Waste from discarded products and materials made of glass."@en ;
+                  rdfs:label "Glass waste"@en .
+
+s4envi:HouseholdWaste rdf:type owl:NamedIndividual ,
+                               s4envi:WasteKind ;
+                      rdfs:comment "Waste, but not hazardous waste, that arises from the domestic use of a private dwelling (source: ISO 6707-1:2020, clause 3.8.17)."@en ;
+                      rdfs:label "Household waste"@en .
+
+s4envi:IndividualHouseContainer rdf:type owl:NamedIndividual ,
+                                         s4envi:ContainerKind ;
+                                rdfs:comment "Individual container attributed to a house."@en ;
+                                rdfs:label "Individual house container"@en .
+
+s4envi:Mass rdf:type owl:NamedIndividual ,
+                     saref:Property ;
+            rdfs:comment "An individual representing the property mass."@en ;
+            rdfs:label "Mass"@en .
+
+s4envi:MassCapacity rdf:type owl:NamedIndividual ,
+                             saref:Property ;
+                    rdfs:comment "Maximal capacity of a container in terms of mass."@en ;
+                    rdfs:label "Mass capacity"@en .
+
+s4envi:NonResidentialBuildingContainer rdf:type owl:NamedIndividual ,
+                                                s4envi:ContainerKind ;
+                                       rdfs:comment "Container attributed to a non-residential building."@en ;
+                                       rdfs:label "Non-residential building container"@en .
+
+s4envi:PaperCardboardWaste rdf:type owl:NamedIndividual ,
+                                    s4envi:WasteKind ;
+                           rdfs:comment "Waste from discarded products and materials made of paper and carboard."@en ;
+                           rdfs:label "Paper and cardboard waste"@en .
+
+s4envi:PlasticWaste rdf:type owl:NamedIndividual ,
+                             s4envi:WasteKind ;
+                    rdfs:comment "Discarded material which contains as an essential ingredient a high polymer (source: ISO 24161:2022, clause 3.1.2.28)."@en ;
+                    rdfs:label "Plastic waste"@en .
+
+s4envi:Population rdf:type owl:NamedIndividual ,
+                           saref:Property ;
+                  rdfs:comment "Total number of people living within a perimeter."@en ;
+                  rdfs:label "Population"@en .
+
+s4envi:SharedResidentialBuildingContainer rdf:type owl:NamedIndividual ,
+                                                   s4envi:ContainerKind ;
+                                          rdfs:comment "Shared container attributed to a residential building."@en ;
+                                          rdfs:label "Shared residential building container"@en .
+
+s4envi:TextileWaste rdf:type owl:NamedIndividual ,
+                             s4envi:WasteKind ;
+                    rdfs:comment "Waste from discarded products and materials made of textile."@en ;
+                    rdfs:label "Textile waste"@en .
+
+s4envi:Volume rdf:type owl:NamedIndividual ,
+                       saref:Property ;
+              rdfs:comment "An individual representing the property volume."@en ;
+              rdfs:label "Volume"@en .
+
+s4envi:VolumeCapacity rdf:type owl:NamedIndividual ,
+                               saref:Property ;
+                      rdfs:comment "Maximal capacity of a container in terms of volume."@en ;
+                      rdfs:label "Volume capacity"@en .
+
+s4envi:VoluntaryDropOffContainer rdf:type owl:NamedIndividual ,
+                                          s4envi:ContainerKind ;
+                                 rdfs:comment "Container not attributed to a building but rather located in a public area. Relies on the user voluntarily making the trip to the container to dispose of their waste."@en ;
+                                 rdfs:label "Voluntary drop-off container"@en .
+
+s4envi:WasteGenerationRate rdf:type owl:NamedIndividual ,
+                                    saref:Property ;
+                           rdfs:comment "Rate at which waste is generated by a waste producer."@en ;
+                           rdfs:label "Waste generation rate"@en .
+
+s4envi:WoodConstructionWaste rdf:type owl:NamedIndividual ,
+                                      s4envi:WasteKind ;
+                             skos:broader s4envi:ConstructionWaste , s4envi:WoodWaste ;
+                             rdfs:comment "Waste from discarded products and materials made of wood, including pallets, crates, boxes, furniture and planks (source: ISO 24161:2022, clause 3.1.2.33) and which arises from construction, renovation or demolition activities (source: ISO 24161:2022, clause 3.1.2.4)."@en ;
+                             rdfs:label "Wood construction waste"@en .
+
+s4envi:WoodWaste rdf:type owl:NamedIndividual ,
+                          s4envi:WasteKind ;
+                 skos:narrower s4envi:WoodConstructionWaste ;
+                 rdfs:comment "Waste from discarded products and materials made of wood, including pallets, crates, boxes, furniture and planks (source: ISO 24161:2022, clause 3.1.2.33)."@en ;
+                 rdfs:label "Wood waste"@en .
+
+###* Collection
+#- Figure: SAREF4ENVI_figures-CollectionOverview.drawio.png
+
+s4envi:WasteCollectionVehicle rdf:type owl:Class ;
+                              rdfs:subClassOf geo:Feature ,
+                                              saref:FeatureOfInterest ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty s4envi:hasDepot ;
+                                                owl:allValuesFrom s4envi:Depot
+                                              ] ;
+                              rdfs:comment "Purpose-built vehicle for the collection and transport of waste, whereby the refuse is transferred by differential air pressure, a lifting device, mechanical means or hand (source: ISO 24161:2022, clause 3.2.2.6). In the case of human-powered waste collection vehicles, they are not necessarily purpose-built for the collection and transport of waste."@en ;
+                              rdfs:label "Waste collection vehicle"@en .
+
+s4envi:WasteCollectionVehicleKind rdf:type owl:Class ;
+                                  rdfs:subClassOf saref:FeatureKind ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty s4envi:accepts ;
+                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                    owl:onClass [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( s4envi:ContainerKind
+                                                                                s4envi:WasteKind
+                                                                              )
+                                                                ]
+                                                  ] ;
+                                  rdfs:comment "Category of waste collection vehicle."@en ;
+                                  rdfs:label "Waste collection vehicle kind"@en .
+
+s4envi:AverageSpeedLimit rdf:type owl:NamedIndividual ,
+                                  saref:Property ;
+                         rdfs:comment "Mean speed limit for a road segment or an itinerary."@en ;
+                         rdfs:label "Average speed limit"@en .
+
+s4envi:CargoBicycle rdf:type owl:NamedIndividual ,
+                             s4envi:WasteCollectionVehicleKind ;
+                    rdfs:comment "Human-powered vehicle in the form of a bicycle (mechanical or electrical) featuring a storage area for transporting loads."@en ;
+                    rdfs:label "Cargo bicycle"@en .
+
+s4envi:CollectionReferencePeriod rdf:type owl:NamedIndividual ,
+                                          saref:Property ;
+                                 rdfs:comment "To be used in conjunction with s4envi:CollectionsPerReferencePeriod to describe the frequency at which waste is collected from a collection point. Waste is collected from a collection point X times every Y [time unit], where X is the unitless value of s4envi:CollectionsPerReferencePeriod, Y is the value of s4envi:CollectionReferencePeriod and [time unit] is the unit of measurement of Y. For example, waste that is collected from a collection point 3 times every 2 weeks would have X = 3, Y = 2 and a [time unit] of 'week'."@en ;
+                                 rdfs:label "Collection reference period"@en .
+
+s4envi:CollectionsPerReferencePeriod rdf:type owl:NamedIndividual ,
+                                              saref:Property ;
+                                     rdfs:comment "To be used in conjunction with s4envi:CollectionReferencePeriod to describe the frequency at which waste is collected from a collection point. Waste is collected from a collection point X times every Y [time unit], where X is the unitless value of s4envi:CollectionsPerReferencePeriod, Y is the value of s4envi:CollectionReferencePeriod and [time unit] is the unit of measurement of Y. For example, waste that is collected from a collection point 3 times every 2 weeks would have X = 3, Y = 2 and a [time unit] of 'week'."@en ;
+                                     rdfs:label "Collections per reference period"@en .
+
+s4envi:Duration rdf:type owl:NamedIndividual ,
+                         saref:Property ;
+                rdfs:comment "Duration in time of a journey."@en ;
+                rdfs:label "Duration"@en .
+
+s4envi:Length rdf:type owl:NamedIndividual ,
+                       saref:Property ;
+              rdfs:comment "Length in distance of a journey or an itinerary."@en ;
+              rdfs:label "Length"@en .
+
+s4envi:Lorry rdf:type owl:NamedIndividual ,
+                      s4envi:WasteCollectionVehicleKind ;
+             rdfs:label "Lorry"@en ;
+             rdfs:comment "Electric, gas-powered or internal-combustion engine vehicle featuring a rear storage area for transporting loads."@en ;
+             rdfs:seeAlso envo:01000602 .
+
+s4envi:MaximumSpeed rdf:type owl:NamedIndividual ,
+                             saref:Property ;
+                    rdfs:comment "Highest speed at which a waste collection vehicle can go."@en ;
+                    rdfs:label "Maximum speed"@en .
+
+s4envi:Depot rdf:type owl:Class ;
+             rdfs:subClassOf geo:Feature ,
+                             <http://www.w3.org/ns/org#Site> ,
+                             saref:FeatureOfInterest ;
+             rdfs:comment "Site where waste collection vehicles are parked when not in use."@en ;
+             rdfs:label "Depot"@en .
+
+s4envi:Itinerary rdf:type owl:Class ;
+                 rdfs:subClassOf geo:Feature ,
+                                 saref:FeatureOfInterest ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty saref:consistsOf ;
+                                   owl:allValuesFrom s4envi:RoadSegment
+                                 ] ;
+                 rdfs:comment "Set of road segments that make up the route taken by a waste collection vehicle, from its depot to the collection points on its round and finally to a waste processing site."@en ;
+                 rdfs:label "Itinerary"@en .
+
+s4envi:Journey rdf:type owl:Class ;
+               rdfs:subClassOf saref:FeatureOfInterest ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty s4envi:followsItinerary ;
+                                 owl:allValuesFrom s4envi:Itinerary
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty s4envi:isMadeBy ;
+                                 owl:allValuesFrom s4envi:WasteCollectionVehicle
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty s4envi:isMadeOn ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:date
+                               ] ;
+               rdfs:comment "Trip that has been made by a waste collection vehicle in reality, following an itinerary, to collect waste from collection points and take it to a waste processing site."@en ;
+               rdfs:label "Journey"@en .
+
+s4envi:RoadSegment rdf:type owl:Class ;
+                   rdfs:subClassOf geo:Feature ,
+                                   saref:FeatureOfInterest ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty geo:sfContains ;
+                                     owl:someValuesFrom [ rdf:type owl:Class ;
+                                                          owl:unionOf ( s4envi:CollectionPoint
+                                                                        s4envi:Depot
+                                                                        s4envi:WasteProcessingSite
+                                                                      )
+                                                 ]
+                                   ] ;
+                   rdfs:comment "Route taken by a waste collection vehicle between (1) its depot and the first collection point on its round, (2) collection point n and collection point n+1 on its round, or (3) the last collection point on its round and a waste processing site."@en ;
+                   rdfs:label "Road segment"@en .
+
+s4envi:CollectionPoint rdf:type owl:Class ;
+                       rdfs:subClassOf geo:Feature ,
+                                       saref:FeatureOfInterest ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4envi:hasCollectionDay ;
+                                         owl:allValuesFrom <http://www.w3.org/2006/time#DayOfWeek>
+                                       ] ;
+                       rdfs:comment "Point where waste is collected by refuse collection vehicle (source: ISO 24161:2022, clause 3.2.3.19)."@en ;
+                       rdfs:label "Collection point"@en .
+
+time:DayOfWeek rdf:type owl:Class .
+
+org:Site rdf:type owl:Class .
+
+geo:sfContains rdf:type owl:ObjectProperty .
+
+s4envi:followsItinerary rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4envi:Journey ;
+                        rdfs:range s4envi:Itinerary ;
+                        rdfs:label "follows itinerary"@en ;
+                        rdfs:comment "A journey follows a defined itinerary."@en .
+
+s4envi:hasCollectionDay rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4envi:CollectionPoint ;
+                        rdfs:range <http://www.w3.org/2006/time#DayOfWeek> ;
+                        rdfs:label "has collection day"@en ;
+                        rdfs:comment "A collection point can be assigned one or more collection days."@en .
+
+s4envi:hasCollectionPoint rdf:type owl:ObjectProperty ;
+                          rdfs:domain s4envi:Container ;
+                          rdfs:range s4envi:CollectionPoint ;
+                          rdfs:label "has collection point"@en ;
+                          rdfs:comment "A container can be assigned a collection point."@en .
+
+s4envi:hasDepot rdf:type owl:ObjectProperty ;
+                rdfs:domain s4envi:WasteCollectionVehicle ;
+                rdfs:range s4envi:Depot ;
+                rdfs:label "has depot"@en ;
+                rdfs:comment "A waste collection vehicle is assigned one depot."@en .
+
+s4envi:isCollectedDuring rdf:type owl:ObjectProperty ;
+                         rdfs:domain s4envi:Waste ;
+                         rdfs:range s4envi:Journey ;
+                         rdfs:label "is collected during"@en ;
+                         rdfs:comment "Waste is collected during a journey."@en .
+
+s4envi:isMadeBy rdf:type owl:ObjectProperty ;
+                rdfs:domain s4envi:Journey ;
+                rdfs:range s4envi:WasteCollectionVehicle ;
+                rdfs:label "is made by"@en ;
+                rdfs:comment "A journey is made by one waste collection vehicle."@en .
+
+s4envi:hasCollectionDate rdf:type owl:DatatypeProperty ;
+                         rdfs:domain s4envi:Waste ;
+                         rdfs:range xsd:date ;
+                         rdfs:label "has collection date"@en ;
+                         rdfs:comment "Waste has one collection date, the date on which it was initially collected."@en .
+
+s4envi:isMadeOn rdf:type owl:DatatypeProperty ;
+                rdfs:domain s4envi:Journey ;
+                rdfs:range xsd:date ;
+                rdfs:label "is made on"@en ;
+                rdfs:comment "A journey is made on a given date."@en .
+
+###* Treatment
+#- Figure: SAREF4ENVI_figures-TreatmentOverview.drawio.png
+
+s4envi:WastePreTreatmentDevice rdf:type owl:Class ;
+                               rdfs:subClassOf s4envi:WasteProcessingDevice ;
+                               rdfs:comment "Device that pre-treats waste before the waste undergoes treatment or disposal."@en ;
+                               rdfs:label "Waste pre-treatment device"@en .
+
+s4envi:WastePreTreatmentFunction rdf:type owl:Class ;
+                                 rdfs:subClassOf s4envi:WasteProcessingFunction ;
+                                 rdfs:comment "Represents the functionality of pre-treating waste."@en ;
+                                 rdfs:label "Waste pre-treatment function"@en .
+
+s4envi:WastePreTreatmentTask rdf:type owl:Class ;
+                             rdfs:subClassOf s4envi:WasteProcessingTask ;
+                             rdfs:comment "Represents the task of pre-treating waste: preparing waste for treatment or disposal."@en ;
+                             rdfs:label "Waste pre-treatment task"@en .
+
+s4envi:WasteProcessingDevice rdf:type owl:Class ;
+                             rdfs:subClassOf saref:Device ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty s4envi:directlyConsumes ;
+                                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( s4envi:PrimaryRawResource
+                                                                                 s4envi:SecondaryRawResource
+                                                                               )
+                                                                 ]
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty s4envi:indirectlyConsumes ;
+                                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( s4envi:PrimaryRawResource
+                                                                                 s4envi:SecondaryRawResource
+                                                                               )
+                                                                 ]
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty s4envi:produces ;
+                                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( s4envi:FinalWaste
+                                                                                 s4envi:SecondaryRawResource
+                                                                               )
+                                                                 ]
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty s4envi:accepts ;
+                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                               owl:onClass s4envi:WasteKind
+                                             ] ;
+                             rdfs:comment "Device that processes waste."@en ;
+                             rdfs:label "Waste processing device"@en .
+
+s4envi:WasteProcessingOrganisation rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://www.w3.org/ns/org#Organisation> ;
+                                   rdfs:comment "Organisation in the waste processing industry that has waste processing sites."@en ;
+                                   rdfs:label "Waste processing organisation"@en .
+
+s4envi:WasteProcessingSite rdf:type owl:Class ;
+                           rdfs:subClassOf geo:Feature ,
+                                           <http://www.w3.org/ns/org#Site> ,
+                                           saref:FeatureOfInterest ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty s4envi:accepts ;
+                                             owl:allValuesFrom s4envi:WasteKind
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty geo:sfContains ;
+                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass s4envi:WasteProcessingDevice
+                                           ] ;
+                           rdfs:comment "Licensed plant in which waste is treated in accordance with the local laws (source: ISO 24161:2022, clause 3.1.3.20)."@en ;
+                           rdfs:label "Waste processing site"@en .
+
+s4envi:WasteProcessingTask rdf:type owl:Class ;
+                           rdfs:subClassOf saref:Task ;
+                           rdfs:comment "Single step or a combination of multiple steps in which waste is handled via mechanical, chemical, thermal or biological processes with the aim of recovering material or energetic value and/or reducing the volume and environmental impact of the waste (source: ISO 24161:2022, clause 3.1.3.19)."@en ;
+                           rdfs:label "Waste processing task"@en .
+
+s4envi:WasteTreatmentDevice rdf:type owl:Class ;
+                            rdfs:subClassOf s4envi:WasteProcessingDevice ;
+                            rdfs:comment "Device that treats waste."@en ;
+                            rdfs:label "Waste treatment device"@en .
+
+s4envi:WasteProcessingFunction rdf:type owl:Class ;
+                              rdfs:subClassOf saref:Function ;
+                              rdfs:comment "Represents the functionality of processing (pre-treating, treating, disposing of) waste."@en ;
+                              rdfs:label "Waste processing function"@en .
+
+s4envi:WasteTreatmentFunction rdf:type owl:Class ;
+                              rdfs:subClassOf s4envi:WasteProcessingFunction ;
+                              rdfs:comment "Represents the functionality of treating waste."@en ;
+                              rdfs:label "Waste treatment function"@en .
+
+s4envi:WasteTreatmentTask rdf:type owl:Class ;
+                          rdfs:subClassOf s4envi:WasteProcessingTask ;
+                          rdfs:comment "Represents the task of treating waste."@en ;
+                          rdfs:label "Waste treatment task"@en .
+
+s4envi:WaterEmissionKind rdf:type owl:Class ;
+                         rdfs:subClassOf s4envi:EmissionKind ;
+                         rdfs:comment "Category of water emission."@en ;
+                         rdfs:label "Water emission kind"@en .
+
+s4envi:Windrow rdf:type owl:Class ;
+               rdfs:subClassOf s4envi:Composter ;
+               rdfs:comment "Device that performs the task of composting via windrow composting."@en ;
+               rdfs:label "Windrow"@en .
+
+s4envi:WasteDisposalDevice rdf:type owl:Class ;
+                           rdfs:subClassOf s4envi:WasteProcessingDevice ;
+                           rdfs:comment "Device that disposes of waste."@en ;
+                           rdfs:label "Waste disposal device"@en .
+
+s4envi:WasteDisposalFunction rdf:type owl:Class ;
+                             rdfs:subClassOf s4envi:WasteProcessingFunction ;
+                             rdfs:comment "Represents the functionality of disposing of waste."@en ;
+                             rdfs:label "Waste disposal function"@en .
+
+s4envi:WasteDisposalTask rdf:type owl:Class ;
+                         rdfs:subClassOf s4envi:WasteProcessingTask ;
+                         rdfs:comment "Putting waste in an appropriate facility without the intention of recovery (source: ISO 24161:2022, clause 3.1.3.3)."@en ;
+                         rdfs:label "Waste disposal task"@en .
+
+s4envi:SecondaryRawResource rdf:type owl:Class ;
+                            rdfs:subClassOf saref:FeatureOfInterest ;
+                            rdfs:subClassOf s4envi:Resource ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty s4envi:hasCreationDate ;
+                                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                              owl:onDataRange xsd:date
+                                            ] ;
+                            rdfs:comment "Resource that is obtained from one that has already been processed or used (source: ISO 59004:2024, clause 3.3.5)."@en ;
+                            rdfs:label "Secondary raw resource"@en .
+
+s4envi:SecondaryRawResourceKind rdf:type owl:Class ;
+                                rdfs:subClassOf s4envi:ResourceKind , saref:FeatureKind ;
+                                rdfs:comment "Category of secondary raw resource."@en ;
+                                rdfs:label "Secondary raw resource kind"@en .
+
+s4envi:SoilEmissionKind rdf:type owl:Class ;
+                        rdfs:subClassOf s4envi:EmissionKind ;
+                        rdfs:comment "Category of soil emission."@en ;
+                        rdfs:label "Soil emission kind"@en .
+
+s4envi:Sorter rdf:type owl:Class ;
+              rdfs:subClassOf s4envi:WastePreTreatmentDevice ;
+              rdfs:comment "Device that performs the task of sorting."@en ;
+              rdfs:label "Sorter"@en .
+
+s4envi:VermicompostBin rdf:type owl:Class ;
+                       rdfs:subClassOf s4envi:Composter ;
+                       rdfs:label "Vermicompost bin"@en ;
+                       rdfs:comment "Device that performs the task of composting via vermicomposting."@en .
+
+s4envi:AirEmissionKind rdf:type owl:Class ;
+                       rdfs:subClassOf s4envi:EmissionKind ;
+                       rdfs:comment "Category of air emission."@en ;
+                       rdfs:label "Air emission kind"@en .
+
+s4envi:AnaerobicDigester rdf:type owl:Class ;
+                         rdfs:subClassOf s4envi:WasteTreatmentDevice ;
+                         rdfs:comment "Device that performs the task of methanisation."@en ;
+                         rdfs:label "Anaerobic digester"@en .
+
+s4envi:CompostBin rdf:type owl:Class ;
+                  rdfs:subClassOf s4envi:Composter ;
+                  rdfs:comment "Device that performs the task of composting via cold composting."@en ;
+                  rdfs:label "Compost bin"@en .
+
+s4envi:Composter rdf:type owl:Class ;
+                        rdfs:subClassOf s4envi:WasteTreatmentDevice ;
+                        rdfs:comment "Device that performs the task of composting."@en ;
+                        rdfs:label "Composter"@en .
+
+s4envi:Disassembler rdf:type owl:Class ;
+                    rdfs:subClassOf s4envi:WastePreTreatmentDevice ;
+                    rdfs:comment "Device that performs the task of disassembly."@en ;
+                    rdfs:label "Disassembler"@en .
+
+s4envi:Emission rdf:type owl:Class ;
+                rdfs:subClassOf saref:FeatureOfInterest ;
+                rdfs:comment "Unwanted substance released into the air, water or soil."@en ;
+                rdfs:label "Emission"@en .
+
+s4envi:EmissionKind rdf:type owl:Class ;
+                    rdfs:subClassOf saref:FeatureKind ;
+                    rdfs:comment "Category of emission."@en ;
+                    rdfs:label "Emission kind"@en .
+
+s4envi:FinalWaste rdf:type owl:Class ;
+                  rdfs:subClassOf saref:FeatureOfInterest ;
+                  rdfs:comment "State of waste that has been processed by a waste disposal device."@en ;
+                  rdfs:label "Final waste"@en .
+
+s4envi:IncineratorWithRecovery rdf:type owl:Class ;
+                               rdfs:subClassOf s4envi:WasteTreatmentDevice ;
+                               rdfs:comment "Device that performs the task of incineration with energy recovery."@en ;
+                               rdfs:label "Incinerator with recovery"@en .
+
+s4envi:IncineratorWithoutRecovery rdf:type owl:Class ;
+                                  rdfs:subClassOf s4envi:WasteDisposalDevice ;
+                                  rdfs:comment "Device that performs the task of incineration without energy recovery."@en ;
+                                  rdfs:label "Incinerator without recovery"@en .
+
+s4envi:LandfillWithRecovery rdf:type owl:Class ;
+                            rdfs:subClassOf s4envi:WasteDisposalDevice ;
+                            rdfs:comment "Device that performs the task of landfill with energy recovery."@en ;
+                            rdfs:label "Landfill with recovery"@en .
+
+s4envi:LandfillWithoutRecovery rdf:type owl:Class ;
+                               rdfs:subClassOf s4envi:WasteDisposalDevice ;
+                               rdfs:comment "Device that performs the task of landfill without energy recovery."@en ;
+                               rdfs:label "Landfill without recovery"@en .
+
+s4envi:PrimaryRawResource rdf:type owl:Class ;
+                          rdfs:subClassOf saref:FeatureOfInterest ;
+                          rdfs:subClassOf s4envi:Resource ;
+                          rdfs:comment "Natural resource or energy that is used as a resource for the first time as input in a process or for creating a solution (source: ISO 59004:2024, clause 3.3.2)."@en ;
+                          rdfs:label "Primary raw resource"@en .
+
+s4envi:PrimaryRawResourceKind rdf:type owl:Class ;
+                              rdfs:subClassOf s4envi:ResourceKind , saref:FeatureKind ;
+                              rdfs:comment "Category of primary raw resource."@en ;
+                              rdfs:label "Primary raw resource kind"@en .
+
+<http://www.w3.org/ns/org#Organisation> rdf:type owl:Class .
+
+s4envi:becomes rdf:type owl:ObjectProperty ;
+               rdfs:domain s4envi:Waste ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( s4envi:FinalWaste
+                                          s4envi:SecondaryRawResource
+                                        )
+                          ] ;
+               rdfs:label "becomes"@en ;
+               rdfs:comment "Waste becomes either a secondary raw resource, or final waste."@en .
+
+s4envi:directlyConsumes rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4envi:WasteProcessingDevice ;
+                        rdfs:range [ rdf:type owl:Class ;
+                                     owl:unionOf ( s4envi:PrimaryRawResource
+                                                   s4envi:SecondaryRawResource
+                                                 )
+                                   ] ;
+                        rdfs:label "directly consumes"@en ;
+                        rdfs:comment "A waste processing device directly consumes one or more primary or secondary raw resources."@en .
+
+s4envi:directlyEmits rdf:type owl:ObjectProperty ;
+                     rdfs:domain s4envi:WasteProcessingDevice ;
+                     rdfs:range s4envi:Emission ;
+                     rdfs:label "directly emits"@en ;
+                     rdfs:comment "A waste processing device directly emits one or more emissions."@en .
+
+s4envi:indirectlyConsumes rdf:type owl:ObjectProperty ;
+                          rdfs:domain s4envi:WasteProcessingDevice ;
+                          rdfs:range [ rdf:type owl:Class ;
+                                       owl:unionOf ( s4envi:PrimaryRawResource
+                                                     s4envi:SecondaryRawResource
+                                                   )
+                                     ] ;
+                          rdfs:label "indirectly consumes"@en ;
+                          rdfs:comment "A waste processing device indirectly consumes one or more primary or secondary raw resources."@en .
+
+s4envi:indirectlyEmits rdf:type owl:ObjectProperty ;
+                       rdfs:domain s4envi:WasteProcessingDevice ;
+                       rdfs:range s4envi:Emission ;
+                       rdfs:label "indirectly emits"@en ;
+                       rdfs:comment "A waste processing device indirectly emits one or more emissions."@en .
+
+s4envi:isDepositedAt rdf:type owl:ObjectProperty ;
+                     rdfs:domain s4envi:Waste ;
+                     rdfs:range s4envi:WasteProcessingSite ;
+                     rdfs:label "is deposited at"@en ;
+                     rdfs:comment "Waste is deposited at a waste processing site."@en .
+
+s4envi:isProcessedBy rdf:type owl:ObjectProperty ;
+                     rdfs:domain s4envi:Waste ;
+                     rdfs:range s4envi:WasteProcessingDevice ;
+                     rdfs:label "is processed by"@en ;
+                     rdfs:comment "Waste is processed by at least one waste processing device."@en .
+
+s4envi:produces rdf:type owl:ObjectProperty ;
+                rdfs:domain s4envi:WasteProcessingDevice ;
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( s4envi:FinalWaste
+                                           s4envi:SecondaryRawResource
+                                         )
+                           ] ;
+                rdfs:label "produces"@en ;
+                rdfs:comment "A waste processing device produces one or more secondary raw resources and/or final waste."@en .
+
+s4envi:hasCreationDate rdf:type owl:DatatypeProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( s4envi:FinalWaste
+                                                   s4envi:SecondaryRawResource
+                                                 )
+                                   ] ;
+                       rdfs:range xsd:date ;
+                       rdfs:label "has creation date"@en ;
+                       rdfs:comment "Final waste and secondary raw resources have a creation date that corresponds to the date on which their creation was completed."@en .
+
+s4envi:processingBeginsOn rdf:type owl:DatatypeProperty ;
+                          rdfs:domain s4envi:Waste ;
+                          rdfs:range xsd:date ;
+                          rdfs:label "processing begins on"@en ;
+                          rdfs:comment "Waste begins being processed on a given date."@en .
+
+s4envi:processingEndsOn rdf:type owl:DatatypeProperty ;
+                        rdfs:domain s4envi:Waste ;
+                        rdfs:range xsd:date ;
+                        rdfs:label "processing ends on"@en ;
+                        rdfs:comment "Waste ends beging processed on a given date."@en .
+
+s4envi:CarbonDioxide rdf:type owl:NamedIndividual ,
+                              s4envi:AirEmissionKind ;
+                     rdfs:comment "Carbon dioxide, a greenhouse gas."@en ;
+                     rdfs:label "Carbon dioxide"@en .
+
+s4envi:ColdCompostingFunction rdf:type owl:NamedIndividual ,
+                                       s4envi:WasteTreatmentFunction ;
+                              skos:broader s4envi:CompostingFunction ;
+                              rdfs:comment "Function of cold composting."@en ;
+                              rdfs:label "Cold composting function"@en .
+
+s4envi:Compost rdf:type owl:NamedIndividual ,
+                        s4envi:SecondaryRawResourceKind , saref:FeatureKind ;
+               rdfs:comment "Material obtained by decomposition of a mixture consisting principally of various vegetable residues, occasionally with organic materials of animal origin, and having a limited mineral content (source: ISO 8157:2022, clause 3.2.8.6)."@en ;
+               rdfs:label "Compost"@en ;
+               rdfs:seeAlso envo:00002170 .
+
+s4envi:Composting rdf:type owl:NamedIndividual ,
+                           s4envi:WasteTreatmentTask ;
+                  rdfs:comment "Aerobic process designed to produce compost (source: ISO 18606:2013, clause 3.2)."@en ;
+                  rdfs:label "Composting"@en .
+
+s4envi:CompostingFunction rdf:type owl:NamedIndividual ,
+                                   s4envi:WasteTreatmentFunction ;
+                          skos:narrower s4envi:ColdCompostingFunction ,
+                                        s4envi:VermicompostingFunction ,
+                                        s4envi:WindrowCompostingFunction ;
+                          rdfs:comment "Function of composting."@en ;
+                          rdfs:label "Composting function"@en .
+
+s4envi:Diesel rdf:type owl:NamedIndividual ,
+                       s4envi:PrimaryRawResourceKind , saref:FeatureKind ;
+              rdfs:comment "Hydrocarbon fuel, or blend thereof, that is liquid at atmospheric pressure and is used in compression-ignition engines (source: ISO 10088:2022, clause 3.7)."@en ;
+              rdfs:label "Diesel"@en ;
+              rdfs:seeAlso envo:03510006 .
+
+s4envi:Disassembly rdf:type owl:NamedIndividual ,
+                            s4envi:WastePreTreatmentTask ;
+                   rdfs:comment "Taking apart of an assembled product into constituent materials and/or components (source: ISO 8887-1:2017, clause 3.1.3)."@en ;
+                   rdfs:label "Disassembly"@en .
+
+s4envi:DisassemblyFunction rdf:type owl:NamedIndividual ,
+                                    s4envi:WastePreTreatmentFunction ;
+                           rdfs:comment "Function of disassembling."@en ;
+                           rdfs:label "Disassembly function"@en .
+
+s4envi:Electricity rdf:type owl:NamedIndividual ,
+                            s4envi:PrimaryRawResourceKind , saref:FeatureKind ;
+                   skos:broader s4envi:Energy ;
+                   rdfs:comment "Energy in the form of electricity."@en ;
+                   rdfs:label "Electricity"@en .
+
+s4envi:Energy rdf:type owl:NamedIndividual ,
+                       s4envi:PrimaryRawResourceKind , saref:FeatureKind ;
+              skos:narrower s4envi:Electricity ,
+                            s4envi:Heat ;
+              rdfs:comment "A primary raw resource that can take the form of heat or electricity."@en ;
+              rdfs:label "Energy"@en .
+
+s4envi:Heat rdf:type owl:NamedIndividual ,
+                     s4envi:PrimaryRawResourceKind , saref:FeatureKind ;
+            skos:broader s4envi:Energy ;
+            rdfs:comment "Energy in the form of heat."@en ;
+            rdfs:label "Heat"@en .
+
+s4envi:HeavyMetal rdf:type owl:NamedIndividual ,
+                           s4envi:SoilEmissionKind ,
+                           s4envi:WaterEmissionKind ;
+                  rdfs:comment "Heavy metals are elements that are toxic to human health, animals and plants. Cadmium, mercury and lead are examples of heavy metals."@en ;
+                  rdfs:label "Heavy metal"@en .
+
+s4envi:HumanSortingFunction rdf:type owl:NamedIndividual ,
+                                     s4envi:WastePreTreatmentFunction ;
+                            skos:broader s4envi:SortingFunction ;
+                            rdfs:comment "Function of sorting carrired out by a human."@en ;
+                            rdfs:label "Human sorting function"@en .
+
+s4envi:Hydrocarbon rdf:type owl:NamedIndividual ,
+                            s4envi:WaterEmissionKind ;
+                   rdfs:comment "Chemical compound consisting of hydrogen and carbon (source: ISO 5149-1:2014, clause 3.7.5)."@en ;
+                   rdfs:label "Hydrocarbon"@en .
+
+s4envi:Incineration rdf:type owl:NamedIndividual ,
+                             s4envi:WasteDisposalTask ,
+                             s4envi:WasteTreatmentTask ;
+                    rdfs:comment "Thermal destruction of waste by a process of controlled high-temperature combustion with or without energy recovery (source: ISO 24161:2022, clause 3.1.3.6). Energy recovery is the process of treating waste products by thermal, chemical or biological processes to recover energy or products for energy production (source: ISO 24161:2022, clause 3.1.3.5)."@en ;
+                    rdfs:label "Incineration"@en .
+s4envi:IncinerationFunction rdf:type owl:NamedIndividual ,
+                                     s4envi:WasteDisposalFunction ,
+                                     s4envi:WasteTreatmentFunction ;
+                            rdfs:comment "Function of incinerating."@en ;
+                            rdfs:label "Incineration function"@en .
+
+s4envi:Landfill rdf:type owl:NamedIndividual ,
+                         s4envi:WasteDisposalTask ;
+                rdfs:comment "Deposition of waste into or onto the land as a means of disposal (source: ISO 18400-204:2017, clause 3.10)."@en ;
+                rdfs:label "Landfill"@en .
+
+s4envi:LandfillFunction rdf:type owl:NamedIndividual ,
+                                 s4envi:WasteDisposalFunction ;
+                        rdfs:comment "Function of landfilling."@en ;
+                        rdfs:label "Landfill function"@en .
+
+s4envi:MechanicalSortingFunction rdf:type owl:NamedIndividual ,
+                                          s4envi:WastePreTreatmentFunction ;
+                                 skos:broader s4envi:SortingFunction ;
+                                 rdfs:comment "Function of sorting carried out by using mechanical forces."@en ;
+                                 rdfs:label "Mechanical sorting function"@en .
+
+s4envi:Methanisation rdf:type owl:NamedIndividual ,
+                              s4envi:WasteTreatmentTask ;
+                     rdfs:comment "Process of controlled decomposition of biodegradable materials under managed conditions where free oxygen is absent, at temperatures suitable for naturally occurring mesophilic or thermophilic anaerobic and facultative bacteria species, that convert the inputs to a methane rich biogas and digestate (source: ISO 18606:2013, clause 3.10)."@en ;
+                     rdfs:label "Methanisation"@en .
+
+s4envi:MethanisationFunction rdf:type owl:NamedIndividual ,
+                                      s4envi:WasteTreatmentFunction ;
+                             rdfs:comment "Function of methanising."@en ;
+                             rdfs:label "Methanisation function"@en .
+
+s4envi:OpticalSortingFunction rdf:type owl:NamedIndividual ,
+                                       s4envi:WastePreTreatmentFunction ;
+                              skos:broader s4envi:SortingFunction ;
+                              rdfs:comment "Function of sorting carried out by using optical sensors."@en ;
+                              rdfs:label "Optical sorting function"@en .
+
+s4envi:Pesticide rdf:type owl:NamedIndividual ,
+                          s4envi:SoilEmissionKind ;
+                 rdfs:comment "Substance or mixture of substances intended for preventing, destroying, repelling, or reducing any pest or weeds (source: ISO 27065:2017, clause 3.9)."@en ;
+                 rdfs:label "Pesticide"@en .
+
+s4envi:SecondaryElectricity rdf:type owl:NamedIndividual ,
+                                     s4envi:SecondaryRawResourceKind , saref:FeatureKind ;
+                            skos:broader s4envi:SecondaryEnergy ;
+                            rdfs:comment "Electricity recovered from a previous use or from waste."@en ;
+                            rdfs:label "Secondary electricity"@en .
+
+s4envi:SecondaryEnergy rdf:type owl:NamedIndividual ,
+                                s4envi:SecondaryRawResourceKind , saref:FeatureKind ;
+                       skos:narrower s4envi:SecondaryElectricity ,
+                                     s4envi:SecondaryHeat ;
+                       rdfs:comment "Energy recovered from a previous use or from waste (source: ISO 21928-2:2023, clause 3.36)."@en ;
+                       rdfs:label "Secondary energy"@en .
+
+s4envi:SecondaryHeat rdf:type owl:NamedIndividual ,
+                              s4envi:SecondaryRawResourceKind , saref:FeatureKind ;
+                     skos:broader s4envi:SecondaryEnergy ;
+                     rdfs:comment "Heat recovered from a previous use or from waste."@en ;
+                     rdfs:label "Secondary heat"@en .
+
+s4envi:Sorting rdf:type owl:NamedIndividual ,
+                        s4envi:WastePreTreatmentTask ;
+               rdfs:comment "Separating into different categories."@en ;
+               rdfs:label "Sorting"@en .
+
+s4envi:SortingFunction rdf:type owl:NamedIndividual ,
+                                s4envi:WastePreTreatmentFunction ;
+                       skos:narrower s4envi:HumanSortingFunction ,
+                                     s4envi:MechanicalSortingFunction ,
+                                     s4envi:OpticalSortingFunction ;
+                       rdfs:comment "Function of sorting."@en ;
+                       rdfs:label "Sorting function"@en .
+
+s4envi:VermicompostingFunction rdf:type owl:NamedIndividual ,
+                                        s4envi:WasteTreatmentFunction ;
+                               skos:broader s4envi:CompostingFunction ;
+                               rdfs:comment "Function of vermicomposting."@en ;
+                               rdfs:label "Vermicomposting function"@en .
+
+s4envi:WasteProcessingCapacity rdf:type owl:NamedIndividual ,
+                                        saref:Property ;
+                               rdfs:comment "Maximal capacity of a waste processing site in terms of volume or mass of waste processed per unit of time."@en ;
+                               rdfs:label "Waste processing capacity"@en .
+
+s4envi:Yield rdf:type owl:NamedIndividual ,
+                      saref:Property ;
+                               rdfs:comment "Ratio of input waste to output resource."@en ;
+                               rdfs:label "Yield"@en .
+
+s4envi:WindrowCompostingFunction rdf:type owl:NamedIndividual ,
+                                          s4envi:WasteTreatmentFunction ;
+                                 skos:broader s4envi:CompostingFunction ;
+                                 rdfs:comment "Function of windrow composting."@en ;
+                                 rdfs:label "Windrow composting function"@en .

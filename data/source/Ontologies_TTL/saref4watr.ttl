@@ -1,0 +1,1253 @@
+@prefix : <https://saref.etsi.org/saref4watr/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix s4city: <https://saref.etsi.org/saref4city/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix s4syst: <https://saref.etsi.org/saref4syst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix schema: <http://schema.org/> .
+@prefix s4watr: <https://saref.etsi.org/saref4watr/> .
+@base <https://saref.etsi.org/saref4watr/> .
+
+<https://saref.etsi.org/saref4watr/> rdf:type owl:Ontology ;
+                                      dcterms:title "SAREF4WATR: an extension of SAREF for the water domain"@en ;
+                                      dcterms:description "This ontology extends the SAREF ontology for the water domain. This work has been developed in the context of the STF 566, which was established with the goal to create three SAREF extensions, one of them for the water domain."@en ;
+                                      dcterms:publisher <https://www.etsi.org/> ;
+                                      dcterms:creator <http://www.garcia-castro.com/foaf.rdf#me> ;
+                                      owl:versionIRI <https://saref.etsi.org/saref4watr/v2.1.1/> ;
+                                      owl:priorVersion <https://saref.etsi.org/saref4watr/v1.1.1/> ;
+                                      owl:versionInfo "v2.1.1" ;
+                                      dcterms:modified "2025-04-24"^^xsd:date ;
+                                      dcterms:issued "2025-04-25"^^xsd:date ;
+                                      dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+                                      dcterms:source <https://saref.etsi.org/sources/saref4watr/> ;
+                                      rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341010/02.01.01_60/ts_10341010v020101p.pdf> ;
+                                      vann:preferredNamespacePrefix "s4watr" ;
+                                      vann:preferredNamespaceUri "https://saref.etsi.org/saref4watr/" ;
+                                      owl:imports <https://saref.etsi.org/core/v4.1.1/>, 
+                                        <https://saref.etsi.org/saref4syst/v1.1.2/> ,
+                                        <https://saref.etsi.org/saref4city/v2.1.1/> .
+
+
+#################################################################
+#    Creator metadata
+#################################################################
+
+schema:Person a owl:Class .
+schema:Organization a owl:Class .
+schema:givenName a owl:DatatypeProperty .
+schema:familyName a owl:DatatypeProperty .
+schema:affiliation a owl:ObjectProperty .
+schema:name a owl:DatatypeProperty .
+
+
+<http://www.garcia-castro.com/foaf.rdf#me> a schema:Person;
+                                           schema:givenName "Raúl" ;
+                                           schema:familyName "García-Castro" ;
+                                           schema:affiliation  <https://www.upm.es/> .
+<https://www.upm.es/> a schema:Organization ;
+                      schema:name "Universidad Politécnica de Madrid" .
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dcterms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+dcterms:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#gDay
+xsd:gDay rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+geo:hasGeometry rdf:type owl:ObjectProperty ;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                  rdfs:label "hasGeometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfContains
+geo:sfContains rdf:type owl:ObjectProperty ;
+                 rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                 rdfs:label "sfContains"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfWithin
+geo:sfWithin rdf:type owl:ObjectProperty ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+               rdfs:label "sfWithin"@en .
+
+
+###  https://saref.etsi.org/saref4watr/appliesTo
+s4watr:appliesTo rdf:type owl:ObjectProperty ;
+                 rdfs:domain s4watr:Tariff ;
+                 rdfs:range s4watr:WaterMeter ;
+                 rdfs:comment "The water meter to which a tariff applies to."@en ;
+                 rdfs:label "applies to"@en .
+
+
+###  https://saref.etsi.org/saref4watr/forAbsoluteTimeAtDay
+s4watr:forAbsoluteTimeAtDay rdf:type owl:ObjectProperty ;
+                            rdfs:domain s4watr:TimeBasedTariff ;
+                            rdfs:range time:Interval ;
+                            rdfs:comment "The time interval in each day for which a tariff is applied (e.g., 8:00 to 10:00)."@en ;
+                            rdfs:label "for absolute time at day"@en .
+
+
+###  https://saref.etsi.org/saref4watr/forWeekDay
+s4watr:forWeekDay rdf:type owl:ObjectProperty ;
+                  rdfs:domain s4watr:TimeBasedTariff ;
+                  rdfs:range time:DayOfWeek ;
+                  rdfs:comment "The day of the week for which a tariff is applied (e.g., each Saturday and Sunday)."@en ;
+                  rdfs:label "for week day"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasBillingPeriod
+s4watr:hasBillingPeriod rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4watr:Tariff ;
+                        rdfs:range time:TemporalDuration ;
+                        rdfs:comment "The billing period of a tariff."@en ;
+                        rdfs:label "has billing period"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasDuration
+s4watr:hasDuration rdf:type owl:ObjectProperty ;
+                   rdfs:domain s4watr:Tariff ;
+                   rdfs:range time:TemporalDuration ;
+                   rdfs:comment "The duration of a tariff."@en ;
+                   rdfs:label "has duration"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasPeriod
+s4watr:hasPeriod rdf:type owl:ObjectProperty ;
+                 rdfs:domain s4watr:Tariff ;
+                 rdfs:range time:TemporalDuration ;
+                 rdfs:comment "The period of a tariff."@en ;
+                 rdfs:label "has period"@en .
+
+
+###  https://saref.etsi.org/saref4watr/isDesignedFor
+s4watr:isDesignedFor rdf:type owl:ObjectProperty ;
+                     rdfs:comment "The type of water for which an infrastructure is designed for."@en ;
+                     rdfs:label "is designed for"@en .
+
+
+###  https://saref.etsi.org/saref4watr/isIntendedFor
+s4watr:isIntendedFor rdf:type owl:ObjectProperty ;
+                     rdfs:comment "The intended use of the infrastructure."@en ;
+                     rdfs:label "is intended for"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://saref.etsi.org/saref4watr/forDayInMonth
+s4watr:forDayInMonth rdf:type owl:DatatypeProperty ;
+                     rdfs:domain s4watr:TimeBasedTariff ;
+                     rdfs:range xsd:gDay ;
+                     rdfs:comment "The day of the month for which a tariff is applied (e.g., each 15)."@en ;
+                     rdfs:label "for day in month"@en .
+
+
+###  https://saref.etsi.org/saref4watr/forFinancialConsumption
+s4watr:forFinancialConsumption rdf:type owl:DatatypeProperty ;
+                               rdfs:domain s4watr:ConsumptionBasedTariff ;
+                               rdfs:comment "The financial consumption related to a tariff (e.g., prepaid tariffs)."@en ;
+                               rdfs:label "for financial consumption"@en .
+
+
+###  https://saref.etsi.org/saref4watr/forVolumeConsumption
+s4watr:forVolumeConsumption rdf:type owl:DatatypeProperty ;
+                            rdfs:domain s4watr:ConsumptionBasedTariff ;
+                            rdfs:comment "The volume consumption related to a tariff (e.g., after consumption of 900 litres)."@en ;
+                            rdfs:label "for volume consumption"@en .
+
+
+###  https://saref.etsi.org/saref4watr/forVolumeFlow
+s4watr:forVolumeFlow rdf:type owl:DatatypeProperty ;
+                     rdfs:domain s4watr:ThresholdBasedTariff ;
+                     rdfs:comment "The volume flow related to a tariff."@en ;
+                     rdfs:label "for volume flow"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasBillingDate
+s4watr:hasBillingDate rdf:type owl:DatatypeProperty ;
+                      rdfs:domain s4watr:Tariff ;
+                      rdfs:range xsd:dateTime ;
+                      rdfs:comment "The billing date of a tariff."@en ;
+                      rdfs:label "has billing date"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasStartTimestamp
+s4watr:hasStartTimestamp rdf:type owl:DatatypeProperty ;
+                         rdfs:domain s4watr:Tariff ;
+                         rdfs:range xsd:dateTime ;
+                         rdfs:comment "The start date and time of a tariff."@en ;
+                         rdfs:label "has start timestamp"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasFabricationNumber
+s4watr:hasFabricationNumber rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf saref:hasIdentifier ;
+                            rdfs:range rdfs:Literal ;
+                            rdfs:comment "The fabrication number of a device."@en ;
+                            rdfs:label "has fabrication number"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasFirmwareVersion
+s4watr:hasFirmwareVersion rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf saref:hasVersion ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "The firmware version of a device."@en ;
+                          rdfs:label "has firmware version"@en .
+
+
+###  https://saref.etsi.org/saref4watr/hasHardwareVersion
+s4watr:hasHardwareVersion rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf saref:hasVersion ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "The hardware version of a device."@en ;
+                          rdfs:label "has hardware version"@en .
+
+
+###  https://saref.etsi.org/saref4watr/operatesAtRadioFrequency
+s4watr:operatesAtRadioFrequency rdf:type owl:DatatypeProperty ;
+                                rdfs:comment "The radio frequency at which a device operates."@en ;
+                                rdfs:label "operates at radio frequency"@en .
+
+
+###  https://saref.etsi.org/saref4watr/requiresPower
+s4watr:requiresPower rdf:type owl:DatatypeProperty ;
+                     rdfs:comment "The power required by a device."@en ;
+                     rdfs:label "requires power"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#Feature
+geo:Feature rdf:type owl:Class ;
+              rdfs:subClassOf geo:SpatialObject ;
+              rdfs:comment "This class represents the top-level feature type. This class is equivalent to GFI_Feature defined in ISO 19156:2011, and it is superclass of all feature types."@en ;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+              rdfs:label "Feature"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+geo:Geometry rdf:type owl:Class ;
+               rdfs:subClassOf geo:SpatialObject ;
+               rdfs:comment "The class represents the top-level geometry type. This class is equivalent to the UML class GM_Object defined in ISO 19107, and it is superclass of all geometry types."@en ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+               rdfs:label "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+geo:SpatialObject rdf:type owl:Class ;
+                    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#> ;
+                    rdfs:label "Spatial object"@en .
+
+
+###  http://www.opengis.net/ont/sf#Point
+sf:Point rdf:type owl:Class ;
+         rdfs:subClassOf geo:Geometry ;
+         rdfs:isDefinedBy <http://www.opengis.net/ont/sf#> ;
+         rdfs:label "Point"@en .
+
+
+###  http://www.opengis.net/ont/sf#Polygon
+sf:Polygon rdf:type owl:Class ;
+           rdfs:subClassOf geo:Geometry ;
+           rdfs:isDefinedBy <http://www.opengis.net/ont/sf#> ;
+           rdfs:label "Polygon"@en .
+
+
+###  http://www.w3.org/2006/time#DayOfWeek
+time:DayOfWeek rdf:type owl:Class ;
+               rdfs:isDefinedBy <http://www.w3.org/2006/time#> .
+
+
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class ;
+              rdfs:isDefinedBy <http://www.w3.org/2006/time#> .
+
+
+###  http://www.w3.org/2006/time#TemporalDuration
+time:TemporalDuration rdf:type owl:Class ;
+                      rdfs:isDefinedBy <http://www.w3.org/2006/time#> .
+
+
+###  https://saref.etsi.org/saref4watr/AcceptabilityProperty
+s4watr:AcceptabilityProperty rdf:type owl:Class ;
+                             rdfs:subClassOf s4watr:WaterProperty ;
+                             rdfs:comment "An acceptability property is a property of water that is related to its acceptability."@en ;
+                             rdfs:label "Acceptability property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Aquifer
+s4watr:Aquifer rdf:type owl:Class ;
+               rdfs:subClassOf s4watr:StorageAsset ;
+               rdfs:comment "An aquifer is an underground layer of water-bearing permeable rock, rock fractures or unconsolidated materials."@en ;
+               rdfs:label "Aquifer"@en .
+
+
+###  https://saref.etsi.org/saref4watr/BacterialProperty
+s4watr:BacterialProperty rdf:type owl:Class ;
+                         rdfs:subClassOf s4watr:MicrobialProperty ;
+                         rdfs:comment "A bacterial property is a property of water that is related to bacteria."@en ;
+                         rdfs:label "Bacterial property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Channel
+s4watr:Channel rdf:type owl:Class ;
+               rdfs:subClassOf s4watr:Main ;
+               rdfs:comment "A channel is a passage of water flowing in an open conduit (i.e., subject to atmospheric pressure)."@en ;
+               rdfs:label "Channel"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ChemicalProperty
+s4watr:ChemicalProperty rdf:type owl:Class ;
+                        rdfs:subClassOf s4watr:WaterProperty ;
+                        rdfs:comment "A chemical property is a property of water that is related to chemical components."@en ;
+                        rdfs:label "ChemicalProperty"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ConsumptionBasedTariff
+s4watr:ConsumptionBasedTariff rdf:type owl:Class ;
+                              rdfs:subClassOf s4watr:Tariff ;
+                              rdfs:comment "A consumption-based tariff is a tariff that is based on consumption."@en ;
+                              rdfs:label "Consumption-based tariff"@en .
+
+
+###  https://saref.etsi.org/saref4watr/DistributionSystem
+s4watr:DistributionSystem rdf:type owl:Class ;
+                          rdfs:subClassOf s4watr:WaterInfrastructure ;
+                          rdfs:comment "A water distribution system is an infrastructure to carry potable water from a centralized treatment plant or wells to water consumers in order to adequately deliver water to satisfy residential, commercial, industrial and fire fighting requirements."@en ;
+                          rdfs:label "Distribution system"@en .
+
+
+###  https://saref.etsi.org/saref4watr/EnvironmentalProperty
+s4watr:EnvironmentalProperty rdf:type owl:Class ;
+                             rdfs:subClassOf saref:Property ;
+                             rdfs:comment "Class to group those properties related to the environment."@en ;
+                             rdfs:label "Environmental property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Estuary
+s4watr:Estuary rdf:type owl:Class ;
+               rdfs:subClassOf s4watr:SinkAsset ;
+               rdfs:comment "An estuary is a partially enclosed coastal body of brackish water with one or more rivers or streams flowing into it, and with a free connection to the open sea."@en ;
+               rdfs:label "Estuary"@en .
+
+
+###  https://saref.etsi.org/saref4watr/FireHydrant
+s4watr:FireHydrant rdf:type owl:Class ;
+                   rdfs:subClassOf s4watr:WaterDevice ;
+                   rdfs:comment "A fire hydrant is a fitting in a street or other public place with a nozzle by which a fire hose may be attached to a water main."@en ;
+                   rdfs:label "Fire hydrant"@en .
+
+
+###  https://saref.etsi.org/saref4watr/GaugingStation
+s4watr:GaugingStation rdf:type owl:Class ;
+                      rdfs:subClassOf s4watr:MonitoringInfrastructure ;
+                      rdfs:comment "A gauging station is an infrastructure to monitor and test terrestrial bodies of water."@en ;
+                      rdfs:label "Gauging station"@en .
+
+
+###  https://saref.etsi.org/saref4watr/HydroelectricPowerPlant
+s4watr:HydroelectricPowerPlant rdf:type owl:Class ;
+                               rdfs:subClassOf s4watr:WaterInfrastructure ;
+                               rdfs:comment "A hydroelectric power plant is an infrastructure to generate electricity by conversion of the energy of running water."@en ;
+                               rdfs:label "Hydroelectric power plant"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Glacier
+s4watr:Glacier rdf:type owl:Class ;
+               rdfs:subClassOf s4watr:SourceAsset ;
+               rdfs:comment "A glacier is a persistent body of dense ice that is constantly moving under its own weight."@en ;
+               rdfs:label "Glacier"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Intake
+s4watr:Intake rdf:type owl:Class ;
+              rdfs:subClassOf s4watr:TransportAsset ;
+              rdfs:comment "An intake is an installation for obtaining water from a source of supply (river, lake, reservoir, and so on)."@en ;
+              rdfs:label "Intake"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Lagoon
+s4watr:Lagoon rdf:type owl:Class ;
+              rdfs:subClassOf s4watr:SourceAsset ;
+              rdfs:comment "A lagoon is a shallow body of water separated from a larger body of water by barrier islands or reefs."@en ;
+              rdfs:label "Lagoon"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Lake
+s4watr:Lake rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:SourceAsset ;
+            rdfs:comment "A lake is an area filled with water, localized in a basin, surrounded by land, apart from any river or other outlet that serves to feed or drain the lake."@en ;
+            rdfs:label "Lake"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Main
+s4watr:Main rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:TransportAsset ;
+            rdfs:comment "A main is a passage of water to flow through."@en ;
+            rdfs:label "Main"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Manhole
+s4watr:Manhole rdf:type owl:Class ;
+               rdfs:subClassOf s4watr:TransportAsset ;
+               rdfs:comment "A maintenance hole is an enclosure that facilitates human access to and working space for equipment."@en ;
+               rdfs:label "Maintenance hole"@en ,
+                          "Manhole"@en .
+
+
+###  https://saref.etsi.org/saref4watr/MicrobialProperty
+s4watr:MicrobialProperty rdf:type owl:Class ;
+                         rdfs:subClassOf s4watr:WaterProperty ;
+                         rdfs:comment "A microbial property is a property of water that is related to microbes."@en ;
+                         rdfs:label "Microbial property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/MonitoringInfrastructure
+s4watr:MonitoringInfrastructure rdf:type owl:Class ;
+                                rdfs:subClassOf s4watr:WaterInfrastructure ;
+                                rdfs:comment "A monitoring infrastructure is an infrastructure to monitor water."@en ;
+                                rdfs:label "Monitoring infrastructure"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Ocean
+s4watr:Ocean rdf:type owl:Class ;
+             rdfs:subClassOf s4watr:SinkAsset ;
+             rdfs:comment "An ocean is a large body of salt water."@en ;
+             rdfs:label "Ocean"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Pipe
+s4watr:Pipe rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:Main ;
+            rdfs:comment "A pipe is a passage of water flowing in a closed conduit (i.e., not subject to atmospheric pressure)."@en ;
+            rdfs:label "Pipe"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Pit
+s4watr:Pit rdf:type owl:Class ;
+           rdfs:subClassOf s4watr:TransportAsset ;
+           rdfs:comment "A pit is a well or hole sunk in the ground to procure, store or drain water."@en ;
+           rdfs:label "Pit"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Pump
+s4watr:Pump rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:WaterDevice ,
+                            saref:Actuator ;
+            rdfs:comment "A pump is a device for moving water by mechanical action."@en ;
+            rdfs:label "Pump"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Reservoir
+s4watr:Reservoir rdf:type owl:Class ;
+                 rdfs:subClassOf s4watr:StorageAsset ;
+                 rdfs:comment "A reservoir is an enlarged natural or artificial lake, pond or impoundment created using a dam or lock to store water."@en ;
+                 rdfs:label "Reservoir"@en .
+
+
+###  https://saref.etsi.org/saref4watr/River
+s4watr:River rdf:type owl:Class ;
+             rdfs:subClassOf s4watr:SinkAsset ;
+             rdfs:comment "A river is a natural flowing watercourse, usually freshwater, flowing towards an ocean, sea, lake or another river."@en ;
+             rdfs:label "River"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Sea
+s4watr:Sea rdf:type owl:Class ;
+           rdfs:subClassOf s4watr:SinkAsset ;
+           rdfs:comment "A sea is a body of salt water partly or fully enclosed by land."@en ;
+           rdfs:label "Sea"@en .
+
+
+###  https://saref.etsi.org/saref4watr/SinkAsset
+s4watr:SinkAsset rdf:type owl:Class ;
+                 rdfs:subClassOf s4watr:WaterAsset ;
+                 rdfs:comment "A sink asset is a water asset where water sinks."@en ;
+                 rdfs:label "Sink asset"@en .
+
+
+###  https://saref.etsi.org/saref4watr/SourceAsset
+s4watr:SourceAsset rdf:type owl:Class ;
+                   rdfs:subClassOf s4watr:WaterAsset ;
+                   rdfs:comment "A source asset is a water asset that is a natural source of water."@en ;
+                   rdfs:label "Source asset"@en .
+
+
+###  https://saref.etsi.org/saref4watr/StorageAsset
+s4watr:StorageAsset rdf:type owl:Class ;
+                    rdfs:subClassOf s4watr:WaterAsset ;
+                    rdfs:comment "A storage asset is a water asset used to store water."@en ;
+                    rdfs:label "Storage asset"@en .
+
+
+###  https://saref.etsi.org/saref4watr/StorageInfrastructure
+s4watr:StorageInfrastructure rdf:type owl:Class ;
+                             rdfs:subClassOf s4watr:WaterInfrastructure ;
+                             rdfs:comment "An storage infrastructure is an infrastructure to storage both potable water for consumption, and non potable water for use in agriculture."@en ;
+                             rdfs:label "Storage infrastructure"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Tank
+s4watr:Tank rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:StorageAsset ;
+            rdfs:comment "A tank is a container for storing water."@en ;
+            rdfs:label "Tank"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Tariff
+s4watr:Tariff rdf:type owl:Class ;
+              rdfs:comment "A tariff is a schedule of rates or charges of a business or a public utility. Tariffs can be based on time, thresholds or consumption; however, combined tariffs may also exist that mix more than one of these types."@en ;
+              rdfs:label "Tariff"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ThresholdBasedTariff
+s4watr:ThresholdBasedTariff rdf:type owl:Class ;
+                            rdfs:subClassOf s4watr:Tariff ;
+                            rdfs:comment "A threshold-based tariff is a tariff that is based on a threshold."@en ;
+                            rdfs:label "Threshold-based tariff"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TimeBasedTariff
+s4watr:TimeBasedTariff rdf:type owl:Class ;
+                       rdfs:subClassOf s4watr:Tariff ;
+                       rdfs:comment "A time-based tariff is a tariff that is based on time."@en ;
+                       rdfs:label "Time-based tariff"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TransportAsset
+s4watr:TransportAsset rdf:type owl:Class ;
+                      rdfs:subClassOf s4watr:WaterAsset ;
+                      rdfs:comment "A transport asset is a water asset used to enable and support the transport and distribution of water."@en ;
+                      rdfs:label "Transport asset"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TreatmentPlant
+s4watr:TreatmentPlant rdf:type owl:Class ;
+                      rdfs:subClassOf s4watr:WaterInfrastructure ;
+                      rdfs:comment "A treatment plant is an infrastructure to improve the quality of water to make it more acceptable for a specific end-use."@en ;
+                      rdfs:label "Treatment plant"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Valve
+s4watr:Valve rdf:type owl:Class ;
+             rdfs:subClassOf s4watr:WaterDevice ,
+                             saref:Actuator ;
+             rdfs:comment "A valve is a device designed to control water flow, pressure or volume."@en ;
+             rdfs:label "Valve"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Vent
+s4watr:Vent rdf:type owl:Class ;
+            rdfs:subClassOf s4watr:TransportAsset ;
+            rdfs:comment "A vent is the part of a system that allows air to enter a plumbing system to maintain proper air pressure and sewer gases to escape to the outside."@en ;
+            rdfs:label "Vent"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Water
+s4watr:Water rdf:type owl:Class ;
+             rdfs:subClassOf saref:FeatureOfInterest ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty saref:hasProperty ;
+                               owl:allValuesFrom s4watr:WaterProperty
+                             ] ;
+             rdfs:comment "This class is used to define a particular quantity or body of water."@en ;
+             rdfs:label "Water"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterAsset
+s4watr:WaterAsset rdf:type owl:Class ;
+                  rdfs:subClassOf geo:Feature ,
+                                  saref:FeatureOfInterest ,
+                                  s4syst:System ;     
+                  rdfs:comment "A water asset is a physical entity used in the process of transporting, treating, storing and distributing water."@en ;
+                  rdfs:label "Water asset"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterDevice
+s4watr:WaterDevice rdf:type owl:Class ;
+                   rdfs:subClassOf s4watr:WaterAsset ,
+                                   saref:Device ;
+                   rdfs:comment "A water device is a device that is also a water asset."@en ;
+                   rdfs:label "Water device"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterInfrastructure
+s4watr:WaterInfrastructure rdf:type owl:Class ;
+                           rdfs:subClassOf geo:Feature ,
+                                           s4syst:System ,
+                                           saref:FeatureOfInterest ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty s4watr:isDesignedFor ;
+                                             owl:someValuesFrom s4watr:WaterKind
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty s4watr:isIntendedFor ;
+                                             owl:someValuesFrom s4watr:WaterUse
+                                           ] ;
+                           rdfs:comment "A water infrastructure is the set of facilities, services, and installations needed for water management."@en ;
+                           rdfs:label "Water infrastructure"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterKind
+s4watr:WaterKind rdf:type owl:Class ;
+             rdfs:subClassOf saref:FeatureKind ;
+             rdfs:comment "This class is used to define kinds of water features."@en ;
+             rdfs:label "Water kind"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterMeter
+s4watr:WaterMeter rdf:type owl:Class ;
+                  rdfs:subClassOf s4watr:WaterDevice ,
+                                  saref:Meter ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty saref:hasProperty ;
+                                    owl:allValuesFrom s4watr:WaterMeterProperty
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty s4watr:hasFabricationNumber ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty s4watr:hasFirmwareVersion ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty s4watr:hasHardwareVersion ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty saref:observes ;
+                                    owl:someValuesFrom s4watr:WaterFlowProperty
+                                  ] ;
+                  rdfs:comment "A water meter is an instrument intended to measure continuously, memorize, and display the volume of water passing through the meter."@en ;
+                  rdfs:label "Water meter"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterMeterProperty
+s4watr:WaterMeterProperty rdf:type owl:Class ;
+                          rdfs:subClassOf saref:Property ;
+                          rdfs:comment "Class to group those properties related to water meters."@en ;
+                          rdfs:label "Water meter property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterFlowProperty
+s4watr:WaterFlowProperty rdf:type owl:Class ;
+                          rdfs:subClassOf saref:Property ;
+                          rdfs:comment "Class to group those properties related to water flow."@en ;
+                          rdfs:label "Water flow property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterProperty
+s4watr:WaterProperty rdf:type owl:Class ;
+                     rdfs:subClassOf saref:Property ;
+                     rdfs:comment "Class to group those properties related to the water."@en ;
+                     rdfs:label "Water property"@en .
+
+
+###  https://saref.etsi.org/saref4watr/WaterUse
+s4watr:WaterUse rdf:type owl:Class ;
+                rdfs:comment "This class is used to define the different uses of water."@en ;
+                rdfs:label "Water use"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://saref.etsi.org/saref4watr/Acrylamide
+s4watr:Acrylamide rdf:type owl:NamedIndividual ,
+                           s4watr:ChemicalProperty ;
+                  rdfs:comment "Property of the water indicating its concentration of acrylamide."@en ;
+                  rdfs:label "Acrylamide"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Agriculture
+s4watr:Agriculture rdf:type owl:NamedIndividual ,
+                            s4watr:WaterUse ;
+                   rdfs:comment "Use of water for the farming of plants and livestock."@en ;
+                   rdfs:label "Agriculture"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Aluminium
+s4watr:Aluminium rdf:type owl:NamedIndividual ,
+                          s4watr:ChemicalProperty ;
+                 rdfs:comment "Property of the water indicating its concentration of aluminium."@en ;
+                 rdfs:label "Aluminium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Ammonium
+s4watr:Ammonium rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of ammonium."@en ;
+                rdfs:label "Ammonium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Antimony
+s4watr:Antimony rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of antimony."@en ;
+                rdfs:label "Antimony"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Aquaculture
+s4watr:Aquaculture rdf:type owl:NamedIndividual ,
+                            s4watr:WaterUse ;
+                   rdfs:comment "Use of water for the farming of fish, crustaceans, molluscs, aquatic plants, algae, and other organisms."@en ;
+                   rdfs:label "Aquaculture"@en .
+
+
+###  https://saref.etsi.org/saref4watr/AtmosphericPressure
+s4watr:AtmosphericPressure rdf:type owl:NamedIndividual ,
+                                    s4watr:EnvironmentalProperty ;
+                           rdfs:comment "Property of the environment indicating the atmospheric pressure."@en ;
+                           rdfs:label "Atmospheric pressure"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Arsenic
+s4watr:Arsenic rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of arsenic."@en ;
+               rdfs:label "Arsenic"@en .
+
+
+###  https://saref.etsi.org/saref4watr/BatteryOperatingTime
+s4watr:BatteryOperatingTime rdf:type owl:NamedIndividual ,
+                                     s4watr:WaterMeterProperty ;
+                            rdfs:comment "The time for which the battery has been operating since the last charge."@en ;
+                            rdfs:label "Battery operating time"@en .
+
+
+###  https://saref.etsi.org/saref4watr/BatteryRemainingTime
+s4watr:BatteryRemainingTime rdf:type owl:NamedIndividual ,
+                                     s4watr:WaterMeterProperty ;
+                            rdfs:comment "The time until the battery is discharged."@en ;
+                            rdfs:label "Battery remaining time"@en .
+
+
+###  https://saref.etsi.org/saref4watr/BatteryLastChange
+s4watr:BatteryLastChange rdf:type owl:NamedIndividual ,
+                                  s4watr:WaterMeterProperty ;
+                         rdfs:comment "The time in which the battery was last changed."@en ;
+                         rdfs:label "Battery last change"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Benzene
+s4watr:Benzene rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of benzene."@en ;
+               rdfs:label "Benzene"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Benzoapyrene
+s4watr:Benzoapyrene rdf:type owl:NamedIndividual ,
+                             s4watr:ChemicalProperty ;
+                    rdfs:comment "Property of the water indicating its concentration of benzo(a)pyrene."@en ;
+                    rdfs:label "Benzo(a)pyrene"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Boron
+s4watr:Boron rdf:type owl:NamedIndividual ,
+                      s4watr:ChemicalProperty ;
+             rdfs:comment "Property of the water indicating its concentration of boron."@en ;
+             rdfs:label "Boron"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Bromate
+s4watr:Bromate rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of bromate."@en ;
+               rdfs:label "Bromate"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Cadmium
+s4watr:Cadmium rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of cadmium."@en ;
+               rdfs:label "Cadmium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Chloride
+s4watr:Chloride rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of chloride."@en ;
+                rdfs:label "Chloride"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Chromium
+s4watr:Chromium rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of chromium."@en ;
+                rdfs:label "Chromium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ClostridiumPerfringens
+s4watr:ClostridiumPerfringens rdf:type owl:NamedIndividual ,
+                                       s4watr:BacterialProperty ;
+                              rdfs:comment "Property of the water indicating its concentration of clostridium perfringens."@en ;
+                              rdfs:label "Clostridium perfringens"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ColiformBacteria
+s4watr:ColiformBacteria rdf:type owl:NamedIndividual ,
+                                 s4watr:BacterialProperty ;
+                        rdfs:comment "Property of the water indicating its concentration of coliform bacteria."@en ;
+                        rdfs:label "Coliform bacteria"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ColonyCount22C
+s4watr:ColonyCount22C rdf:type owl:NamedIndividual ,
+                               s4watr:BacterialProperty ;
+                      rdfs:comment "Property of the water indicating its colony count at 22 ºC."@en ;
+                      rdfs:label "Colony count at 22 °C"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ColonyCount37C
+s4watr:ColonyCount37C rdf:type owl:NamedIndividual ,
+                               s4watr:BacterialProperty ;
+                      rdfs:comment "Property of the water indicating its colony count at 37 ºC."@en ;
+                      rdfs:label "Colony count at 37 °C"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Colour
+s4watr:Colour rdf:type owl:NamedIndividual ,
+                       s4watr:AcceptabilityProperty ;
+              rdfs:comment "Property of the water indicating its colour."@en ;
+              rdfs:label "Colour"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Conductivity
+s4watr:Conductivity rdf:type owl:NamedIndividual ,
+                             s4watr:AcceptabilityProperty ;
+                    rdfs:comment "Property of the water indicating its conductivity."@en ;
+                    rdfs:label "Conductivity"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Copper
+s4watr:Copper rdf:type owl:NamedIndividual ,
+                       s4watr:ChemicalProperty ;
+              rdfs:comment "Property of the water indicating its concentration of copper."@en ;
+              rdfs:label "Copper"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Cyanide
+s4watr:Cyanide rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of cyanide."@en ;
+               rdfs:label "Cyanide"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Domestic
+s4watr:Domestic rdf:type owl:NamedIndividual ,
+                         s4watr:WaterUse ;
+                rdfs:comment "Use of water for domestic purposes."@en ;
+                rdfs:label "Domestic"@en .
+
+
+###  https://saref.etsi.org/saref4watr/DrinkingWater
+s4watr:DrinkingWater rdf:type owl:NamedIndividual ,
+                              s4watr:WaterKind ;
+                     rdfs:comment "Drinking water is water that is treated to comply with drinking water standards."@en ;
+                     rdfs:label "Drinking water"@en ,
+                                "Potable water"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Enterococci
+s4watr:Enterococci rdf:type owl:NamedIndividual ,
+                            s4watr:BacterialProperty ;
+                   rdfs:comment "Property of the water indicating its concentration of enterococci."@en ;
+                   rdfs:label "Enterococci"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Epichlorohydrin
+s4watr:Epichlorohydrin rdf:type owl:NamedIndividual ,
+                                s4watr:ChemicalProperty ;
+                       rdfs:comment "Property of the water indicating its concentration of epichlorohydrin."@en ;
+                       rdfs:label "Epichlorohydrin"@en .
+
+
+###  https://saref.etsi.org/saref4watr/EscherichiaColi
+s4watr:EscherichiaColi rdf:type owl:NamedIndividual ,
+                                s4watr:BacterialProperty ;
+                       rdfs:comment "Property of the water indicating its concentration of escherichia coli."@en ;
+                       rdfs:label "E. coli"@en ,
+                                  "Escherichia coli"@en .
+
+
+###  https://saref.etsi.org/saref4watr/ExternalTemperature
+s4watr:ExternalTemperature rdf:type owl:NamedIndividual ,
+                                    s4watr:EnvironmentalProperty ;
+                           rdfs:comment "Property of the environment indicating the temperature."@en ;
+                           rdfs:label "External temperature"@en .
+
+
+###  https://saref.etsi.org/saref4watr/FlowPressure
+s4watr:FlowPressure rdf:type owl:NamedIndividual ,
+                         s4watr:WaterFlowProperty ;
+                    rdfs:comment "Property indicating the pressure of a water flow."@en ;
+                    rdfs:label "Flow pressure"@en .
+
+
+###  https://saref.etsi.org/saref4watr/FlowRate
+s4watr:FlowRate rdf:type owl:NamedIndividual ,
+                         s4watr:WaterFlowProperty ;
+                rdfs:comment "Property indicating the rate of a water flow."@en ;
+            	rdfs:label "Flow rate"@en .
+
+
+###  https://saref.etsi.org/saref4watr/FlowTemperature
+s4watr:FlowTemperature rdf:type owl:NamedIndividual ,
+                                s4watr:WaterFlowProperty ;
+                       rdfs:comment "Property indicating the temperature of a water flow."@en ;
+                       rdfs:label "Flow temperature"@en .
+
+
+###  https://saref.etsi.org/saref4watr/FlowVolume
+s4watr:FlowVolume rdf:type owl:NamedIndividual ,
+                       s4watr:WaterFlowProperty ;
+                  rdfs:comment "Property indicating the volume of a water flow."@en ;
+                  rdfs:label "Flow volume"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Fluoride
+s4watr:Fluoride rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of fluoride."@en ;
+                rdfs:label "Fluoride"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Hardness
+s4watr:Hardness rdf:type owl:NamedIndividual ,
+                         s4watr:AcceptabilityProperty ;
+                rdfs:comment "Property of the water indicating its hardness."@en ;
+                rdfs:label "Hardness"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Humidity
+s4watr:Humidity rdf:type owl:NamedIndividual ,
+                         s4watr:EnvironmentalProperty ;
+                rdfs:comment "Property of the environment indicating the humidity."@en ;
+                rdfs:label "Humidity"@en .
+
+
+###  https://saref.etsi.org/saref4watr/HydrogenIonConcentration
+s4watr:HydrogenIonConcentration rdf:type owl:NamedIndividual ,
+                                         s4watr:AcceptabilityProperty ;
+                                rdfs:comment "Property of the water indicating its hydrogen ion concentration."@en ;
+                                rdfs:label "Hydrogen ion concentration"@en ,
+                                           "pH"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Industry
+s4watr:Industry rdf:type owl:NamedIndividual ,
+                         s4watr:WaterUse ;
+                rdfs:comment "Use of water for industrial purposes."@en ;
+                rdfs:label "Industry"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Iron
+s4watr:Iron rdf:type owl:NamedIndividual ,
+                     s4watr:ChemicalProperty ;
+            rdfs:comment "Property of the water indicating its concentration of iron."@en ;
+            rdfs:label "Iron"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Lead
+s4watr:Lead rdf:type owl:NamedIndividual ,
+                     s4watr:ChemicalProperty ;
+            rdfs:comment "Property of the water indicating its concentration of lead."@en ;
+            rdfs:label "Lead"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Manganese
+s4watr:Manganese rdf:type owl:NamedIndividual ,
+                          s4watr:ChemicalProperty ;
+                 rdfs:comment "Property of the water indicating its concentration of manganese."@en ;
+                 rdfs:label "Manganese"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Mercury
+s4watr:Mercury rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of mercury."@en ;
+               rdfs:label "Mercury"@en .
+
+
+###  https://saref.etsi.org/saref4watr/MeterOnTime
+s4watr:MeterOnTime rdf:type owl:NamedIndividual ,
+                            s4watr:WaterMeterProperty ;
+                   rdfs:comment "The duration of the meter power up."@en ;
+                   rdfs:label "Meter on time"@en .
+
+
+###  https://saref.etsi.org/saref4watr/MeterOperatingTime
+s4watr:MeterOperatingTime rdf:type owl:NamedIndividual ,
+                                   s4watr:WaterMeterProperty ;
+                          rdfs:comment "The time for which the meter has been operating."@en ;
+                          rdfs:label "Meter operating time"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Nickel
+s4watr:Nickel rdf:type owl:NamedIndividual ,
+                       s4watr:ChemicalProperty ;
+              rdfs:comment "Property of the water indicating its concentration of nickel."@en ;
+              rdfs:label "Nickel"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Nitrate
+s4watr:Nitrate rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of nitrate."@en ;
+               rdfs:label "Nitrate"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Nitrite
+s4watr:Nitrite rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of nitrite."@en ;
+               rdfs:label "Nitrite"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Odour
+s4watr:Odour rdf:type owl:NamedIndividual ,
+                      s4watr:AcceptabilityProperty ;
+             rdfs:comment "Property of the water indicating its odour."@en ;
+             rdfs:label "Odour"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Oxidisability
+s4watr:Oxidisability rdf:type owl:NamedIndividual ,
+                              s4watr:AcceptabilityProperty ;
+                     rdfs:comment "Property of the water indicating its oxidisability."@en ;
+                     rdfs:label "Oxidisability"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Oxygen
+s4watr:Oxygen rdf:type owl:NamedIndividual ,
+                       s4watr:ChemicalProperty ;
+              rdfs:comment "Property of the water indicating its oxygen saturation."@en ;
+              rdfs:label "Oxygen"@en ,
+                         "Oxygen saturation"@en ,
+                         "Dissolved oxygen"@en .
+
+
+###  https://saref.etsi.org/saref4watr/PolycyclicAromaticHydrocarbons
+s4watr:PolycyclicAromaticHydrocarbons rdf:type owl:NamedIndividual ,
+                                               s4watr:ChemicalProperty ;
+                                      rdfs:comment "Property of the water indicating its concentration of polycyclic aromatic hydrocarbons."@en ;
+                                      rdfs:label "Polycyclic aromatic hydrocarbons"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Precipitation
+s4watr:Precipitation rdf:type owl:NamedIndividual ,
+                              s4watr:EnvironmentalProperty ;
+                     rdfs:comment "Property of the environment indicating the precipitation."@en ;
+                     rdfs:label "Precipitation"@en .
+
+
+###  https://saref.etsi.org/saref4watr/PseudomonasAeruginosa
+s4watr:PseudomonasAeruginosa rdf:type owl:NamedIndividual ,
+                                      s4watr:BacterialProperty ;
+                             rdfs:comment "Property of the water indicating its concentration of pseudomonas aeruginosa."@en ;
+                             rdfs:label "Pseudomonas aeruginosa"@en .
+
+
+###  https://saref.etsi.org/saref4watr/RawWater
+s4watr:RawWater rdf:type owl:NamedIndividual ,
+                         s4watr:WaterKind ;
+                rdfs:comment "Raw water is water found in the environment that has not been treated and does not have any of its minerals, ions, particles, bacteria, or parasites removed."@en ;
+                rdfs:label "Raw water"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Recreation
+s4watr:Recreation rdf:type owl:NamedIndividual ,
+                           s4watr:WaterUse ;
+                  rdfs:comment "Use of water for recreational purposes."@en ;
+                  rdfs:label "Recreation"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Selenium
+s4watr:Selenium rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of selenium."@en ;
+                rdfs:label "Selenium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Sodium
+s4watr:Sodium rdf:type owl:NamedIndividual ,
+                       s4watr:ChemicalProperty ;
+              rdfs:comment "Property of the water indicating its concentration of sodium."@en ;
+              rdfs:label "Sodium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Stormwater
+s4watr:Stormwater rdf:type owl:NamedIndividual ,
+                           s4watr:WaterKind ;
+                  rdfs:comment "Stormwater is water that originates during precipitation events and snow/ice melt."@en ;
+                  rdfs:label "Storm water"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Sulphate
+s4watr:Sulphate rdf:type owl:NamedIndividual ,
+                         s4watr:ChemicalProperty ;
+                rdfs:comment "Property of the water indicating its concentration of sulphate."@en ;
+                rdfs:label "Sulphate"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Taste
+s4watr:Taste rdf:type owl:NamedIndividual ,
+                      s4watr:AcceptabilityProperty ;
+             rdfs:comment "Property of the water indicating its taste."@en ;
+             rdfs:label "Taste"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Temperature
+s4watr:Temperature rdf:type owl:NamedIndividual ,
+                            s4watr:AcceptabilityProperty ;
+                   rdfs:comment "Property of the water indicating its temperature."@en ;
+                   rdfs:label "Temperature"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Tetrachloroethene
+s4watr:Tetrachloroethene rdf:type owl:NamedIndividual ,
+                                  s4watr:ChemicalProperty ;
+                         rdfs:comment "Property of the water indicating its concentration of tetrachloroethene."@en ;
+                         rdfs:label "Tetrachloroethene"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TotalIndicativeDose
+s4watr:TotalIndicativeDose rdf:type owl:NamedIndividual ,
+                                    s4watr:AcceptabilityProperty ;
+                           rdfs:comment "Property of the water indicating its total indicative dose."@en ;
+                           rdfs:label "Total indicative dose"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TotalDissolvedSolids
+s4watr:TotalDissolvedSolids rdf:type owl:NamedIndividual ,
+                                     s4watr:AcceptabilityProperty ;
+                            rdfs:comment "Property of the water indicating the dissolved combined content of all inorganic and organic substances present in a sample of water."@en ;
+                            rdfs:label "Total dissolved solids"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TotalOrganicCarbon
+s4watr:TotalOrganicCarbon rdf:type owl:NamedIndividual ,
+                                   s4watr:ChemicalProperty ;
+                          rdfs:comment "Property of the water indicating its concentration of total organic carbon."@en ;
+                          rdfs:label "TOC"@en ,
+                                     "Total organic carbon"@en .
+
+
+###  https://saref.etsi.org/saref4watr/TotalSuspendedSolids
+s4watr:TotalSuspendedSolids rdf:type owl:NamedIndividual ,
+                                     s4watr:AcceptabilityProperty ;
+                            rdfs:comment "Property of the water indicating the dry-weight of suspended particles, that are not dissolved, in a sample of water."@en ;
+                            rdfs:label "Total suspended solids"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Trichloroethene
+s4watr:Trichloroethene rdf:type owl:NamedIndividual ,
+                                s4watr:ChemicalProperty ;
+                       rdfs:comment "Property of the water indicating its concentration of trichloroethene."@en ;
+                       rdfs:label "Trichloroethene"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Trihalomethanes
+s4watr:Trihalomethanes rdf:type owl:NamedIndividual ,
+                                s4watr:ChemicalProperty ;
+                       rdfs:comment "Property of the water indicating its concentration of trihalomethanes."@en ;
+                       rdfs:label "Trihalomethanes"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Tritium
+s4watr:Tritium rdf:type owl:NamedIndividual ,
+                        s4watr:ChemicalProperty ;
+               rdfs:comment "Property of the water indicating its concentration of tritium."@en ;
+               rdfs:label "Tritium"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Turbidity
+s4watr:Turbidity rdf:type owl:NamedIndividual ,
+                          s4watr:AcceptabilityProperty ;
+                 rdfs:comment "Property of the water indicating its turbidity."@en ;
+                 rdfs:label "Turbidity"@en .
+
+
+###  https://saref.etsi.org/saref4watr/VinylChloride
+s4watr:VinylChloride rdf:type owl:NamedIndividual ,
+                              s4watr:ChemicalProperty ;
+                     rdfs:comment "Property of the water indicating its concentration of vinyl chloride."@en ;
+                     rdfs:label "Vinyl chloride"@en .
+
+
+###  https://saref.etsi.org/saref4watr/Wastewater
+s4watr:Wastewater rdf:type owl:NamedIndividual ,
+                           s4watr:WaterKind ;
+                  rdfs:comment "Wastewater is water that has been used in the home, in a business, or as part of an industrial process."@en ;
+                  rdfs:label "Waste water"@en .
+
+
+###  https://saref.etsi.org/saref4watr/12Dichloroethane
+s4watr:12Dichloroethane rdf:type owl:NamedIndividual ,
+                                 s4watr:ChemicalProperty ;
+                        rdfs:comment "Property of the water indicating its concentration of 1,2-dichloroethane."@en ;
+                        rdfs:label "1,2-dichloroethane"@en .

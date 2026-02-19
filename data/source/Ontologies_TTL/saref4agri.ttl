@@ -1,0 +1,546 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix s4agri: <https://saref.etsi.org/saref4agri/> .
+@prefix s4bldg: <https://saref.etsi.org/saref4bldg/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vann:    <http://purl.org/vocab/vann/>.
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+
+@base <https://saref.etsi.org/saref4agri/> .
+
+<https://saref.etsi.org/saref4agri/> rdf:type owl:Ontology ;
+  dcterms:description "This ontology extends the SAREF ontology for the Agricultural domain. This work has been developed in the context of the STF 534 (https://portal.etsi.org/STF/STFs/STFHomePages/STF534.aspx), which was established with the goal to create three SAREF extensions, one of them for the Agricultural domain."@en ;
+  dcterms:title "SAREF4AGRI: an extension of SAREF for the agriculture and food domain"@en ;
+  dcterms:created "2019-04-15"^^xsd:date ;
+  dcterms:creator <http://w3id.org/people/mpoveda> ; 
+  dcterms:creator <http://www.garcia-castro.com/foaf.rdf#me> ;
+  dcterms:creator <https://www.linkedin.com/in/lauradaniele> ;
+  dcterms:creator <https://www.linkedin.com/in/mderoode> ;
+  dcterms:creator <https://www.linkedin.com/in/bouterca> ;
+  dcterms:creator <https://www.researchgate.net/profile/Jack_Verhoosel> ;
+  dcterms:creator <http://maxime-lefrancois.info/me#> ;
+  dcterms:description "SAREF4AGRI is an extension of SAREF for the agriculture and food domain. SAREF4AGRI is specified and published by ETSI in the TS 103 410-6 associated to this ontology file. The list of use cases, standards and requirements that guided the creation of SAREF4AGRI are described in the associated ETSI TR 103 511."@en ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:modified "2024-04-14"^^xsd:date ;
+  dcterms:issued "2025-04-24"^^xsd:date ;
+  dcterms:publisher <https://www.etsi.org/> ;
+  dcterms:source <https://saref.etsi.org/sources/saref4agri/> ;
+  rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341006/02.01.01_60/ts_10341006v020101p.pdf> ;
+  vann:preferredNamespacePrefix "s4agri" ;
+  vann:preferredNamespaceUri "https://saref.etsi.org/saref4agri/" ;
+  owl:versionIRI <https://saref.etsi.org/saref4agri/v2.1.1/> ;
+  owl:priorVersion <https://saref.etsi.org/saref4agri/v1.1.2/> ;
+  owl:versionInfo "v2.1.1" ;
+  owl:imports <https://saref.etsi.org/core/v4.1.1/> ;
+.
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+foaf:Organization a owl:Class ; rdfs:isDefinedBy foaf: .
+foaf:Person a owl:Class ; rdfs:isDefinedBy foaf: .
+
+###  http://xmlns.com/foaf/0.1/based_near
+foaf:based_near rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+geo:sfContains a owl:ObjectProperty .
+
+###  http://purl.obolibrary.org/obo/TAXRANK_1000000
+<http://purl.obolibrary.org/obo/TAXRANK_1000000> rdf:type owl:ObjectProperty ;
+  rdfs:label "has taxon rank"@en .
+
+###  http://www.w3.org/ns/sosa/hosts
+sosa:hosts rdf:type owl:ObjectProperty ;
+      owl:inverseOf sosa:isHostedBy ;
+  rdfs:comment "Relation between a platform and the systems it hosts."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+  rdfs:label "host"@en .
+
+
+###  http://www.w3.org/ns/sosa/isHostedBy
+sosa:isHostedBy rdf:type owl:ObjectProperty ;
+  rdfs:comment "Relation between a system and its hosting platform."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+  rdfs:label "is hosted by"@en .
+
+
+###  http://www.w3.org/ns/ssn/deployedOnPlatform
+ssn:deployedOnPlatform rdf:type owl:ObjectProperty ;
+      owl:inverseOf ssn:inDeployment ;
+  rdfs:comment "Relation between a deployment and the platform(s) involved in the deployment."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "deployed on platform"@en .
+
+
+###  http://www.w3.org/ns/ssn/deployedSystem
+ssn:deployedSystem rdf:type owl:ObjectProperty ;
+      owl:inverseOf ssn:hasDeployment ;
+  rdfs:comment "Relation between a deployment and the system deployed."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "deployed system"@en .
+
+
+###  http://www.w3.org/ns/ssn/hasDeployment
+ssn:hasDeployment rdf:type owl:ObjectProperty ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "has deployment"@en .
+
+
+###  http://www.w3.org/ns/ssn/hasSubSystem
+ssn:hasSubSystem rdf:type owl:ObjectProperty ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "has subsystem"@en .
+
+
+###  http://www.w3.org/ns/ssn/inDeployment
+ssn:inDeployment rdf:type owl:ObjectProperty ;
+  rdfs:comment "Relation between a platform and the deployment(s) that takes place in the platform."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "in deployment"@en .
+
+
+###  http://xmlns.com/foaf/0.1/member
+foaf:member rdf:type owl:ObjectProperty ;
+  rdfs:label "member"@en .
+
+
+###  https://saref.etsi.org/saref4agri/generates
+s4agri:generates rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf saref:hasProperty ;
+  rdfs:comment "A relation to represent the yield generated by a Crop."@en ;
+  rdfs:label "generates"@en .
+
+
+###  https://saref.etsi.org/saref4agri/hasDeploymentPeriod
+s4agri:hasDeploymentPeriod rdf:type owl:ObjectProperty ;
+  rdfs:comment "Relation to indicate the temporal duration or period of a deployment."@en ,
+                                  "has deployment period"@en ;
+  rdfs:label "has deployment period"@en .
+
+
+###  https://saref.etsi.org/saref4agri/hasMember
+s4agri:hasMember rdf:type owl:ObjectProperty ;
+      owl:inverseOf s4agri:isMemberOf ;
+  rdfs:comment "A relation to represent  the members of an AnimalGroup."@en ;
+  rdfs:label "has member"@en .
+
+
+###  https://saref.etsi.org/saref4agri/isDeployedAtSpace
+s4agri:isDeployedAtSpace rdf:type owl:ObjectProperty ;
+  rdfs:comment "Relation to indicate the geographical componet of a deployment."@en ,
+                                "is deployed at space"@en ;
+  rdfs:label "is deployed at space"@en .
+
+
+###  https://saref.etsi.org/saref4agri/isLocatedIn
+s4agri:isLocatedIn rdf:type owl:ObjectProperty ;
+      owl:inverseOf s4agri:isLocationOf ;
+  rdfs:comment "A relation to express the physical location of a saref4agri entity (e.g., an animal)"@en ;
+  rdfs:label "is located in"@en .
+
+
+###  https://saref.etsi.org/saref4agri/isLocationOf
+s4agri:isLocationOf rdf:type owl:ObjectProperty ;
+  rdfs:comment "The physical location which locates a saref4agri entity."@en ;
+  rdfs:label "is location of"@en .
+
+
+###  https://saref.etsi.org/saref4agri/isMemberOf
+s4agri:isMemberOf rdf:type owl:ObjectProperty ;
+  rdfs:comment "A relation to express that an animal can be part of groups."@en ;
+  rdfs:label "is member of"@en .
+
+
+###  https://saref.etsi.org/saref4agri/managesFarm
+s4agri:managesFarm rdf:type owl:ObjectProperty ;
+  rdfs:comment "A relation to represent the person or company that supervises a farm."@en ;
+  rdfs:label "manages farm"@en .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://saref.etsi.org/saref4agri/hasBirthDate
+s4agri:hasBirthDate rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:dateTime ;
+  rdfs:comment "A relation to express the birth date of an animal."@en ;
+  rdfs:label "has birth date"@en .
+
+
+###  https://saref.etsi.org/saref4agri/hasDeathDate
+s4agri:hasDeathDate rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:dateTime ;
+  rdfs:comment "A relation to express the death date of an animal."@en ;
+  rdfs:label "has death date"@en .
+
+
+###  https://saref.etsi.org/saref4agri/hasHarvestDate
+s4agri:hasHarvestDate rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:range xsd:dateTime ;
+  rdfs:comment "A relation to express the day the crop is harvested."@en ;
+  rdfs:label "has harvest date"@en .
+
+###  https://saref.etsi.org/saref4agri/hasPlantDate
+s4agri:hasPlantDate rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:range xsd:dateTime ;
+  rdfs:comment "A relation to express the day the crop is planted."@en ;
+  rdfs:label "has plant date"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+geo:Feature a owl:Class .
+
+geo:SpatialObject a owl:Class .
+
+s4bldg:Building a owl:Class .
+
+###  http://purl.obolibrary.org/obo/TAXRANK_0000000
+<http://purl.obolibrary.org/obo/TAXRANK_0000000> rdf:type owl:Class ;
+  rdfs:label "Taxon rank"@en .
+
+###  http://www.w3.org/ns/sosa/Platform
+sosa:Platform rdf:type owl:Class ;
+  rdfs:comment "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms (definition taken from http://www.w3.org/ns/sosa/Platform)"@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+  rdfs:label "Platform"@en .
+
+
+###  http://www.w3.org/ns/ssn/Deployment
+ssn:Deployment rdf:type owl:Class ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "Deployment"@en .
+
+
+###  http://www.w3.org/ns/ssn/System
+ssn:System rdf:type owl:Class ;
+  rdfs:comment "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other Systems. (Definition taken from http://www.w3.org/ns/ssn/System)"@en ;
+  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
+  rdfs:label "System"@en .
+
+###  http://www.w3.org/2006/time/Interval
+time:Interval a owl:Class ;
+  rdfs:isDefinedBy time: ;
+.
+
+
+###  https://saref.etsi.org/saref4agri/Animal
+s4agri:Animal rdf:type owl:Class ;
+  rdfs:subClassOf saref:FeatureOfInterest ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty <http://purl.obolibrary.org/obo/TAXRANK_1000000> ;
+      owl:someValuesFrom <http://purl.obolibrary.org/obo/TAXRANK_0000000>
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:isLocatedIn ;
+      owl:someValuesFrom geo:Feature
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:isMemberOf ;
+      owl:someValuesFrom s4agri:AnimalGroup
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty saref:hasIdentifier ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasBirthDate ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasDeathDate ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] ;
+  rdfs:comment "An individual and identifiable living organism that feeds on organic matter, typically having specialized sense organs and nervous system and able to respond rapidly to stimuli."@en ;
+  rdfs:label "Animal"@en .
+
+
+###  https://saref.etsi.org/saref4agri/AnimalGroup
+s4agri:AnimalGroup rdf:type owl:Class ;
+  rdfs:subClassOf saref:FeatureOfInterest ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasMember ;
+      owl:someValuesFrom s4agri:Animal
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:isLocatedIn ;
+      owl:someValuesFrom geo:Feature
+    ]  ;
+  rdfs:comment "A collection of one or multiple animals."@en ;
+  rdfs:label "Animal Group"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Crop
+s4agri:Crop rdf:type owl:Class ;
+  rdfs:subClassOf saref:FeatureOfInterest ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty <http://purl.obolibrary.org/obo/TAXRANK_1000000> ;
+      owl:someValuesFrom <http://purl.obolibrary.org/obo/TAXRANK_0000000>
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasHarvestDate ;
+      owl:someValuesFrom xsd:dateTime
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasPlantDate ;
+      owl:someValuesFrom xsd:dateTime
+    ] ;
+  rdfs:comment "A collection of cultivated plants that is grown on a large scale commercially, especially a cereal, fruit, or vegetable."@en ;
+  rdfs:label "Crop"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Deployment
+s4agri:Deployment rdf:type owl:Class ;
+  rdfs:subClassOf ssn:Deployment ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty ssn:deployedOnPlatform ;
+      owl:someValuesFrom sosa:Platform
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty ssn:deployedSystem ;
+      owl:someValuesFrom ssn:System
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:hasDeploymentPeriod ;
+      owl:someValuesFrom time:Interval
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:isDeployedAtSpace ;
+      owl:someValuesFrom geo:SpatialObject
+    ] ;
+  rdfs:comment "The scenario, including temporal and spatial information, in which the systems and devices are installed."@en ;
+  rdfs:label "Deployment"@en .
+
+
+###  https://saref.etsi.org/saref4agri/EatingActivitySensor
+s4agri:EatingActivitySensor rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "Eating activity sensor"@en ;
+  rdfs:label "Eating activity sensor"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Farm
+s4agri:Farm rdf:type owl:Class ;
+  rdfs:subClassOf geo:Feature ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty geo:sfContains ;
+      owl:someValuesFrom s4bldg:Building
+    ] ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty geo:sfContains ;
+      owl:someValuesFrom s4agri:Parcel
+    ] ;
+  rdfs:comment "A plot of land used for the scope of farming which can contain buildings and parcels."@en ;
+  rdfs:label "Farm"@en .
+
+
+###  https://saref.etsi.org/saref4agri/FarmHolding
+s4agri:FarmHolding rdf:type owl:Class ;
+  rdfs:subClassOf foaf:Organization ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:managesFarm ;
+      owl:someValuesFrom s4agri:Farm
+    ]  ;
+  rdfs:comment "A class to decsribe a saref4agri farm holding as subcass of a foaf:Organization"@en ;
+  rdfs:label "Farm holding"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Farmer
+s4agri:Farmer rdf:type owl:Class ;
+  rdfs:subClassOf foaf:Person ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty s4agri:managesFarm ;
+      owl:someValuesFrom s4agri:Farm
+    ] ;
+  rdfs:comment "A class to decsribe a saref4agri farmer as subcass of a foaf:Person"@en ;
+  rdfs:label "Farmer"@en .
+
+
+###  https://saref.etsi.org/saref4agri/MilkingSensor
+s4agri:MilkingSensor rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A class to describe an animal milking sensor."@en ;
+  rdfs:label "Milking sensor"@en .
+
+
+###  https://saref.etsi.org/saref4agri/MovementActivitySensor
+s4agri:MovementActivitySensor rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A class to describe a motion sensor."@en ;
+  rdfs:label "Movement activity sensor"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Parcel
+s4agri:Parcel rdf:type owl:Class ;
+  rdfs:subClassOf geo:Feature ,
+    [ rdf:type owl:Restriction ;
+      owl:onProperty geo:sfContains ;
+      owl:someValuesFrom s4agri:Crop
+    ]  ;
+  rdfs:comment "An area of land, which might be used for grazing animals or planting crops. The parcel is defined as an undividable logical area of land which contains homogeneous items."@en ;
+  rdfs:label "Parcel"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Platform
+s4agri:Platform rdf:type owl:Class ;
+  rdfs:subClassOf sosa:Platform ;
+  rdfs:comment "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms (definition taken from http://www.w3.org/ns/sosa/Platform)"@en ;
+  rdfs:label "Platform"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Pluviometer
+s4agri:Pluviometer rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A sensor that measures the rain fall."@en ;
+  rdfs:label "Pluviometer"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Soil
+s4agri:Soil rdf:type owl:Class ;
+  rdfs:subClassOf saref:FeatureOfInterest ;
+  rdfs:comment "Upper layer of the earth in which plants grow."@en ;
+  rdfs:label "Soil"@en .
+
+
+###  https://saref.etsi.org/saref4agri/SoilTensiometer
+s4agri:SoilTensiometer rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A sensor that measures the soil moisture."@en ;
+  rdfs:label "Soil tensiometer"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Thermometer
+s4agri:Thermometer rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A class to describe a sensor that measures temperature."@en ;
+  rdfs:label "Thermometer"@en .
+
+
+###  https://saref.etsi.org/saref4agri/WateringGun
+s4agri:WateringGun rdf:type owl:Class ;
+  rdfs:subClassOf saref:Actuator ;
+  rdfs:comment "An actuator to irrigate an space."@en ;
+  rdfs:label "Watering gun"@en .
+
+
+###  https://saref.etsi.org/saref4agri/WateringSystem
+s4agri:WateringSystem rdf:type owl:Class ;
+  rdfs:subClassOf ssn:System ;
+  rdfs:comment "A class to describe a system that dispenses or irrigates water."@en ;
+  rdfs:label "Watering system"@en .
+
+
+###  https://saref.etsi.org/saref4agri/WateringValve
+s4agri:WateringValve rdf:type owl:Class ;
+  rdfs:subClassOf saref:Actuator ;
+  rdfs:comment "A class to describe an actuator for dispensing water."@en ;
+  rdfs:label "Watering valve"@en .
+
+
+###  https://saref.etsi.org/saref4agri/WeatherStation
+s4agri:WeatherStation rdf:type owl:Class ;
+  rdfs:subClassOf ssn:System ,
+                                saref:Sensor ;
+  rdfs:comment "A sensor or system that measure weather conditions."@en ;
+  rdfs:label "Weather station"@en .
+
+
+###  https://saref.etsi.org/saref4agri/WeightSensor
+s4agri:WeightSensor rdf:type owl:Class ;
+  rdfs:subClassOf saref:Sensor ;
+  rdfs:comment "A class to describe a sensor that measures mass."@en ;
+  rdfs:label "Weight sensor"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://dbpedia.org/resource/DBM
+<http://dbpedia.org/resource/DBM> rdf:type owl:NamedIndividual ,
+     saref:UnitOfMeasure ;
+  rdfs:label "decibel-milliwatts"@en .
+
+
+###  https://saref.etsi.org/saref4agri/AirTemperature
+s4agri:AirTemperature rdf:type owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The degree or intensity of heat present in the air."@en ;
+  rdfs:label "Air temperature"@en .
+
+
+###  https://saref.etsi.org/saref4agri/AmbientHumidity
+s4agri:AmbientHumidity rdf:type owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The amount of water vapour in the air."@en ;
+  rdfs:label "Ambient humidity"@en .
+
+
+###  https://saref.etsi.org/saref4agri/IrrigationWater
+s4agri:IrrigationWater rdf:type owl:NamedIndividual ,
+                          saref:Property ;
+  rdfs:comment "The amount of water falling in the soil by irrigation methods."@en ;
+  rdfs:label "Irrigation water"@en .
+
+
+###  https://saref.etsi.org/saref4agri/PlantGrowthStage
+s4agri:PlantGrowthStage rdf:type owl:NamedIndividual ,
+                           saref:Property ;
+  rdfs:comment "The level or stage of growth of the plant."@en ;
+  rdfs:label "Plant growth stage"@en .
+
+
+###  https://saref.etsi.org/saref4agri/Precipitation
+s4agri:Precipitation rdf:type owl:NamedIndividual ,
+                        saref:Property ;
+  rdfs:comment "The amount of water falling in the soil by natural process (e.g. rain)."@en ;
+  rdfs:label "Precipitation"@en .
+
+
+###  https://saref.etsi.org/saref4agri/SoilMoisture
+s4agri:SoilMoisture rdf:type owl:NamedIndividual ,
+                       saref:Property ;
+  rdfs:comment "The amount of water or humidity contained in the soil."@en ;
+  rdfs:label "Soil moisture"@en .
+
+
+###  https://saref.etsi.org/saref4agri/SoilTemperature
+s4agri:SoilTemperature  rdf:type owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The degree or intensity of heat present in the soil."@en ;
+  rdfs:label "Soil temperature"@en .
+
+s4agri:Intake a owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The amount of food or other substance taken into the body of an animal or into the soil."@en ;
+  rdfs:label "Intake"@en .
+
+s4agri:Yield a owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The produced amount of food for animals or of agricultural products."@en ;
+  rdfs:label "Yield"@en .
+
+s4agri:Area a owl:NamedIndividual , saref:Property ;
+  rdfs:comment "The total area of a spatial entity, such as a parcel or a farm."@en ;
+  rdfs:label "Area"@en .

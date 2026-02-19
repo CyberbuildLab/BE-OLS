@@ -1,0 +1,437 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Lifecycle#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dica: <https://w3id.org/digitalconstruction/0.5/Agents#> .
+@prefix dicc: <https://w3id.org/digitalconstruction/0.5/Contexts#> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix dicv: <https://w3id.org/digitalconstruction/0.5/Variables#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@base <https://w3id.org/digitalconstruction/0.5/Lifecycle> .
+
+<https://w3id.org/digitalconstruction/0.5/Lifecycle> rdf:type owl:Ontology ;
+                                                  owl:imports <https://w3id.org/digitalconstruction/0.5/Agents/agents.ttl> ;
+                                                  terms:creator "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)"^^xsd:string ;
+                                                  terms:date "2020-06-18T12:00:00"^^xsd:dateTime ;
+                                                  terms:title "Digital Construction Lifecycle"^^xsd:string ;
+						  rdfs:label "Digital Construction Information" ;
+						  terms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                                  vann:preferredNamespacePrefix "dicl"^^xsd:string ;
+                                                  vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Lifecycle" ;
+                                                  rdfs:comment "An ontology to represent the enhancement of building data throughout the construction lifecycle stages"^^xsd:string ;
+                                                  rdfs:seeAlso "https://w3id.org/digitalconstruction/0.5"^^xsd:string ;
+                                                  owl:versionInfo "0.5"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+terms:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/ns/prov#WasGeneratedBy
+<http://www.w3.org/ns/prov#WasGeneratedBy> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#generated
+<http://www.w3.org/ns/prov#generated> rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Agents#hasAgent
+# dica:hasAgent rdf:type owl:ObjectProperty ;
+#               owl:inverseOf dica:isAgentIn ;
+#               rdfs:domain dicp:Activity ;
+#               rdfs:range dica:Agent .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Agents#isAgentIn
+# dica:isAgentIn rdf:type owl:ObjectProperty ;
+#                rdfs:domain dica:Agent ;
+#                rdfs:range dica:Activity .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#hasContext
+# dicc:hasContext rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#hasSubContext
+# dicc:hasSubContext rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#isContextOf
+# dicc:isContextOf rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Contexts#isLODLevelOf
+:isLODLevelOf rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :hasLODLevel ;
+                  rdfs:domain :LODLevel ;
+                  rdfs:label "is LOD Level Of"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#isSubContextOf
+# dicc:isSubContextOf rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#nextContext
+# dicc:nextContext rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#previousContext
+# dicc:previousContext rdf:type owl:ObjectProperty .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Entities#hasRole
+# dice:hasRole rdf:type owl:ObjectProperty ;
+#              owl:inverseOf dice:isRoleOf ;
+#              rdfs:domain dice:Agent ;
+#              rdfs:range :InformationFlowRole ;
+#              rdfs:label "hasRole"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Entities#isRoleOf
+# dice:isRoleOf rdf:type owl:ObjectProperty ;
+#               rdfs:domain :InformationFlowRole ;
+#               rdfs:range dica:Agent ;
+#               rdfs:label "isRoleOf"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#consumesFrom
+:consumesFrom rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf dica:isAgentIn ;
+              rdfs:comment "Describes the agent who consumes the information coming from the activity"^^xsd:string ;
+              rdfs:label "consumesFrom"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasLODLevel
+:hasLODLevel rdf:type owl:ObjectProperty ;
+             rdfs:range :LODLevel ;
+             terms:description "Describes the property values and their level of detail regarding to the specific LOD Framework"^^xsd:string ;
+             rdfs:comment "Relationship between property state and level of detail."^^xsd:string ;
+             rdfs:label "hasLODLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasLevel
+:hasLevel rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf dicc:hasContext ;
+          owl:inverseOf :isLevelOf ;
+          rdfs:domain :LOD_Framework ;
+          rdfs:range :LODLevel ;
+          owl:propertyChainAxiom ( :hasLevel
+                                   :hasSubLevel
+                                 ) ;
+          terms:description "Enables the connection betweendifferent levels to its framework"^^xsd:string ;
+          rdfs:label "hasLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasNextLevel
+:hasNextLevel rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf dicc:nextContext ;
+              owl:inverseOf :hasPreviousLevel ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain :LODLevel ;
+              rdfs:range :LODLevel ;
+              terms:description "Indicates the sequence of levels."^^xsd:string ;
+              rdfs:label "hasNextLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasNextStage
+:hasNextStage rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf dicc:nextContext ;
+              owl:inverseOf :hasPreviousStage ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain :BuildingLifecycleStage ;
+              rdfs:range :BuildingLifecycleStage ;
+              owl:propertyChainAxiom ( :hasNextStage
+                                       :hasSubStage
+                                     ) ;
+              terms:description "Enables the relation between the stages and defines the sequence of the stages."^^xsd:string ;
+              rdfs:label "hasNextStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasPreviousLevel
+:hasPreviousLevel rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf dicc:previousContext ;
+                  rdf:type owl:TransitiveProperty ;
+                  rdfs:domain :LODLevel ;
+                  rdfs:range :LODLevel ;
+                  terms:description "Indicates the sequence of levels."^^xsd:string ;
+                  rdfs:label "hasPreviousLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasPreviousStage
+:hasPreviousStage rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf dicc:previousContext ;
+                  rdf:type owl:TransitiveProperty ;
+                  rdfs:domain :BuildingLifecycleStage ;
+                  rdfs:range :BuildingLifecycleStage ;
+                  owl:propertyChainAxiom ( :hasPreviousStage
+                                           :hasSubStage
+                                         ) ;
+                  terms:description "Enables the relation between the stages and defines the sequence of the stages."^^xsd:string ;
+                  rdfs:label "hasPreviousStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasStage
+:hasStage rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf dicc:hasContext ;
+          owl:inverseOf :isStageOf ;
+          rdfs:domain :BLCS_Framework ;
+          rdfs:range :BuildingLifecycleStage ;
+          owl:propertyChainAxiom ( :hasStage
+                                   :hasSubStage
+                                 ) ;
+          terms:description "Enables the relationship between the BLCS framework and different stages involved in it."^^xsd:string ;
+          rdfs:label "hasStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasSubLevel
+:hasSubLevel rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dicc:hasSubContext ;
+             owl:inverseOf :hasSuperLevel ;
+             rdf:type owl:TransitiveProperty ;
+             rdfs:domain :LODLevel ;
+             rdfs:range :LODLevel ;
+             terms:description "Represents the relation between Upper levels and its sub level"^^xsd:string ;
+             rdfs:label "hasSubLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasSubStage
+:hasSubStage rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dicc:hasSubContext ;
+             owl:inverseOf :hasSuperStage ;
+             rdf:type owl:TransitiveProperty ;
+             rdfs:domain :BuildingLifecycleStage ;
+             rdfs:range :BuildingLifecycleStage ;
+             terms:description "Describe the relationship between main and its sub stages involved in a specific BLCS framework."^^xsd:string ;
+             rdfs:label "hasSubStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasSuperLevel
+:hasSuperLevel rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf dicc:isSubContextOf ;
+               rdf:type owl:TransitiveProperty ;
+               rdfs:domain :LODLevel ;
+               rdfs:range :LODLevel ;
+               rdfs:comment "Represents the relation between Upper levels and its sub level"^^xsd:string ;
+               rdfs:label "hasSuperLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#hasSuperStage
+:hasSuperStage rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf dicc:isSubContextOf ;
+               rdf:type owl:TransitiveProperty ;
+               rdfs:domain :BuildingLifecycleStage ;
+               rdfs:range :BuildingLifecycleStage ;
+               rdfs:comment "Describe the relationship between main and its sub stages involved in a specific BLCS framework."^^xsd:string ;
+               rdfs:label "hasSuperStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#isLevelOf
+:isLevelOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dicc:isContextOf ;
+           rdfs:domain :LODLevel ;
+           rdfs:range :LOD_Framework ;
+           rdfs:label "isLevelOf"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Lifecycle#isLimitedBy
+# :isLimitedBy rdf:type owl:ObjectProperty ;
+#              rdfs:subPropertyOf dicv:isContrainedBy ;
+#              rdfs:domain dicv:Property ;
+#              rdfs:range dicv:PropertyState ;
+#              rdfs:label "isLimitedBy"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#isStageOf
+:isStageOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dicc:isContextOf ;
+           rdfs:domain :BuildingLifecycleStage ;
+           rdfs:range :BLCS_Framework ;
+           rdfs:label "isStageOf"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#processFrom
+:processFrom rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dica:isAgentIn ;
+             rdfs:comment "Describes the agent who process and updates the information to activity."^^xsd:string ;
+             rdfs:label "processFrom"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#providesTo
+:providesTo rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dica:isAgentIn ;
+            rdfs:comment "Describes the agent who provides the information coming from the activity."^^xsd:string ;
+            rdfs:label "providesTo"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#requires
+:requires rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf <http://www.w3.org/ns/prov#generated> ;
+          owl:inverseOf :wasNeededFor ;
+          rdfs:domain dicp:Activity ;
+          rdfs:range dice:BuildingObject ;
+          terms:description "The object properties defines the needed information about the objects with respect to the completion of the activity."^^xsd:string ;
+          rdfs:label "requires"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#wasNeededFor
+:wasNeededFor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf <http://www.w3.org/ns/prov#WasGeneratedBy> ;
+              rdfs:domain dice:BuildingObject ;
+              rdfs:range dicp:Activity ;
+              rdfs:label "wasNeededFor"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Processes#hasActivity
+# dicp:hasActivity rdf:type owl:ObjectProperty ;
+#                  rdfs:domain :BuildingLifecycleStage ;
+#                  rdfs:range dicp:Activity .
+
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+#################################################################
+#    Classes
+#################################################################
+
+# ###  https://w3id.org/bot#Element
+# <https://w3id.org/bot#Element> rdf:type owl:Class ;
+#                                rdfs:subClassOf dice:BuildingObject .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Agents#Activity
+# dica:Activity rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Agents#Agent
+# dica:Agent rdf:type owl:Class ;
+#            rdfs:comment "The actors and stakeholders of construction projects."^^xsd:string ;
+#            rdfs:label "Agent"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#Context
+# dicc:Context rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Contexts#ContextFramework
+# dicc:ContextFramework rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Entities#Agent
+# dice:Agent rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Entities#BuildingObject
+# dice:BuildingObject rdf:type owl:Class .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Entities#Role
+# dice:Role rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#BLCS_Framework
+:BLCS_Framework rdf:type owl:Class ;
+                rdfs:subClassOf dicc:ContextFramework ;
+                terms:description "Introduces the different Building Life-cycle stage framework"^^xsd:string ;
+                rdfs:label "BuildingLifecycleFramework"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#BuildingLifecycleStage
+:BuildingLifecycleStage rdf:type owl:Class ;
+                        rdfs:subClassOf dicc:Context ;
+                        terms:description "A stage in the lifecycle of a building"^^xsd:string ;
+                        rdfs:label "BuildingLifecycleStage"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#InformationConsumer
+:InformationConsumer rdf:type owl:Class ;
+                     rdfs:subClassOf :InformationFlowRole ;
+                     rdfs:comment "Agent who consumes and uses information (models, drawings, other datasets) from activity."^^xsd:string ;
+                     rdfs:label "InformationConsumer"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#InformationFlowRole
+:InformationFlowRole rdf:type owl:Class ;
+                     rdfs:subClassOf dice:Role ;
+                     rdfs:label "InformationFlowRole"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#InformationProcessor
+:InformationProcessor rdf:type owl:Class ;
+                      rdfs:subClassOf :InformationFlowRole ;
+                      rdfs:comment "Agent who process, updates and manges information (models, drawings, other datasets) to/for activity."^^xsd:string ;
+                      rdfs:label "InformationProcessor"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#InformationProvider
+:InformationProvider rdf:type owl:Class ;
+                     rdfs:subClassOf :InformationFlowRole ;
+                     rdfs:comment "Agent who provides information (models, drawings, other datasets) to/for activity."^^xsd:string ;
+                     rdfs:label "InformationProvider"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#LODLevel
+:LODLevel rdf:type owl:Class ;
+          rdfs:subClassOf dicc:Context ;
+          terms:description "Indicates the different LOD levels deffined with in the different LOD frameworks"^^xsd:string ;
+          rdfs:label "LODLevel"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#LOD_Framework
+:LOD_Framework rdf:type owl:Class ;
+               rdfs:subClassOf dicc:ContextFramework ;
+               terms:description "Represents the defined frameworks according to National or International standards"^^xsd:string ;
+               rdfs:label "LODLevelFramework"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/0.5/Processes#Activity
+# dicp:Activity rdf:type owl:Class ;
+#               rdfs:comment "Def: A process that is intentionally performed by an agent."^^xsd:string ;
+#               rdfs:label "Activity"^^xsd:string .
+
+
+# ###  https://w3id.org/digitalconstruction/Variables#Property
+# <https://w3id.org/digitalconstruction/Variables#Property> rdf:type owl:Class ;
+#                                                           owl:disjointWith <https://w3id.org/digitalconstruction/Variables#PropertyState> .
+
+
+# ###  https://w3id.org/digitalconstruction/Variables#PropertyState
+# <https://w3id.org/digitalconstruction/Variables#PropertyState> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

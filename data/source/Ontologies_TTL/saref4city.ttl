@@ -1,0 +1,563 @@
+@prefix : <https://saref.etsi.org/saref4city/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cpsv: <http://purl.org/vocab/cpsv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix s4city: <https://saref.etsi.org/saref4city/> .
+@base <https://saref.etsi.org/saref4city/> .
+
+<https://saref.etsi.org/saref4city/> rdf:type owl:Ontology ;
+                                      owl:versionIRI <https://saref.etsi.org/saref4city/v2.1.1/> ;
+                                      owl:imports <https://saref.etsi.org/core/v4.1.1/> ;
+                                      dc:creator <http://w3id.org/people/mpoveda> ,
+                                                 <http://www.garcia-castro.com/foaf.rdf#me> ,
+                                                 <https://www.linkedin.com/in/paolaespinoza-arias/> ;
+                                      dc:description "This ontology extends the SAREF ontology for the Smart City domain. This work has been developed in the context of the STF 534 (https://portal.etsi.org/STF/STFs/STFHomePages/STF534.aspx), which was established with the goal to create three SAREF extensions, one of them for the Smart City domain."@en ;
+                                      dc:issued "2020-06-05"^^xsd:date ;
+                                      dc:license <https://forge.etsi.org/etsi-software-license> ;
+                                      dc:modified "2025-04-11"^^xsd:date ;
+                                      dc:publisher <https://www.etsi.org/> ;
+                                      dc:source <https://saref.etsi.org/sources/saref4city/> ;
+                                      dc:title "SAREF4CITY: an extension of SAREF for the Smart City domain"@en ;
+                                      vann:preferredNamespacePrefix "s4city" ;
+                                      vann:preferredNamespaceUri "https://saref.etsi.org/saref4city/" ;
+                                      rdfs:comment """Information about changes compared to version 1.1.1: 
+ - Updated namespaces for compatibility with SAREF v3."""@en ;
+                                      rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341004/02.01.01_60/ts_10341004v020101p.pdf> ;
+                                      owl:priorVersion <https://saref.etsi.org/saref4city/v1.1.2/> ;
+                                      owl:versionInfo "v2.1.1" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dc:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dc:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dc:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+dc:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dc:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#duration
+xsd:duration rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/vocab/cpsv#physicallyAvailableAt
+cpsv:physicallyAvailableAt rdf:type owl:ObjectProperty ;
+                           rdfs:comment "A physical location at which a user may interact with the Public Service."@en ;
+                           rdfs:isDefinedBy cpsv: ;
+                           rdfs:label "physically available at"@en .
+
+
+###  http://purl.org/vocab/cpsv#provides
+cpsv:provides rdf:type owl:ObjectProperty ;
+              rdfs:comment "The provides property links an Agent to a Public Service for which it is responsible. Whether it provides the service directly or outsources it is not relevant, the Agent that provides the service is the one that is ultimately responsible for its provision."@en ;
+              rdfs:isDefinedBy cpsv: ;
+              rdfs:label "provides"@en .
+
+
+###  http://purl.org/vocab/cpsv#uses
+cpsv:uses rdf:type owl:ObjectProperty ;
+          rdfs:comment "The uses property links an Agent to a Public Service in which it plays the specific role of user, meaning that it provides the input and receives the output but does not play any direct role in providing the service. This will typically be an individual citizen or an outside organisation."@en ;
+          rdfs:isDefinedBy cpsv: ;
+          rdfs:label "uses"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+geo:hasGeometry rdf:type owl:ObjectProperty ;
+                rdfs:domain geo:Feature ;
+                rdfs:range geo:SpatialObject ;
+                rdfs:comment "A spatial representation for a given feature."@en ;
+                rdfs:isDefinedBy geo: ;
+                rdfs:label "has geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfContains
+geo:sfContains rdf:type owl:ObjectProperty ;
+               rdfs:domain geo:SpatialObject ;
+               rdfs:range geo:SpatialObject ;
+               rdfs:comment "Exists if the subject SpatialObject spatially contains the object SpatialObject. DE-9IM: T*****FF*"@en ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+               rdfs:label "contains"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfWithin
+geo:sfWithin rdf:type owl:ObjectProperty ;
+             rdfs:domain geo:SpatialObject ;
+             rdfs:range geo:SpatialObject ;
+             rdfs:comment "Exists if the subject SpatialObject is spatially within the object SpatialObject. DE-9IM: T*F**F***"@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+             rdfs:label "within"@en .
+
+
+###  https://saref.etsi.org/saref4city/assesses
+s4city:assesses rdf:type owl:ObjectProperty ;
+                rdfs:comment "Relation between a Key Performance Indicator and the feature of interest being assessed"@en ;
+                rdfs:label "assesses"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasAccessibility
+s4city:hasAccessibility rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4city:Event ;
+                        rdfs:range s4city:AccessibilityConcept ;
+                        rdfs:comment "relation between an event and the accesility modes provided"@en ;
+                        rdfs:label "has accessibility"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasKPI
+s4city:hasKPI rdf:type owl:ObjectProperty ;
+              owl:inverseOf s4city:isKPIOf ;
+              rdfs:domain saref:FeatureOfInterest ;
+              rdfs:range s4city:KeyPerformanceIndicator ;
+              rdfs:comment "Relation between a feature of interes and Key Performance Indicators"@en ;
+              rdfs:label "has key performance indicator"@en .
+
+
+###  https://saref.etsi.org/saref4city/involvesFacility
+s4city:involvesFacility rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4city:PublicService ;
+                        rdfs:range s4city:Facility ;
+                        rdfs:comment "Relation between public services and the facilities involved"@en ;
+                        rdfs:label "involves facility"@en .
+
+
+###  https://saref.etsi.org/saref4city/isAssessedBy
+s4city:isAssessedBy rdf:type owl:ObjectProperty ;
+                    rdfs:comment "Relation between a Key Performance Indicator assessment and the agent perfoming the assessment"@en ;
+                    rdfs:label "is assessed by"@en .
+
+
+###  https://saref.etsi.org/saref4city/isAvailableInLanguage
+s4city:isAvailableInLanguage rdf:type owl:ObjectProperty ;
+                             rdfs:domain s4city:PublicService ;
+                             rdfs:range dc:LinguisticSystem ;
+                             rdfs:comment "Relation between a public service and the languages it is available in."@en ;
+                             rdfs:label "is available in language"@en .
+
+
+###  https://saref.etsi.org/saref4city/isDerivedFrom
+s4city:isDerivedFrom rdf:type owl:ObjectProperty ;
+                     rdfs:comment "Relation between a Key Performance Indicator Assessmente and te observations used to calculate it"@en ;
+                     rdfs:label "is derived from"@en .
+
+
+###  https://saref.etsi.org/saref4city/isKPIOf
+s4city:isKPIOf rdf:type owl:ObjectProperty ;
+               rdfs:domain s4city:KeyPerformanceIndicator ;
+               rdfs:range saref:FeatureOfInterest ;
+               rdfs:comment "is key performance indicator of"@en ;
+               rdfs:label "is key performance indicator of"@en .
+
+
+###  https://saref.etsi.org/saref4city/isOrganizedBy
+s4city:isOrganizedBy rdf:type owl:ObjectProperty ;
+                     rdfs:comment "is organized by"@en ;
+                     rdfs:label "is organized by"@en .
+
+
+###  https://saref.etsi.org/saref4city/isSubEventOf
+s4city:isSubEventOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain s4city:Event ;
+                    rdfs:range s4city:Event ;
+                    rdfs:comment "Relation between an event and a more general event it is part of."@en ;
+                    rdfs:label "is subevent of"@en .
+
+
+###  https://saref.etsi.org/saref4city/quantifiesKPI
+s4city:quantifiesKPI rdf:type owl:ObjectProperty ;
+                     rdfs:range s4city:KeyPerformanceIndicator ;
+                     rdfs:comment "Relation between a Key Performance Indicator Assessment and the genral Key Performance Indicator being assessed"@en ;
+                     rdfs:label "quantifies KPI"@en .
+
+
+###  https://saref.etsi.org/saref4city/refersToFeature
+s4city:refersToFeature rdf:type owl:ObjectProperty ;
+                       rdfs:domain s4city:KeyPerformanceIndicatorAssessment ;
+                       rdfs:range geo:Feature ;
+                       rdfs:comment "Relation between a KPI assessment and the geographical feature it refers to"@en ;
+                       rdfs:label "refers to feature"@en .
+
+
+###  https://saref.etsi.org/saref4city/refersToTime
+s4city:refersToTime rdf:type owl:ObjectProperty ;
+                    rdfs:range time:TemporalEntity ;
+                    rdfs:comment "Relation between a KPI assessment and the tempral entity it refers to"@en ;
+                    rdfs:label "refers to time"@en .
+
+
+###  https://saref.etsi.org/saref4city/takesPlaceAtFacility
+s4city:takesPlaceAtFacility rdf:type owl:ObjectProperty ;
+                            rdfs:domain s4city:Event ;
+                            rdfs:range s4city:Facility ;
+                            rdfs:comment "Relation between an event and the facilities it takes place at."@en ;
+                            rdfs:label "takes place at facility"@en .
+
+
+###  https://saref.etsi.org/saref4city/takesPlaceAtTime
+s4city:takesPlaceAtTime rdf:type owl:ObjectProperty ;
+                        rdfs:domain s4city:Event ;
+                        rdfs:range time:TemporalEntity ;
+                        rdfs:comment "Relation between an event and the tiem when it takes place."@en ;
+                        rdfs:label "takes place at time"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://saref.etsi.org/saref4city/hasCalculationPeriod
+s4city:hasCalculationPeriod rdf:type owl:DatatypeProperty ;
+                            rdfs:range xsd:duration ;
+                            rdfs:comment "Relation between a KPI  and the temporal period it refers to"@en ;
+                            rdfs:label "has calculation period"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasCreationDate
+s4city:hasCreationDate rdf:type owl:DatatypeProperty ;
+                       rdfs:range xsd:dateTime ;
+                       rdfs:comment "Creation date of a KPI assessment"@en ;
+                       rdfs:label "has creation date"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasDescription
+s4city:hasDescription rdf:type owl:DatatypeProperty ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Description of an entity like a KPI or KPI assessment"@en ;
+                      rdfs:label "has description"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasExpirationDate
+s4city:hasExpirationDate rdf:type owl:DatatypeProperty ;
+                         rdfs:range xsd:dateTime ;
+                         rdfs:comment "Expiration date of a KPI assessment"@en ;
+                         rdfs:label "has expiration date"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasLastUpdateDate
+s4city:hasLastUpdateDate rdf:type owl:DatatypeProperty ;
+                         rdfs:range xsd:dateTime ;
+                         rdfs:comment "Las update of a KPI assessment"@en ;
+                         rdfs:label "has last update date"@en .
+
+
+###  https://saref.etsi.org/saref4city/hasName
+s4city:hasName rdf:type owl:DatatypeProperty ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Name of an entity like a KPI or KPI assessment"@en ;
+               rdfs:label "has name"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/dc/terms/LinguisticSystem
+dc:LinguisticSystem rdf:type owl:Class .
+
+
+###  http://purl.org/vocab/cpsv#PublicService
+cpsv:PublicService rdf:type owl:Class ;
+                   rdfs:comment "This class represents the service itself. A public service is the capacity to carry out a procedure and exists whether it is used or not. It is a set of deeds and acts performed by or on behalf of a public agency for the benefit of a citizen, a business or another public agency."@en ;
+                   rdfs:isDefinedBy cpsv: ;
+                   rdfs:label "Public Service"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+geo:Feature rdf:type owl:Class ;
+            rdfs:subClassOf geo:SpatialObject ;
+            rdfs:comment "This class represents the top-level feature type. This class is equivalent to GFI_Feature defined in ISO 19156:2011, and it is superclass of all feature types."@en ;
+            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+            rdfs:label "Feature"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+geo:Geometry rdf:type owl:Class ;
+             rdfs:subClassOf geo:SpatialObject ;
+             rdfs:comment "The class represents the top-level geometry type. This class is equivalent to the UML class GM_Object defined in ISO 19107, and it is superclass of all geometry types."@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+             rdfs:label "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+geo:SpatialObject rdf:type owl:Class ;
+                  rdfs:comment "The class spatial-object represents everything that can have a spatial representation. It is superclass of feature and geometry."@en ;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+                  rdfs:label "SpatialObject"@en .
+
+
+###  http://www.opengis.net/ont/sf#Geometry
+<http://www.opengis.net/ont/sf#Geometry> rdf:type owl:Class ;
+                                         rdfs:subClassOf geo:Geometry ;
+                                         rdfs:comment """Geometry is the root class of the hierarchy.
+
+The instantiable subclasses of Geometry are restricted to 0, 1 and 2-dimensional geometric objects that exist in 2, 3 or 4-dimensional coordinate space (R2, R3 or R4). Geometry values in R2 have points with coordinate values for x and y. Geometry values in R3 have points with coordinate values for x, y and z or for x, y and m. Geometry values in R4 have points with coordinate values for x, y, z and m.
+
+The interpretation of the coordinates is subject to the coordinate reference systems associated to the point. All coordinates within a geometry object should be in the same coordinate reference systems. Each coordinate shall be unambiguously associated to a coordinate reference system either directly or through its containing geometry. The z coordinate of a point is typically, but not necessarily, represents altitude or elevation. The m coordinate represents a measurement.
+
+All Geometry classes described in this specification are defined so that instances of Geometry are topologically closed, i.e. all represented geometries include their boundary as point sets. This does not affect their representation, and open versions of the same classes may be used in other circumstances, such as topological representations."""@en ;
+                                         rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                         rdfs:label "Geometry" .
+
+
+###  http://www.opengis.net/ont/sf#Point
+<http://www.opengis.net/ont/sf#Point> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.opengis.net/ont/sf#Geometry> ;
+                                      rdfs:comment """A Point is a 0-dimensional geometric object and represents a single location in coordinate space. 
+A Point has an x-coordinate value, a y-coordinate value. If called for by the associated Spatial Reference System, it may also have coordinate values for z and m.
+The boundary of a Point is the empty set."""@en ;
+                                      rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                                      rdfs:label "Point" .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core#> .
+
+
+###  http://www.w3.org/2006/time#TemporalEntity
+time:TemporalEntity rdf:type owl:Class ;
+                    rdfs:comment "A temporal interval or instant."@en ;
+                    rdfs:isDefinedBy time: ;
+                    rdfs:label "Temporal entity"@en .
+
+
+###  http://www.w3.org/ns/org#Organization
+<http://www.w3.org/ns/org#Organization> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/org#> ;
+                                        rdfs:label "Organization"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+<http://xmlns.com/foaf/0.1/Agent> rdf:type owl:Class ;
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                  rdfs:label "Agent"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> ;
+                                   rdfs:label "Person"@en .
+
+
+###  https://saref.etsi.org/saref4city/AccessibilityConcept
+s4city:AccessibilityConcept rdf:type owl:Class ;
+                            rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            rdfs:comment "SKOS concept to list  accessibility modes."@en ;
+                            rdfs:label "Accessibility concept"@en .
+
+
+###  https://saref.etsi.org/saref4city/AdministrativeArea
+s4city:AdministrativeArea rdf:type owl:Class ;
+                          rdfs:subClassOf geo:Feature ;
+                          rdfs:comment "An administrative division, unit, entity, area or region, also referred to as a subnational entity, constituent unit, or country subdivision, is a portion of a country or other region delineated for the purpose of administration. (https://en.wikipedia.org/wiki/Administrative_division)"@en ;
+                          rdfs:label "Administrative area"@en .
+
+
+###  https://saref.etsi.org/saref4city/Agent
+s4city:Agent rdf:type owl:Class ;
+             rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty cpsv:provides ;
+                               owl:allValuesFrom s4city:PublicService
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty cpsv:uses ;
+                               owl:allValuesFrom s4city:PublicService
+                             ] ;
+             rdfs:comment "An agent making an action in the context of a city. An agent could be a person, software, etc."@en ;
+             rdfs:label "Agent"@en .
+
+
+###  https://saref.etsi.org/saref4city/City
+s4city:City rdf:type owl:Class ;
+            rdfs:subClassOf s4city:AdministrativeArea ;
+            rdfs:comment "A city is a large human settlement. A city is distinguished from other human settlements by its relatively great size, but also by its functions and its special symbolic status, which may be conferred by a central authority. (https://en.wikipedia.org/wiki/City)"@en ;
+            rdfs:label "City"@en .
+
+
+###  https://saref.etsi.org/saref4city/CityObject
+s4city:CityObject rdf:type owl:Class ;
+                  rdfs:subClassOf geo:Feature ;
+                  rdfs:comment "Generic class for describing city objects."@en ;
+                  rdfs:label "City object"@en .
+
+
+###  https://saref.etsi.org/saref4city/Country
+s4city:Country rdf:type owl:Class ;
+               rdfs:subClassOf s4city:AdministrativeArea ;
+               rdfs:comment "A country is a region that is identified as a distinct national entity in political geography. (https://en.wikipedia.org/wiki/Country)"@en ;
+               rdfs:label "Country"@en .
+
+
+###  https://saref.etsi.org/saref4city/District
+s4city:District rdf:type owl:Class ;
+                rdfs:subClassOf s4city:AdministrativeArea ;
+                rdfs:comment "A district is a type of administrative division that, in some countries, is managed by local government. Across the world, areas known as \"districts\" vary greatly in size, spanning regions or counties, several municipalities, subdivisions of municipalities, school district, or political district. (https://en.wikipedia.org/wiki/District)"@en ;
+                rdfs:label "District"@en .
+
+
+###  https://saref.etsi.org/saref4city/Event
+s4city:Event rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty s4city:isOrganizedBy ;
+                               owl:allValuesFrom s4city:Agent
+                             ] ;
+             rdfs:comment "Temporary and scheduled event, like a festival or competition. (Definition taken from Wikidata)"@en ;
+             rdfs:label "Event"@en ;
+             rdfs:seeAlso <https://www.wikidata.org/wiki/Q1656682> .
+
+
+###  https://saref.etsi.org/saref4city/Facility
+s4city:Facility rdf:type owl:Class ;
+                rdfs:subClassOf geo:Feature ;
+                rdfs:comment "A place, amenity, or piece of equipment provided for a particular purpose. (Definition taken from https://en.oxforddictionaries.com/definition/facility)"@en ;
+                rdfs:label "Facility"@en .
+
+
+###  https://saref.etsi.org/saref4city/KeyPerformanceIndicator
+s4city:KeyPerformanceIndicator rdf:type owl:Class ;
+                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                 owl:onProperty s4city:isKPIOf ;
+                                                 owl:allValuesFrom saref:FeatureOfInterest
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty s4city:hasCalculationPeriod ;
+                                                 owl:allValuesFrom xsd:duration
+                                               ] ;
+                               rdfs:comment "A Key Performance Indicator (KPI) is a type of performance measurement. KPIs evaluate the success of an organization or of a particular activity in which it engages. (Definition taken from FIWARE)"@en ;
+                               rdfs:label "Key Performance Indicator"@en ;
+                               rdfs:seeAlso <http://fiware-datamodels.readthedocs.io/en/latest/KeyPerformanceIndicator/doc/spec/index.html> .
+
+
+###  https://saref.etsi.org/saref4city/KeyPerformanceIndicatorAssessment
+s4city:KeyPerformanceIndicatorAssessment rdf:type owl:Class ;
+                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty saref:isMeasuredIn ;
+                                                           owl:allValuesFrom saref:UnitOfMeasure
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:assesses ;
+                                                           owl:allValuesFrom saref:FeatureOfInterest
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:isAssessedBy ;
+                                                           owl:allValuesFrom s4city:Agent
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:isDerivedFrom ;
+                                                           owl:allValuesFrom saref:Observation
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:quantifiesKPI ;
+                                                           owl:allValuesFrom s4city:KeyPerformanceIndicator
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:refersToTime ;
+                                                           owl:allValuesFrom time:TemporalEntity
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:hasCreationDate ;
+                                                           owl:allValuesFrom xsd:dateTime
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:hasExpirationDate ;
+                                                           owl:allValuesFrom xsd:dateTime
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty s4city:hasLastUpdateDate ;
+                                                           owl:allValuesFrom xsd:dateTime
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty saref:hasValue ;
+                                                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ;
+                                         rdfs:comment "A Key Performance Indicator assessment represents the assessment of a KPI calculated by a given agent in a given time."@en ;
+                                         rdfs:label "Key performance indicator assessment"@en .
+
+
+###  https://saref.etsi.org/saref4city/Neighbourhood
+s4city:Neighbourhood rdf:type owl:Class ;
+                     rdfs:subClassOf s4city:AdministrativeArea ;
+                     rdfs:comment "A neighbourhood (British English), or neighborhood (American English; see spelling differences), is a geographically localised community within a larger city, town, suburb or rural area. (https://en.wikipedia.org/wiki/Neighbourhood)"@en ;
+                     rdfs:label "Neighbourhood"@en .
+
+
+###  https://saref.etsi.org/saref4city/PublicAdministration
+s4city:PublicAdministration rdf:type owl:Class ;
+                            rdfs:subClassOf <http://www.w3.org/ns/org#Organization> ;
+                            rdfs:comment "Public leadership of public affairs directly responsible for executive action. (Definition taken from wikidata)"@en ;
+                            rdfs:label "Public administration"@en ;
+                            rdfs:seeAlso <https://www.wikidata.org/wiki/Q31728> .
+
+
+###  https://saref.etsi.org/saref4city/PublicService
+s4city:PublicService rdf:type owl:Class ;
+                     rdfs:subClassOf cpsv:PublicService ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty cpsv:physicallyAvailableAt ;
+                                       owl:allValuesFrom s4city:AdministrativeArea
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty s4city:involvesFacility ;
+                                       owl:allValuesFrom s4city:Facility
+                                     ] ;
+                     rdfs:comment "Public service is a service which is provided by government either directly (through the public sector) or by financing provision of services. (Definition taken from Wikipedia)"@en ;
+                     rdfs:label "Public service"@en ;
+                     rdfs:seeAlso <https://en.wikipedia.org/wiki/Public_service> .
+
+

@@ -1,0 +1,356 @@
+@prefix : <https://w3id.org/digitalconstruction/0.5/Stages#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dicl: <https://w3id.org/digitalconstruction/0.5/Lifecycle#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@base <https://w3id.org/digitalconstruction/0.5/Stages> .
+
+<https://w3id.org/digitalconstruction/0.5/Stages> rdf:type owl:Ontology ;
+                                                   owl:imports <https://w3id.org/digitalconstruction/0.5/Lifecycle/lifecycle.ttl> ;
+                                                   terms:creator "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)"^^xsd:string ,
+                                                                 "Prathap Valluru (prathap.valluru@tu-dresden.de)"^^xsd:string ;
+                                                   terms:date "2020-04-15T15:47:00"^^xsd:dateTime ;
+                                                   rdfs:comment "A vocabulary for BLCS stages"^^xsd:string ;
+                                                   rdfs:label "A vocabulary for BLCS stages"^^xsd:string ;
+						   vann:preferredNamespacePrefix "dicstg" ;
+                                                   vann:preferredNamespaceUri "https://w3id.org/digitalconstruction/0.5/Stages" ;
+                                                   rdfs:seeAlso "https://w3id.org/digitalconstruction/0.5"^^xsd:string ;
+                                                   owl:versionInfo "0.5"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+terms:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Lifecycle#isRelaventWith
+dicl:isRelaventWith rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_16310
+:BS_EN_16310 rdf:type owl:NamedIndividual ;
+             dicl:hasStage :BS_EN_Construction ,
+                           :BS_EN_Design ,
+                           :BS_EN_End_of_Life ,
+                           :BS_EN_Initiation ,
+                           :BS_EN_Initiative ,
+                           :BS_EN_Procurement ,
+                           :BS_EN_Use ;
+             terms:description "Describes the BLCS framework according to the code of Practice BS EN 16310:2013"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Business_case
+:BS_EN_Business_case rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Commissioning
+:BS_EN_Commissioning rdf:type owl:NamedIndividual ;
+                     dicl:hasNextStage :BS_EN_Handover .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Conceptual_design
+:BS_EN_Conceptual_design rdf:type owl:NamedIndividual ;
+                         dicl:hasNextStage :BS_EN_Preliminary_design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Construction
+:BS_EN_Construction rdf:type owl:NamedIndividual ;
+                    dicl:hasNextStage :BS_EN_Commissioning ,
+                                      :BS_EN_Use ;
+                    dicl:hasSubStage :BS_EN_Commissioning ,
+                                     :BS_EN_Construction ,
+                                     :BS_EN_Handover ,
+                                     :BS_EN_Pre_construction ,
+                                     :BS_EN_Regulatory_approval .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Construction_contracting
+:BS_EN_Construction_contracting rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Design
+:BS_EN_Design rdf:type owl:NamedIndividual ;
+              dicl:hasNextStage :BS_EN_Procurement ;
+              dicl:hasSubStage :BS_EN_Conceptual_design ,
+                               :BS_EN_Detailed_design ,
+                               :BS_EN_Developed_design ,
+                               :BS_EN_Preliminary_design ,
+                               :BS_EN_Technical_design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Detailed_design
+:BS_EN_Detailed_design rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Developed_design
+:BS_EN_Developed_design rdf:type owl:NamedIndividual ;
+                        dicl:hasNextStage :BS_EN_Technical_design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Dismantling
+:BS_EN_Dismantling rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_End_of_Life
+:BS_EN_End_of_Life rdf:type owl:NamedIndividual ;
+                   dicl:hasSubStage :BS_EN_Dismantling ,
+                                    :BS_EN_Revamping .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Feasibility_study
+:BS_EN_Feasibility_study rdf:type owl:NamedIndividual ;
+                         dicl:hasNextStage :BS_EN_Project_definition .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Handover
+:BS_EN_Handover rdf:type owl:NamedIndividual ;
+                dicl:hasNextStage :BS_EN_Regulatory_approval .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Initiation
+:BS_EN_Initiation rdf:type owl:NamedIndividual ;
+                  dicl:hasNextStage :BS_EN_Design ;
+                  dicl:hasSubStage :BS_EN_Feasibility_study ,
+                                   :BS_EN_Project_definition ,
+                                   :BS_EN_Project_initiation .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Initiative
+:BS_EN_Initiative rdf:type owl:NamedIndividual ;
+                  dicl:hasNextStage :BS_EN_Initiation ;
+                  dicl:hasSubStage :BS_EN_Business_case ,
+                                   :BS_EN_Market_study .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Maintenance
+:BS_EN_Maintenance rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Market_study
+:BS_EN_Market_study rdf:type owl:NamedIndividual ;
+                    dicl:hasNextStage :BS_EN_Business_case .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Operation
+:BS_EN_Operation rdf:type owl:NamedIndividual ;
+                 dicl:hasNextStage :BS_EN_Maintenance .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Pre_construction
+:BS_EN_Pre_construction rdf:type owl:NamedIndividual ;
+                        dicl:hasNextStage :BS_EN_Construction .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Preliminary_design
+:BS_EN_Preliminary_design rdf:type owl:NamedIndividual ;
+                          dicl:hasNextStage :BS_EN_Developed_design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Procurement
+:BS_EN_Procurement rdf:type owl:NamedIndividual ;
+                   dicl:hasNextStage :BS_EN_Construction ,
+                                     :BS_EN_Construction_contracting ;
+                   dicl:hasSubStage :BS_EN_Construction_contracting ,
+                                    :BS_EN_Procurement .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Project_definition
+:BS_EN_Project_definition rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Project_initiation
+:BS_EN_Project_initiation rdf:type owl:NamedIndividual ;
+                          dicl:hasNextStage :BS_EN_Feasibility_study .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Regulatory_approval
+:BS_EN_Regulatory_approval rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Revamping
+:BS_EN_Revamping rdf:type owl:NamedIndividual ;
+                 dicl:hasNextStage :BS_EN_Dismantling .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Technical_design
+:BS_EN_Technical_design rdf:type owl:NamedIndividual ;
+                        dicl:hasNextStage :BS_EN_Detailed_design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#BS_EN_Use
+:BS_EN_Use rdf:type owl:NamedIndividual ;
+           dicl:hasNextStage :BS_EN_End_of_Life ;
+           dicl:hasSubStage :BS_EN_Maintenance ,
+                            :BS_EN_Operation .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI
+:HOAI rdf:type owl:NamedIndividual ;
+      dicl:hasStage :HOAI_AssistingTheAwardProcess ,
+                    :HOAI_BaseOfTheProject ,
+                    :HOAI_BuildingPermissionApplication ,
+                    :HOAI_ExecutionDrawings ,
+                    :HOAI_FinalDesign ,
+                    :HOAI_PreliminaryDesign ,
+                    :HOAI_PreparationOfContractAward ,
+                    :HOAI_ProjectControlandDocumentation ,
+                    :HOAI_ProjectSupervision ;
+      terms:description "The BLCS framework according to HOAI"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_AssistingTheAwardProcess
+:HOAI_AssistingTheAwardProcess rdf:type owl:NamedIndividual ;
+                               dicl:hasNextStage :HOAI_ProjectSupervision .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_BaseOfTheProject
+:HOAI_BaseOfTheProject rdf:type owl:NamedIndividual ;
+                       dicl:hasNextStage :HOAI_PreliminaryDesign ;
+                       dicl:isRelaventWith :BS_EN_Initiation ,
+                                           :BS_EN_Initiative .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_BuildingPermissionApplication
+:HOAI_BuildingPermissionApplication rdf:type owl:NamedIndividual ;
+                                    dicl:hasNextStage :HOAI_AssistingTheAwardProcess .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_ExecutionDrawings
+:HOAI_ExecutionDrawings rdf:type owl:NamedIndividual ;
+                        dicl:hasNextStage :HOAI_PreparationOfContractAward .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_FinalDesign
+:HOAI_FinalDesign rdf:type owl:NamedIndividual ;
+                  dicl:hasNextStage :HOAI_ExecutionDrawings .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_PreliminaryDesign
+:HOAI_PreliminaryDesign rdf:type owl:NamedIndividual ;
+                        dicl:hasNextStage :HOAI_FinalDesign .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_PreparationOfContractAward
+:HOAI_PreparationOfContractAward rdf:type owl:NamedIndividual ;
+                                 dicl:hasNextStage :HOAI_BuildingPermissionApplication .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_ProjectControlandDocumentation
+:HOAI_ProjectControlandDocumentation rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#HOAI_ProjectSupervision
+:HOAI_ProjectSupervision rdf:type owl:NamedIndividual ;
+                         dicl:hasNextStage :HOAI_ProjectControlandDocumentation .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_22263
+:ISO_22263 rdf:type owl:NamedIndividual ;
+           dicl:hasStage :ISO_Brief ,
+                         :ISO_Demolition ,
+                         :ISO_Design ,
+                         :ISO_Inception ,
+                         :ISO_Production ;
+           terms:description "Describes the BLCS framework according to the code of Practice ISO 22263"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_Brief
+:ISO_Brief rdf:type owl:NamedIndividual ;
+           dicl:hasNextStage :ISO_Design .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_Demolition
+:ISO_Demolition rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_Design
+:ISO_Design rdf:type owl:NamedIndividual ;
+            dicl:hasNextStage :ISO_Production .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_Inception
+:ISO_Inception rdf:type owl:NamedIndividual ;
+               dicl:hasNextStage :ISO_Brief .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#ISO_Production
+:ISO_Production rdf:type owl:NamedIndividual ;
+                dicl:hasNextStage :ISO_Demolition .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA
+:RIBA rdf:type owl:NamedIndividual ;
+      dicl:hasStage :RIBA_ConceptDesign ,
+                    :RIBA_Construction ,
+                    :RIBA_DevelopedDesign ,
+                    :RIBA_HandoverandCloseout ,
+                    :RIBA_InUse ,
+                    :RIBA_PreparationandBrief ,
+                    :RIBA_StrategicDefinition ,
+                    :RIBA_TechnicalDesign ;
+      terms:description "Describes the BLCS framework according to RIBA 2016 Publication"^^xsd:string .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_ConceptDesign
+:RIBA_ConceptDesign rdf:type owl:NamedIndividual ;
+                    dicl:hasNextStage :RIBA_DevelopedDesign .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_Construction
+:RIBA_Construction rdf:type owl:NamedIndividual ;
+                   dicl:hasNextStage :RIBA_HandoverandCloseout .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_DevelopedDesign
+:RIBA_DevelopedDesign rdf:type owl:NamedIndividual ;
+                      dicl:hasNextStage :RIBA_TechnicalDesign .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_HandoverandCloseout
+:RIBA_HandoverandCloseout rdf:type owl:NamedIndividual ;
+                          dicl:hasNextStage :RIBA_InUse .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_InUse
+:RIBA_InUse rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_PreparationandBrief
+:RIBA_PreparationandBrief rdf:type owl:NamedIndividual ;
+                          dicl:hasNextStage :RIBA_ConceptDesign .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_StrategicDefinition
+:RIBA_StrategicDefinition rdf:type owl:NamedIndividual ;
+                          dicl:hasNextStage :RIBA_PreparationandBrief .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Stages#RIBA_TechnicalDesign
+:RIBA_TechnicalDesign rdf:type owl:NamedIndividual ;
+                      dicl:hasNextStage :RIBA_Construction .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

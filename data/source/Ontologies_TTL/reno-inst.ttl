@@ -1,0 +1,746 @@
+@prefix : <http://www.w3.org/2002/07/owl#> .
+@prefix BO: <https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+<https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl> rdf:type owl:Ontology ;
+                                                                        owl:versionIRI <https://git.onem2m.org/MAS/BaseOntology/raw/3_6_0/base_ontology.owl> ;
+                                                                        rdfs:comment """This file contains the Base Ontology of oneM2M as specified in TS-0012
+
+=========================================
+Copyright Notification
+
+The oneM2M Partners authorize you to copy this document, provided that you retain all copyright and other proprietary notices contained in the original materials on any copies of the materials and that you comply strictly with these terms.
+This copyright permission does not constitute an endorsement of the products or services, nor does it encompass the granting of any patent rights. 
+The oneM2M Partners assume no responsibility for errors or omissions in this document.
+
+(c) 2016, oneM2M Partners Type 1 (ARIB, ATIS, CCSA, ETSI, TIA, TSDSI, TTA, TTC). All rights reserved.
+
+Notice of Disclaimer and Limitation of Liability
+
+The information provided in this document is directed solely to professionals who have the appropriate degree of experience to understand and interpret its contents in accordance with generally accepted engineering or other professional standards and applicable regulations.
+No recommendation as to products or vendors is made or should be implied.
+
+NO REPRESENTATION OR WARRANTY IS MADE THAT THE INFORMATION IS TECHNICALLY ACCURATE OR SUFFICIENT OR CONFORMS TO ANY STATUTE,GOVERNMENTAL RULE OR EGULATION, AND FURTHER, NO REPRESENTATION OR WARRANTY IS MADE OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR AGAINST INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+NO oneM2M PARTNER TYPE 1 SHALL BE LIABLE, BEYOND THE AMOUNT OF ANY SUM RECEIVED IN PAYMENT BY THAT PARTNER FOR THIS DOCUMENT, WITH RESPECT TO ANY CLAIM, AND IN NO EVENT SHALL oneM2M BE LIABLE FOR LOST PROFITS OR OTHER INCIDENTAL OR ON SEQUENTIAL DAMAGES.
+oneM2M EXPRESSLY ADVISES ANY AND ALL USE OF OR RELIANCE UPON THIS INFORMATION PROVIDED IN THIS DOCUMENT IS AT THE RISK OF THE USER.
+=========================================""" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#resourceDescriptorLink
+BO:resourceDescriptorLink rdf:type owl:AnnotationProperty ;
+                          rdfs:comment "The resourceDescriptorLink annotation property is used to refer to a semanticDescriptor resource that contains more information about its subject. Its subject may be any individual and the range shall be the data literal or URI reference that represents the address of the semanticDescriptor" ;
+                          rdfs:range xsd:anyURI ;
+                          rdfs:domain owl:Thing .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#consistsOf
+BO:consistsOf rdf:type owl:ObjectProperty ;
+              rdfs:domain BO:Device ;
+              rdfs:range BO:Device ;
+              rdfs:comment "A Device can consist of (i.e. be composed) of several (sub-) Devices" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#convertsTo
+BO:convertsTo rdf:type owl:ObjectProperty ;
+              rdfs:domain BO:VariableConversion ;
+              rdfs:range BO:Variable ;
+              rdfs:comment "The conversion rule (the VariableConversion in the domain of Object Property: hasConversion) converts the value range of a given Variable (see 6.2.22 Object Property: hasConversion) into the value range of another Variable (the Variable in the range of Object Property: convertsTo)" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#describes
+BO:describes rdf:type owl:ObjectProperty ;
+             rdfs:domain BO:Variable ;
+             rdfs:range BO:Aspect ;
+             rdfs:comment "A Variable describes an Aspect (a quality or kind)" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#exposesCommand
+BO:exposesCommand rdf:type owl:ObjectProperty ;
+                  rdfs:domain [ rdf:type owl:Class ;
+                                owl:unionOf ( BO:InputDataPoint
+                                              BO:Operation
+                                              BO:OutputDataPoint
+                                            )
+                              ] ;
+                  rdfs:range BO:Command ;
+                  rdfs:comment "A –machine interpretable- Operation or an Input/OutputDataPoint of a Service exposes a –human understandable- Command to a network" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#exposesFunction
+BO:exposesFunction rdf:type owl:ObjectProperty ;
+                   rdfs:domain BO:Service ;
+                   rdfs:range BO:Function ;
+                   rdfs:comment "A Service exposes a Functionality to the network and makes it discoverable, registerable and remotely controllable in the network" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasCommand
+BO:hasCommand rdf:type owl:ObjectProperty ;
+              rdfs:domain BO:Function ;
+              rdfs:range BO:Command ;
+              rdfs:comment "A Functionality of a Device can be influenced / observed by a human user through the Commands that this Functionality has and that are offered to the user" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasConversion
+BO:hasConversion rdf:type owl:ObjectProperty ;
+                 rdfs:domain BO:Variable ;
+                 rdfs:range BO:VariableConversion ;
+                 rdfs:comment "A Variable (in the domain of Object Property: hasConversion) can have a conversion rule (the VariableConversion in the range of Object Property: hasConversion) to convert the value range of the Variable into the value range of another Variable" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasFunction
+BO:hasFunction rdf:type owl:ObjectProperty ;
+               rdfs:domain BO:Device ;
+               rdfs:range BO:Function ;
+               rdfs:comment "In order to accomplish its task, a Device performs one or more Functionalities" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasInput
+BO:hasInput rdf:type owl:ObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( BO:Command
+                                        BO:Operation
+                                      )
+                        ] ;
+            rdfs:range BO:OperationInput ;
+            rdfs:comment "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationInput data." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasInputDataPoint
+BO:hasInputDataPoint rdf:type owl:ObjectProperty ;
+                     rdfs:domain BO:Service ;
+                     rdfs:range BO:InputDataPoint ;
+                     rdfs:comment """A Service or an Operation of a Service of the Device can have InputDataPoints. Communicating entities write data into InputDataPoints and the Device retrieves the data at times according to an internal schedule.
+ - An InputDataPoint is a persistent resource""" ,
+                                  """Note:
+If an InputDataPoint is mandatory for a Service or Operation then 
+the cardinality of hasInputDataPoint must be - min 1.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasMetaData
+BO:hasMetaData rdf:type owl:ObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( BO:Aspect
+                                           BO:Variable
+                                         )
+                           ] ;
+               rdfs:range BO:MetaData ;
+               rdfs:comment "A Value of a Thing can have MetaData (like units, precision-ranges)." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasOperation
+BO:hasOperation rdf:type owl:ObjectProperty ;
+                rdfs:domain BO:Service ;
+                rdfs:range BO:Operation ;
+                rdfs:comment "A Service communicates by means of Operations over the network to transmit data to/from other devices" ,
+                             """Note:
+If an Operation is mandatory for a Service then 
+the cardinality of hasOperation must be - min 1.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasOutput
+BO:hasOutput rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( BO:Command
+                                         BO:Operation
+                                       )
+                         ] ;
+             rdfs:range BO:OperationOutput ;
+             rdfs:comment "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationOutput data." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasOutputDataPoint
+BO:hasOutputDataPoint rdf:type owl:ObjectProperty ;
+                      rdfs:domain BO:Service ;
+                      rdfs:range BO:OutputDataPoint ;
+                      rdfs:comment """A Service or an Operation of a Service of the Device can have OutputDataPoints. The Device writes data into OutputDataPoints at times according to an internal schedule and the communicating entitis retrieves the data.
+ - An OutputDataPoint is a persistent resource""" ,
+                                   """Note:
+If an OutputDataPoint is mandatory for a Service or Operation then 
+the cardinality of hasOutputDataPoint must be - min 1.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasService
+BO:hasService rdf:type owl:ObjectProperty ;
+              rdfs:domain BO:Device ;
+              rdfs:range BO:Service ;
+              rdfs:comment "The Functionalities of a Device are exposed in the network as Services of the Device" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasSubService
+BO:hasSubService rdf:type owl:ObjectProperty ;
+                 rdfs:domain BO:Service ;
+                 rdfs:range BO:Service ;
+                 rdfs:comment "A Service may be composed of smaller, independent (sub)Services, e.g. re-usable servicemodules" ,
+                              """Note:
+If an Service constist of at least one sub-Service then 
+the cardinality of hasSubService must be - min 1.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasSubStructure
+BO:hasSubStructure rdf:type owl:ObjectProperty ;
+                   rdfs:domain BO:StructuredTypeVariable ;
+                   rdfs:range BO:Variable ;
+                   rdfs:comment "A structured Variable can be composed of (sub-)Variables" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasThingProperty
+BO:hasThingProperty rdf:type owl:ObjectProperty ;
+                    rdfs:domain BO:Thing ;
+                    rdfs:range BO:ThingProperty ;
+                    rdfs:comment "A Thing may have properties that can be described by Values" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasThingRelation
+BO:hasThingRelation rdf:type owl:ObjectProperty ;
+                    rdfs:domain BO:Thing ;
+                    rdfs:range BO:Thing ;
+                    rdfs:comment "A Thing may have relations to itself or to other Things (e-g. a Thing \"Room\" could have a relation \"has_Door\" with a Thing \"Door\")" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#isPartOf
+BO:isPartOf rdf:type owl:ObjectProperty ;
+            rdfs:domain BO:InterworkedDevice ;
+            rdfs:range BO:AreaNetwork ;
+            rdfs:comment "An InterworkedDevice constitutes a part of an AreaNetwork" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#refersTo
+BO:refersTo rdf:type owl:ObjectProperty ;
+            rdfs:domain BO:Function ;
+            rdfs:range BO:Aspect ;
+            rdfs:comment """A Functionality of a Device can refer to a certain Aspect (a quality or kind) that is measured or controlled by that Functionality. 
+e.g. a temperature sensor would refer to the Aspect \"Temperature\" that it measures""" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction
+BO:hasDataRestriction rdf:type owl:DatatypeProperty ;
+                      rdfs:domain BO:SimpleTypeVariable ;
+                      rdfs:range rdf:PlainLiteral ;
+                      rdfs:comment """This Data Property specifies the restrictions on the data type of the SimpleTypeVariable.
+The Data Property \"hasDataRestriction\" shall always be sub-classed""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_length
+BO:hasDataRestriction_length rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf BO:hasDataRestriction ;
+                             rdfs:domain BO:SimpleTypeVariable ;
+                             rdfs:range xsd:nonNegativeInteger ;
+                             rdfs:comment """This Data Property specifies the exact number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.
+it applies to: 
+-	xs:string""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_maxExclusive
+BO:hasDataRestriction_maxExclusive rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf BO:hasDataRestriction ;
+                                   rdfs:domain BO:SimpleTypeVariable ;
+                                   rdfs:range [ rdf:type rdfs:Datatype ;
+                                                owl:unionOf ( xsd:float
+                                                              xsd:integer
+                                                            )
+                                              ] ;
+                                   rdfs:comment """This Data Property specifies the  upper bounds for numeric values (the value must be less than this value) allowed for the SimpleTypeVariable. 
+It applies to: 
+-	xs:integer 
+-	xs:float""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_maxInclusive
+BO:hasDataRestriction_maxInclusive rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf BO:hasDataRestriction ;
+                                   rdfs:domain BO:SimpleTypeVariable ;
+                                   rdfs:range [ rdf:type rdfs:Datatype ;
+                                                owl:unionOf ( xsd:float
+                                                              xsd:integer
+                                                            )
+                                              ] ;
+                                   rdfs:comment """This Data Property specifies the  upper bounds for numeric values (the value must be less than or equal to this value) allowed for the SimpleTypeVariable. 
+It applies to: 
+-	xs:integer 
+-	xs:float""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_maxLength
+BO:hasDataRestriction_maxLength rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf BO:hasDataRestriction ;
+                                rdfs:domain BO:SimpleTypeVariable ;
+                                rdfs:range xsd:nonNegativeInteger ;
+                                rdfs:comment """This Data Property specifies the maximum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.
+it applies to: 
+-	xs:string""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_minExclusive
+BO:hasDataRestriction_minExclusive rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf BO:hasDataRestriction ;
+                                   rdfs:domain BO:SimpleTypeVariable ;
+                                   rdfs:range [ rdf:type rdfs:Datatype ;
+                                                owl:unionOf ( xsd:float
+                                                              xsd:integer
+                                                            )
+                                              ] ;
+                                   rdfs:comment """This Data Property specifies the lower bounds for numeric values (the value must be greater than  this value) allowed for the SimpleTypeVariable. 
+It applies to: 
+-	xs:integer 
+-	xs:float""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_minInclusive
+BO:hasDataRestriction_minInclusive rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf BO:hasDataRestriction ;
+                                   rdfs:domain BO:SimpleTypeVariable ;
+                                   rdfs:range [ rdf:type rdfs:Datatype ;
+                                                owl:unionOf ( xsd:float
+                                                              xsd:integer
+                                                            )
+                                              ] ;
+                                   rdfs:comment """This Data Property specifies the lower bounds for numeric values (the value must be greater than or equal to this value) allowed for the SimpleTypeVariable. 
+It applies to: 
+-	xs:integer 
+-	xs:float""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_minLength
+BO:hasDataRestriction_minLength rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf BO:hasDataRestriction ;
+                                rdfs:domain BO:SimpleTypeVariable ;
+                                rdfs:range xsd:nonNegativeInteger ;
+                                rdfs:comment """This Data Property specifies the minimum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.
+it applies to: 
+-	xs:string""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataRestriction_pattern
+BO:hasDataRestriction_pattern rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf BO:hasDataRestriction ;
+                              rdfs:domain BO:SimpleTypeVariable ;
+                              rdfs:range xsd:string ;
+                              rdfs:comment """This Data Property specifies the restrictions of the SimpleTypeVariable to a subset of strings containing the exact sequence of characters that are acceptable
+it applies to: 
+-	xs:string""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasDataType
+BO:hasDataType rdf:type owl:DatatypeProperty ;
+               rdfs:domain BO:SimpleTypeVariable ;
+               rdfs:range [ rdf:type rdfs:Datatype ;
+                            owl:oneOf [ rdf:type rdf:List ;
+                                        rdf:first "xs:NCName" ;
+                                        rdf:rest [ rdf:type rdf:List ;
+                                                   rdf:first "xs:anySimpleType" ;
+                                                   rdf:rest [ rdf:type rdf:List ;
+                                                              rdf:first "xs:anyType" ;
+                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                         rdf:first "xs:anyURI" ;
+                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                    rdf:first "xs:base64Binary" ;
+                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                               rdf:first "xs:boolean" ;
+                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                          rdf:first "xs:dateTime" ;
+                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                     rdf:first "xs:decimal" ;
+                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                rdf:first "xs:double" ;
+                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                           rdf:first "xs:duration" ;
+                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                      rdf:first "xs:float" ;
+                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                 rdf:first "xs:hexBinary" ;
+                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                            rdf:first "xs:integer" ;
+                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                       rdf:first "xs:language" ;
+                                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                  rdf:first "xs:nonNegativeInteger" ;
+                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                             rdf:first "xs:normalizedString" ;
+                                                                                                                                                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                        rdf:first "xs:positiveInteger" ;
+                                                                                                                                                                                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                   rdf:first "xs:string" ;
+                                                                                                                                                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                              rdf:first "xs:token" ;
+                                                                                                                                                                                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                         rdf:first "xs:unsignedInt" ;
+                                                                                                                                                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                    rdf:first "xs:unsignedLong" ;
+                                                                                                                                                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                               rdf:first "xs:unsignedShort" ;
+                                                                                                                                                                                                                                                                               rdf:rest rdf:nil
+                                                                                                                                                                                                                                                                             ]
+                                                                                                                                                                                                                                                                  ]
+                                                                                                                                                                                                                                                       ]
+                                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                                 ]
+                                                                                                                                                                                                                      ]
+                                                                                                                                                                                                           ]
+                                                                                                                                                                                                ]
+                                                                                                                                                                                     ]
+                                                                                                                                                                          ]
+                                                                                                                                                               ]
+                                                                                                                                                    ]
+                                                                                                                                         ]
+                                                                                                                              ]
+                                                                                                                   ]
+                                                                                                        ]
+                                                                                             ]
+                                                                                  ]
+                                                                       ]
+                                                            ]
+                                                 ]
+                                      ]
+                          ] ;
+               rdfs:comment "This Data Property specifies the data type  of the SimpleTypeVariable as text string" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasThingAnnotation
+BO:hasThingAnnotation rdf:type owl:DatatypeProperty ;
+                      rdfs:domain BO:Thing ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment """This data property contains a description of a Thing. 
+Note: Data Property: hasThingAnnotation should be used in cases where the annotation data do not change very often and/or where they are usually not the subject of semantic operations  (e.g. semantic discovery). Otherwise Object Propety: hasThingPropery should be used
+E.g. a certain type of Device could have the model (as a numeric description) or the name of the manufacturer (as a textual annotation)""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#hasValue
+BO:hasValue rdf:type owl:DatatypeProperty ;
+            rdfs:domain BO:SimpleTypeVariable ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment """This data property contains the value of the Variable if that value is part of the semantic description and is not contained in a different resource (identified by the oneM2MTargetURI data property). Storing the value of a Variable in a semantic description (i.e. as part of the RDF description in the semanticDescriptor resource) is useful for values that are relatively static (e.g. the name of the manufacturer).
+ - Data properties \"hasValue\" and \"oneM2MTargetURI\" are mutually exclusive. Only one of the two shall be instantiated.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#isDataList
+BO:isDataList rdf:type owl:DatatypeProperty ;
+              rdfs:domain BO:SimpleTypeVariable ;
+              rdfs:range xsd:boolean .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#netTechnologyCommunicationProtocol
+BO:netTechnologyCommunicationProtocol rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain BO:AreaNetwork ;
+                                      rdfs:range rdf:PlainLiteral ;
+                                      rdfs:comment "Identification of a communication protocol (e.g. ZigBee_1_0)" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#netTechnologyPhysicalStandard
+BO:netTechnologyPhysicalStandard rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain BO:AreaNetwork ;
+                                 rdfs:range rdf:PlainLiteral ;
+                                 rdfs:comment "Identification of the physical properties of a Area Network technology (e.g. IEEE_802_15_4_2003_2_4GHz)." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#netTechnologyProfile
+BO:netTechnologyProfile rdf:type owl:DatatypeProperty ;
+                        rdfs:domain BO:AreaNetwork ;
+                        rdfs:range rdf:PlainLiteral ;
+                        rdfs:comment "Identification of a profile (e.g. ZigBee_HA) of a Area Network technology." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#oneM2MAttribute
+BO:oneM2MAttribute rdf:type owl:DatatypeProperty ;
+                   rdfs:domain BO:SimpleTypeVariable ;
+                   rdfs:range rdf:PlainLiteral ;
+                   rdfs:comment """This Data Property contains the name of the attribute of the oneM2M resource of type <flexContainer> or the the child resource of the oneM2M resource of type <container>  that is referenced with the oneM2MTargetURI and  that stores the value of the SimpleTypeVariable
+ - if the resource-type of the  oneM2M resource that is referenced with the oneM2MTargetURI is <container> then this Data Property shall contain the text string \"#latest\"""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#oneM2MMethod
+BO:oneM2MMethod rdf:type owl:DatatypeProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( BO:Operation
+                                            BO:Variable
+                                          )
+                            ] ;
+                rdfs:range rdf:PlainLiteral ;
+                rdfs:comment """This data property contains a oneM2M CRUD Method through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity.
+ - It contains the string \"RETRIEVE\" for retrieving the variable when the oneM2M resource is of type <container> or <flexContainer>. This applies to sub-classes: OperationOutput, OutputDatapoint, ThingProperty and OperationState
+ - It contains the string \"CREATE\" for updating the variable when the oneM2M resource is of type <container>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty
+ - It contains the string \"UPDATE\" for updationg the variable when the oneM2M resource is of type <flexContainer>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#oneM2MTargetURI
+BO:oneM2MTargetURI rdf:type owl:DatatypeProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( BO:Operation
+                                               BO:Variable
+                                             )
+                               ] ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment """oneM2MTargetURI (range data type: rdfs: Literal)
+This data property contains the URI of a oneM2M resource (<container> or <flexContainer>) through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity. It can contain an absolute address or an address relative to the <semanticDescriptor> resource that holds the RDF description of the Variable. 
+That address could be e.g. 
+ - The value of the parentID for the <container> or <flexContainer> of a Input- or OutputDataPoint which has child-resource of type <semanticDescriptor> that holds the RDF description of the DataPoint""" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#AreaNetwork
+BO:AreaNetwork rdf:type owl:Class ;
+               rdfs:comment "An AreaNetwork (Class: AreaNetwork) is a Network that provides data transport services between an Interworked Device and the oneM2M System. Different area Networks can use heterogeneous network technologies that may or may not support IP access." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Aspect
+BO:Aspect rdf:type owl:Class ;
+          rdfs:comment """An Aspect (Class: Aspect) describes the real-world aspect that a functionality relates to. Aspect is also used to describe the quality or kind OperationInput- or OperationOutput variables. 
+The Aspect could be a (physical or non-physical) entity or it could be a quality""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Command
+BO:Command rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasInput ;
+                             owl:allValuesFrom BO:OperationInput
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasInputDataPoint ;
+                             owl:allValuesFrom BO:InputDataPoint
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasOutput ;
+                             owl:allValuesFrom BO:OperationOutput
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasOutputDataPoint ;
+                             owl:allValuesFrom BO:OutputDataPoint
+                           ] ;
+           rdfs:comment """A Command (Class: Command) represents an action that can be performed to support the Functionality. A Command is the human understandable name of that action that is invoked in a device or is reported by the device. An Operation exposes a Command to the network. OperationInput and OperationOutput of the related Operation can parameterize the command.
+e.g. the Functionality \"dimming-functionality\" of a light switch that remotely controls a light could have a Command \"setLightIntensity\", with a parameter that has values 0 - 100 %.
+ - Also InputDataPoints and OutputDataPoints expose Commands to the network. When a Device communicates in a RESTful way then changing (UPDATEing) an InputDataPoint triggers an action in the Device once the Device has read out the data from the InputDataPoint.
+ - Similarly, when a Device sets the data of an OutputDataPoint then it provides state information about the Device.
+Note: In RESTful systems the names of Input- and OutputDataPoints are usually chosen in such a way that they express the Command, i.e. the human-understandable meaning (e.g. a binary InputDataPoint of a lightswitch could have a name \"Set_Light_Status\"). In such a case the Command coincides with the DataPoint.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#ControllingFunction
+BO:ControllingFunction rdf:type owl:Class ;
+                       rdfs:subClassOf BO:Function ;
+                       rdfs:comment """A ControllingFunctionality (Class: ControllingFunctionality) represents a functionality  that has impacts on the real world, but does not gather data. In general a ControllingFunctionality has Commands (and/or Operations of its related Services) that receives Input data
+E.g. a thermostat would have \"temperature-adjustment\" as a ControllingFunctionality""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Device
+BO:Device rdf:type owl:Class ;
+          rdfs:subClassOf BO:Thing ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty BO:hasService ;
+                            owl:allValuesFrom BO:Service
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty BO:hasFunction ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass BO:Function
+                          ] ;
+          rdfs:comment """A Device (Class: Device) is a object designed to accomplish a particular task. A Device contains some logic and is producer and/or consumer of data that are exchanged via its Services with other oneM2M entities (Devices, Things) in the network. A Device may be a physical or non-physical entity.
+In the context of oneM2M a Device is always assumed to be capable of communicating electronically via a network.
+ - In order to accomplish its task, the device performs one or more functionalities 
+ - These functionalities are exposed in the network as Services of the Device.
+ - A Device can be composed of several (sub-) Devices 
+ - Each Device (including sub-Devices) needs to be individually addressable in the network.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Function
+BO:Function rdf:type owl:Class ;
+            rdfs:comment """A Functionality (Class: Functionality) represents the functionality necessary to accomplish the task for which a Device is designed. A device can be designed to perform more than one functionality.
+The functionality exhibits the – human understandable – meaning what the device \"does\". 
+A Functionality refers to (e.g. observes or influences) some real-world aspect(s), that can be modelled as a Class: Aspect.
+E.g. considering a \"light switch\" then a related Functionality could be \"Controlling_ON_OFF\" or \"Controlling Brightness\". These functionalities would refer to an Aspect \"light-control\".
+
+A Functionality of a Device can be influenced / observed by a human user through the Commands that this Functionality has and that are offered to the user""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#GET_InputDataPoint
+BO:GET_InputDataPoint rdf:type owl:Class ;
+                      rdfs:subClassOf BO:Operation ;
+                      rdfs:comment """GET_InputDataPoint (Class: GET_InputDataPoint) is an Operation that may be offered by a Device to trigger the device to retrieve the data of an InputDataPoint 
+(e.g. outside of the schedule when the device normally retrieves data from that DataPoint)""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#InputDataPoint
+BO:InputDataPoint rdf:type owl:Class ;
+                  rdfs:subClassOf BO:Variable ;
+                  rdfs:comment """InputDataPoint (Class: InputDataPoint) is a Variable of a Service that is accessed by a RESTful Device in its environment and that the Device reads out autonomously (e.g. at periodic times).
+To enable a third party to instruct the device to retrieve (out of schedule) the current value of a InputputDataPoint devices often also offer a GET_InputDataPoint Operation to trigger the device to retrieve the data from the InputDataPoint""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#InterworkedDevice
+BO:InterworkedDevice rdf:type owl:Class ;
+                     rdfs:subClassOf BO:Device ;
+                     rdfs:comment "An InterworkedDevice (Class: InterworkedDevice) is a Device – e.g. in an Area Network – that does not support oneM2M interfaces and can only be accessed from the oneM2M System by communicating with a \"proxied\" (virtual) device that has been created by an Interworking Proxy Entity" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#MeasuringFunction
+BO:MeasuringFunction rdf:type owl:Class ;
+                     rdfs:subClassOf BO:Function ;
+                     rdfs:comment """A MeasuringFunctionality (Class: MeasuringFunctionality) represents a functionality that has no impacts on the real world, but only gathers data. In general a MeasuringFunctionality has Commands (and/or Operations of its related Services)  that generate Output data
+E.g. a temperature sensor would have \"temperature-sensing\" as a MeasuringFunctionality""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#MetaData
+BO:MetaData rdf:type owl:Class ;
+            rdfs:comment """MetaData (Class: MetaData) contain data (like units, precision-ranges …) about a Variable or about an Aspect. 
+E.g. the indoor temperature could have meta data: \"Degrees Celsius\"""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Operation
+BO:Operation rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty BO:exposesCommand ;
+                               owl:allValuesFrom BO:Command
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty BO:hasInput ;
+                               owl:allValuesFrom BO:OperationInput
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty BO:hasOutput ;
+                               owl:allValuesFrom BO:OperationOutput
+                             ] ;
+             rdfs:comment """An Operation (Class: Operation)  is the means of a Service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable- exposure of a –human understandable- Command to a network.
+An Operation is transient. I.e. an Operation can be invoked, possibly produces output and is finished.
+ - A non-oneM2M Device or a oneM2M entity (e.g. an AE) can invoke an Operation of the Device (oneM2M Device or InterworkedDevice) and that invocation can trigger some action in the Device. If an Operation has input data it may receive input data from 
+ - InputDataPoints (persistent resources) and/or
+ - OperationInput (transient resources, that are deleted when the Operation finished)
+and potentially produce output data into
+ - OutputDataPoints (persistent resources) and/or
+ - OperationOutput (transient resources, that are deleted when the Operation finished)
+An Operation correlates the output data of the Operation to the input data that were used at Operation invokation.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#OperationInput
+BO:OperationInput rdf:type owl:Class ;
+                  rdfs:subClassOf BO:Variable ;
+                  rdfs:comment "OperationInput (Class: OperationInput) describes an input of an Operation of a Service. OperationInput also describes the input of an Command." .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#OperationOutput
+BO:OperationOutput rdf:type owl:Class ;
+                   rdfs:subClassOf BO:Variable ;
+                   rdfs:comment """OperationOutput (Class: OperationOutput) describes an output of an Operation. OperationOutput also describes the output of a Command. 
+ - An Operation/Command may have multiple OperationInputs and/or OperationOutputs""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#OutputDataPoint
+BO:OutputDataPoint rdf:type owl:Class ;
+                   rdfs:subClassOf BO:Variable ;
+                   rdfs:comment "OutputDataPoint (Class: OutputDataPoint) is a Variable of a Service that is set by a RESTful Device in its environment and that the Device updates autonomously (e.g. at periodic times). To enable a third party to instruct the device to update (out of schedule) the current value of a OutputputDataPoint devices often also offer a SET_OutputDataPoint Operation to trigger the device to update the data of the OutputDataPoint" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#SET_OutputDataPoint
+BO:SET_OutputDataPoint rdf:type owl:Class ;
+                       rdfs:subClassOf BO:Operation ;
+                       rdfs:comment """SET_OutputDataPoint (Class: SET_OutputDataPoint) is an Operation that may be offered by a Device to trigger the device to update the data of an OutputDataPoint 
+(e.g. outside of the schedule when the device normally updates that DataPoint)""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Service
+BO:Service rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:exposesFunction ;
+                             owl:someValuesFrom BO:Function
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasInputDataPoint ;
+                             owl:allValuesFrom BO:InputDataPoint
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasOperation ;
+                             owl:allValuesFrom BO:Operation
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty BO:hasOutputDataPoint ;
+                             owl:allValuesFrom BO:OutputDataPoint
+                           ] ;
+           rdfs:comment """A Service (Class: Service) is a electronic representation of a Functionality in a network. The Service exposes the Functionality to the network and makes it discoverable, registerable and remotely controllable in the network. 
+A Service is offered by a device that wants (a certain set of) its Functionalities to be discoverable, registerable, remotely controllable by other devices in the network. 
+A Service can expose one or more Functionalities and a Functionality can be exposed by one or more Services.
+The (names of) Input- and Output DataPoints and Operations are only unique within  a Service. The Service to which they belong differentiates how they are addressed in the Device (e.g. via a port specific to the Service).
+NOTE: While a Functionality  describes the – human understandable – meaning of a Service of the device the Service is used to describe how such functionality is represented in a communication network and can be accessed by electronic means. The Service and its Operations is therefore dependent on the technology of the network, hard- and software of the device.""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#SimpleTypeVariable
+BO:SimpleTypeVariable rdf:type owl:Class ;
+                      rdfs:subClassOf BO:Variable ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty BO:hasDataRestriction ;
+                                        owl:allValuesFrom rdf:PlainLiteral
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty BO:hasDataType ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onDataRange rdf:PlainLiteral
+                                      ] ;
+                      owl:disjointWith BO:StructuredTypeVariable ;
+                      rdfs:comment """SimpleTypeVariable (Class: SimpleTypeVariable) is a sub-class of class:Variable that only consists of Variables of simple xml types like xsd:integer, xsd:string…, potentially including lists and restrictions
+
+The simple datatypes and –restrictions contained in 'https://www.w3.org/TR/xmlschema11-2' shall be referred to using the prefix: xs""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#StructuredTypeVariable
+BO:StructuredTypeVariable rdf:type owl:Class ;
+                          rdfs:subClassOf BO:Variable ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty BO:hasSubStructure ;
+                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onClass BO:Variable
+                                          ] ;
+                          rdfs:comment "Structured type variables are variables that are not SimpleType Variables" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Thing
+BO:Thing rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty BO:hasThingProperty ;
+                           owl:allValuesFrom BO:ThingProperty
+                         ] ;
+         rdfs:comment """A Thing in oneM2M  (Class: Thing) is an entity that can be identified in the oneM2M System. 
+A Thing that is not a Device is not able to conmmunicate electronically with its environment. However, the sub-class of Thing that is able to interact electronically is called a \"Device\".
+A Thing may have ThingProperties (Object Property: hasThingProperty). A Thing can have relations to other things (Object Property: hasThingRelation).
+Since a Thing that is not a Device is not able to conmmunicate electronically it cannot influence the value of its ThingProperties or being influenced by it. Similarly a Thing cannot document its - real-world - relationships (via hasThingRelation) to other Things.
+
+E.g. A room that is modelled in oneM2M would be a Thing that could have a room-temperature as a ThingProperty and could have a relationship \"isAdjacentTo\" to another room""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#ThingProperty
+BO:ThingProperty rdf:type owl:Class ;
+                 rdfs:subClassOf BO:Variable ;
+                 rdfs:comment """A Variable that quantifies a property of a Thing. A ThingProperty can e.g. be observed or influenced by devices, or it constitutes static data about a Thing.
+E.g. the indoor temperature of the room could be a ThingProperty of a Thing \"room\".
+A ThingProperty of a Thing can concern a certain Aspect, e.g. the indoor temperature concerns the Aspect \"Temperature\" that could be measured by a temperature sensor.
+A ThingProperty of a Thing can have meta data""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#Variable
+BO:Variable rdf:type owl:Class ;
+            owl:disjointUnionOf ( BO:SimpleTypeVariable
+                                  BO:StructuredTypeVariable
+                                ) ;
+            rdfs:comment """A Variable (Class: Variable) constitutes a super class to the following classes: ThingProperty, OperationInput, OperationOutput, OperationState, InputDataPoint, OutputDataPoint, SimpleTypeVariable. Its members are entities that store some data (e.g. integers, text, or structured data) that can change over time. 
+These data of the Variable usually describe some real-world Aspects (e.g. a temperature) and can have MetaData (e.g. units, precision..)""" .
+
+
+###  https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#VariableConversion
+BO:VariableConversion rdf:type owl:Class ;
+                      rdfs:comment "A VariableConversion (Class: VariableConversion) represents a conversion rule from the value range of one Variable into the value range of another Variable. The plain text specification of that rule is contained in the annotation property rdfs:comment" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,338 @@
+@prefix : <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontology: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/> .
+@base <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl> rdf:type owl:Ontology ;
+                                                                                                   owl:versionIRI <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/building/BuildingOntologySharedVocabulary_1.12.owl> ;
+                                                                                                   rdfs:comment "simple shared vocabulary for Building Information Models"@en ;
+                                                                                                   owl:versionInfo "1.12 Building Information Shared Vocabulary Ontology" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#containsBuilding
+:containsBuilding rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Campus ;
+                  rdfs:range :Building .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#hasSignificance
+:hasSignificance rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Parameter ;
+                 rdfs:range :ParameterSignificance .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#isBuildingElementOf
+:isBuildingElementOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :BuildingElement ;
+                     rdfs:range :Building .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#isEquipmentOf
+:isEquipmentOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :Equipment ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :Building
+                                          :Campus
+                                        )
+                          ] .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#isParameterOf
+:isParameterOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :Parameter ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( :Building
+                                          :Equipment
+                                        )
+                          ] .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#AnalysisMethodParameter
+:AnalysisMethodParameter rdf:type owl:Class ;
+                         rdfs:subClassOf :Parameter ;
+                         rdfs:comment "Parameters specific to certain design methods described in the building information model"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#AnalysisPhaseParameter
+:AnalysisPhaseParameter rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( :Parameter
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :hasSignificance ;
+                                                                     owl:someValuesFrom :AnalysisSignificance
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] ;
+                        rdfs:comment "Parameters that are of importance at building design time"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#AnalysisSignificance
+:AnalysisSignificance rdf:type owl:Class ;
+                      rdfs:subClassOf :ParameterSignificance .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Building
+:Building rdf:type owl:Class ;
+          rdfs:comment "Building concept as defined in gbXML"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#BuildingElement
+:BuildingElement rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isBuildingElementOf ;
+                                   owl:someValuesFrom :Building
+                                 ] ;
+                 rdfs:comment "Describes general concepts to model a building"@en ,
+                              "this class was known as \"BuildingPart\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#BuildingParameter
+:BuildingParameter rdf:type owl:Class ;
+                   rdfs:subClassOf :Parameter ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :isParameterOf ;
+                                     owl:someValuesFrom :Building
+                                   ] ;
+                   rdfs:comment "Parameters describing the state and properties of a building"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#CalculationParameter
+:CalculationParameter rdf:type owl:Class ;
+                      rdfs:subClassOf :Parameter ;
+                      rdfs:comment "Contains parameters from the model used to calculate performance, demand or cost of equipment "@en ,
+                                   "this class was known as \"AlgebraricParameter\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Campus
+:Campus rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :containsBuilding ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Building
+                        ] ;
+        rdfs:comment "Campus concept as defined in gbXML"@en ,
+                     "The Campus element should be used as the base for all physical objects. On a campus, place one or more buildings." .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ConceptualBuildingElement
+:ConceptualBuildingElement rdf:type owl:Class ;
+                           rdfs:subClassOf :BuildingElement ;
+                           owl:disjointWith :PhysicalBuildingElement .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ConstructionPhaseParameter
+:ConstructionPhaseParameter rdf:type owl:Class ;
+                            owl:equivalentClass [ owl:intersectionOf ( :Parameter
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty :hasSignificance ;
+                                                                         owl:someValuesFrom :ConstructionSignificance
+                                                                       ]
+                                                                     ) ;
+                                                  rdf:type owl:Class
+                                                ] ;
+                            rdfs:comment "Parameters that are of importance at building construction time"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ConstructionSignificance
+:ConstructionSignificance rdf:type owl:Class ;
+                          rdfs:subClassOf :ParameterSignificance .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#EnvironmentalParameter
+:EnvironmentalParameter rdf:type owl:Class ;
+                        rdfs:subClassOf :BuildingParameter ;
+                        rdfs:comment "Parameters that describe the state of the environment at design as well as operation time."@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Equipment
+:Equipment rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :isEquipmentOf ;
+                             owl:someValuesFrom [ rdf:type owl:Class ;
+                                                  owl:unionOf ( :Building
+                                                                :Campus
+                                                              )
+                                                ]
+                           ] ;
+           rdfs:comment "Contains equipment that is specified in the model such as HVAC or Lighting equipment."@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#EquipmentParameter
+:EquipmentParameter rdf:type owl:Class ;
+                    rdfs:subClassOf :Parameter ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :isParameterOf ;
+                                      owl:someValuesFrom :Equipment
+                                    ] ;
+                    rdfs:comment "Parameters concerning equipment design and simulation as well as operation"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ExteriorEnvironmentalParameter
+:ExteriorEnvironmentalParameter rdf:type owl:Class ;
+                                rdfs:subClassOf :EnvironmentalParameter ;
+                                owl:disjointWith :InteriorEnvironmentalParameter ;
+                                rdfs:comment "Parameters that describe the state of the outdoor environment. Outdoor environmental parameters are mainly used at design-time, while some of them may also be used at operation time."@en ,
+                                             "this class was known as \"ExteriorParameter\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#FileParameter
+:FileParameter rdf:type owl:Class ;
+               rdfs:subClassOf :Parameter ;
+               rdfs:comment "Auxiliary parameters giving information about the transformed document itself (e.g. creator, used program, etc.)"@en ,
+                            "this class was known as \"AuxiliaryParameter\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#GeometricParameter
+:GeometricParameter rdf:type owl:Class ;
+                    rdfs:subClassOf :BuildingParameter ;
+                    rdfs:comment "Parameter describing the geometry of elements described in the building information model"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#IdentifierElement
+:IdentifierElement rdf:type owl:Class ;
+                   rdfs:comment "Groups identifier elements"@en ,
+                                "this class was known as \"gbXMLId\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#InteriorEnvironmentalParameter
+:InteriorEnvironmentalParameter rdf:type owl:Class ;
+                                rdfs:subClassOf :EnvironmentalParameter ;
+                                rdfs:comment "Parameters that describe the state of the indoor environment"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#MaterialParameter
+:MaterialParameter rdf:type owl:Class ;
+                   rdfs:subClassOf :StructureParameter ;
+                   rdfs:comment "Parameters describing the material of a building"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Opening
+:Opening rdf:type owl:Class ;
+         rdfs:subClassOf :PhysicalBuildingElement ;
+         owl:disjointWith :Surface ;
+         rdfs:comment "Opening concept retrieved from gbXML"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#OperationPhaseParameter
+:OperationPhaseParameter rdf:type owl:Class ;
+                         owl:equivalentClass [ owl:intersectionOf ( :Parameter
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty :hasSignificance ;
+                                                                      owl:someValuesFrom :OperationSignificance
+                                                                    ]
+                                                                  ) ;
+                                               rdf:type owl:Class
+                                             ] ;
+                         rdfs:comment "Parameters that are of importance at building operation time"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#OperationSignificance
+:OperationSignificance rdf:type owl:Class ;
+                       rdfs:subClassOf :ParameterSignificance .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Parameter
+:Parameter rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasSignificance ;
+                             owl:someValuesFrom :ParameterSignificance
+                           ] .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ParameterSignificance
+:ParameterSignificance rdf:type owl:Class ;
+                       rdfs:comment "Describes different stages of a building lifecycle for which a parameter is significant"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#PhysicalBuildingElement
+:PhysicalBuildingElement rdf:type owl:Class ;
+                         rdfs:subClassOf :BuildingElement .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#PositionParameter
+:PositionParameter rdf:type owl:Class ;
+                   rdfs:subClassOf :BuildingParameter ;
+                   rdfs:comment "Parameter describing the global position of a building or building compound"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#ShadeControlSimulationParameter
+:ShadeControlSimulationParameter rdf:type owl:Class ;
+                                 rdfs:subClassOf :EquipmentParameter ;
+                                 rdfs:comment "equipment parameters specific for shade control simulation"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#StructureParameter
+:StructureParameter rdf:type owl:Class ;
+                    rdfs:subClassOf :BuildingParameter ;
+                    rdfs:comment "Parameters concerning the structure of a building"@en ,
+                                 "this class was known as \"ConstructionParameter\" in prior versions of the ontology"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#Surface
+:Surface rdf:type owl:Class ;
+         rdfs:subClassOf :PhysicalBuildingElement ;
+         rdfs:comment "Surface concept as defined in gbXML"@en .
+
+
+###  https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl#TemporalParameter
+:TemporalParameter rdf:type owl:Class ;
+                   rdfs:subClassOf :Parameter ;
+                   rdfs:comment "Parameters of the temporal class are just used at the design time of a building as in operation time the time-ont ontology is used."@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AnalysisMethodParameter
+                :BuildingParameter
+                :CalculationParameter
+                :EquipmentParameter
+                :FileParameter
+                :TemporalParameter
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AnalysisSignificance
+                :ConstructionSignificance
+                :OperationSignificance
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Building
+                :BuildingElement
+                :Campus
+                :Equipment
+                :IdentifierElement
+                :Parameter
+                :ParameterSignificance
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EnvironmentalParameter
+                :GeometricParameter
+                :PositionParameter
+                :StructureParameter
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

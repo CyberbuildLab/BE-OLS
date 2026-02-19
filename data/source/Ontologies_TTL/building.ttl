@@ -1,0 +1,964 @@
+@prefix : <http://bimerr.iot.linkeddata.es/def/building#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://bimerr.iot.linkeddata.es/def/building#> .
+
+<http://bimerr.iot.linkeddata.es/def/building#> rdf:type owl:Ontology ;
+                                                 :preferredNamespacePrefix "building" ;
+                                                 <http://purl.org/dc/elements/1.1/creator> "The Building ontology has been developed to perform as the core module of the BIMERR project, containing information related to buidling topology, components, materials, and geometry. The geometry information is managed as information objects whitout entering in the details of the BIM model."@en ,
+                                                                                           "María Poveda-Villalón" ,
+                                                                                           "Serge Chávez-Feria" ;
+                                                 <http://purl.org/dc/elements/1.1/publisher> "http://www.oeg-upm.net/" ;
+                                                 <http://purl.org/dc/elements/1.1/title> "Building Ontology" ;
+                                                 <http://purl.org/dc/terms/license> "http://purl.org/NET/rdflicense/cc-by4.0" ;
+                                                 owl:versionInfo "0.1.5" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/building#preferredNamespacePrefix
+:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/publisher
+<http://purl.org/dc/elements/1.1/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/building#hasApartment
+:hasApartment rdf:type owl:ObjectProperty ;
+              rdfs:domain :Storey ;
+              rdfs:range :Apartment ;
+              rdfs:comment "Relation between a storey and the apartments it is composed of."@en ;
+              rdfs:label "has apartment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#isMeasurementOfElement
+:isMeasurementOfElement rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Measurement ;
+                        rdfs:range :Element ;
+                        rdfs:comment "Relates a measurement with an element of the building."@en ;
+                        rdfs:label "is measurement of element"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#relatedDocumentation
+:relatedDocumentation rdf:type owl:ObjectProperty ;
+                      rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                      rdfs:comment "Property to link an entity to additional documentation (files)."@en ;
+                      rdfs:label "related documentation"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#relatedIFCFile
+:relatedIFCFile rdf:type owl:ObjectProperty ;
+                rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                rdfs:comment "Property to link to an IFC file."@en ;
+                rdfs:label "related IFC file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#relatedProject
+:relatedProject rdf:type owl:ObjectProperty ;
+                rdfs:domain <https://w3id.org/bot#Building> ;
+                rdfs:range :Project ;
+                rdfs:comment "Link a building to several projects."@en ;
+                rdfs:label "related project"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedObXMLFile
+<http://bimerr.iot.linkeddata.es/def/information-objects#relatedObXMLFile> rdf:type owl:ObjectProperty ;
+                                                                           rdfs:domain <https://w3id.org/bot#Space> ;
+                                                                           rdfs:range <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+                                                                           rdfs:comment "Property to link a space with an obxml file for energy calculations."@en ;
+                                                                           rdfs:label "related ObXML file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/material-properties#hasProperty
+<http://bimerr.iot.linkeddata.es/def/material-properties#hasProperty> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain :PropertySet ;
+                                                                      rdfs:range :Property ;
+                                                                      rdfs:comment "A relationship between a feature of interest and a property of that feature."@en ;
+                                                                      rdfs:label "has property"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/material-properties#hasPropertySet
+<http://bimerr.iot.linkeddata.es/def/material-properties#hasPropertySet> rdf:type owl:ObjectProperty ;
+                                                                         rdfs:range :PropertySet ;
+                                                                         rdfs:comment "Relates a building element or device to specific property sets."@en ;
+                                                                         rdfs:label "has property set"@en .
+
+
+###  https://saref.etsi.org/core/isMeasuredIn
+<https://saref.etsi.org/core/isMeasuredIn> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain :Measurement ;
+                                           rdfs:range :UnitOfMeasure ;
+                                           rdfs:comment "A relationship identifying the unit of measure used for a certain entity."@en ;
+                                           rdfs:label "is measured in"@en .
+
+
+###  https://saref.etsi.org/core/relatesToMeasurement
+<https://saref.etsi.org/core/relatesToMeasurement> rdf:type owl:ObjectProperty ;
+                                                   rdfs:domain :Property ;
+                                                   rdfs:range :Measurement ;
+                                                   rdfs:comment "A relationship between a property and the measurements it relates to."@en ;
+                                                   rdfs:label "relates to measurement"@en .
+
+
+###  https://w3id.org/bot#containsZone
+<https://w3id.org/bot#containsZone> rdf:type owl:ObjectProperty ;
+                                    rdfs:domain <https://w3id.org/bot#Zone> ;
+                                    rdfs:range <https://w3id.org/bot#Zone> ;
+                                    rdfs:comment "Relationship to the subzones of a major zone. A space zone could for instance be contained in a storey zone which is further contained in a building zone."@en ;
+                                    rdfs:label "contains zone" .
+
+
+###  https://w3id.org/bot#hasElement
+<https://w3id.org/bot#hasElement> rdf:type owl:ObjectProperty ;
+                                  rdfs:domain <https://w3id.org/bot#Zone> ;
+                                  rdfs:range <https://w3id.org/bot#Element> ;
+                                  rdfs:comment "Links a Zone to an Element that is contained in, or adjacent to, the Zone."@en ;
+                                  rdfs:label "has element" .
+
+
+###  https://w3id.org/bot#hasSpace
+<https://w3id.org/bot#hasSpace> rdf:type owl:ObjectProperty ;
+                                rdfs:domain <https://w3id.org/bot#Zone> ;
+                                rdfs:range <https://w3id.org/bot#Space> ;
+                                rdfs:comment "Relation to spaces contained in a zone."@en ;
+                                rdfs:label "has space" .
+
+
+###  https://w3id.org/bot#hasStorey
+<https://w3id.org/bot#hasStorey> rdf:type owl:ObjectProperty ;
+                                 rdfs:domain <https://w3id.org/bot#Zone> ;
+                                 rdfs:range <https://w3id.org/bot#Storey> ;
+                                 rdfs:comment "Relation to storeys contained in a zone."@en ;
+                                 rdfs:label "has storey" .
+
+
+###  https://w3id.org/bot#hasSubElement
+<https://w3id.org/bot#hasSubElement> rdf:type owl:ObjectProperty ;
+                                     rdfs:domain <https://w3id.org/bot#Element> ;
+                                     rdfs:range <https://w3id.org/bot#Element> ;
+                                     rdfs:comment "Relationship to indicate the subcomponents of elements"@en ;
+                                     rdfs:label "has sub element" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/building#buildingAddress
+:buildingAddress rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Building ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The postal address of the building"@en ;
+                 rdfs:label "building address"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#creationAuthor
+:creationAuthor rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:string ;
+                rdfs:label "creation author"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#creationDate
+:creationDate rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:dateTime ;
+              rdfs:label "creation date"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Description of the element in the ifc file."@en ;
+             rdfs:label "description"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#format
+:format rdf:type owl:DatatypeProperty ;
+        rdfs:domain <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+        rdfs:range xsd:base64Binary ;
+        rdfs:label "format"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#identifierInDatabase
+:identifierInDatabase rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :Element ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Indicates the ID of the building element in the BIMERR materials and component database."@en ;
+                      rdfs:label "identifier in database"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#ifcIdentifier
+:ifcIdentifier rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Identifier used in the IFC model (Global Unique ID)."@en ;
+               rdfs:label "ifc identifier" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#ifcVersion
+:ifcVersion rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            rdfs:label "ifc version" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#location
+:location rdf:type owl:DatatypeProperty ;
+          rdfs:domain <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+          rdfs:range xsd:anyURI ;
+          rdfs:label "location"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#maxOccupants
+:maxOccupants rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Space ;
+              rdfs:range xsd:integer ;
+              rdfs:comment "Maximum number of occupants inside a building."@en ;
+              rdfs:label "max occupants" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#minOccupants
+:minOccupants rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Space ;
+              rdfs:range xsd:integer ;
+              rdfs:comment "Minimum number of occupants inside a building."@en ;
+              rdfs:label "min occupants" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string ;
+      rdfs:comment "Name of the element in the ifc file."@en ;
+      rdfs:label "name"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#type
+:type rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string ;
+      rdfs:comment "Type of building element."@en ;
+      rdfs:label "type"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#version
+:version rdf:type owl:DatatypeProperty ;
+         rdfs:domain <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> ;
+         rdfs:range xsd:string ;
+         rdfs:label "version"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/key-performance-indicator#identifier
+<http://bimerr.iot.linkeddata.es/def/key-performance-indicator#identifier> rdf:type owl:DatatypeProperty ;
+                                                                           rdfs:range xsd:string ;
+                                                                           rdfs:comment "Identifier of the entity."@en ;
+                                                                           rdfs:label "identifier"@en .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
+<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain :Building ;
+                                              rdfs:range xsd:float ;
+                                              rdfs:comment "Altitude geo location coordinate."@en ;
+                                              rdfs:label "altitude"@en .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain :Building ;
+                                              rdfs:range xsd:float ;
+                                              rdfs:comment "Latitude geo location coordinate."@en ;
+                                              rdfs:label "latitude"@en .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain :Building ;
+                                               rdfs:range xsd:float ;
+                                               rdfs:comment "Longitude geo location coordinate."@en ;
+                                               rdfs:label "longitude"@en .
+
+
+###  https://saref.etsi.org/core/hasValue
+<https://saref.etsi.org/core/hasValue> rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain :Measurement ;
+                                       rdfs:range xsd:float ;
+                                       rdfs:label "has value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/building#AirConditioningUnit
+:AirConditioningUnit rdf:type owl:Class ;
+                     rdfs:subClassOf <https://w3id.org/def/saref4bldg#EnergyConversionDevice> ;
+                     rdfs:comment "Residential air conditioning unit."@en ;
+                     rdfs:label "Air conditioning unit"@en ;
+                     rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcUnitaryEquipment"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Apartment
+:Apartment rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bot#Zone> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :relatedDocumentation ;
+                             owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :relatedIFCFile ;
+                             owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <https://w3id.org/bot#hasElement> ;
+                             owl:allValuesFrom <https://w3id.org/bot#Element>
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <https://w3id.org/bot#hasSpace> ;
+                             owl:allValuesFrom :Space
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :ifcIdentifier ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :ifcVersion ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :description ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :name ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ;
+           rdfs:comment "An apartment is a group of spaces, partial spaces or other zones."@en ;
+           rdfs:label "Apartment" ;
+           rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcZone" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#BiomassBoiler
+:BiomassBoiler rdf:type owl:Class ;
+               rdfs:subClassOf <https://w3id.org/def/saref4bldg#Boiler> ;
+               rdfs:comment "Boiler for the combustion of biomass fuels."@en ;
+               rdfs:label "Biomass Boiler" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/bot#Building> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasApartment ;
+                            owl:allValuesFrom :Apartment
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/bot#hasElement> ;
+                            owl:allValuesFrom <https://w3id.org/bot#Element>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/bot#hasSpace> ;
+                            owl:allValuesFrom <https://w3id.org/bot#Space>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/bot#hasStorey> ;
+                            owl:allValuesFrom :Storey
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :relatedDocumentation ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :relatedIFCFile ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :relatedProject ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :ifcIdentifier ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :ifcVersion ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :buildingAddress ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :creationAuthor ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :creationDate ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :description ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :name ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :type ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :version ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#alt> ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          rdfs:comment "A building represents a structure that provides shelter for its occupants or contents and stands in one place. The building is also used to provide a basic element within the spatial structure hierarchy for the components of a building project (together with site, storey, and space)."@en ;
+          rdfs:label "Building" ;
+          rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcBuilding" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#BuildingElement
+:BuildingElement rdf:type owl:Class ;
+                 rdfs:subClassOf :Element ;
+                 owl:disjointWith <https://w3id.org/def/saref4bldg#DistributionDevice> ;
+                 rdfs:comment "The building element comprises all elements that are primarily part of the construction of a building, i.e., its structural and space separating system. Building elements are all physically existent and tangible things."@en ;
+                 rdfs:label "Building Element" ;
+                 rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcBuildingElement" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Door
+:Door rdf:type owl:Class ;
+      rdfs:subClassOf :BuildingElement ;
+      rdfs:comment "The door is a building element that is predominately used to provide controlled access for people and goods. It includes constructions with hinged, pivoted, sliding, and additionally revolving and folding operations. A door consists of a lining and one or several panels."@en ;
+      rdfs:label "Door" ;
+      rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcDoor" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#DuctSegment
+:DuctSegment rdf:type owl:Class ;
+             rdfs:subClassOf :FlowSegment ;
+             rdfs:comment "A duct segment is used to typically join two sections of duct network."@en ;
+             rdfs:label "Duct Segment" ;
+             rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcDuctSegment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Element
+:Element rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Element> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :relatedDocumentation ;
+                           owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :relatedIFCFile ;
+                           owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://bimerr.iot.linkeddata.es/def/material-properties#hasPropertySet> ;
+                           owl:allValuesFrom :PropertySet
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <https://w3id.org/bot#hasSubElement> ;
+                           owl:allValuesFrom :Element
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :ifcIdentifier ;
+                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:string
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :type ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :ifcVersion ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :description ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :identifierInDatabase ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:string
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :name ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         rdfs:comment "An element is a generalization of all components that make up an AEC product."@en ;
+         rdfs:label "Element" ;
+         rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcElement" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#FlowSegment
+:FlowSegment rdf:type owl:Class ;
+             rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+             rdfs:comment "Defines the occurrence of a segment of a flow distribution system."@en ;
+             rdfs:label "Flow Segment" ;
+             rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFlowSegment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#FossilBoiler
+:FossilBoiler rdf:type owl:Class ;
+              rdfs:subClassOf <https://w3id.org/def/saref4bldg#Boiler> ;
+              rdfs:comment "Boiler for the combustion of fossil fuels."@en ;
+              rdfs:label "Fossil Boiler" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Measurement
+:Measurement rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :isMeasurementOfElement ;
+                               owl:allValuesFrom <https://w3id.org/bot#Element>
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://saref.etsi.org/core/isMeasuredIn> ;
+                               owl:allValuesFrom :UnitOfMeasure
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://saref.etsi.org/core/isMeasuredIn> ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :UnitOfMeasure
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://saref.etsi.org/core/hasValue> ;
+                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "Measurements related to the properties."@en ;
+             rdfs:label "Measurement"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#PipeSegment
+:PipeSegment rdf:type owl:Class ;
+             rdfs:subClassOf :FlowSegment ;
+             rdfs:comment "A pipe segment is used to typically join two sections of a piping network."@en ;
+             rdfs:label "Pipe Segment" ;
+             rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcPipeSegment" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Project
+:Project rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://bimerr.iot.linkeddata.es/def/key-performance-indicator#identifier> ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         rdfs:comment "A project is a temporary endeavor undertaken to achieve defined objectives (definition taken from DBpedia)."@en ;
+         rdfs:label "Project"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Property
+:Property rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://saref.etsi.org/core/relatesToMeasurement> ;
+                            owl:allValuesFrom :Measurement
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :description ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :name ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          rdfs:comment "Properties of materials."@en ;
+          rdfs:label "Property"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#PropertySet
+:PropertySet rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://bimerr.iot.linkeddata.es/def/material-properties#hasProperty> ;
+                               owl:allValuesFrom :Property
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://bimerr.iot.linkeddata.es/def/material-properties#hasProperty> ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :Property
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :description ;
+                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :ifcIdentifier ;
+                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :name ;
+                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "Class to unite specific properties related to building elements or materials."@en ;
+             rdfs:label "Property set"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Roof
+:Roof rdf:type owl:Class ;
+      rdfs:subClassOf :BuildingElement ;
+      rdfs:comment "A roof is the covering of the top part of a building, it protects the building against the effects of wheather."@en ;
+      rdfs:label "Roof" ;
+      rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcRoof" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Slab
+:Slab rdf:type owl:Class ;
+      rdfs:subClassOf :BuildingElement ;
+      rdfs:comment "A slab is a component of the construction that normally encloses a space vertically. The slab may provide the lower support (floor) or upper construction (roof slab) in any space in a building."@en ;
+      rdfs:label "Slab" ;
+      rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcSlab" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Space
+:Space rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/bot#Space> ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedDocumentation ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :relatedIFCFile ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://bimerr.iot.linkeddata.es/def/information-objects#relatedObXMLFile> ;
+                         owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <https://w3id.org/bot#hasElement> ;
+                         owl:allValuesFrom :Element
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :ifcIdentifier ;
+                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:string
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :ifcVersion ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :description ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :maxOccupants ;
+                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :minOccupants ;
+                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :name ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :type ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ;
+       rdfs:comment "A space represents an area or volume bounded actually or theoretically. Spaces are areas or volumes that provide for certain functions within a building."@en ;
+       rdfs:label "Space" ;
+       rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcSpace" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Storey
+:Storey rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/bot#Storey> ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <https://w3id.org/bot#containsZone> ;
+                          owl:someValuesFrom :Apartment
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasApartment ;
+                          owl:allValuesFrom :Apartment
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :relatedDocumentation ;
+                          owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :relatedIFCFile ;
+                          owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject>
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <https://w3id.org/bot#hasElement> ;
+                          owl:allValuesFrom <https://w3id.org/bot#Element>
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <https://w3id.org/bot#hasSpace> ;
+                          owl:allValuesFrom <https://w3id.org/bot#Space>
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :ifcIdentifier ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :ifcVersion ;
+                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :description ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :name ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ;
+        rdfs:comment "The building storey has an elevation and typically represents a (nearly) horizontal aggregation of spaces that are vertically bound."@en ;
+        rdfs:label "Storey" ;
+        rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcBuildingStorey" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#UnitOfMeasure
+:UnitOfMeasure rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :name ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "The unit of measure is a standard for measurement of a quantity, such as a Property"@en ;
+               rdfs:label "Unit of measure"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Wall
+:Wall rdf:type owl:Class ;
+      rdfs:subClassOf :BuildingElement ;
+      rdfs:comment "The wall represents a vertical construction that bounds or subdivides spaces. Wall are usually vertical, or nearly vertical, planar elements, often designed to bear structural loads. A wall is however not required to be load bearing."@en ;
+      rdfs:label "Wall" ;
+      rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcWall" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/building#Window
+:Window rdf:type owl:Class ;
+        rdfs:subClassOf :BuildingElement ;
+        rdfs:comment "The window is a building element that is predominately used to provide natural light and fresh air. It includes vertical opening but also horizontal opening such as skylights or light domes. It includes constructions with swinging, pivoting, sliding, or revolving panels and fixed panels. A window consists of a lining and one or several panels."@en ;
+        rdfs:label "Window" ;
+        rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcWindow" .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject
+<http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty :format ;
+                                                                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty :location ;
+                                                                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty :version ;
+                                                                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <http://bimerr.iot.linkeddata.es/def/key-performance-indicator#identifier> ;
+                                                                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                                                            ] ;
+                                                                            rdfs:comment "Represents any kind of file."@en ;
+                                                                            rdfs:label "Information object"@en .
+
+
+###  https://w3id.org/bot#Building
+<https://w3id.org/bot#Building> rdf:type owl:Class ;
+                                rdfs:comment "An independent unit of the built environment with a characteristic spatial structure. Concept from the BOT ontology."@en ;
+                                rdfs:label "Building" .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class ;
+                               rdfs:comment "Constituent of a construction entity with a characteristic technical function, form or position. Concept from the BOT ontology."@en ;
+                               rdfs:label "Element" .
+
+
+###  https://w3id.org/bot#Space
+<https://w3id.org/bot#Space> rdf:type owl:Class ;
+                             rdfs:comment "A limited three-dimensional extent defined physically or notionally. Concept from the BOT ontology."@en ;
+                             rdfs:label "Space" .
+
+
+###  https://w3id.org/bot#Storey
+<https://w3id.org/bot#Storey> rdf:type owl:Class ;
+                              rdfs:comment "A level part of a building. Concept from the BOT ontology."@en ;
+                              rdfs:label "Storey" .
+
+
+###  https://w3id.org/bot#Zone
+<https://w3id.org/bot#Zone> rdf:type owl:Class ;
+                            rdfs:comment "A part of the physical world or a virtual world that is inherently both located in this world and having a 3D spatial extent. Concept from the BOT ontology."@en ;
+                            rdfs:label "Zone" .
+
+
+###  https://w3id.org/def/saref4bldg#Boiler
+<https://w3id.org/def/saref4bldg#Boiler> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/def/saref4bldg#EnergyConversionDevice> ;
+                                         rdfs:comment "A boiler is a closed, pressure-rated vessel in which water or other fluid is heated using an energy source such as natural gas, heating oil, or electricity. The fluid in the vessel is then circulated out of the boiler for use in various processes or heating applications."@en ;
+                                         rdfs:label "Boiler" ;
+                                         rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcBoiler"@en .
+
+
+###  https://w3id.org/def/saref4bldg#DistributionDevice
+<https://w3id.org/def/saref4bldg#DistributionDevice> rdf:type owl:Class ;
+                                                     rdfs:subClassOf :Element ;
+                                                     rdfs:comment "A generalization of all elements that participate in a distribution system."@en ;
+                                                     rdfs:label "Distribution Device"@en ;
+                                                     rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcDistributionElement"@en .
+
+
+###  https://w3id.org/def/saref4bldg#DistributionFlowDevice
+<https://w3id.org/def/saref4bldg#DistributionFlowDevice> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionDevice> ;
+                                                         rdfs:comment "Defines occurrence elements of a distribution system that facilitate the distribution of energy or matter, such as air, water or power."@en ;
+                                                         rdfs:label "Distribution Flow Device" ;
+                                                         rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcDistributionFlowElement" .
+
+
+###  https://w3id.org/def/saref4bldg#EnergyConversionDevice
+<https://w3id.org/def/saref4bldg#EnergyConversionDevice> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+                                                         rdfs:comment "Defines the occurrence of a device used to perform energy conversion or heat transfer and typically participates in a flow distribution system."@en ;
+                                                         rdfs:label "Energy Conversion Device" ;
+                                                         rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcEnergyConversionDevice" .
+
+
+###  https://w3id.org/def/saref4bldg#Fan
+<https://w3id.org/def/saref4bldg#Fan> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowMovingDevice> ;
+                                      rdfs:comment "A fan is a device which imparts mechanical work on a gas. A typical usage of a fan is to induce airflow in a building services air distribution system."@en ;
+                                      rdfs:label "Fan" ;
+                                      rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFan" .
+
+
+###  https://w3id.org/def/saref4bldg#FlowController
+<https://w3id.org/def/saref4bldg#FlowController> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+                                                 rdfs:comment "Defines the occurrence of elements of a distribution system that are used to regulate flow through a distribution system. Examples include dampers, valves, switches, and relays."@en ;
+                                                 rdfs:label "Flow Controller" ;
+                                                 rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFlowController" .
+
+
+###  https://w3id.org/def/saref4bldg#FlowMovingDevice
+<https://w3id.org/def/saref4bldg#FlowMovingDevice> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+                                                   rdfs:comment "Defines the occurrence of an apparatus used to distribute, circulate or perform conveyance of fluids, including liquids and gases (such as a pump or fan), and typically participates in a flow distribution system."@en ;
+                                                   rdfs:label "Flow Moving Device" ;
+                                                   rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFlowMovingDevice" .
+
+
+###  https://w3id.org/def/saref4bldg#FlowStorageDevice
+<https://w3id.org/def/saref4bldg#FlowStorageDevice> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+                                                    rdfs:comment "Defines the occurrence of a device that participates in a distribution system and is used for temporary storage (such as a tank)."@en ;
+                                                    rdfs:label "Flow Storage Device" ;
+                                                    rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFlowStorageDevice" .
+
+
+###  https://w3id.org/def/saref4bldg#FlowTerminal
+<https://w3id.org/def/saref4bldg#FlowTerminal> rdf:type owl:Class ;
+                                               rdfs:subClassOf <https://w3id.org/def/saref4bldg#DistributionFlowDevice> ;
+                                               rdfs:comment "Defines the occurrence of a permanently attached element that acts as a terminus or beginning of a distribution system (such as an air outlet, drain, water closet, or sink). A terminal is typically a point at which a system interfaces with an external environment."@en ;
+                                               rdfs:label "Flow Terminal" ;
+                                               rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcFlowTerminal" .
+
+
+###  https://w3id.org/def/saref4bldg#HeatExchanger
+<https://w3id.org/def/saref4bldg#HeatExchanger> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://w3id.org/def/saref4bldg#EnergyConversionDevice> ;
+                                                rdfs:comment "A heat exchanger is a device used to provide heat transfer between non-mixing media such as plate and shell and tube heat exchangers."@en ;
+                                                rdfs:label "Heat Exchanger" ;
+                                                rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcHeatExchanger"@en .
+
+
+###  https://w3id.org/def/saref4bldg#Outlet
+<https://w3id.org/def/saref4bldg#Outlet> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowTerminal> ;
+                                         rdfs:comment "An outlet is a device installed at a point to receive one or more inserted plugs for electrical power or communications."@en ;
+                                         rdfs:label "Outlet" ;
+                                         rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcOutlet" .
+
+
+###  https://w3id.org/def/saref4bldg#Pump
+<https://w3id.org/def/saref4bldg#Pump> rdf:type owl:Class ;
+                                       rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowMovingDevice> ;
+                                       rdfs:comment "A pump is a device which imparts mechanical work on fluids or slurries to move them through a channel or pipeline. A typical use of a pump is to circulate chilled water or heating hot water in a building services distribution system."@en ;
+                                       rdfs:label "Pump" ;
+                                       rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcPump" .
+
+
+###  https://w3id.org/def/saref4bldg#SolarDevice
+<https://w3id.org/def/saref4bldg#SolarDevice> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/def/saref4bldg#EnergyConversionDevice> ;
+                                              rdfs:comment "A solar device converts solar radiation into other energy such as electric current or thermal energy."@en ;
+                                              rdfs:label "Solar Device" ;
+                                              rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcSolarDevice"@en .
+
+
+###  https://w3id.org/def/saref4bldg#SpaceHeater
+<https://w3id.org/def/saref4bldg#SpaceHeater> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowTerminal> ;
+                                              rdfs:comment "Space heaters utilize a combination of radiation and/or natural convection using a heating source such as electricity, steam or hot water to heat a limited space or area. Examples of space heaters include radiators, convectors, baseboard and finned-tube heaters."@en ;
+                                              rdfs:label "Space Heater" ;
+                                              rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcSpaceHeater" .
+
+
+###  https://w3id.org/def/saref4bldg#SwitchingDevice
+<https://w3id.org/def/saref4bldg#SwitchingDevice> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowController> ;
+                                                  rdfs:comment "A switch is used in a cable distribution system (electrical circuit) to control or modulate the flow of electricity."@en ;
+                                                  rdfs:label "Switching Device" ;
+                                                  rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcSwitchingDevice"@en .
+
+
+###  https://w3id.org/def/saref4bldg#Tank
+<https://w3id.org/def/saref4bldg#Tank> rdf:type owl:Class ;
+                                       rdfs:subClassOf <https://w3id.org/def/saref4bldg#FlowStorageDevice> ;
+                                       rdfs:comment "A tank is a vessel or container in which a fluid or gas is stored for later use."@en ;
+                                       rdfs:label "Tank" ;
+                                       rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcTank" .
+
+
+###  https://w3id.org/def/saref4bldg#TubeBundle
+<https://w3id.org/def/saref4bldg#TubeBundle> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/def/saref4bldg#EnergyConversionDevice> ;
+                                             rdfs:comment "A tube bundle is a device consisting of tubes and bundles of tubes used for heat transfer and contained typically within other energy conversion devices, such as a chiller or coil."@en ;
+                                             rdfs:label "Tube Bundle" ;
+                                             rdfs:seeAlso "http://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#IfcTubeBundle"@en .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

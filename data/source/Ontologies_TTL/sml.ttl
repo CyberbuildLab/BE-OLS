@@ -1,0 +1,1476 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sml: <https://w3id.org/sml/def#> .
+@prefix sml-term: <https://w3id.org/sml/term#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sml:AbstractConcept a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:AbstractConcept ;
+    rdfs:subClassOf sml:TopConcept ;
+    skos:definition "Concept that forms a manifestation and demarcation in an abstract space. An abstract concept has no life cycle"@en ;
+    skos:prefLabel "Abstract concept"@en .
+
+sml:Activity a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Activity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:Activity ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "Entity that takes place or can take place in a concrete space-time. An activity transforms objects, and is executed by an object"@en ;
+    skos:prefLabel "Activity"@en ;
+    sh:property [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasBoundary ],
+        [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasInterior ],
+        [ sh:class sml:Activity ;
+            sh:path sml:hasPart ],
+        [ sh:class time:TemporalEntity ;
+            sh:path sml:hasPeriod ],
+        [ sh:class sml:Object ;
+            sh:path sml:transforms ] .
+
+sml:AggregationStateType a rdfs:Class,
+        owl:Class,
+        sh:NodeShape,
+        sml:EnumerationType ;
+    rdfs:seeAlso sml-term:AggregationStateType ;
+    owl:oneOf ( sml:Solid sml:Liquid sml:Gas sml:Plasma ) ;
+    skos:definition "One of the four fundamental states of matter being a solid, liquid, gas or plasma"@en ;
+    skos:prefLabel "Aggregation state type"@en ;
+    sh:in ( sml:Solid sml:Liquid sml:Gas sml:Plasma ) .
+
+sml:AmountOfBulkMatter a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:AmountOfBulkMatter ;
+    rdfs:subClassOf sml:RealObject ;
+    skos:definition "A real object that consists of a continuous amount of non-rigid matter, held together primarily by external forces (gravity or confinement)"@en ;
+    skos:prefLabel "Amount of bulk matter"@en .
+
+sml:ChemicalCompound a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:ChemicalBonding ;
+    rdfs:subClassOf sml:PureSubstance ;
+    skos:definition "Pure substance consisting of two or more chemical elements that have a chemical bond with each other. In a chemical compound, the elements occur in a fixed ratio. A compound can be broken down into simpler substances by means of chemical reactions"@en ;
+    skos:prefLabel "Chemical compound"@en .
+
+sml:ChemicalElement a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:ChemicalElement ;
+    rdfs:subClassOf sml:PureSubstance ;
+    skos:definition "Pure substance that is made up of atoms with the same atomic number. A chemical element cannot be decomposed through chemical reactions"@en ;
+    skos:prefLabel "Chemical element"@en .
+
+sml:ConceptType a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:ConceptType ;
+    rdfs:subClassOf sml:Type ;
+    skos:definition "A meta-concept having concepts as instances that can have attributes or relations"@en ;
+    skos:prefLabel "Concept type"@en .
+
+sml:ConcreteConcept a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:ConcreteConcept ;
+    rdfs:subClassOf sml:TopConcept ;
+    skos:definition "Concept that forms a manifestation and a demarcation in a concrete space-time. A concrete concept has a life cycle"@en ;
+    skos:prefLabel "Concrete concept"@en ;
+    sh:property [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasBoundary ],
+        [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasInterior ],
+        [ sh:class time:TemporalEntity ;
+            sh:path sml:hasTemporalEntity ],
+        [ sh:class sml:ConcreteConcept ;
+            sh:path sml:hasPart ],
+        [ sh:class rdfs:Container ;
+            sh:path sml:hasPartsGroup ] .
+
+sml:Connection a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Connection ;
+    rdfs:subClassOf sml:PhysicalObject ;
+    skos:definition "A physical object (real object or spatial area) that connects two other physical objects and over which interaction takes place, namely the transfer of matter, energy, information or forces"@en ;
+    skos:prefLabel "Connection"@en ;
+    sh:property [ sh:class sml:PhysicalObject ;
+            sh:path sml:connectsObject ],
+        [ sh:class sml:Port ;
+            sh:path sml:connectsPort ] .
+
+sml:DiscreteObject a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:DiscreteObject ;
+    rdfs:subClassOf sml:RealObject ;
+    skos:definition "A real object consisting of a contiguous amount of form-retaining matter, held together primarily by internal forces (gravity or electromagnetic force)"@en ;
+    skos:prefLabel "Discrete object"@en .
+
+sml:Entity a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Entity ;
+    rdfs:subClassOf sml:ConcreteConcept ;
+    skos:definition "Concept that forms a manifestation and a demarcation in a concrete space-time, and which has a certain state at any moment in time. An entity has a unique identity that remains constant throughout its life cycle. The life cycle of an entity is made up of the sequence of states of that entity, which follow each other in time. An entity is an object or an activity. An object exists, an activity takes place"@en ;
+    skos:prefLabel "Entity"@en ;
+    sh:property [ sh:class sml:State ;
+            sh:path sml:hasState ],
+        [ sh:class sml:Event ;
+            sh:path sml:triggers ] .
+
+sml:EnumerationType a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:EnumerationType ;
+    rdfs:subClassOf rdfs:Container,
+        sml:Type ;
+    skos:definition "A meta-concept having concepts as instances having no further attributes or relations (annotations only)"@en ;
+    skos:prefLabel "Enumeration type"@en .
+
+sml:Event a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Event ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:Event ;
+            owl:onProperty sml:hasPart ],
+        sml:ConcreteConcept ;
+    skos:definition "Transition between two successive states of an entity (object or activity). An event is triggered in a state"@en ;
+    skos:prefLabel "Event"@en ;
+    sh:property [ sh:class sml:State ;
+            sh:path sml:begins ],
+        [ sh:class sml:State ;
+            sh:path sml:ends ],
+        [ sh:class sml:Event ;
+            sh:path sml:hasPart ] .
+
+sml:Function a rdfs:Class,
+        owl:Class ;
+    rdfs:subClassOf sml:Activity,
+        sml:FunctionalActivity ;
+    skos:definition "An activity performed by an object whose external behavior contributes to goals set by one or more technical entities"@en ;
+    skos:prefLabel "Function"@en .
+
+sml:FunctionalEntity a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:FunctionalEntity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:Entity ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "An entity involving the external behavior where the output contributes to stakeholder objectives implemented/played by one or more technical entities"@en ;
+    skos:prefLabel "Functional entity"@en ;
+    sh:property [ sh:class sml:Entity ;
+            sh:path sml:hasPart ],
+        [ sh:class sml:FunctionalEntity ;
+            sh:path sml:hasFunctionalPart ],
+        [ sh:class sml:TechnicalEntity ;
+            sh:path sml:hasSolution ] .
+
+sml:GeometricEntity a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:GeometricEntity ;
+    rdfs:subClassOf sml:Representation ;
+    skos:definition "Named concept, which forms an actual or virtual demarcation in a concrete (physical, three-dimensional) space, which we experience in reality"@en ;
+    skos:prefLabel "Geometric entity"@en .
+
+sml:HeterogeneousMixture a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:HeterogeneousMixture ;
+    rdfs:subClassOf sml:Mixture ;
+    skos:definition "A mixture that is separated into different regions or phases that have different compositions or properties"@en ;
+    skos:prefLabel "Heterogeneous mixture"@en .
+
+sml:HomogeneousMixture a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:HomogeneousMixture ;
+    rdfs:subClassOf sml:Mixture ;
+    skos:definition "A mixture that is uniform throughout, and has only one phase"@en ;
+    skos:prefLabel "Homogeneous mixture"@en .
+
+sml:InformationObject a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:InformationObject ;
+    rdfs:subClassOf sml:Object ;
+    skos:definition "Object which describes a thing in reality"@en ;
+    skos:prefLabel "Information object"@en .
+
+sml:Interaction a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Interaction ;
+    rdfs:subClassOf sml:Activity ;
+    skos:definition "The activity being a combination of sub-activities performed by physical objects between which a transfer of matter, information, energy or force takes place, typically over a connection or interface (directly or through ports)"@en ;
+    skos:prefLabel "Interaction"@en ;
+    sh:property [ sh:class sml:TransferType ;
+            sh:path sml:transferType ],
+        [ sh:class sml:Connection ;
+            sh:path sml:overConnection ],
+        [ sh:class sml:Interface ;
+            sh:path sml:overInterface ] .
+
+sml:Interface a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Interface ;
+    rdfs:subClassOf sml:SpatialRegion ;
+    skos:definition "A spatial object, typically a thin 2D physical space (but also 0D or 1D) that connects two physical objects or ports of physical objects through which a static or dynamic interaction or interaction between those elements can take place"@en ;
+    skos:prefLabel "Interface"@en ;
+    sh:property [ sh:class sml:PhysicalObject ;
+            sh:path sml:connectsObject ],
+        [ sh:class sml:Port ;
+            sh:path sml:connectsPort ] .
+
+sml:Matter a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Matter ;
+    rdfs:subClassOf sml:PhysicalObject ;
+    skos:definition "A pure chemical substance, chemical compound or mixture from which real objects are made"@en ;
+    skos:prefLabel "Matter"@en ;
+    sh:property [ sh:class sml:AggregationStateType ;
+            sh:path sml:aggregationStateType ],
+        [ sh:datatype xsd:string ;
+            sh:path sml:chemicalFormula ] .
+
+sml:MatterPortion a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:MatterPortion ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty sml:portion ],
+        [ a owl:Restriction ;
+            owl:onClass sml:Matter ;
+            owl:onProperty rdf:value ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        sml:RelationReference ;
+    skos:definition "An objectified relation reference for the consists of relation"@en ;
+    skos:prefLabel "Matter portion"@en ;
+    sh:property [ sh:class sml:QuantityValue ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path sml:portion ] .
+
+sml:Mixture a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Mixture ;
+    rdfs:subClassOf sml:Matter ;
+    skos:definition "The combination of two or more different pure substances without the molecules losing their identity"@en ;
+    skos:prefLabel "Mixture"@en ;
+    sh:property [ sh:or ( [ sh:class sml:Matter ] [ sh:class sml:MatterPortion ] ) ;
+            sh:path sml:consistsOf ] .
+
+sml:Object a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Object ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:Object ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "Entity that exists or can exist within a concrete space-time. An object executes an activity, and is transformed by an activity"@en ;
+    skos:prefLabel "Object"@en ;
+    sh:property [ sh:class sml:Object ;
+            sh:path sml:hasPart ] .
+
+sml:Objectification a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Objectification ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty rdf:value ],
+        sml:AbstractConcept ;
+    skos:definition "An attribute (quality or quantity) or relation represented as an individual defined by a concept"@en ;
+    skos:prefLabel "Objectification"@en ;
+    sh:property [ sh:maxCount 1 ;
+            sh:path rdf:value ] .
+
+sml:PhysicalObject a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:PhysicalObject ;
+    rdfs:subClassOf sml:Object ;
+    skos:definition "Object that exists or may exist within physical 4D space-time. A physical object forms a manifestation and a demarcation of matter and/or energy, and is (in)directly perceptible by the senses"@en ;
+    skos:prefLabel "Physical object"@en ;
+    sh:property [ sh:class sml:InformationObject ;
+            sh:path sml:isDescribedBy ],
+        [ sh:class sml:Activity ;
+            sh:path sml:executes ],
+        [ sh:class sml:PhysicalObject ;
+            sh:path sml:isConnectedTo ],
+        [ sh:class sml:Interaction ;
+            sh:path sml:participatesIn ] .
+
+sml:PlannedEntity a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:PlannedEntity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:PlannedEntity ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "An entity that does not yet exist in physical reality, but which exists in mental or conceptual reality"@en ;
+    skos:prefLabel "Planned entity"@en ;
+    sh:property [ sh:class sml:PlannedEntity ;
+            sh:path sml:hasPart ],
+        [ sh:class sml:RealizedEntity ;
+            sh:path sml:isPlanFor ] .
+
+sml:Port a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:Port ;
+    rdfs:subClassOf sml:PhysicalObject ;
+    skos:definition "A physical or logical point of interaction as part of a physical object where, through a connection or interface, an interaction can take place"@en ;
+    skos:prefLabel "Port"@en .
+
+sml:PureSubstance a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:PureSubstance ;
+    rdfs:subClassOf sml:Matter ;
+    skos:definition "Chemical matter that has an equal chemical composition and recognizable uniform and isotropic properties"@en ;
+    skos:prefLabel "Pure substance"@en .
+
+sml:QualityValue a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:QualityValue ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( xsd:string xsd:boolean xsd:anyURI ) ] ;
+            owl:onProperty rdf:value ],
+        sml:Objectification ;
+    skos:definition "The objectification of a value of a quality having a complex value like a simple value sec combined with other metadata or just a combination of simple values"@en ;
+    skos:prefLabel "Quality value"@en ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:path rdf:value ] .
+
+sml:QuantityValue a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:QuantityValue ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( xsd:decimal xsd:float xsd:double xsd:integer ) ] ;
+            owl:onProperty rdf:value ],
+        sml:Objectification ;
+    skos:definition "The objectification of a value of a quantity (typically involving a quantity kind and a unit) having a complex value like a simple value sec combined with other metadata or just a combination of simple values"@en ;
+    skos:prefLabel "Quantity value"@en ;
+    sh:property [ sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:float ] [ sh:datatype xsd:double ] ) ;
+            sh:path rdf:value ] .
+
+sml:RealObject a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:RealObject ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( sml:RealObject sml:Port ) ] ;
+            owl:onProperty sml:hasPart ],
+        sml:PhysicalObject ;
+    skos:definition "physical object (rigid or non-rigid) that is (or can be) tangible and visible in reality, man-made or naturally occurring"@en ;
+    skos:prefLabel "Real object"@en ;
+    sh:property [ sh:or ( [ sh:class sml:Matter ] [ sh:class sml:MatterPortion ] ) ;
+            sh:path sml:consistsOf ],
+        [ sh:or ( [ sh:class sml:RealObject ] [ sh:class sml:Port ] ) ;
+            sh:path sml:hasPart ] .
+
+sml:RealizedEntity a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:RealizedEntity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:RealizedEntity ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "An entity that exists or has existed in the physical reality"@en ;
+    skos:prefLabel "Realized entity"@en ;
+    sh:property [ sh:class sml:RealizedEntity ;
+            sh:path sml:hasPart ] .
+
+sml:RelationReference a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:RelationReference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty rdf:value ],
+        sml:Objectification ;
+    skos:definition "The objectification of a reference for a relation having a complex value like a simple reference sec combined with other metadata or just a combination of simple references (n-ary relation)"@en ;
+    skos:prefLabel "Relation reference"@en ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:path rdf:value ] .
+
+sml:Representation a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:Representation ;
+    rdfs:subClassOf sml:InformationObject ;
+    skos:definition "That which represents something else"@en ;
+    skos:prefLabel "Representation"@en .
+
+sml:Requirement a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:Requirement ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass xsd:string ;
+            owl:onProperty rdf:value ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        sml:InformationObject ;
+    skos:definition "A rule that should hold for something, defined via its attributes or relations" ;
+    skos:prefLabel "Requirement"@en ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rdf:value ],
+        [ sh:class sml:RequirementSeverityType ;
+            sh:path sml:requirementSeverityType ],
+        [ sh:class sml:RequirementSourceType ;
+            sh:path sml:requirementSourceType ],
+        [ sh:class sml:RequirementTopicType ;
+            sh:path sml:requirementTopicType ] .
+
+sml:RequirementSeverityType a rdfs:Class,
+        owl:Class,
+        sml:EnumerationType ;
+    rdfs:seeAlso sml-term:RequirementSeverityType ;
+    skos:definition "The seriousness of a requirement like demanded or wished"@en ;
+    skos:prefLabel "Requirement severity type"@en .
+
+sml:RequirementSourceType a rdfs:Class,
+        owl:Class,
+        sml:EnumerationType ;
+    rdfs:seeAlso sml-term:RequirementSourceType ;
+    skos:definition "The type of source from which a requirement comes like a client, by definition, recommended by the sector or demanded by law/regulation"@en ;
+    skos:prefLabel "Requirement source type"@en .
+
+sml:RequirementTopicType a rdfs:Class,
+        owl:Class,
+        sml:EnumerationType ;
+    rdfs:seeAlso sml-term:RequirementTopicType ;
+    skos:definition "The entity aspect a requirement applies to"@en ;
+    skos:prefLabel "Requirement topic type"@en .
+
+sml:SpatialRegion a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:SpatialRegion ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( sml:SpatialRegion sml:Port ) ] ;
+            owl:onProperty sml:hasPart ],
+        sml:PhysicalObject ;
+    skos:definition "A physical object that encloses a particular area such as a room, roadway and river, that is bounded by real objects or other spatial areas (e.g., by usage or convention) and that contains primarily liquid or gaseous amount of matter"@en ;
+    skos:prefLabel "Spatial region"@en ;
+    sh:property [ sh:class sml:RealObject ;
+            sh:path sml:contains ],
+        [ sh:or ( [ sh:class sml:SpatialRegion ] [ sh:class sml:Port ] ) ;
+            sh:path sml:hasPart ],
+        [ sh:class sml:PhysicalObject ;
+            sh:path sml:isBoundBy ] .
+
+sml:State a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:State ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:State ;
+            owl:onProperty sml:hasPart ],
+        sml:ConcreteConcept ;
+    skos:definition "Temporal part of an entity during a period between two events. A state is characterized by the properties and relations of the entity"@en ;
+    skos:prefLabel "State"@en ;
+    sh:property [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasBoundary ],
+        [ sh:class sml:GeometricEntity ;
+            sh:path sml:hasInterior ],
+        [ sh:class sml:State ;
+            sh:path sml:hasPart ],
+        [ sh:class time:TemporalEntity ;
+            sh:path sml:hasPeriod ] .
+
+sml:TechnicalEntity a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:TechnicalEntity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom sml:Entity ;
+            owl:onProperty sml:hasPart ],
+        sml:Entity ;
+    skos:definition "An entity concerned with technical properties and relations that implements or plays functional entities"@en ;
+    skos:prefLabel "Technical entity"@en ;
+    sh:property [ sh:class sml:Entity ;
+            sh:path sml:hasPart ],
+        [ sh:class sml:TechnicalEntity ;
+            sh:path sml:hasTechnicalPart ] .
+
+sml:TopConcept a rdfs:Class,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:seeAlso sml-term:TopConcept ;
+    skos:definition "The most generic concept"@en ;
+    skos:prefLabel "Top concept"@en ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:path sml:abbreviation ],
+        [ sh:class sml:InformationObject ;
+            sh:path sml:isDescribedBy ],
+        [ sh:class sml:Requirement ;
+            sh:path sml:hasRequirement ] .
+
+sml:TransferType a rdfs:Class,
+        owl:Class,
+        sh:NodeShape,
+        sml:EnumerationType ;
+    rdfs:seeAlso sml-term:TransferType ;
+    owl:oneOf ( sml:MaterialFlow sml:EnergyFlow sml:InformationFlow sml:Force ) ;
+    skos:definition "The type of thing being transferred, here: material, information, energy or force"@en ;
+    skos:prefLabel "Transfer type"@en ;
+    sh:in ( sml:MaterialFlow sml:EnergyFlow sml:InformationFlow sml:Force ) .
+
+sml:Type a rdfs:Class,
+        owl:Class ;
+    rdfs:seeAlso sml-term:Type ;
+    rdfs:subClassOf sml:AbstractConcept ;
+    skos:definition "A meta-concept which instances are concepts (not individuals)"@en ;
+    skos:prefLabel "Type"@en .
+
+<https://w3id.org/sml/2/owl/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.opengis.net/ont/geosparql>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        sosa:,
+        <https://w3id.org/sml/2/rdfs/def>,
+        <https://w3id.org/sml/owl/def> .
+
+<https://w3id.org/sml/2/shacl/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.opengis.net/ont/geosparql>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        sosa:,
+        <https://w3id.org/sml/2/rdfs/def>,
+        <https://w3id.org/sml/shacl/def> .
+
+sml:AllDisjointClassesShape a sh:NodeShape ;
+    sh:property [ sh:path ( rdf:type [ sh:zeroOrMorePath rdfs:subClassOf ] ) ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedValueShape [ sh:in ( sml:PhysicalObject sml:InformationObject sml:State sml:Event sml:Activity ) ] ],
+        [ sh:path ( rdf:type [ sh:zeroOrMorePath rdfs:subClassOf ] ) ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedValueShape [ sh:in ( sml:FunctionalEntity sml:TechnicalEntity ) ] ],
+        [ sh:path ( rdf:type [ sh:zeroOrMorePath rdfs:subClassOf ] ) ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedValueShape [ sh:in ( sml:PlannedEntity sml:RealizedEntity ) ] ] ;
+    sh:targetSubjectsOf rdf:type .
+
+sml:AllDisjointClassesShape2 a sh:NodeShape ;
+    sh:property [ sh:path ( rdf:type [ sh:zeroOrMorePath rdfs:subClassOf ] ) ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedValueShape [ sh:in ( sml:RealObject sml:SpatialRegion ) ] ] ;
+    sh:targetSubjectsOf rdf:type .
+
+sml:AllDisjointClasses_1 a owl:AllDisjointClasses ;
+    owl:members ( sml:PhysicalObject sml:InformationObject sml:Activity sml:Event sml:State ) .
+
+sml:AllDisjointClasses_2 a owl:AllDisjointClasses ;
+    owl:members ( sml:FunctionalEntity sml:TechnicalEntity ) .
+
+sml:AllDisjointClasses_3 a owl:AllDisjointClasses ;
+    owl:members ( sml:PlannedEntity sml:RealizedEntity ) .
+
+sml:AllDisjointClasses_4 a owl:AllDisjointClasses ;
+    owl:members ( sml:RealObject sml:SpatialRegion ) .
+
+sml:hasQuantityKindShape a sh:NodeShape ;
+    sh:class qudt:QuantityKind ;
+    sh:targetObjectsOf sml:hasQuantityKind .
+
+sml:hasUnitShape a sh:NodeShape ;
+    sh:class qudt:Unit ;
+    sh:targetObjectsOf sml:hasUnit .
+
+sml:isImplementedBy a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:FunctionalEntity ;
+    rdfs:range sml:TechnicalEntity ;
+    rdfs:seeAlso sml-term:isImplementedBy ;
+    rdfs:subPropertyOf sml:hasSolution ;
+    skos:definition "The technical entity that implements a functional entity"@en ;
+    skos:prefLabel "is implemented by"@en .
+
+sml:isRealizedBy a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:PlannedEntity ;
+    rdfs:range sml:RealizedEntity ;
+    rdfs:seeAlso sml-term:isRealizedBy ;
+    rdfs:subPropertyOf sml:isPlanFor ;
+    skos:definition "The realized entity that realizes a planned entity"@en ;
+    skos:prefLabel "is realized by"@en .
+
+sml-term:ChemicalCompound a skos:Concept ;
+    skos:broader sml-term:PureSubstance ;
+    skos:definition "Pure substance consisting of two or more chemical elements that have a chemical bond with each other. In a chemical compound, the elements occur in a fixed ratio. A compound can be broken down into simpler substances by means of chemical reactions"@en ;
+    skos:prefLabel "Chemical compound"@en .
+
+sml-term:Function a skos:Concept ;
+    skos:broader sml-term:Activity,
+        sml-term:FunctionalActivity ;
+    skos:definition "An activity performed by an object whose external behavior contributes to goals set by one or more technical entities"@en ;
+    skos:prefLabel "Function"@en .
+
+sml-term:hasPartsGroup a skos:Concept ;
+    skos:definition "The possession of an group of, potentially implicit, parts"@en ;
+    skos:prefLabel "has parts group"@en .
+
+<https://w3id.org/sml/2/skos/term> a skos:ConceptScheme ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.opengis.net/ont/geosparql>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        sosa:,
+        <https://w3id.org/sml/skos/term> ;
+    skos:hasTopConcept sml-term:TopConcept .
+
+sml:abbreviation a rdf:Property,
+        owl:AnnotationProperty ;
+    rdfs:domain sml:TopConcept ;
+    rdfs:range xsd:string ;
+    rdfs:seeAlso sml-term:abbreviation ;
+    rdfs:subPropertyOf skos:altLabel ;
+    skos:definition "Acronym or initial word as special case of an external name"@en ;
+    skos:prefLabel "abbreviation"@en .
+
+sml:aggregationStateType a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Matter ;
+    rdfs:range sml:AggregationStateType ;
+    rdfs:seeAlso sml-term:aggregationStateType ;
+    skos:definition "The possession of an aggregation state type"@en ;
+    skos:prefLabel "aggregation state type"@en .
+
+sml:begins a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Event ;
+    rdfs:range sml:State ;
+    rdfs:seeAlso sml-term:begins ;
+    skos:definition "The state that is started by an event"@en ;
+    skos:prefLabel "begins"@en .
+
+sml:chemicalFormula a rdf:Property,
+        owl:DatatypeProperty ;
+    rdfs:domain sml:Matter ;
+    rdfs:range xsd:string ;
+    rdfs:seeAlso sml-term:chemicalFormula ;
+    skos:definition "The possession of information about the chemical proportions of atoms that constitute a particular chemical compound"@en ;
+    skos:prefLabel "chemical formula"@en .
+
+sml:contains a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:SpatialRegion ;
+    rdfs:range sml:RealObject ;
+    rdfs:seeAlso sml-term:contains ;
+    skos:definition "The real objects located in a spatial region, typically the gaseous amount of bulk matter present in that region"@en ;
+    skos:prefLabel "contains"@en .
+
+sml:ends a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Event ;
+    rdfs:range sml:State ;
+    rdfs:seeAlso sml-term:ends ;
+    skos:definition "The state that is ended by an event"@en ;
+    skos:prefLabel "ends"@en .
+
+sml:executes a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:PhysicalObject ;
+    rdfs:range sml:Activity ;
+    rdfs:seeAlso sml-term:executes ;
+    skos:definition "The activity executed by a physical object"@en ;
+    skos:prefLabel "executes"@en .
+
+sml:hasFunctionalPart a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:FunctionalEntity ;
+    rdfs:range sml:FunctionalEntity ;
+    rdfs:seeAlso sml-term:hasFunctionalPart ;
+    rdfs:subPropertyOf sml:hasPart ;
+    skos:definition "The hasPart relation of a functional nature"@en ;
+    skos:prefLabel "has functional part"@en .
+
+sml:hasPartsGroup a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:ConcreteConcept ;
+    rdfs:range rdfs:Container ;
+    rdfs:seeAlso sml-term:hasPart ;
+    skos:definition "The possession of an group of, potentially implicit, parts"@en ;
+    skos:prefLabel "has parts group"@en .
+
+sml:hasQuantityKind a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:range qudt:QuantityKind ;
+    rdfs:seeAlso sml-term:hasQuantityKind ;
+    skos:definition "The possession of a quantity kind"@en ;
+    skos:prefLabel "has quantity kind"@en .
+
+sml:hasRequirement a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:TopConcept ;
+    rdfs:range sml:Requirement ;
+    rdfs:seeAlso sml-term:hasRequirement ;
+    skos:definition "The (unstructured) requirement for something"@en ;
+    skos:prefLabel "has requirement"@en .
+
+sml:hasState a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Entity ;
+    rdfs:range sml:State ;
+    rdfs:seeAlso sml-term:hasState ;
+    skos:definition "The state of an entity in a certain point or period of time"@en ;
+    skos:prefLabel "has state"@en .
+
+sml:hasTechnicalPart a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:TechnicalEntity ;
+    rdfs:range sml:TechnicalEntity ;
+    rdfs:seeAlso sml-term:hasTechnicalPart ;
+    rdfs:subPropertyOf sml:hasPart ;
+    skos:definition "A hasPart relation of a technical nature"@en ;
+    skos:prefLabel "has technical part"@en .
+
+sml:hasTemporalEntity a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:ConcreteConcept ;
+    rdfs:range time:TemporalEntity ;
+    rdfs:seeAlso sml-term:hasTemporalEntity ;
+    skos:definition "The abstract temporal entity representing a concrete concept in time"@en ;
+    skos:prefLabel "has temporal entity"@en .
+
+sml:hasUnit a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:range qudt:Unit ;
+    rdfs:seeAlso sml-term:hasUnit ;
+    skos:definition "The possession of a unit"@en ;
+    skos:prefLabel "has unit"@en .
+
+sml:isBoundBy a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:SpatialRegion ;
+    rdfs:range sml:PhysicalObject ;
+    rdfs:seeAlso sml-term:isBoundBy ;
+    skos:definition "The physical object that bounds a spatial region"@en ;
+    skos:prefLabel "is bound by"@en .
+
+sml:isConnectedTo a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:PhysicalObject ;
+    rdfs:range sml:PhysicalObject ;
+    rdfs:seeAlso sml-term:isConnectedTo ;
+    skos:definition "The topological relationship between physical objects"@en ;
+    skos:prefLabel "is connected to"@en .
+
+sml:overConnection a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Interaction ;
+    rdfs:range sml:Connection ;
+    rdfs:seeAlso sml-term:overConnection ;
+    skos:definition "The connection over which an interaction between physical objects takes place"@en ;
+    skos:prefLabel "over connection"@en .
+
+sml:overInterface a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Interaction ;
+    rdfs:range sml:Interface ;
+    rdfs:seeAlso sml-term:overInterface ;
+    skos:definition "The interface over which an interaction between physical objects takes place"@en ;
+    skos:prefLabel "over interface"@en .
+
+sml:participatesIn a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:PhysicalObject ;
+    rdfs:range sml:Interaction ;
+    rdfs:seeAlso sml-term:participatesIn ;
+    skos:definition "The interaction a physical object participates in"@en ;
+    skos:prefLabel "participates in"@en .
+
+sml:requirementSeverityType a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Requirement ;
+    rdfs:range sml:RequirementSeverityType ;
+    rdfs:seeAlso sml-term:requirementSeverityType ;
+    skos:definition "The possession of a severity type by a requirement"@en ;
+    skos:prefLabel "requirement severity type"@en .
+
+sml:requirementSourceType a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Requirement ;
+    rdfs:range sml:RequirementSourceType ;
+    rdfs:seeAlso sml-term:requirementSourceType ;
+    skos:definition "The possession of a source type by a requirement"@en ;
+    skos:prefLabel "requirement source type"@en .
+
+sml:requirementTopicType a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Requirement ;
+    rdfs:range sml:RequirementTopicType ;
+    rdfs:seeAlso sml-term:requirementTopicType ;
+    skos:definition "The possession of a topic type by a requirement"@en ;
+    skos:prefLabel "requirement topic type"@en .
+
+sml:transferType a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Interaction ;
+    rdfs:range sml:TransferType ;
+    rdfs:seeAlso sml-term:transferType ;
+    skos:definition "The possession of a transfer type by an interaction"@en ;
+    skos:prefLabel "transfer type"@en .
+
+sml:transforms a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Activity ;
+    rdfs:range sml:Object ;
+    rdfs:seeAlso sml-term:transforms ;
+    skos:definition "The object transformed by an activity"@en ;
+    skos:prefLabel "transforms"@en .
+
+sml:triggers a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:Entity ;
+    rdfs:range sml:Event ;
+    rdfs:seeAlso sml-term:triggers ;
+    skos:definition "The event triggert by an entity"@en ;
+    skos:prefLabel "triggers"@en .
+
+<https://w3id.org/sml/owl/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        <https://w3id.org/sml/rdfs/def> .
+
+<https://w3id.org/sml/shacl/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        <https://w3id.org/sml/rdfs/def> .
+
+sml-term:AmountOfBulkMatter a skos:Concept ;
+    skos:broader sml-term:RealObject ;
+    skos:definition "A real object that consists of a continuous amount of non-rigid matter, held together primarily by external forces (gravity or confinement)"@en ;
+    skos:prefLabel "Amount of bulk matter"@en .
+
+sml-term:ChemicalElement a skos:Concept ;
+    skos:broader sml-term:PureSubstance ;
+    skos:definition "Pure substance that is made up of atoms with the same atomic number. A chemical element cannot be decomposed through chemical reactions"@en ;
+    skos:prefLabel "Chemical element"@en .
+
+sml-term:ConceptType a skos:Concept ;
+    skos:broader sml-term:Type ;
+    skos:definition "A meta-concept having concepts as instances that can have attributes or relations"@en ;
+    skos:prefLabel "Concept type"@en .
+
+sml-term:Connection a skos:Concept ;
+    skos:broader sml-term:PhysicalObject ;
+    skos:definition "A physical object (real object or spatial area) that connects two other physical objects and over which interaction takes place, namely the transfer of matter, energy, information or forces"@en ;
+    skos:prefLabel "Connection"@en .
+
+sml-term:DiscreteObject a skos:Concept ;
+    skos:broader sml-term:RealObject ;
+    skos:definition "A real object consisting of a contiguous amount of form-retaining matter, held together primarily by internal forces (gravity or electromagnetic force)"@en ;
+    skos:prefLabel "Discrete object"@en .
+
+sml-term:EnergyFlow a skos:Concept ;
+    skos:broader sml-term:TransferType ;
+    skos:definition "The movement of an amount of energy (as capacity to do work)"@en ;
+    skos:prefLabel "Energy flow"@en .
+
+sml-term:Event a skos:Concept ;
+    skos:broader sml-term:ConcreteConcept ;
+    skos:definition "Transition between two successive states of an entity (object or activity). An event is triggered in a state"@en ;
+    skos:prefLabel "Event"@en .
+
+sml-term:Force a skos:Concept ;
+    skos:broader sml-term:TransferType ;
+    skos:definition "Physical quantity which, when exerted on a body, causes tension or pressure to arise therein, or which causes the body to change motion, accelerate"@en ;
+    skos:prefLabel "Force"@en .
+
+sml-term:FunctionalEntity a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "An entity involving the external behavior where the output contributes to stakeholder objectives implemented/played by one or more technical entities"@en ;
+    skos:prefLabel "Functional entity"@en .
+
+sml-term:Gas a skos:Concept ;
+    skos:broader sml-term:AggregationStateType ;
+    skos:definition "Matter in an intermediate state between liquid and plasma that can be contained only if it is fully surrounded by a solid (or in a bubble of liquid) (or held together by gravitational pull); it can condense into a liquid, or can (rarely) become a solid directly by deposition"@en ;
+    skos:prefLabel "Gas"@en .
+
+sml-term:GeometricEntity a skos:Concept ;
+    skos:broader sml-term:Representation ;
+    skos:definition "Named concept, which forms an actual or virtual demarcation in a concrete (physical, three-dimensional) space, which we experience in reality"@en ;
+    skos:prefLabel "Geometric entity"@en .
+
+sml-term:HeterogeneousMixture a skos:Concept ;
+    skos:broader sml-term:Mixture ;
+    skos:definition "A mixture that is separated into different regions or phases that have different compositions or properties"@en ;
+    skos:prefLabel "Heterogeneous mixture"@en .
+
+sml-term:HomogeneousMixture a skos:Concept ;
+    skos:broader sml-term:Mixture ;
+    skos:definition "A mixture that is uniform throughout, and has only one phase"@en ;
+    skos:prefLabel "Homogeneous mixture"@en .
+
+sml-term:InformationFlow a skos:Concept ;
+    skos:broader sml-term:TransferType ;
+    skos:definition "The movement of information represented in some medium"@en ;
+    skos:prefLabel "Information flow"@en .
+
+sml-term:Interaction a skos:Concept ;
+    skos:broader sml-term:Activity ;
+    skos:definition "The activity being a combination of sub-activities performed by physical objects between which a transfer of matter, information, energy or force takes place, typically over a connection or interface (directly or through ports)"@en ;
+    skos:prefLabel "Interaction"@en .
+
+sml-term:Interface a skos:Concept ;
+    skos:broader sml-term:SpatialRegion ;
+    skos:definition "A spatial object, typically a thin 2D physical space (but also 0D or 1D) that connects two physical objects or ports of physical objects through which a static or dynamic interaction or interaction between those elements can take place"@en ;
+    skos:prefLabel "Interface"@en .
+
+sml-term:Liquid a skos:Concept ;
+    skos:broader sml-term:AggregationStateType ;
+    skos:definition "A liquid is a nearly incompressible fluid that conforms to the shape of its container but retains a (nearly) constant volume independent of pressure"@en ;
+    skos:prefLabel "Liquid"@en .
+
+sml-term:MaterialFlow a skos:Concept ;
+    skos:broader sml-term:TransferType ;
+    skos:definition "The movement of an amount of material"@en ;
+    skos:prefLabel "Material flow"@en .
+
+sml-term:MatterPortion a skos:Concept ;
+    skos:broader sml-term:RelationReference ;
+    skos:definition "An objectified relation reference for the consists of relation"@en ;
+    skos:prefLabel "Matter portion"@en .
+
+sml-term:PlannedEntity a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "An entity that does not yet exist in physical reality, but which exists in mental or conceptual reality"@en ;
+    skos:prefLabel "Planned entity"@en .
+
+sml-term:Plasma a skos:Concept ;
+    skos:broader sml-term:AggregationStateType ;
+    skos:definition "A phase in which the particles of a gaseous substance are ionised"@en ;
+    skos:prefLabel "Plasma"@en .
+
+sml-term:Port a skos:Concept ;
+    skos:broader sml-term:PhysicalObject ;
+    skos:definition "A physical or logical point of interaction as part of a physical object where, through a connection or interface, an interaction can take place"@en ;
+    skos:prefLabel "Port"@en .
+
+sml-term:QualityValue a skos:Concept ;
+    skos:broader sml-term:Objectification ;
+    skos:definition "The objectification of a value of a quality having a complex value like a simple value sec combined with other metadata or just a combination of simple values"@en ;
+    skos:prefLabel "Quality value"@en .
+
+sml-term:QuantityKind a skos:Concept ;
+    skos:definition "Any observable property that can be measured and quantified numerically"@en ;
+    skos:prefLabel "Quantity kind"@en .
+
+sml-term:QuantityValue a skos:Concept ;
+    skos:broader sml-term:Objectification ;
+    skos:definition "The objectification of a value of a quantity (typically involving a quantity kind and a unit) having a complex value like a simple value sec combined with other metadata or just a combination of simple values"@en ;
+    skos:prefLabel "Quantity value"@en .
+
+sml-term:RealizedEntity a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "An entity that exists or has existed in the physical reality"@en ;
+    skos:prefLabel "Realized entity"@en .
+
+sml-term:Requirement a skos:Concept ;
+    skos:broader sml-term:InformationObject ;
+    skos:definition "A rule that should hold for something, defined via its attributes or relations"@en ;
+    skos:prefLabel "Requirement"@en .
+
+sml-term:RequirementSeverityType a skos:Concept ;
+    skos:broader sml-term:EnumerationType ;
+    skos:definition "The seriousness of a requirement like demanded or wished"@en ;
+    skos:prefLabel "Requirement severity type"@en .
+
+sml-term:RequirementSourceType a skos:Concept ;
+    skos:broader sml-term:EnumerationType ;
+    skos:definition "The type of source from which a requirement comes like a client, by definition, recommended by the sector or demanded by law/regulation"@en ;
+    skos:prefLabel "Requirement source type"@en .
+
+sml-term:RequirementTopicType a skos:Concept ;
+    skos:broader sml-term:EnumerationType ;
+    skos:definition "The entity aspect a requirement applies to"@en ;
+    skos:prefLabel "Requirement topic type"@en .
+
+sml-term:Solid a skos:Concept ;
+    skos:broader sml-term:AggregationStateType ;
+    skos:definition "Matter that can be picked up or held, having a texture, and usually firm. Unlike a liquid, gas or plasma"@en ;
+    skos:prefLabel "Solid"@en .
+
+sml-term:State a skos:Concept ;
+    skos:broader sml-term:ConcreteConcept ;
+    skos:definition "Temporal part of an entity during a period between two events. A state is characterized by the properties and relations of the entity"@en ;
+    skos:prefLabel "State"@en .
+
+sml-term:TechnicalEntity a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "An entity concerned with technical properties and relations that implements or plays functional entities"@en ;
+    skos:prefLabel "Technical entity"@en .
+
+sml-term:TemporalEntity a skos:Concept ;
+    skos:broader sml-term:Representation ;
+    skos:definition "A temporal interval or instant"@en ;
+    skos:prefLabel "Temporal entity"@en .
+
+sml-term:Unit a skos:Concept ;
+    skos:definition "A particular quantity value that has been chosen as a scale for measuring other quantities the same kind"@en ;
+    skos:prefLabel "Unit"@en .
+
+sml-term:abbreviation a skos:Concept ;
+    skos:broader skos:altLabel ;
+    skos:definition "Acronym or initial word as special case of a name"@en ;
+    skos:prefLabel "abbreviation"@en .
+
+sml-term:aggregationStateType a skos:Concept ;
+    skos:definition "The possession of an aggregation state type"@en ;
+    skos:prefLabel "aggregation state type"@en .
+
+sml-term:begins a skos:Concept ;
+    skos:definition "The state that is started by an event"@en ;
+    skos:prefLabel "begins"@en .
+
+sml-term:chemicalFormula a skos:Concept ;
+    skos:definition "The possession of information about the chemical proportions of atoms that constitute a particular chemical compound"@en ;
+    skos:prefLabel "chemical formula"@en .
+
+sml-term:connectsObject a skos:Concept ;
+    skos:definition "The physical objects connected by a connection or interface"@en ;
+    skos:prefLabel "connects object"@en .
+
+sml-term:connectsPort a skos:Concept ;
+    skos:definition "The ports (as part of physical objects) connected by a connection or interface"@en ;
+    skos:prefLabel "connects port"@en .
+
+sml-term:consistsOf a skos:Concept ;
+    skos:definition "The matter a real object or mixture is made of"@en ;
+    skos:prefLabel "consists of"@en .
+
+sml-term:contains a skos:Concept ;
+    skos:definition "The real objects located in a spatial region, typically the gaseous amount of bulk matter present in that region"@en ;
+    skos:prefLabel "contains"@en .
+
+sml-term:ends a skos:Concept ;
+    skos:definition "The state that is ended by an event"@en ;
+    skos:prefLabel "ends"@en .
+
+sml-term:executes a skos:Concept ;
+    skos:definition "The activity executed by a physical object"@en ;
+    skos:prefLabel "executes"@en .
+
+sml-term:hasBoundary a skos:Concept ;
+    skos:definition "The geometric entity representing the boundary of a concrete concept"@en ;
+    skos:prefLabel "has boundary"@en .
+
+sml-term:hasFunctionalPart a skos:Concept ;
+    skos:broader sml-term:hasPart ;
+    skos:definition "The hasPart relation of a functional nature"@en ;
+    skos:prefLabel "has functional part"@en .
+
+sml-term:hasInterior a skos:Concept ;
+    skos:definition "The geometric entity representing the interior of a concrete concept"@en ;
+    skos:prefLabel "has interior"@en .
+
+sml-term:hasQuantityKind a skos:Concept ;
+    skos:definition "The possession of a quantity kind"@en ;
+    skos:prefLabel "has quantity kind"@en .
+
+sml-term:hasRequirement a skos:Concept ;
+    skos:definition "The (unstructured) requirement for something"@en ;
+    skos:prefLabel "has requirement"@en .
+
+sml-term:hasState a skos:Concept ;
+    skos:definition "The state of an entity in a certain point or period of time"@en ;
+    skos:prefLabel "has state"@en .
+
+sml-term:hasTechnicalPart a skos:Concept ;
+    skos:broader sml-term:hasPart ;
+    skos:definition "A hasPart relation of a technical nature"@en ;
+    skos:prefLabel "has technical part"@en .
+
+sml-term:hasTemporalEntity a skos:Concept ;
+    skos:definition "The abstract temporal entity representing a concrete concept in time"@en ;
+    skos:prefLabel "has temporal entity"@en .
+
+sml-term:hasUnit a skos:Concept ;
+    skos:definition "The possession of a unit"@en ;
+    skos:prefLabel "has unit"@en .
+
+sml-term:isBoundBy a skos:Concept ;
+    skos:definition "The physical object that bounds a spatial region"@en ;
+    skos:prefLabel "is bound by"@en .
+
+sml-term:isConnectedTo a skos:Concept ;
+    skos:definition "The topological relation between physical objects"@en ;
+    skos:prefLabel "is connected to"@en .
+
+sml-term:isDescribedBy a skos:Concept ;
+    skos:definition "The information object that describes something"@en ;
+    skos:prefLabel "is described by"@en .
+
+sml-term:isImplementedBy a skos:Concept ;
+    skos:broader sml-term:hasSolution ;
+    skos:definition "The technical entity that implements a functional entity"@en ;
+    skos:prefLabel "is implemented by"@en .
+
+sml-term:isRealizedBy a skos:Concept ;
+    skos:broader sml-term:isPlanFor ;
+    skos:definition "The realized entity that realizes a planned entity"@en ;
+    skos:prefLabel "is realized by"@en .
+
+sml-term:overConnection a skos:Concept ;
+    skos:definition "The connection over which an interaction between physical objects takes place"@en ;
+    skos:prefLabel "over connection"@en .
+
+sml-term:overInterface a skos:Concept ;
+    skos:definition "The interface over which an interaction between physical objects takes place"@en ;
+    skos:prefLabel "over interface"@en .
+
+sml-term:participatesIn a skos:Concept ;
+    skos:definition "The interaction a physical object participates in"@en ;
+    skos:prefLabel "participates in"@en .
+
+sml-term:portion a skos:Concept ;
+    skos:definition "The relative portion of a matter portion"@en ;
+    skos:prefLabel "portion"@en .
+
+sml-term:requirementSeverityType a skos:Concept ;
+    skos:definition "The possession of a severity type by a requirement"@en ;
+    skos:prefLabel "requirement severity type"@en .
+
+sml-term:requirementSourceType a skos:Concept ;
+    skos:definition "The possession of a source type by a requirement"@en ;
+    skos:prefLabel "requirement source type"@en .
+
+sml-term:requirementTopicType a skos:Concept ;
+    skos:definition "The possession of a topic type by a requirement"@en ;
+    skos:prefLabel "requirement topic type"@en .
+
+sml-term:transferType a skos:Concept ;
+    skos:definition "The possession of a transfer type by an interaction"@en ;
+    skos:prefLabel "transfer type"@en .
+
+sml-term:transforms a skos:Concept ;
+    skos:definition "The object transformed by an activity"@en ;
+    skos:prefLabel "transforms"@en .
+
+sml-term:triggers a skos:Concept ;
+    skos:definition "The event triggert by an entity"@en ;
+    skos:prefLabel "triggers"@en .
+
+qudt:QuantityKind a sml:EnumerationType ;
+    rdfs:seeAlso sml-term:QuantityKind ;
+    skos:definition "Any observable property that can be measured and quantified numerically"@en ;
+    skos:prefLabel "Quantity kind"@en .
+
+qudt:Unit a sml:EnumerationType ;
+    rdfs:seeAlso sml-term:Unit ;
+    skos:definition "A particular quantity value that has been chosen as a scale for measuring other quantities the same kind"@en ;
+    skos:prefLabel "Unit"@en .
+
+<https://w3id.org/sml/2/rdfs/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.opengis.net/ont/geosparql>,
+        <http://www.w3.org/2003/01/geo/wgs84_pos>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        sosa:,
+        <https://w3id.org/sml/2/skos/term>,
+        <https://w3id.org/sml/rdfs/def> .
+
+sml:EnergyFlow a sml:TransferType ;
+    rdfs:seeAlso sml-term:EnergyFlow ;
+    skos:definition "The movement of an amount of energy (as capacity to do work)"@en ;
+    skos:prefLabel "Energy flow"@en .
+
+sml:Force a sml:TransferType ;
+    rdfs:seeAlso sml-term:Force ;
+    skos:definition "Physical quantity which, when exerted on a body, causes tension or pressure to arise therein, or which causes the body to change motion, accelerate"@en ;
+    skos:prefLabel "Force"@en .
+
+sml:Gas a sml:AggregationStateType ;
+    rdfs:seeAlso sml-term:Gas ;
+    skos:definition "Matter in an intermediate state between liquid and plasma that can be contained only if it is fully surrounded by a solid (or in a bubble of liquid) (or held together by gravitational pull); it can condense into a liquid, or can (rarely) become a solid directly by deposition"@en ;
+    skos:prefLabel "Gas"@en .
+
+sml:InformationFlow a sml:TransferType ;
+    rdfs:seeAlso sml-term:InformationFlow ;
+    skos:definition "The movement of information represented in some medium"@en ;
+    skos:prefLabel "Information flow"@en .
+
+sml:Liquid a sml:AggregationStateType ;
+    rdfs:seeAlso sml-term:Liquid ;
+    skos:definition "A liquid is a nearly incompressible fluid that conforms to the shape of its container but retains a (nearly) constant volume independent of pressure"@en ;
+    skos:prefLabel "Liquid"@en .
+
+sml:MaterialFlow a sml:TransferType ;
+    rdfs:seeAlso sml-term:MaterialFlow ;
+    skos:definition "The movement of an amount of material"@en ;
+    skos:prefLabel "Material flow"@en .
+
+sml:Plasma a sml:AggregationStateType ;
+    rdfs:seeAlso sml-term:Plasma ;
+    skos:definition "A phase in which the particles of a gaseous substance are ionised"@en ;
+    skos:prefLabel "Plasma"@en .
+
+sml:Solid a sml:AggregationStateType ;
+    rdfs:seeAlso sml-term:Solid ;
+    skos:definition "Matter that can be picked up or held, having a texture, and usually firm. Unlike a liquid, gas or plasma"@en ;
+    skos:prefLabel "Solid"@en .
+
+sml:connectsObject a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( sml:Connection sml:Interface ) ] ;
+    rdfs:range sml:PhysicalObject ;
+    rdfs:seeAlso sml-term:connectsObject ;
+    skos:definition "The physical objects connected by a connection or interface"@en ;
+    skos:prefLabel "connects object"@en .
+
+sml:connectsPort a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( sml:Connection sml:Interface ) ] ;
+    rdfs:range sml:Port ;
+    rdfs:seeAlso sml-term:connectsPort ;
+    skos:definition "The ports (as part of physical objects) connected by a connection or interface"@en ;
+    skos:prefLabel "connects port"@en .
+
+sml:consistsOf a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( sml:RealObject sml:Mixture ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( sml:Matter sml:MatterPortion ) ] ;
+    rdfs:seeAlso sml-term:consistsOf ;
+    skos:definition "The matter a real object or mixture is made of"@en ;
+    skos:prefLabel "consists of"@en .
+
+sml:hasSolution a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:FunctionalEntity ;
+    rdfs:range sml:TechnicalEntity ;
+    rdfs:seeAlso sml-term:hasSolution ;
+    skos:definition "A technical entity that is a potential solution for a functional entity"@en ;
+    skos:prefLabel "has solution"@en .
+
+sml:isDescribedBy a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:TopConcept ;
+    rdfs:range sml:InformationObject ;
+    rdfs:seeAlso sml-term:isDescribedBy ;
+    skos:definition "The information object that describes something"@en ;
+    skos:prefLabel "is described by"@en .
+
+sml:isPlanFor a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:PlannedEntity ;
+    rdfs:range sml:RealizedEntity ;
+    rdfs:seeAlso sml-term:isPlanFor ;
+    skos:definition "A potentially realized entity according to this planned entity"@en ;
+    skos:prefLabel "is plan for"@en .
+
+sml:portion a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:MatterPortion ;
+    rdfs:range sml:QuantityValue ;
+    rdfs:seeAlso sml-term:portion ;
+    skos:definition "The relative portion of a matter portion"@en ;
+    skos:prefLabel "portion"@en ;
+    sml:hasQuantityKind quantitykind:DimensionlessRatio .
+
+<https://w3id.org/sml/skos/term> a skos:ConceptScheme ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl> ;
+    skos:hasTopConcept sml-term:TopConcept .
+
+sml-term:RelationReference a skos:Concept ;
+    skos:broader sml-term:Objectification ;
+    skos:definition "The objectification of a reference for a relation having a complex value like a simple reference sec combined with other metadata or just a combination of simple references (n-ary relation)"@en ;
+    skos:prefLabel "Relation reference"@en .
+
+sml-term:SpatialRegion a skos:Concept ;
+    skos:broader sml-term:PhysicalObject ;
+    skos:definition "A physical object that encloses a particular area such as a room, roadway and river, that is bounded by real objects or other spatial areas (e.g., by usage or convention) and that contains primarily liquid or gaseous amount of matter"@en ;
+    skos:prefLabel "Spatial region"@en .
+
+sml-term:hasSolution a skos:Concept ;
+    skos:definition "A technical entity that is a potential solution for a functional entity"@en ;
+    skos:prefLabel "has solution"@en .
+
+sml-term:isPlanFor a skos:Concept ;
+    skos:definition "A potentially realized entity according to this planned entity"@en ;
+    skos:prefLabel "is plan for"@en .
+
+sml:hasBoundary a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:ConcreteConcept ;
+    rdfs:range sml:GeometricEntity ;
+    rdfs:seeAlso sml-term:hasBoundary ;
+    skos:definition "The geometric entity representing the boundary of a concrete concept"@en ;
+    skos:prefLabel "has boundary"@en .
+
+sml:hasInterior a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:ConcreteConcept ;
+    rdfs:range sml:GeometricEntity ;
+    rdfs:seeAlso sml-term:hasInterior ;
+    skos:definition "The geometric entity representing the interior of a concrete concept"@en ;
+    skos:prefLabel "has interior"@en .
+
+<https://w3id.org/sml/rdfs/def> a owl:Ontology ;
+    owl:imports <http://qudt.org/2.1/schema/qudt>,
+        <http://qudt.org/2.1/vocab/quantitykind>,
+        <http://qudt.org/2.1/vocab/unit>,
+        <http://www.w3.org/2004/02/skos/core>,
+        <http://www.w3.org/2006/time>,
+        <http://www.w3.org/ns/shacl>,
+        <https://w3id.org/sml/skos/term> .
+
+sml-term:AbstractConcept a skos:Concept ;
+    skos:broader sml-term:TopConcept ;
+    skos:definition "Concept that forms a manifestation and demarcation in an abstract space. An abstract concept has no life cycle"@en ;
+    skos:prefLabel "Abstract concept"@en .
+
+sml-term:Activity a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "Entity that takes place or can take place in a concrete space-time. An activity transforms objects, and is executed by an object"@en ;
+    skos:prefLabel "Activity"@en .
+
+sml-term:InformationObject a skos:Concept ;
+    skos:broader sml-term:Object ;
+    skos:definition "Object which describes a thing in reality"@en ;
+    skos:prefLabel "Information object"@en .
+
+sml-term:Matter a skos:Concept ;
+    skos:altLabel "Chemical substance"@en ;
+    skos:broader sml-term:PhysicalObject ;
+    skos:definition "A pure chemical substance, chemical compound or mixture from which real objects are made"@en ;
+    skos:prefLabel "Matter"@en .
+
+sml-term:Mixture a skos:Concept ;
+    skos:broader sml-term:Matter ;
+    skos:definition "The combination of two or more different pure substances without the molecules losing their identity"@en ;
+    skos:prefLabel "Mixture"@en .
+
+sml-term:Object a skos:Concept ;
+    skos:broader sml-term:Entity ;
+    skos:definition "Entity that exists or can exist within a concrete space-time. An object executes an activity, and is transformed by an activity"@en ;
+    skos:prefLabel "Object"@en .
+
+sml-term:PureSubstance a skos:Concept ;
+    skos:broader sml-term:Matter ;
+    skos:definition "Chemical matter that has an equal chemical composition and recognizable uniform and isotropic properties"@en ;
+    skos:prefLabel "Pure substance"@en .
+
+sml-term:RealObject a skos:Concept ;
+    skos:altLabel "Amount of matter"@en ;
+    skos:broader sml-term:PhysicalObject ;
+    skos:definition "physical object (rigid or non-rigid) that is (or can be) tangible and visible in reality, man-made or naturally occurring"@en ;
+    skos:prefLabel "Real object"@en .
+
+sml-term:Representation a skos:Concept ;
+    skos:broader sml-term:InformationObject ;
+    skos:definition "That which represents something else"@en ;
+    skos:prefLabel "Representation"@en .
+
+sml-term:Type a skos:Concept ;
+    skos:broader sml-term:AbstractConcept ;
+    skos:definition "A meta-concept which instances are concepts (not individuals)"@en ;
+    skos:prefLabel "Type"@en .
+
+time:TemporalEntity rdfs:seeAlso sml-term:TemporalEntity ;
+    rdfs:subClassOf sml:Representation ;
+    skos:definition "A temporal interval or instant"@en ;
+    skos:prefLabel "Temporal entity"@en .
+
+sml-term:ConcreteConcept a skos:Concept ;
+    skos:broader sml-term:TopConcept ;
+    skos:definition "Concept that forms a manifestation and a demarcation in a concrete space-time. A concrete concept has a life cycle"@en ;
+    skos:prefLabel "Concrete concept"@en .
+
+sml-term:Objectification a skos:Concept ;
+    skos:broader sml-term:AbstractConcept ;
+    skos:definition "An attribute (quality or quantity) or relation represented as an individual defined by a concept"@en ;
+    skos:prefLabel "Objectification"@en .
+
+sml-term:hasPart a skos:Concept ;
+    skos:definition "A decomposition (hasPart) relation between concrete concepts"@en ;
+    skos:prefLabel "has part"@en .
+
+sml-term:AggregationStateType a skos:Concept ;
+    skos:broader sml-term:EnumerationType ;
+    skos:definition "One of the four fundamental states of matter being a solid, liquid, gas or plasma"@en ;
+    skos:prefLabel "Aggregation state type"@en .
+
+sml-term:TopConcept a skos:Concept ;
+    skos:definition "The most generic concept"@en ;
+    skos:prefLabel "Top concept"@en .
+
+sml-term:TransferType a skos:Concept ;
+    skos:broader sml-term:EnumerationType ;
+    skos:definition "The type of thing being transferred, here: material, information, energy or force"@en ;
+    skos:prefLabel "Transfer type"@en .
+
+sml-term:EnumerationType a skos:Concept ;
+    skos:broader sml-term:Type ;
+    skos:definition "A meta-concept having concepts as instances having no further attributes or relations (annotations only)"@en ;
+    skos:prefLabel "Enumeration type"@en .
+
+sml-term:PhysicalObject a skos:Concept ;
+    skos:broader sml-term:Object ;
+    skos:definition "Object that exists or may exist within physical 4D space-time. A physical object forms a manifestation and a demarcation of matter and/or energy, and is (in)directly perceptible by the senses"@en ;
+    skos:prefLabel "Physical object"@en .
+
+sml-term:Entity a skos:Concept ;
+    skos:broader sml-term:ConcreteConcept ;
+    skos:definition "Concept that forms a manifestation and a demarcation in a concrete space-time, and which has a certain state at any moment in time. An entity has a unique identity that remains constant throughout its life cycle. The life cycle of an entity is made up of the sequence of states of that entity, which follow each other in time. An entity is an object or an activity. An object exists, an activity takes place"@en ;
+    skos:prefLabel "Entity"@en .
+
+sml:hasPart a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:domain sml:ConcreteConcept ;
+    rdfs:range sml:ConcreteConcept ;
+    rdfs:seeAlso sml-term:hasPart ;
+    skos:definition "A decomposition (hasPart) relation between concrete concepts"@en ;
+    skos:prefLabel "has part"@en .
+

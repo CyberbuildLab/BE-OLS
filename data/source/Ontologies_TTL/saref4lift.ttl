@@ -1,0 +1,1026 @@
+@prefix s4lift: <https://saref.etsi.org/saref4lift/> .
+@prefix s4syst: <https://saref.etsi.org/saref4syst/> .
+@prefix s4bldg: <https://saref.etsi.org/saref4bldg/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix geo: <http://www.opengis.net/ont/geosparql#>.
+
+@base <https://saref.etsi.org/saref4lift/> .
+
+<https://saref.etsi.org/saref4lift/> rdf:type owl:Ontology ;
+                                      owl:versionIRI <https://saref.etsi.org/saref4lift/v2.1.1/> ;
+                                      owl:imports <https://saref.etsi.org/core/v4.1.1/>, 
+                                        <https://saref.etsi.org/saref4syst/v1.1.2/> ,
+                                        <https://saref.etsi.org/saref4bldg/v1.1.2/> ; 
+                                      dcterms:creator     <https://www.linkedin.com/in/mahdi-bennara/>,
+                                                          <https://pdi.fbk.eu/people/profile/dragoni> ,
+                                                          <https://www.linkedin.com/in/albafernandezizquierdo> ,
+                                                          <http://www.garcia-castro.com/foaf.rdf#me> ,
+                                                          <http://www.maxime-lefrancois.info/> ;
+                                      dcterms:description "This ontology extends the SAREF ontology for the Smart Lifts domain."@en ;
+                                      dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+                                      dcterms:issued "2025-06-05"^^xsd:date ;
+                                      dcterms:modified "2025-06-05"^^xsd:date ;
+                                      dcterms:publisher <https://www.etsi.org/> ;
+                                      dcterms:source <https://saref.etsi.org/sources/saref4lift/> ;
+                                      rdfs:seeAlso <https://www.etsi.org/deliver/etsi_ts/103400_103499/10341011/02.01.01_60/ts_10341011v020101p.pdf> ;
+                                      dcterms:title "SAREF4WEAR: an extension of SAREF for the Smart Lifts domain"@en ;
+                                      vann:preferredNamespacePrefix "s4lift" ;
+                                      vann:preferredNamespaceUri "https://saref.etsi.org/saref4lift/" ;
+                                      owl:priorVersion <https://saref.etsi.org/saref4lift/v1.1.1/> ;
+                                      owl:versionInfo "v2.1.1" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/description
+skos:definition rdf:type owl:AnnotationProperty .
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+dcterms:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+geo:hasGeometry rdf:type owl:ObjectProperty ;
+                                                   rdfs:isDefinedBy geo: ;
+                                                   rdfs:label "hasGeometry"@en ;
+                                                   rdfs:comment "A spatial representation for a given feature."@en .
+
+###  https://saref.etsi.org/saref4lift/CarloadLimit
+s4lift:CarloadLimit rdf:type saref:Property;
+  skos:broader s4lift:Load ;
+  rdfs:comment "The limit load to be safely carried by a smart lift car, as a design parameter."@en ;
+  rdfs:label "Carload limit load"@en .
+
+
+###  https://saref.etsi.org/saref4lift/ElectricPowerSystem
+s4lift:ElectricPowerSystem rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:System ;
+  rdfs:comment "The class of electric power systems, i.e., systems that exchange electricity (i.e., electric power) with other systems."@en ;
+  rdfs:label "Electric Power System"@en .
+
+
+###  https://saref.etsi.org/saref4lift/ElectricalConnectionPoint
+s4lift:ElectricalConnectionPoint rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:ConnectionPoint ;
+  rdfs:comment "The class of electrical connection points of electric power systems, at which they may be electricaly connected to other systems."@en ;
+  rdfs:label "Electrical Conection Point"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasMainPowerSupply
+s4lift:hasMainPowerSupply rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectsAt ;
+  rdfs:domain s4lift:ElectricPowerSystem ;
+  rdfs:range s4lift:ElectricalConnectionPoint ;
+  rdfs:comment "A relationship defining the main power supply of an electric power system."@en ;
+  rdfs:label "has main power supply"@en .
+
+
+###  https://saref.etsi.org/saref4lift/connectedToEmergencyBattery
+s4lift:connectedToEmergencyBattery rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectedTo ;
+  rdfs:domain s4lift:ElectricPowerSystem ;
+  rdfs:range s4lift:ElectricPowerSystem ;
+  rdfs:comment "A relationship defining the emergency battery of an electric power system."@en ;
+  rdfs:label "connected to emergency battery"@en .
+
+###  https://saref.etsi.org/saref4lift/hasAlarmSOSSystem
+s4lift:hasAlarmSOSSystem rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:hasSubSystem ;
+  rdfs:domain s4syst:System ;
+  rdfs:range s4syst:System ;
+  rdfs:comment "A relationship defining the alarm SOS subsystem of a system."@en ;
+  rdfs:label "has alarm SOS system"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasStandardPowerSupply
+s4lift:hasStandardPowerSupply rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectsAt ;
+  rdfs:domain s4lift:ElectricPowerSystem ;
+  rdfs:range s4lift:ElectricalConnectionPoint ;
+  rdfs:comment "A relationship defining the standard power supply of an electric power system."@en ;
+  rdfs:label "has standard power supply"@en .
+
+
+###  https://saref.etsi.org/saref4lift/ThreePhaseConnectionPoint
+s4lift:ThreePhaseConnectionPoint a owl:Class ;
+    rdfs:label "Three-Phase Connection Point"@en ;
+    rdfs:comment """A three-phase connection point is a connection point composed of four wires (plus the protective earth): 
+
+- wires R, S, T, for the phases;
+- wire N for the neutral.
+"""@en ;
+    rdfs:subClassOf s4lift:ElectricalConnectionPoint .
+
+###  https://saref.etsi.org/saref4lift/SinglePhaseConnectionPoint
+s4lift:SinglePhaseConnectionPoint a owl:Class ;
+    rdfs:label "Single Phase Connection Point"@en ;
+    rdfs:comment """A single phase connection point is a connection point composed of two wires (plus the protective earth): 
+
+- wire for the phase;
+- wire for the neutral."""@en ;
+    rdfs:subClassOf s4lift:ElectricalConnectionPoint .
+
+###  https://saref.etsi.org/saref4lift/SinglePhaseConnectionPoint
+s4lift:DirectCurrentConnectionPoint a owl:Class ;
+    rdfs:label "Direct Current Connection Point"@en ;
+    rdfs:comment """The class of electrical connection points through which energy flows using direct current."""@en ;
+    rdfs:subClassOf s4lift:ElectricalConnectionPoint .
+
+
+###  https://saref.etsi.org/saref4lift/conveys
+s4lift:conveys rdf:type owl:ObjectProperty ;
+                rdfs:domain s4lift:Signal ;
+                rdfs:range saref:Observation ;
+                rdfs:comment "A relationship specifying an observation that is conveyed by a signal"@en ;
+                rdfs:label "conveys"@en .
+
+
+###  https://saref.etsi.org/saref4lift/isGroupedIn
+s4lift:isGroupedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain s4lift:SmartLiftInstallation ;
+             rdfs:range s4lift:SmartLiftGroup ;
+             rdfs:comment "A relationship specifying the smart lift installations grouped into smart lift groups"@en ;
+             rdfs:label "is grouped in"@en .
+
+
+###  https://saref.etsi.org/saref4lift/isMasterInGroup
+s4lift:isMasterInGroup rdf:type owl:ObjectProperty ;
+             rdfs:domain s4lift:SmartLiftInstallation ;
+             rdfs:range s4lift:SmartLiftGroup ;
+             rdfs:subPropertyOf s4lift:isGroupedIn ;
+             rdfs:comment "the smart lift installation acts as master for the common capabilities in the smart lift group."@en ;
+             rdfs:label "is master in group"@en .
+
+###  https://saref.etsi.org/saref4lift/isSecondaryInGroup
+s4lift:isSecondaryInGroup rdf:type owl:ObjectProperty ;
+             rdfs:domain s4lift:SmartLiftInstallation ;
+             rdfs:range s4lift:SmartLiftGroup ;
+             rdfs:subPropertyOf s4lift:isGroupedIn ;
+             rdfs:comment "the smart lift installation acts as depends from the master smart lift installation in the smart lift group for the common capabilities."@en ;
+             rdfs:label "is secondary in group"@en .
+
+
+###  https://saref.etsi.org/saref4lift/isPeerInGroup
+s4lift:isPeerInGroup rdf:type owl:ObjectProperty ;
+             rdfs:domain s4lift:SmartLiftInstallation ;
+             rdfs:range s4lift:SmartLiftGroup ;
+             rdfs:subPropertyOf s4lift:isGroupedIn ;
+             rdfs:comment "the smart lift installation is part of an smart lift group and composed by peers smart lift installation respect to the common capabilities."@en ;
+             rdfs:label "is peer in group"@en .
+
+###  https://saref.etsi.org/saref4lift/containsCar
+s4lift:containsCar rdf:type owl:ObjectProperty ;
+  rdfs:domain s4lift:SmartLiftInstallation ;
+  rdfs:range s4lift:SmartLiftCar ;
+  rdfs:subPropertyOf s4bldg:hasSpace ;
+  rdfs:comment "A relationship between a smart lift installation and its car."@en ;
+  rdfs:label "contains car"@en .
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+###  https://saref.etsi.org/saref4lift/hasPlateInformation
+s4lift:hasPlateInformation rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4lift:SmartLiftInstallation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "An information usually also inscribed on a plate attached to the lift car."@en ;
+  rdfs:label "has plate information"@en .
+
+
+###  https://saref.etsi.org/saref4lift/DoorCloseTime
+s4lift:DoorCloseTime rdf:type saref:Property ;
+  rdfs:comment "The time spent by an entity (e.g., a lift, a building space, a door) to close its doors"@en ;
+  rdfs:label "Door close time"@en .
+
+###  https://saref.etsi.org/saref4lift/DoorOpenTime
+s4lift:DoorOpenTime rdf:type saref:Property ;
+  rdfs:comment "The time spent by an entity (e.g., a lift, a building space, a door) to open its doors"@en ;
+  rdfs:label "Door open time"@en .
+
+
+###  https://saref.etsi.org/saref4lift/TravelTime
+s4lift:TravelTime rdf:type saref:Property ;
+  rdfs:comment "The time spent by an entity (e.g., a lift car) to travel between stops"@en ;
+  rdfs:label "Travel time"@en .
+
+###  https://saref.etsi.org/saref4lift/hasBuildingManager
+s4lift:hasBuildingManager rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the manager of the building where a system is located, as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has building manager"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasAlarmMonitoringCentre
+s4lift:hasAlarmMonitoringCentre rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the monitoring centre of the alarms, as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has alarm monitoring centre"@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/hasInspectionAuthority
+s4lift:hasInspectionAuthority rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the Authority that is entitled to periodically inspect the system installation and certify its suitability for the intended use, as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has inspection authority"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasStops
+s4lift:hasStops rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "The number of stops by an entity (e.g., a lift) "@en ;
+  rdfs:label "has stops"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasDoors
+s4lift:hasDoors rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4bldg:BuildingSpace ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "The number of door connection points in a building space (e.g., a smart lift car) "@en ;
+  rdfs:label "has doors"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasCarServices
+s4lift:hasCarServices rdf:type owl:DatatypeProperty ;
+   rdfs:domain s4lift:SmartLiftInstallation ;
+   rdfs:range xsd:integer ;
+   rdfs:comment "The number of car services, taking care of the case where the car has multiple doors that give independent access to different locations on a given floor. It is expected to be greater or equal to the number of Car Stops."@en ;
+   rdfs:label "has car services"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasInstallerCompany
+s4lift:hasInstallerCompany rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the installer company of a system (e.g., device), as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has installer company"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasGeographicLocationValidator
+s4lift:hasGeographicLocationValidator rdf:type owl:DatatypeProperty ;
+                     rdfs:domain s4syst:System ;
+                      rdfs:comment "Name of who has provided the validation of the correctness of the geographic location of the system. The value is expected to be a string or a string with language tag."@en ;
+                      rdfs:label "has geographic location validator"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasMainEmergencyTelephoneNumber
+s4lift:hasMainEmergencyTelephoneNumber rdf:type owl:DatatypeProperty ;
+                     rdfs:domain s4syst:System ;
+                        rdfs:range xsd:anyURI ;
+                        rdfs:comment "Main emergency telephone number to be called in case of emergency. The value is expected to be a URI with the tel: URI scheme as defined RFC 3966."@en ;
+                        rdfs:label "has main emergency telephone number"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasManufacturingCompanyRepresentative
+s4lift:hasManufacturingCompanyRepresentative rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the local representative of the manufacturing company of a system, as per [ISO 16484-5: Profile_Name]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has manufacturing company representative"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasMaintenanceCompany
+s4lift:hasMaintenanceCompany rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:comment "A relationship identifying the maintenance company of a system, as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+  rdfs:label "has maintenance company"@en .
+
+
+###  https://saref.etsi.org/saref4lift/hasLegalOwner
+s4lift:hasLegalOwner rdf:type owl:DatatypeProperty ;
+           rdfs:domain s4syst:System ;
+          rdfs:comment "A relationship identifying the legal owner of a system, as per [ISO 16484-5: inclusion in Description Property]. The value is expected to be a string or a string with language tag."@en ;
+          rdfs:label "has legal owner"@en .
+
+###  https://saref.etsi.org/saref4lift/hasSecondaryEmergencyTelephoneNumber
+s4lift:hasSecondaryEmergencyTelephoneNumber rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:range xsd:anyURI ;
+  rdfs:comment "Secondary emergency number to be called in case of emergency. The value is expected to be a URI with the tel: URI scheme as defined RFC 3966."@en ;
+  rdfs:label "has secondary emergency number"@en .
+
+###  https://saref.etsi.org/saref4lift/hasTelephoneNumber
+s4lift:hasTelephoneNumber rdf:type owl:DatatypeProperty ;
+  rdfs:domain s4syst:System ;
+  rdfs:range xsd:anyURI ;
+  rdfs:comment "Number corresponding to the lift communication module to be used for call terminated to the lift car. The value is expected to be a URI with the tel: URI scheme as defined RFC 3966."@en ;
+  rdfs:label "has telephone number"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+
+###  https://saref.etsi.org/saref4lift/CarStopSpace
+s4lift:CarStopSpace rdf:type owl:Class ;
+  rdfs:label "Door Space"@en ;
+  rdfs:comment "The class of building spaces where smart lift car can stop to enable doors opening unlocking"@en ;
+  rdfs:subClassOf s4bldg:BuildingSpace ,
+   [ rdf:type owl:Restriction ;
+     owl:onProperty s4syst:connectsAt ;
+     owl:someValuesFrom s4lift:DoorConnectionPoint
+   ] .
+
+
+###  https://saref.etsi.org/saref4lift/DoorConnectionPoint
+s4lift:DoorConnectionPoint rdf:type owl:Class ;
+  rdfs:label "Door Connection Point"@en ;
+  rdfs:comment "The class of door connection points, which have an open or close state. Smart Lift Car has some door connection points. A connection between building spaces can be at a door connection point."@en ;
+  rdfs:subClassOf s4syst:ConnectionPoint .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+geo:Feature rdf:type owl:Class .
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+geo:Geometry rdf:type owl:Class .
+
+###  http://www.opengis.net/ont/geosparql#asWKT
+geo:asWKT rdf:type owl:DatatypeProperty .
+
+###  http://www.opengis.net/ont/geosparql#wktLiteral
+geo:wktLiteral rdf:type rdfs:Datatype .
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+geo:hasGeometry rdf:type owl:ObjectProperty .
+
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+geo:SpatialObject rdf:type owl:Class .
+
+###  https://saref.etsi.org/saref4lift/AlarmSignal
+s4lift:AlarmSignal rdf:type owl:Class ;
+  rdfs:subClassOf s4lift:Signal ;
+  rdfs:label "Alarm Signal"@en ;
+  rdfs:comment "High priority signal used to attract the operator’s attention to important deviations or abnormal events in system operation (from ISO 11064-5)"@en .
+
+###  https://saref.etsi.org/saref4lift/FaultSignal
+s4lift:FaultSignal rdf:type owl:Class ;
+  rdfs:subClassOf s4lift:Signal ;
+  rdfs:comment "A signal describing some fault."@en ;
+  rdfs:label "Fault signal"@en .
+
+
+###  https://saref.etsi.org/saref4lift/FireOperationState
+s4lift:FireOperationState rdf:type saref:StateValue ;
+  rdfs:label "Fire operation state"@en ;
+  rdfs:comment "The state of a device that is subject to fire operation, according to EN 81-73 (EN 81-77 for anti-seismic lifts)."@en .
+
+
+###  https://saref.etsi.org/saref4lift/FirefightersSmartLift
+s4lift:FirefightersSmartLift rdf:type saref:DeviceKind ;
+  rdfs:label "Firefighters smart lift"@en ;
+  rdfs:comment "The kind of Firefighters Smart Lifts, as per [EN 81-72]."@en .
+
+
+###  https://saref.etsi.org/saref4lift/ElectricalDevice
+s4lift:ElectricalDevice rdf:type owl:Class ;
+             rdfs:subClassOf saref:Device ;
+             rdfs:label "Electrical device"@en ;
+  rdfs:comment "The class of devices with electrical principle of functioning."@en .
+
+
+###  https://saref.etsi.org/saref4lift/HydraulicDevice
+s4lift:HydraulicDevice rdf:type owl:Class ;
+             rdfs:subClassOf saref:Device ;
+             rdfs:label "Hydraulic device"@en ;
+  rdfs:comment "The class of devices with hydraulic principle of functioning."@en .
+
+
+###  https://saref.etsi.org/saref4lift/MachineRoomLessSmartLift
+s4lift:MachineRoomLessSmartLift rdf:type saref:DeviceKind ;
+  rdfs:label "Machine room less smart lift"@en ;
+  rdfs:comment "The kind of smart lifts which do not require a machine room."@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/PassengerAndGoodsPassengerSmartLift
+s4lift:PassengerAndGoodsPassengerSmartLift rdf:type saref:DeviceKind ;
+  rdfs:label "Passenger and goods passenger smart lift"@en ;
+  rdfs:comment "The class of passenger and goods passenger lifts, as per [EN 81-20]."@en .
+
+
+###  https://saref.etsi.org/saref4lift/FloodInTheWellState
+s4lift:FloodInTheWellState rdf:type saref:StateValue ;
+  skos:broader s4lift:AlarmState ;
+  rdfs:label "Flood in the well state"@en ;
+  rdfs:comment "The state of a lift where a flood is detected in the well."@en .
+
+###  https://saref.etsi.org/saref4lift/SmartLiftInstallationFaultState
+s4lift:SmartLiftInstallationFaultState rdf:type owl:Class ;
+  rdfs:subClassOf saref:StateValue ;
+  rdfs:label "Smart lift installation fault state"@en ;
+  rdfs:comment "A faulty state of a smart lift. State values shall have for saref:hasValue one of the values defined in EN 627, (e.g.: \"01xx\" broken security chain)."@en .
+
+###  https://saref.etsi.org/saref4lift/AccessibleGoodsOnlySmartLift
+s4lift:AccessibleGoodsOnlySmartLift rdf:type saref:DeviceKind ;
+  rdfs:label "Accessible goods only smart lift"@en ;
+  rdfs:comment "The class of Smart Lifts that are used for accessible goods only, as per [EN 81-31]."@en .
+
+
+###  https://saref.etsi.org/saref4lift/GoodsSmartLift
+s4lift:GoodsSmartLift rdf:type saref:DeviceKind ;
+  rdfs:label "Goods smart lift"@en ;
+  rdfs:comment "The class of Smart Lifts that are used for goods."@en .
+
+
+###  https://saref.etsi.org/saref4lift/CarInUnlockingSpaceState
+s4lift:CarInUnlockingSpaceState rdf:type saref:StateValue ;
+  rdfs:label "Car In Unlocking Space state"@en ;
+  rdfs:comment "The state of a lift where the car is in some door unlocking building space."@en .
+
+
+###  https://saref.etsi.org/saref4lift/Load
+s4lift:Load rdf:type saref:Property ;
+      rdfs:comment "The load carried by a device, typically expressed in kilograms."@en ;
+      rdfs:label "Load"@en .
+
+
+###  https://saref.etsi.org/saref4lift/MovingDirection
+s4lift:MovingDirectionState rdf:type saref:State ;
+  rdfs:label "Moving Direction State"@en ;
+  rdfs:comment "A type of state"@en .
+
+
+###  https://saref.etsi.org/saref4lift/MovingDownwardDirectionState
+s4lift:MovingDownwardDirectionState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:MovingDirectionState ;
+  rdfs:label "Moving Downward Direction State"@en ;
+  rdfs:comment "The state of a device that is moving in the downward direction"@en .
+
+###  https://saref.etsi.org/saref4lift/MovingUpwardDirectionState
+s4lift:MovingUpwardDirectionState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:MovingDirectionState ;
+  rdfs:label "Moving Upward Direction State"@en ;
+  rdfs:comment "The state of a device that is moving in the upward direction"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Network
+s4lift:Network rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:System ;
+  rdfs:label "Network"@en ;
+ rdfs:comment "The class of communication networks."@en .
+
+
+###  https://saref.etsi.org/saref4lift/canConnectToNetwork
+s4lift:canConnectToNetwork rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectedTo ;
+  rdfs:domain s4syst:System ;
+  rdfs:range s4lift:Network ;
+  rdfs:label "can connect to network"@en ;
+  rdfs:comment "A relationship between a system and a network it can connect to."@en .
+
+
+###  https://saref.etsi.org/saref4lift/PossibleSmartLiftCarService
+s4lift:PossibleSmartLiftCarService rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:Connection ,
+   [ a owl:Restriction ;
+     owl:onProperty s4syst:connectsSystem ;
+     owl:someValuesFrom s4lift:CarStopSpace ]  ,
+   [ a owl:Restriction ;
+     owl:onProperty s4syst:connectsSystemAt ;
+     owl:someValuesFrom s4lift:DoorConnectionPoint ] ,
+   [ a owl:Restriction ;
+     owl:onProperty s4syst:connectsSystem ;
+     owl:someValuesFrom s4bldg:BuildingSpace ] ;
+  rdfs:label "Possible Smart lift car service"@en ;
+  rdfs:comment "A possible connection between a car stop space of a smart lift installation, a building space it can serve, and the door of the smart lift car used to serve this building space."@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftCarService
+s4lift:SmartLiftCarService rdf:type owl:Class ;
+  rdfs:subClassOf s4lift:PossibleSmartLiftCarService ;
+  rdfs:label "Smart lift car service"@en ;
+  rdfs:comment "A connection between a car stop space of a smart lift installation, a building space it can serve, and the door of the smart lift car used to serve this building space."@en .
+
+###  https://saref.etsi.org/saref4lift/hasCarService
+s4lift:hasCarService rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf s4syst:connectedThrough ;
+  rdfs:domain s4lift:SmartLiftInstallation ;
+  rdfs:range s4lift:PossibleSmartLiftCarService ;
+  rdfs:label "has car service"@en ;
+  rdfs:comment "A relationship between a system and a car service."@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/NetworkAccess
+s4lift:NetworkAccess rdf:type owl:Class ;
+  rdfs:subClassOf s4syst:Connection ;
+  rdfs:label "Network Access"@en ;
+  rdfs:comment "Network accesss is a connection capability between a system and a network."@en .
+
+###  https://saref.etsi.org/saref4lift/Coverage
+s4lift:Coverage rdf:type saref:Property ;
+   rdfs:label "Coverage"@en ;
+   rdfs:comment "Coverage of a network access."@en .
+
+
+###  https://saref.etsi.org/saref4lift/Temperature
+s4lift:Temperature rdf:type saref:Property ;
+  rdfs:label "Temperature"@en ;
+  rdfs:comment "The temperature of a feature of interest"@en .
+
+###  https://saref.etsi.org/saref4lift/CarTemperature
+s4lift:CarTemperature rdf:type saref:Property ;
+   skos:broader saref:Temperature ;
+   rdfs:label "Car temperature"@en ;
+   rdfs:comment "The temperature of the smart lift car of a smart lift installation."@en .
+
+###  https://saref.etsi.org/saref4lift/EngineRoomTemperature
+s4lift:EngineRoomTemperature rdf:type saref:Property ;
+   skos:broader saref:Temperature ;
+   rdfs:label "Engine room temperature"@en ;
+   rdfs:comment "The temperature of the engine room of the smart lift installation."@en .
+
+
+###  https://saref.etsi.org/saref4lift/ShaftTemperature
+s4lift:ShaftTemperature rdf:type saref:Property ;
+   skos:broader saref:Temperature ;
+   rdfs:label "Shaft temperature"@en ;
+   rdfs:comment "The temperature of the shaft of the smart lift installation."@en .
+
+
+###  https://saref.etsi.org/saref4lift/ElectricPowerConsumption
+s4lift:ElectricPowerConsumption rdf:type saref:Property ;
+   rdfs:label "Electric power consumption"@en ;
+   rdfs:comment "The electric power consumption of a feature of interest. If a property of a s4syst:System, or the property of a s4syst:ConnectionPoint thereof, by convention the power consumption is positive if the electric energy enters the system."@en .
+
+###  https://saref.etsi.org/saref4lift/ChannelBitErrorRate
+s4lift:ChannelBitErrorRate rdf:type saref:Property ;
+   rdfs:label "Channel Bit Error Rate"@en ;
+   rdfs:comment "Channel Bit Error Rate of a network access (via AT commands from the module); 0..7 as for RXQUAL defined by ETSI TS 145 008. "@en .
+
+
+###  https://saref.etsi.org/saref4lift/ReceivedSignalStrengthIndicator
+s4lift:ReceivedSignalStrengthIndicator rdf:type saref:Property ;
+   rdfs:label "Received Signal Strength Indicator"@en ;
+   rdfs:comment """Received Signal Strength Indicator of a network access. (via AT commands from the transmission module):
+0: -113 dBm or lower quality;
+1: -111 dBm;
+2 .. 30: -109 dBm .. -53 dBm;
+31: -51 dBm or greater;
+99: Not Known or non-detectable."""@en .
+
+
+###  https://saref.etsi.org/saref4lift/NumberOfCallsStatistics
+s4lift:NumberOfCallsStatistics rdf:type saref:Property ;
+               rdfs:label "Number of calls statistics"@en ;
+               rdfs:comment "Total counter of the number of calls since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+
+###  https://saref.etsi.org/saref4lift/NumberOfFaults
+s4lift:NumberOfFaults rdf:type saref:Property ;
+                rdfs:label "Number of faults"@en ;
+                rdfs:comment "Number of faults."@en .
+
+
+###  https://saref.etsi.org/saref4lift/InspectionOperationState
+s4lift:InspectionOperationState rdf:type saref:StateValue ;
+              rdfs:label "Inspection operation state"@en ;
+              rdfs:comment "The state of a device that is subject to inspection operation by the maintenance technician"@en .
+
+###  https://saref.etsi.org/saref4lift/OutOfServiceState
+s4lift:OutOfServiceState rdf:type saref:StateValue ;
+              rdfs:label "Out of service state"@en ;
+              rdfs:comment "The state of a device that is out of service."@en .
+
+###  https://saref.etsi.org/saref4lift/OverloadedState
+s4lift:OverloadedState rdf:type saref:StateValue ;
+              rdfs:label "Overloaded state"@en ;
+              rdfs:comment "The state of a device that is overloaded."@en .
+
+
+###  https://saref.etsi.org/saref4lift/DetectedLoadState
+s4lift:DetectedLoadState rdf:type saref:StateValue ;
+              rdfs:label "Detected Load state"@en ;
+              rdfs:comment "The state of a device that detected load. For example when at least one person is in the smart lift car."@en .
+
+
+###  https://saref.etsi.org/saref4lift/PowerSupplyState
+s4lift:PowerSupplyState rdf:type saref:State ;
+              rdfs:label "Power Supply State"@en ;
+              rdfs:comment "A type of state."@en .
+
+###  https://saref.etsi.org/saref4lift/MainPowerSupplyState
+s4lift:StandardPowerSupplyState rdf:type saref:StateValue ;
+              saref:isValueOfState s4lift:PowerSupplyState ;
+              rdfs:label "Standard Power Supply State"@en ;
+              rdfs:comment "The state of a device that is using the standard power supply."@en .
+
+###  https://saref.etsi.org/saref4lift/EmergencyPowerSupplyState
+s4lift:EmergencyPowerSupplyState rdf:type saref:StateValue ;
+              saref:isValueOfState s4lift:PowerSupplyState ;
+              rdfs:label "Emergency Power Supply State"@en ;
+              rdfs:comment "The state of a device that is using the emergency power supply."@en .
+
+
+###  https://saref.etsi.org/saref4lift/BatteryPowerState
+s4lift:BatteryPowerState rdf:type saref:State ;
+  rdfs:label "Battery Power State"@en ;
+  rdfs:comment "The state of a battery power supply."@en .
+
+
+###  https://saref.etsi.org/saref4lift/GoodBatteryPowerState
+s4lift:GoodBatteryPowerState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:BatteryPowerState ;
+  rdfs:label "Good Battery Power State"@en ;
+  rdfs:comment "The state of a system whose battery is in good operating conditions."@en .
+
+###  https://saref.etsi.org/saref4lift/WarnBatteryPowerState
+s4lift:WarnBatteryPowerState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:BatteryPowerState ;
+  rdfs:label "Warn Battery Power State"@en ;
+  rdfs:comment "The state of a system whose battery is functionally in operating conditions but shows signs of reduced capability."@en .
+
+
+###  https://saref.etsi.org/saref4lift/CriticalBatteryPowerState
+s4lift:CriticalBatteryPowerState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:BatteryPowerState ;
+  rdfs:label "Critical Battery Power State"@en ;
+  rdfs:comment "The state of a system whose battery is in operating in critically reduced capability. For an emergency battery of a Smart Lift, a battery in critical state still has the power to send the car to the closest floor in case in failure, but needs to be replaced. For an emergency battery of a SOS Alarm system, the battery still has the power to sustain the alarm system active for the minimum time defined by applicable regulation, but needs to be replaced;"@en .
+
+
+###  https://saref.etsi.org/saref4lift/InsufficientBatteryPowerState
+s4lift:InsufficientBatteryPowerState rdf:type saref:StateValue ;
+  saref:isValueOfState s4lift:BatteryPowerState ;
+  rdfs:label "Insufficient Battery Power State"@en ;
+  rdfs:comment "The state of a system whose battery has insufficient capability. For an emergency battery of a Smart Lift, a battery in insufficient state does not have the power to send the car to the closest floor in case in failure; It needs to be urgently replaced. For an emergency battery of a SOS Alarm system, the battery does not have the power to sustain the alarm system active for the minimum time defined by applicable regulation; It needs to be urgently replaced. In UE and other applicable countries such minimum time is at least one hour (as required by EN 81-28)."@en .
+
+
+###  https://saref.etsi.org/saref4lift/SendCarToSpecificServiceCommand
+s4lift:SendCarToSpecificServiceCommand rdf:type saref:Command ;
+                               rdfs:comment "A type of command to call the car to a specific service."@en ;
+                               rdfs:label "Send car to specific service command"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SetOutOfServiceCommand
+s4lift:SetOutOfServiceCommand rdf:type saref:Command ;
+                        rdfs:comment "A type of command to set the lift in Out of Service mode."@en ;
+                        rdfs:label "Set out of service command"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SetRealTimeModeCommand
+s4lift:SetRealTimeModeCommand rdf:type saref:Command ;
+                        rdfs:comment "A type of command to set the real time mode on or off."@en ;
+                        rdfs:label "Set real time mode command"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Signal
+s4lift:Signal rdf:type owl:Class ;
+        rdfs:subClassOf saref:ProcedureExecution ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty saref:observes ;
+                          owl:someValuesFrom saref:FeatureOfInterest
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty s4lift:conveys ;
+                          owl:someValuesFrom saref:Observation
+                        ] ;
+        rdfs:label "Signal"@en ;
+        rdfs:comment "Signals convey some observation about a Feature of Interest."@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftEdgeComponent
+s4lift:SmartLiftEdgeComponent rdf:type owl:Class ;
+                        rdfs:subClassOf saref:Device ,
+                                        s4syst:System ;
+                        rdfs:comment "A Smart Lift Edge Component is dedicated to the hosting of smart lift additional modules in the case that they are not hosted directly in the  Smart Lift Edge Control Unit. An example could be the case of an additional earthquake sensor added after the lift deployment and not controlled by the Smart Lift Edge Control Unit."@en ;
+                        rdfs:label "Smart Lift Edge Component"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftEdgeControlUnit
+s4lift:SmartLiftEdgeControlUnit rdf:type owl:Class ;
+                          rdfs:subClassOf saref:Device ,
+                                          s4syst:System ;
+                          rdfs:comment "A  Smart Lift Edge Control Unit  is the main element of a Smart Lift installation and it is typically associated with the lift control cabinet"@en ;
+                          rdfs:label "Smart Lift Edge Control Unit"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftGroup
+s4lift:SmartLiftGroup rdf:type owl:Class ;
+                rdfs:subClassOf saref:FeatureOfInterest ,
+                                s4syst:System ;
+                rdfs:comment "A Smart Lift Group represents the correlation of multiple Smart Lifts Installation and it is supported by the introduction of a Smart Lift Group identifier common each Smart Lifts Installation belonging to the same Smart Lift Group. Such kind of installations usually presents control units connected one each other to coordinate the movement and position of the different lifts, where the common commands (e.g. the call buttons) are given to one of these control units that acts as a principal master and coordinates the other installations or is composed by peer installations that coordinates one each othe"@en ;
+                rdfs:label "Smart Lift Group"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftInstallation
+s4lift:SmartLiftInstallation rdf:type owl:Class ;
+                       rdfs:subClassOf geo:Feature , s4bldg:BuildingSpace , 
+                                       saref:FeatureOfInterest , s4lift:ElectricPowerSystem ,
+                                       s4syst:System ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty saref:hasProperty ;
+                                         owl:hasValue s4lift:CarloadLimit
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:canConnectToNetwork ;
+                                         owl:someValuesFrom s4lift:Network
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4syst:hasSubSystem ;
+                                         owl:someValuesFrom s4lift:SmartLiftEdgeComponent
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4syst:hasSubSystem ;
+                                         owl:someValuesFrom s4lift:SmartLiftEdgeControlUnit
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4bldg:hasSpace ;
+                                         owl:someValuesFrom s4lift:CarStopSpace
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasStops ;
+                                         owl:someValuesFrom xsd:integer
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasGeographicLocationValidator ;
+                                         owl:minCardinality 1
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasMainEmergencyTelephoneNumber ;
+                                         owl:someValuesFrom xsd:anyURI
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasMaintenanceCompany ;
+                                         owl:minCardinality 1
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasSecondaryEmergencyTelephoneNumber ;
+                                         owl:someValuesFrom xsd:anyURI
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty s4lift:hasTelephoneNumber ;
+                                         owl:someValuesFrom xsd:anyURI
+                                       ] ;
+                       rdfs:comment "A Smart Lift Installation  in the Smart Lift  System corresponds to a single lift, with all its elements."@en ;
+                       rdfs:label "Smart lift Installation"@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftWithoutEmergencyCallSupport
+s4lift:SmartLiftWithoutEmergencyCallSupport rdf:type saref:DeviceKind ;
+  rdfs:label "Smart Lift Without Emergency Call Support"@en ;
+  rdfs:comment "The class of smart lift installatinos that lack support for emergency call. Emergency call support is typically mandatory in new lifts but may be lacking in old installations."@en .
+
+
+###  https://saref.etsi.org/saref4lift/SmartLiftCar
+s4lift:SmartLiftCar rdf:type owl:Class ;
+  rdfs:label "Smart Lift Car"@en ;
+  rdfs:comment "The car of a smart lift installation."@en ;
+  rdfs:subClassOf s4bldg:BuildingSpace, saref:FeatureOfInterest , s4syst:System ,
+   [ rdf:type owl:Restriction ;
+     owl:onProperty s4syst:connectsAt ;
+     owl:someValuesFrom s4lift:DoorConnectionPoint
+   ] .
+
+
+###  https://saref.etsi.org/saref4lift/VerticalSmartLiftingPlatform
+s4lift:VerticalSmartLiftingPlatform rdf:type saref:DeviceKind ;
+  rdfs:label "Vertical Smart lifting platform"@en ;
+  rdfs:comment "The class of vertical smart lifting platforms intended for use by persons with impaired mobility, as per [81-41]."@en .
+
+
+###  https://saref.etsi.org/saref4lift/StatisticSignal
+s4lift:StatisticSignal rdf:type owl:Class ;
+  rdfs:subClassOf s4lift:Signal ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ; owl:onProperty s4lift:conveys ; owl:someValuesFrom s4lift:StatisticsObservation ] ;
+  rdfs:label "Statistic signal"@en ;
+  rdfs:comment "A signal associated to some statistics observation of a device"@en .
+
+
+###  https://saref.etsi.org/saref4lift/StatusSignal
+s4lift:StatusSignal rdf:type owl:Class ;
+  rdfs:subClassOf s4lift:Signal ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ; owl:onProperty s4lift:conveys ; owl:someValuesFrom saref:Observation ] ;
+  rdfs:label "Status signal"@en ;
+  rdfs:comment "A signal associated to some observation of the state of a device."@en .
+
+
+###  https://saref.etsi.org/saref4lift/TestEmergencyNumberCommand
+s4lift:TestEmergencyNumberCommand rdf:type saref:Command ;
+  rdfs:comment "A type of command to test the emergency number"@en ;
+  rdfs:label "Test emergency number command"@en .
+
+###  https://saref.etsi.org/saref4lift/TestRideCommand
+s4lift:TestRideCommand rdf:type saref:Command ;
+  rdfs:comment "A type of command to set the test ride state."@en ;
+  rdfs:label "Test ride command"@en .
+
+
+###  https://saref.etsi.org/saref4lift/TestRideInExecutionState
+s4lift:TestRideInExecutionState rdf:type saref:StateValue ;
+  rdfs:label "Test ride in execution state"@en ;
+  rdfs:comment "The state of a device that is subject to a test ride."@en .
+
+
+###  https://saref.etsi.org/saref4lift/ReservedServiceState
+s4lift:ReservedServiceState rdf:type saref:StateValue ;
+  rdfs:label "Reserved service state"@en ;
+  rdfs:comment "The state of a device when the reserved operation is on run. For Smart Lifts it is typically related to the use of a key or a proximity badge to reach a specific floor(s) or service(es). Some examples of reserved operation are the access to a hotel guest to the room floor, of the housekeeper to a floor (or a service door) to access a personnel-only area, the access of surgical room area in a hospital, etc."@en .
+
+
+###  https://saref.etsi.org/saref4lift/RealTimeModeState
+s4lift:RealTimeModeState rdf:type saref:StateValue ;
+  rdfs:label "Real time mode state"@en ;
+  rdfs:comment "The state of a device when the real time mode is active."@en .
+
+
+###  https://saref.etsi.org/saref4lift/TimeOfLastPeriodicTest72hAttempt
+s4lift:TimeOfLastPeriodicTest72hAttempt rdf:type saref:Property ;
+  rdfs:label "Time of last periodic test 72h attempt"@en ;
+  rdfs:comment "A relationship to the time of the last periodic test 72h attempt of a lift. In UE and other applicable countries, the periodic test shall comply with EN 81.28"@en .
+
+###  https://saref.etsi.org/saref4lift/TimeOfConfirmationOfLastPeriodicTest72hAttempt
+s4lift:TimeOfConfirmationOfLastPeriodicTest72hAttempt rdf:type saref:Property ;
+  rdfs:label "Time of confirmation of last periodic test 72h attempt"@en ;
+  rdfs:comment "A relationship to the time of the confirmation of the last periodic test 72h attempt of a lift. In UE and other applicable countries, the periodic test shall comply with EN 81.28"@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/TotalFloorsCoveredStatistics
+s4lift:TotalFloorsCoveredStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+  rdfs:label "Total Floors Covered Statistics"@en ;
+  rdfs:comment "Total counter of the number of floors covered since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+###  https://saref.etsi.org/saref4lift/NumberOfResetSequencesStatistics
+s4lift:NumberOfResetSequencesStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+  rdfs:label "Number of reset sequences statistics"@en ;
+  rdfs:comment "Total counter of the number of reset sequences since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+
+###  https://saref.etsi.org/saref4lift/TotalReversalDirectionStatistics
+s4lift:TotalReversalDirectionStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+   rdfs:label "Total reversal direction statistics"@en ;
+  rdfs:comment "Total counter of the number of reversal directions since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+
+###  https://saref.etsi.org/saref4lift/TotalNumberOfOpeningOfDoorStatistics
+s4lift:TotalNumberOfOpeningOfDoorStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+   rdfs:label "Total number of opening of door statistics"@en ;
+  rdfs:comment "Total counter of the number of opening of door since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/UpwardTravelsStatistics
+s4lift:UpwardTravelsStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+   rdfs:label "Upward Travels Statistics"@en ;
+   rdfs:comment "Total counter of the number of upward travels since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+###  https://saref.etsi.org/saref4lift/DownwardTravelsStatistics
+s4lift:DownwardTravelsStatistics rdf:type saref:Property ;
+  skos:broader s4lift:Statistics ;
+   rdfs:label "Downward Travels Statistics"@en ;
+   rdfs:comment "Total counter of the number of downward travels since the last reset. As per concept historyPeriodic in ISO 16484-5"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Statistics
+s4lift:Statistics rdf:type saref:Property ;
+  rdfs:comment "Abstract property that describes statistics about some feature of interest"@en ;
+  rdfs:label "Statistics"@en .
+
+###  https://saref.etsi.org/saref4lift/StatisticsObservation
+s4lift:StatisticsObservation a owl:Class ;
+  rdfs:subClassOf saref:Observation ;
+  rdfs:subClassOf [ owl:onProperty saref:observes ; owl:hasValue s4lift:Statistics ] ;
+  rdfs:label "Statistics Observation"@en ;
+  rdfs:comment "An observation of some statistics of a feature of interest"@en .
+
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://saref.etsi.org/saref4lift/Network2G
+s4lift:Network2G rdf:type owl:NamedIndividual ,
+                    s4lift:Network ;
+           rdfs:label "Network 2G"@en ;
+           rdfs:comment "The 2G Network"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Network3G
+s4lift:Network3G rdf:type owl:NamedIndividual ,
+                    s4lift:Network ;
+           rdfs:label "Network 3G"@en ;
+           rdfs:comment "The 3G Network"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Network4G
+s4lift:Network4G rdf:type owl:NamedIndividual ,
+                    s4lift:Network ;
+           rdfs:label "Network 4G"@en ;
+           rdfs:comment "The 4G Network"@en .
+
+
+###  https://saref.etsi.org/saref4lift/Network5G
+s4lift:Network5G rdf:type owl:NamedIndividual ,
+                    s4lift:Network ;
+           rdfs:label "Network 5G"@en ;
+           rdfs:comment "The 5G Network"@en .
+
+
+###  https://saref.etsi.org/saref4lift/NetworkFixedLine
+s4lift:NetworkFixedLine rdf:type owl:NamedIndividual ,
+                           s4lift:Network ;
+                  rdfs:label "Network fixed line"@en ;
+           rdfs:comment "The fixed line Network"@en .
+
+
+
+###  https://saref.etsi.org/saref4lift/AlarmState
+s4lift:AlarmState rdf:type saref:StateValue ;
+  rdfs:label "Alarm State"@en ;
+  rdfs:comment "State of a device when a high priority signal is used to attract the operator’s attention to important deviations or abnormal events in the device operation."@en .
+
+###  https://saref.etsi.org/saref4lift/AlarmInTheCarState
+s4lift:AlarmInTheCarState rdf:type saref:StateValue ;
+  skos:broader s4lift:AlarmState ;
+  rdfs:label "Alarm in the car state"@en ;
+  rdfs:comment "State of a device when the alarm in a car has been activated."@en .
+
+###  https://saref.etsi.org/saref4lift/AlarmVoiceCommunicationState
+s4lift:AlarmVoiceCommunicationState rdf:type saref:StateValue ;
+  skos:broader saref:State ;
+  rdfs:label "Alarm voice communication state"@en ;
+  rdfs:comment "State of a device when alarm voice communication has been activated. In UE and other applicable countries alarms shall comply to EN 81-28"@en .
+
+###  https://saref.etsi.org/saref4lift/AlarmInTheWellState
+s4lift:AlarmInTheWellState rdf:type saref:StateValue ;
+  skos:broader s4lift:AlarmState ;
+  rdfs:label "Alarm in the well state"@en ;
+  rdfs:comment "State of a device when the alarm in the well has been activated."@en .
+
+###  https://saref.etsi.org/saref4lift/AlarmInTheRoofState
+s4lift:AlarmInTheRoofState rdf:type saref:StateValue ;
+  skos:broader s4lift:AlarmState ;
+  rdfs:label "Alarm in the roof state"@en ;
+  rdfs:comment "State of a device when the alarm in the roof has been activated."@en .
+
+###  https://saref.etsi.org/saref4lift/AlarmInTheMachineryState
+s4lift:AlarmInTheMachineryState rdf:type saref:StateValue ;
+  skos:broader s4lift:AlarmState ;
+  rdfs:label "Alarm in the machinery state"@en ;
+  rdfs:comment "State of a device when the alarm in the machinery has been activated."@en .
+
+
+###  https://saref.etsi.org/saref4lift/Voltage
+s4lift:Voltage rdf:type saref:Property ;
+            rdfs:comment "The electric potential of some feature of interest, typically expressed in volt or kilovolt."@en ;
+            rdfs:label "Voltage"@en .
+
+### Commands
+
+
+###  https://saref.etsi.org/saref4lift/MainBoardResetCommand
+s4lift:MainBoardResetCommand rdf:type saref:Command ;
+  rdfs:comment "A command to initiate the board reset"@en ;
+  rdfs:label "Main board reset command"@en .
+

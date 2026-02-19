@@ -1,4 +1,8 @@
-# Built Environment - Ontology Lookup Service (BE-OLS) [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
+# Built Environment - Ontology Lookup Service (BE-OLS) 
+![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg) [![Last commit](https://img.shields.io/github/last-commit/CyberbuildLab/BE-OLS)](https://github.com/CyberbuildLab/BE-OLS/commits/main)
+
+
+
 
 
 This is the repository of the **Built Environment - Ontology Lookup Service (BE-OLS)** that can be accessed at: [(https://cyberbuildlab.github.io/BE-OLS/)]
@@ -30,9 +34,9 @@ Issues (including Missing Ontologies)
 If you notice some error in the information provided by the BE-OLS or a missing ontology, **[please submit an issue](https://github.com/CyberbuildLab/BE-OLS/issues)**
 
 To suggest the addition of a missing ontology, please submit the following information or use the automated Ontology Submission Issue.
-* Name: {name of the ontology}
-* Acronym: {the namespeace acronym, e.g. bot}
-* URI/Namespace: {https://w3id.org/...}
+* Title: {title of the ontology}
+* Prefix: {the namespeace prefix, e.g. bot}
+* URI: {https://w3id.org/...}
 * Reference: {weblink to a webpage or DOI of the paper}
 * Link to AEC ontologies: {they should normally be already in BE-OLS. If not, please submit an Issue to add those too :)}
 * Link to Upper ontologies: {ontologies like: schema, terms, prov, skos, vann, cc, foaf, qudt, unit, og, fno}
@@ -50,12 +54,15 @@ Please find our recent [EC3 conference publication ](https://ec-3.org/publicatio
 or in our [publications folder](https://github.com/CyberbuildLab/BE-OLS/tree/main/publications).
 
 
+License [![Licence](https://img.shields.io/badge/Licence-Hybrid%20(Open%20Data%20%2B%20Code)-red)](LICENSE_MAIN.md)
+=======
+This repository is distributed under multiple licences. Please see LICENSE_MAIN.md for a full licence overview and the LICENSES/ directory for individual licence texts. 
 
-Contact Us
+
+Contact Us [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
 ==========
 For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
 Alternatively, **[open an issue](https://github.com/CyberbuildLab/BE-OLS/issues)** on our GitHub repo.  
-[![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
 
 
 Disclaimer

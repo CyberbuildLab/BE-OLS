@@ -1,0 +1,1392 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#"
+     xml:base="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:OWL="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21">
+        <rdfs:comment>This is a Facility Management Building Energy Ontology for Renovative Design Decisions. The ontology provides different classification aspects, according to which written FM best practice policies can be systematically classified and stored in a form of natural text, as well as in the form of machine-readable rules. Respectively, the ontology contains the Paragraph 405.9.1.1, Paragraph 405.9.1.2, and Paragraph 405.9.1.3 of the International Energy Conservation Code 2021 (IECC) in the form of natural text, as well as in the form of SWRL rules.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#DescibestheOrigin -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#DescibestheOrigin">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#DescribestheReason"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#DescribesaProblem -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#DescribesaProblem"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#DescribesaRule -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#DescribesaRule"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#DescribestheReason -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#DescribestheReason"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Location -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Location">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Part -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Part">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Type -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Building_Type">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Design_Requirement -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Design_Requirement">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Design_Type -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Design_Type">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Weight -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Weight">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Conducted_By -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Conducted_By">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Defined_By -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Defined_By">
+        <rdfs:domain rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Evaluated_As -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Evaluated_As">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Evaluation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Regulated_By -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Regulated_By">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Referes_back -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Referes_back"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Referes_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Referes_to"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Consumption -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Consumption"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Global_X -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Global_X"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Global_Y -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Global_Y">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Air_Conditioning -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Air_Conditioning"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Author -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Author">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#Name"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_GUID -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_GUID"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Issuedate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Issuedate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Lighting -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Lighting"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Standby_Mode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Standby_Mode"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Ventillation_Power -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Ventillation_Power"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operation_Hours -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operation_Hours"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement -->
+
+    <owl:Class rdf:about="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#BIM_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Architect -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Architect">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#BIM_Ontology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#BIM_Ontology"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Best_Practice_Guidelines -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Best_Practice_Guidelines">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Energy_Code -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Energy_Code">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Use_related_Requirements -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Use_related_Requirements">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupancy_and_FM_Services"/>
+        <rdfs:DescribestheReason>Building Use Related Requirements: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_1_Claus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_1_Claus">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_Section"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_Section -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_Section">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#4_Chapter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Consumer_market -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Consumer_market">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Department_Stores -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Department_Stores">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Analysis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Analysis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Conservation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Conservation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Efficiency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Efficiency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Maintenance_and_Safety -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Maintenance_and_Safety">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Renewable_Energy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Renewable_Energy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Time_of_Use_Management -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Time_of_Use_Management">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Evaluation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Evaluation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Electrical_Engineer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Electrical_Engineer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+        <rdfs:comment>Describes a class for Elevators and Escelators</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Conservation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Conservation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Conservation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Efficiency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Efficiency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Efficiency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Consultant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Consultant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Controlling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Controlling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Monitoring_and_Controlling"/>
+        <rdfs:DescribestheReason>Energy Controlling: 
+By determining the exact operation hours and refining the energy control system, the buildings’ operational energy consumption can be decreased.</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Efficient_FM_Services -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Efficient_FM_Services">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Conservation"/>
+        <rdfs:DescribestheReason>Energy-efficient FM Services: To decrease the emobodied energy consumption of buildings</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Maintenance -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Maintenance">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Maintenance_and_Safety"/>
+        <rdfs:DescribestheReason>Energy Maintenance: To maintain the optimal energy consumption of buildings.</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Manager -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Manager">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Modelling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Modelling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Analysis"/>
+        <rdfs:DescribestheReason>Energy Modelling: To decrease energy performance gap by more accurate energy modelling</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Monitoring -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Monitoring">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Monitoring_and_Controlling"/>
+        <rdfs:DescribestheReason>Energy Monitoring: To enable the monitoring of the operational energy consumption. (To look for additional energy saving potentials)</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Safety -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Safety">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Maintenance_and_Safety"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Building_Units -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Building_Units">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Energy-efficient Building Units: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Heating_and_Cooling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Heating_and_Cooling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Energy-efficient Heating and Cooling: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Lighting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Lighting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Energy-efficient Lighting: 
+To decrease the operational energy consumption, by de-lamping, raplacing lamps of harvesting natural day light (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Space_Planning -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Space_Planning">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Energy-efficient Space Planning: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Ventillation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Ventillation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Energy-efficient Ventillation: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experi_based_FM_Requirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement_ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement_">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experi_based_FM_Requirement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experi_based_FM_Requirement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement_"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Exp_based_FM_Requirement_"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement_ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement_">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Knowledge">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Building_Energy_Ontology"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hotel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hotel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#IECC_2021 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#IECC_2021">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Energy_Code"/>
+        <rdfs:DescibestheOrigin>x</rdfs:DescibestheOrigin>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Interior_Design -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Interior_Design">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Lighting_Design_Specialist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Lighting_Design_Specialist">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Logistics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Logistics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Monitoring_and_Controlling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Monitoring_and_Controlling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Conservation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupancy_and_FM_Services -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupancy_and_FM_Services">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Conservation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupant_Engagement_and_Training -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupant_Engagement_and_Training">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Occupancy_and_FM_Services"/>
+        <rdfs:DescribestheReason>Occupant Engagement and Training: To decrease the operational energy consumption (saving energy).</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Office -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Office">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Conservation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Conservation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Conservation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Operational_Energy_Efficiency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Energy_Efficiency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Peak_Energy_Demand -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Peak_Energy_Demand">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Time_of_Use_Management"/>
+        <rdfs:DescribestheReason>Peak Energy Demand: To decrease operational costs, by shifting operation hours of energy consumber building units beafore or after peak hours.</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Plumping_Engineer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Plumping_Engineer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Production -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Production">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Renewable_Energy_Sources -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Renewable_Energy_Sources">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Decisions_for_Renewable_Energy"/>
+        <rdfs:DescribestheReason>Renewable Energy Sources: To maximize the usage of renewable energy sources.</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Residential -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Residential">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Rooms -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Rooms">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Shopping_Centre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Shopping_Centre">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Suitable_Building_Material -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Suitable_Building_Material">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Embodied_Energy_Efficiency"/>
+        <rdfs:DescribestheReason>Select Suitable Building Material: To save energy resources (to decrease the embodied energy consumption of buildings.)</rdfs:DescribestheReason>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Sustainability_Certification_Scheme -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Sustainability_Certification_Scheme">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#FM_Design_Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Sustainable_Design_Consultant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Sustainable_Design_Consultant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Windows -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Windows">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Building_Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#4_Chapter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#4_Chapter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#IECC_2021"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C1">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C2">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C3">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+        <rdfs:DescribesaProblem rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Problem_Definition"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C4">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C5">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C6">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C7">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Has_Air_Conditioning rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Air_Conditioning>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C8">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Global_X rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-86686</Global_X>
+        <Has_Lighting rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</Has_Lighting>
+        <Has_Standby_Mode rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</Has_Standby_Mode>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35</Has_Ventillation_Power>
+        <Has_Ventillation_Power rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</Has_Ventillation_Power>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C9 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevator_C9">
+        <rdf:type rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+        <Global_X rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-92227</Global_X>
+        <Global_Y rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31648</Global_Y>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Failed -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Failed">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Evaluation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#New_FM_Requirement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#New_FM_Requirement">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Controlling"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Manager"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer"/>
+        <rdfs:DescribesaRule>Elevators during Christmas breaks shall be de-energized.</rdfs:DescribesaRule>
+        <rdfs:DescribesaRule>When elevators are closers to each other than 15m, and there is a staircase in the vicinity,  the elevator, which has a lower usage load shall be de-energized during the summer breaks.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Problem_Definition -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Problem_Definition">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Lighting"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Ventillation"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Experience_based_FM_Requirement"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer"/>
+        <rdfs:DescribesaProblem>Inner Lighting and Ventiallation System is constantly running.</rdfs:DescribesaProblem>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.194_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.194_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Consultant"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Controlling"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Manager"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Modelling"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Rooms"/>
+        <rdfs:DescribesaRule>Temperature control in surgical suites is often set automatically, depending upon the requirements of the surgical procedure.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.194_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.194_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Electrical_Engineer"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Safety"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital"/>
+        <rdfs:DescribesaRule>All hospitals are dependent upon electrical power, e.g., power for HVAC ventilators, electrical motors and equipment, and lighting. Figure 6.3 illustrates a
+typical electrical power distribution system for a large hospital (Martin, 1987). Complex medical procedures, such as those requiring artificial circulation of blood, mechanical respiration, and aspiration, are examples of situations that have critical electrical power requirements. Because interruption of electrical service during such procedures would represent a Hfe-threatening situation, contingency plans in the event of power loss and the periodic inspection and testing of the electrical distribution system are required (IEEE, 1986).</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.196_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.196_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Safety"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Lighting"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Lighting_Design_Specialist"/>
+        <rdfs:DescribesaRule>Special hospital units—such as surgical suites, delivery rooms, cystoscopy rooms, recovery rooms, and intensive-care units—are examples of areas that require special attention to lighting. In addition, emergency lighting systems must be properly designed to ensure that health-care delivery can continue in the case of a power outage.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.230_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.230_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Ventillation"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Hospital"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer"/>
+        <rdfs:DescribesaRule>Laminar flow systems, either vertical or horizontal, are often requested by surgeons who perform procedures, such as total joint replacements, that are subject to increased risk of serious wound infections. Because these systems are very expensive, consume a great deal of energy resources, and must be meticulously maintained, their acquisition and installation must be subjected to careful scrutiny.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#p.230_1"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Design_Actor"/>
+        <rdfs:comment>Non-include</rdfs:comment>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_1_Claus"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Lighting"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Lighting_Design_Specialist"/>
+        <rdfs:DescribesaRule>For the luminaries in each elevator cab, not including signals and displays, the sum of the lumens (lm) divided by the sum of the watts shall be no less than 35lm/W.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_1_Claus"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_efficient_Ventillation"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer"/>
+        <rdfs:DescribesaRule>Ventillation fans in elevators that do not have their own air conditioning system shall not consume more than 0.33W/cfm at maximum rated speed of the fan.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#C_405_9_1_Claus"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Education"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Elevators"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Energy_Controlling"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Mechanical_Engineer"/>
+        <rdfs:DescribesaRule>Controlls shall be provided that will de-enegize ventiallation fans and lighting system when the elevator is stopped, unoccupied with doors closed for over 15 minutes.</rdfs:DescribesaRule>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#PW">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#l">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#SM">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">405_9_1_1</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Lighting"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#l"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#l"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Evaluated_As"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Failed"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Regulated_By"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">405_9_1_2</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Air_Conditioning"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Ventillation_Power"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#PW"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThan"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#PW"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.33</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Evaluated_As"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Failed"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Regulated_By"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">405_9_1_3</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcTransportElement"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Has_Standby_Mode"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#SM"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThan"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#SM"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Evaluated_As"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Failed"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#Is_Regulated_By"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#e"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/besenyo/ontologies/2021/10/untitled-ontology-21#405_9_1_3"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

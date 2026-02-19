@@ -1,0 +1,407 @@
+# baseURI: https://w3id.org/dano
+# prefix: dano
+
+@prefix dano: <https://w3id.org/dano#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://purl.org/dc/elements/1.1/coverage>
+  rdfs:comment "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Coverage"@en ;
+.
+<http://purl.org/dc/elements/1.1/format>
+  rdfs:comment "The file format, physical medium, or dimensions of the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Format"@en ;
+.
+<http://purl.org/dc/elements/1.1/identifier>
+  rdfs:comment "An unambiguous reference to the resource within a given context."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Identifier"@en ;
+.
+<http://purl.org/dc/elements/1.1/language>
+  rdfs:comment "A language of the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Language"@en ;
+  rdfs:seeAlso <http://www.ietf.org/rfc/rfc4646.txt> ;
+.
+<http://purl.org/dc/elements/1.1/publisher>
+  rdfs:comment "An entity responsible for making the resource available."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Publisher"@en ;
+.
+<http://purl.org/dc/elements/1.1/relation>
+  rdfs:comment "A related resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Relation"@en ;
+.
+<http://purl.org/dc/elements/1.1/rights>
+  rdfs:comment "Information about rights held in and over the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Rights"@en ;
+.
+<http://purl.org/dc/elements/1.1/source>
+  rdfs:comment "A related resource from which the described resource is derived."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Source"@en ;
+.
+<http://purl.org/dc/elements/1.1/subject>
+  rdfs:comment "The topic of the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Subject"@en ;
+.
+<http://purl.org/dc/elements/1.1/title>
+  rdfs:comment "A name given to the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Title"@en ;
+.
+<http://purl.org/dc/elements/1.1/type>
+  rdfs:comment "The nature or genre of the resource."@en ;
+  rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/> ;
+  rdfs:label "Type"@en ;
+.
+<http://www.opengis.net/ont/geosparql>
+  <http://purl.org/dc/elements/1.1/source> <http://www.opengis.net/doc/IS/geosparql/1.0> ;
+  <http://purl.org/dc/elements/1.1/source> "OGC GeoSPARQL – A Geographic Query Language for RDF Data OGC 11-052r5" ;
+  <http://purl.org/dc/elements/1.1/title> "GeoSPARQL Ontology" ;
+  rdfs:seeAlso <http://www.opengis.net/def/function/ogc-geosparql/1.0> ;
+  rdfs:seeAlso <http://www.opengis.net/def/rule/ogc-geosparql/1.0> ;
+  rdfs:seeAlso <http://www.opengis.net/doc/IS/geosparql/1.0> ;
+  owl:versionIRI <http://www.opengis.net/ont/geosparql/1.0> ;
+  owl:versionInfo "OGC GeoSPARQL 1.0" ;
+.
+geo:defaultGeometry
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment """
+      The default geometry to be used in spatial calculations.
+      It is Usually the most detailed geometry.
+    """@en ;
+  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+  rdfs:isDefinedBy <http://www.opengis.net/spec/geosparql/1.0> ;
+  rdfs:label "defaultGeometry"@en ;
+  rdfs:subPropertyOf geo:hasGeometry ;
+.
+geo:hasGeometry
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment """
+      A spatial representation for a given feature.
+    """@en ;
+  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ;
+  rdfs:isDefinedBy <http://www.opengis.net/spec/geosparql/1.0> ;
+  rdfs:label "hasGeometry"@en ;
+.
+xsd:date
+  rdf:type rdfs:Datatype ;
+.
+schema:codeRepository
+  rdf:type owl:Thing ;
+.
+schema:domainIncludes
+  rdf:type owl:AnnotationProperty ;
+.
+schema:rangeIncludes
+  rdf:type owl:AnnotationProperty ;
+.
+<https://w3id.org/dano>
+  rdf:type owl:Ontology ;
+  dc:creator [
+      rdf:type schema:Person ;
+      schema:email <mailto:phillip.schoenfelder@rub.de> ;
+      schema:identifier <https://orcid.org/0000-0002-8685-436X> ;
+      schema:memberOf [
+          schema:identifier <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/phillip_schoenfelder.html.en> ;
+          schema:name "Ruhr-Universität Bochum" ;
+        ] ;
+      schema:name "Phillip Schönfelder" ;
+    ] ;
+  dc:description """This ontology covers concepts of technical drawings from the perspective of computer vision-based drawing analysis to be used in collaborative settings or for post-processing. 
+The preferred namespace prefix is `dano` for the namespace IRI [https://w3id.org/dano](https://w3id.org/dano)."""@en ;
+  dc:issued "2025-03-11"^^xsd:date ;
+  dc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dc:modified "2025-07-15"^^xsd:date ;
+  dc:publisher [
+      rdf:type foaf:Organization ;
+      foaf:homepage <http://www.inf.bi.rub.de> ;
+      foaf:name "Chair of Computing in Engineering" ;
+    ] ;
+  dc:rights "Copyright 2025 by Phillip Schönfelder" ;
+  dc:source <https://github.com/RUB-Informatik-im-Bauwesen/dano> ;
+  dc:title "Drawing Analyis Ontology (DAnO)"@en ;
+  vann:preferredNamespacePrefix "dano" ;
+  vann:preferredNamespaceUri <https://w3id.org/dano> ;
+  owl:versionIRI <https://w3id.org/dano> ;
+  owl:versionInfo "v0.2" ;
+  skos:historyNote """  
+  v0.1: initial ontology
+  
+  v0.2: added cardinality constraints to the taxonomy, restructured taxonomy, modified image
+ """ ;
+.
+dano:AxisLine
+  rdf:type owl:Class ;
+  rdfs:label "Axis Line" ;
+  rdfs:subClassOf dano:Line ;
+.
+dano:Composite
+  rdf:type owl:Class ;
+  rdfs:comment "A composite element that aggregates multiple description elements." ;
+  rdfs:label "Composite" ;
+  rdfs:subClassOf dano:DescriptionElement ;
+.
+dano:DescriptionElement
+  rdf:type owl:Class ;
+  rdfs:comment "An abstract element in a drawing describing properties of display elements. For instance, a dimension line describing a wall or a text element specifying a schematic pump symbol." ;
+  rdfs:label "Description Element" ;
+  rdfs:subClassOf dano:DrawingElement ;
+.
+dano:Dimension
+  rdf:type owl:Class ;
+  rdfs:comment "A composite element, comprising exactly 1 DimensionLine, 2 Terminators (at the line's ends), and 1 TextElement (for the dimension value)." ;
+  rdfs:label "Dimension" ;
+  rdfs:subClassOf dano:Composite ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass dano:DimensionLine ;
+      owl:onProperty dano:contains ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass dano:Terminator ;
+      owl:onProperty dano:contains ;
+      owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass dano:TextElement ;
+      owl:onProperty dano:contains ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+dano:DimensionChain
+  rdf:type owl:Class ;
+  rdfs:comment "A sequence of dimensions connected together to represent cumulative measurements." ;
+  rdfs:label "Dimension Chain" ;
+  rdfs:subClassOf dano:Composite ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+      owl:onClass dano:Dimension ;
+      owl:onProperty dano:contains ;
+    ] ;
+.
+dano:DimensionLine
+  rdf:type owl:Class ;
+  rdfs:comment "The line type for indicating dimensions in a drawing, typically used to represent measurements." ;
+  rdfs:label "Dimension Line" ;
+  rdfs:subClassOf dano:Line ;
+.
+dano:Dimension_1
+  rdf:type dano:Dimension ;
+  rdfs:label "Dimension" ;
+.
+dano:DisplayElement
+  rdf:type owl:Class ;
+  rdfs:comment "An element representing a real-world component." ;
+  rdfs:label "Display Element" ;
+  rdfs:subClassOf dano:DrawingElement ;
+.
+dano:DrawingElement
+  rdf:type owl:Class ;
+  rdfs:comment "A visual element in a drawing. Metadata for these elements are stored as DrawingElementMeta instances." ;
+  rdfs:label "Drawing Element" ;
+  rdfs:subClassOf owl:Thing ;
+.
+dano:DrawingElementMeta
+  rdf:type owl:Class ;
+  rdfs:comment "Metadata for drawing elements, including inference confidence and methods used." ;
+  rdfs:label "Drawing Element Meta" ;
+  rdfs:subClassOf owl:Thing ;
+.
+dano:EquipmentSymbol
+  rdf:type owl:Class ;
+  rdfs:label "Equipment symbol" ;
+  rdfs:subClassOf dano:Symbol ;
+.
+dano:Line
+  rdf:type owl:Class ;
+  rdfs:comment "A linear description element in a drawing." ;
+  rdfs:label "Line" ;
+  rdfs:subClassOf dano:DescriptionElement ;
+.
+dano:SectionSymbol
+  rdf:type owl:Class ;
+  rdfs:comment "A symbol defining the section plane that opens up a view section. Must have a partner symbol and is referred to by a TextElement which is its reference letter." ;
+  rdfs:label "Section Symbol" ;
+  rdfs:subClassOf dano:Symbol ;
+.
+dano:Symbol
+  rdf:type owl:Class ;
+  rdfs:comment "A symbolic description element representing various annotations or markers." ;
+  rdfs:label "Symbol" ;
+  rdfs:subClassOf dano:DescriptionElement ;
+.
+dano:Terminator
+  rdf:type owl:Class ;
+  rdfs:comment "A marker used to indicate endpoints or reference points on a dimension line." ;
+  rdfs:label "Terminator" ;
+  rdfs:subClassOf dano:Symbol ;
+.
+dano:TextElement
+  rdf:type owl:Class ;
+  rdfs:comment "A text-based description element in a drawing." ;
+  rdfs:label "Text Element" ;
+  rdfs:subClassOf dano:DescriptionElement ;
+.
+dano:TextField
+  rdf:type owl:Class ;
+  rdfs:comment "A composite element containing multiple text elements, typically for multiline text." ;
+  rdfs:label "Text Field" ;
+  rdfs:subClassOf dano:Composite ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+      owl:onClass dano:TextElement ;
+      owl:onProperty dano:contains ;
+    ] ;
+.
+dano:contains
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:TransitiveProperty ;
+  rdfs:comment "Indicates that the subject drawing element contains the object drawing element. For instance, lines can contain two endpoints." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "contains" ;
+  rdfs:range dano:DrawingElement ;
+  owl:inverseOf dano:isContainedIn ;
+.
+dano:depicts
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the subject display element graphically represents a real-world object, such as a building element, zone, or machine part." ;
+  rdfs:domain dano:DisplayElement ;
+  rdfs:label "depicts" ;
+.
+dano:describes
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Establishes the relationship between a description element and a display element, where the description element describes the display element." ;
+  rdfs:domain dano:DescriptionElement ;
+  rdfs:label "describes" ;
+  rdfs:range dano:DisplayElement ;
+  owl:inverseOf dano:isDescribedBy ;
+.
+dano:endsWith
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that a dimension line ends with a dimension line marker." ;
+  rdfs:domain dano:DimensionLine ;
+  rdfs:label "ends with" ;
+  rdfs:range dano:Terminator ;
+  rdfs:subPropertyOf dano:contains ;
+.
+dano:hasConfidence
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Specifies the confidence level of the inference that identified the drawing element." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "has confidence" ;
+  rdfs:range xsd:decimal ;
+.
+dano:hasGeometry
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Links the drawing element to its geometrical representation." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "has geometry" ;
+.
+dano:hasIfcRepresentation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Specifies the IFC representation of the drawing element." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "has IFC representation" ;
+.
+dano:hasMeta
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Links meta information to a drawing element." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "has meta" ;
+  rdfs:range dano:DrawingElementMeta ;
+.
+dano:inferredAt
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Specifies the date when the drawing element was inferred." ;
+  rdfs:domain dano:DrawingElementMeta ;
+  rdfs:label "inferred at" ;
+  rdfs:range xsd:date ;
+.
+dano:inferredBy
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Indicates the actor, company, or software that inferred the drawing element." ;
+  rdfs:domain dano:DrawingElementMeta ;
+  rdfs:label "inferred by" ;
+  rdfs:range xsd:string ;
+.
+dano:inferredFrom
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Specifies the origin file from which the drawing element was extracted." ;
+  rdfs:domain dano:DrawingElementMeta ;
+  rdfs:label "inferred from" ;
+  rdfs:range xsd:string ;
+.
+dano:inferredWith
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Indicates the algorithm used to infer the drawing element." ;
+  rdfs:domain dano:DrawingElementMeta ;
+  rdfs:label "inferred with" ;
+  rdfs:range xsd:string ;
+.
+dano:isContainedIn
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the subject drawing element is part of another drawing element." ;
+  rdfs:domain dano:DrawingElement ;
+  rdfs:label "is contained in" ;
+  rdfs:range dano:DrawingElement ;
+  owl:inverseOf dano:contains ;
+.
+dano:isDepictedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the real-world subject is depicted by the object display element, which is typically a geometric representation." ;
+  rdfs:label "isDepictedBy" ;
+  rdfs:range dano:DisplayElement ;
+  owl:inverseOf dano:depicts ;
+.
+dano:isDescribedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the display element is described by a description element." ;
+  rdfs:domain dano:DisplayElement ;
+  rdfs:label "is described by" ;
+  rdfs:range dano:DescriptionElement ;
+  owl:inverseOf dano:describes ;
+.
+dano:isReferredToBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the subject dimension line marker is referred to by another dimension line marker." ;
+  rdfs:domain dano:Terminator ;
+  rdfs:label "is referred to by" ;
+  rdfs:range dano:Terminator ;
+  owl:inverseOf dano:refersTo ;
+.
+dano:isText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Indicates that the description element is a text element containing the specified string." ;
+  rdfs:domain dano:TextElement ;
+  rdfs:label "is text" ;
+  rdfs:range xsd:string ;
+.
+dano:refersTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Indicates that the subject dimension line marker refers to another dimension line marker." ;
+  rdfs:domain dano:Terminator ;
+  rdfs:label "refers to" ;
+  rdfs:range dano:Terminator ;
+  owl:inverseOf dano:isReferredToBy ;
+.

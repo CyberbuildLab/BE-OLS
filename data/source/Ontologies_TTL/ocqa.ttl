@@ -1,0 +1,867 @@
+@prefix : <https://w3id.org/ocqa#> .
+@prefix opm: <https://w3id.org/opm#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dica: <https://w3id.org/digitalconstruction/0.5/Agents> .
+@prefix dice: <https://w3id.org/digitalconstruction/0.5/Entities#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ocqa-cat: <https://w3id.org/ocqa/catalog#> .
+@prefix ocqa-con: <https://w3id.org/ocqa/contract#> .
+@prefix ocqa-reg: <https://w3id.org/ocqa/regulation#> .
+@prefix ocqa-rule: <https://w3id.org/ocqa/rule#> .
+@base <https://w3id.org/ocqa#> .
+
+<https://w3id.org/ocqa#> rdf:type owl:Ontology ;
+                          owl:imports <http://w3id.org/digitalconstruction/0.5/Units> ,
+                                      <https://w3id.org/digitalconstruction/0.5/Information> ,
+                                      <https://w3id.org/ocqa/catalog/0.1> ,
+                                      <https://w3id.org/ocqa/contract/0.1> ,
+                                      <https://w3id.org/ocqa/regulation/0.1> ,
+                                      <https://w3id.org/ocqa/rules/0.1> ;
+                          dcterms:creator "Sebastian Seiß" ;
+                          dcterms:description "The Ontology for Quality Assurance is a simple ontology defining the core concepts for quality quality assurence in construction." ;
+                          dcterms:issued "2022-01-01" ;
+                          dcterms:license "https://creativecommons.org/licenses/by/1.0" ;
+                          dcterms:modified "2024-03-18" ;
+                          dcterms:title "Ontology for Construction Quality Assurence (OCQA)" ;
+                          vann:preferredNamespacePrefix "ocqa" ;
+                          vann:preferredNamespaceUri "https://w3id.org/ocqa#" ;
+                          rdfs:comment "- CoreModel" ;
+                          owl:versionInfo 1.0 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dcterms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/ocqa#BGB
+:BGB rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/ocqa#DIN_55350:2021-10
+<https://w3id.org/ocqa#DIN_55350:2021-10> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/ocqa#DIN_9000:2015
+<https://w3id.org/ocqa#DIN_9000:2015> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#hasEquipment
+dice:hasEquipment rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#hasLastInstant
+dice:hasLastInstant rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#isStartOf
+dice:isStartOf rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/ocqa#detect
+:detect rdf:type owl:ObjectProperty ;
+        rdfs:domain :InspectionProcedure ;
+        rdfs:range :FailureCategories .
+
+
+###  https://w3id.org/ocqa#hasActivityType
+:hasActivityType rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Procedure ;
+                 rdfs:range dicp:Activity .
+
+
+###  https://w3id.org/ocqa#hasActualCharacteristic
+:hasActualCharacteristic rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Characteristic ;
+                         rdfs:range :ActualCharacteristicValue ;
+                         owl:propertyDisjointWith :hasAssignedCharacteristicValue .
+
+
+###  https://w3id.org/ocqa#hasAssignedCharacteristicValue
+:hasAssignedCharacteristicValue rdf:type owl:ObjectProperty ;
+                                rdfs:domain :Characteristic ;
+                                rdfs:range :AssignedCharacteristicValue ;
+                                rdfs:label "hatPrüfmerkmalsWert"@de .
+
+
+###  https://w3id.org/ocqa#hasCausation
+:hasCausation rdf:type owl:ObjectProperty ;
+              rdfs:domain :Evaluation ;
+              rdfs:range :Causation ;
+              rdfs:label "hatUrsache"@de .
+
+
+###  https://w3id.org/ocqa#hasCharacteristic
+:hasCharacteristic rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Inspection ;
+                   rdfs:range :Characteristic .
+
+
+###  https://w3id.org/ocqa#hasDocumentation
+:hasDocumentation rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Evaluation ,
+                              :Inspection ;
+                  rdfs:range :Record ;
+                  rdfs:label "hatDokumentation"@de .
+
+
+###  https://w3id.org/ocqa#hasInspCharacteristic
+:hasInspCharacteristic rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasCharacteristic .
+
+
+###  https://w3id.org/ocqa#hasInspection
+:hasInspection rdf:type owl:ObjectProperty ;
+               rdfs:range :Inspection ;
+               rdfs:comment "Eine Beziehung zwischen einem Element, Bauaktivität oder Kontrollaktivität und einer Prüfung"@de ;
+               rdfs:label "hatPrüfung"@de .
+
+
+###  https://w3id.org/ocqa#hasInspectionEquipment
+:hasInspectionEquipment rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf dice:hasEquipment .
+
+
+###  https://w3id.org/ocqa#hasInspectionProcedure
+:hasInspectionProcedure rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Inspection ;
+                        rdfs:range :InspectionProcedure .
+
+
+###  https://w3id.org/ocqa#hasQualification
+:hasQualification rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/ocqa#hasRecord
+:hasRecord rdf:type owl:ObjectProperty ;
+           rdfs:domain :Inspection ;
+           rdfs:range :Evaluation ;
+           rdfs:label "hatAufnahme"@de .
+
+
+###  https://w3id.org/ocqa#hasRequiredQualification
+:hasRequiredQualification rdf:type owl:ObjectProperty ;
+                          rdfs:domain :InspectionProcedure .
+
+
+###  https://w3id.org/ocqa#hasSample
+:hasSample rdf:type owl:ObjectProperty ;
+           rdfs:range :Sample .
+
+
+###  https://w3id.org/ocqa#simultane
+:simultane rdf:type owl:ObjectProperty ;
+           rdfs:domain dice:Occurrent ;
+           rdfs:range dice:Occurrent .
+
+
+###  https://w3id.org/ocqa#succeed
+:succeed rdf:type owl:ObjectProperty ;
+         rdfs:domain dice:Occurrent ;
+         rdfs:range dice:Occurrent .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://schema.org/maxValue
+<https://schema.org/maxValue> rdf:type owl:DatatypeProperty .
+
+
+###  https://schema.org/value
+<https://schema.org/value> rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/ocqa#InspectionStatus
+:InspectionStatus rdf:type owl:DatatypeProperty ;
+                  rdfs:domain dice:Entity ;
+                  rdfs:comment "Prüfstatus"@de ;
+                  <https://w3id.org/ocqa#DIN_55350:2021-10> """Zustand bezüglich der Frage, welche Prüfungen an einem bestimmten Objekt durchgeführt wurden und welche Prüfergebnisse dabei erzielt wurden
+Anmerkung 1 zum Begriff: Der Prüfstatus kann zum Beispiel dokumentiert sein:
+— am Produkt oder an der Dienstleistung selbst;
+— auf einem am Produkt oder an der Dienstleistung angebrachten Träger;
+— in einem Begleitpapier des Produkts oder der Dienstleistung;
+— durch die Positionierung (zum Beispiel Aufstellungsort, Lagerungsort usw.) des Produkts oder der Dienstleistung;
+— in der Datenverarbeitung; oder
+— in einer sonstigen geeigneten Weise."""@de .
+
+
+###  https://w3id.org/ocqa#accepted
+:accepted rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Inspection ;
+          rdfs:range xsd:boolean ;
+          rdfs:comment "Describes if the quality checked by a inspection or the sum of inspection in a quality inspection task is according to the required quality"@de ;
+          rdfs:label "Bestanden"@de .
+
+
+###  https://w3id.org/ocqa#filePath
+:filePath rdf:type owl:DatatypeProperty ;
+          rdfs:domain :ExternalResource ;
+          rdfs:range xsd:anyURI .
+
+
+###  https://w3id.org/ocqa#hasInpsectionPerUnit
+:hasInpsectionPerUnit rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain :InspectionProcedure ;
+                      rdfs:comment "per Unit can be Floor, m2, m3" .
+
+
+###  https://w3id.org/ocqa#hasInsepctionStatus
+:hasInsepctionStatus rdf:type owl:DatatypeProperty .
+
+
+###  https://w3id.org/ocqa#hasInspectionCost
+:hasInspectionCost rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :hasQuality-related-costs ;
+                   rdfs:domain :Inspection ;
+                   rdfs:comment "Subclass of hasActivityCost" ;
+                   rdfs:label "Prüfkosten"@de ,
+                              "appraisal costs"@en ;
+                   <https://w3id.org/ocqa#DIN_55350:2021-10> """Kosten, die durch planmäßige Prüfungen, die keinen konkreten Fehler zum Anlass haben, verursacht werden
+Anmerkung 1 zum Begriff: Prüfkosten entstehen durch das für Prüfungen eingesetzte Personal und die zugehörigen Prüfmittel, eingeschlossen die Prüfmittelüberwachung in allen Bereichen der Organisation. Bei zeitlich ineinandergreifenden Prüftätigkeiten und anderen Tätigkeiten sind die Kosten für den Anteil der Prüftätigkeiten anzusetzen."""@de .
+
+
+###  https://w3id.org/ocqa#hasInspectionFrequency
+:hasInspectionFrequency rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:range xsd:integer ;
+                        rdfs:label "Prüfhäufikeit"@de .
+
+
+###  https://w3id.org/ocqa#hasInspectionInterval
+:hasInspectionInterval rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain :InspectionProcedure .
+
+
+###  https://w3id.org/ocqa#hasLikelihood
+:hasLikelihood rdf:type owl:DatatypeProperty ;
+               rdfs:comment """Möglichkeit, dass etwas geschieht (Quelle: ISO 31000:2018, 3.7)
+Anmerkung 1 zum Begriff: In der Terminologie des Risikomanagements bezeichnet der Begriff \"Wahrscheinlichkeit\" die Möglichkeit, dass etwas geschieht, gleichgültig ob diese Möglichkeit objektiv oder subjektiv, qualitativ oder quantitativ definiert, gemessen oder bestimmt und mit allgemeinen Begriffen oder mathematisch (z. B. durch die statistische Wahrscheinlichkeit (3.1.188 [Eintrittswahrscheinlichkeit]) oder die Häufigkeit in einem bestimmten Zeitraum) beschrieben wird.
+
+Anmerkung 2 zum Begriff: Der englische Begriff \"likelihood\" hat in einigen Sprachen keine direkte Entsprechung, wo für \"likelihood\" (subjektive Wahrscheinlichkeit) und \"probability\" (objektive, mathematische Wahrscheinlichkeit) oft ein und dasselbe Wort verwendet wird. In der englischen Sprache ist der Begriff \"probability\" jedoch oftmals sehr eng als mathematischer Begriff definiert. Deshalb wird in der englischen Terminologie des Risikomanagements der Begriff \"likelihood\" mit der Absicht verwendet, dass sie dieselbe weit gefasste Bedeutung haben sollte wie der Begriff \"Wahrscheinlichkeit\" in vielen anderen Sprachen."""@de ;
+               rdfs:label "Wahrscheinlichkeit"@de .
+
+
+###  https://w3id.org/ocqa#hasNonConfirmityCost
+:hasNonConfirmityCost rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :hasQuality-related-costs ;
+                      rdfs:label "Fehlerkosten"@de ;
+                      <https://w3id.org/ocqa#DIN_55350:2021-10> """Kosten, die durch Fehler verursacht werden
+Anmerkung 1 zum Begriff: Fehlerkosten können nach dem Ort der Feststellung der Fehler in zwei Untergruppen eingeteilt werden: in interne Fehlerkosten und in externe Fehlerkosten. Es kann zweckmäßig sein, für eine Organisation festzulegen, was unter „intern“ und „extern“ zu verstehen ist.
+Anmerkung 2 zum Begriff: Beispiele für Fehlerkosten sind die Kosten für Beseitigung oder Linderung eines Fehlers, für
+Nacharbeit, Reparatur, Verschrottung, Entsorgung, Behandlung von Ausschuss, außerplanmäßige Sortierprüfung, Wiederholungsprüfung, Ausfallzeit, Gewährleistung und Produkthaftung.
+Anmerkung 3 zum Begriff: Einige Fehlerkosten mögen schwer quantifizierbar sein, können aber sehr bedeutsam sein,
+zum Beispiel Kosten durch Imageverlust."""@de .
+
+
+###  https://w3id.org/ocqa#hasNonConfirmityProbability
+:hasNonConfirmityProbability rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf :hasLikelihood ;
+                             rdfs:comment ""@de ;
+                             rdfs:label "Wahrscheinlichkeit einer nicht Konformität"@de .
+
+
+###  https://w3id.org/ocqa#hasPreventionCost
+:hasPreventionCost rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :hasQuality-related-costs ;
+                   rdfs:label "Fehlerverhütungskosten"@de ;
+                   <https://w3id.org/ocqa#DIN_55350:2021-10> """Kosten, die durch die Analyse und Beseitigung von Fehlerursachen verursacht werden
+Anmerkung 1 zum Begriff: Zu den Fehlerverhütungskosten gehören insbesondere die Kosten für Vorbeugungsmaßnahmen (bei möglichen Fehlerursachen) und Korrekturmaßnahmen (bei erkannten Fehlerursachen)."""@de .
+
+
+###  https://w3id.org/ocqa#hasProcedureDescription
+:hasProcedureDescription rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :Procedure ;
+                         rdfs:range xsd:string .
+
+
+###  https://w3id.org/ocqa#hasQuality-related-costs
+:hasQuality-related-costs rdf:type owl:DatatypeProperty ;
+                          rdfs:label "Qualitätsbezogene Kosten"@de ;
+                          <https://w3id.org/ocqa#DIN_55350:2021-10> """Summe von Fehlerverhütungs-, Prüf- und Fehlerkosten
+Anmerkung 1 zum Begriff: Qualitätsbezogene Kosten werden in einer Organisation nach deren eigenen Kriterien abgegrenzt und erfasst.
+Anmerkung 2 zum Begriff: Zu den Qualitätsbezogenen Kosten gehören auch Kosten für Qualitätsaudits durch Kunden
+und Zertifizierungsstellen.
+Anmerkung 3 zum Begriff: Die Benennung „Qualitätskosten“ wird nicht empfohlen"""@de .
+
+
+###  https://w3id.org/ocqa#hasRisk
+:hasRisk rdf:type owl:DatatypeProperty ;
+         rdfs:label "Risiko"@de ;
+         <https://w3id.org/ocqa#DIN_9000:2015> """Auswirkung von Ungewissheit
+Anmerkung 1 zum Begriff: Eine Auswirkung ist eine Abweichung vom Erwarteten — in positiver oder negativer Hinsicht
+Anmerkung 2 zum Begriff: Ungewissheit ist  der Zustand des auch teilweisen Fehlens vonInformationen (3.8.2) im Hinblick auf das Verständnis
+eines Ereignisses oder Wissen über ein Ereignis, seine Folgen oder seine Wahrscheinlichkeit
+Anmerkung 3 zum Begriff: Das Risiko wird häufig durch Bezugnahme auf mögliche Ereignisse (wie nach ISO Guide 73:2009, 3.5.1.3 festgelegt) und Folgen (wie nach ISO Guide 73:2009, 3.6.1.3 festgelegt) oder eine Kombination beider charakterisiert
+Anmerkung 4 zum Begriff: Risiko wird häufig mittels der Folgen eines Ereignisses (einschließlich Veränderungen der Umstände) in Verbindung mit der „Wahrscheinlichkeit“ (wie in ISO Guide 73:2009, 3.6.1.1
+festgelegt) seines Eintretens beschrieben.
+Anmerkung 5 zum Begriff: Die Bezeichnung „Risiko“ wird manchmal verwendet, wenn die Möglichkeit ausschließlich negativer Folgen besteht.
+Anmerkung 6 zum Begriff: Dieser Begriff stellt eine der gemeinsamen Benennungen und der Basisdefinitionen für ISO-Managementsystemnormen dar, die in ISO/IEC Directives, Part 1, Consolidated ISO Supplement,
+Anhang SL enthalten sind. Die ursprüngliche Definition wurde durch Hinzufügen von Anmerkung 5 zum Begriff geändert."""@de .
+
+
+###  https://w3id.org/ocqa#hasStatus
+:hasStatus rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Determination .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://w3id.org/seas/Property
+<http://w3id.org/seas/Property> rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#Equipment
+dice:Equipment rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#Object
+dice:Object rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Entities#Occurrent
+dice:Occurrent rdf:type owl:Class .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#Activity
+dicp:Activity rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#ActualCharacteristicValue
+:ActualCharacteristicValue rdf:type owl:Class ;
+                           rdfs:subClassOf <https://w3id.org/digitalconstruction/0.5/Variables#PropertyState> ;
+                           owl:disjointWith :AssignedCharacteristicValue ;
+                           rdfs:comment "Beschreibt den tatsächlichen 3.4.4.2 Istwert, en: actual value tatsächlicher Merkmalswert (3.4.1.2) Anmerkung 1 zum Begriff: Anmerkung 1 bis Anmerkung 4 zu 3.4.4.1 gelten sinngemäß. Anmerkung 2 zum Begriff: Der Istwert kann ein einzelner Istwert, ein Mittelwert mehrerer einzelner Istwerte oder ein anderer charakteristischer Istwert sein."@de ;
+                           rdfs:label "Tatsächlicher Merkmalswert"@de ,
+                                      "actual characteristic value"@en .
+
+
+###  https://w3id.org/ocqa#AssignedCharacteristicValue
+:AssignedCharacteristicValue rdf:type owl:Class ;
+                             rdfs:subClassOf <https://w3id.org/digitalconstruction/0.5/Variables#PropertyState> ;
+                             rdfs:comment """DIN 55350:2021-10 3.4.1.2 konkrete Ausprägung eines Merkmals (3.4.1.1)
+Anmerkung 1 zum Begriff: Durch die spezielle Festlegung des betrachteten Merkmals ist die Art des Merkmals (z. B. Farbe, Länge) bestimmt (Art des Merkmals: siehe 3.4.1.5 bis 3.4.1.11) und damit auch die Art der Merkmalswerte (z. B. rot, 3 m). Siehe auch Abschnitt A.7."""@de ;
+                             rdfs:label "Merkmalswert"@de ,
+                                        "characteristic value"@en .
+
+
+###  https://w3id.org/ocqa#Causation
+:Causation rdf:type owl:Class ;
+           rdfs:label "Ursache"@de .
+
+
+###  https://w3id.org/ocqa#Characteristic
+:Characteristic rdf:type owl:Class ;
+                rdfs:subClassOf <http://w3id.org/seas/Property> ,
+                                <https://w3id.org/digitalconstruction/0.5/Variables#Property> ,
+                                opm:Property ;
+                rdfs:comment """Merkmal, en: characteristic
+kennzeichnende Eigenschaft
+Anmerkung 1 zum Begriff: Ein Merkmal kann inhärent oder zugeordnet sein.
+Anmerkung 2 zum Begriff: Es gibt Quantitative Merkmale (3.4.1.5) und Qualitative Merkmale (3.4.1.9). Anmerkung 3 zum Begriff: Es gibt verschiedene Klassen von Merkmalen, z. B.: a) physikalische (z. B. mechanische, elektrische, chemische oder biologische Merkmale); b) sensorische (z. B. bezüglich Geruch, Berührung, Geschmack, Sehvermögen, Gehör); c) verhaltensbezogene (z. B. Höflichkeit, Ehrlichkeit, Aufrichtigkeit); d) zeitbezogene (z. B. Pünktlichkeit, Zuverlässigkeit, Verfügbarkeit, Kontinuität); e) ergonomische (z. B. physiologische oder auf Sicherheit für den Menschen bezogene Merkmale); f) funktionale (z. B. Spitzengeschwindigkeit eines Flugzeuges).
+[QUELLE: DINENISO 9000:2015-11, 3.10.1, modifiziert – Anmerkung 2 umformuliert]"""@de ,
+                             """characteristic, en: characteristic
+characteristic property
+Note 1 to term: A characteristic may be inherent or associated.
+Note 2 to concept: There are Quantitative Characteristics (3.4.1.5) and Qualitative Characteristics (3.4.1.9). NOTE 3 to the term: there are different classes of characteristics, e.g.: a) physical (e.g. mechanical, electrical, chemical or biological characteristics); b) sensory (e.g. relating to smell, touch, taste, sight, hearing); c) behavioral (e.g. courtesy, honesty, sincerity); d) time-related (e.g., punctuality, reliability, availability, continuity); e) ergonomic (e.g., physiological or human safety-related characteristics); f) functional (e.g., top speed of an aircraft).
+[SOURCE: DINENISO 9000:2015-11, 3.10.1, modified - Note 2 reworded]"""@en ;
+                rdfs:label "Characteristic"@en ,
+                           "Merkmal"@de .
+
+
+###  https://w3id.org/ocqa#Conformity
+:Conformity rdf:type owl:Class ;
+            rdfs:subClassOf :Evaluation ,
+                            :Record ;
+            owl:disjointWith :Nonconformity ;
+            rdfs:label "Konformität"@de ;
+            <https://w3id.org/ocqa#DIN_9000:2015> """Comment based on DIN_9000:2015
+
+Fulfillment of a requirement (3.6.4)
+Note 1 on the term: The term \"conformance\" is an objectionable synonym in English. The term \"compliance\" is an objectionable synonym in French.
+
+Note 2 on the term: This term represents one of the common names and basic definitions for ISO management system standards, which are included in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Annex SL. The original definition was modified by adding Note 1 on the term."""@en ,
+                                                  """Erfüllung einer Anforderung (3.6.4)
+Anmerkung 1 zum Begriff: Die Benennung „conformance“ stellt im Englischen ein abzulehnendes Synonym dar. Die Benennung „compliance“ stellt im Französischen ein abzulehnendes Synonym dar.
+Anmerkung 2 zum Begriff: Dieser Begriff stellt eine der gemeinsamen Benennungen und der Basisdefinitionen für ISO-Managementsystemnormen dar, die in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Anhang SL enthalten sind. Die ursprüngliche Definition wurde durch Hinzufügen von Anmerkung 1 zum Begriff geändert."""@de .
+
+
+###  https://w3id.org/ocqa#ConstructionProcedure
+:ConstructionProcedure rdf:type owl:Class ;
+                       rdfs:subClassOf :Procedure .
+
+
+###  https://w3id.org/ocqa#Damage
+:Damage rdf:type owl:Class ;
+        rdfs:subClassOf :Nonconformity ;
+        owl:disjointWith :Defect ;
+        rdfs:label "Schaden"@de .
+
+
+###  https://w3id.org/ocqa#Defect
+:Defect rdf:type owl:Class ;
+        rdfs:subClassOf :Nonconformity ;
+        rdfs:label "Mangel"@de ;
+        :BGB """Bürgerliches Gesetzbuch (BGB) § 633 Sach- und Rechtsmangel
+(1) Der Unternehmer hat dem Besteller das Werk frei von Sach- und Rechtsmängeln zu verschaffen.
+(2) Das Werk ist frei von Sachmängeln, wenn es die vereinbarte Beschaffenheit hat. Soweit die Beschaffenheit nicht vereinbart ist, ist das Werk frei von Sachmängeln,
+
+1.    wenn es sich für die nach dem Vertrag vorausgesetzte, sonst
+2.    für die gewöhnliche Verwendung eignet und eine Beschaffenheit aufweist, die bei Werken der gleichen Art üblich ist und die der Besteller nach der Art des Werkes erwarten kann.
+
+Einem Sachmangel steht es gleich, wenn der Unternehmer ein anderes als das bestellte Werk oder das Werk in zu geringer Menge herstellt.
+(3) Das Werk ist frei von Rechtsmängeln, wenn Dritte in Bezug auf das Werk keine oder nur die im Vertrag übernommenen Rechte gegen den Besteller geltend machen können."""@de ,
+             """Civil Code (BGB) § 633 Defects of quality and title
+(1) The contractor is obliged to provide the customer with a work free from defects of quality and title.
+(2) A work is free from defects of quality if it has the agreed-upon characteristics. If the characteristics are not agreed upon, the work is free from defects of quality:
+
+1.If it is suitable for the use assumed by the contract, otherwise
+2.If it is suitable for ordinary use and has a quality that is customary for works of the same type and that the customer can expect based on the nature of the work.
+It is considered a defect of quality if the contractor produces a work that is different from the one ordered or produces the work in insufficient quantity.
+(3) The work is free from defects of title if third parties cannot assert any rights against the customer in relation to the work or can only assert the rights assumed in the contract."""@en ;
+        <https://w3id.org/ocqa#DIN_9000:2015> """Nichtkonformität (3.6.9) in Bezug auf einen beabsichtigten oder festgelegten Gebrauch
+Anmerkung 1 zum Begriff: Die Unterscheidung zwischen den Begriffen Mangel und Nichtkonformität ist wegen ihrer rechtlichen Bedeutung wichtig, insbesondere derjenigen, die im Zusammenhang mit Produkt- (3.7.6) und Dienstleistungshaftungsfragen (3.7.7) steht.
+Anmerkung 2 zum Begriff: Der vom Kunden (3.2.4) beabsichtigte Gebrauch kann durch die Art der vom Anbieter (3.2.5) bereitgestellten Informationen (3.8.2), wie Gebrauchs- oder Instandhaltungsanweisungen, beeinträchtigt werden."""@de ,
+                                              "The term \"non-conformity\" (3.6.9) refers to a failure to meet the intended or specified use. Note 1 to the term emphasizes the importance of distinguishing between the terms \"defect\" and \"non-conformity\" due to their legal implications, particularly those related to product (3.7.6) and service liability issues (3.7.7). Note 2 to the term notes that the customer's (3.2.4) intended use may be affected by the type of information (3.8.2) provided by the supplier (3.2.5), such as instructions for use or maintenance."@en .
+
+
+###  https://w3id.org/ocqa#Determination
+:Determination rdf:type owl:Class ;
+               rdfs:subClassOf dicp:Activity ;
+               rdfs:label "Bestimmung"@de ,
+                          "Determination"@en ;
+               <https://w3id.org/ocqa#DIN_9000:2015> "Activity for determining one or more characteristics (3.10.1) and their values."@en ,
+                                                     "Tätigkeit zur Ermittlung eines oder mehrerer Merkmale (3.10.1) und ihrer Merkmalswerte"@de .
+
+
+###  https://w3id.org/ocqa#Evaluation
+:Evaluation rdf:type owl:Class ;
+            rdfs:label "Aufzeichnung"@de ;
+            <https://w3id.org/ocqa#DIN_9000:2015> ""@de .
+
+
+###  https://w3id.org/ocqa#ExternalResource
+:ExternalResource rdf:type owl:Class ;
+                  rdfs:subClassOf :Record ;
+                  rdfs:comment "An external resource is linked via a URI."@en ,
+                               "Eine externe Ressource werden über eine URI verknüpft"@de ;
+                  rdfs:label "Externe Ressource"@de .
+
+
+###  https://w3id.org/ocqa#FailureCategories
+:FailureCategories rdf:type owl:Class ;
+                   rdfs:comment "Diese Fehlerkategorien beschreiben möglich Fehler die an einem Bauteil auftauchen können."@de ,
+                                "These error categories describe possible errors that may occur in a component."@en ;
+                   rdfs:label "Failure Categorie"@en ,
+                              "Fehlerkategorie"@de .
+
+
+###  https://w3id.org/ocqa#Image
+:Image rdf:type owl:Class ;
+       rdfs:subClassOf :Record .
+
+
+###  https://w3id.org/ocqa#Inspection
+:Inspection rdf:type owl:Class ;
+            rdfs:subClassOf :Determination ;
+            rdfs:label "Inspection"@en ,
+                       "Inspektion"@de ,
+                       "Prüfung"@de ;
+            <https://w3id.org/ocqa#DIN_9000:2015> """Bestimmung (3.11.1) der Konformität (3.6.11) mit festgelegten Anforderungen (3.6.4)
+Anmerkung 1 zum Begriff: Zeigt das Ergebnis einer Prüfung Konformität, kann es zu Zwecken der Verifizierung (3.8.12) verwendet werden.
+Anmerkung 2 zum Begriff: Das Ergebnis einer Prüfung kann Konformität oder Nichtkonformität (3.6.9) oder einen Grad von Konformität aufzeigen."""@de ,
+                                                  """Determination (3.11.1) of conformity (3.6.11) with specified requirements (3.6.4).
+Note 1 to the term: If the result of an assessment shows conformity, it can be used for the purposes of verification (3.8.12).
+Note 2 to the term: The result of an assessment may indicate conformity or nonconformity (3.6.9) or a degree of conformity."""@en .
+
+
+###  https://w3id.org/ocqa#InspectionEquipment
+:InspectionEquipment rdf:type owl:Class ;
+                     owl:equivalentClass :MeasuringEquipment ;
+                     rdfs:subClassOf dice:Equipment .
+
+
+###  https://w3id.org/ocqa#InspectionPlan
+:InspectionPlan rdf:type owl:Class ;
+                rdfs:subClassOf :Plan ;
+                rdfs:comment "Inspection plan"@en ;
+                rdfs:label "Prüfanweisung"@de ,
+                           "Prüfplan"@de ;
+                <https://w3id.org/ocqa#DIN_55350:2021-10> """Specification of one or more tests.
+Note 1 on the term: A test plan generally contains information about the test object and the determination of the testing technique, testing activities and processes, and the sequence of tests, or refers to corresponding test specifications, test instructions, and test sequence plans. A test plan may also contain specifications for marking and documenting the test status.
+Note 2 on the term: In addition to a comprehensive test plan, extracts from this test plan in the form of test specifications, test instructions, and test sequence plans may be appropriate for a test."""@en ,
+                                                          """Spezifikation einer oder mehrerer Prüfungen
+Anmerkung 1 zum Begriff: Ein Prüfplan enthält im Allgemeinen Angaben zum Prüfobjekt und die Festlegung der Prüftechnik, der Prüftätigkeiten und Prüfprozesse und der Abfolge von Prüfungen oder verweist auf entsprechende Prüfspezifikationen, Prüfanweisungen und Prüfablaufpläne. Ein Prüfplan kann auch Festlegungen zur Kennzeichnung und Dokumentation des Prüfstatus enthalten.
+Anmerkung 2 zum Begriff: Zusätzlich zu einem umfassenden Prüfplan können für eine Prüfung Auszüge aus diesem Prüfplan in Form von Prüfspezifikationen, Prüfanweisungen und Prüfablaufplänen zweckmäßig sein."""@de .
+
+
+###  https://w3id.org/ocqa#InspectionProcedure
+:InspectionProcedure rdf:type owl:Class ;
+                     rdfs:subClassOf :Procedure ;
+                     rdfs:comment "The knowledge of a testing procedure is represented by a rule. The rule thus corresponds to a procedural instruction from which the individual test results."@en ,
+                                  "The properties of the testing method can be added to the testing method. For this purpose, DiCon, OPM and SOSA can be used."@en ,
+                                  "An die Prüfmethode können die Eigenschaften der Prüfmethode hinzugefügt werden. Hierzu kann DiCon, OPM und SOSA verwendet werden." ,
+                                  "Das Wissen eines Prüfverfahrens wird durch eine Regel abgebildet. Die Regel entspricht somit einer Verfahrensanweisung aus der sich die individuelle Prüfung ergibt." ;
+                     rdfs:label "Prüfungsmethode"@de ,
+                                "Prüfverfahren"@de .
+
+
+###  https://w3id.org/ocqa#Inspector
+:Inspector rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/digitalconstruction/0.5/Agents#Person> .
+
+
+###  https://w3id.org/ocqa#Measurement
+:Measurement rdf:type owl:Class ;
+             rdfs:subClassOf :Determination ;
+             rdfs:label "Measurement"@en ;
+             <https://w3id.org/ocqa#DIN_9000:2015> """Prozess (3.4.1) zum Bestimmen eines Wertes
+Anmerkung 1 zum Begriff: Nach ISO 3534-2 ist der bestimmte Wert üblicherweise ein Größenwert.
+Anmerkung 2 zum Begriff: Dieser Begriff stellt eine der gemeinsamen Benennungen und der Basisdefinitionen für ISO-Managementsystemnormen dar, die in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Anhang SL enthalten sind. Die ursprüngliche Definition wurde durch Hinzufügen von Anmerkung 1 zum Begriff geändert."""@de ,
+                                                   """The term refers to a process (3.4.1) for determining a value.
+Note 1 to the term: According to ISO 3534-2, the determined value is typically a quantity value.
+Note 2 to the term: This term is one of the common names and basic definitions for ISO management system standards contained in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Annex SL. The original definition was amended by adding Note 1 to the term."""@en .
+
+
+###  https://w3id.org/ocqa#MeasuringEquipment
+:MeasuringEquipment rdf:type owl:Class ;
+                    rdfs:subClassOf dice:Equipment ;
+                    rdfs:label "Messmittel"@de ;
+                    <https://w3id.org/ocqa#DIN_9000:2015> "Measuring instrument, software, measuring standard, reference material, or equipment, or a combination thereof, that is necessary to carry out a measurement process (3.11.5)."@en ,
+                                                          "Messgerät, Software, Messnormal, Referenzmaterial oder apparative Hilfsmittel oder eine Kombination davon, wie sie zur Realisierung eines Messprozesses (3.11.5) erforderlich sind"@de .
+
+
+###  https://w3id.org/ocqa#Monitoring
+:Monitoring rdf:type owl:Class ;
+            rdfs:subClassOf :Determination ;
+            rdfs:label "Monitoring"@en ;
+            <https://w3id.org/ocqa#DIN_9000:2015> """Bestimmung (3.11.1) des Zustands eines Systems
+(3.5.1), eines Prozesses (3.4.1), eines Produkts (3.7.6), einer Dienstleistung (3.7.7) oder einer Tätigkeit
+Anmerkung 1 zum Begriff: Bei der Bestimmung des Zustands kann es erforderlich sein, zu prüfen, zu beaufsichtigen oder kritisch zu beobachten.
+Anmerkung 2 zum Begriff: Überwachung ist üblicherweise eine Bestimmung des Zustands eines Objekts
+(3.6.1), die in verschiedenen Stufen verschiedenen Zeiten durchgeführt wird.
+Anmerkung 3 zum Begriff: Dieser Begriff stellt eine der gemeinsamen Benennungen und der Basisdefinitionen für ISO-Managementsystemnormen dar, die in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Anhang SL enthalten sind. Die ursprüngliche Definition sowie Anmerkung 1 zum Begriff wurden geändert und Anmerkung 2 zum Begriff wurde hinzugefügt."""@de ,
+                                                  """Determination (3.11.1) of the condition of a system (3.5.1), process (3.4.1), product (3.7.6), service (3.7.7), or activity.
+Note 1 to the term: Determination of the condition may require inspection, supervision, or critical observation.
+Note 2 to the term: Monitoring is usually a determination of the condition of an object (3.6.1) that is carried out at various times at different levels.
+Note 3 to the term: This term represents one of the common denominations and basic definitions for ISO management system standards contained in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Annex SL. The original definition and Note 1 to the term have been revised and Note 2 to the term has been added."""@en .
+
+
+###  https://w3id.org/ocqa#Nonconformity
+:Nonconformity rdf:type owl:Class ;
+               rdfs:subClassOf :Evaluation ,
+                               :Record ;
+               rdfs:label "Fehler"@de ;
+               <https://w3id.org/ocqa#DIN_9000:2015> """Comment based on DIN_9000:2015
+Non-fulfillment of a requirement (3.6.4).
+Note 1 on the term: This term represents one of the common names and basic definitions for ISO management system standards, which are included in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Annex SL."""@en ,
+                                                     """Nichterfüllung einer Anforderung (3.6.4)
+Anmerkung 1 zum Begriff: Dieser Begriff stellt eine der gemeinsamen Benennungen und der Basisdefinitionen für ISO-Managementsystemnormen dar, die in ISO/IEC Directives, Part 1, Consolidated ISO Supplement, Anhang SL enthalten sind"""@de .
+
+
+###  https://w3id.org/ocqa#Plan
+:Plan rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#Procedure
+:Procedure rdf:type owl:Class ;
+           rdfs:comment "The term \"procedure\" refers to the \"specified way to carry out an activity or a process\""@en ,
+                        "Verfahren ist die „festgelegte Art und Weise, eine Tätigkeit oder einen Prozess auszuführen“"@de ;
+           rdfs:label "Verfahren"@de ,
+                      "procedure"@en ,
+                      "process type"@en ;
+           <https://w3id.org/ocqa#DIN_55350:2021-10> """Process instruction; a mandatory procedural document.
+Note 1 on the term: A process instruction typically specifies in particular what, how, by whom, when, and where actions or omissions must be taken.
+Note 2 on the term: Depending on the content of a process instruction, designations such as \"work instruction,\" \"test instruction\" (3.1.2.4), and \"transport instruction\" are sometimes used."""@en ,
+                                                     """Verfahrensanweisung
+verbindliches Verfahrensdokument
+Anmerkung 1 zum Begriff: In einer Verfahrensanweisung ist üblicherweise insbesondere festgelegt, was, wie, durch wen, wann und wo getan oder unterlassen werden muss.
+Anmerkung 2 zum Begriff: In Abhängigkeit vom Inhalt einer Verfahrensanweisung werden bisweilen Benennungen wie „Arbeitsanweisung“, „Prüfanweisung“ (3.1.2.4) und „Transportanweisung“ verwendet."""@de ;
+           <https://w3id.org/ocqa#DIN_9000:2015> """festgelegte Art und Weise, eine Tätigkeit oder einen
+Prozess (3.4.1) auszuführen"""@de ,
+                                                 """specified way to carry out an activity or a process (3.4.1)
+Note 1 to entry: Procedures can be documented or not."""@en .
+
+
+###  https://w3id.org/ocqa#ProgressEvaluation
+:ProgressEvaluation rdf:type owl:Class ;
+                    rdfs:subClassOf :Determination ;
+                    rdfs:label "Beurteilung des Fortschritts"@de ;
+                    <https://w3id.org/ocqa#DIN_9000:2015> """<Projektmanagement> Bewertung des Fortschritts bezüglich des Erreichens der Projektziele (Projekt (3.4.2), Ziel (3.7.1))
+Anmerkung 1 zum Begriff: Diese Bewertung sollte an geeigneten Punkten des Lebenszyklus des Projekts an
+Projektprozessen (3.4.1) durchgeführt werden,
+Anmerkung 2 zum Begriff: Die Ergebnisse der Beurteilungen des Fortschritts können zur Überarbeitung des Projektmanagementplans (3.8.11) führen.
+[QUELLE: ISO 10006:2003, 3.4, modifiziert — Anmerkungen zum Begriff wurden modifiziert]"""@de ,
+                                                          """[Project Management] Evaluation of progress towards achieving project objectives (project (3.4.2), objective (3.7.1)).
+Note 1 to the term: This evaluation should be conducted at appropriate points in the project lifecycle through project processes (3.4.1).
+Note 2 to the term: The results of progress assessments may lead to the revision of the project management plan (3.8.11).
+[SOURCE: ISO 10006:2003, 3.4, modified - Notes to the term have been modified]"""@en .
+
+
+###  https://w3id.org/ocqa#Protocol
+:Protocol rdf:type owl:Class ;
+          rdfs:subClassOf :Record ;
+          rdfs:comment "Derived from a SHACL rule using DASH functions."@en ,
+                       "Wird abgeleitet aus SHACL Regel über DASH funktionen"@de ;
+          rdfs:label "Prüfbescheinigung"@de ,
+                     "Prüfprotokoll"@de ;
+          <https://w3id.org/ocqa#DIN_55350:2021-10> """Aufzeichnung mit Angaben über durchgeführte Prüfungen, die als Nachweis über die Qualität eines Objektes dient
+Anmerkung 1 zum Begriff: Eine Prüfbescheinigung kann Angaben enthalten wie:
+— Aussteller der Prüfbescheinigung/Datum;
+— Hersteller/Auftragnehmer (Lieferer);
+— Abnehmer/Auftraggeber/Besteller/Betreiber;
+— Auftrags-/Bestell-Nummer;
+— Liefergegenstand, Stückzahl usw.;
+— Qualitätsanforderung (z. B. technische Lieferbedingungen);
+— Prüfspezifikationen;
+— Art der Prüfbescheinigung;
+— gegebenenfalls spezielle Qualitätsmerkmale;
+— Prüfergebnisse; und
+— gegebenenfalls weitere Angaben und Vereinbarungen.
+Anmerkung 2 zum Begriff: Es gibt verschiedene Arten von Prüfbescheinigungen. In DINEN10204:2005-01 sind definiert: Werksbescheinigung „2.1“, Werkszeugnis „2.2“, Abnahmeprüfzeugnis „3.1“ und Abnahmeprüfzeugnis „3.2“.
+Anmerkung 3 zum Begriff: Eine Prüfbescheinigung entbindet einen weiterverarbeitenden Abnehmer des Produktes oder der Dienstleistung im Allgemeinen nicht von seiner Qualitätsverantwortung."""@de ,
+                                                    """Record containing information about performed tests, which serves as proof of the quality of an object.
+Note 1 on the term: A test certificate may contain information such as:
+
+Issuer of the test certificate/date;
+Manufacturer/contractor (supplier);
+Purchaser/client/orderer/operator;
+Order/purchase number;
+Delivery item, quantity, etc.;
+Quality requirements (e.g. technical delivery conditions);
+Test specifications;
+Type of test certificate;
+Any special quality features;
+Test results; and
+Any further information and agreements.
+Note 2 on the term: There are various types of test certificates. In DINEN10204:2005-01, the following are defined: Certificate type 2.1, Inspection certificate type 2.2, Test report type 3.1, and Test report type 3.2.
+Note 3 on the term: A test certificate does not generally release a further processing purchaser of the product or service from their responsibility for quality."""@en .
+
+
+###  https://w3id.org/ocqa#QualityCharacteristic
+:QualityCharacteristic rdf:type owl:Class ;
+                       rdfs:subClassOf :Characteristic ;
+                       rdfs:comment """Characteristic (3.4.1.1) whose values are assigned to a scale (3.4.1.4) on which distances are not defined.
+Note 1 to the term: this scale is called \"Topological Scale\". See also Section A.7.
+Note 2 on the term: It may be useful to identify characteristic values of Qualitative Characteristics with a key number, i.e. with numbers. However, this does not assign a scale to the values of this Qualitative Characteristic on which distances are defined. The qualitative characteristic is therefore not converted into a quantitative characteristic by numbering the characteristic values."""@en ,
+                                    """Merkmal (3.4.1.1), dessen Werte einer Skala (3.4.1.4) zugeordnet sind, auf der keine Abstände definiert sind
+Anmerkung 1 zum Begriff: Diese Skala heißt „Topologische Skala“. Siehe auch Abschnitt A.7.
+Anmerkung 2 zum Begriff: Es kann sinnvoll sein, Merkmalswerte von Qualitativen Merkmalen mit einer Schlüsselnummer zu kennzeichnen, also mit Zahlen. Dadurch wird jedoch den Werten dieses Qualitativen Merkmals keine Skala zugeordnet, auf der Abstände definiert sind. Das Qualitative Merkmal wird also durch eine Benummerung der Merkmalswerte nicht in ein Quantitatives Merkmal umgewandelt."""@de ;
+                       rdfs:label "Qualitatives Merkmal"@de ,
+                                  "qualitative characteristic"@en .
+
+
+###  https://w3id.org/ocqa#QuantitativeCharacteristic
+:QuantitativeCharacteristic rdf:type owl:Class ;
+                            rdfs:subClassOf :Characteristic ;
+                            rdfs:comment """Quantitative characteristic: characteristic (3.4.1.1) whose values are assigned to a scale (3.4.1.4) on which distances are defined.
+Note 1 to the term: This scale is called: \"Metric scale\" or \"Cardinal scale\". On it either only distances are defined (\"interval scale\") or additionally also ratios (\"ratio scale\"). For example, on the Celsius temperature scale, only distances are defined, while on the Kelvin temperature scale, ratios are also defined. See also section A.7.
+ Remark 2 to the term: According to the value range of characteristics (3.4.1.3), Continuous Characteristics (3.4.1.6) and Discrete Characteristics (3.4.1.7) are distinguished.
+Note 3 to term: A Quantitative Characteristic can be transformed into a Qualitative Characteristic by determining only whether the actual value lies within a specified range of values (which belongs to the value range of the characteristic (3.4.1.3)). 
+Note 4 to the term: The value of a quantitative characteristic is expressed as the product of a numerical value and a unit (e.g. SI unit, currency unit, see also DIN 1301-1:2010-10) (see DIN 1313:1998-12). 
+Note 5 to the term: tative characteristics."""@en ,
+                                         """Quantitatives Merkmal: Merkmal (3.4.1.1), dessen Werte einer Skala (3.4.1.4) zugeordnet sind, auf der Abstände definiert sind.
+Anmerkung 1 zum Begriff: Diese Skala heißt: „Metrische Skala“ oder „Kardinalskala“. Auf ihr sind entweder nur Abstände definiert („Intervallskala“) oder zusätzlich auch Verhältnisse („Verhältnisskala“). Beispielsweise sind auf der Temperaturskala nach Celsius nur Abstände definiert, während auf der Kelvin-Temperaturskala zusätzlich auch Verhältnisse definiert sind. Siehe auch Abschnitt A.7.
+ Anmerkung 2 zum Begriff: Nach dem Wertebereich von Merkmalen (3.4.1.3) werden Kontinuierliche Merkmale (3.4.1.6) und Diskrete Merkmale (3.4.1.7) unterschieden.
+Anmerkung 3 zum Begriff: Ein Quantitatives Merkmal kann dadurch in ein Qualitatives Merkmal verwandelt werden, dass nur noch festgestellt wird, ob der Istwert in einem vorgegebenen Bereich von Werten liegt (der zum Wertebereich des Merkmals (3.4.1.3) gehört). 
+Anmerkung 4 zum Begriff: Der Wert eines Quantitativen Merkmals wird als Produkt aus Zahlenwert und Einheit (z. B. SI-Einheit, Währungseinheit, siehe auch DIN 1301-1:2010-10) ausgedrückt (siehe DIN 1313:1998-12). 
+Anmerkung 5 zum Begriff: tativer Merkmale."""@de ;
+                            rdfs:label "Quantitatives Merkmal"@de ,
+                                       "quantitative characteristic"@en .
+
+
+###  https://w3id.org/ocqa#Record
+:Record rdf:type owl:Class ;
+        rdfs:label "Aufzeichnung"@de ,
+                   "Documentation"@en ,
+                   "Dokumentation"@de ;
+        <https://w3id.org/ocqa#DIN_9000:2015> """A document (3.8.5) that indicates achieved results or provides evidence of completed activities.
+
+Note 1 to the term: Records can, for example, be used to demonstrate traceability (3.6.13) and to provide evidence of verification (3.8.12), preventive actions (3.12.1), and corrective actions (3.12.2).
+
+Note 2 to the term: Records typically do not require monitoring by an audit."""@en ,
+                                              """Dokument (3.8.5), das erreichte Ergebnisse angibt oder einen Nachweis ausgeführter Tätigkeiten bereitstellt
+Anmerkung 1 zum Begriff: Aufzeichnungen können beispielsweise angewendet werden zur Darlegung von Rückverfolgbarkeit (3.6.13) und zum Nachweis von Verifizierung (3.8.12), Vorbeugungsmaßnahmen (3.12.1) und Korrekturmaßnahmen (3.12.2).
+Anmerkung 2 zum Begriff: Aufzeichnungen bedürfen üblicherweise nicht einer Überwachung durch Revision."""@de .
+
+
+###  https://w3id.org/ocqa#Result
+:Result rdf:type owl:Class ;
+        rdfs:subClassOf :Record .
+
+
+###  https://w3id.org/ocqa#Review
+:Review rdf:type owl:Class ;
+        rdfs:subClassOf :Determination ;
+        <https://w3id.org/ocqa#DIN_9000:2015> """Bestimmung (3.11.1) der Eignung, Angemessenheit
+und Wirksamkeit (3.7.11) eines Objekts (3.6.1), festgelegte Ziele (3.7.1) zu erreichen
+Managementbewertung,
+BEISPIEL
+Entwicklungsüberprüfung (3.4.8), Überprüfung von Kundenanforderungen (Kunde (3.2.4), Anforderung (3.6.4)), Überprüfung von Korrekturmaßnahmen (3.12.2) Begutachtung.
+und
+Anmerkung 1 zum Begriff: Überprüfung kann auch die Bestimmung der Effizienz (3.7.10) enthalten."""@de ,
+                                              """Determination (3.11.1) of the suitability, adequacy, and effectiveness (3.7.11) of an object (3.6.1) to achieve established objectives (3.7.1) through management review,
+EXAMPLES:
+
+Development review (3.4.8), review of customer requirements (customer (3.2.4), requirement (3.6.4)), review of corrective actions (3.12.2), and assessment.
+Note 1 to the term: Review may also include determination of efficiency (3.7.10)."""@en .
+
+
+###  https://w3id.org/ocqa#Sample
+:Sample rdf:type owl:Class ;
+        rdfs:subClassOf owl:Thing ;
+        rdfs:label "Muster"@de ;
+        <https://w3id.org/ocqa#DIN_55350:2021-10> """Object that is representative of another object or several other objects.
+Note 1 to the term: The type or reason for the inspection or the requirements placed on the sample determine the type of sample in detail.
+Note 2 to the term: A sample can be representative of the represented objects in its entirety or in parts, e.g. only with respect to a part of the characteristics of the represented objects.
+Note 3 to the term: Other designations such as \"quality sample\", \"test sample\", \"special sample\" should be avoided as synonyms for \"sample\"."""@en ,
+                                                  """Objekt, das repräsentativ für ein anderes Objekt oder mehrere andere Objekte ist
+Anmerkung 1 zum Begriff: Die Art oder der Anlass der Überprüfung oder die Anforderungen, die an das Muster gestellt werden, bestimmen im Einzelnen die Art des Musters.
+Anmerkung 2 zum Begriff: Ein Muster kann in seiner Gesamtheit repräsentativ sein für die repräsentierten Objekte oder in Teilen, z. B. nur bezogen auf einen Teil der Merkmale der repräsentierten Objekte.
+Anmerkung 3 zum Begriff: Es sollte vermieden werden, andere Benennungen wie „Qualitätsmuster“, „Prüfmuster“, „Spezialmuster“ als Synonyme zu „Muster“ zu verwenden."""@de .
+
+
+###  https://w3id.org/ocqa#Test
+:Test rdf:type owl:Class ;
+      rdfs:subClassOf :Determination ;
+      rdfs:label "Test"@de ;
+      <https://w3id.org/ocqa#DIN_9000:2015> """Bestimmung (3.11.1)
+entsprechend
+Anforderungen (3.6.4) an einen beabsichtigten Gebrauch oder beabsichtigte Anwendung
+den spezifischen eine spezifische
+Anmerkung 1 zum Begriff: Zeigt das Ergebnis eines Tests Konformität (3.6.11), kann es zu Zwecken der Validierung (3.8.13) verwendet werden."""@de ,
+                                            """Determination (3.11.1) in accordance with requirements (3.6.4) for an intended use or application, specific to a particular.
+Note 1 to the term: If the result of a test shows conformity (3.6.11), it may be used for validation (3.8.13) purposes"""@en .
+
+
+###  https://w3id.org/ocqa#Video
+:Video rdf:type owl:Class ;
+       rdfs:subClassOf :Record .
+
+
+###  https://w3id.org/ocqa/contract#CostFeatureCatalog
+ocqa-con:CostFeatureCatalog rdf:type owl:Class ;
+                            rdfs:subClassOf ocqa-con:FeatureCatalog ;
+                            rdfs:comment "Der CostFeatureCatalog ist ein Katalog, der verschiedene Parameter oder Merkmale rund um die Kosten im Kontext der Prüfplanung in der Bauausführung beinhaltet. Dies kann Kosten für Materialien, Ausrüstung, Arbeitsstunden und andere relevante Aspekte umfassen. Der Zweck dieses Katalogs ist es, eine strukturierte und organisierte Sammlung von Kostenparametern bereitzustellen, die zur genauen Berechnung und Planung in Bauprojekten herangezogen werden können."@de ,
+                                         "The CostFeatureCatalog is a catalog that encompasses various parameters or features related to costs in the context of quality assurance in construction execution. This can include costs for materials, equipment, man-hours, and other relevant aspects. The purpose of this catalog is to provide a structured and organized collection of cost parameters that can be used for accurate calculation and planning in construction projects."@en ;
+                            rdfs:label "KostenMerkmalKatalog"@de .
+
+
+###  https://w3id.org/ocqa/contract#FailureProbabilityCatalog
+ocqa-con:FailureProbabilityCatalog rdf:type owl:Class ;
+                                   rdfs:subClassOf ocqa-con:FeatureCatalog ;
+                                   rdfs:comment "Der FailureProbabilityCatalog ist ein Katalog, der verschiedene Parameter bezüglich der Wahrscheinlichkeit von Fehlern oder Ausfällen in der Prüfplanung der Bauausführung enthält. Dies kann sich auf die Wahrscheinlichkeit beziehen, mit der bestimmte Materialien versagen, oder die Effizienz bestimmter Bauverfahren. Ziel dieses Katalogs ist es, Risiken besser einschätzen und minimieren zu können."@de ,
+                                                "The FailureProbabilityCatalog is a catalog containing various parameters concerning the probability of errors or failures in the quality assurance of construction execution. This might relate to the likelihood of specific materials failing or the efficiency of particular construction methods. The goal of this catalog is to better assess and minimize risks."@en ;
+                                   rdfs:label "FehlerMerkmalsKatalog"@de .
+
+
+###  https://w3id.org/ocqa/contract#FeatureCatalog
+ocqa-con:FeatureCatalog rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa/contract#FeatureState
+ocqa-con:FeatureState rdf:type owl:Class ;
+                      rdfs:subClassOf opm:PropertyState .
+
+
+###  https://w3id.org/ocqa/contract#TimeRateCatalog
+ocqa-con:TimeRateCatalog rdf:type owl:Class ;
+                         rdfs:subClassOf ocqa-con:FeatureCatalog ;
+                         rdfs:comment "Der TimeRateCatalog ist ein Katalog, der Parameter oder Merkmale rund um die Zeitschätzungen in der Prüfplanung in der Bauausführung beinhaltet. Dies kann sich auf die benötigte Zeit für verschiedene Prozesse, wie Vorbereitung, Durchführung oder Nachbearbeitung beziehen. Durch diesen Katalog können Bauprojekte zeitlich besser geplant und optimiert werden."@de ,
+                                      "The TimeRateCatalog is a catalog that includes parameters or features concerning time estimations in the context of quality assurance in construction execution. This can relate to the time required for various processes, such as preparation, execution, or post-processing. Through this catalog, construction projects can be better planned and optimized in terms of time."@en ;
+                         rdfs:label "ZeitMerkmalKatalog"@de .
+
+
+###  https://w3id.org/opm#Property
+opm:Property rdf:type owl:Class .
+
+
+###  https://w3id.org/opm#PropertyState
+opm:PropertyState rdf:type owl:Class .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+dice:Process rdfs:label "Prozess"@de .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Image
+                :Protocol
+                :Video
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Inspection
+                :Measurement
+                :Monitoring
+                :Review
+                :Test
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( ocqa-con:CostFeatureCatalog
+                ocqa-con:FailureProbabilityCatalog
+                ocqa-con:TimeRateCatalog
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi

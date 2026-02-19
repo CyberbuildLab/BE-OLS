@@ -1,0 +1,924 @@
+@prefix : <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45> .
+
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#containsBuildingBlock
+:containsBuildingBlock rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdf:type owl:FunctionalProperty ;
+                       rdfs:domain :Parcel ;
+                       rdfs:range :BuildingBlock .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#containsMonument
+:containsMonument rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Parcel ;
+                  rdfs:range :Monument .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#containsParking
+:containsParking rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Parcel ;
+                 rdfs:range :Parking .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasBuilding
+:hasBuilding rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :BuildingBlock ;
+             rdfs:range :Building .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasConstraint
+:hasConstraint rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Monument ;
+               rdfs:range :ConstructionRegulation .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasEnergyType
+:hasEnergyType rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :EnergyNetwork ;
+               rdfs:range :EnergyType .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasLanduseType
+:hasLanduseType rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Parcel ;
+                rdfs:range :LandUseType .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasParcel
+:hasParcel rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :District ;
+           rdfs:range :Parcel .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasProcess
+:hasProcess rdf:type owl:ObjectProperty ;
+            rdfs:domain :District ;
+            rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasRailwayType
+:hasRailwayType rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Railway ;
+                rdfs:range :RailwayType .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#hasRoadType
+:hasRoadType rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Road ;
+             rdfs:range :RoadType .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#fileContains
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#fileContains> rdf:type owl:ObjectProperty ;
+                                                                                         rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherFile> ;
+                                                                                         rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasCo2EmissionVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasCo2EmissionVal> rdf:type owl:ObjectProperty ;
+                                                                                              rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#CO2Emission> ;
+                                                                                              rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Co2Val> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasDepth
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasDepth> rdf:type owl:ObjectProperty ;
+                                                                                     rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#GeothermalPotential> ;
+                                                                                     rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Depth> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasElectricityGenerationPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasElectricityGenerationPotential> rdf:type owl:ObjectProperty ;
+                                                                                                              rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#BiomassPotential> ;
+                                                                                                              rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#ElectricityGenerationPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasEnergyConsVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasEnergyConsVal> rdf:type owl:ObjectProperty ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsumption> ;
+                                                                                             rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsVal> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasEnergyType
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasEnergyType> rdf:type owl:ObjectProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsumption> ;
+                                                                                          rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyType> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasFormatConstraint
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasFormatConstraint> rdf:type owl:ObjectProperty ;
+                                                                                                rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherFile> ;
+                                                                                                rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#epwFileFormat> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasHeatGenerationPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasHeatGenerationPotential> rdf:type owl:ObjectProperty ;
+                                                                                                       rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#BiomassPotential> ;
+                                                                                                       rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#HeatGenerationPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasNoiseLevelVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasNoiseLevelVal> rdf:type owl:ObjectProperty ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevel> ;
+                                                                                             rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevelVal> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopAgeRange
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopAgeRange> rdf:type owl:ObjectProperty ;
+                                                                                           rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                           rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAge> ;
+                                                                                           rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRange> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopAgeRangeVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopAgeRangeVal> rdf:type owl:ObjectProperty ;
+                                                                                              rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRange> ;
+                                                                                              rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRangeVal> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopDenVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopDenVal> rdf:type owl:ObjectProperty ;
+                                                                                         rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensity> ;
+                                                                                         rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensityVal> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopEduLevel
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasPopEduLevel> rdf:type owl:ObjectProperty ;
+                                                                                           rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEducation> ;
+                                                                                           rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEduLevel> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasSolarPotentialElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasSolarPotentialElectricityFeed> rdf:type owl:ObjectProperty ;
+                                                                                                             rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Photovoltaics> ;
+                                                                                                             rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialElectricityFeed> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasSolarPotentialHeatElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasSolarPotentialHeatElectricityFeed> rdf:type owl:ObjectProperty ;
+                                                                                                                 rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarThermal> ;
+                                                                                                                 rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialHeatElectricityFeed> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasWindPowerElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasWindPowerElectricityFeed> rdf:type owl:ObjectProperty ;
+                                                                                                        rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerPotential> ;
+                                                                                                        rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerElectricityFeed> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasWithdrawlPerformance
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#hasWithdrawlPerformance> rdf:type owl:ObjectProperty ;
+                                                                                                    rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#GeothermalPotential> ;
+                                                                                                    rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WithdrawlPerformance> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#isLinkedTo
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#isLinkedTo> rdf:type owl:ObjectProperty ;
+                                                                                       rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Weather> ;
+                                                                                       rdfs:range <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherFile> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#airportName
+:airportName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Airport ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#buildingArea
+:buildingArea rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Building ;
+              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#buildingBlockArea
+:buildingBlockArea rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain :BuildingBlock ;
+                   rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#buildingHeight
+:buildingHeight rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Building ;
+                rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#districtArea
+:districtArea rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :District ;
+              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#districtName
+:districtName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :District ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#energyType
+:energyType rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :EnergyType ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#facadeMaterial
+:facadeMaterial rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Building ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#lakeArea
+:lakeArea rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Lake ;
+          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#lakeName
+:lakeName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Lake ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#landUseType
+:landUseType rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :LandUseType ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#numberOfFloor
+:numberOfFloor rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :Building ;
+               rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#parcelArea
+:parcelArea rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Parcel ;
+            rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#parkArea
+:parkArea rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Park ;
+          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#parkName
+:parkName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Park ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#parkingArea
+:parkingArea rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Parking ;
+             rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#pondArea
+:pondArea rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Pond ;
+          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#pondName
+:pondName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Pond ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#railwayStationName
+:railwayStationName rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain :RailwayStation ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#railwayType
+:railwayType rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :RailwayType ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#railwayWidth
+:railwayWidth rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Railway ;
+              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#riverName
+:riverName rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :River ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#riverWidth
+:riverWidth rdf:type owl:DatatypeProperty ;
+            rdfs:domain :River ;
+            rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#roadType
+:roadType rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :RoadType ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#roadWidth
+:roadWidth rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Road ;
+           rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#treeCrownSize
+:treeCrownSize rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :SingleTree ;
+               rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#treeHeight
+:treeHeight rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :SingleTree ;
+            rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#treeSpecies
+:treeSpecies rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :SingleTree ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#walkwayWidth
+:walkwayWidth rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Walkway ;
+              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#co2Val
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#co2Val> rdf:type owl:DatatypeProperty ;
+                                                                                   rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Co2Val> ;
+                                                                                   rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#depth
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#depth> rdf:type owl:DatatypeProperty ;
+                                                                                  rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Depth> ;
+                                                                                  rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#electricityGenVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#electricityGenVal> rdf:type owl:DatatypeProperty ;
+                                                                                              rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#ElectricityGenerationPotential> ;
+                                                                                              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#energyConsVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#energyConsVal> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsVal> ;
+                                                                                          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#energyType
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#energyType> rdf:type owl:DatatypeProperty ;
+                                                                                       rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyType> ;
+                                                                                       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#heatGenVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#heatGenVal> rdf:type owl:DatatypeProperty ;
+                                                                                       rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#HeatGenerationPotential> ;
+                                                                                       rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#humidity
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#humidity> rdf:type owl:DatatypeProperty ;
+                                                                                     rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> ;
+                                                                                     rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#noiseLevelVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#noiseLevelVal> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevelVal> ;
+                                                                                          rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popAgeRangeVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popAgeRangeVal> rdf:type owl:DatatypeProperty ;
+                                                                                           rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRangeVal> ;
+                                                                                           rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popDensityVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popDensityVal> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensityVal> ;
+                                                                                          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popEducationLevVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#popEducationLevVal> rdf:type owl:DatatypeProperty ;
+                                                                                               rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEduLevel> ;
+                                                                                               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#solarPotentialElectricityFeedVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#solarPotentialElectricityFeedVal> rdf:type owl:DatatypeProperty ;
+                                                                                                             rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialElectricityFeed> ;
+                                                                                                             rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#solarPotentialHeatElectricityFeedVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#solarPotentialHeatElectricityFeedVal> rdf:type owl:DatatypeProperty ;
+                                                                                                                 rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialHeatElectricityFeed> ;
+                                                                                                                 rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#temperature
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#temperature> rdf:type owl:DatatypeProperty ;
+                                                                                        rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> ;
+                                                                                        rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windDirection
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windDirection> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> ;
+                                                                                          rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windPowerElectricityFeedVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windPowerElectricityFeedVal> rdf:type owl:DatatypeProperty ;
+                                                                                                        rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerElectricityFeed> ;
+                                                                                                        rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windSpeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#windSpeed> rdf:type owl:DatatypeProperty ;
+                                                                                      rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> ;
+                                                                                      rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#withdrawlPerformanceVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#withdrawlPerformanceVal> rdf:type owl:DatatypeProperty ;
+                                                                                                    rdfs:domain <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WithdrawlPerformance> ;
+                                                                                                    rdfs:range xsd:double .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Airport
+:Airport rdf:type owl:Class ;
+         rdfs:subClassOf :TrafficNetwork .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#BuildingBlock
+:BuildingBlock rdf:type owl:Class ;
+               rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#BuiltArea
+:BuiltArea rdf:type owl:Class ;
+           rdfs:subClassOf :Object .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#ConstructionRegulation
+:ConstructionRegulation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#District
+:District rdf:type owl:Class ;
+          rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#EnergyNetwork
+:EnergyNetwork rdf:type owl:Class ;
+               rdfs:subClassOf :Object .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#EnergyType
+:EnergyType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Lake
+:Lake rdf:type owl:Class ;
+      rdfs:subClassOf :Water .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#LandUseType
+:LandUseType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Monument
+:Monument rdf:type owl:Class ;
+          rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Object
+:Object rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Parcel
+:Parcel rdf:type owl:Class ;
+        rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Park
+:Park rdf:type owl:Class ;
+      rdfs:subClassOf :Vegetation .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Parking
+:Parking rdf:type owl:Class ;
+         rdfs:subClassOf :BuiltArea .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#ParkingLot
+:ParkingLot rdf:type owl:Class ;
+            rdfs:subClassOf :Parking .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#ParkingSpace
+:ParkingSpace rdf:type owl:Class ;
+              rdfs:subClassOf :Parking .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Pond
+:Pond rdf:type owl:Class ;
+      rdfs:subClassOf :Water .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Railway
+:Railway rdf:type owl:Class ;
+         rdfs:subClassOf :TrafficNetwork .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#RailwayStation
+:RailwayStation rdf:type owl:Class ;
+                rdfs:subClassOf :TrafficNetwork .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#RailwayType
+:RailwayType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#River
+:River rdf:type owl:Class ;
+       rdfs:subClassOf :Water .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Road
+:Road rdf:type owl:Class ;
+      rdfs:subClassOf :TrafficNetwork .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#RoadType
+:RoadType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#SingleTree
+:SingleTree rdf:type owl:Class ;
+            rdfs:subClassOf :Vegetation .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#TrafficNetwork
+:TrafficNetwork rdf:type owl:Class ;
+                rdfs:subClassOf :Object .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Vegetation
+:Vegetation rdf:type owl:Class ;
+            rdfs:subClassOf :Object .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Walkway
+:Walkway rdf:type owl:Class ;
+         rdfs:subClassOf :TrafficNetwork .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-45#Water
+:Water rdf:type owl:Class ;
+       rdfs:subClassOf :Object .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#BiomassPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#BiomassPotential> rdf:type owl:Class ;
+                                                                                             rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#CO2Emission
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#CO2Emission> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnvironmentRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Co2Val
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Co2Val> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Depth
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Depth> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#ElectricityGenerationPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#ElectricityGenerationPotential> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsVal> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsumption
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyConsumption> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyRelated> ;
+                                                                                              owl:disjointWith <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyRelated
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyRelated> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyType
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyType> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnvironmentRelated
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnvironmentRelated> rdf:type owl:Class ;
+                                                                                               rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#GeothermalPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#GeothermalPotential> rdf:type owl:Class ;
+                                                                                                rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#HeatGenerationPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#HeatGenerationPotential> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevel
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevel> rdf:type owl:Class ;
+                                                                                       rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnvironmentRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevelVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevelVal> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Photovoltaics
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Photovoltaics> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarEnergyPotential> ;
+                                                                                          owl:disjointWith <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarThermal> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAge
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAge> rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopulationRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRange
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRange> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRangeVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAgeRangeVal> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensity
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensity> rdf:type owl:Class ;
+                                                                                       rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopulationRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensityVal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensityVal> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEduLevel
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEduLevel> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEducation
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEducation> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopulationRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopulationRelated
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopulationRelated> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Process> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> rdf:type owl:Class ;
+                                                                                                    rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnergyRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarEnergyPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarEnergyPotential> rdf:type owl:Class ;
+                                                                                                 rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialElectricityFeed> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialHeatElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarPotentialHeatElectricityFeed> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarThermal
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarThermal> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarEnergyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Weather
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Weather> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#EnvironmentRelated> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherData> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherFile
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WeatherFile> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerElectricityFeed
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerElectricityFeed> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerPotential
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerPotential> rdf:type owl:Class ;
+                                                                                               rdfs:subClassOf <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#RenewableEnrgyPotential> .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WithdrawlPerformance
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WithdrawlPerformance> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#epwFileFormat
+<http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#epwFileFormat> rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BuildingBlock
+                :BuiltArea
+                :District
+                :EnergyNetwork
+                :Monument
+                :Parcel
+                :Parking
+                :TrafficNetwork
+                :Vegetation
+                :Water
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ConstructionRegulation
+                :EnergyType
+                :LandUseType
+                :Object
+                :RailwayType
+                :RoadType
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EnergyNetwork
+                :EnergyType
+                :TrafficNetwork
+                :Vegetation
+                :Water
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EnergyNetwork
+                :EnergyType
+                :Vegetation
+                :Water
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EnergyNetwork
+                :Park
+                :SingleTree
+                :Vegetation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Lake
+                :Pond
+                :River
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Park
+                :SingleTree
+                :Vegetation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#BiomassPotential>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#GeothermalPotential>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#SolarEnergyPotential>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#WindPowerPotential>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#CO2Emission>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#NoiseLevel>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#Weather>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopAge>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopDensity>
+                <http://www.semanticweb.org/ecdf_md/ontologies/2020/4/untitled-ontology-46#PopEducation>
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

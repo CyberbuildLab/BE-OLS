@@ -1,0 +1,198 @@
+@base <https://w3id.org/lbd/aec3po/> .
+@prefix aec3po: <https://w3id.org/lbd/aec3po/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://w3id.org/profile/ontdoc/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+_:ndd21df2481c145fb80f964930f2aed6ab1 a rdfs:Class,
+        owl:Class ;
+    owl:unionOf ( <FeatureOfInterest> <Property> <CheckMethod> ) ;
+    ns1:inDomainOf <hasValue> .
+
+cc:license a owl:AnnotationProperty .
+
+dct:contributor a owl:AnnotationProperty .
+
+dct:creator a owl:AnnotationProperty .
+
+dct:description a owl:AnnotationProperty .
+
+dct:issued a owl:AnnotationProperty .
+
+dct:source a owl:AnnotationProperty .
+
+dct:title a owl:AnnotationProperty .
+
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+schema1:affiliation a owl:AnnotationProperty .
+
+schema1:email a owl:AnnotationProperty .
+
+schema1:identifier a owl:AnnotationProperty .
+
+schema1:name a owl:AnnotationProperty .
+
+schema1:url a owl:AnnotationProperty .
+
+rdfs:Class ns1:hasMember _:ndd21df2481c145fb80f964930f2aed6ab1 .
+
+xsd:string ns1:inRangeOf <asText> .
+
+owl:Class ns1:hasMember _:ndd21df2481c145fb80f964930f2aed6ab1 .
+
+owl:Ontology ns1:hasMember <> .
+
+skos:example a owl:AnnotationProperty .
+
+skos:note a owl:AnnotationProperty .
+
+<https://www.mines-stetienne.fr/> schema1:name "MINES Saint-Étienne" ;
+    schema1:url <https://mines-stetienne.fr> .
+
+<http://maxime-lefrancois.info/me#> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.mines-stetienne.fr/> ;
+    schema1:email "maxime.lefrancois@emse.fr" ;
+    schema1:identifier <http://orcid.org/0000-0001-9814-8991> ;
+    schema1:name "Maxime Lefrançois" ;
+    schema1:url <http://maxime-lefrancois.info/> .
+
+owl:DatatypeProperty ns1:hasMember <asText>,
+        <hasValue> .
+
+owl:FunctionalProperty ns1:hasMember <asText>,
+        <hasValue> .
+
+<amna> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.bcu.ac.uk/> ;
+    schema1:email "Amna.Dridi@bcu.ac.uk" ;
+    schema1:identifier <http://orcid.org/0000-0002-0185-103X> ;
+    schema1:name "Amna Dridi" ;
+    schema1:url <https://www.researchgate.net/profile/Amna-Dridi-3> .
+
+<edlira> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.bcu.ac.uk/> ;
+    schema1:email "edlira.vakaj@bcu.ac.uk" ;
+    schema1:identifier <http://orcid.org/0000-0002-0712-0959> ;
+    schema1:name "Edlira Vakaj" ;
+    schema1:url <https://www.bcu.ac.uk/computing/about-us/our-staff/edlira-vakaj> .
+
+<pan> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.bcu.ac.uk/> ;
+    schema1:email "Panagiotis.Patlakas@bcu.ac.uk" ;
+    schema1:identifier <http://orcid.org/0000-0002-7248-8952> ;
+    schema1:name "Panagiotis Patlakas" ;
+    schema1:url <https://www.bcu.ac.uk/built-environment/about-us/our-staff/panagiotis-patlakas> .
+
+<thomas> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.cardiff.ac.uk/> ;
+    schema1:email "beachth@cardiff.ac.uk" ;
+    schema1:identifier <http://orcid.org/0000-0001-5610-8027> ;
+    schema1:name "Thomas Beach" ;
+    schema1:url <https://profiles.cardiff.ac.uk/staff/beachth> .
+
+<vladimir> a schema1:Person,
+        prov:Agent ;
+    schema1:affiliation <https://www.ontotext.com/> ;
+    schema1:email "vladimir.alexiev@ontotext.com" ;
+    schema1:identifier <https://orcid.org/0000-0001-7508-7428> ;
+    schema1:name "Vladimir Alexiev" ;
+    schema1:url <https://www.ontotext.com/blog/author/vladimir/> .
+
+<https://www.cardiff.ac.uk/> schema1:name "Cardiff University" ;
+    schema1:url <https://www.cardiff.ac.uk/> .
+
+<https://www.ontotext.com/> schema1:name "Ontotext" ;
+    schema1:url <https://www.ontotext.com/> .
+
+<> a owl:Ontology ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:contributor <http://maxime-lefrancois.info/me#>,
+        <amna>,
+        <thomas>,
+        <vladimir> ;
+    dct:created "2023-05-24"^^xsd:date ;
+    dct:creator <edlira>,
+        <pan> ;
+    dct:description "The Architecture, Engineering and Construction Compliance Checking and Permitting ontology (AEC3PO), based on the statements on building compliance-related document and design codes."@en ;
+    dct:modified "2025-04-22"^^xsd:date ;
+    dct:title "AEC3PO"@en ;
+    vann:preferredNamespacePrefix "aec3po" ;
+    vann:preferredNamespaceUri "https://w3id.org/lbd/aec3po/" ;
+    owl:imports <check_method>,
+        <checking_act>,
+        <compliance_verification_report>,
+        <data_requirement>,
+        <design>,
+        <document>,
+        <evidence>,
+        <feature_of_interest>,
+        <legal_verifier>,
+        <model>,
+        <rase_statement>,
+        <statement>,
+        <table> ;
+    skos:note "Main classes and properties in the AEC3PO ontology are aligned to higher level ontologies, such as DUL."@en .
+
+<asText> a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "as text"@en ;
+    dct:description "de facto used to link something (anything: property, statement, property design, check, cell, column, ...) to a literal string."@en ;
+    dct:title "as text"@en ;
+    rdfs:comment "de facto used to link something (anything: property, statement, property design, check, cell, column, ...) to a literal string."@en ;
+    rdfs:isDefinedBy <> ;
+    rdfs:range xsd:string ;
+    skos:hiddenLabel "text" .
+
+<hasValue> a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has value"@en ;
+    dct:description "de facto used to link something (anything: property, property design, check, cell, column, ...) to a value, expressed as a literal."@en ;
+    dct:title "has value"@en ;
+    rdfs:comment "de facto used to link something (anything: property, property design, check, cell, column, ...) to a value, expressed as a literal."@en ;
+    rdfs:domain _:ndd21df2481c145fb80f964930f2aed6ab1 ;
+    rdfs:isDefinedBy <> ;
+    skos:note "The value of the literal may be a XSD literal (boolean, integer, decimal, string), it may also use custom datatypes such as cdt:ucum"@en .
+
+<https://www.bcu.ac.uk/> schema1:name "Birmingham City University" ;
+    schema1:url <https://www.bcu.ac.uk/> .
+
+schema1:Person ns1:hasMember <http://maxime-lefrancois.info/me#>,
+        <amna>,
+        <edlira>,
+        <pan>,
+        <thomas>,
+        <vladimir> .
+
+owl:AnnotationProperty ns1:hasMember cc:license,
+        dct:contributor,
+        dct:creator,
+        dct:description,
+        dct:issued,
+        dct:source,
+        dct:title,
+        vann:preferredNamespacePrefix,
+        vann:preferredNamespaceUri,
+        schema1:affiliation,
+        schema1:email,
+        schema1:identifier,
+        schema1:name,
+        schema1:url,
+        skos:example,
+        skos:note .
+

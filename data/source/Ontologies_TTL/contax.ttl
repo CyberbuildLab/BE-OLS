@@ -1,0 +1,417 @@
+# baseURI: https://w3id.org/con-tax
+# prefix: contax
+
+@prefix : <https://w3id.org/con-tax#> .
+@prefix aat-arch: <https://w3id.org/con-tax/components/aat-arch#> .
+@prefix aat-bsites: <https://w3id.org/con-tax/zones/aat-buildingSites#> .
+@prefix aat-buildings: <https://w3id.org/con-tax/zones/aat-buildings#> .
+@prefix aat-furn: <https://w3id.org/con-tax/components/aat-furn#> .
+@prefix aat-mat: <https://w3id.org/con-tax/materials/aat-mat#> .
+@prefix aat-mep: <https://w3id.org/con-tax/components/aat-mep#> .
+@prefix aat-spaces: <https://w3id.org/con-tax/zones/aat-spaces#> .
+@prefix aat-storeys: <https://w3id.org/con-tax/zones/aat-storeys#> .
+@prefix beo: <http://pi.pauwel.be/voc/buildingelement#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix contax: <https://w3id.org/con-tax#> .
+@prefix cto: <https://w3id.org/cto#> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dot: <https://w3id.org/dot#> .
+@prefix et-buildings: <https://w3id.org/con-tax/zones/et-buildings#> .
+@prefix fog: <https://w3id.org/fog#> .
+@prefix furn: <http://pi.pauwel.be/voc/furniture#> .
+@prefix gvp: <http://vocab.getty.edu/ontology#> .
+@prefix mdcs: <https://mdcs.monumentenkennis.nl/damageatlas/ontology#> .
+@prefix mep: <http://pi.pauwel.be/voc/distributionelement#> .
+@prefix mwv-d: <https://w3id.org/con-tax/damages/mwv#> .
+@prefix mwv-t: <https://w3id.org/con-tax/tasks/mwv#> .
+@prefix omg: <https://w3id.org/omg#> .
+@prefix opm: <https://w3id.org/opm#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pi: <http://pi.pauwel.be/voc/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+pi:buildingelement
+  rdf:type voaf:Vocabulary ;
+.
+beo:BuildingElement
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy pi:buildingelement ;
+  rdfs:subClassOf contax:ConstructionComponent ;
+.
+beo:ElementComponent
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy pi:buildingelement ;
+  rdfs:subClassOf contax:ConstructionSubComponent ;
+.
+beo:TransportElement
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy pi:buildingelement ;
+  rdfs:subClassOf contax:ConstructionComponent ;
+.
+pi:distributionelement
+  rdf:type voaf:Vocabulary ;
+.
+mep:DistributionElement
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy pi:distributionelement ;
+  rdfs:subClassOf contax:ConstructionComponent ;
+.
+pi:furniture
+  rdf:type voaf:Vocabulary ;
+.
+furn:Furniture
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy pi:furniture ;
+  rdfs:subClassOf contax:ConstructionComponent ;
+.
+voaf:Vocabulary
+  rdf:type owl:Class ;
+.
+voaf:generalizes
+  rdf:type owl:ObjectProperty ;
+.
+schema:Product
+  rdf:type rdfs:Class ;
+.
+schema:domainIncludes
+  rdf:type rdf:Property ;
+.
+schema:rangeIncludes
+  rdf:type rdf:Property ;
+.
+gvp:GuideTerm
+  rdf:type owl:Class ;
+.
+skos:Concept
+  rdf:type owl:Class ;
+.
+dcat:distribution
+  rdf:type owl:ObjectProperty ;
+.
+dcat:downloadURL
+  rdf:type owl:ObjectProperty ;
+.
+<https://mdcs.monumentenkennis.nl/damageatlas/ontology>
+  rdf:type voaf:Vocabulary ;
+.
+bot:
+  rdf:type voaf:Vocabulary ;
+.
+bot:Building
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy bot: ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/zones/aat-buildings> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/zones/et-buildings> ;
+.
+bot:Element
+  rdf:type owl:Class ;
+.
+bot:Site
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy bot: ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/zones/aat-buildingSites> ;
+.
+bot:Space
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy bot: ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/zones/aat-spaces> ;
+.
+bot:Storey
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy bot: ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/zones/aat-storeys> ;
+.
+bot:Zone
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy bot: ;
+.
+<https://w3id.org/con-tax>
+  rdf:type voaf:Vocabulary ;
+  rdf:type owl:Ontology ;
+  cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dct:creator [
+      rdf:type vcard:Individual ;
+      vcard:family-name "Bonduel" ;
+      vcard:fn "Mathias Bonduel" ;
+      vcard:given-name "Mathias" ;
+      vcard:hasOrganizationName [
+          rdf:type vcard:Organization ;
+          owl:sameAs dbr:Katholieke_Universiteit_Leuven ;
+          vcard:hasURL <https://www.kuleuven.be> ;
+          vcard:organization-name "KU Leuven" ;
+        ] ;
+      vcard:hasURL <https://orcid.org/0000-0002-3313-924X> ;
+      vcard:hasURL <https://www.kuleuven.be/wieiswie/nl/person/00110827> ;
+      vcard:hasURL <https://www.researchgate.net/profile/Mathias_Bonduel> ;
+    ] ;
+  dct:description "An ontology containing additional terminology for structuring and annotating RDFS/OWL taxonomies for describing constructions (components, materials, spatial zones, damages, construction tasks and properties). It also functions as an index for known taxonomies starting from root classes and properties."@en ;
+  dct:issued "2020-11-29"^^xsd:date ;
+  dct:title "ConTax ontology"@en ;
+  vann:preferredNamespacePrefix "contax" ;
+  vann:preferredNamespaceUri "https://w3id.org/con-tax#" ;
+  rdfs:comment "- Version 0.0.1: initial version"@en ;
+  owl:versionInfo "0.0.1" ;
+.
+contax:ConstructionComponent
+  rdf:type owl:Class ;
+  rdfs:comment "An object that forms, formed or has the potential to form a part of a construction. Use a more specific subclass from a dedicated taxonomy such as BEO/FURN/MEP based on IFC or AAT-ARCH/AAT-FURN/AAT-MEP based on the Getty AAT concepts related to constructions."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "construction component"@en ;
+  contax:isRootOfTaxonomy pi:buildingelement ;
+  contax:isRootOfTaxonomy pi:distributionelement ;
+  contax:isRootOfTaxonomy pi:furniture ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/components/aat-arch> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/components/aat-furn> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/components/aat-mep> ;
+.
+contax:ConstructionSubComponent
+  rdf:type owl:Class ;
+  rdfs:comment "A construction component that forms, formed or has the potential to form a part of another construction component. It can be distinguished from other types of construction components since they are, in normal situations, no individual components. An example are the steps and railings as sub components of a stairs component. Use a more specific subclass from a dedicated taxonomy such as BEO based on IFC or AAT-ARCH based on the Getty AAT concepts related to constructions."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "construction sub component"@en ;
+  rdfs:subClassOf contax:ConstructionComponent ;
+.
+contax:Material
+  rdf:type owl:Class ;
+  rdfs:comment "A material of which a construction component is made. It excludes subcomponents of larger construction components, e.g. a brick in a wall (see contax:ConstructionSubComponent)."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "building material"@en ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/aat-materials> ;
+.
+contax:PropertyContext
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "property context (grouping) "@en ;
+.
+contax:containsConcept
+  rdf:type owl:AnnotationProperty ;
+  rdfs:comment "Property to connect a gvp:GuideTerm instance to a class that is part of the main taxonomy hierarchy. The guide term represents a grouping of terms to provide alternative means for finding classes (object of this property) besides the main taxonomy hierarchy."@en ;
+  rdfs:domain gvp:GuideTerm ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "contains concept"@en ;
+  rdfs:range owl:Class ;
+.
+contax:containsGuideTerm
+  rdf:type owl:AnnotationProperty ;
+  rdfs:comment "Property to connect a class that is based on a concept from the Getty AAT to a gvp:GuideTerm, i.e. an individual node that represents a grouping of terms to provide alternative means for finding classes besides the main taxonomy hierarchy. The guide term specializes a more general class from the taxonomy."@en ;
+  rdfs:domain owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "contains guide term "@en ;
+  rdfs:range gvp:GuideTerm ;
+.
+contax:domainOrSubjectIncludes
+  rdf:type owl:AnnotationProperty ;
+  rdfs:comment "An annotation property to connect a property definition to a class that is either in the domain of this property (instance property) or is a potential subject (or superclass of a potential subject) of this property (type property)."@en ;
+  rdfs:domain rdf:Property ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "domain or subject includes"@en ;
+  rdfs:range owl:Class ;
+.
+contax:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A relation to connect an object to the first intermediate node of a level 2 or 3 property when using approach 4 or 5 for assigning the property name."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "has property"@en ;
+  rdfs:range opm:Property ;
+.
+contax:hasPropertyContext
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes opm:Property ;
+  schema:domainIncludes opm:PropertyState ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "has property context (grouping)"@en ;
+  rdfs:range contax:PropertyContext ;
+.
+contax:isDerivedFromProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain opm:Property ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "is derived from property "@en ;
+  rdfs:range opm:Property ;
+.
+contax:isDerivedFromPropertyState
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain opm:PropertyState ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "is derived from property state"@en ;
+  rdfs:range opm:PropertyState ;
+.
+contax:isRootOfTaxonomy
+  rdf:type owl:AnnotationProperty ;
+  schema:domainIncludes owl:AnnotationProperty ;
+  schema:domainIncludes owl:Class ;
+  schema:domainIncludes owl:DatatypeProperty ;
+  schema:domainIncludes owl:ObjectProperty ;
+  schema:domainIncludes skos:Concept ;
+  rdfs:comment "Annotation property to store references to the known (external) taxonomies for root classes, properties or SKOS concepts defined or mentioned in ConTax. The URI of each taxonomy is the object of this property."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "root of taxonomy"@en ;
+  rdfs:range voaf:Vocabulary ;
+.
+contax:potentialInterventionType
+  rdf:type owl:AnnotationProperty ;
+  rdfs:comment "An annotation property used in taxonomies of damage types to connect a damage type class (subclass of dot:ClassifiedDamage) to a reparation task (subclass of cto:RepairTask)."@en ;
+  rdfs:domain owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "potential intervention type"@en ;
+  rdfs:range owl:Class ;
+.
+contax:potentialSubComponent
+  rdf:type owl:AnnotationProperty ;
+  rdfs:comment "An annotation property used in taxonomies of construction components to connect a construction component type such as a stairs that can consists of smaller sub components such as railings and steps."@en ;
+  rdfs:domain owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "potential sub component"@en ;
+  rdfs:range owl:Class ;
+.
+contax:propertyName
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A relation to connect the first intermediate node of a level 2 or 3 property to its actual property name"@en ;
+  rdfs:domain opm:Property ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "property name "@en ;
+  rdfs:range skos:Concept ;
+.
+contax:property_DP
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "A root property for taxonomies of datatype properties. Subproperties should be defined from this base property to specify the type of property. Via this root property and its counterpart for object properties (contax:property_OP), it is possible to retrieve all properties of construction components, spatial zones, damages, etc. excluding the linking relations that form the construction topology, damage topology, etc."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "property (datatype) "@en ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/properties/bhp> ;
+.
+contax:property_OP
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A root property for taxonomies of object properties. Subproperties should be defined from this base property to specify the type of property. Via this root property and its counterpart for datatype properties (contax:property_DP), it is possible to retrieve all properties of construction components, spatial zones, damages, etc. excluding the linking relations that form the construction topology, damage topology, etc."@en ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "property (object) "@en ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/properties/bhp> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/properties/cp> ;
+.
+contax:rangeOrObjectIncludes
+  rdf:type owl:AnnotationProperty ;
+  schema:rangeIncludes owl:Class ;
+  schema:rangeIncludes skos:Concept ;
+  rdfs:comment "An annotation property to connect a property definition to a class or datatype that is either in the range of this property (instance property) or is a potential object (or superclass of a potential object) of this property (type property). It can also refer to a skos:Concept node that represents a node in a SKOS taxonomy; this node and all its descendants (skos:narrower or inverse skos:broader) can be used as an object of the property (instance or type property). In the case of properties level 2 or 3, this property refers to the range or object for the generic schema:value property of the entire property pattern."@en ;
+  rdfs:domain rdf:Property ;
+  rdfs:isDefinedBy <https://w3id.org/con-tax> ;
+  rdfs:label "range or object includes"@en ;
+.
+<https://w3id.org/con-tax/aat-materials>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/components/aat-arch>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/components/aat-furn>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/components/aat-mep>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/damages/mwv>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/properties/bhp>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/properties/cp>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/tasks/mwv>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/zones/aat-buildingSites>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/zones/aat-buildings>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/zones/aat-spaces>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/zones/aat-storeys>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/con-tax/zones/et-buildings>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/cto>
+  rdf:type voaf:Vocabulary ;
+.
+cto:InspectionTask
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/cto> ;
+.
+cto:InstallmentTask
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/cto> ;
+.
+cto:ModificationTask
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/cto> ;
+.
+cto:RemovalTask
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/cto> ;
+.
+cto:RepairTask
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy <https://w3id.org/cto> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/tasks/mwv> ;
+.
+dot:
+  rdf:type voaf:Vocabulary ;
+.
+dot:ClassifiedDamage
+  rdf:type owl:Class ;
+  rdfs:isDefinedBy dot: ;
+  contax:isRootOfTaxonomy <https://mdcs.monumentenkennis.nl/damageatlas/ontology> ;
+  contax:isRootOfTaxonomy <https://w3id.org/con-tax/damages/mwv> ;
+  contax:isRootOfTaxonomy [
+      rdf:type voaf:Vocabulary ;
+      dcat:distribution [
+          dcat:downloadURL <https://raw.githubusercontent.com/Alhakam/dot/master/Extension/cdo.ttl> ;
+        ] ;
+    ] ;
+.
+dot:Damage
+  rdf:type owl:Class ;
+.
+<https://w3id.org/fog>
+  rdf:type voaf:Vocabulary ;
+.
+<https://w3id.org/omg>
+  rdf:type voaf:Vocabulary ;
+.
+omg:hasComplexGeometryDescription
+  rdf:type owl:ObjectProperty ;
+  rdfs:isDefinedBy <https://w3id.org/omg> ;
+  contax:isRootOfTaxonomy <https://w3id.org/fog> ;
+.
+omg:hasReferencedGeometryId
+  rdf:type owl:DatatypeProperty ;
+  rdfs:isDefinedBy <https://w3id.org/omg> ;
+  contax:isRootOfTaxonomy <https://w3id.org/fog> ;
+.
+omg:hasSimpleGeometryDescription
+  rdf:type owl:DatatypeProperty ;
+  rdfs:isDefinedBy <https://w3id.org/omg> ;
+  contax:isRootOfTaxonomy <https://w3id.org/fog> ;
+.
+opm:Property
+  rdf:type owl:Class ;
+.
+opm:PropertyState
+  rdf:type owl:Class ;
+.

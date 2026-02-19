@@ -1,0 +1,2098 @@
+@prefix : <http://www.semanticweb.org/HBPO/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/HBPO/> .
+
+<http://www.semanticweb.org/HBPO> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/HBPO/belongsTo
+:belongsTo rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/calculatedBy
+:calculatedBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :resultedIn .
+
+
+###  http://www.semanticweb.org/HBPO/correspondTo
+:correspondTo rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/correspondingBoundary
+:correspondingBoundary rdf:type owl:ObjectProperty ;
+                       rdfs:domain :SpaceBoundary ;
+                       rdfs:range :SpaceBoundary .
+
+
+###  http://www.semanticweb.org/HBPO/functionsAs
+:functionsAs rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isManifestedBy .
+
+
+###  http://www.semanticweb.org/HBPO/hasFunctionalObject
+:hasFunctionalObject rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/hasTargetObject
+:hasTargetObject rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/isMadeOf
+:isMadeOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/isManifestedBy
+:isManifestedBy rdf:type owl:ObjectProperty ,
+                         owl:InverseFunctionalProperty .
+
+
+###  http://www.semanticweb.org/HBPO/located
+:located rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/orientedFrom
+:orientedFrom rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :located ;
+              rdf:type owl:InverseFunctionalProperty .
+
+
+###  http://www.semanticweb.org/HBPO/parentBoundary
+:parentBoundary rdf:type owl:ObjectProperty ;
+                rdfs:domain :SpaceBoundary ;
+                rdfs:range :SpaceBoundary .
+
+
+###  http://www.semanticweb.org/HBPO/references
+:references rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/relatedBuildingElement
+:relatedBuildingElement rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/relatingSpace
+:relatingSpace rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/HBPO/resultedIn
+:resultedIn rdf:type owl:ObjectProperty ,
+                     owl:InverseFunctionalProperty .
+
+
+###  http://www.semanticweb.org/HBPO/usedIn
+:usedIn rdf:type owl:ObjectProperty ;
+        owl:inverseOf :uses ;
+        rdf:type owl:InverseFunctionalProperty .
+
+
+###  http://www.semanticweb.org/HBPO/uses
+:uses rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/bot#adjacentElement
+<https://w3id.org/bot#adjacentElement> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf <https://w3id.org/bot#hasElement> ;
+                                       rdfs:domain <https://w3id.org/bot#Element> ;
+                                       rdfs:range <https://w3id.org/bot#Space> .
+
+
+###  https://w3id.org/bot#containsElement
+<https://w3id.org/bot#containsElement> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf <https://w3id.org/bot#hasElement> ;
+                                       rdfs:domain <https://w3id.org/bot#Space> ;
+                                       rdfs:range <https://w3id.org/bot#Element> .
+
+
+###  https://w3id.org/bot#containsZone
+<https://w3id.org/bot#containsZone> rdf:type owl:ObjectProperty ,
+                                             owl:TransitiveProperty ;
+                                    rdfs:domain <https://w3id.org/bot#Zone> ;
+                                    rdfs:range <https://w3id.org/bot#Zone> .
+
+
+###  https://w3id.org/bot#hasBuilding
+<https://w3id.org/bot#hasBuilding> rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf <https://w3id.org/bot#containsZone> ;
+                                   rdfs:domain <https://w3id.org/bot#Zone> ;
+                                   rdfs:range <https://w3id.org/bot#Building> .
+
+
+###  https://w3id.org/bot#hasElement
+<https://w3id.org/bot#hasElement> rdf:type owl:ObjectProperty ;
+                                  rdfs:domain <https://w3id.org/bot#Zone> ;
+                                  rdfs:range <https://w3id.org/bot#Element> ;
+                                  owl:propertyChainAxiom ( <https://w3id.org/bot#containsZone>
+                                                           <https://w3id.org/bot#hasElement>
+                                                         ) .
+
+
+###  https://w3id.org/bot#hasSpace
+<https://w3id.org/bot#hasSpace> rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf <https://w3id.org/bot#containsZone> ;
+                                rdfs:domain <https://w3id.org/bot#Zone> ;
+                                rdfs:range <https://w3id.org/bot#Space> .
+
+
+###  https://w3id.org/bot#hasStorey
+<https://w3id.org/bot#hasStorey> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <https://w3id.org/bot#containsZone> ;
+                                 rdfs:domain <https://w3id.org/bot#Zone> ;
+                                 rdfs:range <https://w3id.org/bot#Storey> .
+
+
+###  https://w3id.org/bot#hasSubElement
+<https://w3id.org/bot#hasSubElement> rdf:type owl:ObjectProperty ;
+                                     rdfs:domain <https://w3id.org/bot#Element> ;
+                                     rdfs:range <https://w3id.org/bot#Element> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple
+<http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:range rdfs:Literal ;
+                                                                        rdfs:comment "Unit:-"@en ,
+                                                                                     "required to test IDF file conversion via HBPO"@en ,
+                                                                                     "required to test acoustic simulation via HBPO"@en ,
+                                                                                     "required to test lighting simulation via HBPO"@en .
+
+
+###  http://lbd.arch.rwth-aachen.de/props#numberOfStoreys_simple
+<http://lbd.arch.rwth-aachen.de/props#numberOfStoreys_simple> rdf:type owl:DatatypeProperty ;
+                                                              rdfs:domain <https://w3id.org/bot#Building> ;
+                                                              rdfs:range rdfs:Literal ;
+                                                              rdfs:comment "Unit:units"@en ,
+                                                                           "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://lbd.arch.rwth-aachen.de/props#pitchAngle_simple
+<http://lbd.arch.rwth-aachen.de/props#pitchAngle_simple> rdf:type owl:DatatypeProperty ;
+                                                         rdfs:domain <https://w3id.org/bot#Element> ;
+                                                         rdfs:range rdfs:Literal ;
+                                                         rdfs:comment "Unit:degree ( ° )"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Address
+:Address rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Project ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/AirFlowRate
+:AirFlowRate rdf:type owl:DatatypeProperty ;
+             rdfs:domain :CoolingSource ,
+                         :HeatSource ,
+                         :VentilationSource ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Unit:m3/s"@en ,
+                          "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/AirborneNoise
+:AirborneNoise rdf:type owl:DatatypeProperty ;
+               rdfs:domain :SoundSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Symbol:DnTw+C"@en ,
+                            "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/AnalysisYear
+:AnalysisYear rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Project ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:year(y)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/AnnualFuelUtilizationEfficiency
+:AnnualFuelUtilizationEfficiency rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain :HeatSource ;
+                                 rdfs:range rdfs:Literal ;
+                                 rdfs:comment "Symbol:AFUE"@en ,
+                                              "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Area
+:Area rdf:type owl:DatatypeProperty ;
+      rdfs:range rdfs:Literal ;
+      rdfs:comment "Unit:m²"@en ,
+                   "required to test IDF file conversion via HBPO"@en ,
+                   "required to test acoustic simulation via HBPO"@en ,
+                   "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/AuthorInfo
+:AuthorInfo rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Project ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/BuildingActivitySchedule
+:BuildingActivitySchedule rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <https://w3id.org/bot#Building> ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Unit:-"@en ,
+                                       "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/BuildingOccupancySchedule
+:BuildingOccupancySchedule rdf:type owl:DatatypeProperty ;
+                           rdfs:domain <https://w3id.org/bot#Building> ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:comment "Unit:-"@en ,
+                                        "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/BuildingOrientation
+:BuildingOrientation rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Building> ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Unit:°N"@en ,
+                                  "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/BuildingType
+:BuildingType rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Building> ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en ,
+                           "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoefficientOfPerformance
+:CoefficientOfPerformance rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :HeatSource ,
+                                      :HotWaterSource ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Symbol:CoP"@en ,
+                                       "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ColorCode
+:ColorCode rdf:type owl:DatatypeProperty ;
+           rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment "Symbol:RGB"@en ,
+                        "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ColourRenderingIndex
+:ColourRenderingIndex rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :LightSource ,
+                                  <https://w3id.org/bot#Space> ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Symbol:CRI or Ra"@en ,
+                                   "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ConditionType
+:ConditionType rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Space> ,
+                           <https://w3id.org/bot#Zone> ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:-"@en ,
+                            "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ConnectionGeometry
+:ConnectionGeometry rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :SpaceBoundary ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:-"@en ,
+                                 "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingFuelSource
+:CoolingFuelSource rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :CoolingSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingSchedule
+:CoolingSchedule rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :CoolingSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingSetpoint
+:CoolingSetpoint rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Space> ,
+                             <https://w3id.org/bot#Zone> ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:°C"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingSystemName
+:CoolingSystemName rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :CoolingSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingSystemType
+:CoolingSystemType rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :CoolingSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingUnitSize
+:CoolingUnitSize rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :CoolingSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:kW"@en .
+
+
+###  http://www.semanticweb.org/HBPO/CorrelatedColourTemperature
+:CorrelatedColourTemperature rdf:type owl:DatatypeProperty ;
+                             rdfs:domain :LightSource ;
+                             rdfs:range rdfs:Literal ;
+                             rdfs:comment "Symbol:CCT"@en ,
+                                          "Unit:Kelvin (K)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DailyWaterUsage
+:DailyWaterUsage rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :HotWaterSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:m3/person/day"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DayEmissionCorrection
+:DayEmissionCorrection rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :SoundSource ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DaySoundPowerLevel
+:DaySoundPowerLevel rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :SoundSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Symbol:Lw"@en ,
+                                 "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DaylightIlluminance
+:DaylightIlluminance rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Space> ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Symbol:DI"@en ,
+                                  "Unit:lux(lx)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DecibelDayLevel
+:DecibelDayLevel rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Receiver ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DecibelDayLimit
+:DecibelDayLimit rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Receiver ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DecibelNightLevel
+:DecibelNightLevel rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Receiver ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DecibelNightLimit
+:DecibelNightLimit rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Receiver ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DecibelScale
+:DecibelScale rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Receiver ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DehumidificationSetpoint
+:DehumidificationSetpoint rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <https://w3id.org/bot#Space> ,
+                                      <https://w3id.org/bot#Zone> ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Unit:%HR"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DeliveryWaterTemperature
+:DeliveryWaterTemperature rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :HotWaterSource ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Symbol:T"@en ,
+                                       "Unit:°C"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Density
+:Density rdf:type owl:DatatypeProperty ;
+         rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "Symbol:ρ"@en ,
+                      "Unit:kg/m3"@en ,
+                      "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Description
+:Description rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Project ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DesignInfiltrationRate
+:DesignInfiltrationRate rdf:type owl:DatatypeProperty ;
+                        rdfs:domain <https://w3id.org/bot#Space> ,
+                                    <https://w3id.org/bot#Zone> ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:comment "Symbol:Idesign"@en ,
+                                     "Unit:m3/(s·m²)"@en ,
+                                     "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DesignVentilationRate
+:DesignVentilationRate rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <https://w3id.org/bot#Space> ,
+                                   <https://w3id.org/bot#Zone> ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Unit:m3/(s·m²)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/DownwardLightOutputRatio
+:DownwardLightOutputRatio rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :LightSource ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Symbol:DLOR"@en ,
+                                       "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/EconomizerTemperature
+:EconomizerTemperature rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :CoolingSource ,
+                                   :HeatSource ,
+                                   :VentilationSource ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Symbol:T"@en ,
+                                    "Unit:°C"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Efficiency
+:Efficiency rdf:type owl:DatatypeProperty ;
+            rdfs:domain :CoolingSource ,
+                        :HeatSource ,
+                        :HotWaterSource ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Symbol:η"@en ,
+                         "Unit:unitless"@en ,
+                         "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Emissivity
+:Emissivity rdf:type owl:DatatypeProperty ;
+            rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Symbol:ε"@en ,
+                         "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/EnergyEfficiencyRatio
+:EnergyEfficiencyRatio rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :CoolingSource ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Symbol:EER"@en ,
+                                    "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/EquipmentPower
+:EquipmentPower rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ElectricityConsumer ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Symbol:P"@en ,
+                             "Unit:watt (W)"@en ,
+                             "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/EquipmentPowerDensity
+:EquipmentPowerDensity rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :ElectricityConsumer ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Unit:W/m²"@en .
+
+
+###  http://www.semanticweb.org/HBPO/EquipmentSchedule
+:EquipmentSchedule rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ElectricityConsumer ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/FanPowerDensity
+:FanPowerDensity rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :VentilationSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:W/m²"@en .
+
+
+###  http://www.semanticweb.org/HBPO/FanPressureRise
+:FanPressureRise rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :VentilationSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:Pa"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/FloorArea
+:FloorArea rdf:type owl:DatatypeProperty ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment "Unit:m²"@en ,
+                        "required to test IDF file conversion via HBPO"@en ,
+                        "required to test acoustic simulation via HBPO"@en ,
+                        "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/FractionLost
+:FractionLost rdf:type owl:DatatypeProperty ;
+              rdfs:domain :ElectricityConsumer ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:unitless"@en ,
+                           "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Frequency
+:Frequency rdf:type owl:DatatypeProperty ;
+           rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment "Symbol:f"@en ,
+                        "Unit:Hz"@en ,
+                        "required to test acoustic simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/GridHeight
+:GridHeight rdf:type owl:DatatypeProperty ;
+            rdfs:domain :SpaceGrid ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Unit:m"@en ,
+                         "required to test acoustic simulation via HBPO"@en ,
+                         "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/GridLength
+:GridLength rdf:type owl:DatatypeProperty ;
+            rdfs:domain :AnalysisGrid ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Unit:m"@en ,
+                         "required to test acoustic simulation via HBPO"@en ,
+                         "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/GridWidth
+:GridWidth rdf:type owl:DatatypeProperty ;
+           rdfs:domain :AnalysisGrid ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment "Unit:m"@en ,
+                        "required to test acoustic simulation via HBPO"@en ,
+                        "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingFuelSource
+:HeatingFuelSource rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :HeatSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingSchedule
+:HeatingSchedule rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :HeatSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:-"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingSetpoint
+:HeatingSetpoint rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Space> ,
+                             <https://w3id.org/bot#Zone> ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:°C"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingSystemName
+:HeatingSystemName rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :HeatSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingSystemType
+:HeatingSystemType rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :HeatSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HeatingUnitSize
+:HeatingUnitSize rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :HeatSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:kW"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Height
+:Height rdf:type owl:DatatypeProperty ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Unit:m"@en ,
+                     "required to test IDF file conversion via HBPO"@en ,
+                     "required to test acoustic simulation via HBPO"@en ,
+                     "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterFuelSource
+:HotWaterFuelSource rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :HotWaterSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterSchedule
+:HotWaterSchedule rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :HotWaterSource ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterStorageCapacity
+:HotWaterStorageCapacity rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :HotWaterSource ;
+                         rdfs:range rdfs:Literal ;
+                         rdfs:comment "Unit:m3"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterSystemName
+:HotWaterSystemName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :HotWaterSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterUnitSize
+:HotWaterUnitSize rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :HotWaterSource ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Unit:kW"@en .
+
+
+###  http://www.semanticweb.org/HBPO/HumidificationSetpoint
+:HumidificationSetpoint rdf:type owl:DatatypeProperty ;
+                        rdfs:domain <https://w3id.org/bot#Space> ,
+                                    <https://w3id.org/bot#Zone> ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:comment "Unit:%HR"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ImpactNoiseLevel
+:ImpactNoiseLevel rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Symbol:Ln"@en ,
+                               "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ImprovementOfSoundReduction
+:ImprovementOfSoundReduction rdf:type owl:DatatypeProperty ;
+                             rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                             rdfs:range rdfs:Literal ;
+                             rdfs:comment "Symbol:R"@en ,
+                                          "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/IndoorCoolingDesignTemperature
+:IndoorCoolingDesignTemperature rdf:type owl:DatatypeProperty ;
+                                rdfs:domain <https://w3id.org/bot#Space> ,
+                                            <https://w3id.org/bot#Zone> ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "Symbol:T"@en ,
+                                             "Unit:°C"@en ,
+                                             "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/IndoorGlareLimitation
+:IndoorGlareLimitation rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <https://w3id.org/bot#Space> ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Symbol:RUGL"@en ,
+                                    "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/IndoorHeatingDesignTemperature
+:IndoorHeatingDesignTemperature rdf:type owl:DatatypeProperty ;
+                                rdfs:domain <https://w3id.org/bot#Space> ,
+                                            <https://w3id.org/bot#Zone> ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "Symbol:T"@en ,
+                                             "Unit:°C"@en ,
+                                             "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/IndoorSoundPressureLevel
+:IndoorSoundPressureLevel rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <https://w3id.org/bot#Space> ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/InternalOrExternalBoundary
+:InternalOrExternalBoundary rdf:type owl:DatatypeProperty ;
+                            rdfs:domain :SpaceBoundary ;
+                            rdfs:range rdfs:Literal ;
+                            rdfs:comment "Unit:-"@en ,
+                                         "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LampLifeTime
+:LampLifeTime rdf:type owl:DatatypeProperty ;
+              rdfs:domain :LightSource ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:hours"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LampType
+:LampType rdf:type owl:DatatypeProperty ;
+          rdfs:domain :LightSource ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LatentFraction
+:LatentFraction rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ElectricityConsumer ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:unitless"@en ,
+                             "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LatentHeatRecoveryEffectiveness
+:LatentHeatRecoveryEffectiveness rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain :VentilationSource ;
+                                 rdfs:range rdfs:Literal ;
+                                 rdfs:comment "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Length
+:Length rdf:type owl:DatatypeProperty ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Unit:m"@en ,
+                     "required to test IDF file conversion via HBPO"@en ,
+                     "required to test acoustic simulation via HBPO"@en ,
+                     "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LighSourceFile
+:LighSourceFile rdf:type owl:DatatypeProperty ;
+                rdfs:domain :LightSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LightOutputRatio
+:LightOutputRatio rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :LightSource ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Symbol:LOR"@en ,
+                               "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LightingPower
+:LightingPower rdf:type owl:DatatypeProperty ;
+               rdfs:domain :LightSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Symbol:P"@en ,
+                            "Unit:watt (W)"@en ,
+                            "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LightingPowerDensity
+:LightingPowerDensity rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :LightSource ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Symbol:LPD"@en ,
+                                   "Unit:W/m²"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LightingSchedule
+:LightingSchedule rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :LightSource ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Unit:-"@en ,
+                               "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LuminaireType
+:LuminaireType rdf:type owl:DatatypeProperty ;
+               rdfs:domain :LightSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LuminousEfficacy
+:LuminousEfficacy rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :LightSource ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Symbol:η"@en ,
+                               "Unit:lm/W"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LuminousFlux
+:LuminousFlux rdf:type owl:DatatypeProperty ;
+              rdfs:domain :LightSource ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Symbol:ϕ"@en ,
+                           "Unit:lumen (lm)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/LuminousIntensity
+:LuminousIntensity rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :LightSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Symbol:I"@en ,
+                                "Unit:cd"@en ,
+                                "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MaintenanceFactor
+:MaintenanceFactor rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :LightSource ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Symbol:MF"@en ,
+                                "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MaterialName
+:MaterialName rdf:type owl:DatatypeProperty ;
+              rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en ,
+                           "required to test IDF file conversion via HBPO"@en ,
+                           "required to test acoustic simulation via HBPO"@en ,
+                           "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MaterialThickness
+:MaterialThickness rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:m"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MaterialType
+:MaterialType rdf:type owl:DatatypeProperty ;
+              rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MaxSimulationValue
+:MaxSimulationValue rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :ComplianceCheck ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:unitless"@en ,
+                                 "required to test acoustic simulation via HBPO"@en ,
+                                 "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MechanicalVentilationSchedule
+:MechanicalVentilationSchedule rdf:type owl:DatatypeProperty ;
+                               rdfs:domain :VentilationSource ;
+                               rdfs:range rdfs:Literal ;
+                               rdfs:comment "Unit:-"@en ,
+                                            "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MechanicalVentilationSystemName
+:MechanicalVentilationSystemName rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain :VentilationSource ;
+                                 rdfs:range rdfs:Literal ;
+                                 rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MinSimulationValue
+:MinSimulationValue rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :ComplianceCheck ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:unitless"@en ,
+                                 "required to test acoustic simulation via HBPO"@en ,
+                                 "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MountingHeight
+:MountingHeight rdf:type owl:DatatypeProperty ;
+                rdfs:domain :LightSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:m"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MountingPlace
+:MountingPlace rdf:type owl:DatatypeProperty ;
+               rdfs:domain :LightSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/MountingType
+:MountingType rdf:type owl:DatatypeProperty ;
+              rdfs:domain :LightSource ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Name
+:Name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Project ;
+      rdfs:range rdfs:Literal ;
+      rdfs:comment "Unit:-"@en ,
+                   "required to test IDF file conversion via HBPO"@en ,
+                   "required to test acoustic simulation via HBPO"@en ,
+                   "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NightEmissionCorrection
+:NightEmissionCorrection rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :SoundSource ;
+                         rdfs:range rdfs:Literal ;
+                         rdfs:comment "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NightSoundPowerLevel
+:NightSoundPowerLevel rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :SoundSource ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Symbol:Lw"@en ,
+                                   "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NormalizedSoundLevelDifference
+:NormalizedSoundLevelDifference rdf:type owl:DatatypeProperty ;
+                                rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "Symbol:DnT"@en ,
+                                             "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NumberOfLamps
+:NumberOfLamps rdf:type owl:DatatypeProperty ;
+               rdfs:domain :LightSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:units"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NumberOfLuminaires
+:NumberOfLuminaires rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :LightSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:units"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NumberOfOpenings
+:NumberOfOpenings rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <https://w3id.org/bot#Element> ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Unit:units"@en ,
+                               "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/NumberOfPeople
+:NumberOfPeople rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Space> ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:units"@en ,
+                             "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ObjectCentroid
+:ObjectCentroid rdf:type owl:DatatypeProperty ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:m"@en ,
+                             "required to test IDF file conversion via HBPO"@en ,
+                             "required to test acoustic simulation via HBPO"@en ,
+                             "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/OrganisationInfo
+:OrganisationInfo rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Project ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/PerformanceIndicator
+:PerformanceIndicator rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :ComplianceCheck ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Unit:-"@en ,
+                                   "required to test IDF file conversion via HBPO"@en ,
+                                   "required to test acoustic simulation via HBPO"@en ,
+                                   "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/PhysicalOrVirtualBoundary
+:PhysicalOrVirtualBoundary rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :SpaceBoundary ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:comment "Unit:-"@en ,
+                                        "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/PressureDifference
+:PressureDifference rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :CoolingSource ,
+                                :HeatSource ,
+                                :VentilationSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Symbol:ΔP"@en ,
+                                 "Unit:Pa"@en .
+
+
+###  http://www.semanticweb.org/HBPO/RadiantFraction
+:RadiantFraction rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :ElectricityConsumer ,
+                             :LightSource ,
+                             <https://w3id.org/bot#Space> ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:unitless"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Reflectance
+:Reflectance rdf:type owl:DatatypeProperty ;
+             rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Symbol:ρ"@en ,
+                          "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/RequiredThreshold
+:RequiredThreshold rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ComplianceCheck ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:unitless"@en ,
+                                "required to test IDF file conversion via HBPO"@en ,
+                                "required to test acoustic simulation via HBPO"@en ,
+                                "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ResultFileName
+:ResultFileName rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SimulationResult ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en ,
+                             "required to test IDF file conversion via HBPO"@en ,
+                             "required to test acoustic simulation via HBPO"@en ,
+                             "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ResultFilePath
+:ResultFilePath rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SimulationResult ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en ,
+                             "required to test IDF file conversion via HBPO"@en ,
+                             "required to test acoustic simulation via HBPO"@en ,
+                             "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ReturnFanEfficiency
+:ReturnFanEfficiency rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :VentilationSource ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Symbol:η"@en ,
+                                  "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ReturnFanFlow
+:ReturnFanFlow rdf:type owl:DatatypeProperty ;
+               rdfs:domain :VentilationSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:m3/s"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ReturnFanPower
+:ReturnFanPower rdf:type owl:DatatypeProperty ;
+                rdfs:domain :VentilationSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:kW"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Rotation_XYZ
+:Rotation_XYZ rdf:type owl:DatatypeProperty ;
+              rdfs:domain :LightSource ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:degree ( ° )"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Roughness
+:Roughness rdf:type owl:DatatypeProperty ;
+           rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+           rdfs:range rdfs:Literal ;
+           rdfs:comment "Symbol:r"@en ,
+                        "Unit:-"@en ,
+                        "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SeasonalEnergyEfficiencyRatio
+:SeasonalEnergyEfficiencyRatio rdf:type owl:DatatypeProperty ;
+                               rdfs:domain :CoolingSource ;
+                               rdfs:range rdfs:Literal ;
+                               rdfs:comment "Symbol:SEER"@en ,
+                                            "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SensibleHeatFraction
+:SensibleHeatFraction rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :ElectricityConsumer ,
+                                  <https://w3id.org/bot#Space> ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Unit:unitless"@en ,
+                                   "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SensibleHeatRecoveryEffectiveness
+:SensibleHeatRecoveryEffectiveness rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain :VentilationSource ;
+                                   rdfs:range rdfs:Literal ;
+                                   rdfs:comment "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ShadingDistanceFromWindow
+:ShadingDistanceFromWindow rdf:type owl:DatatypeProperty ;
+                           rdfs:domain <https://w3id.org/bot#Element> ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:comment "Unit:m"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SimulationTime
+:SimulationTime rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SimulationResult ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en ,
+                             "required to test IDF file conversion via HBPO"@en ,
+                             "required to test acoustic simulation via HBPO"@en ,
+                             "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SimulationValue
+:SimulationValue rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :ComplianceCheck ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:unitless"@en ,
+                              "required to test IDF file conversion via HBPO"@en ,
+                              "required to test acoustic simulation via HBPO"@en ,
+                              "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoftwareName
+:SoftwareName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :SimulationResult ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en ,
+                           "required to test IDF file conversion via HBPO"@en ,
+                           "required to test acoustic simulation via HBPO"@en ,
+                           "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SolarAbsorptance
+:SolarAbsorptance rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Symbol:α"@en ,
+                               "Unit:unitless"@en ,
+                               "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SolarHeatGainCoefficient
+:SolarHeatGainCoefficient rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Symbol:SHGC"@en ,
+                                       "Unit:%"@en ,
+                                       "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundAbsorptionCoefficient
+:SoundAbsorptionCoefficient rdf:type owl:DatatypeProperty ;
+                            rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                            rdfs:range rdfs:Literal ;
+                            rdfs:comment "Symbol:α"@en ,
+                                         "Unit:unitless"@en ,
+                                         "required to test acoustic simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundCorrectionFactor
+:SoundCorrectionFactor rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :SoundSource ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundDelay
+:SoundDelay rdf:type owl:DatatypeProperty ;
+            rdfs:domain :SoundSource ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Symbol:t"@en ,
+                         "Unit:s"@en ,
+                         "required to test acoustic simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundFrequency
+:SoundFrequency rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SoundSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Symbol:f"@en ,
+                             "Unit:Hz"@en ,
+                             "required to test acoustic simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundPower
+:SoundPower rdf:type owl:DatatypeProperty ;
+            rdfs:domain :SoundSource ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "Symbol:P"@en ,
+                         "Unit:watt (W)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundPressureLevel
+:SoundPressureLevel rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :SoundSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Symbol:SPL"@en ,
+                                 "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundRadiation
+:SoundRadiation rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SoundSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundReductionIndex
+:SoundReductionIndex rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Symbol:R"@en ,
+                                  "Unit:dB"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundSignal
+:SoundSignal rdf:type owl:DatatypeProperty ;
+             rdfs:domain :SoundSource ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Unit:Hz"@en ,
+                          "required to test acoustic simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SoundSourceType
+:SoundSourceType rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :SoundSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SpaceBoundaryLevel
+:SpaceBoundaryLevel rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :SpaceBoundary ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:-"@en ,
+                                 "required for HBPO test simulation"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SpaceBoundaryType
+:SpaceBoundaryType rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :SpaceBoundary ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SpaceUtilizationType
+:SpaceUtilizationType rdf:type owl:DatatypeProperty ;
+                      rdfs:domain <https://w3id.org/bot#Space> ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Unit:-"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SpecificHeatCapacity
+:SpecificHeatCapacity rdf:type owl:DatatypeProperty ;
+                      rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Symbol:Cp"@en ,
+                                   "Unit:J/(kg·K)"@en ,
+                                   "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/StandardClause
+:StandardClause rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ComplianceCheck ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:-"@en ,
+                             "required to test IDF file conversion via HBPO"@en ,
+                             "required to test acoustic simulation via HBPO"@en ,
+                             "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/StandardName
+:StandardName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :ComplianceCheck ;
+              rdfs:range rdfs:Literal ;
+              rdfs:comment "Unit:-"@en ,
+                           "required to test IDF file conversion via HBPO"@en ,
+                           "required to test acoustic simulation via HBPO"@en ,
+                           "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Status
+:Status rdf:type owl:DatatypeProperty ;
+        rdfs:domain :ComplianceCheck ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Unit:-"@en ,
+                     "required to test IDF file conversion via HBPO"@en ,
+                     "required to test acoustic simulation via HBPO"@en ,
+                     "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyCoolingDesignTemperature
+:SupplyCoolingDesignTemperature rdf:type owl:DatatypeProperty ;
+                                rdfs:domain :CoolingSource ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "Symbol:T"@en ,
+                                             "Unit:°C"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyFanEfficiency
+:SupplyFanEfficiency rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :VentilationSource ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Symbol:η"@en ,
+                                  "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyFanFlow
+:SupplyFanFlow rdf:type owl:DatatypeProperty ;
+               rdfs:domain :VentilationSource ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Unit:m3/s"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyFanPower
+:SupplyFanPower rdf:type owl:DatatypeProperty ;
+                rdfs:domain :VentilationSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:kW"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyHeatingDesignTemperature
+:SupplyHeatingDesignTemperature rdf:type owl:DatatypeProperty ;
+                                rdfs:domain :HeatSource ;
+                                rdfs:range rdfs:Literal ;
+                                rdfs:comment "Symbol:T"@en ,
+                                             "Unit:°C"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyMaxAirHumidityRatio
+:SupplyMaxAirHumidityRatio rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :CoolingSource ,
+                                       :HeatSource ,
+                                       :VentilationSource ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:comment "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyMinAirHumidityRatio
+:SupplyMinAirHumidityRatio rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :CoolingSource ,
+                                       :HeatSource ,
+                                       :VentilationSource ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:comment "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/SupplyWaterTemperature
+:SupplyWaterTemperature rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :HotWaterSource ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:comment "Symbol:T"@en ,
+                                     "Unit:°C"@en .
+
+
+###  http://www.semanticweb.org/HBPO/TargetVisualTaskIlluminance
+:TargetVisualTaskIlluminance rdf:type owl:DatatypeProperty ;
+                             rdfs:domain <https://w3id.org/bot#Space> ;
+                             rdfs:range rdfs:Literal ;
+                             rdfs:comment "Symbol:Ēm"@en ,
+                                          "Unit:lux(lx)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/TemperatureDifference
+:TemperatureDifference rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :CoolingSource ,
+                                   :HeatSource ,
+                                   :HotWaterSource ,
+                                   :VentilationSource ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Symbol:ΔT"@en ,
+                                    "Unit:°C"@en ,
+                                    "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ThermalAbsorptance
+:ThermalAbsorptance rdf:type owl:DatatypeProperty ;
+                    rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Symbol:α"@en ,
+                                 "Unit:unitless"@en ,
+                                 "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ThermalConductivity
+:ThermalConductivity rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Symbol:k-Value"@en ,
+                                  "Unit:W/(m·K)"@en ,
+                                  "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ThermalResistance
+:ThermalResistance rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Symbol:R-Value"@en ,
+                                "Unit:(m²·K)/W"@en .
+
+
+###  http://www.semanticweb.org/HBPO/ThermalTransmittance
+:ThermalTransmittance rdf:type owl:DatatypeProperty ;
+                      rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Symbol:U-Value"@en ,
+                                   "Unit:W/(m²·K)"@en ,
+                                   "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Tilt_XYZ
+:Tilt_XYZ rdf:type owl:DatatypeProperty ;
+          rdfs:domain :LightSource ;
+          rdfs:range rdfs:Literal ;
+          rdfs:comment "Unit:degree ( ° )"@en .
+
+
+###  http://www.semanticweb.org/HBPO/TimeCorrection
+:TimeCorrection rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SoundSource ;
+                rdfs:range rdfs:Literal ;
+                rdfs:comment "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/TotalEfficiency
+:TotalEfficiency rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :VentilationSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Symbol:η"@en ,
+                              "Unit:unitless"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Transmittance
+:Transmittance rdf:type owl:DatatypeProperty ;
+               rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Symbol:t"@en ,
+                            "Unit:unitless"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Unit
+:Unit rdf:type owl:DatatypeProperty ;
+      rdfs:domain :ComplianceCheck ;
+      rdfs:range rdfs:Literal ;
+      rdfs:comment "Unit:-"@en ,
+                   "required to test IDF file conversion via HBPO"@en ,
+                   "required to test acoustic simulation via HBPO"@en ,
+                   "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/UpwardLightOutputRatio
+:UpwardLightOutputRatio rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :LightSource ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:comment "Symbol:ULOR"@en ,
+                                     "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/UtilityElectricityCost
+:UtilityElectricityCost rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Project ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:comment "Unit:$/kWh"@en .
+
+
+###  http://www.semanticweb.org/HBPO/UtilityFuelCost
+:UtilityFuelCost rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Project ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:$/MJ"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VentilationShutoffTemperature
+:VentilationShutoffTemperature rdf:type owl:DatatypeProperty ;
+                               rdfs:domain :VentilationSource ;
+                               rdfs:range rdfs:Literal ;
+                               rdfs:comment "Symbol:T"@en ,
+                                            "Unit:°C"@en ,
+                                            "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VentilationType
+:VentilationType rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :VentilationSource ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Unit:-"@en ,
+                              "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VisibleAbsorptance
+:VisibleAbsorptance rdf:type owl:DatatypeProperty ;
+                    rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Symbol:α"@en ,
+                                 "Unit:unitless"@en ,
+                                 "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VisibleLightFraction
+:VisibleLightFraction rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :LightSource ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:comment "Unit:unitless"@en ,
+                                   "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VisibleLightTransmission
+:VisibleLightTransmission rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <http://bimerr.iot.linkeddata.es/def/material-properties#Material> ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Symbol:VLT"@en ,
+                                       "Unit:%"@en ,
+                                       "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/VisualTaskModifiedIlluminance
+:VisualTaskModifiedIlluminance rdf:type owl:DatatypeProperty ;
+                               rdfs:domain <https://w3id.org/bot#Space> ;
+                               rdfs:range rdfs:Literal ;
+                               rdfs:comment "Symbol:Ēm,mod"@en ,
+                                            "Unit:lux(lx)"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Volume
+:Volume rdf:type owl:DatatypeProperty ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment "Unit:m3"@en ,
+                     "required to test IDF file conversion via HBPO"@en ,
+                     "required to test acoustic simulation via HBPO"@en ,
+                     "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/WaterRecirculation
+:WaterRecirculation rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :HotWaterSource ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "Unit:%"@en .
+
+
+###  http://www.semanticweb.org/HBPO/WeatherFile
+:WeatherFile rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Project ;
+             rdfs:range rdfs:Literal ;
+             rdfs:comment "Unit:-"@en ,
+                          "required to test IDF file conversion via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/Width
+:Width rdf:type owl:DatatypeProperty ;
+       rdfs:range rdfs:Literal ;
+       rdfs:comment "Unit:m"@en ,
+                    "required to test IDF file conversion via HBPO"@en ,
+                    "required to test acoustic simulation via HBPO"@en ,
+                    "required to test lighting simulation via HBPO"@en .
+
+
+###  http://www.semanticweb.org/HBPO/WindowToWallRatio
+:WindowToWallRatio rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range rdfs:Literal ;
+                   rdfs:comment "Unit:%"@en ,
+                                "required to test IDF file conversion via HBPO"@en .
+
+
+###  https://w3id.org/bot#has3DModel
+<https://w3id.org/bot#has3DModel> rdf:type owl:DatatypeProperty ;
+                                  rdfs:range rdfs:Literal ;
+                                  rdfs:comment "Unit:-"@en ,
+                                               "required to test IDF file conversion via HBPO"@en ,
+                                               "required to test acoustic simulation via HBPO"@en ,
+                                               "required to test lighting simulation via HBPO"@en .
+
+
+###  https://w3id.org/bot#hasSimple3DModel
+<https://w3id.org/bot#hasSimple3DModel> rdf:type owl:DatatypeProperty ;
+                                        rdfs:range rdfs:Literal ;
+                                        rdfs:comment "Unit:-"@en ,
+                                                     "required to test IDF file conversion via HBPO"@en ,
+                                                     "required to test acoustic simulation via HBPO"@en ,
+                                                     "required to test lighting simulation via HBPO"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/material-properties#Material
+<http://bimerr.iot.linkeddata.es/def/material-properties#Material> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty :belongsTo ;
+                                                                                     owl:allValuesFrom :TargetObject
+                                                                                   ] ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty :belongsTo ;
+                                                                                     owl:allValuesFrom <https://pi.pauwel.be/voc/distributionelement>
+                                                                                   ] .
+
+
+###  http://example.org/CBIM_Ontology#Furniture
+<http://example.org/CBIM_Ontology#Furniture> rdf:type owl:Class ;
+                                             rdfs:subClassOf :TargetObject .
+
+
+###  http://www.semanticweb.org/HBPO/AnalysisGrid
+:AnalysisGrid rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :resultedIn ;
+                                owl:allValuesFrom :SimulationResult
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :GridHeight ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :GridLength ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :GridWidth ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] .
+
+
+###  http://www.semanticweb.org/HBPO/ComplianceCheck
+:ComplianceCheck rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :calculatedBy ;
+                                   owl:allValuesFrom :SimulationResult
+                                 ] .
+
+
+###  http://www.semanticweb.org/HBPO/CoolingSource
+:CoolingSource rdf:type owl:Class ;
+               rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/ElectricityConsumer
+:ElectricityConsumer rdf:type owl:Class ;
+                     rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/Function
+:Function rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :isManifestedBy ;
+                            owl:allValuesFrom <https://pi.pauwel.be/voc/distributionelement>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :references ;
+                            owl:allValuesFrom <https://w3id.org/bot#Space>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :usedIn ;
+                            owl:allValuesFrom :SimulationRun
+                          ] .
+
+
+###  http://www.semanticweb.org/HBPO/HeatSource
+:HeatSource rdf:type owl:Class ;
+            rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/HotWaterSource
+:HotWaterSource rdf:type owl:Class ;
+                rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/LightSource
+:LightSource rdf:type owl:Class ;
+             rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/Project
+:Project rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/HBPO/Receiver
+:Receiver rdf:type owl:Class ;
+          rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/SimulationResult
+:SimulationResult rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :correspondTo ;
+                                    owl:allValuesFrom :TargetObject
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :calculatedBy ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :AnalysisGrid
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :calculatedBy ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SimulationRun
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :resultedIn ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :ComplianceCheck
+                                  ] .
+
+
+###  http://www.semanticweb.org/HBPO/SimulationRun
+:SimulationRun rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :resultedIn ;
+                                 owl:allValuesFrom :SimulationResult
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :uses ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Function
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :uses ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :TargetObject
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :uses ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass <https://w3id.org/bot#Space>
+                               ] .
+
+
+###  http://www.semanticweb.org/HBPO/SoundSource
+:SoundSource rdf:type owl:Class ;
+             rdfs:subClassOf :Function .
+
+
+###  http://www.semanticweb.org/HBPO/SpaceBoundary
+:SpaceBoundary rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :relatedBuildingElement ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :TargetObject
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :relatingSpace ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass <https://w3id.org/bot#Space>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple> ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :Area ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :ConnectionGeometry ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :Height ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :InternalOrExternalBoundary ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :Length ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :ObjectCentroid ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :PhysicalOrVirtualBoundary ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :SpaceBoundaryLevel ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :Width ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <https://w3id.org/bot#has3DModel> ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] .
+
+
+###  http://www.semanticweb.org/HBPO/SpaceGrid
+:SpaceGrid rdf:type owl:Class ;
+           rdfs:subClassOf :AnalysisGrid .
+
+
+###  http://www.semanticweb.org/HBPO/SurfaceGrid
+:SurfaceGrid rdf:type owl:Class ;
+             rdfs:subClassOf :AnalysisGrid ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :orientedFrom ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :TargetObject
+                             ] .
+
+
+###  http://www.semanticweb.org/HBPO/TargetObject
+:TargetObject rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :isMadeOf ;
+                                owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/material-properties#Material>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :located ;
+                                owl:allValuesFrom :SurfaceGrid
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :references ;
+                                owl:allValuesFrom <https://w3id.org/bot#Space>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :usedIn ;
+                                owl:allValuesFrom :SimulationRun
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple> ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :Area ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :Height ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :Length ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :ObjectCentroid ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :Width ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <https://w3id.org/bot#has3DModel> ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <https://w3id.org/bot#hasSimple3DModel> ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] .
+
+
+###  http://www.semanticweb.org/HBPO/VentilationSource
+:VentilationSource rdf:type owl:Class ;
+                   rdfs:subClassOf :Function .
+
+
+###  https://pi.pauwel.be/voc/distributionelement
+<https://pi.pauwel.be/voc/distributionelement> rdf:type owl:Class ;
+                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :isMadeOf ;
+                                                                 owl:allValuesFrom <http://bimerr.iot.linkeddata.es/def/material-properties#Material>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :functionsAs ;
+                                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass :Function
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple> ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :Area ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :Height ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :Length ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :ObjectCentroid ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :Width ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/bot#has3DModel> ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://w3id.org/bot#hasSimple3DModel> ;
+                                                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                               ] .
+
+
+###  https://pi.pauwel.be/voc/buildingelement#BuildingElement
+<https://pi.pauwel.be/voc/buildingelement#BuildingElement> rdf:type owl:Class ;
+                                                           rdfs:subClassOf :TargetObject .
+
+
+###  https://w3id.org/bot#Building
+<https://w3id.org/bot#Building> rdf:type owl:Class ;
+                                rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+                                owl:disjointWith <https://w3id.org/bot#Site> ,
+                                                 <https://w3id.org/bot#Space> ,
+                                                 <https://w3id.org/bot#Storey> .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class ;
+                               rdfs:subClassOf :TargetObject .
+
+
+###  https://w3id.org/bot#Site
+<https://w3id.org/bot#Site> rdf:type owl:Class ;
+                            rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+                            owl:disjointWith <https://w3id.org/bot#Space> ,
+                                             <https://w3id.org/bot#Storey> .
+
+
+###  https://w3id.org/bot#Space
+<https://w3id.org/bot#Space> rdf:type owl:Class ;
+                             rdfs:subClassOf <https://w3id.org/bot#Zone> ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :hasFunctionalObject ;
+                                               owl:allValuesFrom :Function
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :hasTargetObject ;
+                                               owl:allValuesFrom :TargetObject
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty :usedIn ;
+                                               owl:allValuesFrom :SimulationRun
+                                             ] ;
+                             owl:disjointWith <https://w3id.org/bot#Storey> .
+
+
+###  https://w3id.org/bot#Storey
+<https://w3id.org/bot#Storey> rdf:type owl:Class ;
+                              rdfs:subClassOf <https://w3id.org/bot#Zone> .
+
+
+###  https://w3id.org/bot#Zone
+<https://w3id.org/bot#Zone> rdf:type owl:Class ;
+                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                              owl:onProperty :belongsTo ;
+                                              owl:allValuesFrom :Project
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <http://lbd.arch.rwth-aachen.de/props#globalIdIfcRoot_attribute_simple> ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :FloorArea ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :Height ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :Length ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :ObjectCentroid ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :Volume ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :Width ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <https://w3id.org/bot#has3DModel> ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty <https://w3id.org/bot#hasSimple3DModel> ;
+                                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                                            ] .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,199 @@
+@prefix : <http://bimerr.iot.linkeddata.es/def/information-objects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://bimerr.iot.linkeddata.es/def/information-objects#> .
+
+<http://bimerr.iot.linkeddata.es/def/information-objects#> rdf:type owl:Ontology ;
+                                                            <http://purl.org/dc/terms/creator> "Serge Chávez-Feria"@en ,
+                                                                                               "María Poveda-Villalón" ;
+                                                            <http://purl.org/dc/terms/license> "http://purl.org/NET/rdflicense/cc-by4.0" ;
+                                                            <http://purl.org/dc/terms/publisher> "http://www.oeg-upm.net/" ;
+                                                            <http://purl.org/dc/terms/title> "Information Objects Ontology" ;
+                                                            owl:versionInfo "0.0.3" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+<http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedAudioFile
+:relatedAudioFile rdf:type owl:ObjectProperty ;
+                  rdfs:label "related audio file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedDocumentation
+:relatedDocumentation rdf:type owl:ObjectProperty ;
+                      rdfs:label "related documentation"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedIFCFile
+:relatedIFCFile rdf:type owl:ObjectProperty ;
+                rdfs:label "related ifc file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedImageFile
+:relatedImageFile rdf:type owl:ObjectProperty ;
+                  rdfs:label "related image file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedOBJFile
+:relatedOBJFile rdf:type owl:ObjectProperty ;
+                rdfs:label "related obj file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedObxmlFile
+:relatedObxmlFile rdf:type owl:ObjectProperty ;
+                  rdfs:label "related obxml file"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#relatedVideoFile
+:relatedVideoFile rdf:type owl:ObjectProperty ;
+                  rdfs:label "related video file"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#creationAuthor
+:creationAuthor rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Creator of the file."@en ;
+                rdfs:label "creator"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#creationDate
+:creationDate rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:dateTime ;
+              rdfs:comment "Date when the document has been created."@en ;
+              rdfs:label "created"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#datatype
+:datatype rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:base64Binary ;
+          rdfs:label "datatype"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string ;
+             rdfs:comment "A short description of the content of the file."@en ;
+             rdfs:label "description"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#format
+:format rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:string ;
+        rdfs:comment "Format or extension of the file."@en ;
+        rdfs:label "format"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#identifier
+:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Identifier of the file."@en ;
+            rdfs:label "identifier"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#location
+:location rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:anyURI ;
+          rdfs:comment "Filename or path to the location of the file."@en ;
+          rdfs:label "filename"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#updateAuthor
+:updateAuthor rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string ;
+              rdfs:comment "The user who last modified the file."@en ;
+              rdfs:label "las modification author"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#updateDate
+:updateDate rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:dateTime ;
+            rdfs:comment "Date when the file was last modified."@en ;
+            rdfs:label "modified"@en .
+
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#version
+:version rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Version of the file."@en ;
+         rdfs:label "version"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bimerr.iot.linkeddata.es/def/information-objects#InformationObject
+:InformationObject rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :creationAuthor ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :creationDate ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :description ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :format ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :identifier ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :location ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :version ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :datatype ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :updateAuthor ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :updateDate ;
+                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ;
+                   rdfs:comment "Class that represents any type of file."@en ;
+                   rdfs:label "Information object"@en .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

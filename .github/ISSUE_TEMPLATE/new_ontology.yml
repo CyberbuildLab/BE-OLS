@@ -8,18 +8,18 @@ title: "Ontology submission: ${{ github.event.issue.number }}"
 
 body:
   - type: input
-    id: name
+    id: title
     attributes:
-      label: Name
-      description: Name of the ontology
+      label: Title
+      description: Title/Name of the ontology
       placeholder: e.g. Modelling and Standards Ontology
 
   - type: input
-    id: acronym
+    id: prefix
     attributes:
-      label: Acronym
-      description: Namespace acronym
-      placeholder: e.g. MNS
+      label: Prefix
+      description: Namespace prefix
+      placeholder: e.g. bot, saref4bldg
 
   - type: input
     id: version
@@ -29,50 +29,50 @@ body:
       placeholder: e.g. 0.0.v
 
   - type: input
-    id: year
+    id: created
     attributes:
-      label: Year published
+      label: Created
       description: Year that version was created
       placeholder: e.g. 2024
 
   - type: textarea
-    id: short_description
+    id: description
     attributes:
-      label: Short Description
+      label: Description
       description: Brief summary of the ontology
       placeholder: e.g. This ontology supports topic/use-case X and serves stakeholder Y, which is useful because Z.
 
   - type: input
     id: uri
     attributes:
-      label: URI/Namespace
-      placeholder: https://z-arghavan.github.io/MnSOntology/
+      label: URI
+      placeholder: https://w3id.org/MnSOntology#
 
 
   - type: input
     id: reference
     attributes:
       label: Reference
-      description: Web page or DOI that documents the ontology
-      placeholder: e.g. https://ec-3.org/#
+      description: Web page or DOI of publication that documents the ontology
+      placeholder: e.g. https://doi.org/##
 
   - type: input
     id: linked_aec
     attributes:
       label: Linked-to ontologies AECO
-      description: Acronyms of AECO ontologies; use semicolons to separate multiple values
+      description: Prefixes of AECO ontologies that the ontology links to. Look-up existing prefixes in BE-OLS. Use semicolons to separate multiple values
       placeholder: bot; ifc
 
   - type: input
-    id: link_to_upper
+    id: linked_upper
     attributes:
       label: Linked-to ontologies UPPER
-      description: Acronyms such as schema, skos, prov, etc.; use semicolons to separate
+      description: Prefixes of upper ontologies that the ontology links to. For example, schema, skos, prov, dcterms, foaf, etc.; use semicolons to separate
       placeholder: schema; skos
 
   - type: input
     id: linked_other
     attributes:
-      label: Linked other professional domain ontologies
-      description: Ontologies outside AECO (e.g. eli); use semicolons to separate
+      label: Linked-to ontologies OTHER
+      description: Prefixes of ontologies outside AECO that the ontology links to. For example, eli. Use semicolons to separate
       placeholder: eli

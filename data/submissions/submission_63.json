@@ -1,0 +1,12 @@
+{
+  "Title": "Roof Damage Ontology",
+  "Prefix": "rdo",
+  "Version": "0.5",
+  "Created": "2026",
+  "Description": "This ontology provides a semantic framework for representing roof condition inspection information, including roofs and roof pitches, inspections, orthophotos, and image-derived defect observations. It is designed to support structured documentation, querying, and interoperability within digital twin–based workflows for roof condition monitoring and maintenance, particularly in the context of existing and heritage buildings.",
+  "uri": "https://w3id.org/rdo#",
+  "Reference": "_No response_",
+  "Linked-to ontologies AECO": "dot, beo,",
+  "Linked-to ontologies UPPER": "foaf",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_"
+}

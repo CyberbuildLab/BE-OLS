@@ -1,0 +1,197 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix brot: <https://w3id.org/brot#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <http://schema.org/#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/brot#> rdf:type owl:Ontology ;
+                        owl:versionIRI <https://w3id.org/brot/0.21> ;
+                        dcterms:creator [ rdf:type foaf:Person ;
+                                          foaf:name "Al-Hakam Hamdan"
+                                        ] ,
+                                        [ rdf:type foaf:Person ;
+                                          foaf:name "Taras Kozak"
+                                        ] ;
+                        dcterms:description "Ontology that defines the topology of zones and components of bridge constructions"@en ;
+                        dcterms:title "Bridge Topology Ontology"@en ;
+                        dcterms:license "https://creativecommons.org/licenses/by/1.0" ;
+                        dcterms:modified "29th March 2022" ;
+                        vann:preferredNamespacePrefix "brot" ;
+                        vann:preferredNamespaceUri "https://w3id.org/brot#" .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/brot#adjacentComponent
+brot:adjacentComponent rdf:type owl:ObjectProperty ,
+                              owl:SymmetricProperty ;
+                     schema:domainIncludes brot:Component ,
+                                 brot:SpatialZone ;
+                     rdfs:range brot:Component ;
+                     rdfs:comment "Relation zwischen Componenten und Zonen, die durch eine Berührungsfläche einen physikalischen Kontakt miteinander haben."@de ,
+                                  "Relationship between Components and zones which have physical contact to each other."@en ;
+                     rdfs:label "adjacent Component"@en ,
+                                "benachbartes Component"@de .
+
+
+###  https://w3id.org/brot#adjacentZone
+brot:adjacentZone rdf:type owl:ObjectProperty ,
+                           owl:SymmetricProperty ;
+                  schema:domainIncludes brot:Component ,
+                                 brot:SpatialZone ;
+                  rdfs:range brot:SpatialZone ;
+                  rdfs:comment "Relationship between two adjacent Zones."@en ;
+                  rdfs:label "adjacent zone"@en ,
+                             "benachbarte Zone"@de .
+
+
+###  https://w3id.org/brot#aggregates
+brot:aggregates rdf:type owl:ObjectProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain brot:Component ;
+                rdfs:range brot:Component ;
+                rdfs:comment "Relationship between a Component and an aggregated Component as subcomponent."@en ;
+                rdfs:label "aggregates"@en ,
+                           "beinhaltet"@de .
+
+
+###  https://w3id.org/brot#containsComponent
+brot:containsComponent rdf:type owl:ObjectProperty ;
+                     rdfs:domain brot:SpatialZone ;
+                     rdfs:range brot:Component ;
+                     owl:propertyChainAxiom ( brot:containsComponent
+                                              brot:aggregates
+                                            ) ,
+                                            ( brot:containsZone
+                                              brot:containsComponent
+                                            ) ;
+                     rdfs:comment "Relationship between a SpatialZone and its contained Component"@en ;
+                     rdfs:label "contains Component"@en ,
+                                "enthält Component"@de .
+
+
+###  https://w3id.org/brot#containsZone
+brot:containsZone rdf:type owl:ObjectProperty ,
+                           owl:TransitiveProperty ;
+                  rdfs:domain brot:SpatialZone ;
+                  rdfs:range brot:SpatialZone ;
+                  rdfs:comment "Relationship between a SpatialZone and another contained SpatialZone (subzone)"@en ;
+                  rdfs:label "contains zone"@en ,
+                             "enthält Zone"@de .
+
+
+###  https://w3id.org/brot#hasCoating
+brot:hasCoating rdf:type owl:ObjectProperty ;
+                rdfs:domain brot:Component ;
+                rdfs:range brot:Coating ;
+                rdfs:comment "Relationship between a Component and its applied Coating."@en ;
+                rdfs:label "has coating"@en ,
+                           "hat Beschichtung"@de .
+
+
+###  https://w3id.org/brot#hasJoint
+brot:hasJoint rdf:type owl:ObjectProperty ;
+              rdfs:domain brot:Component ;
+              rdfs:range brot:Joint ;
+              rdfs:comment "Relationship between a Component and an aggregated Joint."@en ;
+              rdfs:label "has joint"@en ,
+                         "hat Fuge"@de .
+
+
+###  https://w3id.org/brot#locatedAbove
+brot:locatedAbove rdf:type owl:ObjectProperty ;
+                  owl:inverseOf brot:locatedBelow ;
+                  rdf:type owl:TransitiveProperty ;
+                  schema:domainIncludes brot:Component ,
+                                 brot:SpatialZone ;
+                  schema:rangeIncludes brot:Component ,
+                                  brot:SpatialZone ;
+                  rdfs:comment "Diese Relation stellt dar, dass ein Component sich über einem anderen befindet. Die Componente sind nicht gezwungen einen physicalischen bzw. logischen Kontakt zu haben. Die Relation zeigt bloß das räumliche Verhalten."@de ,
+                               "This relationship points that in a modell an Component located above an another Component. The Components are not obliged to have a physical or logical connection. The relationship shows only space atittude."@en ;
+                  rdfs:label    "located above"@en ,
+                                "befindet sich über"@de .
+
+
+###  https://w3id.org/brot#locatedBelow
+brot:locatedBelow rdf:type owl:ObjectProperty ,
+                           owl:TransitiveProperty ;
+                  schema:domainIncludes brot:Component ,
+                                 brot:SpatialZone ;
+                  schema:rangeIncludes brot:Component ,
+                                  brot:SpatialZone ;
+                  rdfs:comment "Diese Relation stellt dar, dass ein Component sich unter einem anderen befindet. Die Componente sind nicht gezwungen einen physicalischen bzw. logischen Kontakt zu haben. Die Relation zeigt bloß das räumliche Verhalten."@de ,
+                               "This relationship points that in a modell an Component located below an another Component. The Components are not obliged to have a physical or logical connection. The relationship shows only space atittude."@en ;
+                  rdfs:label "befindet sich unter"@de ,
+                             "located below"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/brot#Bridge
+brot:Bridge rdf:type owl:Class ;
+            rdfs:subClassOf brot:SpatialZone ;
+            rdfs:comment "An engineering structure which guides traffic routes (such as roads, railway lines, footpaths and cycle paths, waterways, taxiways for aircraft) or supply facilities (such as pipelines, cable routes, conveyor belts) on an elevated, suspended or free-floating structure over obstacles or over the surface of the terrain in such a way that there is a distance between the route and the surface of the terrain and thus often a possibility of undercrossing by another traffic or supply route is made possible. Bridges can be cantilevered between two abutments (single span bridge) or rest between them on several supports (multi span bridge). However, they can also be suspended from pylons by using ropes."@en ;
+            rdfs:label "Bridge"@en ,
+                       "Brücke"@de .
+
+
+###  https://w3id.org/brot#Component
+brot:Component rdf:type owl:Class ;
+                   rdfs:comment "Component that is contained in a bridge construction and has a characteristic technical function, form or position."@en ;
+                   rdfs:label "Bridge Component"@en ,
+                              "BrueckenComponent"@de .
+                              
+
+###  https://w3id.org/brot#Joint
+brot:Joint rdf:type owl:Class ;
+                 rdfs:comment "A desired or tolerance-related gap or interspace between two partial areas or components."@en ;
+                 rdfs:label "Bridge Joint"@en ,
+                            "Brückenfuge"@de .
+
+
+###  https://w3id.org/brot#SpatialZone
+brot:SpatialZone rdf:type owl:Class ;
+                       rdfs:comment "A spatial 3D division of a bridge or a site consisting of bridge related constructions."@en ;
+                       rdfs:label "Bridge Spatial Zone"@en ,
+                                  "Räumliche Zone in Brücke"@de .
+
+
+###  https://w3id.org/brot#SubStructure
+brot:SubStructure rdf:type owl:Class ;
+                        rdfs:subClassOf brot:SpatialZone ;
+                        rdfs:comment """Zone that consists of Components, which serve to transfer the loads of the superstructure into the ground.
+Located below the bridge deck."""@en ;
+                        rdfs:label "Bridge Substructure"@en ,
+                                   "Brückenunterbau"@de .
+
+
+###  https://w3id.org/brot#SuperStructure
+brot:SuperStructure rdf:type owl:Class ;
+                          rdfs:subClassOf brot:SpatialZone ;
+                          rdfs:comment "Zone that consists of Components that transfer loads to the SubStructure"@en ;
+                          rdfs:label "Bridge Superstructure"@en ,
+                                     "Brückenüberbau"@de .
+
+
+###  https://w3id.org/brot#Coating
+brot:Coating rdf:type owl:Class ;
+             rdfs:comment "Covering that is applied to the surface of a Component. The purpose of applying Coating may be decorative, functional, or both."@en ;
+             rdfs:label "Abdichtung"@de ,
+                        "Coating"@en .
+
+
+###  https://w3id.org/brot#Site
+brot:Site rdf:type owl:Class ;
+          rdfs:subClassOf brot:SpatialZone ;
+          rdfs:comment "Area containing one or more bridges"@en ;
+          rdfs:label "Gelaende"@de ,
+                     "Site"@en .

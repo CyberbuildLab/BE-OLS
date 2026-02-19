@@ -1,0 +1,49 @@
+# baseURI: http://icdd.vm.rub.de/ontology/icdd2ams
+# imports: http://asbing.de/condition/def/
+# imports: http://www.roadotl.eu/def/
+# imports: https://w3id.org/bot#
+# prefix: icdd2ams
+
+@prefix icdd2ams: <http://icdd.vm.rub.de/ontology/icdd2ams#> .
+@prefix asbing: <http://asbing.de/condition/def/> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix eurotl: <http://www.roadotl.eu/def/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+icdd2ams:
+  rdf:type owl:Ontology ;
+  owl:imports asbing: ;
+  owl:imports eurotl: ;
+  owl:imports bot: ;
+    vann:preferredNamespacePrefix "icdd2ams";
+    dcterms:title "Asset Condition Integration from ICDD to AMS (icdd2ams)"^^xsd:string;
+    dcterms:description "Ontology for integrating BOT located asset conditions using eurotl and asbing ontologies into sql based asset management systems"^^xsd:string ;
+    dcterms:created "2021-03-24"^^xsd:date ;
+    dcterms:creator "Philipp Hagedorn";
+    dcterms:creator "Liu Liu";
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
+.
+
+icdd2ams:hadActivity
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain bot:Building ;
+  rdfs:label "icdd2ams:hadActivity" ;
+  rdfs:comment "The activity relation representing the inspection of a BOT building, using a eurotl InspectionActivity individual";
+  rdfs:range eurotl:InspectionActivity ;
+  rdfs:subPropertyOf prov:hadActivity ;
+.
+
+icdd2ams:hasCondition
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain bot:Element ;
+  rdfs:label "icdd2ams:hasCondition" ;
+  rdfs:comment "The condition of an element regarding an inspection activity" ;
+  rdfs:range eurotl:Condition ;
+  rdfs:subPropertyOf eurotl:hasCondition ;
+.

@@ -1,0 +1,569 @@
+@prefix : <https://w3id.org/reloc#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/reloc#> .
+
+<https://w3id.org/reloc#> rdf:type owl:Ontology ;
+                           <http://purl.org/dc/terms/created> "2024-02-01" ;
+                           <http://purl.org/dc/terms/creator> "Anne Göbels" ;
+                           <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                           <http://purl.org/dc/terms/title> "Relative Location Ontology" ;
+                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "reloc" ;
+                           <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/reloc#> ;
+                           owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/reloc#bottom
+:bottom rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :verticalAxisRelation ;
+        rdfs:domain :SpatialEntity ;
+        rdfs:range :SpatialEntity ;
+        rdfs:comment "the property \"bottom\" should express that the located object has a relation to the lower part or bottom side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+        rdfs:label "bottom"@en ,
+                   "unten"@de .
+
+
+###  https://w3id.org/reloc#containedIn
+:containedIn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <https://w3id.org/reloc#2DTopologicalRelation> ;
+             rdf:type owl:TransitiveProperty ;
+             rdfs:domain :SpatialEntity ;
+             rdfs:range :SpatialEntity ;
+             rdfs:comment "the property \"contained in\" expresses that the extension of the located object A is inside the extension/boundary of the reference object B for a specific axis (e.g. vertical axis)"@en ;
+             rdfs:label "Enthalten in"@de ,
+                        "contained in"@en .
+
+
+###  https://w3id.org/reloc#containedInBottom
+:containedInBottom rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :bottom ,
+                                      :containedIn ;
+                   rdfs:domain :SpatialEntity ;
+                   rdfs:range :SpatialEntity ;
+                   rdfs:comment "the property \"contained in bottom\" should express that the located object is inside the  lower area of the reference object"@en ;
+                   rdfs:label "is contained in the lower area of"@en ,
+                              "ist im unteren Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInFront
+:containedInFront rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :containedIn ,
+                                     :front ;
+                  rdfs:domain :SpatialEntity ;
+                  rdfs:range :SpatialEntity ;
+                  rdfs:comment "the property \"contained in front\" should express that the located object is inside the front part/area of the reference object"@en ;
+                  rdfs:label "is contained in the front area of"@en ,
+                             "ist im vorderen Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInLeft
+:containedInLeft rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :containedIn ,
+                                    :left ;
+                 rdfs:domain :SpatialEntity ;
+                 rdfs:range :SpatialEntity ;
+                 rdfs:comment "the property \"contained in left\" should express that the located object is inside the left part/area of the reference object"@en ;
+                 rdfs:label "is contained in the left area of"@en ,
+                            "ist im linken Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInLongitudinalCenter
+:containedInLongitudinalCenter rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf :containedIn ,
+                                                  :longitudinalCenter ;
+                               rdfs:domain :SpatialEntity ;
+                               rdfs:range :SpatialEntity ;
+                               rdfs:comment "the property \"contained in longitudinal center\" should express that the located object  is inside the longitudinal central part of the reference object"@en ;
+                               rdfs:label "is contained in the longitudinal central area of"@en ,
+                                          "ist im zentralen Längsbereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInRear
+:containedInRear rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :containedIn ,
+                                    :rear ;
+                 rdfs:domain :SpatialEntity ;
+                 rdfs:range :SpatialEntity ;
+                 rdfs:comment "the property \"contained in rear\" should express that the located object is inside the rear part/area of the reference object"@en ;
+                 rdfs:label "is contained in the rear area of"@en ,
+                            "ist im hinteren Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInRight
+:containedInRight rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :containedIn ,
+                                     :right ;
+                  rdfs:domain :SpatialEntity ;
+                  rdfs:range :SpatialEntity ;
+                  rdfs:comment "the property \"contained in right\" should express that the located object is inside the right part/area of the reference object"@en ;
+                  rdfs:label "is contained in the right area of"@en ,
+                             "ist im rechten Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInTop
+:containedInTop rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :containedIn ,
+                                   :top ;
+                rdfs:domain :SpatialEntity ;
+                rdfs:range :SpatialEntity ;
+                rdfs:comment "the property \"contained in top\" should express that the located object is inside the upper area of the reference object"@en ;
+                rdfs:label "is contained in the upper area of"@en ,
+                           "ist im oberen Bereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInTransversalCenter
+:containedInTransversalCenter rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :containedIn ,
+                                                 :transversalCenter ;
+                              rdfs:domain :SpatialEntity ;
+                              rdfs:range :SpatialEntity ;
+                              rdfs:comment "the property \"contained in transversal center\" should express that the located object  is inside the transversal central part of the reference object"@en ;
+                              rdfs:label "is contained in the transversal central area of"@en ,
+                                         "ist im zentralen Querbereich von"@de .
+
+
+###  https://w3id.org/reloc#containedInVerticalCenter
+:containedInVerticalCenter rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :containedIn ,
+                                              :verticalCenter ;
+                           rdfs:domain :SpatialEntity ;
+                           rdfs:range :SpatialEntity ;
+                           rdfs:comment "the property \"contained in vertical center\" should express that the located object  is inside the vertical central part of the reference object"@en ;
+                           rdfs:label "is contained in the vertical central area of"@en ,
+                                      "ist im zentralen vertikalen Bereich von"@de .
+
+
+###  https://w3id.org/reloc#directionalRelation
+:directionalRelation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasRelativeSpatialRelationTo ;
+                     rdfs:domain :SpatialEntity ;
+                     rdfs:range :SpatialEntity ;
+                     rdfs:comment "defines a directional / axis-related relative relationship between to objects."@en ;
+                     rdfs:label "Richtungsbezogene Relation"@de ,
+                                "directional relation"@en .
+
+
+###  https://w3id.org/reloc#equal
+:equal rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf <https://w3id.org/reloc#2DTopologicalRelation> ;
+       rdf:type owl:SymmetricProperty ,
+                owl:TransitiveProperty ;
+       rdfs:domain :SpatialEntity ;
+       rdfs:range :SpatialEntity ;
+       rdfs:comment "the property \"equal\" expresses that the extension of the located object A and the extension of the reference object B for a specific axis (e.g. vertical axis) are the same."@en ;
+       rdfs:label "Gleich"@de ,
+                  "equal"@en .
+
+
+###  https://w3id.org/reloc#equalLongitudinal
+:equalLongitudinal rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :longitudinalAxisRelation ;
+                   rdfs:domain :SpatialEntity ;
+                   rdfs:range :SpatialEntity ;
+                   rdfs:comment "property that expresses that two objects have the same longitudinal extension and position"@en ;
+                   rdfs:label "has the same origin and lenght as"@en ,
+                              "hat den gleichen Ursprung und die gleiche Länge wie"@de .
+
+
+###  https://w3id.org/reloc#equalTransversal
+:equalTransversal rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :transversalAxisRelation ;
+                  rdfs:domain :SpatialEntity ;
+                  rdfs:range :SpatialEntity ;
+                  rdfs:comment "property that expresses that two objects have the same transversal extension and position"@en ;
+                  rdfs:label "has the same origin and width as"@en ,
+                             "hat den gleichen Ursprung und die gleiche Breite wie"@de .
+
+
+###  https://w3id.org/reloc#equalVertical
+:equalVertical rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :verticalAxisRelation ;
+               rdfs:domain :SpatialEntity ;
+               rdfs:range :SpatialEntity ;
+               rdfs:comment "property that expresses that two objects have the same vertical extension and position"@en ;
+               rdfs:label "has the same vertical origin and height as"@en ,
+                          "hat den gleiche Ursprung und die gleiche Höhe wie"@de .
+
+
+###  https://w3id.org/reloc#front
+:front rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :longitudinalAxisRelation ;
+       rdfs:domain :SpatialEntity ;
+       rdfs:range :SpatialEntity ;
+       rdfs:comment "the property \"front\" should express that the located object has a relation to the front part or side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+       rdfs:label "front"@en ,
+                  "vorne"@de ;
+       <http://www.w3.org/2004/02/skos/core#altLabel> "Anfang"@de ,
+                                                      "Vorderseite"@de ,
+                                                      "Vorn"@de .
+
+
+###  https://w3id.org/reloc#hasRelativeLocationWithOffset
+:hasRelativeLocationWithOffset rdf:type owl:ObjectProperty ;
+                               rdfs:domain :SpatialEntity ;
+                               rdfs:range :RelativeLocationWithOffset ;
+                               rdfs:comment "links the located element to the abstract class (as instance :blank node) that defined the relative location and the offset value" ;
+                               rdfs:label "has relative location with Offset"@en ,
+                                          "hat festen Abstand zu einem relativen Ort"@de .
+
+
+###  https://w3id.org/reloc#hasRelativeSpatialRelationTo
+:hasRelativeSpatialRelationTo rdf:type owl:ObjectProperty ;
+                              rdfs:domain :SpatialEntity ;
+                              rdfs:range :SpatialEntity ;
+                              rdfs:comment "main/root property of the RELOC Ontology that defines the spatial relationship between the located element A to the reference element B. This relationship should not reflect exact geometric dependencies or boundaries but rather represent the meaning of natural language location descriptions."@en ;
+                              rdfs:label "has relative spatial relation to"@en ,
+                                         "hat relativen räumlichen Bezug zu"@de .
+
+
+###  https://w3id.org/reloc#intersect
+:intersect rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf <https://w3id.org/reloc#2DTopologicalRelation> ;
+           rdf:type owl:SymmetricProperty ;
+           rdfs:domain :SpatialEntity ;
+           rdfs:range :SpatialEntity ;
+           rdfs:comment "the property \"intersect\" expresses that the extension of the located object A is partially overlapping with the extension of the reference object B for a specific axis (e.g. vertical axis)"@en ;
+           rdfs:label "intersect"@en ,
+                      "Überschneiden"@de .
+
+
+###  https://w3id.org/reloc#intersectBottom
+:intersectBottom rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :bottom ,
+                                    :intersect ;
+                 rdfs:domain :SpatialEntity ;
+                 rdfs:range :SpatialEntity ;
+                 rdfs:comment "the property \"intersect bottom\" should express that the located object  intersects the bottom/ lower part of the reference object"@en ;
+                 rdfs:label "intersects with the bottom of"@en ,
+                            "schneidet die Unterseite von"@de .
+
+
+###  https://w3id.org/reloc#intersectFront
+:intersectFront rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :front ,
+                                   :intersect ;
+                rdfs:domain :SpatialEntity ;
+                rdfs:range :SpatialEntity ;
+                rdfs:comment "the property \"intersect front\" should express that the located object  intersects the front part/side of the reference object"@en ;
+                rdfs:label "intersects the front side of"@en ,
+                           "schneidet die Vorderseite von"@de .
+
+
+###  https://w3id.org/reloc#intersectLeft
+:intersectLeft rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :intersect ,
+                                  :left ;
+               rdfs:domain :SpatialEntity ;
+               rdfs:range :SpatialEntity ;
+               rdfs:comment "the property \"intersect left\" should express that the located object  intersects the left part/side of the reference object"@en ;
+               rdfs:label "Intersects the left side of"@en ,
+                          "schneidet die linke Seite von"@de .
+
+
+###  https://w3id.org/reloc#intersectRear
+:intersectRear rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :intersect ,
+                                  :rear ;
+               rdfs:domain :SpatialEntity ;
+               rdfs:range :SpatialEntity ;
+               rdfs:comment "the property \"intersect rear\" should express that the located object  intersects the rear part/side of the reference object"@en ;
+               rdfs:label "Intersects the rear side of"@en ,
+                          "schneidet die hintere Seite von"@de .
+
+
+###  https://w3id.org/reloc#intersectRight
+:intersectRight rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :intersect ,
+                                   :right ;
+                rdfs:domain :SpatialEntity ;
+                rdfs:range :SpatialEntity ;
+                rdfs:comment "the property \"intersect right\" should express that the located object  intersects the right part/side of the reference object"@en ;
+                rdfs:label "Intersects the right side of"@en ,
+                           "schneidet die rechte Seite von"@de .
+
+
+###  https://w3id.org/reloc#intersectTop
+:intersectTop rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :intersect ,
+                                 :top ;
+              rdfs:domain :SpatialEntity ;
+              rdfs:range :SpatialEntity ;
+              rdfs:comment "the property \"intersect top\" should express that the located object  intersects the top /upper part of the reference object"@en ;
+              rdfs:label "Intersects with the top of"@en ,
+                         "schneidet die Oberseite von"@de .
+
+
+###  https://w3id.org/reloc#left
+:left rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :transversalAxisRelation ;
+      rdfs:domain :SpatialEntity ;
+      rdfs:range :SpatialEntity ;
+      rdfs:comment "the property \"left\" should express that the located object has a relation to the left part or side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+      rdfs:label "inks"@de ,
+                 "left"@en .
+
+
+###  https://w3id.org/reloc#longitudinalAxisRelation
+:longitudinalAxisRelation rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :directionalRelation ;
+                          rdfs:domain :SpatialEntity ;
+                          rdfs:range :SpatialEntity ;
+                          rdfs:comment "super property of all relative spatial relationships referring to the longitudinal axis"@en ;
+                          rdfs:label "Längsachsenbezogene Relation"@de ,
+                                     "longitudinal axis relation"@en .
+
+
+###  https://w3id.org/reloc#longitudinalCenter
+:longitudinalCenter rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :longitudinalAxisRelation ;
+                    rdfs:domain :SpatialEntity ;
+                    rdfs:range :SpatialEntity ;
+                    rdfs:comment "the property \"center\" should express that the located object has a relation to the longitudinal central part of the reference object."@en ;
+                    rdfs:label "Mitte der Längsachse"@de ,
+                               "longitudinal center"@en .
+
+
+###  https://w3id.org/reloc#meet
+:meet rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf <https://w3id.org/reloc#2DTopologicalRelation> ;
+      rdf:type owl:SymmetricProperty ;
+      rdfs:domain :SpatialEntity ;
+      rdfs:range :SpatialEntity ;
+      rdfs:comment "the property \"meet\" expresses an adjacency relationship for one axis. There is no or almost no distance between the objects. They touch each other or are at least so close to each other that they are commonly regarded as (directly) neighbouring elements."@en ;
+      rdfs:label "Berühren"@de ,
+                 "meet"@en .
+
+
+###  https://w3id.org/reloc#meetBottom
+:meetBottom rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :bottom ,
+                               :meet ;
+            owl:inverseOf :meetTop ;
+            rdfs:domain :SpatialEntity ;
+            rdfs:range :SpatialEntity ;
+            rdfs:comment "the property \"meet bottom\" should express that the located object is under the reference object, with no (or almost no) distance to the bottom of the reference object."@en ;
+            rdfs:label "directly under"@en ,
+                       "direkt unter"@de .
+
+
+###  https://w3id.org/reloc#meetFront
+:meetFront rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :front ,
+                              :meet ;
+           owl:inverseOf :meetRear ;
+           rdfs:domain :SpatialEntity ;
+           rdfs:range :SpatialEntity ;
+           rdfs:comment "the property \"meet front\" should express that the located object is in front of the reference object, with no (or almost no) distance to the front side of the reference object."@en ;
+           rdfs:label "directly in front of"@en ,
+                      "direkt vor"@de .
+
+
+###  https://w3id.org/reloc#meetLeft
+:meetLeft rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :left ,
+                             :meet ;
+          owl:inverseOf :meetRight ;
+          rdfs:domain :SpatialEntity ;
+          rdfs:range :SpatialEntity ;
+          rdfs:comment "the property \"meet left\" should express that the located object is to the left of the reference object, with no (or almost no) distance to the left side of the reference object."@en ;
+          rdfs:label "directly left of"@en ,
+                     "direkt links von"@de .
+
+
+###  https://w3id.org/reloc#meetRear
+:meetRear rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :meet ,
+                             :rear ;
+          rdfs:domain :SpatialEntity ;
+          rdfs:range :SpatialEntity ;
+          rdfs:comment "the property \"meet rear\" should express that the located object is in behind the reference object, with no (or almost no) distance to the rear side of the reference object."@en ;
+          rdfs:label "directly behind"@en ,
+                     "direkt hinter"@de .
+
+
+###  https://w3id.org/reloc#meetRight
+:meetRight rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :meet ,
+                              :right ;
+           rdfs:domain :SpatialEntity ;
+           rdfs:range :SpatialEntity ;
+           rdfs:comment "the property \"meet right\" should express that the located object is to the right of the reference object, with no (or almost no) distance to the right side of the reference object."@en ;
+           rdfs:label "directly right of"@en ,
+                      "direkt rechts von"@de .
+
+
+###  https://w3id.org/reloc#meetTop
+:meetTop rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :meet ,
+                            :top ;
+         rdfs:domain :SpatialEntity ;
+         rdfs:range :SpatialEntity ;
+         rdfs:comment "the property \"meet top\" should express that the located object is in on top of the reference object, with no (or almost no) distance to the top of the reference object."@en ;
+         rdfs:label "directly on top of"@en ,
+                    "direkt über"@de .
+
+
+###  https://w3id.org/reloc#rear
+:rear rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :longitudinalAxisRelation ;
+      rdfs:domain :SpatialEntity ;
+      rdfs:range :SpatialEntity ;
+      rdfs:comment "the property \"rear\" should express that the located object has a relation to the rear part or side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+      rdfs:label "Hinten"@de ,
+                 "rear"@en ;
+      <http://www.w3.org/2004/02/skos/core#altLabel> "Ende"@de ,
+                                                     "Rückseite"@de .
+
+
+###  https://w3id.org/reloc#right
+:right rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :transversalAxisRelation ;
+       rdfs:domain :SpatialEntity ;
+       rdfs:range :SpatialEntity ;
+       rdfs:comment "the property \"right\" should express that the located object has a relation to the right part or side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+       rdfs:label "Rechts"@de ,
+                  "right"@en .
+
+
+###  https://w3id.org/reloc#top
+:top rdf:type owl:ObjectProperty ;
+     rdfs:subPropertyOf :verticalAxisRelation ;
+     rdfs:domain :SpatialEntity ;
+     rdfs:range :SpatialEntity ;
+     rdfs:comment "the property \"top\" should express that the located object has a relation to the upper part or top side of the reference object.The exact kind of relation is defined by the topological relation."@en ;
+     rdfs:label "oben"@de ,
+                "top"@en ;
+     <http://www.w3.org/2004/02/skos/core#altLabel> "Auf"@de ,
+                                                    "Oberseite"@de .
+
+
+###  https://w3id.org/reloc#transversalAxisRelation
+:transversalAxisRelation rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :directionalRelation ;
+                         rdfs:domain :SpatialEntity ;
+                         rdfs:range :SpatialEntity ;
+                         rdfs:comment "super property of all relative spatial relationships referring to the transversal axis, is horizontally orthogonal to longitudinal axis relations"@en ;
+                         rdfs:label "Querachsenbezogene Relation"@de ,
+                                    "transversal axis relation"@en .
+
+
+###  https://w3id.org/reloc#transversalCenter
+:transversalCenter rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :transversalAxisRelation ;
+                   rdfs:domain :SpatialEntity ;
+                   rdfs:range :SpatialEntity ;
+                   rdfs:comment "the property \"center\" should express that the located object has a relation to the transversal central part of the reference object."@en ;
+                   rdfs:label "Mitte der Querachse"@de ,
+                              "transversal center"@en .
+
+
+###  https://w3id.org/reloc#verticalAxisRelation
+:verticalAxisRelation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :directionalRelation ;
+                      rdfs:domain :SpatialEntity ;
+                      rdfs:range :SpatialEntity ;
+                      rdfs:comment "super property of all relative spatial relationships referring to the vertical axis" ;
+                      rdfs:label "Ort entlang der Vertikalachse"@de ,
+                                 "vertical axis relation"@en .
+
+
+###  https://w3id.org/reloc#verticalCenter
+:verticalCenter rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :verticalAxisRelation ;
+                rdfs:domain :SpatialEntity ;
+                rdfs:range :SpatialEntity ;
+                rdfs:comment "the property \"center\" should express that the located object has a relation to the vertical central part of the reference object."@en ;
+                rdfs:label "Mitte der Vertikalachse"@de ,
+                           "vertical center"@en .
+
+
+###  https://w3id.org/reloc#2DTopologicalRelation
+<https://w3id.org/reloc#2DTopologicalRelation> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf :hasRelativeSpatialRelationTo ;
+                                               rdfs:domain :SpatialEntity ;
+                                               rdfs:range :SpatialEntity ;
+                                               rdfs:comment "main topological property that defines the topological relationship between axis-related areas of two elements. The validity of the relationship is limited to one axis, and considering all three axis-related topological relationships is necessary to make statements about an entire element."@en ;
+                                               rdfs:label "2D Topologische Beziehung"@de ,
+                                                          "2D topological relation"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/reloc#hasOffsetValue
+:hasOffsetValue rdf:type owl:DatatypeProperty ;
+                rdfs:domain :RelativeLocationWithOffset ;
+                rdfs:range xsd:float ;
+                rdfs:comment "the property indicates the measured offset/distance value of a located object to a relative location (e.g. front) of the reference object."@en ;
+                rdfs:label "has measured distance value"@en ,
+                           "hat gemessenen Abstandswert"@de .
+
+
+###  https://w3id.org/reloc#hasOffsetValueUnit
+:hasOffsetValueUnit rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :RelativeLocationWithOffset ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "the property indicates the documented unit of the measured offset/distance value as a string"@en ;
+                    rdfs:label "Angabe der Maßeinheit des Abstandswert"@de ,
+                               "Indication of the offset value unit"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/reloc#RelativeLocationWithOffset
+:RelativeLocationWithOffset rdf:type owl:Class ;
+                            owl:disjointWith :SpatialEntity ;
+                            rdfs:comment "abstract class to define an offset to a relative location , e.g.\"A is 10m away from the front front of element B\"" ;
+                            rdfs:label "relative location with Offset"@en ,
+                                       "relativer Ort mit festem Abstand"@de .
+
+
+###  https://w3id.org/reloc#SpatialEntity
+:SpatialEntity rdf:type owl:Class ;
+               rdfs:comment "The \"spatial entity\" class includes all types of elements, objects, concepts, etc. that have spatial properties/features and can be located in 2- or 3-dimensional space. A building component would be a typical instance of a spatial entity, but zones/areas that have no concrete physical boundaries are also possible instances. " ;
+               rdfs:label "räumliche Entität"@de ,
+                          "spatial entitiy"@en .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
