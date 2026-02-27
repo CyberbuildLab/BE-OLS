@@ -3,7 +3,7 @@ name: Weekly ontology scan
 on:
   schedule:
     # Every Friday at 23:00 UTC
-    - cron: "00 23 * * 5"
+    - cron: "40 23 * * 5"
   workflow_dispatch: {}
 
 permissions:
