@@ -2,23 +2,19 @@ from __future__ import annotations
 
 import json
 import os
-import re
-import sys
 from datetime import datetime, timezone, timedelta
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 import requests
 
-
 GITHUB_API = "https://api.github.com"
-
 
 BUILT_ENV_TERMS = [
     "built environment",
     "construction",
     "bim",
     "ifc",
-    "buildingSMART",
+    "buildingsmart",
     "digital twin",
     "asset management",
     "smart city",
@@ -32,34 +28,34 @@ BUILT_ENV_TERMS = [
     "real estate",
     "urban",
     "geospatial",
+    "gis",
+    "city",
 ]
 
 ONTOLOGY_HINTS = [
     "ontology",
     "ontologies",
     "owl",
-    "ttl",
-    "turtle",
     "rdf",
     "rdfs",
+    "turtle",
+    "ttl",
     "shacl",
     "sparql",
     "knowledge graph",
+    "semantic",
+    "vocabulary",
 ]
 
-FILE_EXT_HINTS = [
-    ".ttl",
-    ".owl",
-    ".rdf",
-    ".nt",
-    ".n3",
-    ".jsonld",
-]
+FILE_EXT_HINTS = [".ttl", ".owl", ".rdf", ".nt", ".n3", ".jsonld"]
 
 DEFAULT_LOOKBACK_DAYS = 7
+DEFAULT_STATE_PATH = "data/state.json"
+DEFAULT_OUTPUT_DIR = "data/reports"
+DEFAULT_LATEST_PATH = "data/latest.md"
 
 
-def iso_now() -> str:
+def utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
@@ -71,7 +67,8 @@ def load_state(path: str) -> Dict[str, Any]:
 
 
 def save_state(path: str, state: Dict[str, Any]) -> None:
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    folder = os.path.dirname(path) or "."
+    os.makedirs(folder, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, sort_keys=True)
 
@@ -79,7 +76,7 @@ def save_state(path: str, state: Dict[str, Any]) -> None:
 def github_headers() -> Dict[str, str]:
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "built-env-ontology-finder",
+        "User-Agent": "be-ols-weekly-ontology-scan",
     }
     token = os.getenv("GITHUB_TOKEN", "").strip()
     if token:
@@ -88,57 +85,61 @@ def github_headers() -> Dict[str, str]:
 
 
 def looks_like_built_env(text: str) -> bool:
-    t = text.lower()
+    t = (text or "").lower()
     return any(term in t for term in BUILT_ENV_TERMS)
 
 
 def looks_like_ontology(text: str) -> bool:
-    t = text.lower()
+    t = (text or "").lower()
     return any(hint in t for hint in ONTOLOGY_HINTS)
 
 
-def has_ontology_files(items: List[Dict[str, Any]]) -> bool:
-    for it in items:
+def has_ontology_files(code_items: List[Dict[str, Any]]) -> bool:
+    for it in code_items:
         path = (it.get("path") or "").lower()
         if any(path.endswith(ext) for ext in FILE_EXT_HINTS):
             return True
     return False
 
 
-def search_repos(updated_since_utc: str, per_page: int = 30, pages: int = 3) -> List[Dict[str, Any]]:
-    # GitHub Search query:
-    # - recently updated
-    # - likely ontology keywords in repo text
-    # Note: GitHub search is not perfect. We filter further later.
-    query = f'(ontology OR OWL OR RDF OR Turtle OR SHACL) pushed:>={updated_since_utc}'
+def safe_get_json(url: str, params: Dict[str, Any] | None = None, timeout: int = 60) -> Dict[str, Any]:
+    r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
+    r.raise_for_status()
+    return r.json()
+
+
+def search_repositories(updated_since_date: str, per_page: int = 30, pages: int = 3) -> List[Dict[str, Any]]:
+    """
+    Repo search is broad. We filter aggressively afterwards.
+    """
+    query = f'(ontology OR OWL OR RDF OR Turtle OR SHACL) pushed:>={updated_since_date}'
     url = f"{GITHUB_API}/search/repositories"
 
-    results: List[Dict[str, Any]] = []
+    items: List[Dict[str, Any]] = []
     for page in range(1, pages + 1):
-        r = requests.get(
+        data = safe_get_json(
             url,
-            headers=github_headers(),
             params={"q": query, "sort": "updated", "order": "desc", "per_page": per_page, "page": page},
-            timeout=60,
         )
-        r.raise_for_status()
-        data = r.json()
-        results.extend(data.get("items", []))
-    return results
+        items.extend(data.get("items", []))
+    return items
 
 
-def search_repo_code_for_ontology_files(owner: str, repo: str) -> List[Dict[str, Any]]:
-    # Code search is rate limited. Keep it light.
-    # We search for ontology file extensions.
+def code_search_ontology_files(owner: str, repo: str) -> List[Dict[str, Any]]:
+    """
+    Code search is rate limited. Keep this light.
+    """
     url = f"{GITHUB_API}/search/code"
     hits: List[Dict[str, Any]] = []
 
     for ext in ["ttl", "owl", "rdf", "jsonld"]:
         q = f"repo:{owner}/{repo} extension:{ext}"
         r = requests.get(url, headers=github_headers(), params={"q": q, "per_page": 10}, timeout=60)
+
+        # 422 can happen if code search is temporarily restricted for the repo.
         if r.status_code == 422:
-            # sometimes code search is restricted, skip safely
             continue
+
         r.raise_for_status()
         data = r.json()
         hits.extend(data.get("items", []))
@@ -146,90 +147,114 @@ def search_repo_code_for_ontology_files(owner: str, repo: str) -> List[Dict[str,
     return hits
 
 
+def build_report_lines(state: Dict[str, Any], findings: List[Dict[str, Any]], lookback_days: int) -> List[str]:
+    lines: List[str] = []
+    lines.append("# Weekly ontology scan")
+    lines.append("")
+    lines.append(f"- Run (UTC): {state.get('last_run_utc')}")
+    lines.append(f"- Lookback days: {lookback_days}")
+    lines.append("")
+
+    if not findings:
+        lines.append("No new candidates found this week.")
+        lines.append("")
+        return lines
+
+    lines.append(f"Found {len(findings)} new candidate repositories:")
+    lines.append("")
+
+    for f in sorted(findings, key=lambda x: x.get("updated_at") or "", reverse=True):
+        lines.append(f"## {f['full_name']}")
+        lines.append(f"- URL: {f['html_url']}")
+        lines.append(f"- Updated: {f['updated_at']}")
+        lines.append(f"- Stars: {f.get('stars', 0)}")
+        if f.get("description"):
+            lines.append(f"- Description: {f['description']}")
+        sample_files = f.get("ontology_files_sample") or []
+        if sample_files:
+            lines.append(f"- Sample ontology files: {', '.join(sample_files)}")
+        lines.append("")
+
+    return lines
+
+
+def write_report_files(lines: List[str], output_dir: str, latest_path: str) -> str:
+    run_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    os.makedirs(output_dir, exist_ok=True)
+
+    dated_path = os.path.join(output_dir, f"ontology-scan_{run_date}.md")
+
+    content = "\n".join(lines).strip() + "\n"
+
+    with open(dated_path, "w", encoding="utf-8") as fp:
+        fp.write(content)
+
+    latest_folder = os.path.dirname(latest_path) or "."
+    os.makedirs(latest_folder, exist_ok=True)
+    with open(latest_path, "w", encoding="utf-8") as fp:
+        fp.write(content)
+
+    return dated_path
+
+
 def main() -> int:
     lookback_days = int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS)))
-    updated_since = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).strftime("%Y-%m-%d")
+    state_path = os.getenv("STATE_PATH", DEFAULT_STATE_PATH)
+    output_dir = os.getenv("OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
+    latest_path = os.getenv("LATEST_PATH", DEFAULT_LATEST_PATH)
 
-    state_path = os.getenv("STATE_PATH", "data/state.json")
-    out_path = os.getenv("OUTPUT_PATH", "data/latest.md")
+    updated_since_date = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).strftime("%Y-%m-%d")
 
     state = load_state(state_path)
-    seen = set(state.get("seen_repo_ids", []))
+    seen_ids = set(state.get("seen_repo_ids", []))
 
-    repos = search_repos(updated_since)
+    repos = search_repositories(updated_since_date)
     new_findings: List[Dict[str, Any]] = []
 
     for repo in repos:
         repo_id = repo.get("id")
-        if repo_id in seen:
+        if repo_id in seen_ids:
             continue
 
-        name = repo.get("full_name", "")
-        desc = repo.get("description") or ""
-        readme_hint = f"{name} {desc}"
+        full_name = repo.get("full_name", "")
+        description = repo.get("description") or ""
+        combined_text = f"{full_name} {description}"
 
-        # quick filter: ontology + built environment hints
-        if not looks_like_ontology(readme_hint):
+        # Fast filters to reduce noise.
+        if not looks_like_ontology(combined_text):
             continue
-        if not looks_like_built_env(readme_hint) and not looks_like_built_env(name):
-            # allow some to pass, but keep it strict to reduce noise
+        if not looks_like_built_env(combined_text):
             continue
 
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
 
-        code_hits = search_repo_code_for_ontology_files(owner, repo_name)
+        code_hits = code_search_ontology_files(owner, repo_name)
         if not has_ontology_files(code_hits):
             continue
 
         new_findings.append(
             {
                 "id": repo_id,
-                "full_name": name,
+                "full_name": full_name,
                 "html_url": repo.get("html_url"),
                 "updated_at": repo.get("updated_at"),
-                "description": desc,
-                "stars": repo.get("stargazers_count"),
+                "description": description,
+                "stars": repo.get("stargazers_count", 0),
                 "ontology_files_sample": [h.get("path") for h in code_hits[:8] if h.get("path")],
             }
         )
 
-    # update state
-    for f in new_findings:
-        seen.add(f["id"])
-    state["seen_repo_ids"] = sorted(seen)
-    state["last_run_utc"] = iso_now()
+        seen_ids.add(repo_id)
+
+    state["seen_repo_ids"] = sorted(seen_ids)
+    state["last_run_utc"] = utc_now_iso()
     save_state(state_path, state)
 
-    # write markdown report
-    lines: List[str] = []
-    lines.append(f"# Weekly ontology scan")
-    lines.append("")
-    lines.append(f"- Run (UTC): {state['last_run_utc']}")
-    lines.append(f"- Lookback days: {lookback_days}")
-    lines.append("")
+    report_lines = build_report_lines(state, new_findings, lookback_days)
+    dated_path = write_report_files(report_lines, output_dir, latest_path)
 
-    if not new_findings:
-        lines.append("No new candidates found this week.")
-    else:
-        lines.append(f"Found {len(new_findings)} new candidate repositories:")
-        lines.append("")
-        for f in sorted(new_findings, key=lambda x: x.get("updated_at") or "", reverse=True):
-            lines.append(f"## {f['full_name']}")
-            lines.append(f"- URL: {f['html_url']}")
-            lines.append(f"- Updated: {f['updated_at']}")
-            lines.append(f"- Stars: {f['stars']}")
-            if f["description"]:
-                lines.append(f"- Description: {f['description']}")
-            if f["ontology_files_sample"]:
-                lines.append(f"- Sample ontology files: {', '.join(f['ontology_files_sample'])}")
-            lines.append("")
-
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as fp:
-        fp.write("\n".join(lines).strip() + "\n")
-
-    print(f"Wrote report to {out_path}. New findings: {len(new_findings)}")
+    print(f"Wrote report to {dated_path} and updated {latest_path}. New findings: {len(new_findings)}")
     return 0
 
 
