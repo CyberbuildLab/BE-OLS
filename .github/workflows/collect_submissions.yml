@@ -1,3 +1,7 @@
+permissions:
+  contents: write
+
+  
 name: Ontology Submission
 
 on:
