@@ -1,0 +1,12 @@
+{
+  "Title": "Museoalan ontologian",
+  "Prefix": "MAO",
+  "Version": "0.4.10",
+  "Created": "2025",
+  "Description": "For the content description such as tangibleand intangible object in cultural heritage domain. It is well integrated with CIDOC-CRM.",
+  "uri": "https://finto.fi/maotao/en/",
+  "Reference": "https://doi.org/10.1016/j.culher.2017.05.017",
+  "Linked-to ontologies AECO": "n/a",
+  "Linked-to ontologies UPPER": "_No response_",
+  "Linked-to ontologies OTHER DOMAINS": "Finnish General Upper Ontology YSO"
+}
