@@ -35,6 +35,7 @@ jobs:
               'Linked-to ontologies AECO': 'Linked-to ontologies AECO',
               'Linked-to ontologies UPPER': 'Linked-to ontologies UPPER',
               'Linked-to ontologies OTHER': 'Linked-to ontologies OTHER DOMAINS'
+              'Link to TTL file': 'Link to TTL file'
             };
 
             const lines = issue.body.split(/\r?\n/);
