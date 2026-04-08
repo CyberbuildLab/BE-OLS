@@ -7,271 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
-    <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: linear-gradient(135deg, #1b1b1b, #333);
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Header Ribbon - this is the same for all pages */
-        .header-ribbon {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background: #222;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        .logo a {
-            color: #f7a11b;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 20px;
-            transition: color 0.3s;
-        }
-
-        .logo a:hover {
-            color: #e69518;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav a {
-            color: #f7a11b;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .nav a:hover {
-            color: #e69518;
-        }
-
-        main {
-            flex: 1;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 20px auto;
-            width: 100%;
-        }
-
-        .graph-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-        }
-
-        .graph-title {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        #mynetwork {
-            width: 100%;
-            height: 700px;
-            background-color: #ffffff;
-            border: 1px solid lightgray;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        #loadingBar {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(200, 200, 200, 0.8);
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -ms-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            opacity: 1;
-            border-radius: 8px;
-            z-index: 10;
-        }
-
-        #bar {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 20px;
-            height: 20px;
-            margin: auto auto auto auto;
-            border-radius: 11px;
-            border: 2px solid rgba(30, 30, 30, 0.05);
-            background: rgb(0, 173, 246);
-            box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        #border {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 500px;
-            height: 23px;
-            margin: auto auto auto auto;
-            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        #text {
-            position: absolute;
-            top: 8px;
-            left: 530px;
-            width: 30px;
-            height: 50px;
-            margin: auto auto auto auto;
-            font-size: 22px;
-            color: #000000;
-        }
-
-        div.outerBorder {
-            position: relative;
-            top: 400px;
-            width: 600px;
-            height: 44px;
-            margin: auto auto auto auto;
-            border: 8px solid rgba(0, 0, 0, 0.1);
-            background: rgb(252, 252, 252);
-            background: -moz-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(252, 252, 252, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
-            background: -webkit-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
-            background: -o-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
-            background: -ms-linear-gradient(top, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
-            background: linear-gradient(to bottom, rgba(252, 252, 252, 1) 0%, rgba(237, 237, 237, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 );
-            border-radius: 72px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Legend */
-        .legend-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 15px;
-            background: #f5f5f5;
-            border-top: 1px solid #ddd;
-            justify-content: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: #333;
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        /* Footer */
-        .footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: auto;
-        }
-
-        .footer .social-icons {
-            margin-bottom: 10px;
-        }
-
-        .footer .social-icons a {
-            margin: 0 10px;
-            display: inline-block;
-        }
-
-        .footer .social-icons img {
-            height: 24px;
-            width: 24px;
-            transition: opacity 0.3s;
-        }
-
-        .footer .social-icons img:hover {
-            opacity: 0.7;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        /* Help text for graph interaction */
-        .graph-help {
-            text-align: center;
-            padding: 15px;
-            background: #f5f5f5;
-            font-size: 13px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .error-message {
-            text-align: center;
-            padding: 40px;
-            color: #d62728;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="ontologyGraph.css" />
 </head>
 
 <body>
@@ -295,18 +31,57 @@
     <main>
         <div class="graph-container">
             <h2 class="graph-title">Ontology Network Graph</h2>
-            <div id="mynetwork">
-                <div id="loadingBar">
-                    <div class="outerBorder">
-                        <div id="text">0%</div>
-                        <div id="border">
-                            <div id="bar"></div>
-                        </div>
+            <div class="graph-stage">
+                <div id="ontology-network-graph">
+                </div>
+                <div id="loadingBar" class="loading-bar">
+                    <div class="loading-bar-content">
+                        <div id="loadingBarProgress" class="loading-bar-progress"></div>
+                        <span id="loadingBarText" class="loading-bar-text">0%</span>
                     </div>
                 </div>
+                <div id="panelOverlay" class="side-panel-overlay"></div>
+                <aside id="sidePanel" class="side-panel" aria-hidden="true">
+                    <div class="side-panel-header">
+                        <div class="side-panel-title-wrap">
+                            <h3 id="panelTitle" class="side-panel-title">Select a node</h3>
+                            <p id="panelPrefix" class="side-panel-prefix">Ontology details</p>
+                        </div>
+                        <button id="panelCloseButton" class="side-panel-close" type="button" aria-label="Close details">&times;</button>
+                    </div>
+                    <div class="side-panel-content">
+                        <span id="panelDomain" class="domain-badge">Domain</span>
+                        <p id="panelDescription" class="side-panel-description">Click an ontology node to inspect details.</p>
+
+                        <section class="side-panel-section">
+                            <h4>Metrics</h4>
+                            <div class="stats-grid">
+                                <article class="stats-card">
+                                    <p class="stats-label">Connections</p>
+                                    <p id="panelConnections" class="stats-value">-</p>
+                                </article>
+                                <article class="stats-card">
+                                    <p class="stats-label">Classes</p>
+                                    <p id="panelClasses" class="stats-value">-</p>
+                                </article>
+                                <article class="stats-card">
+                                    <p class="stats-label">FOOPs</p>
+                                    <p id="panelFoops" class="stats-value">-</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="side-panel-section">
+                            <h4>Linked AECO Ontologies</h4>
+                            <div id="panelLinkedList" class="linked-tags"></div>
+                        </section>
+
+                        <a id="panelDetailButton" class="panel-action" href="#">View Full Details</a>
+                    </div>
+                </aside>
             </div>
             <div class="graph-help">
-                Scroll to zoom in/out | Drag to pan | Click node to view ontology details
+                Scroll to zoom in/out | Drag to pan | Click node for details
             </div>
             <div id="legend" class="legend-container"></div>
         </div>
