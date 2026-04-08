@@ -1,0 +1,12 @@
+{
+  "Title": "ArCo Ontology",
+  "Prefix": "arco",
+  "Version": "2.0",
+  "Created": "2019",
+  "Description": "This is the central module of the ArCo - Knowledge Architecture ontology network. This module models top-level information related to the cultural heritage domain. All other modules in the network are imported. This module reuses the following Ontology Design Patterns as templates:",
+  "uri": "https://dati.beniculturali.it/lode/extract?lang=it&url=https://raw.githubusercontent.com/ICCD-MiBACT/ArCo/master/ArCo-release/ontologie/arco/arco.owl",
+  "Reference": "https://ceur-ws.org/Vol-2375/short3.pdf",
+  "Linked-to ontologies AECO": "N/A",
+  "Linked-to ontologies UPPER": "foaf, prov, vcard, dcat",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_"
+}

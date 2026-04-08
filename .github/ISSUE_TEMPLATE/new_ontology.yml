@@ -76,3 +76,11 @@ body:
       label: Linked-to ontologies OTHER
       description: Prefixes of ontologies outside AECO that the ontology links to. For example, eli. Use semicolons to separate
       placeholder: eli
+
+  
+  - type: input
+    id: ttl_path
+    attributes:
+      label: Link to TTL file
+      description: URL to to the TTL file of the ontology (if such a file exists)
+      placeholder: http://www.w3id.org/bot/bot.ttl
