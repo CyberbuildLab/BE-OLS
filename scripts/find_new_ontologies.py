@@ -12,7 +12,6 @@ import requests
 GITHUB_API = "https://api.github.com"
 
 BUILT_ENV_TERMS = [
-    # existing
     "built environment",
     "construction",
     "bim",
@@ -58,7 +57,22 @@ BUILT_ENV_TERMS = [
     "resources",
     "safety",
     "weather",
-    "climate"
+    "climate",
+    # Additional terms to catch common ontology repo names
+    "bot",
+    "ifcowl",
+    "seas",
+    "brick",
+    "dogont",
+    "saref",
+    "props",
+    "lbd",
+    "linked building",
+    "linked data",
+    "smart building",
+    "building topology",
+    "building energy",
+    "building automation",
 ]
 
 ONTOLOGY_HINTS = [
@@ -70,17 +84,21 @@ ONTOLOGY_HINTS = [
     "turtle",
     "ttl",
     "knowledge graph",
+    "sparql",
+    "shacl",
+    "skos",
+    "linked data",
+    "semantic web",
+    "w3c",
 ]
 
 FILE_EXT_HINTS = [".ttl", ".owl", ".rdf", ".nt", ".n3", ".jsonld"]
 
-DEFAULT_LOOKBACK_DAYS = 7
+DEFAULT_LOOKBACK_DAYS = 30
 DEFAULT_STATE_PATH = "data/state.json"
 DEFAULT_OUTPUT_DIR = "data/reports"
 DEFAULT_LATEST_PATH = "data/latest.md"
 
-# GitHub code search: 10 requests/min unauthenticated, 30/min authenticated.
-# We wait this many seconds between code-search calls to stay safe.
 CODE_SEARCH_DELAY_SECONDS = 7
 
 
@@ -138,22 +156,17 @@ def get_with_retry(
     max_retries: int = 4,
 ) -> requests.Response:
     """GET with exponential backoff on 429 / 403 rate-limit responses."""
-    delay = 15  # initial wait in seconds
+    delay = 15
     for attempt in range(max_retries):
         r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
-
         if r.status_code in (429, 403):
-            # Honour Retry-After if present, otherwise use exponential backoff.
             retry_after = int(r.headers.get("Retry-After", delay))
             wait = max(retry_after, delay)
             print(f"Rate limited ({r.status_code}). Waiting {wait}s before retry {attempt + 1}/{max_retries}...")
             time.sleep(wait)
             delay *= 2
             continue
-
         return r
-
-    # Final attempt — let raise_for_status surface the error.
     r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
     return r
 
@@ -164,13 +177,10 @@ def safe_get_json(url: str, params: Dict[str, Any] | None = None, timeout: int =
     return r.json()
 
 
-def search_repositories(updated_since_date: str, per_page: int = 30, pages: int = 3) -> List[Dict[str, Any]]:
-    """
-    Repo search is broad. We filter aggressively afterwards.
-    """
+def search_repositories(updated_since_date: str, per_page: int = 30, pages: int = 5) -> List[Dict[str, Any]]:
+    """Bumped to 5 pages (150 repos) for better coverage."""
     query = f'(ontology OR OWL OR RDF OR Turtle OR SHACL) pushed:>={updated_since_date}'
     url = f"{GITHUB_API}/search/repositories"
-
     items: List[Dict[str, Any]] = []
     for page in range(1, pages + 1):
         data = safe_get_json(
@@ -182,28 +192,18 @@ def search_repositories(updated_since_date: str, per_page: int = 30, pages: int 
 
 
 def code_search_ontology_files(owner: str, repo: str) -> List[Dict[str, Any]]:
-    """
-    Code search is rate limited to ~10 req/min. We throttle between calls
-    and retry on 429 with backoff.
-    """
+    """Code search is rate limited. Throttle and retry on 429."""
     url = f"{GITHUB_API}/search/code"
     hits: List[Dict[str, Any]] = []
-
     for ext in ["ttl", "owl", "rdf", "jsonld"]:
-        # Throttle proactively before every code-search request.
         time.sleep(CODE_SEARCH_DELAY_SECONDS)
-
         q = f"repo:{owner}/{repo} extension:{ext}"
         r = get_with_retry(url, params={"q": q, "per_page": 10}, timeout=60)
-
-        # 422 can happen if code search is temporarily restricted for the repo.
         if r.status_code == 422:
             continue
-
         r.raise_for_status()
         data = r.json()
         hits.extend(data.get("items", []))
-
     return hits
 
 
@@ -230,6 +230,8 @@ def build_report_lines(state: Dict[str, Any], findings: List[Dict[str, Any]], lo
         lines.append(f"- Stars: {f.get('stars', 0)}")
         if f.get("description"):
             lines.append(f"- Description: {f['description']}")
+        if f.get("topics"):
+            lines.append(f"- Topics: {f['topics']}")
         sample_files = f.get("ontology_files_sample") or []
         if sample_files:
             lines.append(f"- Sample ontology files: {', '.join(sample_files)}")
@@ -241,19 +243,14 @@ def build_report_lines(state: Dict[str, Any], findings: List[Dict[str, Any]], lo
 def write_report_files(lines: List[str], output_dir: str, latest_path: str) -> str:
     run_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     os.makedirs(output_dir, exist_ok=True)
-
     dated_path = os.path.join(output_dir, f"ontology-scan_{run_date}.md")
-
     content = "\n".join(lines).strip() + "\n"
-
     with open(dated_path, "w", encoding="utf-8") as fp:
         fp.write(content)
-
     latest_folder = os.path.dirname(latest_path) or "."
     os.makedirs(latest_folder, exist_ok=True)
     with open(latest_path, "w", encoding="utf-8") as fp:
         fp.write(content)
-
     return dated_path
 
 
@@ -261,7 +258,6 @@ def main() -> int:
     lookback_days = int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS)))
     state_path = os.getenv("STATE_PATH", DEFAULT_STATE_PATH)
     output_dir = os.getenv("OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
-    # Support both OUTPUT_PATH (workflow env var) and LATEST_PATH for backwards compat.
     latest_path = os.getenv("OUTPUT_PATH", os.getenv("LATEST_PATH", DEFAULT_LATEST_PATH))
 
     updated_since_date = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).strftime("%Y-%m-%d")
@@ -279,12 +275,14 @@ def main() -> int:
 
         full_name = repo.get("full_name", "")
         description = repo.get("description") or ""
-        combined_text = f"{full_name} {description}"
+        # Include GitHub topics — many ontology repos tag themselves with
+        # "bim", "ifc", "linked-data" even if the description is sparse.
+        topics = " ".join(repo.get("topics") or [])
+        combined_text = f"{full_name} {description} {topics}"
 
-        # Fast filters to reduce noise.
-        if not looks_like_ontology(combined_text):
-            continue
-        if not looks_like_built_env(combined_text):
+        # Require at least ONE signal (ontology OR built-env).
+        # The real quality gate is whether the repo actually contains ontology files.
+        if not looks_like_ontology(combined_text) and not looks_like_built_env(combined_text):
             continue
 
         owner = repo["owner"]["login"]
@@ -301,11 +299,11 @@ def main() -> int:
                 "html_url": repo.get("html_url"),
                 "updated_at": repo.get("updated_at"),
                 "description": description,
+                "topics": topics,
                 "stars": repo.get("stargazers_count", 0),
                 "ontology_files_sample": [h.get("path") for h in code_hits[:8] if h.get("path")],
             }
         )
-
         seen_ids.add(repo_id)
 
     state["seen_repo_ids"] = sorted(seen_ids)
