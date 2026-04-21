@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from datetime import datetime, timezone, timedelta
 from typing import Any, Dict, List
 
@@ -78,6 +79,10 @@ DEFAULT_STATE_PATH = "data/state.json"
 DEFAULT_OUTPUT_DIR = "data/reports"
 DEFAULT_LATEST_PATH = "data/latest.md"
 
+# GitHub code search: 10 requests/min unauthenticated, 30/min authenticated.
+# We wait this many seconds between code-search calls to stay safe.
+CODE_SEARCH_DELAY_SECONDS = 7
+
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -126,8 +131,35 @@ def has_ontology_files(code_items: List[Dict[str, Any]]) -> bool:
     return False
 
 
-def safe_get_json(url: str, params: Dict[str, Any] | None = None, timeout: int = 60) -> Dict[str, Any]:
+def get_with_retry(
+    url: str,
+    params: Dict[str, Any] | None = None,
+    timeout: int = 60,
+    max_retries: int = 4,
+) -> requests.Response:
+    """GET with exponential backoff on 429 / 403 rate-limit responses."""
+    delay = 15  # initial wait in seconds
+    for attempt in range(max_retries):
+        r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
+
+        if r.status_code in (429, 403):
+            # Honour Retry-After if present, otherwise use exponential backoff.
+            retry_after = int(r.headers.get("Retry-After", delay))
+            wait = max(retry_after, delay)
+            print(f"Rate limited ({r.status_code}). Waiting {wait}s before retry {attempt + 1}/{max_retries}...")
+            time.sleep(wait)
+            delay *= 2
+            continue
+
+        return r
+
+    # Final attempt — let raise_for_status surface the error.
     r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
+    return r
+
+
+def safe_get_json(url: str, params: Dict[str, Any] | None = None, timeout: int = 60) -> Dict[str, Any]:
+    r = get_with_retry(url, params=params, timeout=timeout)
     r.raise_for_status()
     return r.json()
 
@@ -151,14 +183,18 @@ def search_repositories(updated_since_date: str, per_page: int = 30, pages: int 
 
 def code_search_ontology_files(owner: str, repo: str) -> List[Dict[str, Any]]:
     """
-    Code search is rate limited. Keep this light.
+    Code search is rate limited to ~10 req/min. We throttle between calls
+    and retry on 429 with backoff.
     """
     url = f"{GITHUB_API}/search/code"
     hits: List[Dict[str, Any]] = []
 
     for ext in ["ttl", "owl", "rdf", "jsonld"]:
+        # Throttle proactively before every code-search request.
+        time.sleep(CODE_SEARCH_DELAY_SECONDS)
+
         q = f"repo:{owner}/{repo} extension:{ext}"
-        r = requests.get(url, headers=github_headers(), params={"q": q, "per_page": 10}, timeout=60)
+        r = get_with_retry(url, params={"q": q, "per_page": 10}, timeout=60)
 
         # 422 can happen if code search is temporarily restricted for the repo.
         if r.status_code == 422:
@@ -225,7 +261,8 @@ def main() -> int:
     lookback_days = int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS)))
     state_path = os.getenv("STATE_PATH", DEFAULT_STATE_PATH)
     output_dir = os.getenv("OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
-    latest_path = os.getenv("LATEST_PATH", DEFAULT_LATEST_PATH)
+    # Support both OUTPUT_PATH (workflow env var) and LATEST_PATH for backwards compat.
+    latest_path = os.getenv("OUTPUT_PATH", os.getenv("LATEST_PATH", DEFAULT_LATEST_PATH))
 
     updated_since_date = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).strftime("%Y-%m-%d")
 
