@@ -1,0 +1,13 @@
+{
+  "Title": "Modelling and Standards Ontology",
+  "Prefix": "MNS",
+  "Version": "1.0",
+  "Created": "2025",
+  "Description": "This ontology is designed to support developing a knowledge graph of the BIM Standrads Landscape Explorer, and make the dataset avaiable in RDF.",
+  "uri": "https://w3id.org/mns",
+  "Reference": "10.35490/EC3.2025.439",
+  "Linked-to ontologies AECO": "DICA",
+  "Linked-to ontologies UPPER": "FOAF",
+  "Linked-to ontologies OTHER DOMAINS": "MVO; STO",
+  "Link to TTL file": "https://z-arghavan.github.io/mns/ontology.ttl"
+}
