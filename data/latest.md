@@ -1,112 +1,118 @@
 # Weekly ontology scan
 
-- Run (UTC): 2026-04-25T03:22:35Z
+- Run (UTC): 2026-05-02T03:40:56Z
 - Lookback days: 7
 
-Found 14 new candidate repositories:
+Found 15 new candidate repositories:
 
-## repolex-forx/kinnison--marked-yaml
-- URL: https://github.com/repolex-forx/kinnison--marked-yaml
-- Updated: 2026-04-25T02:11:06Z
+## Islanders-Treasure0969/metamesh
+- URL: https://github.com/Islanders-Treasure0969/metamesh
+- Updated: 2026-05-02T00:19:13Z
 - Stars: 0
-- Description: RDF parse data for kinnison/marked-yaml
-- Sample ontology files: repo-manifest.jsonld, manifests/commit-manifest-ace1cc4f8af7c38b7c07ec5ed35678955fbb2759.jsonld
+- Description: W3C-standard ontology (SKOS/OWL/JSON-LD) + MCP server + Claude Skills. Captures business metadata once and delivers it to dbt, Semantic Layer, and AI/LLM contexts - bridging the 5 breakpoints where vocabulary gets lost downstream.
+- Topics: claude data-engineering data-vault dbt json-ld mcp metadata metricflow ontology owl semantic-layer skos
+- Sample ontology files: ontology/concepts/Clip.jsonld, ontology/concepts/Topic.jsonld, ontology/concepts/Stream.jsonld, ontology/concepts/Channel.jsonld, ontology/concepts/Streamer.jsonld, ontology/concepts/Organization.jsonld, ontology/relationships/participates_in.jsonld, ontology/concepts/Collaboration.jsonld
 
-## laurauntner/sappho-digital
-- URL: https://github.com/laurauntner/sappho-digital
-- Updated: 2026-04-25T01:52:12Z
-- Stars: 3
-- Description: Data related to the literary reception of Sappho in German-speaking countries from the 15th to the 21st century.
-- Topics: cidoc-crm dse-static ecrm frbroo intertextuality intro linked-data literary-studies literature lrmoo owl rdf reception sappho
-- Sample ontology files: documentation/vocab/vocab.ttl, documentation/alignments/alignments.ttl, documentation/ontology/ontology.ttl, java/imports/LRMoo.owl, java/imports/INTRO.owl, documentation/ontology/ontology.rdf, documentation/alignments/alignments.rdf, documentation/ontology/ontology.jsonld
+## fabio-rovai/open-ontologies
+- URL: https://github.com/fabio-rovai/open-ontologies
+- Updated: 2026-05-01T23:37:12Z
+- Stars: 87
+- Description: AI-native ontology engine: a Rust MCP server with tools for building, validating, querying, and reasoning over RDF/OWL ontologies. In-memory Oxigraph triple store, native OWL2-DL tableaux reasoner, SHACL validation, SPARQL, versioning. Single binary, no JVM.
+- Topics: ai-native claude description-logics knowledge-graph linked-data mcp mcp-server ontology owl owl2 oxigraph reasoning rust shacl sparql triplestore
+- Sample ontology files: benchmark/data/types.ttl, benchmark/data/hospital.ttl, benchmark/reference/ies-top.ttl, benchmark/vision/dataset/img_6.ttl, benchmark/ontoaxiom/data/ontoaxiom/ontologies/movie.ttl, benchmark/vision/dataset/img_3.ttl, benchmark/generated/pizza-ai.ttl, benchmark/data/sometimes.ttl
 
-## VincentK1991/present-at-hand
-- URL: https://github.com/VincentK1991/present-at-hand
-- Updated: 2026-04-25T01:22:41Z
+## obophenotype/cell-ontology
+- URL: https://github.com/obophenotype/cell-ontology
+- Updated: 2026-05-01T23:17:57Z
+- Stars: 196
+- Description: An ontology of cell types
+- Topics: anatomy anatomy-ontology cell-ontology cell-types genomics metazoa monarchinitiative obofoundry ontology owl semantic-web transcriptomics
+- Sample ontology files: patterns/pattern.owl, src/ontology/cl-plus-nif.owl, src/ontology/cl-plus-xao.owl, src/ontology/cl-plus-zfa.owl, src/ontology/components/clm-cl.owl, src/ontology/imports/ro_seed.owl, src/ontology/bridge/cl-bridge-to-uberon.owl, src/ontology/components/general_cell_types_upper_slim.owl
+
+## thiagoflc/geolytics-dictionary
+- URL: https://github.com/thiagoflc/geolytics-dictionary
+- Updated: 2026-05-01T23:14:58Z
 - Stars: 0
-- Description: discovering of ontology and inference rules with the help of AI
-- Topics: agent-skills
-- Sample ontology files: workspace/experiments/set_1/candidate_1.ttl, skills/ontology-discovery/tests/infer-fixtures/asserted.ttl, skills/ontology-discovery/tests/infer-fixtures/ontology.ttl, .claude/skills/ontology-discovery/tests/infer-fixtures/asserted.ttl, .claude/skills/ontology-discovery/tests/infer-fixtures/ontology.ttl
+- Description: ANP oil & gas semantic ontology — 23 terms, 8 datasets, entity graph, RAG corpus
+- Sample ontology files: data/geolytics.ttl, data/geolytics-vocab.ttl, data/geolytics-shapes.ttl, data/glosis/pvt-procedures.ttl, data/glosis/geolytics-glosis-ext.ttl, data/glosis/source-ttl/glosis_profile.ttl, data/glosis/source-ttl/glosis_layer_horizon.ttl, data/glosis/source-ttl/iso28258.ttl
 
-## Cellular-Semantics/cellxgene-cell-reporter
-- URL: https://github.com/Cellular-Semantics/cellxgene-cell-reporter
-- Updated: 2026-04-25T01:08:23Z
+## airr-knowledge/ak-ontology
+- URL: https://github.com/airr-knowledge/ak-ontology
+- Updated: 2026-05-01T22:14:20Z
 - Stars: 0
-- Description: Reports Cell Ontology terms referenced within CellxGene
-- Sample ontology files: cellxgene_subset.owl
+- Description: AIRR Knowledge project ontology
+- Sample ontology files: ak-ontology-base.owl, src/ontology/ak-ontology-edit.owl, src/ontology/ak-ontology-idranges.owl, src/ontology/imports/PATO_import.owl, src/ontology/imports/DOID_import.owl, src/ontology/imports/OGMS_import.owl, src/ontology/imports/BFO_import.owl, src/ontology/imports/EXO_import.owl
 
-## dbpedia/ontology-tracker
-- URL: https://github.com/dbpedia/ontology-tracker
-- Updated: 2026-04-25T01:03:58Z
-- Stars: 42
-- Description: Here we keep track of modification requests in the DBpedia Ontology 
-- Sample ontology files: lov-crawl/onto_shacl.ttl, release/ontology/2018.12.28/ontology-2018.12.28_dataid.ttl, databus/dbpedia/ontology/dbo-snapshots/dataid.ttl, databus/dbpedia/ontology/dbo-snapshots/dbo-snapshots.ttl, guidelines/dbo.tests.shapes.ttl
-
-## minorg/shaclmate
-- URL: https://github.com/minorg/shaclmate
-- Updated: 2026-04-25T00:36:28Z
-- Stars: 8
-- Description: Generate TypeScript from SHACL shapes
-- Topics: rdf shacl typescript
-- Sample ontology files: examples/forms/src/forms.shaclmate.ttl, examples/graphql/src/graphql.shaclmate.ttl, packages/compiler/src/input/input.shaclmate.ttl, examples/kitchen-sink/src/kitchen-sink.shaclmate.ttl, packages/shacl-ast/src/shacl-ast.shaclmate.ttl, packages/shacl-ast/__tests__/data/undefined-shape.shaclmate.ttl, packages/shacl-ast/__tests__/data/schemashacl.ttl, packages/compiler/__tests__/data/no-required-property.shaclmate.ttl
-
-## repolex-forx/babel--babel
-- URL: https://github.com/repolex-forx/babel--babel
-- Updated: 2026-04-25T00:12:31Z
+## sisinflab-swot/pycowl
+- URL: https://github.com/sisinflab-swot/pycowl
+- Updated: 2026-05-01T21:57:03Z
 - Stars: 0
-- Description: RDF parse data for babel/babel
-- Sample ontology files: repo-manifest.jsonld, manifests/commit-manifest-f7121c79585b5500f77c1931d7669dad33231704.jsonld, manifests/commit-manifest-34a611cf390fce637dc349eb19c44e45ed810093.jsonld, manifests/commit-manifest-7f013fb90dafc666532c9621d7e95e9501b4fa70.jsonld, manifests/commit-manifest-901b52bc674951d2b18c473210f3bdf7884fdb3a.jsonld, manifests/commit-manifest-5247311aaad91ae4a7b22ee0d17c79679d00fdf3.jsonld, manifests/commit-manifest-ad3fbe5557592ec6f88f1af65600ab16e995ed85.jsonld, manifests/commit-manifest-325fe683d8f50ff4a8018121bb4c2c0117801fcd.jsonld
+- Description: 🐍🦉 A Python library for working with Web Ontology Language (OWL) ontologies
+- Sample ontology files: examples/res/pizza.owl, tests/res/test_onto.owl
 
-## JLMenegotto/OntologiaBIM
-- URL: https://github.com/JLMenegotto/OntologiaBIM
-- Updated: 2026-04-24T22:20:30Z
-- Stars: 2
-- Description: Este repositório é destinado aos arquivos de trabalho do projeto Ontologias.  Foi criado um construtor OWL em DesignScript.
-- Topics: bim ontologia owl sintaxemanchester
-- Sample ontology files: Versão5/GASE/Ontologia_Gases.ttl, Versão5/VANT/Ontologia_DRONE.ttl, Versão5/CROM/Ontologia_CROMA.ttl, Versão5/MOTO/Ontologia_Motriz.ttl, Versão5/CSUS/Ontologia_CSUS_5I.ttl, Versão5/INCE/Ontologia_Incendio.ttl, Versão5/ABNT/Ontologia_15965_2N.ttl, Versão5/ABNT/Ontologia_15965_1F.ttl
+## linkml/linkml
+- URL: https://github.com/linkml/linkml
+- Updated: 2026-05-01T21:40:55Z
+- Stars: 508
+- Description: Linked Open Data Modeling Language
+- Topics: data-dictionaries data-modeling hacktoberfest json-ld-context json-schema linked-data linkml linkml-schema modeling owl rdf schema semantic-web shacl shex standards
+- Sample ontology files: examples/organization.owl.ttl, examples/tutorial/tutorial01/data.ttl, examples/PersonSchema/personinfo/owl/personinfo.owl.ttl, packages/linkml_runtime/src/linkml_runtime/linkml_model/rdf/meta.ttl, examples/tutorial/tutorial04/data-semantic.ttl, packages/linkml_runtime/src/linkml_runtime/linkml_model/rdf/extensions.ttl, examples/tutorial/tutorial04/personinfo-semantic.shacl.ttl, packages/linkml_runtime/src/linkml_runtime/linkml_model/rdf/validation.model.ttl
 
-## JLMenegotto/RepoOnto
-- URL: https://github.com/JLMenegotto/RepoOnto
-- Updated: 2026-04-24T22:19:16Z
+## dmachi/react-brick-map
+- URL: https://github.com/dmachi/react-brick-map
+- Updated: 2026-05-01T21:35:22Z
 - Stars: 0
-- Description: Repositorio de arquivos de Ontologias RDF TTl ou OWL
-- Sample ontology files: TETO/Ontologia_TETOS.ttl, ALVE/Ontologia_ALVEN.ttl, GASE/Ontologia_Gases.ttl, VANT/Ontologia_DRONE.ttl, PISO/Ontologia_PISOS.ttl, CROM/Ontologia_CROMA.ttl, MOTO/Ontologia_Motriz.ttl, CSUS/Ontologia_CSUS_5I.ttl
+- Description: Generate floor plan, hvac graph, etc from RDF structured data using BRICK ontology
+- Sample ontology files: public/data/scenario-1.flat.jsonld, public/data/floorplan-example.jsonld
 
-## rdf-connect/http-utils-processor-ts
-- URL: https://github.com/rdf-connect/http-utils-processor-ts
-- Updated: 2026-04-24T22:08:49Z
+## abbacusgroup/Cortex
+- URL: https://github.com/abbacusgroup/Cortex
+- Updated: 2026-05-01T20:57:29Z
+- Stars: 13
+- Description:   Persistent ontology driven knowledge system with formal OWL-RL reasoning, SPARQL graph + SQLite, and 22 MCP tools for AI agent memory.
+- Topics: ai knowledge-base knowledge-graph llm mcp ontology python rag rdf
+- Sample ontology files: ontology/cortex.ttl, src/cortex/ontology/cortex.ttl
+
+## ontologyportal/sumo
+- URL: https://github.com/ontologyportal/sumo
+- Updated: 2026-05-01T20:46:49Z
+- Stars: 258
+- Description: Suggested Upper Merged Ontology (SUMO)
+- Sample ontology files: mappings/DBpediaMapping.ttl
+
+## cgoudouris/fram-ontology
+- URL: https://github.com/cgoudouris/fram-ontology
+- Updated: 2026-05-01T20:27:45Z
 - Stars: 0
-- Description: An HTTP data source for RDF Connect in TypeScript
-- Topics: rdf-connect rdfc-processor
-- Sample ontology files: processors.ttl
+- Description: FRAM (Functional Resonance Analysis Method) OWL2 Ontology - Formal semantic vocabulary for modeling socio-technical systems
+- Topics: fram json-ld ontology owl2 resilience safety-engineering semantic-web socio-technical-systems
+- Sample ontology files: fram.ttl, examples/eac1-li-huang-2025.ttl, fram-shapes.ttl, examples/eac2-patriarca-et-al.-2024.ttl, fram.owl, fram_ontology.rdf, context.jsonld, examples/eac2-patriarca-et-al.-2024.jsonld
 
-## SocioProphet/ontogenesis
-- URL: https://github.com/SocioProphet/ontogenesis
-- Updated: 2026-04-24T22:02:38Z
+## ISO-TC204/ontology-its-location-v1
+- URL: https://github.com/ISO-TC204/ontology-its-location-v1
+- Updated: 2026-05-01T20:25:58Z
+- Stars: 0
+- Description: Location Ontology for use within ITS
+- Sample ontology files: docs/area-shacl.ttl, docs/its-location.ttl, docs/point-pattern.ttl, docs/itinerary-pattern.ttl, docs/location-methods/adapters/tpeg-adapter.ttl, docs/linear-pattern.ttl, docs/area-pattern.ttl, docs/point-shacl.ttl
+
+## teman67/IUC02_NextJS
+- URL: https://github.com/teman67/IUC02_NextJS
+- Updated: 2026-05-01T20:22:41Z
 - Stars: 1
-- Description: Ontogenesis is an auditable, policy-gated ontology engineering framework for RDF/OWL/JSON-LD assets used across the SocioProphet stack.  It supports ontology creation, linking, validation, and lifecycle governance across layered semantic modules.
-- Topics: author-mdheller governance-core para-area
-- Sample ontology files: epi/epi.ttl, skos/omega.ttl, ontogenesis.ttl, mappings/ieml.ttl, Platform/SocioProphet.ttl, examples/person_demo.ttl, shapes/product-service.shacl.ttl, prophet/capd.ttl
+- Description: A full-stack web application (NextJS + FastAPI) for RDF data generation, validation, and SHACL shape constraint checking.
+- Sample ontology files: ontologies/matwerk.ttl, Lib/site-packages/pyshacl/assets/shacl.ttl, data/rdfGraph_smallExample.ttl, Lib/site-packages/pyshacl/assets/shacl-shacl.ttl, Lib/site-packages/pyshacl/assets/dash.ttl, data/shaclShape_smallExample.ttl
 
-## ralfbecher/orionbelt-analytics
-- URL: https://github.com/ralfbecher/orionbelt-analytics
-- Updated: 2026-04-24T21:09:11Z
-- Stars: 27
-- Description: Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-trap-free Text-to-SQL.
-- Topics: agentic agentic-ai ai-analytics claude-desktop clickhouse dremio knowledge-graph mcp mcp-server model-context-protocol ontology postgresql r2rrml rdf semantic-layer snowflake text-2-sql text-to-sql text-to-sql-translation turtle
-- Sample ontology files: ontology/oba.ttl, ontology/oba-shacl.ttl, ontology/oba-example.ttl
-
-## robertmuil/pythinfer
-- URL: https://github.com/robertmuil/pythinfer
-- Updated: 2026-04-24T20:59:35Z
+## openepcis/openepcis-dpp-ready
+- URL: https://github.com/openepcis/openepcis-dpp-ready
+- Updated: 2026-05-01T20:15:41Z
 - Stars: 0
-- Description: Easily merge RDF files, perform inference (OWL or SPARQL), and query - on the command line.
-- Topics: owl rdf semantic-web sparql
-- Sample ontology files: vocabs-external/skos.ttl, example_projects/eg0-basic/basic-data.ttl, example_projects/eg2-projects/projects-model.ttl, example_projects/eg2-projects/expected/expected-0-merged-provenance.ttl, example_projects/eg1-ancestors/expected/expected-1-inferred-provenance.ttl, example_projects/eg1-ancestors/ancestors-data.ttl, example_projects/eg2-projects/projects-data.ttl, example_projects/eg1-ancestors/ancestors-model.ttl
+- Description: Semantic vocabulary framework for Digital Product Passports — harmonising GS1, EU ESPR, UNTP, and CEN/CENELEC JTC 24 standards. Browsable ontologies at ref.openepcis.io.
+- Topics: battery-passport digital-product-passport dpp epcis espr eudr gs1 json-ld ontology rdf semantic-web untp
+- Sample ontology files: extensions/eu/cpr/ontology/cpr.ttl, extensions/us/fsma204/validation/fsma204-shapes.ttl, extensions/eu/electronics/ontology/electronics.ttl, extensions/eu/detergent/ontology/detergent.ttl, extensions/eu/ppwr/validation/ppwr-shapes.ttl, extensions/eu/ppwr/ontology/ppwr.ttl, extensions/eu/battery/validation/battery-shapes.ttl, extensions/eu/eudr/ontology/eudr.ttl
 
-## tteon/seocho
-- URL: https://github.com/tteon/seocho
-- Updated: 2026-04-24T20:57:42Z
-- Stars: 47
-- Description: Combining ontology and knowledge graph for an ultimate GraphRAG system.
-- Sample ontology files: examples/datasets/fibo_base.jsonld, examples/datasets/fibo_plus.jsonld, examples/datasets/fibo_minus.jsonld
+## tghosh12101997/papergraph-ai
+- URL: https://github.com/tghosh12101997/papergraph-ai
+- Updated: 2026-05-01T19:57:33Z
+- Stars: 0
+- Description: This project started as a PDF → RDF pipeline and evolved into a Knowledge Graph + LLM question-answering system.
+- Sample ontology files: ontology/papergraph_ontology.ttl, backend/app/storage/1194ca51/graph.ttl, backend/app/storage/08a668da/graph.ttl, backend/app/storage/0c1edb50/graph.ttl, backend/app/storage/2fd7b9e4/graph.ttl, backend/app/storage/f8421c18/graph.ttl, backend/app/storage/c4c94f44/graph.ttl, backend/app/storage/1194ca51/graph.rdf
