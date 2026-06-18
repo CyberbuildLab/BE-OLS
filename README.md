@@ -13,7 +13,7 @@ The BE-OLS is developed and maintained by a team of volunteers who are members o
 Key Features
 ==========
 
-📚 100+ Ontologies – A vast database covering various built environment topics.
+📚 140+ Ontologies – A vast database covering various built environment topics.
 
 🔍 Advanced Filters – Extensive search capabilities to refine ontology selection.
 
@@ -24,6 +24,8 @@ Key Features
 ✅ FAIR Assessment – Ensuring ontologies are Findable, Accessible, Interoperable, and Reusable (FAIR principles).
 
 🌐 Linked Built Environment Data Cloud – Mapping relationships between domain ontologies for better interoperability.
+
+🕸️ Network graphs and analysis 
 
 
   <img src="images/EC3 M&S Built Environment Ontology Lookup Service_v2.png">
