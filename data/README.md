@@ -2,18 +2,21 @@
 
 This folder keeps  the source data and is the entry point for automated Excel-to-JSON conversion.
 
-## Files
-* **Ontologies\_forRepo.xlsx** - the main Excel workbook containing the data used by front-end and other code. It must contain a sheet named **Data**.
-* **Ontologies\_forRepo.json** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes.
-* **Output folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
+## Files and Folders
 
-* * **submissions folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
+* **`submissions` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
 
-* * **source folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here. This contains:
-  * **Ontologies.xlsx** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
-  * **Ontology_characterisation.jpynb** - the Jupyter Notebook used to process `Ontologies.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder.
+* **`source` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here. This contains:
+  * **`Ontologies.xlsx`** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
+  * **`Ontology_characterisation.jpynb`** - the Jupyter Notebook used to process `Ontologies.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder. This must be run manually, locally on your computer.
 
-* * **Network Graph folder** - old content to be removed eventually.
+* **`Ontologies\_forRepo.xlsx`** - the main Excel workbook containing the data used by front-end and other code. It must contain a sheet named **Data**.
+
+* **`Ontologies\_forRepo.json`** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes.
+
+* **`..\output` folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
+
+* **`Network Graph` folder** - depricated; to be removed eventually.
 
 ## Automatic Conversion
 
