@@ -7,18 +7,22 @@
 @base <https://w3id.org/aic#> .
 
 <https://w3id.org/aic> rdf:type owl:Ontology ;
-                        owl:versionIRI <https://w3id.org/aic> ;
-                        <http://purl.org/dc/terms/bibliographicCitation> "Čustović, I., Cao, J., Soman, R. (2025). Agents in Construction (AiC) Ontology - Version 1.0" ;
+                        owl:versionIRI <https://w3id.org/aic/1.1.0> ;
+                        <http://purl.org/dc/terms/bibliographicCitation> "Čustović, I., Cao, J., Soman, R. (2026). Agents in Construction (AiC) Ontology - Version 1.1.0" ;
                         <http://purl.org/dc/terms/contributor> "Daniel Hall" ,
                                                                "Hans Wamelink" ,
                                                                "Pieter Pauwels" ;
                         <http://purl.org/dc/terms/creator> "Irfan Čustović" ,
                                                            "Jianpeng Cao" ,
                                                            "Ranjith Soman" ;
-                        <http://purl.org/dc/terms/description> ""@en ;
+                        <http://purl.org/dc/terms/description> "The Agents in Construction (AiC) ontology is a lightweight semantic model for coordinating on-site production in construction. It represents construction agents (human workers, robots, and other autonomous hardware) and their state as they operate on a site: the processes they carry out, the elements they modify, the resources they handle, and the operational modes and metrics used to assess their performance and impact. To express how agents' operations evolve over time, AiC introduces meta-properties that specify when a statement holds (at an instant or over an interval), what dimension of information it represents (planned, simulated, or performed), and who generated it. The ontology emphasizes generic, trade-agnostic concepts to ensure broad applicability across project types and delivery methods."@en ;
                         <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
-                        <http://purl.org/dc/terms/modified> "2025-11-25" ;
-                        <http://purl.org/dc/terms/title> "Agents in Construction (AiC) Ontology"@en .
+                        <http://purl.org/dc/terms/modified> "2026-06-20" ;
+                        <http://purl.org/dc/terms/title> "Agents in Construction (AiC) Ontology"@en ;
+                        <http://purl.org/vocab/vann/preferredNamespacePrefix> "aic" ;
+                        <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                        owl:priorVersion <https://w3id.org/aic/1.0.0> ;
+                        owl:versionInfo "1.1.0" .
 
 #################################################################
 #    Annotation properties
@@ -50,6 +54,14 @@
 
 ###  http://purl.org/dc/terms/title
 <http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -91,7 +103,7 @@ rdf:subject rdf:type owl:ObjectProperty ;
                    owl:AsymmetricProperty ;
           rdfs:domain :ConstructionAgent ;
           rdfs:range :Material ;
-          rdfs:comment "Defines the link between a construction agent and a material that it handles and  thereby removes from the pool of available resources."@en ;
+          rdfs:comment "Defines the link between a construction agent and a material that it handles and thereby removes from the pool of available resources."@en ;
           rdfs:label "consumes"@en .
 
 
@@ -141,6 +153,15 @@ rdf:subject rdf:type owl:ObjectProperty ;
                   rdfs:label "focuses on process"@en .
 
 
+###  https://w3id.org/aic#focusesOnResource
+:focusesOnResource rdf:type owl:ObjectProperty ,
+                            owl:AsymmetricProperty ;
+                   rdfs:domain :ConstructionAgent ;
+                   rdfs:range :Resource ;
+                   rdfs:comment "Indicates that a construction agent is dedicating its current operation to a specific resource."@en ;
+                   rdfs:label "focuses on resource"@en .
+
+
 ###  https://w3id.org/aic#generatedBy
 :generatedBy rdf:type owl:ObjectProperty ,
                       owl:AsymmetricProperty ;
@@ -170,11 +191,20 @@ rdf:subject rdf:type owl:ObjectProperty ;
 
 ###  https://w3id.org/aic#hasInformationDimension
 :hasInformationDimension rdf:type owl:ObjectProperty ,
-                             owl:AsymmetricProperty ;
-                    rdfs:domain :InformationID ;
-                    rdfs:range :InformationDimension ;
-                    rdfs:comment "Links an information ID to an information dimension."@en ;
-                    rdfs:label "has information dimension"@en .
+                                  owl:AsymmetricProperty ;
+                         rdfs:domain :InformationID ;
+                         rdfs:range :InformationDimension ;
+                         rdfs:comment "Links an information ID to an information dimension."@en ;
+                         rdfs:label "has information dimension"@en .
+
+
+###  https://w3id.org/aic#hasModeMetric
+:hasModeMetric rdf:type owl:ObjectProperty ,
+                        owl:AsymmetricProperty ;
+               rdfs:domain :OperationMode ;
+               rdfs:range :ModeMetric ;
+               rdfs:comment "Connects an operation mode with a mode metric that describes the effect of the operation mode."@en ;
+               rdfs:label "has mode metric"@en .
 
 
 ###  https://w3id.org/aic#hasPredecessor
@@ -212,15 +242,6 @@ rdf:subject rdf:type owl:ObjectProperty ;
                  rdfs:range :ResourceType ;
                  rdfs:comment "Connects a resource to a resource type for grouping different kinds of resources with equal characteristics."@en ;
                  rdfs:label "has resource type"@en .
-
-
-###  https://w3id.org/aic#hasModeMetric
-:hasModeMetric rdf:type owl:ObjectProperty ,
-                         owl:AsymmetricProperty ;
-                rdfs:domain :OperationMode ;
-                rdfs:range :ModeMetric ;
-                rdfs:comment "Connects an operation mode with a mode metric that describes the effect of the operation mode."@en ;
-                rdfs:label "has mode metric"@en .
 
 
 ###  https://w3id.org/aic#hasSuccessor
@@ -490,16 +511,16 @@ rdf:Statement rdf:type owl:Class ;
            rdfs:label "Indicator"@en .
 
 
+###  https://w3id.org/aic#InformationDimension
+:InformationDimension rdf:type owl:Class ;
+                      rdfs:comment "Defines the dimension of the information that the Information ID reifies. Allows for specifying that a reified statement belongs to the planned, simulated or performed dimension."@en ;
+                      rdfs:label "Information Dimension"@en .
+
+
 ###  https://w3id.org/aic#InformationID
 :InformationID rdf:type owl:Class ;
                rdfs:comment "Functional class that can be used to reify a statement and link metadata."@en ;
                rdfs:label "Information ID"@en .
-
-
-###  https://w3id.org/aic#InformationDimension
-:InformationDimension rdf:type owl:Class ;
-                 rdfs:comment "Defines the dimension of the information that the Information ID reifies. Allows for specifying that a reified statement belongs to the planned, simulated or performed dimension."@en ;
-                 rdfs:label "Information Dimension"@en .
 
 
 ###  https://w3id.org/aic#Material
