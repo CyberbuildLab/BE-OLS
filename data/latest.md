@@ -1,160 +1,126 @@
 # Weekly ontology scan
 
-- Run (UTC): 2026-06-20T04:38:06Z
+- Run (UTC): 2026-07-04T03:55:41Z
 - Lookback days: 7
 
-Found 21 new candidate repositories:
+Found 16 new candidate repositories:
 
-## Blackcat-Informatics/gmeow-ontology
-- URL: https://github.com/Blackcat-Informatics/gmeow-ontology
-- Updated: 2026-06-20T03:16:04Z
-- Stars: 3
-- Description: Global Metadata and Entity Ontology for the Web — a reasoning-centric, OWL 2 DL, gUFO-grounded super-vocabulary (FOAF/REL/DOAP/PROV-O/Wikidata-aligned) and its publishing toolchain.
-- Topics: fair-data gufo knowledge-graph linked-data ontology owl owl2 rdf semantic-web sssom vocabulary wikidata
-- Sample ontology files: imports/gufo.ttl, evals/rubric.ttl, ontology/gmeow.ttl, shapes/gmeow-shapes.ttl, dsl/statements/rights.ttl, shapes/software-shapes.ttl, generated/owl/gmeow-el.ttl, shapes/cognition-shapes.ttl
-
-## pcharbon70/python-ontology
-- URL: https://github.com/pcharbon70/python-ontology
-- Updated: 2026-06-20T02:55:36Z
+## semanticweb-tools/refract
+- URL: https://github.com/semanticweb-tools/refract
+- Updated: 2026-07-04T02:18:18Z
 - Stars: 0
-- Description: An OWL Ontology of the Python programming language
-- Sample ontology files: priv/ontologies/python-core.ttl, priv/ontologies/python-shapes.ttl, priv/ontologies/python-typing.ttl, priv/ontologies/python-structure.ttl, priv/ontologies/python-runtime.ttl, priv/ontologies/python-evolution.ttl
+- Description: Supporting artefacts for REFrACT vocabulary: SHACL shapes graphs, example TMFs, use cases, and documentation. The canonical vocabulary is hosted at https://w3id.org/refract
+- Sample ontology files: Ontologies/dash.ttl, RefactoringActions/AddClass/TMFAddClass.ttl, UseCases/OntologyLocalisation/LC2/Files/target.ttl, RefactoringActions/DeprecateClass/TMFDeprecateClass.ttl, UseCases/OntologyRefactoring/RC2/Files/source.ttl, RefactoringActions/DeleteDataProperty/TMFDeleteDataProperty.ttl, RefactoringActions/AddInstancePropertyAssertion/ShapeAddInstancePropertyAssertion.ttl, UseCases/OntologyEvolution/EC3/Files/TMF.ttl
 
-## mthelm85/RDF.jl
-- URL: https://github.com/mthelm85/RDF.jl
-- Updated: 2026-06-20T01:52:29Z
-- Stars: 0
-- Sample ontology files: test/w3c/fixtures/turtle/last.ttl, test/w3c/fixtures/turtle/first.ttl, test/w3c/fixtures/turtle/LITERAL1.ttl, test/w3c/fixtures/turtle/LITERAL2.ttl, test/w3c/fixtures/sparql12/manifest.ttl, test/w3c/fixtures/sparql11/bind/data.ttl, test/w3c/fixtures/turtle/IRI_subject.ttl, test/w3c/fixtures/turtle/literal_true.ttl
+## Blackcat-Informatics/purrdf
+- URL: https://github.com/Blackcat-Informatics/purrdf
+- Updated: 2026-07-04T02:00:26Z
+- Stars: 10
+- Description: PurRDF — one RDF 1.2 engine, one behavior, every language: interned primitives, Turtle/TriG/N-Quads/RDF-XML/JSON-LD codecs, RDFC-1.0, SPARQL 1.1/1.2, SHACL Core, GTS graph transport, and Python/WebAssembly/C bindings.
+- Topics: canonicalization gts json-ld knowledge-graph linked-data python rdf rdf-star rust semantic-web shacl sparql turtle webassembly
+- Sample ontology files: vectors/shacl/manifest.ttl, vectors/shacl/af/manifest.ttl, vectors/shexTest/schemas/0.ttl, vectors/shacl/core/manifest.ttl, vectors/shexTest/schemas/2dot.ttl, vectors/shexTest/schemas/1dot.ttl, vectors/shexTest/schemas/1iri.ttl, vectors/shexTest/schemas/meta.ttl
 
-## api-evangelist/rdf
-- URL: https://github.com/api-evangelist/rdf
-- Updated: 2026-06-20T01:32:26Z
-- Stars: 0
-- Description: The Resource Description Framework (RDF) is a W3C standard for representing information about resources on the web. RDF is the foundation for linked data and the semantic web, providing a graph-based data model where statements are expressed as subject-predicate-object triples.
-- Topics: apis-json json-ld knowledge-graph linked-data naftiko ontology rdf semantic-web sparql w3c
-- Sample ontology files: json-ld/rdf-context.jsonld
-
-## geneontology/go-site
-- URL: https://github.com/geneontology/go-site
-- Updated: 2026-06-20T01:17:31Z
-- Stars: 49
-- Description: A collection of metadata, tools, and files associated with the Gene Ontology public web presence.
-- Topics: documentation gene-ontology geneontology metadata yaml
-- Sample ontology files: graphstore/rule-runner/tests/data/gorule-0000014-test.ttl, graphstore/rule-runner/tests/data/gorule-0000007-test.ttl, graphstore/rule-runner/tests/data/gorule-0000006-test.ttl, pipeline/go-graphstore.owl
-
-## api-evangelist/apache-jena
-- URL: https://github.com/api-evangelist/apache-jena
-- Updated: 2026-06-20T01:03:58Z
-- Stars: 0
-- Description: Apache Jena is a Java framework for building Semantic Web and Linked Data applications. It provides APIs for RDF, SPARQL, OWL, and a triplestore database (TDB2) along with the Fuseki SPARQL server with a REST API for querying and managing RDF datasets.
-- Topics: apis-json java linked-data naftiko ontology open-source owl rdf semantic-web sparql
-- Sample ontology files: json-ld/apache-jena-fuseki-sparql-api-context.jsonld
-
-## caviri/rete
-- URL: https://github.com/caviri/rete
-- Updated: 2026-06-20T00:16:30Z
-- Stars: 1
-- Description: Put an RDF graph in one file. Drop it on a URL. Query it with SPARQL, no database server.
-- Topics: cloud data-format graphs knowledge-graph rdf
-- Sample ontology files: examples/social.ttl
-
-## bemafred/sky-omega
-- URL: https://github.com/bemafred/sky-omega
-- Updated: 2026-06-20T00:08:12Z
-- Stars: 8
-- Description: Foundation for semantic-aware cognitive agents - W3C-conformant RDF/SPARQL engine
-- Sample ontology files: docs/knowledge/bootstrap.ttl, docs/knowledge/patterns/convergence.ttl, docs/scratches/semantic/epistemology.ttl, docs/scratches/semantic/knowledge-model.ttl, docs/scratches/reasoning/patterns/what-if.ttl, docs/scratches/semantic/shoulders-of-giants.ttl, docs/scratches/reasoning/patterns/evolving-tools.ttl, docs/scratches/reasoning/patterns/curiosity-pattern.ttl
-
-## CLO-ontology/CLO
-- URL: https://github.com/CLO-ontology/CLO
-- Updated: 2026-06-19T22:15:55Z
+## drobilla/sord
+- URL: https://github.com/drobilla/sord
+- Updated: 2026-07-04T01:59:13Z
 - Stars: 18
-- Description: Communitiy-based Cell Line Ontology
-- Topics: cell-biology cell-lines obofoundry ontology owl rdf
-- Sample ontology files: src/ontology/modules/obsolete.owl, src/ontology/Ontorat files/LINCS_iPS_Jan2018.owl, src/ontology/Archive/imports/CHEBI_import.owl, src/ontology/Archive/imports/IAO_import.owl, src/ontology/modules/cell-line-cells.owl, src/ontology/imports/DDANAT_import.owl, src/ontology/imports/OBI_import.owl, src/ontology/imports/GO_import.owl
+- Description: A lightweight C library for storing RDF in memory
+- Sample ontology files: tests/UTF-8.ttl, tests/test-00.ttl, tests/test-09.ttl, tests/test-26.ttl, tests/test-13.ttl, tests/test-03.ttl, tests/test-17.ttl, tests/test-30.ttl
 
-## jeswr/pod-chat
-- URL: https://github.com/jeswr/pod-chat
-- Updated: 2026-06-19T22:02:33Z
+## fo22Alfaro/AOTS6-Ontological-Toroidal-System
+- URL: https://github.com/fo22Alfaro/AOTS6-Ontological-Toroidal-System
+- Updated: 2026-07-04T01:47:45Z
 - Stars: 0
-- Description: Pod Chat — the typed RDF data layer for ActivityStreams 2.0 chat rooms + messages (with actionable shared-task messages) in a Solid pod. Experimental, AI-agent-generated.
-- Sample ontology files: clientid.jsonld
+- Description: AOTS⁶: 6D Ontological Toroidal System — Distributed identity framework with cryptographic provenance, SHA-256 anchoring & IPFS | Alfredo Jhovany Alfaro García | 21-MAR-2025
+- Topics: bitcoin-timestamp cryptography decentralized-identity distributed-systems ipfs knowledge-graph ontology python topology toroidal
+- Sample ontology files: public_network/AOTS6_METADATA.jsonld
 
-## jeswr/pod-music
-- URL: https://github.com/jeswr/pod-music
-- Updated: 2026-06-19T21:47:37Z
-- Stars: 0
-- Description: Pod Music — a Solid app for tracks, albums, artists, playlists and listen-history (Music Ontology + schema.org), data stored in your own pod. Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
+## linkeddata/rdflib.js
+- URL: https://github.com/linkeddata/rdflib.js
+- Updated: 2026-07-04T00:49:11Z
+- Stars: 593
+- Description: Linked Data API for JavaScript
+- Sample ontology files: testSaveRestore/b.ttl, testSaveRestore/a.ttl, tests/rdfa/person.ttl, tests/serialize/t1.ttl, tests/serialize/t3.ttl, tests/serialize/t2.ttl, tests/serialize/682.ttl, tests/serialize/t18.ttl
 
-## jeswr/pod-docs
-- URL: https://github.com/jeswr/pod-docs
-- Updated: 2026-06-19T21:46:14Z
-- Stars: 0
-- Description: Typed RDF data layer for rich-text Solid pod documents with W3C PROV-O revision history. Experimental, AI-agent-generated.
-- Sample ontology files: clientid.jsonld
-
-## jeswr/pod-photos
-- URL: https://github.com/jeswr/pod-photos
-- Updated: 2026-06-19T21:45:48Z
-- Stars: 0
-- Description: Pod Photos — a Solid photo & album app. Typed RDF data layer (schema:Photograph + EXIF→RDF + schema:ImageGallery) over a Solid pod. Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
-
-## jeswr/pod-health
-- URL: https://github.com/jeswr/pod-health
-- Updated: 2026-06-19T21:37:51Z
-- Stars: 0
-- Description: Personal-health data layer over a Solid pod — typed RDF accessors for health records, vitals, conditions, medications, immunizations and GPX workouts on the fse health sector (FHIR-aligned + QUDT). Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
-
-## jeswr/pod-drive
-- URL: https://github.com/jeswr/pod-drive
-- Updated: 2026-06-19T21:33:53Z
-- Stars: 0
-- Description: Pod Drive — a file/folder browser over Solid LDP containers. Data-layer core: typed RDF model on @jeswr/fetch-rdf + @solid/object + @rdfjs/wrapper + n3.Writer. Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
-
-## alfredr/parajudica
-- URL: https://github.com/alfredr/parajudica
-- Updated: 2026-06-19T21:33:18Z
+## timalamenciak/elmo
+- URL: https://github.com/timalamenciak/elmo
+- Updated: 2026-07-04T00:40:17Z
 - Stars: 1
-- Description: An RDF-based reasoner and metamodel for multi-framework context-dependent data compliance assessments
-- Sample ontology files: examples/db/env.ttl, examples/db/employee/providers-info.ttl, examples/db/medical/patient-treatments.ttl, examples/db/medical/patient-encounters.ttl, src/parajudica/metamodel/sdc/sdc.ttl, examples/frameworks/hipaa/model/hipaa.ttl, examples/db/research/aggregated-health-k5.ttl, src/parajudica/metamodel/pj/pj.ttl
+- Description: ELMO is a project ontology for the Ecolink Model.
+- Sample ontology files: elmo-base.owl, patterns/pattern.owl, patterns/definitions.owl, src/ontology/imports/ro_import.owl, src/ontology/imports/cob_import.owl, src/ontology/components/cas.owl, src/ontology/elmo-idranges.owl, src/ontology/elmo-edit.owl
 
-## jeswr/pod-money
-- URL: https://github.com/jeswr/pod-money
-- Updated: 2026-06-19T21:31:50Z
+## dkoepsell/OwlTesterService
+- URL: https://github.com/dkoepsell/OwlTesterService
+- Updated: 2026-07-04T00:35:49Z
+- Stars: 1
+- Description: Web Service version of the BFO-FOL-OWL tester
+- Topics: basic bfo formal ontology
+- Sample ontology files: fixtures/golden_good.ttl, fixtures/sool-kernel.ttl, bfo/bfo-2020.owl, fixtures/golden_bad.owl, attached_assets/LegalFacts (1).owl, attached_assets/corporate_ontology_1751555291443.owl, attached_assets/integrated_ontology_cyberspace (1).owl, attached_assets/LegalFacts (3).owl
+
+## drobilla/serd
+- URL: https://github.com/drobilla/serd
+- Updated: 2026-07-03T23:48:14Z
+- Stars: 98
+- Description: A lightweight C library for RDF syntax
+- Topics: nquads ntriples parser rdf semantic-web serializer turtle
+- Sample ontology files: serd.ttl, test/w3c/turtle/last.ttl, test/extra/bad/bad-ns.ttl, test/w3c/turtle/first.ttl, test/extra/bad/bad-bom.ttl, test/extra/bad/bad-num.ttl, test/w3c/trig/manifest.ttl, test/extra/good/test-id.ttl
+
+## jeswr/solid-drawing
+- URL: https://github.com/jeswr/solid-drawing
+- Updated: 2026-07-03T23:23:20Z
 - Stars: 0
-- Description: Personal-finance data layer over a Solid pod — typed RDF for accounts, transactions, balances, holdings on the fse finance sector (FIBO-slim). Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
+- Description: RDF vocab + types for vector drawings / whiteboards (draw:Scene → byte-exact .excalidraw blob) — the data model for an Excalidraw→Solid fork; part of the 5-OSS federation initiative; consumes published @jeswr/fetch-rdf@0.1.0, browser-safe root
+- Sample ontology files: drawing.ttl, drawing.shacl.ttl
 
-## jeswr/pod-mail
-- URL: https://github.com/jeswr/pod-mail
-- Updated: 2026-06-19T21:18:01Z
+## BIG-MAP/BattINFO
+- URL: https://github.com/BIG-MAP/BattINFO
+- Updated: 2026-07-03T22:51:01Z
+- Stars: 56
+- Description: A Battery Interface Ontology based on EMMO
+- Sample ontology files: battinfo.ttl, assets/shapes/cell-spec.shapes.ttl, assets/ontology/interop-mappings.ttl, src/battinfo/data/shapes/publication.shapes.ttl, src/battinfo/data/shapes/cell-spec.shapes.ttl, assets/shapes/publication.shapes.ttl, tests/fixtures/converter/coincell_reference_v3.jsonld, tests/fixtures/converter/coin-cell.converter.sample.jsonld
+
+## doriantaylor/rb-intertwingler
+- URL: https://github.com/doriantaylor/rb-intertwingler
+- Updated: 2026-07-03T22:40:21Z
+- Stars: 89
+- Description: Intertwingler is an application server for creating dense hypermedia networks.
+- Topics: hypermedia link-rot rdf
+- Sample ontology files: example/ibis.ttl, example/sh-rule.ttl, example/ibis-mvp.ttl, example/transforms.ttl, example/transforms2.ttl, experimental/ordered-collection.ttl
+
+## gtfierro/shifty
+- URL: https://github.com/gtfierro/shifty
+- Updated: 2026-07-03T22:13:09Z
+- Stars: 5
+- Description: Fast vibe-coded shacl validation+inference
+- Topics: inference rdf shacl validation
+- Sample ontology files: examples/rule.ttl, examples/person.ttl, examples/paradox.ttl, examples/reaches.ttl, examples/person-data.ttl, benchmark/brick/models/smc.ttl, benchmark/brick/models/bldg7.ttl, benchmark/brick/models/bldg2.ttl
+
+## jeswr/solid-task-model
+- URL: https://github.com/jeswr/solid-task-model
+- Updated: 2026-07-03T22:06:25Z
 - Stars: 0
-- Description: Pod Mail — Solid-native mail data layer (typed RDF: messages/threads/folders). Experimental, AI-agent-generated.
-- Sample ontology files: public/clientid.jsonld
+- Description: @jeswr/solid-task-model — shared federated Task/Issue RDF model (wf:Task/dct/schema/PROV) so a task in solid-issues shows assigned-to-me in the Pod Manager
+- Sample ontology files: shapes/task.ttl, shapes/tracker.ttl, shapes/contacts.ttl
 
-## chemkg/chemrof
-- URL: https://github.com/chemkg/chemrof
-- Updated: 2026-06-19T21:16:47Z
-- Stars: 23
-- Description: Schema for chemistry ontology classes
-- Topics: chebi chemistry linkml metaclass obo obofoundry ontology owl schema
-- Sample ontology files: schema/owl/chemrof.owl.ttl, database/wd/ChemicalElement.ttl, database/chebi/MonoatomicIon.ttl, src/chemrof/schema/shacl/chemrof.shacl.ttl, external/daml-periodic-table.ttl, src/ontology/chem-supplemental-axioms.owl, src/chemrof/schema/owl/gen/MonoatomicIon.owl, src/chemrof/schema/owl/gen/ChemicalElement.owl
+## jeswr/solid-server-rs
+- URL: https://github.com/jeswr/solid-server-rs
+- Updated: 2026-07-03T21:30:14Z
+- Stars: 0
+- Description: EXPERIMENTAL Rust Solid server (axum) — SPARQ-authoritative for RDF + access-control, S3/object_store backup-only, DPoP/Solid-OIDC auth via solid-oidc-verifier. NOT a replacement for the production prod-solid-server.
+- Sample ontology files: conformance/config/test-subjects.ttl
 
-## microsoft/Ontology-Playground
-- URL: https://github.com/microsoft/Ontology-Playground
-- Updated: 2026-06-19T21:14:08Z
-- Stars: 566
-- Description: Free, open-source web app for learning about ontologies and Microsoft Fabric IQ. Explore a catalogue of pre-built ontologies, design your own visually, export as RDF/XML, and share interactive diagrams. Zero backend, fully static.
-- Sample ontology files: catalogue/official/finance/finance.rdf, catalogue/official/fibo-risk-step-2/fibo-risk-step-2.rdf, catalogue/official/healthcare/healthcare.rdf, catalogue/official/ecommerce-step-3/ecommerce-step-3.rdf, catalogue/official/finance-step-1/finance-step-1.rdf, catalogue/official/university-step-2/university-step-2.rdf, catalogue/community/ravi-chandu/hr-system/ontology.rdf, catalogue/official/university-step-1/university-step-1.rdf
+## cwrc/ontology
+- URL: https://github.com/cwrc/ontology
+- Updated: 2026-07-03T21:27:26Z
+- Stars: 13
+- Description: CWRC ontology - primary repository
+- Topics: cwrc cwrc-ontology genre-ontology ontology
+- Sample ontology files: archived_demo_data/oldDemos/huvizTest.ttl, archived_demo_data/oldDemos/huvizTest4.ttl, archived_demo_data/oldDemos/HuVizTest7.ttl, archived_demo_data/demoData/HuVizMarylandSTSData.ttl, archived_demo_data/oldDemos/HuVizTest6.1.ttl, archived_demo_data/oldDemos/HuvizTest5_sansGenre.ttl, archived_demo_data/demoData/CWRCTestData.ttl, archived_demo_data/oldDemos/HuVizTest10.ttl
 
-## SenolIsci/mykg
-- URL: https://github.com/SenolIsci/mykg
-- Updated: 2026-06-19T20:48:45Z
-- Stars: 29
-- Description: Knowledge graph extractor: Markdown (or any format) → knowledge graph with RDFS/OWL ontology
-- Topics: ai-agent ai-workflow ai-workflow-automation claude-code claude-skills knowledge-graph neo4j-graph network-x obsidian ontology ontology-alignment ontology-engineering ontology-matching open-source owl protege rdf rdfs second-brain skos
-- Sample ontology files: docs/examples/blog_demo_run/session_output/intermediate/schema.ttl, docs/examples/blog_demo_run/session_output/output/knowledge_graph.ttl, docs/examples/blog_demo_run/2026-06-07T21-24-38/intermediate/schema.ttl, docs/examples/blog_demo_run/2026-06-07T21-24-38/output/knowledge_graph.ttl
+## Scaseco/RdfProcessingToolkit
+- URL: https://github.com/Scaseco/RdfProcessingToolkit
+- Updated: 2026-07-03T21:07:06Z
+- Stars: 49
+- Description: Command line interface based RDF processing toolkit to run sequences of SPARQL statements ad-hoc on RDF datasets, streams of bindings and streams of named graphs with support for processing JSON, CSV and XML using function extensions. Ships with an integrated SPARQL and GraphQL server.
+- Topics: debian-package docker-image jena named-graphs rdf rpm-package sparql sparql-extensions sparql-functions
+- Sample ontology files: docs/examples/macros.ttl, macros/macros-ollama.ttl, docs/examples/example-data/data.ttl, rdf-processing-toolkit-cli/src/main/resources/examples/udf.ttl, unsorted-tests/triples.ttl, cli-tests/integrate/resources/input-triples.ttl, cli-tests/integrate/resources/expected-turtle.ttl, cli-tests/integrate/resources/input-triples-small.ttl
