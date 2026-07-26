@@ -1,8 +1,8 @@
 name: Weekly ontology scan
 on:
   schedule:
-    # Every Friday at 23:00 UTC
-    - cron: "00 00 * * 6"
+    # Every Thursday at 23:00 UTC
+    - cron: "00 00 * * 4"
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -25,6 +25,7 @@ jobs:
           LOOKBACK_DAYS: "7"
           STATE_PATH: "data/state.json"
           OUTPUT_PATH: "data/latest.md"
+          LOGBOOK_PATH: "data/logbook.md"
         run: |
           python scripts/find_new_ontologies.py
       - name: Commit report and state
