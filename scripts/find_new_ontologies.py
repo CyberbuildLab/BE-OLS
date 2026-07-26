@@ -98,7 +98,10 @@ DEFAULT_LOOKBACK_DAYS = 30
 DEFAULT_STATE_PATH = "data/state.json"
 DEFAULT_OUTPUT_DIR = "data/reports"
 DEFAULT_LATEST_PATH = "data/latest.md"
+DEFAULT_LOGBOOK_PATH = "data/logbook.md"
 
+SEARCH_PAGE_DELAY_SECONDS = 2             
+SECONDARY_RATE_LIMIT_WAIT_SECONDS = 60
 CODE_SEARCH_DELAY_SECONDS = 7
 
 
@@ -160,9 +163,14 @@ def get_with_retry(
     for attempt in range(max_retries):
         r = requests.get(url, headers=github_headers(), params=params, timeout=timeout)
         if r.status_code in (429, 403):
+            body_text = (r.text or "").lower()
+            is_secondary = "secondary rate limit" in body_text or "abuse" in body_text
             retry_after = int(r.headers.get("Retry-After", delay))
             wait = max(retry_after, delay)
-            print(f"Rate limited ({r.status_code}). Waiting {wait}s before retry {attempt + 1}/{max_retries}...")
+            if is_secondary:
+                wait = max(wait, SECONDARY_RATE_LIMIT_WAIT_SECONDS)
+            print(f"Rate limited ({r.status_code}{', secondary' if is_secondary else ''}). "
+                  f"Waiting {wait}s before retry {attempt + 1}/{max_retries}...")
             time.sleep(wait)
             delay *= 2
             continue
@@ -188,6 +196,8 @@ def search_repositories(updated_since_date: str, per_page: int = 30, pages: int 
             params={"q": query, "sort": "updated", "order": "desc", "per_page": per_page, "page": page},
         )
         items.extend(data.get("items", []))
+        if page < pages:
+            time.sleep(SEARCH_PAGE_DELAY_SECONDS)
     return items
 
 
@@ -253,12 +263,38 @@ def write_report_files(lines: List[str], output_dir: str, latest_path: str) -> s
         fp.write(content)
     return dated_path
 
+def append_to_logbook(lines: List[str], logbook_path: str) -> None:
+    """Prepend this run's report to the logbook, newest entry first.
+
+    The logbook is a single cumulative file so every week's scan is kept,
+    unlike latest.md which is overwritten each run.
+    """
+    entry = "\n".join(lines).strip() + "\n"
+    folder = os.path.dirname(logbook_path) or "."
+    os.makedirs(folder, exist_ok=True)
+
+    header = "# Ontology scan logbook\n\nMost recent run first.\n\n"
+
+    previous = ""
+    if os.path.exists(logbook_path):
+        with open(logbook_path, "r", encoding="utf-8") as fp:
+            previous = fp.read()
+        if previous.startswith(header):
+            previous = previous[len(header):]
+
+    separator = "\n---\n\n"
+    combined = header + entry + (separator + previous.lstrip("\n") if previous.strip() else "")
+
+    with open(logbook_path, "w", encoding="utf-8") as fp:
+        fp.write(combined.strip() + "\n")
+
 
 def main() -> int:
     lookback_days = int(os.getenv("LOOKBACK_DAYS", str(DEFAULT_LOOKBACK_DAYS)))
     state_path = os.getenv("STATE_PATH", DEFAULT_STATE_PATH)
     output_dir = os.getenv("OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
     latest_path = os.getenv("OUTPUT_PATH", os.getenv("LATEST_PATH", DEFAULT_LATEST_PATH))
+    logbook_path = os.getenv("LOGBOOK_PATH", DEFAULT_LOGBOOK_PATH)
 
     updated_since_date = (datetime.now(timezone.utc) - timedelta(days=lookback_days)).strftime("%Y-%m-%d")
 
@@ -287,8 +323,13 @@ def main() -> int:
 
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
+        
+        try:
+            code_hits = code_search_ontology_files(owner, repo_name)
+        except requests.exceptions.RequestException as exc:
+            print(f"Skipping {full_name}: code search failed ({exc}).")
+            continue
 
-        code_hits = code_search_ontology_files(owner, repo_name)
         if not has_ontology_files(code_hits):
             continue
 
@@ -309,12 +350,13 @@ def main() -> int:
     state["seen_repo_ids"] = sorted(seen_ids)
     state["last_run_utc"] = utc_now_iso()
     save_state(state_path, state)
-
+    
     report_lines = build_report_lines(state, new_findings, lookback_days)
     dated_path = write_report_files(report_lines, output_dir, latest_path)
+    append_to_logbook(report_lines, logbook_path)
 
-    print(f"Wrote report to {dated_path} and updated {latest_path}. New findings: {len(new_findings)}")
-    return 0
+    print(f"Wrote report to {dated_path}, updated {latest_path}, and appended to {logbook_path}. "
+          f"New findings: {len(new_findings)}")
 
 
 if __name__ == "__main__":
