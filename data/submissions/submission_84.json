@@ -1,0 +1,13 @@
+{
+  "Title": "Construction Site Emission Management Ontology",
+  "Prefix": "XEMO",
+  "Version": "_No response_",
+  "Created": "2026",
+  "Description": "XEMO is an ontology for the semantic representation of construction-site pollutant emission monitoring and management. It provides a shared structure for connecting construction-site organisation, emission sources, pollutants, sensors, observations, and thresholds, supporting the development of interoperable Semantic Digital Twin applications.",
+  "uri": "https://github.com/AlessandroBruttini/XEMO",
+  "Reference": "Bruttini, A., Hagedorn, P., Getuli, V., Capone, P., and König, M. (2026). XEMO: Construction Site Emission Management Ontology for Particulate Matter. EG-ICE 2026.",
+  "Linked-to ontologies AECO": "BOT; SOSA/SSN; Digital Construction Processes",
+  "Linked-to ontologies UPPER": "QUDT; OWL-Time; PROV-O",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://github.com/AlessandroBruttini/XEMO"
+}
