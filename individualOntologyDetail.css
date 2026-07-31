@@ -203,6 +203,26 @@ main {
     background-color: #fff;
 }
 
+.ttl-download-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #f7a11b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.ttl-download-btn:hover {
+    background-color: #e69518;
+}
+
+.ttl-unavailable {
+    color: #999;
+    font-style: italic;
+}
+
 
 
 .box-shadow {

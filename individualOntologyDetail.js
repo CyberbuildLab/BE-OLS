@@ -1,6 +1,44 @@
 // This the  file for individual ontolgoy descriptions after the user clicks on the cards or on the See Details butyon
 
-//Fetch and display ontology data dynamically 
+const TTL_FOLDER_PATH = 'data/source/Ontologies_TTL';
+
+// Strip everything except letters/digits so prefixes and filenames can be compared loosely
+function normalizeToken(value) {
+    return (value || '').toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+// Match an ontology's Prefix to a filename in the TTL manifest: exact match first,
+// then fall back to a "starts with" match either direction (handles cases like
+// prefix "asb" -> file "asbingowl.ttl", or prefix "lca-c-renovation" -> "lca-c-reno.ttl")
+function findTtlFilename(prefix, manifestFiles) {
+    const cleanPrefix = normalizeToken(prefix);
+    if (!cleanPrefix || !manifestFiles || !manifestFiles.length) {
+        return null;
+    }
+
+    const withBase = manifestFiles.map((file) => ({
+        file,
+        base: normalizeToken(file.replace(/\.ttl$/i, ''))
+    }));
+
+    const exact = withBase.find(({ base }) => base === cleanPrefix);
+    if (exact) {
+        return exact.file;
+    }
+
+    const fuzzyMatches = withBase.filter(
+        ({ base }) => base.startsWith(cleanPrefix) || cleanPrefix.startsWith(base)
+    );
+    if (!fuzzyMatches.length) {
+        return null;
+    }
+
+    // Prefer whichever candidate's length is closest to the prefix itself
+    fuzzyMatches.sort((a, b) => Math.abs(a.base.length - cleanPrefix.length) - Math.abs(b.base.length - cleanPrefix.length));
+    return fuzzyMatches[0].file;
+}
+
+//Fetch and display ontology data dynamically
 async function loadOntologyDetails() {
     // Get the ontology NAME from the URL string in the URL that comes from the displayOntologies function in ontology-cards.js
     const urlParams = new URLSearchParams(window.location.search);
@@ -12,13 +50,18 @@ async function loadOntologyDetails() {
     }
 
     try {
-        // Fetch the ontology data from the JSON file
-        const response = await fetch('data/Ontologies_forRepo.json');
-        if (!response.ok) {
+        // Fetch the ontology data and the list of available TTL files in parallel
+        const [ontologiesResponse, manifestResponse] = await Promise.all([
+            fetch('data/Ontologies_forRepo.json'),
+            fetch(`${TTL_FOLDER_PATH}/manifest.json`)
+        ]);
+
+        if (!ontologiesResponse.ok) {
             throw new Error('Failed to fetch ontology data');
         }
 
-        const ontologies = await response.json();
+        const ontologies = await ontologiesResponse.json();
+        const ttlManifest = manifestResponse.ok ? await manifestResponse.json() : [];
         const ontology = ontologies.find(o => o.Title === ontologyName); // Find the ontology by Title
 
         if (!ontology) {
@@ -26,7 +69,7 @@ async function loadOntologyDetails() {
             return;
         }
 
-        populateOntologyTable(ontology);  // create the table
+        populateOntologyTable(ontology, ttlManifest);  // create the table
         populateEvaluationTable(ontology);
         renderSpiderChart(ontology);
     } catch (error) {
@@ -36,7 +79,7 @@ async function loadOntologyDetails() {
 }
 
 
-function populateOntologyTable(ontology) {
+function populateOntologyTable(ontology, ttlManifest) {
 
     // Update the page header with ontology Title
     const ontologyHeading = document.getElementById('ontology-heading');
@@ -44,7 +87,7 @@ function populateOntologyTable(ontology) {
 
     const tableBody = document.querySelector('#ontology-table tbody');
     tableBody.innerHTML = ''; // Clear previous content
-    
+
     // Define the desired order of fields (updated to match JSON column names)
     const fieldOrder = [
         "Title",
@@ -65,12 +108,13 @@ function populateOntologyTable(ontology) {
         "Number of Classes",
         "Number of Object Properties",
         "Number of Data Properties",
+        "Ontology File",
     ];
 
     // Populate the table in the defined order
     fieldOrder.forEach((key) => {
         let value = ontology[key];
-        
+
         // Show blank for null/undefined values instead of hiding the row
         if (value === null || value === undefined) {
             value = "";
@@ -79,6 +123,14 @@ function populateOntologyTable(ontology) {
         // Make URI a clickable link
         if (key === "URI" && value) {
             value = `<a href="${value}" target="_blank">${value}</a>`;
+        }
+
+        // Look up the matching TTL file (if any) and render a download button, otherwise a message
+        if (key === "Ontology File") {
+            const ttlFilename = findTtlFilename(ontology.Prefix, ttlManifest);
+            value = ttlFilename
+                ? `<a href="${TTL_FOLDER_PATH}/${ttlFilename}" download class="ttl-download-btn">Download TTL</a>`
+                : `<span class="ttl-unavailable">Ontology file not available</span>`;
         }
 
         const row = document.createElement('tr');
