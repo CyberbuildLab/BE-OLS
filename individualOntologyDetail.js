@@ -7,16 +7,16 @@ function normalizeToken(value) {
     return (value || '').toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
-// Match an ontology's Prefix to a filename in the TTL manifest: exact match first,
+// Match an ontology's Prefix to a filename in available-ontologies.json: exact match first,
 // then fall back to a "starts with" match either direction (handles cases like
 // prefix "asb" -> file "asbingowl.ttl", or prefix "lca-c-renovation" -> "lca-c-reno.ttl")
-function findTtlFilename(prefix, manifestFiles) {
+function findTtlFilename(prefix, availableOntologies) {
     const cleanPrefix = normalizeToken(prefix);
-    if (!cleanPrefix || !manifestFiles || !manifestFiles.length) {
+    if (!cleanPrefix || !availableOntologies || !availableOntologies.length) {
         return null;
     }
 
-    const withBase = manifestFiles.map((file) => ({
+    const withBase = availableOntologies.map((file) => ({
         file,
         base: normalizeToken(file.replace(/\.ttl$/i, ''))
     }));
@@ -51,9 +51,9 @@ async function loadOntologyDetails() {
 
     try {
         // Fetch the ontology data and the list of available TTL files in parallel
-        const [ontologiesResponse, manifestResponse] = await Promise.all([
+        const [ontologiesResponse, availableOntologiesResponse] = await Promise.all([
             fetch('data/Ontologies_forRepo.json'),
-            fetch(`${TTL_FOLDER_PATH}/manifest.json`)
+            fetch(`${TTL_FOLDER_PATH}/available-ontologies.json`)
         ]);
 
         if (!ontologiesResponse.ok) {
@@ -61,7 +61,7 @@ async function loadOntologyDetails() {
         }
 
         const ontologies = await ontologiesResponse.json();
-        const ttlManifest = manifestResponse.ok ? await manifestResponse.json() : [];
+        const availableOntologies = availableOntologiesResponse.ok ? await availableOntologiesResponse.json() : [];
         const ontology = ontologies.find(o => o.Title === ontologyName); // Find the ontology by Title
 
         if (!ontology) {
@@ -69,7 +69,7 @@ async function loadOntologyDetails() {
             return;
         }
 
-        populateOntologyTable(ontology, ttlManifest);  // create the table
+        populateOntologyTable(ontology, availableOntologies);  // create the table
         populateEvaluationTable(ontology);
         renderSpiderChart(ontology);
     } catch (error) {
@@ -79,7 +79,7 @@ async function loadOntologyDetails() {
 }
 
 
-function populateOntologyTable(ontology, ttlManifest) {
+function populateOntologyTable(ontology, availableOntologies) {
 
     // Update the page header with ontology Title
     const ontologyHeading = document.getElementById('ontology-heading');
@@ -127,7 +127,7 @@ function populateOntologyTable(ontology, ttlManifest) {
 
         // Look up the matching TTL file (if any) and render a download button, otherwise a message
         if (key === "Ontology File") {
-            const ttlFilename = findTtlFilename(ontology.Prefix, ttlManifest);
+            const ttlFilename = findTtlFilename(ontology.Prefix, availableOntologies);
             value = ttlFilename
                 ? `<a href="${TTL_FOLDER_PATH}/${ttlFilename}" download class="ttl-download-btn">Download TTL</a>`
                 : `<span class="ttl-unavailable">Ontology file not available</span>`;
