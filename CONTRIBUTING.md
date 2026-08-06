@@ -1,4 +1,4 @@
-# Contributing to the Built Environment Ontology Lookup Service (BE-OLS)
+# Contributing to the Built Environment Ontology Lookup Service
 
 Thank you for your interest in contributing to the BE-OLS.
 
