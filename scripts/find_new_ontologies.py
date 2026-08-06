@@ -1,10 +1,4 @@
-from pathlib import Path
-import py_compile
-
-code = r'''# A script for automatically searching every week for updated repositories
-# related to the built environment and containing ontology files.
-
-from __future__ import annotations
+# A script for automatically searching every week for updated repositories related to the built environment and containing ontology files.from __future__ import annotations
 
 import json
 import os
@@ -573,12 +567,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-'''
-
-output_path = Path("/mnt/data/weekly_ontology_scan.py")
-output_path.write_text(code, encoding="utf-8", newline="\n")
-
-# Validate that the generated file is syntactically correct.
-py_compile.compile(str(output_path), doraise=True)
-
-print(f"Created and syntax-checked: {output_path}")
