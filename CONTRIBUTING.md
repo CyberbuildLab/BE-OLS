@@ -26,8 +26,8 @@ Open an issue for:
 - bugs
 - visualisation or usability problems
 
-Include clear details, relevant links, and screenshots where useful.
+Please include clear details, relevant links, and screenshots where useful.
 
 ## 3. Propose a feature
 
-Open an issue before developing a substantial new feature. Please submit separate issues and pull requests for independent features so they can be reviewed individually.
+Please submit  issues for suggesting new features and include links, figures or other helpful resources to explain the requested feature in details.
