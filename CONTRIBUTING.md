@@ -15,7 +15,6 @@ To propose an ontology for adding to the database:
 5. Submit the issue for review.
 
 Submitting an issue does not directly add the ontology to BE-OLS. The submission will first be reviewed for relevance, accessibility, completeness and possible duplication.
-Before submitting, please check whether the ontology is already available in BE-OLS or has previously been proposed.
 
 ## 2. Reporting incorrect or missing information
 
