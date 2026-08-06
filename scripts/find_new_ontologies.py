@@ -1,4 +1,4 @@
-# EXPERIMENT
+# A script for automatic search for updated repositories corresponding to the BUILT_ENV_TERMS every week.
 from __future__ import annotations
 
 import json
@@ -316,8 +316,19 @@ def append_to_logbook(lines: List[str], logbook_path: str) -> None:
     separator = "\n---\n\n"
     combined = header + entry + (separator + previous.lstrip("\n") if previous.strip() else "")
 
-    with open(logbook_path, "w", encoding="utf-8") as fp:
-        fp.write(combined.strip() + "\n")
+    previous = ""
+
+    if os.path.exists(latest_path):
+        with open(latest_path, "r", encoding="utf-8") as fp:
+            previous = fp.read().strip()
+
+    with open(latest_path, "w", encoding="utf-8") as fp:
+        fp.write(content)
+
+        if previous:
+            fp.write("\n---\n\n")
+            fp.write(previous)
+            fp.write("\n")
 
 
 def main() -> int:
