@@ -11,7 +11,8 @@ async function loadOntologies() {
         const ontologies = await response.json();
         window.ontologiesData = ontologies;
         console.log('Ontologies loaded:', ontologies);
-        displayOntologies(ontologies);
+        populateYearFilter(ontologies);
+        applyCurrentView();
     } catch (error) {
         console.error('Error loading ontologies:', error);
         document.getElementById('ontology-container').innerHTML = '<p>Error loading ontologies. Please try again later.</p>';
@@ -172,32 +173,184 @@ function displayOntologies(ontologies) {
 }
 
 
+// Search text, domain, and year all narrow the same underlying list together
+// (instead of each one resetting the others), and sorting applies on top.
+const filterState = { search: '', domain: 'all', year: 'all' };
+let currentSort = 'relevance';
+let currentSortDir = 'desc';
+
+// Sort fields where "biggest number first" is the more useful default;
+// everything else (name, domain) defaults to ascending (A-Z).
+const DESC_BY_DEFAULT = new Set([
+    'fair', 'quality', 'accessibility', 'alignment', 'annotation',
+    'classes', 'object-properties', 'data-properties', 'connectivity', 'year',
+]);
+
+// Extracts a 4-digit year from the (inconsistently formatted) Created field.
+function extractYear(value) {
+    if (!value) return 0;
+    const match = String(value).match(/\d{4}/);
+    return match ? Number(match[0]) : 0;
+}
+
+// Counts how many other ontologies this one links to, as a simple stand-in
+// for "Connectivity (links)".
+function countLinks(ontology) {
+    const linked = ontology['Linked-to AECO Ontologies'];
+    if (!linked || typeof linked !== 'string') return 0;
+    return linked.split(',').map((s) => s.trim()).filter(Boolean).length;
+}
+
+function computeFilteredList() {
+    let list = window.ontologiesData || [];
+
+    if (filterState.search) {
+        const query = filterState.search.toLowerCase();
+        list = list.filter((ontology) =>
+            Object.values(ontology).some((value) =>
+                value && String(value).toLowerCase().includes(query)
+            )
+        );
+    }
+
+    if (filterState.domain !== 'all') {
+        list = list.filter((ontology) =>
+            (ontology['Primary Domain'] || '').toLowerCase() === filterState.domain.toLowerCase()
+        );
+    }
+
+    if (filterState.year !== 'all') {
+        if (filterState.year === 'unknown') {
+            list = list.filter((ontology) => extractYear(ontology.Created) === 0);
+        } else {
+            const year = Number(filterState.year);
+            list = list.filter((ontology) => extractYear(ontology.Created) === year);
+        }
+    }
+
+    return list;
+}
+
+function sortOntologies(list, criterion, direction) {
+    const sorted = [...list];
+    const dir = direction === 'asc' ? 1 : -1;
+    const byNumber = (field) => (a, b) => dir * ((Number(a[field]) || 0) - (Number(b[field]) || 0));
+    const byText = (field) => (a, b) => dir * String(a[field] || '').localeCompare(String(b[field] || ''));
+
+    switch (criterion) {
+        case 'name':
+            sorted.sort(byText('Title'));
+            break;
+        case 'domain':
+            sorted.sort(byText('Primary Domain'));
+            break;
+        case 'fair':
+            sorted.sort(byNumber('FOOPs Score'));
+            break;
+        case 'quality':
+            sorted.sort(byNumber('Quality Score'));
+            break;
+        case 'accessibility':
+            sorted.sort(byNumber('Accessibility Score'));
+            break;
+        case 'alignment':
+            sorted.sort(byNumber('Alignment Score'));
+            break;
+        case 'annotation':
+            sorted.sort(byNumber('Annotation Score'));
+            break;
+        case 'classes':
+            sorted.sort(byNumber('Number of Classes'));
+            break;
+        case 'object-properties':
+            sorted.sort(byNumber('Number of Object Properties'));
+            break;
+        case 'data-properties':
+            sorted.sort(byNumber('Number of Data Properties'));
+            break;
+        case 'connectivity':
+            sorted.sort((a, b) => dir * (countLinks(a) - countLinks(b)));
+            break;
+        case 'year':
+            sorted.sort((a, b) => dir * (extractYear(a.Created) - extractYear(b.Created)));
+            break;
+        default:
+            break; // relevance = original dataset order
+    }
+    return sorted;
+}
+
+// Re-filters and re-sorts from the full dataset, called after any search,
+// domain-filter, year-filter, or sort-order change.
+function applyCurrentView() {
+    const filtered = computeFilteredList();
+    displayOntologies(sortOntologies(filtered, currentSort, currentSortDir));
+}
+
 // Function to filter ontologies based on a search query for any keyword. This function is dynamic and shows the cards as the user types
 function filterOntologies(query) {
-    const filtered = window.ontologiesData.filter(ontology =>
-        Object.values(ontology).some(value =>
-            value && String(value).toLowerCase().includes(query.toLowerCase())
-        )
-    );
-    displayOntologies(filtered);
+    filterState.search = (query || '').trim();
+    applyCurrentView();
 }
 
 // Function to handle primary domain button clicks for the top box
 function filterByDomain(domain) {
-    if (domain === 'all') {
-        displayOntologies(window.ontologiesData);
-    } else {
-        const filtered = window.ontologiesData.filter(ontology =>
-            ontology['Primary Domain'] && ontology['Primary Domain'].toLowerCase() === domain.toLowerCase()
-        );
-        displayOntologies(filtered);
-    }
+    filterState.domain = domain === 'All' ? 'all' : domain;
+    applyCurrentView();
+}
+
+// Builds the Year dropdown from whatever years actually appear in the data,
+// rather than a hardcoded range.
+function populateYearFilter(ontologies) {
+    const yearSelect = document.getElementById('yearSelect');
+    if (!yearSelect) return;
+
+    const years = new Set();
+    let hasUnknown = false;
+    ontologies.forEach((ontology) => {
+        const year = extractYear(ontology.Created);
+        if (year) years.add(year);
+        else hasUnknown = true;
+    });
+
+    const sortedYears = Array.from(years).sort((a, b) => b - a);
+    const options = ['<option value="all">All Years</option>']
+        .concat(sortedYears.map((year) => `<option value="${year}">${year}</option>`));
+    if (hasUnknown) options.push('<option value="unknown">Unknown</option>');
+    yearSelect.innerHTML = options.join('');
+}
+
+function updateSortDirectionButton() {
+    const btn = document.getElementById('sortDirectionToggle');
+    if (!btn) return;
+    btn.classList.toggle('asc', currentSortDir === 'asc');
+    btn.title = currentSortDir === 'asc' ? 'Ascending' : 'Descending';
 }
 
 // Event listener for the search function
 document.getElementById('searchInput').addEventListener('input', (e) => {
-    const query = e.target.value.trim();  // Get the search input value
-    filterOntologies(query); // Call the search function with the query
+    filterOntologies(e.target.value);
+});
+
+// Event listener for the sort dropdown
+document.getElementById('sortSelect').addEventListener('change', (e) => {
+    currentSort = e.target.value;
+    currentSortDir = DESC_BY_DEFAULT.has(currentSort) ? 'desc' : 'asc';
+    updateSortDirectionButton();
+    applyCurrentView();
+});
+
+// Event listener for the Asc/Desc toggle
+document.getElementById('sortDirectionToggle').addEventListener('click', () => {
+    currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+    updateSortDirectionButton();
+    applyCurrentView();
+});
+
+// Event listener for the year dropdown
+document.getElementById('yearSelect').addEventListener('change', (e) => {
+    filterState.year = e.target.value;
+    applyCurrentView();
 });
 
 // Event listener for primary domain buttons (including the "All" button)

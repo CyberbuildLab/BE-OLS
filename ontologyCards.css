@@ -28,26 +28,33 @@ main {
     margin: 20px auto; /* Center the content */
 }
 
-/* Header Ribbon - this is the same for all pages */
+/* Header Ribbon - shared across all pages */
 .header-ribbon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 24px;
     background: #222;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 100%; /* Full width */
-    position: sticky; /* Sticky at the top */
-    top: 0; /* Fixed to the top */
-    z-index: 10; /* Ensures it stays above other elements */
-    max-width: 100%; /* Ensure header stays within screen width */
-    box-sizing: border-box; /* Prevents width overflow from padding */
-    overflow: hidden; /* Prevents overflow */
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* EC3 Header Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logo img {
-    height: 40px; /* Adjust the size of your logo */
+    height: 38px;
     width: auto;
     transition: transform 0.3s;
 }
@@ -56,45 +63,66 @@ main {
     transform: scale(1.1);
 }
 
-/*Last fix*/
-.logo {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
-
 .logo a {
-    color: #f7a11b; /* Match orange nav links */
+    color: #f7a11b;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     transition: color 0.3s;
-    font-size: 20px; /* larger than nav size */
 }
 
 .logo a:hover {
-    color: #e69518; /* Hover effect same as nav */
+    color: #e69518;
 }
 
 .logo a:visited {
-    color: #f7a11b !important;}
+    color: #f7a11b;
+}
 
-/* Navigation Menu - this is the same for all pages */
+/* Navigation Menu - shared across all pages */
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 22px;
     margin: 0;
 }
 
 .nav ul li a {
     color: #f7a11b;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .nav ul li a:hover {
     color: #e69518;
+}
+
+.nav ul li a.nav-current {
+    color: #fff;
+    border-bottom-color: #f7a11b;
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px !important;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #f7a11b !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: #f7a11b;
+    color: #fff !important;
 }
 
 /* Search and Primary Domain Buttons */
@@ -106,31 +134,136 @@ main {
     gap: 20px;
 }
 
+/* Filter bar: single light unified bar (search + sort + temporal scope) */
+#filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 26px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
 /* Search Box */
 #search-container {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
-    padding: 10px;
+    flex: 1;
+    min-width: 220px;
+    background: #fff;
+    border: 1px solid #ccc;
     border-radius: 10px;
+    padding: 18px 16px;
+}
+
+.search-icon {
+    flex-shrink: 0;
+    color: #888;
 }
 
 #searchInput {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 15px;
+}
+
+#searchInput::placeholder {
+    color: #999;
 }
 
 #searchButton {
-    background-color: #ff69b4; /* Pink button */
-    color: white;
-    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #f7a11b, #e69518);
+    color: #1b1b1b;
+    width: 56px;
+    height: 56px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    transition: opacity 0.2s;
+}
+
+#searchButton:hover {
+    opacity: 0.85;
+}
+
+.filter-divider {
+    align-self: stretch;
+    width: 1px;
+    background: #ddd;
+    flex-shrink: 0;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group label {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.filter-group-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#sortSelect,
+#yearSelect {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 14px;
+}
+
+#sortSelect option,
+#yearSelect option {
+    color: #000;
+}
+
+#sortDirectionToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #f7a11b;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: transform 0.2s;
+}
+
+#sortDirectionToggle.asc {
+    transform: rotate(180deg);
 }
 
 /* Primary Domain Buttons */

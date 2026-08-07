@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontology Details</title>
     <link rel="stylesheet" href="individualOntologyDetail.css">
-	<!-- Privacy-friendly analytics by Plausible -->
+    <script defer src="js/navActive.js"></script>
+<!-- Privacy-friendly analytics by Plausible -->
 	<script async src="https://plausible.io/js/pa-Mcdjsi3bVOh2XfV8_akHE.js"></script>
 	<script>
 	  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
@@ -26,17 +27,35 @@
         <nav class="nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#knowledgehub">Knowledge Hub</a></li>
+                <li><a href="ontologyCards.html">Ontologies</a></li>
+                <li><a href="ontologyGraph.html">Ontology Network Graph</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
                 <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://cyberbuildlab.github.io/BIM-SLE/" target="_blank">BIM-SLE (other project)</a></li>
+                <li>
+                    <a href="https://github.com/CyberbuildLab/BE-OLS" target="_blank" rel="noopener" class="repo-link">
+                        <svg viewBox="0 0 16 16" width="19.6" height="19.6" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        Github
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <div class="page-layout">
+    <nav class="page-toc" id="pageToc" aria-label="Table of contents">
+        <ul>
+            <li><a href="#ontology-details" class="toc-link" data-toc-target="ontology-details">Overview</a></li>
+            <li id="tocClusterItem" style="display: none;"><a href="#cluster-box" class="toc-link" data-toc-target="cluster-box">Cluster</a></li>
+            <li><a href="#evaluation-section" class="toc-link" data-toc-target="evaluation-section">Evaluation</a></li>
+            <li><a href="#class-hierarchy-box" class="toc-link" data-toc-target="class-hierarchy-box">Class Hierarchy</a></li>
+        </ul>
+    </nav>
+    <main class="page-content">
+        <h1 id="ontology-heading">Ontology Details</h1>
+
         <!-- Ontology Details Section -->
         <section id="ontology-details" class="box-shadow">
-            <h1 id="ontology-heading">Ontology Details</h1>
             <table id="ontology-table">
                 <thead>
                     <tr>
@@ -44,42 +63,70 @@
                         <th>Value</th>
                     </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
             </table>
         </section>
-    
+
         <!-- Separate Cluster Section -->
         <section id="cluster-box" class="box-shadow" style="display: none;">
             <h3>Cluster Name</h3>
             <div class="cluster-name"></div>
         </section>
-        
-    </main>
-        <!-- Evaluation Table and Spider Chart Section -->
-    <section class="evaluation-container">
-        <!-- Spider Chart Container -->
-        <div id="spider-chart-container">
-            <canvas id="spiderChart"></canvas> <!-- ChartJS canvas -->
-        </div>
 
-        <!-- Evaluation Table Container -->
-        <div id="evaluation-table-container">
-            <table id="evaluation-table">
-                <thead>
-                    <tr>
-                        <th>Evaluation Axis</th>
-                        <th>Criteria</th>
-                        <th>Presence</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    
+        <!-- Evaluation Section -->
+        <section class="box-shadow evaluation-container" id="evaluation-section">
+            <h3>Ontology Evaluation</h3>
+            <div class="evaluation-split">
+                <div class="evaluation-left">
+                    <div id="spider-chart-container">
+                        <canvas id="spiderChart"></canvas> <!-- ChartJS canvas -->
+                    </div>
+                </div>
+                <div class="evaluation-right" id="evaluation-breakdown"></div>
+            </div>
+        </section>
+
+        <!-- Class Hierarchy Section -->
+        <section id="class-hierarchy-box" class="box-shadow">
+            <h3>Class Hierarchy</h3>
+            <div class="hierarchy-toggle-group">
+                <button type="button" id="hierarchy-view-graph" class="hierarchy-toggle active">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.2 7.3 10 16"/><path d="m16.8 7.3-4.3 8.9"/></svg>
+                    Graph View
+                </button>
+                <button type="button" id="hierarchy-view-tree" class="hierarchy-toggle">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="12" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M5 8.5V15a3 3 0 0 0 3 3h8.5"/><path d="M16.5 12H12"/></svg>
+                    Tree View
+                </button>
+                <a id="hierarchy-ttl-link" class="hierarchy-toggle hierarchy-link-btn" href="#" download style="display: none;">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                    <span id="hierarchy-ttl-link-label">Download TTL</span>
+                </a>
+                <a id="hierarchy-uri-link" class="hierarchy-toggle hierarchy-link-btn" href="#" target="_blank" rel="noopener" style="display: none;">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+                    Open URI
+                </a>
+            </div>
+            <div id="hierarchy-tree-container" style="display: none;"></div>
+            <div id="hierarchy-graph-container"></div>
+            <p id="hierarchy-status" class="hierarchy-status"></p>
+            <div class="hierarchy-stats-row">
+                <div class="hierarchy-stat-card">
+                    <span class="hierarchy-stat-number" id="statHierarchyClasses">-</span>
+                    <span class="hierarchy-stat-label">Classes</span>
+                </div>
+                <div class="hierarchy-stat-card">
+                    <span class="hierarchy-stat-number" id="statHierarchyObjectProps">-</span>
+                    <span class="hierarchy-stat-label">Object properties</span>
+                </div>
+                <div class="hierarchy-stat-card">
+                    <span class="hierarchy-stat-number" id="statHierarchyDataProps">-</span>
+                    <span class="hierarchy-stat-label">Data properties</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
 
     <footer class="footer">
         <div class="social-icons">
@@ -91,7 +138,12 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/n3@2.1.1/browser/n3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/ttlHierarchy.js"></script>
     <script src="individualOntologyDetail.js"></script>
+    <script src="js/pageToc.js"></script>
 </body>
 
 </html>
