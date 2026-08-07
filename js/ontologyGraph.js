@@ -27,7 +27,7 @@ const BASE_NODE_SIZE = 15;
 const NODE_SIZE_SCALE = 2.5;
 const FONT_SIZE = 14;
 const ANIMATION_DURATION = 450;
-const STABILIZATION_ITERATIONS = 1000;
+const STABILIZATION_ITERATIONS = 200;
 const DATA_FIELD_LINKED = "Linked-to AECO Ontologies";
 const DATA_FIELD_DOMAIN = "Primary Domain";
 const DATA_FIELD_CLASSES = "Number of Classes";
@@ -91,7 +91,7 @@ async function initializeGraph() {
         },
         smooth: {
           enabled: true,
-          type: "dynamic",
+          type: "continuous",
         },
         arrows: {
           to: { enabled: true, scaleFactor: 0.5 },
@@ -110,7 +110,7 @@ async function initializeGraph() {
           fit: true,
           iterations: STABILIZATION_ITERATIONS,
           onlyDynamicEdges: false,
-          updateInterval: 50,
+          updateInterval: 25,
         },
       },
       nodes: {
