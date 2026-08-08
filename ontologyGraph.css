@@ -50,35 +50,50 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 24px;
     background: var(--color-dark-bg);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 100;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .logo img {
-    height: 40px;
+    height: 38px;
+    width: auto;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
 }
 
 .logo a {
     color: var(--color-primary);
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     transition: color 0.3s;
 }
 
 .logo a:hover {
     color: var(--color-primary-hover);
+}
+
+.logo a:visited {
+    color: var(--color-primary);
 }
 
 .nav {
@@ -88,8 +103,9 @@ body {
 
 .nav ul {
     display: flex;
+    align-items: center;
     list-style: none;
-    gap: 30px;
+    gap: 22px;
     margin: 0;
     padding: 0;
 }
@@ -98,12 +114,37 @@ body {
     color: var(--color-primary);
     text-decoration: none;
     font-size: 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .nav a:hover {
     color: var(--color-primary-hover);
+}
+
+.nav a.nav-current {
+    color: var(--color-text-light);
+    border-bottom-color: var(--color-primary);
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px !important;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 20px;
+    font-size: 15px;
+    color: var(--color-primary) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light) !important;
 }
 
 main {

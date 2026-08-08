@@ -20,7 +20,11 @@
     <meta name="twitter:image" content="https://cyberbuildlab.github.io/BE-OLS/images/ec3_logo.jpg">
 
     <link rel="stylesheet" href="index.css">
-	
+    <script defer src="js/navActive.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<!-- Privacy-friendly analytics by Plausible -->
 	<script async src="https://plausible.io/js/pa-Mcdjsi3bVOh2XfV8_akHE.js"></script>
 	<script>
@@ -39,11 +43,17 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a href="ontologyCards.html">Ontology Cards</a></li> 
-                <li><a href="ontologyGraph.html">Ontology Network Graph</a></li> 
+                <li><a href="ontologyCards.html">Ontologies</a></li>
+                <li><a href="ontologyGraph.html">Ontology Network Graph</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
                 <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
                 <li><a href="https://cyberbuildlab.github.io/BIM-SLE/" target="_blank">BIM-SLE (other project)</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="https://github.com/CyberbuildLab/BE-OLS" target="_blank" rel="noopener" class="repo-link">
+                        <svg viewBox="0 0 16 16" width="19.6" height="19.6" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        Github
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -58,12 +68,49 @@
             <header class="header">
                 <h1>Built Environment Ontology Lookup Service</h1>
                 <p>A Platform for Built Environment Ontology Discovery, Exploration and Evaluation</p>
-                <a href="ontologyCards.html" class="button">Ontology Cards</a>
-                <a href="ontologyGraph.html" class="button">Ontology Network Graph</a>
             </header>
+
+            <div class="hero-preview-row">
+                <a href="ontologyCards.html" class="hero-preview">
+                    <span class="button">Ontology Cards</span>
+                    <div class="hero-preview-card hero-preview-card--tall">
+                        <div class="hero-spider-chart-wrap">
+                            <canvas id="heroSpiderPreview"></canvas>
+                        </div>
+                        <p class="hero-spider-caption" id="heroSpiderCaption"></p>
+                    </div>
+                </a>
+
+                <a href="analytics.html" class="hero-preview">
+                    <span class="button">Analytics</span>
+                    <div class="hero-preview-card hero-preview-card--split">
+                        <div class="hero-analytics-top">
+                            <p class="data-content-updated" id="dataContentUpdated"></p>
+                            <span class="hero-stat-number" id="statOntologies">–</span>
+                            <span class="stat-label">Ontologies</span>
+                        </div>
+                        <div class="hero-analytics-bottom">
+                            <div class="stat-tile">
+                                <span class="stat-number" id="statProperties">–</span>
+                                <span class="stat-label">Properties</span>
+                            </div>
+                            <div class="stat-tile">
+                                <span class="stat-number" id="statClasses">–</span>
+                                <span class="stat-label">Classes</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ontologyGraph.html" class="hero-preview">
+                    <span class="button">Ontology Network Graph</span>
+                    <div class="hero-preview-card">
+                        <div id="heroGraphPreview" class="hero-graph-preview"></div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-
 
     <section class="features">
         <h2>Key Features</h2>
@@ -105,6 +152,8 @@
             </div>
         </div>
     </section>
+
+    <script src="js/heroPreviews.js"></script>
 
     <footer class="footer">
         <div class="social-icons">

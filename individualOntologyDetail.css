@@ -1,27 +1,30 @@
-/* Header Ribbon - this is the same for all pages */
+/* Header Ribbon - shared across all pages */
 .header-ribbon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; 
-    padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 24px;
     background: #222;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 100%;
-    position: sticky;
-    top: 0;
     box-sizing: border-box;
     overflow: hidden;
-    position: fixed; /* to fix the ribbon being hidden under the content */
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo a {
-    display: inline-block;
-    max-width: 100%; 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo img {
-    height: 40px;
+    height: 38px;
     width: auto;
     transition: transform 0.3s;
 }
@@ -30,81 +33,141 @@
     transform: scale(1.1);
 }
 
-
-
-/*Last fix*/
-.logo {
-    align-items: center;
-    display: flex;
-    gap: 10px;
-}
-
 .logo a {
-    color: #f7a11b; /* Match orange nav links */
+    color: #f7a11b;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     transition: color 0.3s;
-    font-size: 20px; /* larger than nav size */
 }
 
 .logo a:hover {
-    color: #e69518; /* Hover effect same as nav */
+    color: #e69518;
 }
 
-/* Navigation Menu   - this is the same for all pages */
-.nav {
-    display: flex; 
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end; 
-    width: 100%; 
+.logo a:visited {
+    color: #f7a11b;
 }
 
+/* Navigation Menu - shared across all pages */
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 22px;
     margin: 0;
     padding: 0;
-    justify-content: flex-end;
-    width: 100%;
 }
 
 .nav ul li a {
     color: #f7a11b;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-    padding: 5px; 
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .nav ul li a:hover {
     color: #e69518;
 }
 
+.nav ul li a.nav-current {
+    color: #fff;
+    border-bottom-color: #f7a11b;
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px !important;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #f7a11b !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: #f7a11b;
+    color: #fff !important;
+}
+
 
 html, body {
     margin: 0;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top:70px;
-
 }
 
+
+/* Page layout: sticky TOC sidebar + main content */
+.page-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Sticky in-page table of contents (scrollspy) */
+.page-toc {
+    position: sticky;
+    top: 80px;
+    flex-shrink: 0;
+    width: 190px;
+}
+
+.page-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid #eee;
+}
+
+.page-toc li {
+    margin: 0;
+}
+
+.toc-link {
+    display: block;
+    margin-left: -2px;
+    padding: 8px 16px;
+    border-left: 2px solid transparent;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.toc-link:hover {
+    color: #e69518;
+}
+
+.toc-link.active {
+    color: #f7a11b;
+    border-left-color: #f7a11b;
+}
 
 /* Main Content Wrapper */
 main {
     flex: 1;
-    background: linear-gradient(145deg, #f5f5f5, #f5f5f5); 
+    min-width: 0;
+    background: linear-gradient(145deg, #f5f5f5, #f5f5f5);
     padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    max-width: 1200px;
-    margin: 20px auto; 
 }
 
 
@@ -115,7 +178,7 @@ main {
     margin-top: auto;
     padding: 20px 0;
     background: #111;
-    font-size: 0.9rem;
+    font-size: 14px;
     color: #ccc;
 }
 
@@ -169,10 +232,20 @@ main {
 
 /* This is the part that makes this CSS different from the others in the folder. This is only for the table */
 /* Table Styling */
+#ontology-heading {
+    margin: 0 0 20px 0;
+    color: #1b1b1b;
+}
+
+.section-title {
+    margin: 0 0 15px 0;
+    color: #1b1b1b;
+}
+
+/* Overview table */
 #ontology-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     table-layout: fixed;
 }
 
@@ -181,6 +254,7 @@ main {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+    vertical-align: top;
 }
 
 #ontology-table th:first-child,
@@ -201,9 +275,16 @@ main {
 
 #ontology-table td {
     background-color: #fff;
+    font-size: 14px;
 }
 
-
+.description-value {
+    margin: 0;
+    text-align: justify;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.6;
+}
 
 .box-shadow {
     background-color: #fff; /* White background for the box */
@@ -246,8 +327,8 @@ main {
         align-items: center;
         text-align: center;
     }
-        #evaluation-table-container {
-        width: 100%;
+        .evaluation-card {
+        flex-direction: column;
     }
 
     .nav {
@@ -262,53 +343,309 @@ main {
     }
 }
 
-/* Evaluation & Spider Chart Container (27 Feb  25)*/
-.evaluation-container {
+/* Evaluation Section (27 Feb 25) */
+.evaluation-split {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 20px;
-    margin-top: 30px;
+}
+
+.evaluation-left {
+    flex: 1;
+    min-width: 240px;
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
 }
 
 /* Spider Chart Container */
 #spider-chart-container {
-    flex: 1; /* Takes available space */
+    height: 260px;
+}
+
+.evaluation-right {
+    flex: 1.4;
+    min-width: 280px;
+}
+
+.eval-axis-block {
+    margin-bottom: 20px;
+}
+
+.eval-axis-block:last-child {
+    margin-bottom: 0;
+}
+
+.eval-axis-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: bold;
+    font-size: 15px;
+    color: #1b1b1b;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+}
+
+.eval-axis-score {
+    font-size: 13px;
+    color: #f7a11b;
+}
+
+.eval-criteria-row {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 6px 0;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 14px;
 }
 
-/* Evaluation Table Container */
-#evaluation-table-container {
-    width: 50%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.eval-criteria-row:last-child {
+    border-bottom: none;
 }
 
-/* Style for Evaluation Table */
-#evaluation-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 10px;
-    
+.eval-criteria-label {
+    color: #555;
 }
 
-#evaluation-table th,
-#evaluation-table td {
+.eval-presence {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.eval-presence--yes {
+    color: #f7a11b;
+}
+
+.eval-presence--no {
+    color: #999;
+}
+
+/* Class Hierarchy Section */
+.box-shadow h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.hierarchy-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.hierarchy-link-btn {
+    text-decoration: none;
+}
+
+.hierarchy-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: #eee;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.hierarchy-toggle svg {
+    flex-shrink: 0;
+}
+
+.hierarchy-toggle:hover {
+    background-color: #e69518;
+    color: #fff;
+}
+
+.hierarchy-toggle.active {
+    background-color: #f7a11b;
+    color: #fff;
+    border-color: #f7a11b;
+}
+
+#hierarchy-tree-container {
+    max-height: 500px;
+    overflow-y: auto;
     padding: 10px;
     border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-#evaluation-table th {
-    background-color: #333;
-    color: white;
+#hierarchy-graph-container {
+    position: relative;
+    height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.hierarchy-graph-legend {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #333;
+    pointer-events: none;
+}
+
+.hierarchy-graph-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hierarchy-graph-legend-swatch {
+    flex-shrink: 0;
+}
+
+.hierarchy-graph-legend-swatch--dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.hierarchy-graph-legend-swatch--box {
+    width: 12px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid;
+}
+
+.hierarchy-graph-legend-swatch--line {
+    width: 16px;
+    height: 0;
+    border-top: 2px solid;
+    background: none !important;
+}
+
+.hierarchy-graph-legend-swatch--dashed {
+    border-top-style: dashed;
+}
+
+.hierarchy-tree,
+.hierarchy-tree ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.hierarchy-tree {
+    padding-left: 0;
+}
+
+.hierarchy-tree ul {
+    margin-left: 6px;
+    padding-left: 16px;
+    border-left: 1px solid #ddd;
+}
+
+.hierarchy-tree-title {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.hierarchy-tree.hierarchy-tree-root {
+    margin-left: 6px;
+    padding-left: 16px;
+    border-left: 1px solid #ddd;
+}
+
+.hierarchy-tree-item {
+    margin: 3px 0;
+}
+
+.hierarchy-tree-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #777;
+    font-size: 13px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.hierarchy-tree-label.has-children {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hierarchy-tree-label.has-children:hover {
+    background-color: #fff3e0;
+    color: #e69518;
+}
+
+.hierarchy-tree-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 22px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1;
+    color: #999;
+    transition: transform 0.15s ease;
+}
+
+.hierarchy-tree-icon.expanded {
+    transform: rotate(90deg);
+}
+
+.hierarchy-tree-label.leaf .hierarchy-tree-icon {
+    font-size: 28px;
+    color: #bbb;
+}
+
+.hierarchy-status {
+    color: #999;
+    font-style: italic;
+    margin: 10px 0 0 0;
+}
+
+.hierarchy-stats-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.hierarchy-stat-card {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.hierarchy-stat-number {
+    font-size: 29px;
+    font-weight: bold;
+    color: #1b1b1b;
+    line-height: 1.2;
+}
+
+.hierarchy-stat-label {
+    font-size: 14px;
+    color: #8a7a6d;
+    margin-top: 4px;
 }
 

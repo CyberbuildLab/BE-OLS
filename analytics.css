@@ -113,7 +113,7 @@ body {
 }
 
 /* Main content box */
-main.missing-uri {
+main.analytics-placeholder {
     flex: 1;
     background: #ffffff;
     padding: 40px 30px;
@@ -125,7 +125,7 @@ main.missing-uri {
 }
 
 /* Title text */
-main.missing-uri h1 {
+main.analytics-placeholder h1 {
     font-size: 32px;
     font-weight: bold;
     color: #282828;
@@ -133,28 +133,11 @@ main.missing-uri h1 {
 }
 
 /* Informational paragraphs */
-main.missing-uri p {
+main.analytics-placeholder p {
     font-size: 16px;
     color: #444;
     margin-bottom: 25px;
     line-height: 1.6;
-}
-
-/* GitHub button */
-.github-link {
-    display: inline-block;
-    padding: 12px 28px;
-    background-color: #2D2D2D;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: background-color 0.3s ease;
-}
-
-.github-link:hover {
-    background-color: #111111;
 }
 
 /* Back link */
