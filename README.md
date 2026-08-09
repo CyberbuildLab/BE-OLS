@@ -64,7 +64,7 @@ This repository is distributed under multiple licences. Please see LICENSE_MAIN.
 Contact Us [![GitHub Issues](https://img.shields.io/github/issues/CyberbuildLab/BE-OLS.svg)](https://github.com/CyberbuildLab/BE-OLS/issues)
 ==========
 For any queries, questions, sugestions and comments, or if you would like to contribute to this effort, don't hesitate to contact one of the committee members listed on the EC3 Modelling & Standards Committee page provided above.
-Alternatively, **[open an issue](https://github.com/CyberbuildLab/BE-OLS/issues)** on our GitHub repo.  
+Please also read [CONTRIBUTING.md](CONTRIBUTING.md). Alternatively, **[open an issue](https://github.com/CyberbuildLab/BE-OLS/issues)** on our GitHub repo.  
 
 
 Disclaimer
