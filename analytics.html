@@ -8,6 +8,7 @@
     <title>Analytics | EC3 Ontologies</title>
     <link rel="stylesheet" href="analytics.css">
     <script defer src="js/navActive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 	<script async src="https://plausible.io/js/pa-Mcdjsi3bVOh2XfV8_akHE.js"></script>
 	<script>
@@ -43,16 +44,146 @@
         </nav>
     </header>
 
-    <main class="analytics-placeholder">
-        <h1>Analytics</h1>
+    <main class="analytics-page">
+        <div class="page-intro">
+            <h1>Analytics</h1>
+            <div class="stat-tiles" id="statTiles"></div>
+        </div>
 
-        <p>
-            Usage and ontology statistics for BE-OLS are coming soon.
-        </p>
+        <div class="widgets-grid">
 
-        <p class="back-link">
-            <a href="index.html">Back to overview</a>
-        </p>
+            <section class="widget-card full-width" id="widget-over-time">
+                <h2>Built environment ontologies over time</h2>
+                <div class="chart-container">
+                    <canvas id="overTimeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="widget-card" id="widget-most-referenced">
+                <h2>Linked-by AECO Ontologies</h2>
+                <p class="widget-subtitle">Ontologies most frequently linked to by other AECO ontologies in this catalog.</p>
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="mostReferencedTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="mostReferencedTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+                    <button type="button" class="list-reset-btn" id="mostReferencedReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="mostReferencedList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-foops-ranking">
+                <h2>FOOPs Score Ranking</h2>
+                <p class="widget-subtitle">Ontologies ranked by FAIR Ontology Evaluation (<a href="https://catalogue.fair-impact.eu/resources/foops" target="_blank" rel="noopener">FOOPs</a>) score.</p>
+
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="foopsRankingTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="foopsRankingTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+
+                    <div class="range-slider-wrap">
+                        <div class="range-slider-values">
+                            <span><span id="foopsRangeMinLabel">0.00</span> – <span id="foopsRangeMaxLabel">1.00</span></span>
+                        </div>
+                        <div class="range-slider">
+                            <div class="range-slider-track"></div>
+                            <div class="range-slider-fill" id="foopsRangeFill"></div>
+                            <input type="range" id="foopsRangeMin" min="0" max="1" step="0.01" value="0">
+                            <input type="range" id="foopsRangeMax" min="0" max="1" step="0.01" value="1">
+                        </div>
+                    </div>
+
+                    <button type="button" class="list-reset-btn" id="foopsRankingReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="foopsRankingList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-metric-ranking">
+                <h2>Ontology Metrics</h2>
+                <p class="widget-subtitle">Ontologies ranked by class/property counts or their ratios.</p>
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Metric</span>
+                        <select id="metricRankingMetric">
+                            <option value="classes">Classes</option>
+                            <option value="objectProperties">Object Properties</option>
+                            <option value="dataProperties">Data Properties</option>
+                            <option value="classesPerOp">Classes / Object Properties</option>
+                            <option value="opPerClasses">Object Properties / Classes</option>
+                            <option value="classesPerDp">Classes / Data Properties</option>
+                            <option value="dpPerClasses">Data Properties / Classes</option>
+                            <option value="classesPerAllProps">Classes / (Object + Data Properties)</option>
+                            <option value="allPropsPerClasses">(Object + Data Properties) / Classes</option>
+                        </select>
+                    </label>
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="metricRankingTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="metricRankingTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+                    <button type="button" class="list-reset-btn" id="metricRankingReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="metricRankingList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-domain-coverage">
+                <h2>Domain coverage</h2>
+                <p class="widget-subtitle">Ontologies grouped by primary built-environment domain.</p>
+                <div class="domain-list" id="domainCoverageList"></div>
+            </section>
+
+            <div class="ontology-list-modal-overlay" id="ontologyListModalOverlay"></div>
+            <div class="ontology-list-modal" id="ontologyListModal" aria-hidden="true">
+                <div class="ontology-list-modal-header">
+                    <h3 id="ontologyListModalTitle">Ontologies</h3>
+                    <button type="button" id="ontologyListModalClose" class="ontology-list-modal-close" aria-label="Close">&times;</button>
+                </div>
+                <ul class="ontology-list-modal-list" id="ontologyListModalList"></ul>
+            </div>
+
+            <section class="widget-card full-width" id="widget-compare">
+                <h2>Compare Ontologies</h2>
+                <p class="widget-subtitle">Pick up to 5 ontologies and compare.</p>
+
+                <div class="compare-toolbar">
+                    <div class="compare-search-wrap">
+                        <div class="compare-search">
+                            <span class="plus" aria-hidden="true">+</span>
+                            <input type="text" id="compareSearchInput" placeholder="Add ontology to compare..." autocomplete="off">
+                        </div>
+                        <div class="compare-suggestions" id="compareSuggestions"></div>
+                    </div>
+
+                    <div class="domain-browse">
+                        <button type="button" class="domain-browse-toggle" id="domainBrowseToggle" aria-expanded="false">
+                            <span>Browse by domain</span>
+                            <span class="domain-browse-badge" id="domainBrowseBadge" hidden>0</span>
+                            <span class="domain-browse-chevron" aria-hidden="true">▾</span>
+                        </button>
+                        <div class="domain-browse-panel" id="domainBrowsePanel" hidden></div>
+                    </div>
+                </div>
+
+                <div class="compare-cards" id="compareCards"></div>
+            </section>
+
+        </div>
+
     </main>
 
 <!-- PLEASE USE THIS HEADER FOR ALL NEW PAGES. -->
@@ -64,5 +195,7 @@
         </div>
         <p>&copy; Copyright EC3 M&S Committee 2026 | All rights reserved.</p>
     </footer>
+
+    <script src="analytics.js"></script>
 </body>
 </html>
