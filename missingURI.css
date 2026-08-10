@@ -15,31 +15,33 @@ body {
     min-height: 100vh;
 }
 
-/* Header ribbon */
+/* Header Ribbon - shared across all pages */
 .header-ribbon {
     display: flex;
     justify-content: space-between;
-    align-items: centre;
-    padding: 10px 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 24px;
     background: #222;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 10;
     box-sizing: border-box;
     overflow: hidden;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* EC3 header logo */
 .logo {
-    align-items: centre;
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
 .logo img {
-    height: 40px;
+    height: 38px;
     width: auto;
     transition: transform 0.3s;
 }
@@ -52,8 +54,8 @@ body {
     color: #f7a11b;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     transition: color 0.3s;
-    font-size: 20px;
 }
 
 .logo a:hover {
@@ -61,26 +63,53 @@ body {
 }
 
 .logo a:visited {
-    color: #f7a11b !important;
+    color: #f7a11b;
 }
 
-/* Navigation menu */
+/* Navigation Menu - shared across all pages */
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 22px;
     margin: 0;
 }
 
 .nav ul li a {
     color: #f7a11b;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .nav ul li a:hover {
     color: #e69518;
+}
+
+.nav ul li a.nav-current {
+    color: #fff;
+    border-bottom-color: #f7a11b;
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px !important;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #f7a11b !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: #f7a11b;
+    color: #fff !important;
 }
 
 /* Main content box */
@@ -91,7 +120,7 @@ main.missing-uri {
     max-width: 900px;
     border-radius: 15px;
     margin: 40px auto;
-    text-align: centre;
+    text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -144,7 +173,7 @@ main.missing-uri p {
 
 /* Footer */
 .footer {
-    text-align: centre;
+    text-align: center;
     margin-top: auto;
     padding: 20px 0;
     background: #111;
@@ -156,7 +185,7 @@ main.missing-uri p {
 .social-icons {
     display: flex;
     gap: 15px;
-    justify-content: centre;
+    justify-content: center;
     margin-top: 15px;
 }
 
@@ -169,7 +198,7 @@ main.missing-uri p {
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    text-align: centre;
+    text-align: center;
     line-height: 40px;
 }
 

@@ -1,6 +1,44 @@
 // This the  file for individual ontolgoy descriptions after the user clicks on the cards or on the See Details butyon
 
-//Fetch and display ontology data dynamically 
+const TTL_FOLDER_PATH = 'data/source/Ontologies_TTL';
+
+// Strip everything except letters/digits so prefixes and filenames can be compared loosely
+function normalizeToken(value) {
+    return (value || '').toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+// Match an ontology's Prefix to a filename in available-ontologies.json: exact match first,
+// then fall back to a "starts with" match either direction (handles cases like
+// prefix "asb" -> file "asbingowl.ttl", or prefix "lca-c-renovation" -> "lca-c-reno.ttl")
+function findTtlFilename(prefix, availableOntologies) {
+    const cleanPrefix = normalizeToken(prefix);
+    if (!cleanPrefix || !availableOntologies || !availableOntologies.length) {
+        return null;
+    }
+
+    const withBase = availableOntologies.map((file) => ({
+        file,
+        base: normalizeToken(file.replace(/\.ttl$/i, ''))
+    }));
+
+    const exact = withBase.find(({ base }) => base === cleanPrefix);
+    if (exact) {
+        return exact.file;
+    }
+
+    const fuzzyMatches = withBase.filter(
+        ({ base }) => base.startsWith(cleanPrefix) || cleanPrefix.startsWith(base)
+    );
+    if (!fuzzyMatches.length) {
+        return null;
+    }
+
+    // Prefer whichever candidate's length is closest to the prefix itself
+    fuzzyMatches.sort((a, b) => Math.abs(a.base.length - cleanPrefix.length) - Math.abs(b.base.length - cleanPrefix.length));
+    return fuzzyMatches[0].file;
+}
+
+//Fetch and display ontology data dynamically
 async function loadOntologyDetails() {
     // Get the ontology NAME from the URL string in the URL that comes from the displayOntologies function in ontology-cards.js
     const urlParams = new URLSearchParams(window.location.search);
@@ -12,13 +50,18 @@ async function loadOntologyDetails() {
     }
 
     try {
-        // Fetch the ontology data from the JSON file
-        const response = await fetch('data/Ontologies_forRepo.json');
-        if (!response.ok) {
+        // Fetch the ontology data and the list of available TTL files in parallel
+        const [ontologiesResponse, availableOntologiesResponse] = await Promise.all([
+            fetch('data/Ontologies_forRepo.json'),
+            fetch(`${TTL_FOLDER_PATH}/available-ontologies.json`)
+        ]);
+
+        if (!ontologiesResponse.ok) {
             throw new Error('Failed to fetch ontology data');
         }
 
-        const ontologies = await response.json();
+        const ontologies = await ontologiesResponse.json();
+        const availableOntologies = availableOntologiesResponse.ok ? await availableOntologiesResponse.json() : [];
         const ontology = ontologies.find(o => o.Title === ontologyName); // Find the ontology by Title
 
         if (!ontology) {
@@ -28,7 +71,20 @@ async function loadOntologyDetails() {
 
         populateOntologyTable(ontology);  // create the table
         populateEvaluationTable(ontology);
+        populateHierarchyStats(ontology);
         renderSpiderChart(ontology);
+        await loadClassHierarchy(ontology, availableOntologies);
+
+        // If the page was opened with a #section-id hash (e.g. from the TOC),
+        // re-scroll to it now that the async-loaded content above has settled
+        // the page height — otherwise the initial browser scroll-to-anchor
+        // lands in the wrong place.
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+            }
+        }
     } catch (error) {
         console.error('Error fetching ontology data:', error);
         document.getElementById('ontology-details').innerHTML = 'Error loading ontology data. Please try again later.';
@@ -44,65 +100,125 @@ function populateOntologyTable(ontology) {
 
     const tableBody = document.querySelector('#ontology-table tbody');
     tableBody.innerHTML = ''; // Clear previous content
-    
-    // Define the desired order of fields (updated to match JSON column names)
-    const fieldOrder = [
-        "Title",
-        "Prefix",
-        "Created",
-        "Version",
-        "License",
-        "URI",
-        "FOOPs Score",
-        "Description",
-        "Conforms to Standard(s)",
-        "Primary Domain",
-        "Secondary Domain",
-        "Reference Source",
-        "Linked-to AECO Ontologies",
-        "Linked-to Upper Ontologies",
-        "Linked-by AECO Ontologies",
-        "Number of Classes",
-        "Number of Object Properties",
-        "Number of Data Properties",
-    ];
 
-    // Populate the table in the defined order
-    fieldOrder.forEach((key) => {
-        let value = ontology[key];
-        
-        // Show blank for null/undefined values instead of hiding the row
-        if (value === null || value === undefined) {
-            value = "";
-        }
+    function fieldValue(key) {
+        const value = ontology[key];
+        return (value === null || value === undefined || value === "") ? "&ndash;" : value;
+    }
 
-        // Make URI a clickable link
-        if (key === "URI" && value) {
-            value = `<a href="${value}" target="_blank">${value}</a>`;
-        }
-
+    function addRow(label, valueHtml) {
         const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${key}</td>
-            <td>${value}</td>
-        `;
+        row.innerHTML = `<td>${label}</td><td>${valueHtml}</td>`;
         tableBody.appendChild(row);
-    });
+    }
+
+    // Order: Prefix, Description, Domains, then everything else, FOOPs Score last.
+    addRow('Prefix', fieldValue('Prefix'));
+    addRow('Description', `<p class="description-value">${ontology.Description || 'No description available.'}</p>`);
+    addRow('Primary Domain', fieldValue('Primary Domain'));
+    addRow('Secondary Domain', fieldValue('Secondary Domain'));
+    addRow('Version', fieldValue('Version'));
+    addRow('Created', fieldValue('Created'));
+    addRow('Licence', fieldValue('License'));
+    addRow('URI', ontology.URI ? `<a href="${ontology.URI}" target="_blank">${ontology.URI}</a>` : '&ndash;');
+    addRow('Reference Source', fieldValue('Reference Source'));
+    addRow('Conforms to Standard(s)', fieldValue('Conforms to Standard(s)'));
+    addRow('Linked-to AECO Ontologies', fieldValue('Linked-to AECO Ontologies'));
+    addRow('Linked-to Upper Ontologies', fieldValue('Linked-to Upper Ontologies'));
+    addRow('Linked-by AECO Ontologies', fieldValue('Linked-by AECO Ontologies'));
+    addRow('FOOPs Score', fieldValue('FOOPs Score'));
 
     // Check if "Cluster" exists and display ClusterName in the second box
     const clusterBox = document.getElementById('cluster-box');
+    const tocClusterItem = document.getElementById('tocClusterItem');
     if (ontology["Cluster"]) {
         clusterBox.style.display = 'block'; // Make the cluster box visible
         clusterBox.querySelector('.cluster-name').textContent = ontology["Cluster"];
+        if (tocClusterItem) tocClusterItem.style.display = 'block';
     } else {
         clusterBox.style.display = 'none'; // Hide the cluster box if not part of a cluster
+        if (tocClusterItem) tocClusterItem.style.display = 'none';
+    }
+}
+
+// Populates the Classes / Object properties / Data properties stat cards
+// shown at the bottom of the Tree/Graph visualizer.
+function populateHierarchyStats(ontology) {
+    const statClasses = document.getElementById('statHierarchyClasses');
+    const statObjectProps = document.getElementById('statHierarchyObjectProps');
+    const statDataProps = document.getElementById('statHierarchyDataProps');
+
+    if (statClasses) statClasses.textContent = ontology['Number of Classes'] ?? '-';
+    if (statObjectProps) statObjectProps.textContent = ontology['Number of Object Properties'] ?? '-';
+    if (statDataProps) statDataProps.textContent = ontology['Number of Data Properties'] ?? '-';
+}
+
+// Shows/hides the TTL download and URI link buttons next to the Tree/Graph toggle,
+// depending on whether the ontology has a matched TTL file and/or a URI.
+function populateHierarchyLinks(ttlFilename, uri, version) {
+    const ttlLink = document.getElementById('hierarchy-ttl-link');
+    const ttlLinkLabel = document.getElementById('hierarchy-ttl-link-label');
+    const uriLink = document.getElementById('hierarchy-uri-link');
+
+    if (ttlFilename) {
+        ttlLink.href = `${TTL_FOLDER_PATH}/${ttlFilename}`;
+        ttlLinkLabel.textContent = version ? `TTL - Version ${version}` : 'Download TTL';
+        ttlLink.style.display = 'inline-block';
+    } else {
+        ttlLink.style.display = 'none';
+    }
+
+    if (uri) {
+        uriLink.href = uri;
+        uriLink.style.display = 'inline-block';
+    } else {
+        uriLink.style.display = 'none';
+    }
+}
+
+// Fetch the ontology's TTL file (if available) and render its class hierarchy as a
+// collapsible tree / vis-network graph, using the same Prefix -> filename matching as
+// the "Ontology File" download row.
+async function loadClassHierarchy(ontology, availableOntologies) {
+    const statusEl = document.getElementById('hierarchy-status');
+    const treeContainer = document.getElementById('hierarchy-tree-container');
+    const graphContainer = document.getElementById('hierarchy-graph-container');
+    const treeButton = document.getElementById('hierarchy-view-tree');
+    const graphButton = document.getElementById('hierarchy-view-graph');
+
+    const ttlFilename = findTtlFilename(ontology.Prefix, availableOntologies);
+    populateHierarchyLinks(ttlFilename, ontology.URI, ontology.Version);
+
+    if (!ttlFilename) {
+        statusEl.textContent = 'Ontology file not available, so no class hierarchy can be shown.';
+        treeButton.style.display = 'none';
+        graphButton.style.display = 'none';
+        treeContainer.style.display = 'none';
+        graphContainer.style.display = 'none';
+        return;
+    }
+
+    try {
+        const response = await fetch(`${TTL_FOLDER_PATH}/${ttlFilename}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch TTL file');
+        }
+        const ttlText = await response.text();
+        initHierarchyView(ttlText, { treeContainer, graphContainer, statusEl, treeButton, graphButton, ontologyTitle: ontology.Title });
+    } catch (error) {
+        console.error('Error loading class hierarchy:', error);
+        statusEl.textContent = 'Error loading class hierarchy.';
+        treeButton.style.display = 'none';
+        graphButton.style.display = 'none';
+        treeContainer.style.display = 'none';
+        graphContainer.style.display = 'none';
     }
 }
 
 // Function to Populate Evaluation Table
 function populateEvaluationTable(ontology) {
-    const tableBody = document.querySelector("#evaluation-table tbody");
-    tableBody.innerHTML = ""; // Clear previous content
+    const breakdown = document.getElementById("evaluation-breakdown");
+    breakdown.innerHTML = ""; // Clear previous content
 
     // Define the fixed criteria and their corresponding keys in the JSON
     const evaluationCriteria = {
@@ -131,39 +247,42 @@ function populateEvaluationTable(ontology) {
     };
 
     Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
-        criteriaList.forEach((item, index) => {
+        const axisBlock = document.createElement("div");
+        axisBlock.className = "eval-axis-block";
+
+        const criteriaRowsHtml = criteriaList.map((item) => {
             let value = ontology[item.key];
-            let presence = "No";
-            
+            let isYes = false;
+
             // Handle different value types
             if (value !== null && value !== undefined) {
                 if (typeof value === 'number') {
-                    presence = value >= 1 ? "Yes" : "No";
+                    isYes = value >= 1;
                 } else if (typeof value === 'string') {
                     const trimmed = value.trim().toLowerCase();
-                    presence = (trimmed !== "" && trimmed !== "no" && trimmed !== "n/a") ? "Yes" : "No";
+                    isYes = trimmed !== "" && trimmed !== "no" && trimmed !== "n/a";
                 }
             }
 
-            const row = document.createElement("tr");
-            
-            // First row of the axis group: Merge Evaluation Axis & Axis Score columns
-            if (index === 0) {
-                row.innerHTML = `
-                    <td rowspan="${criteriaList.length}" style="vertical-align: middle; text-align: center; font-weight: bold;">${axis}</td>
-                    <td>${item.criteria}</td>
-                    <td>${presence}</td>
-                    <td rowspan="${criteriaList.length}" style="vertical-align: middle; text-align: center; font-weight: bold;">${axisScores[axis]}</td>
-                `;
-            } else {
-                row.innerHTML = `
-                    <td>${item.criteria}</td>
-                    <td>${presence}</td>
-                `;
-            }
-            
-            tableBody.appendChild(row);
-        });
+            return `
+                <div class="eval-criteria-row">
+                    <span class="eval-criteria-label">${item.criteria}</span>
+                    <span class="eval-presence ${isYes ? 'eval-presence--yes' : 'eval-presence--no'}">
+                        ${isYes ? '&#10003; Yes' : '&minus; No'}
+                    </span>
+                </div>
+            `;
+        }).join("");
+
+        axisBlock.innerHTML = `
+            <div class="eval-axis-header">
+                <span class="eval-axis-name">${axis}</span>
+                <span class="eval-axis-score">${axisScores[axis]} / 3</span>
+            </div>
+            ${criteriaRowsHtml}
+        `;
+
+        breakdown.appendChild(axisBlock);
     });
 }
 
@@ -175,7 +294,7 @@ function renderSpiderChart(ontology) {
     new Chart(ctx, {
         type: "radar",
         data: {
-            labels: ["Connectivity", "Accessibility", "Documentation & Reuse"],
+            labels: ["Connectivity", "Accessibility", ["Documentation", "& Reuse"]],
             datasets: [
                 {
                     label: ontology.Title,
@@ -193,10 +312,13 @@ function renderSpiderChart(ontology) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: { padding: 10 },
+            plugins: { legend: { display: false } },
             scales: {
                 r: {
                     suggestedMin: 0,
-                    suggestedMax: 3
+                    suggestedMax: 3,
+                    ticks: { stepSize: 1 }
                 }
             }
         }

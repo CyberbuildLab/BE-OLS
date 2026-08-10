@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<!-- PLEASE USE THIS HEADER FOR ALL NEW PAGES. -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | EC3 Ontologies</title>
+    <link rel="stylesheet" href="analytics.css">
+    <script defer src="js/navActive.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<!-- Privacy-friendly analytics by Plausible -->
+	<script async src="https://plausible.io/js/pa-Mcdjsi3bVOh2XfV8_akHE.js"></script>
+	<script>
+	  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+	  plausible.init()
+	</script>
+</head>
+
+
+<body>
+
+    <header class="header-ribbon">
+        <div class="logo">
+            <a href="https://ec-3.org/">
+                <img src="images/ec3_logo.jpg" alt="EC3 Logo">
+            </a>
+            <a href="https://cyberbuildlab.github.io/BE-OLS/"> Built Environment Ontology Lookup Service</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ontologyCards.html">Ontologies</a></li>
+                <li><a href="ontologyGraph.html">Ontology Network Graph</a></li>
+                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
+                <li><a href="https://cyberbuildlab.github.io/BIM-SLE/" target="_blank">BIM-SLE (other project)</a></li>
+                <li>
+                    <a href="https://github.com/CyberbuildLab/BE-OLS" target="_blank" rel="noopener" class="repo-link">
+                        <svg viewBox="0 0 16 16" width="19.6" height="19.6" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        Github
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="analytics-page">
+        <div class="page-intro">
+            <h1>Analytics</h1>
+            <div class="stat-tiles" id="statTiles"></div>
+        </div>
+
+        <div class="widgets-grid">
+
+            <section class="widget-card full-width" id="widget-over-time">
+                <h2>Built environment ontologies over time</h2>
+                <div class="chart-container">
+                    <canvas id="overTimeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="widget-card" id="widget-most-referenced">
+                <h2>Linked-by AECO Ontologies</h2>
+                <p class="widget-subtitle">Ontologies most frequently linked to by other AECO ontologies in this catalog.</p>
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="mostReferencedTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="mostReferencedTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+                    <button type="button" class="list-reset-btn" id="mostReferencedReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="mostReferencedList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-foops-ranking">
+                <h2>FOOPs Score Ranking</h2>
+                <p class="widget-subtitle">Ontologies ranked by FAIR Ontology Evaluation (<a href="https://catalogue.fair-impact.eu/resources/foops" target="_blank" rel="noopener">FOOPs</a>) score.</p>
+
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="foopsRankingTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="foopsRankingTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+
+                    <div class="range-slider-wrap">
+                        <div class="range-slider-values">
+                            <span><span id="foopsRangeMinLabel">0.00</span> – <span id="foopsRangeMaxLabel">1.00</span></span>
+                        </div>
+                        <div class="range-slider">
+                            <div class="range-slider-track"></div>
+                            <div class="range-slider-fill" id="foopsRangeFill"></div>
+                            <input type="range" id="foopsRangeMin" min="0" max="1" step="0.01" value="0">
+                            <input type="range" id="foopsRangeMax" min="0" max="1" step="0.01" value="1">
+                        </div>
+                    </div>
+
+                    <button type="button" class="list-reset-btn" id="foopsRankingReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="foopsRankingList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-metric-ranking">
+                <h2>Ontology Metrics</h2>
+                <p class="widget-subtitle">Ontologies ranked by class/property counts or their ratios.</p>
+                <div class="list-controls">
+                    <label class="list-control">
+                        <span>Metric</span>
+                        <select id="metricRankingMetric">
+                            <option value="classes">Classes</option>
+                            <option value="objectProperties">Object Properties</option>
+                            <option value="dataProperties">Data Properties</option>
+                            <option value="classesPerOp">Classes / Object Properties</option>
+                            <option value="opPerClasses">Object Properties / Classes</option>
+                            <option value="classesPerDp">Classes / Data Properties</option>
+                            <option value="dpPerClasses">Data Properties / Classes</option>
+                            <option value="classesPerAllProps">Classes / (Object + Data Properties)</option>
+                            <option value="allPropsPerClasses">(Object + Data Properties) / Classes</option>
+                        </select>
+                    </label>
+                    <label class="list-control">
+                        <span>Show top</span>
+                        <select id="metricRankingTopN">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="custom">Custom…</option>
+                        </select>
+                    </label>
+                    <input type="number" id="metricRankingTopNCustom" class="list-control-number" min="1" max="145" value="10" placeholder="Top N" hidden>
+                    <button type="button" class="list-reset-btn" id="metricRankingReset" hidden></button>
+                </div>
+                <div class="ranked-list" id="metricRankingList"></div>
+            </section>
+
+            <section class="widget-card" id="widget-domain-coverage">
+                <h2>Domain coverage</h2>
+                <p class="widget-subtitle">Ontologies grouped by primary built-environment domain.</p>
+                <div class="domain-list" id="domainCoverageList"></div>
+            </section>
+
+            <div class="ontology-list-modal-overlay" id="ontologyListModalOverlay"></div>
+            <div class="ontology-list-modal" id="ontologyListModal" aria-hidden="true">
+                <div class="ontology-list-modal-header">
+                    <h3 id="ontologyListModalTitle">Ontologies</h3>
+                    <button type="button" id="ontologyListModalClose" class="ontology-list-modal-close" aria-label="Close">&times;</button>
+                </div>
+                <ul class="ontology-list-modal-list" id="ontologyListModalList"></ul>
+            </div>
+
+            <section class="widget-card full-width" id="widget-compare">
+                <h2>Compare Ontologies</h2>
+                <p class="widget-subtitle">Pick up to 5 ontologies and compare.</p>
+
+                <div class="compare-toolbar">
+                    <div class="compare-search-wrap">
+                        <div class="compare-search">
+                            <span class="plus" aria-hidden="true">+</span>
+                            <input type="text" id="compareSearchInput" placeholder="Add ontology to compare..." autocomplete="off">
+                        </div>
+                        <div class="compare-suggestions" id="compareSuggestions"></div>
+                    </div>
+
+                    <div class="domain-browse">
+                        <button type="button" class="domain-browse-toggle" id="domainBrowseToggle" aria-expanded="false">
+                            <span>Browse by domain</span>
+                            <span class="domain-browse-badge" id="domainBrowseBadge" hidden>0</span>
+                            <span class="domain-browse-chevron" aria-hidden="true">▾</span>
+                        </button>
+                        <div class="domain-browse-panel" id="domainBrowsePanel" hidden></div>
+                    </div>
+                </div>
+
+                <div class="compare-cards" id="compareCards"></div>
+            </section>
+
+        </div>
+
+    </main>
+
+<!-- PLEASE USE THIS HEADER FOR ALL NEW PAGES. -->
+
+      <footer class="footer">
+        <div class="social-icons">
+            <a href="https://x.com/europeanC3" target="_blank"><img src="images/twitter.png" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/company/european-council-for-computing-in-construction" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        </div>
+        <p>&copy; Copyright EC3 M&S Committee 2026 | All rights reserved.</p>
+    </footer>
+
+    <script src="analytics.js"></script>
+</body>
+</html>

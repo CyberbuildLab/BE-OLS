@@ -21,39 +21,33 @@ body {
     padding: 0;
 }
 
-/* Header Ribbon - this is the same for all pages */
+/* Header Ribbon - shared across all pages */
 .header-ribbon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 24px;
     background: #222;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
     position: sticky;
     top: 0;
-    z-index: 10;
-}
-
-.header-title a {
-    color: #f7a11b; /* Match orange nav links */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px; /* Adjust to match the nav size */
-    transition: color 0.3s;
-}
-
-.header-title a:hover {
-    color: #e69518; /* Hover effect same as nav */
+    z-index: 100;
 }
 
 .logo {
-    align-items: center;
     display: flex;
-    gap: 10px;}
+    align-items: center;
+    gap: 10px;
+}
 
 .logo img {
-    height: 40px;
+    height: 38px;
     width: auto;
     transition: transform 0.3s;
 }
@@ -62,36 +56,65 @@ body {
     transform: scale(1.1);
 }
 
-/*Last fix*/
 .logo a {
-    color: #f7a11b; /* Match orange nav links */
+    color: #f7a11b;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     transition: color 0.3s;
-    font-size: 20px; /* larger than nav size */
-
 }
 
 .logo a:hover {
-    color: #e69518; /* Hover effect same as nav */
+    color: #e69518;
+}
+
+.logo a:visited {
+    color: #f7a11b;
 }
 
 .nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
-        margin: 0;
+    align-items: center;
+    gap: 22px;
+    margin: 0;
 }
 
 .nav ul li a {
     color: #f7a11b;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .nav ul li a:hover {
     color: #e69518;
+}
+
+.nav ul li a.nav-current {
+    color: #fff;
+    border-bottom-color: #f7a11b;
+}
+
+.repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px !important;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #f7a11b !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.repo-link:hover {
+    background-color: #f7a11b;
+    color: #fff !important;
 }
 
 /* Social media icons in ribbon */
@@ -113,7 +136,6 @@ body {
 /* Main Header - this is the same for all pages*/
 .header {
     text-align: center;
-    margin: 40px 0;
 }
 
 .header h1 {
@@ -123,7 +145,7 @@ body {
 
 .header p {
     font-size: 1.1rem;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     color: #ccc;
 }
 
@@ -138,8 +160,155 @@ body {
     transition: background 0.3s;
 }
 
+.hero-preview .button {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 12px;
+    white-space: nowrap;
+    border-radius: 8px 8px 0 0;
+}
+
 .button:hover {
     background: #e69518;
+}
+
+/* Data Content Section */
+/* Hero preview cards (Ontology Cards / Analytics / Ontology Network Graph) */
+.hero-preview-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.hero-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 270px;
+    text-decoration: none;
+}
+
+.hero-preview-card {
+    position: relative;
+    width: 100%;
+    height: 288px;
+    background: #fff;
+    border: 1px solid #f9c774;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.hero-preview-card--split {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.hero-analytics-top {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.hero-analytics-top .stat-label {
+    color: #666;
+}
+
+.hero-analytics-bottom {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 10px;
+}
+
+.hero-analytics-bottom .stat-number {
+    color: #1b1b1b;
+}
+
+.hero-analytics-bottom .stat-label {
+    color: #666;
+}
+
+.hero-preview-card--tall {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.hero-spider-chart-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+}
+
+.hero-spider-caption {
+    margin: 6px 0 0;
+    height: 2.4em;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-graph-preview {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hero-stat-number {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #1b1b1b;
+    line-height: 1;
+}
+
+.data-content-updated {
+    font-style: italic;
+    color: #999;
+    font-size: 0.75rem;
+    margin: 0 0 6px;
+}
+
+.stat-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #ccc;
+    margin-top: 2px;
 }
 
 /* Features Section */
@@ -337,8 +506,10 @@ body {
 .video-background {
     position: relative;
     width: 100%;
-    height: 100vh; /* Fullscreen height */
+    min-height: 100vh; /* Fullscreen height, but can grow to fit content */
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .video-background video {
@@ -357,11 +528,15 @@ body {
 .video-overlay {
     position: relative;
     display: flex;
+    flex: 1;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 30px;
     text-align: center;
     color: var(--light-grey);
-    height: 100%;
+    padding: 60px 20px;
+    box-sizing: border-box;
     background: rgba(0, 0, 0, 0.5); /* Semi-Transparent Overlay */
 }
 
