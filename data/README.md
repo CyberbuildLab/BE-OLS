@@ -7,12 +7,12 @@ This folder keeps  the source data and is the entry point for automated Excel-to
 * **`submissions` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
 
 * **`source` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here. This contains:
-  * **`Ontologies.xlsx`** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
-  * **`Ontology_characterisation.jpynb`** - the Jupyter Notebook used to process `Ontologies.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder. This must be run manually, locally on your computer.
+  * **`ontologies_source.xlsx`** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
+  * **`ontology_characterisation_v31.jpynb`** - the Jupyter Notebook used to process `ontologies_source.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder. This must be run manually, locally on your computer.
 
 * **`Ontologies\_forRepo.xlsx`** - the main Excel workbook containing the data used by front-end and other code. It must contain a sheet named **Data**.
 
-* **`Ontologies\_forRepo.json`** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes.
+* **`Ontologies\_forRepo.json`** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes in Github.
 
 * **`..\output` folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
 
