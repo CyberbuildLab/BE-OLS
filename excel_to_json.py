@@ -22,7 +22,7 @@ COLUMN_MAPPING = {
     "created_final": "Created",
     "creator_final": "Creator",
     "publisher_final": "Publisher",
-    "license_final": "License",
+    "license_manual": "License",
     "linked_aeco_final": "Linked-to AECO Ontologies",
     "linked_upper_final": "Linked-to Upper Ontologies",
     "linked_by_aeco_final": "Linked-by AECO Ontologies",
