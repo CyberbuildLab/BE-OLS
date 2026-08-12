@@ -1,0 +1,433 @@
+@prefix : <https://example.org/xemo#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix demo: <https://example.org/xemo/demo#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xemo: <https://example.org/xemo#> .
+@base <https://example.org/xemo#> .
+
+<https://example.org/xemo#> rdf:type owl:Ontology ;
+                             owl:imports <http://qudt.org/2.1/vocab/unit> ,
+                                         <http://qudt.org/schema/qudt> ,
+                                         <http://www.w3.org/2006/time#2016> ,
+                                         <http://www.w3.org/ns/prov-o-20130430> ,
+                                         sosa: ,
+                                         <https://w3id.org/bot-0.3.2> ,
+                                         <https://w3id.org/digitalconstruction/0.5/Processes> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://example.org/xemo#contains
+xemo:contains rdf:type owl:ObjectProperty ;
+              owl:inverseOf xemo:isContainedIn ;
+              rdfs:domain xemo:UrbanRegion ;
+              rdfs:range xemo:ConstructionSite ;
+              rdfs:comment "Relates an urban region to a construction site located within it."@en ;
+              rdfs:label "contains"@en .
+
+
+###  https://example.org/xemo#emitsPollutant
+xemo:emitsPollutant rdf:type owl:ObjectProperty ;
+                    rdfs:domain xemo:EmissionSource ;
+                    rdfs:range xemo:Pollutant ;
+                    rdfs:comment "Relates an emission source to a pollutant it emits."@en ;
+                    rdfs:label "emits pollutant"@en .
+
+
+###  https://example.org/xemo#hasAveragingPeriod
+xemo:hasAveragingPeriod rdf:type owl:ObjectProperty ;
+                        rdfs:domain xemo:Threshold ;
+                        rdfs:range xemo:AveragingPeriod ;
+                        rdfs:comment "Relates a threshold to the averaging period used for evaluating observations."@en ;
+                        rdfs:label "has averaging period"@en .
+
+
+###  https://example.org/xemo#hasConstructionActivity
+xemo:hasConstructionActivity rdf:type owl:ObjectProperty ;
+                             owl:inverseOf xemo:isConstructionActivityOfArea ;
+                             rdfs:domain xemo:ConstructionArea ;
+                             rdfs:range xemo:ConstructionActivity ;
+                             rdfs:comment "Relates a construction area to a construction activity carried out within it."@en ;
+                             rdfs:label "has construction activity"@en .
+
+
+###  https://example.org/xemo#hasConstructionArea
+xemo:hasConstructionArea rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf bot:hasSpace ;
+                         owl:inverseOf xemo:isConstructionAreaOf ;
+                         rdfs:domain xemo:ConstructionSite ;
+                         rdfs:range xemo:ConstructionArea ;
+                         rdfs:comment "Relates a construction site to one of its construction areas."@en ;
+                         rdfs:label "has construction area"@en .
+
+
+###  https://example.org/xemo#hasQuantityValue
+xemo:hasQuantityValue rdf:type owl:ObjectProperty ;
+                      rdfs:domain xemo:Threshold ;
+                      rdfs:range qudt:QuantityValue ;
+                      rdfs:comment "Associates a threshold with its numeric value and unit ."@en ;
+                      rdfs:label "has quantity value"@en .
+
+
+###  https://example.org/xemo#hasStatisticalMethod
+xemo:hasStatisticalMethod rdf:type owl:ObjectProperty ;
+                          rdfs:domain xemo:Threshold ;
+                          rdfs:range xemo:StatisticalMethod ;
+                          rdfs:comment "Specifies the statistic used for evaluation (e.g., mean, max)."@en ;
+                          rdfs:label "has statistical method"@en .
+
+
+###  https://example.org/xemo#hasThreshold
+xemo:hasThreshold rdf:type owl:ObjectProperty ;
+                  owl:inverseOf xemo:isThresholdOfPollutant ;
+                  rdfs:domain xemo:Pollutant ;
+                  rdfs:range xemo:Threshold ;
+                  rdfs:comment "Relates a pollutant to a threshold that applies to it."@en ;
+                  rdfs:label "has threshold"@en .
+
+
+###  https://example.org/xemo#hasThresholdKind
+xemo:hasThresholdKind rdf:type owl:ObjectProperty ;
+                      rdfs:domain xemo:Threshold ;
+                      rdfs:range xemo:ThresholdKind ;
+                      rdfs:comment "Specifies the kind of threshold (e.g., limit value, alert)."@en ;
+                      rdfs:label "has threshold kind"@en .
+
+
+###  https://example.org/xemo#isConstructionActivityOfArea
+xemo:isConstructionActivityOfArea rdf:type owl:ObjectProperty ;
+                                  rdfs:comment "Relates an activity to the area where it is carried out."@en ;
+                                  rdfs:label "is construction activity of area"@en .
+
+
+###  https://example.org/xemo#isConstructionAreaOf
+xemo:isConstructionAreaOf rdf:type owl:ObjectProperty ;
+                          rdfs:comment "Relates a construction area to the construction site it belongs to."@en ;
+                          rdfs:label "is construction area of"@en .
+
+
+###  https://example.org/xemo#isContainedIn
+xemo:isContainedIn rdf:type owl:ObjectProperty ;
+                   rdfs:comment "Relates a construction site to the urban region that contains it."@en ;
+                   rdfs:label "is contained in"@en .
+
+
+###  https://example.org/xemo#isInstalledIn
+xemo:isInstalledIn rdf:type owl:ObjectProperty ;
+                   rdfs:range xemo:ConstructionArea ;
+                   rdfs:comment "Relates a monitoring asset or hosting support to the construction area where it is installed."@en ;
+                   rdfs:label "is installed in"@en .
+
+
+###  https://example.org/xemo#isThresholdOfPollutant
+xemo:isThresholdOfPollutant rdf:type owl:ObjectProperty ;
+                            rdfs:domain xemo:Threshold ;
+                            rdfs:range xemo:Pollutant ;
+                            rdfs:comment "Links a threshold to the pollutant it applies to."@en ;
+                            rdfs:label "is threshold of pollutant"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://example.org/xemo#AirPollutant
+xemo:AirPollutant rdf:type owl:Class ;
+                  rdfs:subClassOf xemo:Pollutant ;
+                  rdfs:comment "Pollutant observed as a concentration in air (e.g., PM10, PM2.5)."@en ;
+                  rdfs:label "Air pollutant"@en .
+
+
+###  https://example.org/xemo#AveragingPeriod
+xemo:AveragingPeriod rdf:type owl:Class ;
+                     rdfs:subClassOf time:DurationDescription ;
+                     rdfs:label "Averaging period"@en ,
+                                "Time window over which observed values are aggregated for threshold evaluation."@en .
+
+
+###  https://example.org/xemo#ConstructionActivity
+xemo:ConstructionActivity rdf:type owl:Class ;
+                          rdfs:subClassOf xemo:EmissionSource ,
+                                          <https://w3id.org/digitalconstruction/0.5/Processes#Activity> ;
+                          rdfs:comment "Construction task or operation carried out within a construction area, potentially associated with a pollutant emission generation."@en ;
+                          rdfs:label "Construction activity"@en .
+
+
+###  https://example.org/xemo#ConstructionArea
+xemo:ConstructionArea rdf:type owl:Class ;
+                      rdfs:subClassOf xemo:EmissionSource ,
+                                      bot:Space ;
+                      rdfs:comment "Spatial subdivision of a construction site where one or more construction activities are carried out (e.g., excavation zone, material storage)."@en ;
+                      rdfs:label "Construction area"@en .
+
+
+###  https://example.org/xemo#ConstructionSite
+xemo:ConstructionSite rdf:type owl:Class ;
+                      rdfs:subClassOf xemo:EmissionSource ,
+                                      bot:Site ;
+                      rdfs:comment "Construction project site comprising one or more construction areas."@en ;
+                      rdfs:label "Construction site"@en .
+
+
+###  https://example.org/xemo#EmissionSource
+xemo:EmissionSource rdf:type owl:Class ;
+                    rdfs:subClassOf sosa:FeatureOfInterest ;
+                    rdfs:comment "A source of pollutant emissions, at different spatial and functional scales (i.e., site, area, activity)."@en ;
+                    rdfs:label "Emission source"@en .
+
+
+###  https://example.org/xemo#Noise
+xemo:Noise rdf:type owl:Class ;
+           rdfs:subClassOf xemo:Pollutant ;
+           rdfs:comment "Pollutant representing acoustic noise levels."@en ;
+           rdfs:label "Noise"@en .
+
+
+###  https://example.org/xemo#Pollutant
+xemo:Pollutant rdf:type owl:Class ;
+               rdfs:subClassOf sosa:ObservableProperty ;
+               rdfs:comment "Observable property representing a pollutant or stressor that can be monitored (e.g., PM10, noise)."@en ;
+               rdfs:label "Pollutant"@en .
+
+
+###  https://example.org/xemo#StatisticalMethod
+xemo:StatisticalMethod rdf:type owl:Class ;
+                       rdfs:comment "Statistic used to evaluate observations against a threshold (e.g., mean, max)."@en ;
+                       rdfs:label "Statistical method"@en .
+
+
+###  https://example.org/xemo#Threshold
+xemo:Threshold rdf:type owl:Class ;
+               rdfs:subClassOf prov:Entity ;
+               rdfs:comment "Normative or operational limit value for an observed pollutant, defined with value, unit, and aggregation criterion."@en ;
+               rdfs:label "Threshold"@en .
+
+
+###  https://example.org/xemo#ThresholdKind
+xemo:ThresholdKind rdf:type owl:Class ;
+                   rdfs:comment "Category of threshold."@en ;
+                   rdfs:label "Threshold kind"@en .
+
+
+###  https://example.org/xemo#UrbanRegion
+xemo:UrbanRegion rdf:type owl:Class ;
+                 rdfs:comment "Portion of an urban context (e.g., district or neighbourhood)."@en ;
+                 rdfs:label "Urban region"@en .
+
+
+###  https://example.org/xemo#Vibration
+xemo:Vibration rdf:type owl:Class ;
+               rdfs:subClassOf xemo:Pollutant ;
+               rdfs:comment "Pollutant representing vibration levels."@en ;
+               rdfs:label "Vibration"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+###  https://example.org/xemo#AlertThreshold
+xemo:AlertThreshold rdf:type owl:NamedIndividual ,
+                             xemo:ThresholdKind ;
+                    rdfs:comment "Threshold kind representing a value whose exceedance should trigger an alert and timely response actions."@en ;
+                    rdfs:label "Alert threshold"@en .
+
+
+###  https://example.org/xemo#DailyAveragingPeriod
+xemo:DailyAveragingPeriod rdf:type owl:NamedIndividual ,
+                                   xemo:AveragingPeriod ;
+                          time:days 1 ;
+                          rdfs:comment "Averaging period of one day."@en ;
+                          rdfs:label "Daily averaging period"@en .
+
+
+###  https://example.org/xemo#DirectiveEU2024_2881
+xemo:DirectiveEU2024_2881 rdf:type owl:NamedIndividual ,
+                                   prov:Entity .
+
+
+###  https://example.org/xemo#HourlyAveragingPeriod
+xemo:HourlyAveragingPeriod rdf:type owl:NamedIndividual ,
+                                    xemo:AveragingPeriod ;
+                           time:hours 1 ;
+                           rdfs:comment "Averaging period of one hour."@en ;
+                           rdfs:label "Hourly averaging period"@en .
+
+
+###  https://example.org/xemo#LimitValue
+xemo:LimitValue rdf:type owl:NamedIndividual ,
+                         xemo:ThresholdKind ;
+                rdfs:comment "Threshold kind representing a normative or target value that should be complied with under the specified conditions."@en ;
+                rdfs:label "Limit value"@en .
+
+
+###  https://example.org/xemo#Mean
+xemo:Mean rdf:type owl:NamedIndividual ,
+                   xemo:StatisticalMethod ;
+          rdfs:comment "Statistical method representing the arithmetic mean of observed values over a specified averaging period."@en ;
+          rdfs:label "Mean"@en .
+
+
+###  https://example.org/xemo#PM10
+xemo:PM10 rdf:type owl:NamedIndividual ,
+                   xemo:AirPollutant ;
+          rdfs:comment "Particulate matter with diameter of 10 µm or less, commonly monitored as ambient air mass concentration."@en ;
+          rdfs:label "PM10"@en .
+
+
+###  https://example.org/xemo#PM10AlertThreshold2030
+xemo:PM10AlertThreshold2030 rdf:type owl:NamedIndividual ,
+                                     xemo:Threshold ;
+                            prov:wasDerivedFrom xemo:DirectiveEU2024_2881 ;
+                            xemo:hasAveragingPeriod xemo:DailyAveragingPeriod ;
+                            xemo:hasQuantityValue xemo:QV_PM10AlertThreshold2030 ;
+                            xemo:hasStatisticalMethod xemo:Mean ;
+                            xemo:hasThresholdKind xemo:AlertThreshold ;
+                            xemo:isThresholdOfPollutant xemo:PM10 .
+
+
+###  https://example.org/xemo#PM10DailyLimit2030
+xemo:PM10DailyLimit2030 rdf:type owl:NamedIndividual ,
+                                 xemo:Threshold ;
+                        prov:wasDerivedFrom xemo:DirectiveEU2024_2881 ;
+                        xemo:hasAveragingPeriod xemo:DailyAveragingPeriod ;
+                        xemo:hasQuantityValue xemo:QV_PM10DailyLimit2030 ;
+                        xemo:hasStatisticalMethod xemo:Mean ;
+                        xemo:hasThresholdKind xemo:LimitValue ;
+                        xemo:isThresholdOfPollutant xemo:PM10 .
+
+
+###  https://example.org/xemo#PM2_5
+xemo:PM2_5 rdf:type owl:NamedIndividual ,
+                    xemo:AirPollutant ;
+           rdfs:comment "Particulate matter with diameter of 2.5 µm or less, commonly monitored as ambient air mass concentration."@en ;
+           rdfs:label "PM2.5"@en .
+
+
+###  https://example.org/xemo#PM2_5AlertThreshold2030
+xemo:PM2_5AlertThreshold2030 rdf:type owl:NamedIndividual ,
+                                      xemo:Threshold ;
+                             prov:wasDerivedFrom xemo:DirectiveEU2024_2881 ;
+                             xemo:hasAveragingPeriod xemo:DailyAveragingPeriod ;
+                             xemo:hasQuantityValue xemo:QV_PM2_5AlertThreshold2030 ;
+                             xemo:hasStatisticalMethod xemo:Mean ;
+                             xemo:hasThresholdKind xemo:AlertThreshold ;
+                             xemo:isThresholdOfPollutant xemo:PM2_5 .
+
+
+###  https://example.org/xemo#PM2_5DailyLimit2030
+xemo:PM2_5DailyLimit2030 rdf:type owl:NamedIndividual ,
+                                  xemo:Threshold ;
+                         prov:wasDerivedFrom xemo:DirectiveEU2024_2881 ;
+                         xemo:hasAveragingPeriod xemo:DailyAveragingPeriod ;
+                         xemo:hasQuantityValue xemo:QV_PM2_5DailyLimit2030 ;
+                         xemo:hasStatisticalMethod xemo:Mean ;
+                         xemo:hasThresholdKind xemo:LimitValue ;
+                         xemo:isThresholdOfPollutant xemo:PM2_5 .
+
+
+###  https://example.org/xemo#QV_PM10AlertThreshold2030
+xemo:QV_PM10AlertThreshold2030 rdf:type owl:NamedIndividual ,
+                                        qudt:QuantityValue ;
+                               qudt:hasUnit unit:MicroGM-PER-M3 ;
+                               qudt:numericValue 90 .
+
+
+###  https://example.org/xemo#QV_PM10DailyLimit2030
+xemo:QV_PM10DailyLimit2030 rdf:type owl:NamedIndividual ,
+                                    qudt:QuantityValue ;
+                           qudt:hasUnit unit:MicroGM-PER-M3 ;
+                           qudt:numericValue 45 .
+
+
+###  https://example.org/xemo#QV_PM2_5AlertThreshold2030
+xemo:QV_PM2_5AlertThreshold2030 rdf:type owl:NamedIndividual ,
+                                         qudt:QuantityValue ;
+                                 qudt:hasUnit  unit:MicroGM-PER-M3 ;
+                                qudt:numericValue 50 .
+
+
+###  https://example.org/xemo#QV_PM2_5DailyLimit2030
+xemo:QV_PM2_5DailyLimit2030 rdf:type owl:NamedIndividual ,
+                                     qudt:QuantityValue ;
+                            qudt:hasUnit unit:MicroGM-PER-M3 ;
+                            qudt:numericValue 25 .
+
+
+###  https://example.org/xemo#TSP
+xemo:TSP rdf:type owl:NamedIndividual ,
+                  xemo:AirPollutant ;
+         rdfs:comment "Total Suspended Particles (TSP) represent the overall concentration of solid and liquid particles suspended in ambient air (e.g., dust, smoke, soot, aerosols), typically monitored as mass concentration and commonly covering particles up to ~100 µm diameter."@en ;
+         rdfs:label "TSP"@en .
+
+
+###  https://example.org/xemo/demo#Activity_Excavation_01
+demo:Activity_Excavation_01 rdf:type owl:NamedIndividual ,
+                                     xemo:ConstructionActivity .
+
+
+###  https://example.org/xemo/demo#Activity_Excavation_02
+demo:Activity_Excavation_02 rdf:type owl:NamedIndividual ,
+                                     xemo:ConstructionActivity .
+
+
+###  https://example.org/xemo/demo#Activity_Roadwork_01
+demo:Activity_Roadwork_01 rdf:type owl:NamedIndividual ,
+                                   xemo:ConstructionActivity .
+
+
+###  https://example.org/xemo/demo#ConstructionSite_01
+demo:ConstructionSite_01 rdf:type owl:NamedIndividual ,
+                                  xemo:ConstructionSite .
+
+
+###  https://example.org/xemo/demo#Pole_01
+demo:Pole_01 rdf:type owl:NamedIndividual ,
+                      sosa:Platform .
+
+
+###  https://example.org/xemo/demo#Pole_02
+demo:Pole_02 rdf:type owl:NamedIndividual ,
+                      sosa:Platform .
+
+
+###  https://example.org/xemo/demo#Pole_03
+demo:Pole_03 rdf:type owl:NamedIndividual ,
+                      sosa:Platform .
+
+
+###  https://example.org/xemo/demo#Sensor_Airnode_01
+demo:Sensor_Airnode_01 rdf:type owl:NamedIndividual ,
+                                sosa:Sensor .
+
+
+###  https://example.org/xemo/demo#Sensor_Airnode_02
+demo:Sensor_Airnode_02 rdf:type owl:NamedIndividual ,
+                                sosa:Sensor .
+
+
+###  https://example.org/xemo/demo#Sensor_Airnode_03
+demo:Sensor_Airnode_03 rdf:type owl:NamedIndividual ,
+                                sosa:Sensor .
+
+
+###  https://example.org/xemo/demo#UrbanRegion_01
+demo:UrbanRegion_01 rdf:type owl:NamedIndividual ,
+                             xemo:UrbanRegion .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
+

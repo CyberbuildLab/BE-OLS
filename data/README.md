@@ -7,16 +7,26 @@ This folder keeps  the source data and is the entry point for automated Excel-to
 * **`submissions` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here.
 
 * **`source` folder** - the ontologies submitted by users to be added to the BE-OLS are first recorded here. This contains:
-  * **`Ontologies.xlsx`** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
-  * **`Ontology_characterisation.jpynb`** - the Jupyter Notebook used to process `Ontologies.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder. This must be run manually, locally on your computer.
+  * **`ontologies_source.xlsx`** - the main Excel workbook where collaborators enter core information for all ontologies in the database as well as manual information for ontology without URI.
+  * **`ontology_characterisation_v31.jpynb`** - the Jupyter Notebook used to process `ontologies_source.xlsx` to generate `Ontologies\_forRepo.xlsx` in the parent folder. This must be run manually, locally on your computer.
 
 * **`Ontologies\_forRepo.xlsx`** - the main Excel workbook containing the data used by front-end and other code. It must contain a sheet named **Data**.
 
-* **`Ontologies\_forRepo.json`** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes.
+* **`Ontologies\_forRepo.json`** - the live JSON file used by front-end and other code. It is regenerated automatically whenever the corresponding Excel file changes in Github.
 
 * **`..\output` folder** - contains timestamped JSON backups that are relevant to this conversion process. See `output/README.md` for details.
 
 * **`Network Graph` folder** - depricated; to be removed eventually.
+
+## Incremental Processing of `ontologies_source.xlsx`
+
+Running `ontology_characterisation_v31.ipynb` used to reprocess every ontology from scratch on every run — re-parsing every TTL file and re-querying the external FOOPs API for all of them, even when only one or two rows had actually changed. The notebook now caches the expensive per-ontology work (TTL parsing and FOOPs scoring) in `data/source/.characterisation_cache.json`, keyed by content hashes:
+
+* An ontology's TTL-derived data (title, description, references, class/property counts, annotation coverage) is only re-extracted if either the spreadsheet row's own fields **or** the TTL file's content have changed since the last run.
+* An ontology's FOOPs score is only re-queried if its URI has changed since the last successful score.
+* The corpus-wide cross-referencing (which ontologies link to/are linked by which) still recomputes fresh over the **full** ontology list on every run — that step is cheap and inherently needs to see every ontology (an unrelated edit elsewhere in the sheet can still change who links to whom).
+
+The cache file is local-only (gitignored) and safe to delete at any time — the next run will simply rebuild it from scratch. Each run cell also exposes a force flag (`FORCE_REPROCESS_ALL` / `FORCE_REFRESH_FOOPS`) to bypass the cache entirely, e.g. after changing the extraction logic in the notebook.
 
 ## Automatic Conversion
 

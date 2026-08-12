@@ -1,0 +1,13 @@
+{
+  "Title": "BIMxel: Ontology for Sustainable Building Information Management",
+  "Prefix": "bimxel",
+  "Version": "0.2.0",
+  "Created": "2026",
+  "Description": "The BIMxel ontology acts as a semantic bridge between widely adopted ontologies and standards (including: BOT, SAREF, SAREF4ENER, PROV-O, DCAT, QUDT, GeoSPARQL and BEO) to support the interoperable generation of building digital twins. BIMxel integrates BIM data, sensors, measurements, external data services, and provenance information into a unified knowledge graph, enabling continuous monitoring of building operation and energy consumption. By linking heterogeneous sources such as IFC models, IoT devices and physical properties, the ontology provides a scalable semantic foundation for assessing operational carbon impact and supporting data-driven strategies for more sustainable buildings.",
+  "uri": "https://w3id.org/bimxel#",
+  "Reference": "https://w3id.org/bimxel#",
+  "Linked-to ontologies AECO": "beo;bot;mep;saref;s4bldg;s4city;s4ener;s4watr",
+  "Linked-to ontologies UPPER": "prov;schema;dcat;dcterms",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://ontologia-bimxels-185727.mygitpages.cs.upc.edu/ontology.ttl"
+}
