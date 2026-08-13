@@ -215,6 +215,19 @@ async function loadClassHierarchy(ontology, availableOntologies) {
     }
 }
 
+// Blank-equivalent tokens for the Governance axis (mirrors is_meaningful_value()
+// in ontology_characterisation_v31.ipynb, so the breakdown table's Yes/No
+// always agrees with the precomputed Governance Score).
+const GOVERNANCE_BLANK_TOKENS = new Set([
+    '', 'none', 'null', 'nan', 'n/d', 'n/a', 'na', 'unknown', 'n.a', 'n.a.'
+]);
+
+function isMeaningfulValue(value) {
+    if (value === null || value === undefined) return false;
+    if (typeof value === 'number') return !Number.isNaN(value);
+    return !GOVERNANCE_BLANK_TOKENS.has(String(value).trim().toLowerCase());
+}
+
 // Function to Populate Evaluation Table
 function populateEvaluationTable(ontology) {
     const breakdown = document.getElementById("evaluation-breakdown");
@@ -236,6 +249,11 @@ function populateEvaluationTable(ontology) {
             { criteria: "Clearly documented", key: "Has Documentation" },
             { criteria: "Use of annotations", key: "Has Annotations" },
             { criteria: "Reused/Extended", key: "Is Reused by Other AECO Ontologies" }
+        ],
+        "Governance": [
+            { criteria: "License present", key: "License", meaningful: true },
+            { criteria: "Version present", key: "Version", meaningful: true },
+            { criteria: "Creator identified", key: "Creator", meaningful: true }
         ]
     };
 
@@ -243,7 +261,8 @@ function populateEvaluationTable(ontology) {
     const axisScores = {
         "Connectivity": ontology["Alignment Score"] || 0,
         "Accessibility": ontology["Accessibility Score"] || 0,
-        "Documentation & Reuse": ontology["Quality Score"] || 0
+        "Documentation & Reuse": ontology["Quality Score"] || 0,
+        "Governance": ontology["Governance Score"] || 0
     };
 
     Object.entries(evaluationCriteria).forEach(([axis, criteriaList]) => {
@@ -254,8 +273,10 @@ function populateEvaluationTable(ontology) {
             let value = ontology[item.key];
             let isYes = false;
 
-            // Handle different value types
-            if (value !== null && value !== undefined) {
+            if (item.meaningful) {
+                isYes = isMeaningfulValue(value);
+            } else if (value !== null && value !== undefined) {
+                // Handle different value types
                 if (typeof value === 'number') {
                     isYes = value >= 1;
                 } else if (typeof value === 'string') {
@@ -294,14 +315,15 @@ function renderSpiderChart(ontology) {
     new Chart(ctx, {
         type: "radar",
         data: {
-            labels: ["Connectivity", "Accessibility", ["Documentation", "& Reuse"]],
+            labels: ["Connectivity", "Accessibility", ["Documentation", "& Reuse"], "Governance"],
             datasets: [
                 {
                     label: ontology.Title,
                     data: [
                         ontology["Alignment Score"] || 0,
                         ontology["Accessibility Score"] || 0,
-                        ontology["Quality Score"] || 0
+                        ontology["Quality Score"] || 0,
+                        ontology["Governance Score"] || 0
                     ],
                     backgroundColor: "rgba(255, 99, 132, 0.2)",
                     borderColor: "rgba(255, 99, 132, 1)",
@@ -316,8 +338,8 @@ function renderSpiderChart(ontology) {
             plugins: { legend: { display: false } },
             scales: {
                 r: {
-                    suggestedMin: 0,
-                    suggestedMax: 3,
+                    min: 0,
+                    max: 3,
                     ticks: { stepSize: 1 }
                 }
             }
