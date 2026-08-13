@@ -38,6 +38,7 @@ COLUMN_MAPPING = {
     "score_alignment": "Alignment Score",
     "score_accessibility": "Accessibility Score",
     "score_quality": "Quality Score",
+    "score_governance": "Governance Score",
 }
 
 def excel_to_json(input_path, output_path, sheet_name='Data'):
