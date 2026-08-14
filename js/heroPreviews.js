@@ -1,4 +1,4 @@
-// Drives the three "live preview" cards in the landing page hero: a sample
+// Drives the four "live preview" cards in the landing page hero: a sample
 // spider chart (Ontology Cards), live dataset stats (Analytics), and a small
 // non-interactive network graph (Ontology Network Graph). Each preview pulls
 // from the same data/Ontologies_forRepo.json used elsewhere on the site.
@@ -26,6 +26,7 @@ function scoresFor(ontology) {
         Number(ontology["Alignment Score"]) || 0,
         Number(ontology["Accessibility Score"]) || 0,
         Number(ontology["Quality Score"]) || 0,
+        Number(ontology["Governance Score"]) || 0,
     ];
 }
 
@@ -45,7 +46,7 @@ function renderHeroSpiderPreview(ontologies) {
     const chart = new Chart(canvas.getContext("2d"), {
         type: "radar",
         data: {
-            labels: ["Connectivity", "Accessibility", ["Documentation", "& Reuse"]],
+            labels: ["Connectivity", "Accessibility", ["Documentation", "& Reuse"], "Governance"],
             datasets: [
                 {
                     label: cycleOrder[0].Title,
@@ -64,9 +65,9 @@ function renderHeroSpiderPreview(ontologies) {
             plugins: { legend: { display: false } },
             scales: {
                 r: {
-                    suggestedMin: 0,
-                    suggestedMax: 3,
-                    ticks: { display: false },
+                    min: 0,
+                    max: 3,
+                    ticks: { stepSize: 1, display: false },
                     pointLabels: { font: { size: 8 } },
                 },
             },

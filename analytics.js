@@ -680,6 +680,7 @@ function renderCompareCards() {
                     <div class="compare-metric-row"><span class="compare-metric-label">Quality Score</span><span class="compare-metric-value">${formatScore(ontology['Quality Score'])}</span></div>
                     <div class="compare-metric-row"><span class="compare-metric-label">Accessibility Score</span><span class="compare-metric-value">${formatScore(ontology['Accessibility Score'])}</span></div>
                     <div class="compare-metric-row"><span class="compare-metric-label">Alignment Score</span><span class="compare-metric-value">${formatScore(ontology['Alignment Score'])}</span></div>
+                    <div class="compare-metric-row"><span class="compare-metric-label">Governance Score</span><span class="compare-metric-value">${formatScore(ontology['Governance Score'])}</span></div>
                     <div class="compare-metric-row"><span class="compare-metric-label">Annotation Score</span><span class="compare-metric-value">${formatScore(ontology['Annotation Score'])}</span></div>
                     <div class="compare-metric-row"><span class="compare-metric-label">FOOPs Score</span><span class="compare-metric-value">${formatScore(ontology['FOOPs Score'])}</span></div>
                     <div class="compare-metric-row"><span class="compare-metric-label">Number of Classes</span><span class="compare-metric-value">${formatScore(ontology['Number of Classes'])}</span></div>
@@ -698,12 +699,13 @@ function renderCompareCards() {
         const chart = new Chart(canvas, {
             type: 'radar',
             data: {
-                labels: ['Connectivity', 'Accessibility', ['Documentation', '& Reuse']],
+                labels: ['Connectivity', 'Accessibility', ['Documentation', '& Reuse'], 'Governance'],
                 datasets: [{
                     data: [
                         toNumber(ontology['Alignment Score']),
                         toNumber(ontology['Accessibility Score']),
                         toNumber(ontology['Quality Score']),
+                        toNumber(ontology['Governance Score']),
                     ],
                     borderColor: color,
                     backgroundColor: color + '26', // ~15% opacity wash

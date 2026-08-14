@@ -11,6 +11,21 @@ async function loadOntologies() {
         const ontologies = await response.json();
         window.ontologiesData = ontologies;
         console.log('Ontologies loaded:', ontologies);
+
+        // Best-effort: lets search also match each ontology's TTL vocabulary
+        // (class/property names + descriptions), not just its listed metadata.
+        // Missing/failed load just means search falls back to metadata only.
+        window.ttlSearchIndex = {};
+        try {
+            const indexResponse = await fetch('data/Ontologies_TTL_SearchIndex.json');
+            if (indexResponse.ok) {
+                const index = await indexResponse.json();
+                window.ttlSearchIndex = index.ontologies || {};
+            }
+        } catch (indexError) {
+            console.warn('TTL search index unavailable, falling back to metadata-only search:', indexError);
+        }
+
         populateYearFilter(ontologies);
         applyCurrentView();
     } catch (error) {
@@ -24,19 +39,21 @@ async function loadOntologies() {
 // Generate a spider chart and return it as a data URL
 function generateSpiderChart(data) {
     const canvas = document.createElement('canvas');
-    canvas.width = 300;
-    canvas.height = 300;
+    // Wider than the plotted shape needs, so the east/west axis labels
+    // (Accessibility / Governance) have room to sit outside the diamond
+    // without being clipped by the canvas edge. Stays square (1:1), so the
+    // card's object-fit:cover crop framing is unaffected.
+    canvas.width = 380;
+    canvas.height = 380;
     const ctx = canvas.getContext('2d');
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const radius = 100; // Full axis length
-    const angles = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
-    const values = [
-        data.Connectivity || 0,
-        data.Accessibility || 0,
-        data["Documentation & Reuse"] || 0,
-    ];
+    const labels = ['Connectivity', 'Accessibility', 'Documentation & Reuse', 'Governance'];
+    // Evenly spaced around the circle (starting at the top), however many axes there are.
+    const angles = labels.map((_, i) => (2 * Math.PI * i) / labels.length - Math.PI / 2);
+    const values = labels.map((label) => data[label] || 0);
     const maxValue = 3; // 3 segments
 
     // Clear canvas
@@ -71,7 +88,6 @@ function generateSpiderChart(data) {
     });
 
     // Add axis labels
-    const labels = ['Connectivity', 'Accessibility', 'Documentation & Reuse'];
     ctx.font = '14px Arial';
     ctx.fillStyle = '#000';
     ctx.textAlign = 'center';
@@ -137,6 +153,7 @@ function displayOntologies(ontologies) {
             Connectivity: ontology["Alignment Score"],
             Accessibility: ontology["Accessibility Score"],
             "Documentation & Reuse": ontology["Quality Score"],
+            Governance: ontology["Governance Score"],
         });
 
         // Check if the URI is missing. If missing, route to the missingURI.html - 20251202
@@ -182,7 +199,7 @@ let currentSortDir = 'desc';
 // Sort fields where "biggest number first" is the more useful default;
 // everything else (name, domain) defaults to ascending (A-Z).
 const DESC_BY_DEFAULT = new Set([
-    'fair', 'quality', 'accessibility', 'alignment', 'annotation',
+    'fair', 'quality', 'accessibility', 'alignment', 'annotation', 'governance',
     'classes', 'object-properties', 'data-properties', 'connectivity', 'year',
 ]);
 
@@ -206,11 +223,19 @@ function computeFilteredList() {
 
     if (filterState.search) {
         const query = filterState.search.toLowerCase();
-        list = list.filter((ontology) =>
-            Object.values(ontology).some((value) =>
+        const ttlIndex = window.ttlSearchIndex || {};
+        list = list.filter((ontology) => {
+            const metadataMatch = Object.values(ontology).some((value) =>
                 value && String(value).toLowerCase().includes(query)
-            )
-        );
+            );
+            if (metadataMatch) return true;
+
+            // Fall back to the ontology's own TTL vocabulary (class/property
+            // names + descriptions), so e.g. searching a class name finds the
+            // ontology even if that term isn't mentioned in its metadata.
+            const ttlEntry = ontology.Prefix && ttlIndex[ontology.Prefix];
+            return !!(ttlEntry && ttlEntry.text && ttlEntry.text.toLowerCase().includes(query));
+        });
     }
 
     if (filterState.domain !== 'all') {
@@ -255,6 +280,9 @@ function sortOntologies(list, criterion, direction) {
             break;
         case 'alignment':
             sorted.sort(byNumber('Alignment Score'));
+            break;
+        case 'governance':
+            sorted.sort(byNumber('Governance Score'));
             break;
         case 'annotation':
             sorted.sort(byNumber('Annotation Score'));

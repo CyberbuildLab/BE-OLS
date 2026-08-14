@@ -11,7 +11,7 @@
     "Reference Source": "https://ci.mines-stetienne.fr/aec3po/",
     "Version": null,
     "Created": "2025-04-22",
-    "Creator": "https://w3id.org/lbd/aec3po/edlira, https://w3id.org/lbd/aec3po/pan",
+    "Creator": "['https://w3id.org/lbd/aec3po/edlira', 'https://w3id.org/lbd/aec3po/pan']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -28,8 +28,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 1
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/aic#",
@@ -43,7 +42,7 @@
     "Reference Source": "https://digiconstructlab-tu-delft.github.io/AiC-Ontology/",
     "Version": "1.1.0",
     "Created": "2026-06-20",
-    "Creator": "Irfan Čustović, Jianpeng Cao, Ranjith Soman",
+    "Creator": "['Irfan Čustović', 'Jianpeng Cao', 'Ranjith Soman']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -60,8 +59,7 @@
     "Number of Object Properties": 36.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/annotation-objects#",
@@ -75,7 +73,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.2",
     "Created": 2020,
-    "Creator": "María Poveda-Villalón, Serge Chávez-Feria",
+    "Creator": "['María Poveda-Villalón', 'Serge Chávez-Feria']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building, io, kpi",
@@ -92,8 +90,7 @@
     "Number of Object Properties": 9.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/aoi#",
@@ -107,7 +104,7 @@
     "Reference Source": "http://dx.doi.org/10.13140/RG.2.2.32606.97607",
     "Version": 0.2,
     "Created": 2021,
-    "Creator": "nd19306e7a4224ab7b4a3e10a0f8f009eb1",
+    "Creator": "['nd19306e7a4224ab7b4a3e10a0f8f009eb1']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": "dot",
@@ -124,8 +121,7 @@
     "Number of Object Properties": 4.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/asbingowl/core#",
@@ -139,7 +135,7 @@
     "Reference Source": "https://publications.rwth-aachen.de/record/824017/files/824017.pdf",
     "Version": null,
     "Created": 2022,
-    "Creator": "nc6f049b2c23443a18739dc1e0fdfbaceb1",
+    "Creator": "['nc6f049b2c23443a18739dc1e0fdfbaceb1']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -156,8 +152,7 @@
     "Number of Object Properties": 549.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.2,
-    "Governance Score": 2
+    "Quality Score": 1.2
   },
   {
     "URI": "https://alexdonkers.github.io/bao#",
@@ -171,7 +166,7 @@
     "Reference Source": "https://alexdonkers.github.io/bao/",
     "Version": "1.0",
     "Created": 2021,
-    "Creator": "https://orcid.org/0000-0002-8809-3277",
+    "Creator": "['https://orcid.org/0000-0002-8809-3277']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -188,8 +183,7 @@
     "Number of Object Properties": 32.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 2
+    "Quality Score": 2.0
   },
   {
     "URI": "https://github.com/linmor-sys/BCAO.owl#",
@@ -220,8 +214,7 @@
     "Number of Object Properties": 18.0,
     "Alignment Score": 0,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "http://lbd.arch.rwth-aachen.de/bcfOWL_V1/index-en.html ",
@@ -235,7 +228,7 @@
     "Reference Source": "https://linkedbuildingdata.net/ldac2021/files/papers/CIB_W78_2021_paper_122.pdf",
     "Version": "0.7.0",
     "Created": 2022,
-    "Creator": "Jakob Beetz, Jyrki Oraskai, Oliver Schulz",
+    "Creator": "['Jakob Beetz', 'Jyrki Oraskai', 'Oliver Schulz']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "bot, geosparql",
@@ -252,8 +245,7 @@
     "Number of Object Properties": 31.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -267,7 +259,7 @@
     "Reference Source": "https://depositonce.tu-berlin.de/handle/11303/11740.2",
     "Version": "0.1.1",
     "Created": "2020-10-31T12:00:00",
-    "Creator": "bim-speed/Jerson Pinzon",
+    "Creator": "['bim-speed/Jerson Pinzon']",
     "Publisher": null,
     "License": "GPL 3.0",
     "Linked-to AECO Ontologies": null,
@@ -284,8 +276,7 @@
     "Number of Object Properties": 52.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": "https://pi.pauwel.be/voc/buildingelement#",
@@ -299,7 +290,7 @@
     "Reference Source": "https://pi.pauwel.be/voc/buildingelement",
     "Version": "December 27th 2018",
     "Created": "2018-12-27",
-    "Creator": "nd1e355ce2bcc497390a5de8def6190dcb1",
+    "Creator": "['nd1e355ce2bcc497390a5de8def6190dcb1']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": null,
@@ -316,8 +307,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -331,7 +321,7 @@
     "Reference Source": "https://doi.org/10.1016/j.autcon.2022.104728",
     "Version": null,
     "Created": 2023,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "bot, brick",
@@ -348,8 +338,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -363,7 +352,7 @@
     "Reference Source": "https://www.sciencedirect.com/science/article/pii/S0926580517302364#s0035",
     "Version": null,
     "Created": 2017,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "fc, bimso",
@@ -380,8 +369,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 2,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -395,7 +383,7 @@
     "Reference Source": "https://www.sciencedirect.com/science/article/pii/S0926580517302364#s0035",
     "Version": null,
     "Created": 2017,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "fc",
@@ -412,8 +400,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 2,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://bimerr.iot.linkeddata.es/def/metadata/",
@@ -427,7 +414,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.1",
     "Created": 2020,
-    "Creator": "María Poveda-Villalón, Serge Chávez-Feria",
+    "Creator": "['María Poveda-Villalón', 'Serge Chávez-Feria']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -444,8 +431,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/bop#",
@@ -459,7 +445,7 @@
     "Reference Source": "https://w3id.org/bop#",
     "Version": "1.5",
     "Created": 2021,
-    "Creator": "https://orcid.org/0000-0002-8809-3277",
+    "Creator": "['https://orcid.org/0000-0002-8809-3277']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -476,8 +462,7 @@
     "Number of Object Properties": 50.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/bot#",
@@ -491,7 +476,7 @@
     "Reference Source": "https://www.semantic-web-journal.net/system/files/swj2279.pdf",
     "Version": "0.3.2",
     "Created": "2020-07-31T08:51:00",
-    "Creator": "Mads Holten Rasmussen, Pieter Pauwels, Maxime Lefrançois, Georg Ferdinand Schneider, http://maxime-lefrancois.info/me#, https://orcid.org/0000-0002-2033-859X, https://orcid.org/0000-0002-6519-7057, https://orcid.org/0000-0001-8020-4609",
+    "Creator": "['Mads Holten Rasmussen', 'Pieter Pauwels', 'Maxime Lefrançois', 'Georg Ferdinand Schneider', 'http://maxime-lefrancois.info/me#', 'https://orcid.org/0000-0002-2033-859X', 'https://orcid.org/0000-0002-6519-7057', 'https://orcid.org/0000-0001-8020-4609']",
     "Publisher": null,
     "License": "W3C CLA",
     "Linked-to AECO Ontologies": null,
@@ -508,8 +493,7 @@
     "Number of Object Properties": 16.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/bpo#",
@@ -523,7 +507,7 @@
     "Reference Source": "https://annawagner.github.io/bpo/   ",
     "Version": "1.2",
     "Created": 2019,
-    "Creator": "n6ede6c6952d74765b87915088937a49fb8, n6ede6c6952d74765b87915088937a49fb9, n6ede6c6952d74765b87915088937a49fb10, n6ede6c6952d74765b87915088937a49fb11",
+    "Creator": "['n6ede6c6952d74765b87915088937a49fb8', 'n6ede6c6952d74765b87915088937a49fb9', 'n6ede6c6952d74765b87915088937a49fb10', 'n6ede6c6952d74765b87915088937a49fb11']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -540,8 +524,7 @@
     "Number of Object Properties": 18.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -555,7 +538,7 @@
     "Reference Source": "https://brickschema.org/resources/",
     "Version": "1.4.4",
     "Created": "2025-05-01",
-    "Creator": "n2f19e401e7014f6a8421084ec8d9999db7274",
+    "Creator": "['n2f19e401e7014f6a8421084ec8d9999db7274']",
     "Publisher": "n2f19e401e7014f6a8421084ec8d9999db7276",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "sosa",
@@ -572,8 +555,7 @@
     "Number of Object Properties": 124.0,
     "Alignment Score": 3,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/brot#",
@@ -587,7 +569,7 @@
     "Reference Source": "https://alhakam.github.io/brot/",
     "Version": 0.21,
     "Created": "29th March 2022",
-    "Creator": "nf52493ed3b3943df87e698db3be3846ab1, nf52493ed3b3943df87e698db3be3846ab2",
+    "Creator": "['nf52493ed3b3943df87e698db3be3846ab1', 'nf52493ed3b3943df87e698db3be3846ab2']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": null,
@@ -604,8 +586,7 @@
     "Number of Object Properties": 9.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/building#",
@@ -619,7 +600,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.1.5",
     "Created": 2020,
-    "Creator": "The Building ontology has been developed to perform as the core module of the BIMERR project, containing information related to buidling topology, components, materials, and geometry. The geometry information is managed as information objects whitout entering in the details of the BIM model., María Poveda-Villalón, Serge Chávez-Feria",
+    "Creator": "['The Building ontology has been developed to perform as the core module of the BIMERR project, containing information related to buidling topology, components, materials, and geometry. The geometry information is managed as information objects whitout entering in the details of the BIM model.', 'María Poveda-Villalón', 'Serge Chávez-Feria']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "io, kpi, mat, saref, bot, saref4bldg",
@@ -636,8 +617,7 @@
     "Number of Object Properties": 15.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.8,
-    "Governance Score": 3
+    "Quality Score": 1.8
   },
   {
     "URI": null,
@@ -651,7 +631,7 @@
     "Reference Source": "https://biblio.ugent.be/publication/8604544",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -668,8 +648,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/cdc#",
@@ -683,7 +662,7 @@
     "Reference Source": null,
     "Version": "0.0.1",
     "Created": "2020-12-18",
-    "Creator": "ne619ec86c2f944c89cc63727dfcdbd37b1",
+    "Creator": "['ne619ec86c2f944c89cc63727dfcdbd37b1']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -700,8 +679,7 @@
     "Number of Object Properties": 14.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -715,7 +693,7 @@
     "Reference Source": "https://www.researchgate.net/publication/363672959_An_ontology-supported_case-based_reasoning_approach_for_damage_assessment",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "bot, dot, cdo, beo, props , aoi",
@@ -732,8 +710,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 2,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -747,7 +724,7 @@
     "Reference Source": "https://biblio.ugent.be/publication/8604544",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -764,8 +741,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "http://w3id.org/ci#",
@@ -779,7 +755,7 @@
     "Reference Source": "http://www.doi.org/10.35490/EC3.2025.263",
     "Version": "0.2",
     "Created": "2025-04-07",
-    "Creator": "n50498cb26961412daa958da05531b64bb3, n50498cb26961412daa958da05531b64bb4",
+    "Creator": "['n50498cb26961412daa958da05531b64bb3', 'n50498cb26961412daa958da05531b64bb4']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "cr, cterm",
@@ -796,8 +772,7 @@
     "Number of Object Properties": 24.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 0.0,
-    "Governance Score": 3
+    "Quality Score": 0.0
   },
   {
     "URI": null,
@@ -811,7 +786,7 @@
     "Reference Source": "https://doi.org/10.1016/j.aei.2024.102446",
     "Version": null,
     "Created": 2024,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "sosa, dica, dice",
@@ -828,8 +803,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 0
+    "Quality Score": 0.0
   },
   {
     "URI": "https://w3id.org/con-tax#",
@@ -843,7 +817,7 @@
     "Reference Source": "https://w3id.org/con-tax#",
     "Version": "0.0.1",
     "Created": "2020-11-29",
-    "Creator": "na8e269c577d542908801cfb1ed4a3abab1",
+    "Creator": "['na8e269c577d542908801cfb1ed4a3abab1']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "beo, bot, cto, dot, fog, omg",
@@ -860,8 +834,7 @@
     "Number of Object Properties": 10.0,
     "Alignment Score": 3,
     "Accessibility Score": 2,
-    "Quality Score": 1.4,
-    "Governance Score": 3
+    "Quality Score": 1.4
   },
   {
     "URI": "http://w3id.org/cr#",
@@ -875,7 +848,7 @@
     "Reference Source": "http://www.doi.org/10.35490/EC3.2025.263",
     "Version": "http://w3id.org/cr#",
     "Created": "2025-04-07",
-    "Creator": "n453f48f8a0cf48658d967a1a2b0dfd56b3, n453f48f8a0cf48658d967a1a2b0dfd56b4",
+    "Creator": "['n453f48f8a0cf48658d967a1a2b0dfd56b3', 'n453f48f8a0cf48658d967a1a2b0dfd56b4']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "dtc, ci, cterm",
@@ -892,8 +865,7 @@
     "Number of Object Properties": 32.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 0.0,
-    "Governance Score": 3
+    "Quality Score": 0.0
   },
   {
     "URI": "http://w3id.org/cterm#",
@@ -907,7 +879,7 @@
     "Reference Source": "http://www.doi.org/10.35490/EC3.2025.263",
     "Version": "0.2",
     "Created": "2025-04-07",
-    "Creator": "n4988ccb4e0d2427e8ade174094bc9fa5b3, n4988ccb4e0d2427e8ade174094bc9fa5b4",
+    "Creator": "['n4988ccb4e0d2427e8ade174094bc9fa5b3', 'n4988ccb4e0d2427e8ade174094bc9fa5b4']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "ci, cr",
@@ -924,8 +896,7 @@
     "Number of Object Properties": 22.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 0.0,
-    "Governance Score": 3
+    "Quality Score": 0.0
   },
   {
     "URI": "https://w3id.org/cto#",
@@ -939,7 +910,7 @@
     "Reference Source": "https://mathib.github.io/cto-ontology/",
     "Version": "0.0.1",
     "Created": "2020-12-18",
-    "Creator": "n53412e0464a14ba289f21fa3177c98c1b1",
+    "Creator": "['n53412e0464a14ba289f21fa3177c98c1b1']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "bot, dot",
@@ -956,8 +927,7 @@
     "Number of Object Properties": 8.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.8,
-    "Governance Score": 3
+    "Quality Score": 1.8
   },
   {
     "URI": "https://w3id.org/dano#",
@@ -971,7 +941,7 @@
     "Reference Source": "https://doi.org/10.1016/j.aei.2025.103761",
     "Version": "v0.2",
     "Created": "2025-07-15",
-    "Creator": "n163c5a5072a740cfa4ae80712325fef7b1",
+    "Creator": "['n163c5a5072a740cfa4ae80712325fef7b1']",
     "Publisher": "n163c5a5072a740cfa4ae80712325fef7b3",
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "geosparql",
@@ -988,8 +958,7 @@
     "Number of Object Properties": 13.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": null,
@@ -1020,8 +989,7 @@
     "Number of Object Properties": 6.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 1.7,
-    "Governance Score": 2
+    "Quality Score": 1.7
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Agents#",
@@ -1035,7 +1003,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Agents/v/0.5/",
     "Version": 0.5,
     "Created": "2020-01-12",
-    "Creator": "Seppo Törmä, Yuan Zheng",
+    "Creator": "['Seppo Törmä', 'Yuan Zheng']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "dice, dicp",
@@ -1052,8 +1020,7 @@
     "Number of Object Properties": 33.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Contexts#",
@@ -1067,7 +1034,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Contexts/v/0.5/",
     "Version": 0.5,
     "Created": "2019-12-20",
-    "Creator": "Seppo Törmä, Yuan Zheng",
+    "Creator": "['Seppo Törmä', 'Yuan Zheng']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -1084,8 +1051,7 @@
     "Number of Object Properties": 19.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Entities#",
@@ -1099,7 +1065,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Entities/v/0.5/",
     "Version": 0.5,
     "Created": "2020-01-12",
-    "Creator": "Seppo Törmä, Yuan Zheng",
+    "Creator": "['Seppo Törmä', 'Yuan Zheng']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dicc, dicv",
@@ -1116,8 +1082,7 @@
     "Number of Object Properties": 123.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.6,
-    "Governance Score": 3
+    "Quality Score": 1.6
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Energy#",
@@ -1131,7 +1096,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Energy/v/0.5/",
     "Version": 0.5,
     "Created": 2019,
-    "Creator": "Kostas Tsatsakis, Spiros Kousouris",
+    "Creator": "['Kostas Tsatsakis', 'Spiros Kousouris']",
     "Publisher": "SUITE5",
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dice, dici, dicp, dicu, dicv",
@@ -1148,8 +1113,7 @@
     "Number of Object Properties": 17.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Information#",
@@ -1163,7 +1127,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Information/v/0.5/",
     "Version": 0.5,
     "Created": "2020-01-12",
-    "Creator": "Seppo Törmä, Yuan Zheng",
+    "Creator": "['Seppo Törmä', 'Yuan Zheng']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dica, dicc, dice, dicp, dicv",
@@ -1180,8 +1144,7 @@
     "Number of Object Properties": 57.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.4,
-    "Governance Score": 3
+    "Quality Score": 1.4
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Lifecycle#",
@@ -1195,7 +1158,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Lifecycle/v/0.5/",
     "Version": "0.5",
     "Created": 2022,
-    "Creator": "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)",
+    "Creator": "['Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dica, dicc, dice, dicp",
@@ -1212,8 +1175,7 @@
     "Number of Object Properties": 21.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.3,
-    "Governance Score": 3
+    "Quality Score": 1.3
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Levels#",
@@ -1227,7 +1189,7 @@
     "Reference Source": null,
     "Version": "0.5",
     "Created": null,
-    "Creator": "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de), Prathap Valluru (prathap.valluru@tu-dresden.de)",
+    "Creator": "['Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)', 'Prathap Valluru (prathap.valluru@tu-dresden.de)']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "dicl",
@@ -1244,8 +1206,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Materials#",
@@ -1259,7 +1220,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Materials/v/0.5/",
     "Version": "0.5",
     "Created": "2021-04-21T16:00:00",
-    "Creator": "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de), Prathap Valluru (prathap.valluru@tu-dresden.de)",
+    "Creator": "['Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)', 'Prathap Valluru (prathap.valluru@tu-dresden.de)']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "dice, dicv, dicu",
@@ -1276,8 +1237,7 @@
     "Number of Object Properties": 14.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Occupancy#",
@@ -1291,7 +1251,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Occupancy/v/0.5/",
     "Version": 0.5,
     "Created": "2020-01-12",
-    "Creator": "Kostas Tsatsakis, Spiros Kousouris",
+    "Creator": "['Kostas Tsatsakis', 'Spiros Kousouris']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dica, dice, dici, dicp, dicu, dicv",
@@ -1308,8 +1268,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.1,
-    "Governance Score": 3
+    "Quality Score": 1.1
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Processes#",
@@ -1323,7 +1282,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Processes/v/0.5/",
     "Version": 0.5,
     "Created": "2019-12-20",
-    "Creator": "Seppo Törmä, Yuan Zheng",
+    "Creator": "['Seppo Törmä', 'Yuan Zheng']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "dice, dicv",
@@ -1340,8 +1299,7 @@
     "Number of Object Properties": 36.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Stages#",
@@ -1355,7 +1313,7 @@
     "Reference Source": null,
     "Version": "0.5",
     "Created": null,
-    "Creator": "Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de), Prathap Valluru (prathap.valluru@tu-dresden.de)",
+    "Creator": "['Janakiram Karlapudi (janakiram.karlapudi@tu-dresden.de)', 'Prathap Valluru (prathap.valluru@tu-dresden.de)']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "dicl",
@@ -1372,8 +1330,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Units#",
@@ -1404,8 +1361,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/digitalconstruction/0.5/Variables#",
@@ -1419,7 +1375,7 @@
     "Reference Source": "https://digitalconstruction.github.io/Variables/latest/",
     "Version": 0.5,
     "Created": "2020-01-12",
-    "Creator": "Seppo Törmä",
+    "Creator": "['Seppo Törmä']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -1436,8 +1392,7 @@
     "Number of Object Properties": 24.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.8,
-    "Governance Score": 3
+    "Quality Score": 1.8
   },
   {
     "URI": null,
@@ -1451,7 +1406,7 @@
     "Reference Source": "https://ceur-ws.org/Vol-2389/05paper.pdf",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -1468,8 +1423,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 0,
-    "Quality Score": 0.0,
-    "Governance Score": 0
+    "Quality Score": 0.0
   },
   {
     "URI": null,
@@ -1483,7 +1437,7 @@
     "Reference Source": "https://doi.org/10.1016/j.autcon.2016.05.003",
     "Version": null,
     "Created": 2016,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -1500,8 +1454,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://iot-ontologies.github.io/dogont/documentation/index-en.html#",
@@ -1515,7 +1468,7 @@
     "Reference Source": "https://iot-ontologies.github.io/dogont/documentation/index-en.html",
     "Version": "4.0.2",
     "Created": "2019-03-26",
-    "Creator": "Dario Bonino (dario.bonino@gmail.com)",
+    "Creator": "['Dario Bonino (dario.bonino@gmail.com)']",
     "Publisher": null,
     "License": "Apache-2.0",
     "Linked-to AECO Ontologies": null,
@@ -1532,8 +1485,7 @@
     "Number of Object Properties": 32.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.2,
-    "Governance Score": 3
+    "Quality Score": 1.2
   },
   {
     "URI": "https://z-arghavan.github.io/DORF/",
@@ -1564,8 +1516,7 @@
     "Number of Object Properties": 18.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 1
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/dot#",
@@ -1579,7 +1530,7 @@
     "Reference Source": "https://alhakam.github.io/dot/",
     "Version": "0.8",
     "Created": "2019-02-17",
-    "Creator": "nc4e3aeaba8af441c8c6104b7e4cb813fb1, https://www.researchgate.net/profile/Mathias_Bonduel",
+    "Creator": "['nc4e3aeaba8af441c8c6104b7e4cb813fb1', 'https://www.researchgate.net/profile/Mathias_Bonduel']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": "bot",
@@ -1596,8 +1547,7 @@
     "Number of Object Properties": 13.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://w3id.org/dstv#",
@@ -1611,7 +1561,7 @@
     "Reference Source": "https://ip.pages.rwth-aachen.de/ioc/dstv-ontologie/ ",
     "Version": "1.0",
     "Created": "2025-08-04",
-    "Creator": "Victoria Jung, Lukas Kirner, Jyrki Oraskari, Timur Kuzu, Individualized Production RWTH Aachen",
+    "Creator": "['Victoria Jung, Lukas Kirner, Jyrki Oraskari, Timur Kuzu, Individualized Production RWTH Aachen']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "ioc, ifc4-add2",
@@ -1628,8 +1578,7 @@
     "Number of Object Properties": 30.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 2
+    "Quality Score": 2.0
   },
   {
     "URI": "https://dtc-ontology.cms.ed.tum.de/ontology#",
@@ -1660,8 +1609,7 @@
     "Number of Object Properties": 35.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 1
+    "Quality Score": 2.0
   },
   {
     "URI": "https://www.w3id.org/eurocodes/ec1990#",
@@ -1675,7 +1623,7 @@
     "Reference Source": "https://mlaura1996.github.io/EC1990/; https://doi.org/10.1016/j.aei.2025.104218",
     "Version": "1.0.0",
     "Created": "2025-06-30",
-    "Creator": "Agnieszka Jędrzejewska (agnieszka.jedrzejewska@polsl.pl), Maria Laura Leonardi (mlauraleonardi@gmail.com), Carlos Ramonell Cazador (carlos.ramonell@upc.edu)",
+    "Creator": "['Agnieszka Jędrzejewska (agnieszka.jedrzejewska@polsl.pl), Maria Laura Leonardi (mlauraleonardi@gmail.com), Carlos Ramonell Cazador (carlos.ramonell@upc.edu)']",
     "Publisher": null,
     "License": "CC BY 3.0",
     "Linked-to AECO Ontologies": "bot",
@@ -1692,8 +1640,7 @@
     "Number of Object Properties": 26.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/eepsa#",
@@ -1707,7 +1654,7 @@
     "Reference Source": "https://iesnaola.github.io/eepsa/EEPSA/index-en.html",
     "Version": "2.0",
     "Created": "2018-12-12",
-    "Creator": "Iker Esnaola-Gonzalez <mailto:iker.esnaola@tekniker.es>\r\nJesús Bermúdez <mailto:jesus.bermudez@ehu.eus>",
+    "Creator": "['Iker Esnaola-Gonzalez <mailto:iker.esnaola@tekniker.es>\\r\\nJesús Bermúdez <mailto:jesus.bermudez@ehu.eus>']",
     "Publisher": null,
     "License": "CC BY",
     "Linked-to AECO Ontologies": null,
@@ -1724,8 +1671,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 0.0,
-    "Governance Score": 3
+    "Quality Score": 0.0
   },
   {
     "URI": "http://emmo.info/emmo#",
@@ -1739,7 +1685,7 @@
     "Reference Source": "https://emmo-repo.github.io/",
     "Version": "1.0.1",
     "Created": "2025-03-27",
-    "Creator": "https://w3id.org/emmo#AdhamHashibon, https://w3id.org/emmo#EmanueleGhedini, https://w3id.org/emmo#GeorgSchmitz, https://w3id.org/emmo#GerhardGoldbeck, https://w3id.org/emmo#JesperFriis",
+    "Creator": "['https://w3id.org/emmo#AdhamHashibon', 'https://w3id.org/emmo#EmanueleGhedini', 'https://w3id.org/emmo#GeorgSchmitz', 'https://w3id.org/emmo#GerhardGoldbeck', 'https://w3id.org/emmo#JesperFriis']",
     "Publisher": "https://emmc.eu",
     "License": "CB BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -1756,8 +1702,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": "http://vocab.linkeddata.es/datosabiertos/def/medio-ambiente/calidad-aire#",
@@ -1771,7 +1716,7 @@
     "Reference Source": "http://vocab.linkeddata.es/datosabiertos/def/medio-ambiente/calidad-aire#",
     "Version": "Ontología para describir datos de calidad del aire en una ciudad. En la versión 0.2 se añdieron referencias al tesauro de contaminantes (http://dd.eionet.europa.eu/vocabulary/aq/pollutant/) publicado por la European Environment Agency. En la versión 1.0 se ha actualizado la ontología a la última versión de la W3C Semantic Sensor Network Ontology (SOSA). En la versión 1.0.1 se han añadido tres nuevas propiedades que pueden ser medidas",
     "Created": "2019-04-03",
-    "Creator": "Hugo Lafuente (Localidata), Oscar Corcho (Ontology Engineering Group - Universidad Politécnica de Madrid, Localidata)",
+    "Creator": "['Hugo Lafuente (Localidata)', 'Oscar Corcho (Ontology Engineering Group - Universidad Politécnica de Madrid, Localidata)']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "sosa",
@@ -1788,8 +1733,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -1803,7 +1747,7 @@
     "Reference Source": "http://semantic.eurobau.com/",
     "Version": 1,
     "Created": 2006,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "CC BY 3.0",
     "Linked-to AECO Ontologies": null,
@@ -1820,8 +1764,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/facility#",
@@ -1835,7 +1778,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/facility/",
     "Version": "0.12.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "geosparql, beo, bot",
@@ -1852,8 +1795,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://purl.org/ffdr-ontology#",
@@ -1867,7 +1809,7 @@
     "Reference Source": "https://doi.org/10.1016/j.aei.2023.101992",
     "Version": "V 2.0.0",
     "Created": 2022,
-    "Creator": "Eyosias Guyo\r\n\r\nTechnische Universität Berlin, Germany\r\nTrimble Solutions Oy, Finland\r\n\r\neyosias.guyo@trimble.com, Timo Hartmann\r\n\r\nTechnische Universität Berlin, Germany",
+    "Creator": "['Eyosias Guyo\\r\\n\\r\\nTechnische Universität Berlin, Germany\\r\\nTrimble Solutions Oy, Finland\\r\\n\\r\\neyosias.guyo@trimble.com', 'Timo Hartmann\\r\\n\\r\\nTechnische Universität Berlin, Germany']",
     "Publisher": null,
     "License": "CC BY NC 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -1884,8 +1826,7 @@
     "Number of Object Properties": 29.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": null,
@@ -1899,7 +1840,7 @@
     "Reference Source": "https://doi.org/10.1016/j.jpdc.2010.06.005",
     "Version": "n/d",
     "Created": 2010,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "n/d",
     "Linked-to AECO Ontologies": null,
@@ -1916,8 +1857,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 0
+    "Quality Score": 0.0
   },
   {
     "URI": "https://purl.org/fisa#",
@@ -1931,7 +1871,7 @@
     "Reference Source": "https://doi.org/10.1016/j.aei.2023.102314",
     "Version": "0.0.1",
     "Created": 2023,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "bot",
@@ -1948,8 +1888,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -1980,8 +1919,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 1,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/fmo#",
@@ -1995,7 +1933,7 @@
     "Reference Source": "https://mlaura1996.github.io/FailureMechanismOntology/",
     "Version": "0.1",
     "Created": "2024-04-29",
-    "Creator": "Maria Laura Leonardi, Stefano Cursi, Elena Gigliarelli, José Granja, Daniel Oliveira, Miguel Azenha.",
+    "Creator": "['Maria Laura Leonardi, Stefano Cursi, Elena Gigliarelli, José Granja, Daniel Oliveira, Miguel Azenha.']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": "dot, hmo, beo",
@@ -2012,8 +1950,7 @@
     "Number of Object Properties": 8.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": "https://w3id.org/fog#",
@@ -2027,7 +1964,7 @@
     "Reference Source": "https://w3id.org/fog#",
     "Version": "0.0.4",
     "Created": "2020-01-14",
-    "Creator": "https://www.researchgate.net/profile/Anna_Wagner13, https://www.researchgate.net/profile/Mathias_Bonduel, https://www.researchgate.net/profile/Pieter_Pauwels",
+    "Creator": "['https://www.researchgate.net/profile/Anna_Wagner13', 'https://www.researchgate.net/profile/Mathias_Bonduel', 'https://www.researchgate.net/profile/Pieter_Pauwels']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "geosparql, omg",
@@ -2044,8 +1981,7 @@
     "Number of Object Properties": 13.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://www.w3id.org/fso#",
@@ -2059,7 +1995,7 @@
     "Reference Source": "https://github.com/alikucukavci/FSO/",
     "Version": "0.1.0",
     "Created": "2020-08-06T12:00:00",
-    "Creator": "Ali Kücükavci, Mads Holten Rasmussen, Ville Kukkonen",
+    "Creator": "['Ali Kücükavci', 'Mads Holten Rasmussen', 'Ville Kukkonen']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2076,8 +2012,7 @@
     "Number of Object Properties": 22.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": null,
@@ -2091,7 +2026,7 @@
     "Reference Source": "https://doi.org/10.1016/j.autcon.2019.01.015",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -2108,8 +2043,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -2123,7 +2057,7 @@
     "Reference Source": "https://doi.org/10.1016/j.autcon.2019.01.015",
     "Version": null,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -2140,8 +2074,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "http://www.opengis.net/ont/geosparql#",
@@ -2155,7 +2088,7 @@
     "Reference Source": "https://opengeospatial.github.io/ogc-geosparql/",
     "Version": "OGC GeoSPARQL 1.1",
     "Created": "2021-10-27",
-    "Creator": "OGC GeoSPARQL Standards Working Group",
+    "Creator": "['OGC GeoSPARQL Standards Working Group']",
     "Publisher": "n53b1270438e140de8a3f4d95b4582e50b1",
     "License": "OGC",
     "Linked-to AECO Ontologies": null,
@@ -2172,8 +2105,7 @@
     "Number of Object Properties": 36.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -2204,8 +2136,7 @@
     "Number of Object Properties": 29.0,
     "Alignment Score": 0,
     "Accessibility Score": 2,
-    "Quality Score": 0.0,
-    "Governance Score": 1
+    "Quality Score": 0.0
   },
   {
     "URI": null,
@@ -2236,8 +2167,7 @@
     "Number of Object Properties": 26.0,
     "Alignment Score": 3,
     "Accessibility Score": 2,
-    "Quality Score": 1.8,
-    "Governance Score": 0
+    "Quality Score": 1.8
   },
   {
     "URI": "https://w3id.org/hmo#",
@@ -2251,7 +2181,7 @@
     "Reference Source": "https://mlaura1996.github.io/HistoricMasonryOntology/",
     "Version": "0.1",
     "Created": "2024-04-02",
-    "Creator": "Maria Laura Leonardi, Stefano Cursi, Elena Gigliarelli, José Granja, Daniel Oliveira, Miguel Azenha.",
+    "Creator": "['Maria Laura Leonardi, Stefano Cursi, Elena Gigliarelli, José Granja, Daniel Oliveira, Miguel Azenha.']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": "mat, beo, saref, dot",
@@ -2268,8 +2198,7 @@
     "Number of Object Properties": 16.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://icdd.vm.rub.de/ontology/icdd2ams#",
@@ -2283,7 +2212,7 @@
     "Reference Source": "https://link.springer.com/chapter/10.1007/978-3-030-91877-4_127",
     "Version": null,
     "Created": "2021-03-24",
-    "Creator": "Philipp Hagedorn, Liu Liu",
+    "Creator": "['Philipp Hagedorn', 'Liu Liu']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "bot",
@@ -2300,8 +2229,7 @@
     "Number of Object Properties": 2.0,
     "Alignment Score": 3,
     "Accessibility Score": 2,
-    "Quality Score": 2.0,
-    "Governance Score": 2
+    "Quality Score": 2.0
   },
   {
     "URI": "https://icdd.vm.rub.de/ontology/idpo#",
@@ -2315,7 +2243,7 @@
     "Reference Source": "https://ceur-ws.org/Vol-3081/08paper.pdf",
     "Version": "v0.2",
     "Created": "2023-02-20",
-    "Creator": "n484f031b22224f5bbbdc63c6655b8d89b1",
+    "Creator": "['n484f031b22224f5bbbdc63c6655b8d89b1']",
     "Publisher": "n484f031b22224f5bbbdc63c6655b8d89b3",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2332,8 +2260,7 @@
     "Number of Object Properties": 19.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#",
@@ -2347,7 +2274,7 @@
     "Reference Source": "https://technical.buildingsmart.org/standards/ifc/ifc-formats/ifcowl/",
     "Version": null,
     "Created": 2019,
-    "Creator": "Pieter Pauwels (pipauwel.pauwels@ugent.be), Walter Terkaj  (walter.terkaj@itia.cnr.it)",
+    "Creator": "['Pieter Pauwels (pipauwel.pauwels@ugent.be)', 'Walter Terkaj  (walter.terkaj@itia.cnr.it)']",
     "Publisher": null,
     "License": "CC BY 3.0",
     "Linked-to AECO Ontologies": null,
@@ -2364,8 +2291,7 @@
     "Number of Object Properties": 1585.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://app.korfin.de/ontology/into#",
@@ -2379,7 +2305,7 @@
     "Reference Source": "https://ec-3.org/publications/conference/paper/?id=EC32024_292",
     "Version": "0.1",
     "Created": "2024-05-10",
-    "Creator": "n1a1b52eb8d1e4f05973e1185f0655f84b1, n1a1b52eb8d1e4f05973e1185f0655f84b2",
+    "Creator": "['n1a1b52eb8d1e4f05973e1185f0655f84b1', 'n1a1b52eb8d1e4f05973e1185f0655f84b2']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2396,8 +2322,7 @@
     "Number of Object Properties": 17.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/information-objects#",
@@ -2411,7 +2336,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.3",
     "Created": 2020,
-    "Creator": "Serge Chávez-Feria, María Poveda-Villalón",
+    "Creator": "['Serge Chávez-Feria', 'María Poveda-Villalón']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2428,8 +2353,7 @@
     "Number of Object Properties": 7.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.6,
-    "Governance Score": 3
+    "Quality Score": 1.6
   },
   {
     "URI": "http://w3id.org/ioc#",
@@ -2443,7 +2367,7 @@
     "Reference Source": "https://internet-of-construction.github.io/IoC-Process-Ontology/",
     "Version": "0.5.1",
     "Created": "2024-01-26",
-    "Creator": "Kirner, L., Individualized Production RWTH Aachen, Wildemann,P., Leonhard Weiss GmbH & Co. KG, Oraskari, J., Individualized Production RWTH Aachen",
+    "Creator": "['Kirner, L., Individualized Production RWTH Aachen', 'Wildemann,P., Leonhard Weiss GmbH & Co. KG', 'Oraskari, J., Individualized Production RWTH Aachen']",
     "Publisher": null,
     "License": "CC BY",
     "Linked-to AECO Ontologies": "bot, cto, ifc4-add2, omg",
@@ -2460,8 +2384,7 @@
     "Number of Object Properties": 40.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/iot#",
@@ -2475,7 +2398,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/iot#",
     "Version": "0.5.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "facility, resource, saref",
@@ -2492,8 +2415,7 @@
     "Number of Object Properties": 7.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://rub-informatik-im-bauwesen.github.io/ir-ontologies/isoprops/isoprops.html",
@@ -2507,7 +2429,7 @@
     "Reference Source": null,
     "Version": "v2.2",
     "Created": "2025-01-15",
-    "Creator": "na375e7592de64c93973e5b247a09b5dcb3, na375e7592de64c93973e5b247a09b5dcb5",
+    "Creator": "['na375e7592de64c93973e5b247a09b5dcb3', 'na375e7592de64c93973e5b247a09b5dcb5']",
     "Publisher": "na375e7592de64c93973e5b247a09b5dcb7",
     "License": null,
     "Linked-to AECO Ontologies": "tempo",
@@ -2524,8 +2446,7 @@
     "Number of Object Properties": 29.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 2
+    "Quality Score": 1.9
   },
   {
     "URI": "http://w3id.org/charta77/jup",
@@ -2539,7 +2460,7 @@
     "Reference Source": "https://lov.linkeddata.es/dataset/lov/vocabs/jup/versions/2016-07-14.n3; https://presbariery.cz/en/help",
     "Version": 2,
     "Created": 2016,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "ODBL",
     "Linked-to AECO Ontologies": null,
@@ -2556,8 +2477,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 2
+    "Quality Score": 0.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/key-performance-indicator#",
@@ -2571,7 +2491,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.1.6",
     "Created": 2020,
-    "Creator": "María Poveda Villalón, Serge Chávez Feria",
+    "Creator": "['María Poveda Villalón', 'Serge Chávez Feria']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building, io, mat",
@@ -2588,8 +2508,7 @@
     "Number of Object Properties": 17.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": null,
@@ -2603,7 +2522,7 @@
     "Reference Source": "https://depositonce.tu-berlin.de/handle/11303/11740.2",
     "Version": 1.1,
     "Created": 2020,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "GPL 3.0",
     "Linked-to AECO Ontologies": null,
@@ -2620,8 +2539,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 2
+    "Quality Score": 0.0
   },
   {
     "URI": "https://w3id.org/loin#",
@@ -2635,7 +2553,7 @@
     "Reference Source": "https://ec-3.org/publications/conference/paper/?id=EC32023_221",
     "Version": "3.0",
     "Created": "2025-01-15",
-    "Creator": "n9043f378067d4d4fabe919d3bb370712b3, n9043f378067d4d4fabe919d3bb370712b5",
+    "Creator": "['n9043f378067d4d4fabe919d3bb370712b3', 'n9043f378067d4d4fabe919d3bb370712b5']",
     "Publisher": "n9043f378067d4d4fabe919d3bb370712b7",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "tempo",
@@ -2652,8 +2570,7 @@
     "Number of Object Properties": 48.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.8,
-    "Governance Score": 3
+    "Quality Score": 1.8
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/material-properties#",
@@ -2667,7 +2584,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.8",
     "Created": 2020,
-    "Creator": "María Poveda-Villalón (Ontology Engineering Group, Universidad Politécnica de Madrid), Serge Chávez-Feria (Ontology Engineering Group, Universidad Politécnica de Madrid)",
+    "Creator": "['María Poveda-Villalón (Ontology Engineering Group, Universidad Politécnica de Madrid)', 'Serge Chávez-Feria (Ontology Engineering Group, Universidad Politécnica de Madrid)']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building, saref",
@@ -2684,8 +2601,7 @@
     "Number of Object Properties": 13.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.2,
-    "Governance Score": 3
+    "Quality Score": 1.2
   },
   {
     "URI": "https://w3id.org/mdo/core/",
@@ -2699,7 +2615,7 @@
     "Reference Source": "https://w3id.org/mdo/core/",
     "Version": "1.1",
     "Created": "2022-08-02",
-    "Creator": "Huanyu Li",
+    "Creator": "['Huanyu Li']",
     "Publisher": null,
     "License": "MIT License",
     "Linked-to AECO Ontologies": null,
@@ -2716,8 +2632,7 @@
     "Number of Object Properties": 10.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": "https://pi.pauwel.be/voc/distributionelement/index-en.html",
@@ -2731,7 +2646,7 @@
     "Reference Source": null,
     "Version": "January 28th 2019",
     "Created": "2019-01-28",
-    "Creator": "n8dce8a0711834901be47a90eeedb8651b1",
+    "Creator": "['n8dce8a0711834901be47a90eeedb8651b1']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2748,8 +2663,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/mns#",
@@ -2763,7 +2677,7 @@
     "Reference Source": "https:\\\\doi.org\\10.35490/EC3.2025.439",
     "Version": "1.1",
     "Created": 2025,
-    "Creator": "Arghavan Akbarieh, Goran Sibenik",
+    "Creator": "['Arghavan Akbarieh', 'Goran Sibenik']",
     "Publisher": null,
     "License": "CC-BY-4.0",
     "Linked-to AECO Ontologies": "dica",
@@ -2780,8 +2694,7 @@
     "Number of Object Properties": 18.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.7,
-    "Governance Score": 3
+    "Quality Score": 1.7
   },
   {
     "URI": null,
@@ -2795,7 +2708,7 @@
     "Reference Source": "https://como.ceb.cam.ac.uk/media/preprints/c4e-328-preprint.pdf",
     "Version": null,
     "Created": 2024,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "MIT License",
     "Linked-to AECO Ontologies": "emmo, mdo",
@@ -2812,8 +2725,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 2,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/nen2660/def#",
@@ -2844,8 +2756,7 @@
     "Number of Object Properties": 36.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://sebseis.github.io/OBPA/",
@@ -2859,7 +2770,7 @@
     "Reference Source": "https://www.sciencedirect.com/science/article/pii/S1474034623003440",
     "Version": 0.3,
     "Created": 2022,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "bot",
@@ -2876,8 +2787,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/ocqa#",
@@ -2891,7 +2801,7 @@
     "Reference Source": "https://github.com/SebSeis/ocqa",
     "Version": "1.0",
     "Created": "2024-03-18",
-    "Creator": "Sebastian Seiß",
+    "Creator": "['Sebastian Seiß']",
     "Publisher": null,
     "License": "CC BY 1.0 ",
     "Linked-to AECO Ontologies": "dice, dicp, dica, dicv",
@@ -2908,8 +2818,7 @@
     "Number of Object Properties": 20.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.3,
-    "Governance Score": 3
+    "Quality Score": 1.3
   },
   {
     "URI": "https://w3id.org/ofo#",
@@ -2923,7 +2832,7 @@
     "Reference Source": "https://content.iospress.com/articles/semantic-web/sw223254",
     "Version": "1.0",
     "Created": 2022,
-    "Creator": "https://orcid.org/0000-0002-8809-3277",
+    "Creator": "['https://orcid.org/0000-0002-8809-3277']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2940,8 +2849,7 @@
     "Number of Object Properties": 32.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://w3id.org/omg#",
@@ -2955,7 +2863,7 @@
     "Reference Source": "https://github.com/tudaIIB/omg; https://ec-3.org/publications/conferences/EC32019/papers/EC32019_146.pdf",
     "Version": "0.3",
     "Created": "2018-11-28",
-    "Creator": "https://www.researchgate.net/profile/Anna_Wagner13, https://www.researchgate.net/profile/Mathias_Bonduel, https://www.researchgate.net/profile/Pieter_Pauwels",
+    "Creator": "['https://www.researchgate.net/profile/Anna_Wagner13', 'https://www.researchgate.net/profile/Mathias_Bonduel', 'https://www.researchgate.net/profile/Pieter_Pauwels']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": null,
@@ -2972,8 +2880,7 @@
     "Number of Object Properties": 17.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.8,
-    "Governance Score": 3
+    "Quality Score": 1.8
   },
   {
     "URI": null,
@@ -3004,8 +2911,7 @@
     "Number of Object Properties": 21.0,
     "Alignment Score": 0,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -3019,7 +2925,7 @@
     "Reference Source": "https://www.sciencedirect.com/science/article/pii/S2666546821000574",
     "Version": "2.0",
     "Created": 2020,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -3036,8 +2942,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 1
+    "Quality Score": 0.0
   },
   {
     "URI": null,
@@ -3051,7 +2956,7 @@
     "Reference Source": "https://www.researchgate.net/publication/237021171_OntoNav_A_Semantic_Indoor_Navigation_System",
     "Version": 5,
     "Created": 2005,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -3068,8 +2973,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/occupancy-profile#",
@@ -3083,7 +2987,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.1.2",
     "Created": 2020,
-    "Creator": "http://www.oeg-upm.net/, María Poveda Villalón, Raúl García Castro, Serge Chávez Feria",
+    "Creator": "['http://www.oeg-upm.net/', 'María Poveda Villalón', 'Raúl García Castro', 'Serge Chávez Feria']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building",
@@ -3100,8 +3004,7 @@
     "Number of Object Properties": 32.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://www.w3id.org/opm#",
@@ -3115,7 +3018,7 @@
     "Reference Source": "http://www.w3id.org/opm#",
     "Version": "May 25th 2018",
     "Created": "2018-05-25",
-    "Creator": "n451e932941e846538e88adcce8e5406ab1, n451e932941e846538e88adcce8e5406ab2",
+    "Creator": "['n451e932941e846538e88adcce8e5406ab1', 'n451e932941e846538e88adcce8e5406ab2']",
     "Publisher": null,
     "License": "W3C CLA",
     "Linked-to AECO Ontologies": null,
@@ -3132,8 +3035,7 @@
     "Number of Object Properties": 6.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.9,
-    "Governance Score": 3
+    "Quality Score": 1.9
   },
   {
     "URI": "https://project-haystack.org/def/ph/4.0.0#",
@@ -3147,7 +3049,7 @@
     "Reference Source": "https://www.project-haystack.org/",
     "Version": "4.0.0",
     "Created": 2025,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "Academic Free License 3.0",
     "Linked-to AECO Ontologies": null,
@@ -3164,8 +3066,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/process#",
@@ -3179,7 +3080,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/process#",
     "Version": "0.11.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "facility, resource",
@@ -3196,8 +3097,7 @@
     "Number of Object Properties": 25.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/quality#",
@@ -3211,7 +3111,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/quality#",
     "Version": "0.13.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "facility",
@@ -3228,8 +3128,7 @@
     "Number of Object Properties": 15.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/rdo#",
@@ -3243,7 +3142,7 @@
     "Reference Source": "https://w3id.org/rdo#",
     "Version": "0.5",
     "Created": "2026-02-06",
-    "Creator": "Frederic Bosche, University of Edinburgh, Jiajun Li, University of Edinburgh",
+    "Creator": "['Frederic Bosche, University of Edinburgh', 'Jiajun Li, University of Edinburgh']",
     "Publisher": "Cyberbuild, University of Edinburgh",
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "beo, dot",
@@ -3260,8 +3159,7 @@
     "Number of Object Properties": 11.0,
     "Alignment Score": 2,
     "Accessibility Score": 2,
-    "Quality Score": 0.8,
-    "Governance Score": 3
+    "Quality Score": 0.8
   },
   {
     "URI": null,
@@ -3275,7 +3173,7 @@
     "Reference Source": "https://github.com/RealEstateCore/rec",
     "Version": 4,
     "Created": 2019,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "BSD 3-Clause License",
     "Linked-to AECO Ontologies": "brick, brickpatches",
@@ -3292,8 +3190,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/reloc#",
@@ -3307,7 +3204,7 @@
     "Reference Source": "https://ceur-ws.org/Vol-3824/paper7.pdf",
     "Version": "1.0.0",
     "Created": "2024-02-01",
-    "Creator": "Anne Göbels",
+    "Creator": "['Anne Göbels']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": null,
@@ -3324,8 +3221,7 @@
     "Number of Object Properties": 44.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -3339,7 +3235,7 @@
     "Reference Source": "https://depositonce.tu-berlin.de/handle/11303/11740.2",
     "Version": "0.1.1",
     "Created": "2020-10-31T12:00:00",
-    "Creator": "bim-speed/Jerson Pinzon",
+    "Creator": "['bim-speed/Jerson Pinzon']",
     "Publisher": null,
     "License": "GPL 3.0",
     "Linked-to AECO Ontologies": null,
@@ -3356,8 +3252,7 @@
     "Number of Object Properties": 30.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 0.0,
-    "Governance Score": 3
+    "Quality Score": 0.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/renovation-process#",
@@ -3371,7 +3266,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.3",
     "Created": 2020,
-    "Creator": "María Poveda-Villalón, Serge Chávez-Feria",
+    "Creator": "['María Poveda-Villalón', 'Serge Chávez-Feria']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building, saref",
@@ -3388,8 +3283,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.5,
-    "Governance Score": 3
+    "Quality Score": 1.5
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/resource#",
@@ -3403,7 +3297,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/resource#",
     "Version": "0.7.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "geosparql, iot, saref",
@@ -3420,8 +3314,7 @@
     "Number of Object Properties": 2.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://cogito.iot.linkeddata.es/def/safety#",
@@ -3435,7 +3328,7 @@
     "Reference Source": "https://cogito.iot.linkeddata.es/def/safety#",
     "Version": "0.6.0",
     "Created": 2022,
-    "Creator": "María Poveda Villalón, Raúl García Castro, Socorro  Bernardos Galindo",
+    "Creator": "['María Poveda Villalón', 'Raúl García Castro', 'Socorro  Bernardos Galindo']",
     "Publisher": null,
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "facility, resource",
@@ -3452,8 +3345,7 @@
     "Number of Object Properties": 7.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#",
@@ -3467,7 +3359,7 @@
     "Reference Source": "http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao",
     "Version": null,
     "Created": 2016,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": "CC BY 3.0",
     "Linked-to AECO Ontologies": null,
@@ -3484,8 +3376,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 2,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://saref.etsi.org/core/",
@@ -3499,7 +3390,7 @@
     "Reference Source": "https://saref.etsi.org/core/",
     "Version": "v4.1.1",
     "Created": "2024-03-06",
-    "Creator": "http://maxime-lefrancois.info/me#, http://www.garcia-castro.com/foaf.rdf#me, https://w3id.org/people/mpoveda/, https://www.linkedin.com/in/bouterca, https://www.linkedin.com/in/giulia-biagioni, https://www.linkedin.com/in/david-gnabasik-0056a0ba/, https://www.linkedin.com/in/lauradaniele",
+    "Creator": "['http://maxime-lefrancois.info/me#', 'http://www.garcia-castro.com/foaf.rdf#me', 'https://w3id.org/people/mpoveda/', 'https://www.linkedin.com/in/bouterca', 'https://www.linkedin.com/in/giulia-biagioni', 'https://www.linkedin.com/in/david-gnabasik-0056a0ba/', 'https://www.linkedin.com/in/lauradaniele']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref4syst",
@@ -3516,8 +3407,7 @@
     "Number of Object Properties": 64.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4agri/",
@@ -3531,7 +3421,7 @@
     "Reference Source": "https://saref.etsi.org/saref4agri/",
     "Version": "v2.1.1",
     "Created": "2024-04-14",
-    "Creator": "http://w3id.org/people/mpoveda, http://www.garcia-castro.com/foaf.rdf#me, https://www.linkedin.com/in/lauradaniele, https://www.linkedin.com/in/mderoode, https://www.linkedin.com/in/bouterca, https://www.researchgate.net/profile/Jack_Verhoosel, http://maxime-lefrancois.info/me#",
+    "Creator": "['http://w3id.org/people/mpoveda', 'http://www.garcia-castro.com/foaf.rdf#me', 'https://www.linkedin.com/in/lauradaniele', 'https://www.linkedin.com/in/mderoode', 'https://www.linkedin.com/in/bouterca', 'https://www.researchgate.net/profile/Jack_Verhoosel', 'http://maxime-lefrancois.info/me#']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref, sosa, ssn, geosparql",
@@ -3548,8 +3438,7 @@
     "Number of Object Properties": 19.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4auto/",
@@ -3563,7 +3452,7 @@
     "Reference Source": "https://saref.etsi.org/saref4auto/v2.1.1/",
     "Version": "v2.1.1",
     "Created": "2025-04-10",
-    "Creator": "http://maxime-lefrancois.info/me#",
+    "Creator": "['http://maxime-lefrancois.info/me#']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref, saref4syst",
@@ -3580,8 +3469,7 @@
     "Number of Object Properties": 6.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/def/saref4bldg",
@@ -3595,7 +3483,7 @@
     "Reference Source": "https://w3id.org/def/saref4bldg",
     "Version": "v2.1.1",
     "Created": "2025-04-24",
-    "Creator": "http://purl.org/net/mpoveda, http://www.garcia-castro.com/foaf.rdf#me",
+    "Creator": "['http://purl.org/net/mpoveda', 'http://www.garcia-castro.com/foaf.rdf#me']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "geosparql, saref",
@@ -3612,8 +3500,7 @@
     "Number of Object Properties": 6.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4city/",
@@ -3627,7 +3514,7 @@
     "Reference Source": "https://saref.etsi.org/s4city/",
     "Version": "v2.1.1",
     "Created": "2025-04-11",
-    "Creator": "http://w3id.org/people/mpoveda, http://www.garcia-castro.com/foaf.rdf#me, https://www.linkedin.com/in/paolaespinoza-arias/",
+    "Creator": "['http://w3id.org/people/mpoveda', 'http://www.garcia-castro.com/foaf.rdf#me', 'https://www.linkedin.com/in/paolaespinoza-arias/']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "geosparql, saref",
@@ -3644,8 +3531,7 @@
     "Number of Object Properties": 21.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4ehaw/",
@@ -3659,7 +3545,7 @@
     "Reference Source": "https://saref.etsi.org/saref4ehaw/v2.1.1/",
     "Version": "v2.1.1",
     "Created": "2025-04-25",
-    "Creator": "http://www-public.imtbs-tsp.eu/~girodgen/",
+    "Creator": "['http://www-public.imtbs-tsp.eu/~girodgen/']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref, saref4syst, saref4wear",
@@ -3676,8 +3562,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4ener/",
@@ -3691,7 +3576,7 @@
     "Reference Source": "https://saref.etsi.org/s4ener/",
     "Version": "v2.1.1",
     "Created": "2025-06-05",
-    "Creator": "https://www.linkedin.com/in/bouterca/, https://www.linkedin.com/in/giulia-biagioni, https://www.linkedin.com/in/lauradaniele",
+    "Creator": "['https://www.linkedin.com/in/bouterca/', 'https://www.linkedin.com/in/giulia-biagioni', 'https://www.linkedin.com/in/lauradaniele']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref",
@@ -3708,8 +3593,7 @@
     "Number of Object Properties": 97.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4envi/",
@@ -3723,7 +3607,7 @@
     "Reference Source": "https://saref.etsi.org/s4envi/",
     "Version": "v2.1.1",
     "Created": "2025-04-11",
-    "Creator": "http://maxime-lefrancois.info/me#, https://orcid.org/0000-0002-6540-8547",
+    "Creator": "['http://maxime-lefrancois.info/me#', 'https://orcid.org/0000-0002-6540-8547']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "geosparql, saref4syst, saref",
@@ -3740,8 +3624,7 @@
     "Number of Object Properties": 28.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4grid/",
@@ -3755,7 +3638,7 @@
     "Reference Source": "https://saref.etsi.org/s4grid/",
     "Version": "v2.1.1",
     "Created": "2024-06-05",
-    "Creator": "https://www.linkedin.com/in/sergio-mario-carulli-p%C3%A9rez-7632b5217/, http://www.garcia-castro.com/foaf.rdf#me, http://w3id.org/people/mpoveda",
+    "Creator": "['https://www.linkedin.com/in/sergio-mario-carulli-p%C3%A9rez-7632b5217/', 'http://www.garcia-castro.com/foaf.rdf#me', 'http://w3id.org/people/mpoveda']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref",
@@ -3772,8 +3655,7 @@
     "Number of Object Properties": 27.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4inma/",
@@ -3787,7 +3669,7 @@
     "Reference Source": "https://saref.etsi.org/saref4inma/v2.1.1/",
     "Version": "v2.1.1",
     "Created": "2025-04-12",
-    "Creator": "http://www.garcia-castro.com/foaf.rdf#me, https://www.linkedin.com/in/albafernandezizquierdo, https://www.linkedin.com/in/lauradaniele, https://www.linkedin.com/in/mderoode",
+    "Creator": "['http://www.garcia-castro.com/foaf.rdf#me', 'https://www.linkedin.com/in/albafernandezizquierdo', 'https://www.linkedin.com/in/lauradaniele', 'https://www.linkedin.com/in/mderoode']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "geosparql, saref",
@@ -3804,8 +3686,7 @@
     "Number of Object Properties": 16.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4lift/",
@@ -3819,7 +3700,7 @@
     "Reference Source": "https://saref.etsi.org/s4lift/",
     "Version": "v2.1.1",
     "Created": "2025-06-05",
-    "Creator": "https://www.linkedin.com/in/mahdi-bennara/, https://pdi.fbk.eu/people/profile/dragoni, https://www.linkedin.com/in/albafernandezizquierdo, http://www.garcia-castro.com/foaf.rdf#me, http://www.maxime-lefrancois.info/",
+    "Creator": "['https://www.linkedin.com/in/mahdi-bennara/', 'https://pdi.fbk.eu/people/profile/dragoni', 'https://www.linkedin.com/in/albafernandezizquierdo', 'http://www.garcia-castro.com/foaf.rdf#me', 'http://www.maxime-lefrancois.info/']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref4syst, saref, geosparql",
@@ -3836,8 +3717,7 @@
     "Number of Object Properties": 13.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4syst/",
@@ -3851,7 +3731,7 @@
     "Reference Source": "https://saref.etsi.org/s4syst/",
     "Version": "v1.1.2",
     "Created": "2020-06-14",
-    "Creator": "http://maxime-lefrancois.info/me#",
+    "Creator": "['http://maxime-lefrancois.info/me#']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": null,
@@ -3868,8 +3748,7 @@
     "Number of Object Properties": 9.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4watr/",
@@ -3883,7 +3762,7 @@
     "Reference Source": "https://saref.etsi.org/saref4watr/",
     "Version": "v2.1.1",
     "Created": "2025-04-24",
-    "Creator": "http://www.garcia-castro.com/foaf.rdf#me",
+    "Creator": "['http://www.garcia-castro.com/foaf.rdf#me']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "saref, saref4city, saref4syst, geosparql",
@@ -3900,8 +3779,7 @@
     "Number of Object Properties": 12.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://saref.etsi.org/saref4wear/",
@@ -3915,7 +3793,7 @@
     "Reference Source": "https://saref.etsi.org/saref4wear/v2.1.1/",
     "Version": "v2.1.1",
     "Created": "2025-05-22",
-    "Creator": "http://www.garcia-castro.com/foaf.rdf#me, https://www.linkedin.com/in/maurodragoni/MauroDragoni",
+    "Creator": "['http://www.garcia-castro.com/foaf.rdf#me', 'https://www.linkedin.com/in/maurodragoni/MauroDragoni']",
     "Publisher": "https://www.etsi.org/",
     "License": "BSD 3-Clause",
     "Linked-to AECO Ontologies": "geosparql, saref, saref4city, saref4syst",
@@ -3932,8 +3810,7 @@
     "Number of Object Properties": 19.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/sbeo#",
@@ -3947,7 +3824,7 @@
     "Reference Source": "https://w3id.org/sbeo",
     "Version": "0.5",
     "Created": "2022-07-26T10:16:00",
-    "Creator": "https://orcid.org/0000-0002-7944-2594",
+    "Creator": "['https://orcid.org/0000-0002-7944-2594']",
     "Publisher": null,
     "License": "GNU General Public License",
     "Linked-to AECO Ontologies": "sosa",
@@ -3964,8 +3841,7 @@
     "Number of Object Properties": 52.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": null,
@@ -3979,7 +3855,7 @@
     "Reference Source": "https://www.researchgate.net/publication/344442780_Facilitating_Information_Exchange_for_3D_Retrofit_Models_of_Existing_Assets_Using_Semantic_Web_Technologies/download",
     "Version": null,
     "Created": null,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "seas, bot, bpo, omg",
@@ -3996,8 +3872,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 3,
     "Accessibility Score": 1,
-    "Quality Score": 0.0,
-    "Governance Score": 0
+    "Quality Score": 0.0
   },
   {
     "URI": null,
@@ -4011,7 +3886,7 @@
     "Reference Source": "http://dx.doi.org/10.17654/EC017051101",
     "Version": null,
     "Created": 2017,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -4028,8 +3903,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 0,
-    "Quality Score": 0.0,
-    "Governance Score": 0
+    "Quality Score": 0.0
   },
   {
     "URI": "http://bimerr.iot.linkeddata.es/def/sensor-data#",
@@ -4043,7 +3917,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": "0.0.3",
     "Created": 2020,
-    "Creator": "María Poveda-Villalón, Serge Chávez-Feria.",
+    "Creator": "['María Poveda-Villalón', 'Serge Chávez-Feria.']",
     "Publisher": "http://www.oeg-upm.net/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "building",
@@ -4060,8 +3934,7 @@
     "Number of Object Properties": 6.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 3
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3id.org/seas/seas-1.1",
@@ -4075,7 +3948,7 @@
     "Reference Source": "https://github.com/thesmartenergy/seas",
     "Version": "v1.0",
     "Created": "2016-05-25",
-    "Creator": "http://maxime-lefrancois.info/me#",
+    "Creator": "['http://maxime-lefrancois.info/me#']",
     "Publisher": null,
     "License": "Apache-2.0",
     "Linked-to AECO Ontologies": null,
@@ -4092,8 +3965,7 @@
     "Number of Object Properties": 0.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 3
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -4107,7 +3979,7 @@
     "Reference Source": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4916239",
     "Version": null,
     "Created": 2024,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "beo, dicm, dot, cdo",
@@ -4124,8 +3996,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 1,
     "Accessibility Score": 0,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/sml/def# ",
@@ -4156,8 +4027,7 @@
     "Number of Object Properties": 36.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "http://www.w3.org/ns/sosa/",
@@ -4171,7 +4041,7 @@
     "Reference Source": "http://www.w3.org/ns/sosa/",
     "Version": null,
     "Created": "2017-04-17",
-    "Creator": "n974c0cb2c33643e2a0d58187e9f39ccdb1",
+    "Creator": "['n974c0cb2c33643e2a0d58187e9f39ccdb1']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -4188,8 +4058,7 @@
     "Number of Object Properties": 21.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 1
+    "Quality Score": 2.0
   },
   {
     "URI": "http://www.w3.org/ns/ssn/",
@@ -4203,7 +4072,7 @@
     "Reference Source": "https://www.w3.org/TR/vocab-ssn/",
     "Version": "New modular version of the SSN ontology. \n\n\n\nThis ontology was originally developed in 2009-2011 by the W3C Semantic Sensor Networks Incubator Group (SSN-XG). For more information on the group's activities see: http://www.w3.org/2005/Incubator/ssn/. The ontology was revised and modularized in 2015-2017 by the W3C/OGC Spatial Data on the Web Working Group, see: https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology. \n\n\n\nIn particular, (a) the scope is extended to include actuation and sampling; (b) the core concepts and properties are factored out into the SOSA ontology. The SSN ontology imports SOSA and adds formal axiomatization consistent with the text definitions in SOSA, and adds classes and properties to accommodate the scope of the original SSN ontology. ",
     "Created": "2017-04-17",
-    "Creator": "nec1dc9163d9f4804b11db9e845d92c58b1",
+    "Creator": "['nec1dc9163d9f4804b11db9e845d92c58b1']",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": "sosa",
@@ -4220,8 +4089,7 @@
     "Number of Object Properties": 16.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 2
+    "Quality Score": 2.0
   },
   {
     "URI": "https://github.com/JWerbrouck/scan-to-graph/blob/master/stg.ttl",
@@ -4252,8 +4120,7 @@
     "Number of Object Properties": 7.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/tempo#",
@@ -4267,7 +4134,7 @@
     "Reference Source": null,
     "Version": "2.1",
     "Created": "2025-01-15",
-    "Creator": "n9d1446a2f1e04861b4771178230d42c0b1, n9d1446a2f1e04861b4771178230d42c0b3, n9d1446a2f1e04861b4771178230d42c0b5, n9d1446a2f1e04861b4771178230d42c0b7",
+    "Creator": "['n9d1446a2f1e04861b4771178230d42c0b1', 'n9d1446a2f1e04861b4771178230d42c0b3', 'n9d1446a2f1e04861b4771178230d42c0b5', 'n9d1446a2f1e04861b4771178230d42c0b7']",
     "Publisher": "n9d1446a2f1e04861b4771178230d42c0b9",
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "loin",
@@ -4284,8 +4151,7 @@
     "Number of Object Properties": 25.0,
     "Alignment Score": 2,
     "Accessibility Score": 3,
-    "Quality Score": 1.6,
-    "Governance Score": 3
+    "Quality Score": 1.6
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ActorOntology.owl#",
@@ -4316,8 +4182,7 @@
     "Number of Object Properties": 15.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 0.4,
-    "Governance Score": 1
+    "Quality Score": 0.4
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntology.owl#",
@@ -4348,8 +4213,7 @@
     "Number of Object Properties": 232.0,
     "Alignment Score": 2,
     "Accessibility Score": 2,
-    "Quality Score": 0.4,
-    "Governance Score": 1
+    "Quality Score": 0.4
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#",
@@ -4380,8 +4244,7 @@
     "Number of Object Properties": 76.0,
     "Alignment Score": 1,
     "Accessibility Score": 3,
-    "Quality Score": 0.6,
-    "Governance Score": 1
+    "Quality Score": 0.6
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#",
@@ -4412,8 +4275,7 @@
     "Number of Object Properties": 30.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 0.3,
-    "Governance Score": 1
+    "Quality Score": 0.3
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/BuildingOntologySharedVocabulary.owl",
@@ -4444,8 +4306,7 @@
     "Number of Object Properties": 5.0,
     "Alignment Score": 0,
     "Accessibility Score": 2,
-    "Quality Score": 0.7,
-    "Governance Score": 1
+    "Quality Score": 0.7
   },
   {
     "URI": "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#",
@@ -4476,8 +4337,7 @@
     "Number of Object Properties": 21.0,
     "Alignment Score": 1,
     "Accessibility Score": 2,
-    "Quality Score": 0.2,
-    "Governance Score": 1
+    "Quality Score": 0.2
   },
   {
     "URI": null,
@@ -4491,7 +4351,7 @@
     "Reference Source": "https://www.researchgate.net/publication/228579405_Ontology-based_user_modeling_for_pedestrian_navigation_systems",
     "Version": null,
     "Created": 2009,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -4508,8 +4368,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://w3id.org/unocs#",
@@ -4523,7 +4382,7 @@
     "Reference Source": "https://doi.org/10.1016/j.autcon.2025.106293",
     "Version": null,
     "Created": 2024,
-    "Creator": "Kilian Speiser, Sebastian Seiß",
+    "Creator": "['Kilian Speiser', 'Sebastian Seiß']",
     "Publisher": null,
     "License": "CC BY 4.0",
     "Linked-to AECO Ontologies": "bot, dica, dicc, dice, dici, dicp, dicv, ocqa",
@@ -4540,8 +4399,7 @@
     "Number of Object Properties": 325.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 2
+    "Quality Score": 1.0
   },
   {
     "URI": null,
@@ -4555,7 +4413,7 @@
     "Reference Source": "https://doi.org/10.3233/AIS-2009-0033",
     "Version": null,
     "Created": 2009,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -4572,8 +4430,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 0
+    "Quality Score": 1.0
   },
   {
     "URI": "https://bimerr.iot.linkeddata.es/def/weather/",
@@ -4587,7 +4444,7 @@
     "Reference Source": "https://bimerr.iot.linkeddata.es/",
     "Version": null,
     "Created": 2020,
-    "Creator": "Salvador González-Gerpe https://www.linkedin.com/in/artificialintelligence-researcher-salvadorgonzalezgerpe",
+    "Creator": "['Salvador González-Gerpe https://www.linkedin.com/in/artificialintelligence-researcher-salvadorgonzalezgerpe']",
     "Publisher": "https://oeg.fi.upm.es/",
     "License": "CC BY 4.0 ",
     "Linked-to AECO Ontologies": "sosa, ssn, saref",
@@ -4604,8 +4461,7 @@
     "Number of Object Properties": 18.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 2.0,
-    "Governance Score": 2
+    "Quality Score": 2.0
   },
   {
     "URI": "https://w3.org/2003/01/geo/wgs84_pos#",
@@ -4619,7 +4475,7 @@
     "Reference Source": "WGS84 Geo Positioning: an RDF vocabulary",
     "Version": 1.21,
     "Created": 2006,
-    "Creator": null,
+    "Creator": "[]",
     "Publisher": null,
     "License": null,
     "Linked-to AECO Ontologies": null,
@@ -4636,8 +4492,7 @@
     "Number of Object Properties": null,
     "Alignment Score": 0,
     "Accessibility Score": 1,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   },
   {
     "URI": "https://github.com/AlessandroBruttini/XEMO",
@@ -4668,7 +4523,6 @@
     "Number of Object Properties": 14.0,
     "Alignment Score": 3,
     "Accessibility Score": 3,
-    "Quality Score": 1.0,
-    "Governance Score": 1
+    "Quality Score": 1.0
   }
 ]
