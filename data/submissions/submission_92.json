@@ -1,0 +1,13 @@
+{
+  "Title": "_No response_",
+  "Prefix": "infraspatialot",
+  "Version": "_No response_",
+  "Created": "2024",
+  "Description": "This ontology enables the description of spatial relationships in a road infrastructure system. For this purpose, the spatial relationships of road infrastructure elements to a reference element are explicitly recorded. The explicit recording of the relationship of several road infrastructure elements to the same reference element then implicitly contains the relationship of the road infrastructure elements to each other, which can then be analysed depending on the usecase.",
+  "uri": "https://dtc-ontology.cms.ed.tum.de/infraspatialot",
+  "Reference": "https://ceur-ws.org/Vol-3824/paper5.pdf",
+  "Linked-to ontologies AECO": "_No response_",
+  "Linked-to ontologies UPPER": "_No response_",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://dtc-ontology.cms.ed.tum.de/infraspatialot/ontology.ttl"
+}
