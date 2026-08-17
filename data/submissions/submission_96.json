@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology – Zones Extension",
+  "Prefix": "bcorezones",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "The BCoreZones Ontology extends the Bridge Core Ontology (BCore) with a precise and modular vocabulary for describing spatial zones and environmental context around a bridge.",
+  "uri": "https://w3id.org/bcore/zones",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "bot",
+  "Linked-to ontologies UPPER": "vann; foaf; schema",
+  "Linked-to ontologies OTHER DOMAINS": "bibo",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/zones/bcorezones.ttl"
+}
