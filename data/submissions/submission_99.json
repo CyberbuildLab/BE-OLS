@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology – Components Extension",
+  "Prefix": "bcorecomp",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "_No response_",
+  "uri": "https://w3id.org/bcore/comp",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "brot; brcomp; infraspatialot",
+  "Linked-to ontologies UPPER": "bibo; vann; foaf; schema",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/comp/bcorecomp.ttl"
+}
