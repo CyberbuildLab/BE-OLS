@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology – Infrastructure Extension",
+  "Prefix": "Bcoreinfra",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "The BCoreInfra Ontology extends the Bridge Core Ontology (BCore) with a precise and modular vocabulary for describing bridge-related infrastructure.",
+  "uri": "https://w3id.org/bcore/infra",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "bcore",
+  "Linked-to ontologies UPPER": "vann; foaf; schema; bibo",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/infra/bcoreinfra.ttl"
+}
