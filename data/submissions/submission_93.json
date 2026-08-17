@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Engineering Drawing Ontology",
+  "Prefix": "bedo",
+  "Version": "v0.2",
+  "Created": "2026-04-05",
+  "Description": "The Bridge Engineering Drawing Ontology (BEDO) is an ontology designed to represent and organize semantic information extracted from bridge engineering drawings. It provides a structured vocabulary for describing engineering documents, drawings, drawing series, title blocks, drawing views, view titles, lifecycle stages, and their relationships to bridges and bridge components. BEDO supports the explicit modeling of both document-level metadata and view-level graphical information, including drawing identifiers, project names, organization names, scales, file paths, bounding boxes, and OCR-extracted textual content. By linking drawings and drawing views to bridge components, the ontology enables semantic integration between engineering documentation, computer vision outputs, and bridge asset information. BEDO is intended to support downstream tasks such as automated drawing interpretation, information retrieval, knowledge graph construction, and lifecycle-oriented bridge information management.",
+  "uri": "https://w3id.org/bedo#",
+  "Reference": "_No response_",
+  "Linked-to ontologies AECO": "bmat; brot;",
+  "Linked-to ontologies UPPER": "foaf; vann",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://xiaolisong1126.github.io/bedo/ontology.ttl"
+}
