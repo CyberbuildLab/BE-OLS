@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology – Media Extension",
+  "Prefix": "BCoreMedia",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "The BCoreMedia Ontology extends the Bridge Core Ontology (BCore) with a precise and modular vocabulary for describing bridge‑related media and documentation.",
+  "uri": "https://w3id.org/bcore/media",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "bcore; brot",
+  "Linked-to ontologies UPPER": "vann; foaf; schema",
+  "Linked-to ontologies OTHER DOMAINS": "bibo",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/media/bcoremedia.ttl"
+}
