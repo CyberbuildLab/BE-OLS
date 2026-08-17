@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology – Material Extension",
+  "Prefix": "bcoremat",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "The **BCoreMat Ontology** extends the Bridge Core Ontology (BCore) with a precise and modular vocabulary for describing **materials used in bridge construction**. It models concrete, steel, composites, coatings, and other material types, along with their properties and classifications. This enables consistent, semantically rich descriptions of what bridges and their components are made of. **BCoreMat** builds directly on BCore’s top‑level structure, ensuring that every material can be consistently linked to the bridge or its components. It integrates seamlessly with component, infrastructure, media, and spatial‑zone modules to support comprehensive, multi‑domain bridge modeling. #### BCore Ontology Suite: | Module | Purpose | |--------|---------| | **[BCore](/BCore/)** | Core identity, top‑level bridge concepts, and shared linking structure. | | **[BCoreComp](/BCore/comp)** | Structural and functional bridge components. | | **BCoreMat** | Materials used in bridge construction. | | **[BCoreInfra](/BCore/infra)** | Bridge-related transport and utility infrastructure. | | **[BCoreZones](/BCore/zones)** | Spatial zones, geometric context, and environmental regions. | | **[BCoreMedia](/BCore/media)** | Media files, documentation, and digital assets. | #### About BCoreMat: **BCoreMat** provides a structured, extensible model for representing the **various materials** used in bridge construction. Main focus: - **Material types** such as concrete, steel, composites, and coatings - **Material properties** relevant for structural and durability assessment - **Clear relationships** between materials and bridge components - **Consistent integration** with BCore’s core identity and structure - **Interoperability** across all BCore modules → Thus, it is the right choice when you need to describe what a bridge is made of and how material information supports analysis, inspection, and lifecycle management.",
+  "uri": "https://w3id.org/bcore/mat",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "bcore",
+  "Linked-to ontologies UPPER": "bibo; vann; foaf; schema",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/mat/bcoremat.ttl"
+}
