@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Core Ontology",
+  "Prefix": "BCore",
+  "Version": "0.1.1",
+  "Created": "2025-11-06",
+  "Description": "The BCore main ontology provides the minimal conceptual model required to describe a bridge: its identity, its top‑level structure, and the relationships that connect it to more detailed domain ontologies.",
+  "uri": "https://w3id.org/bcore",
+  "Reference": "https://github.com/TUD-IMB/BCore",
+  "Linked-to ontologies AECO": "reloc; brot; brcomp; bot; bmat; infraspatialot",
+  "Linked-to ontologies UPPER": "schema; foaf; vann",
+  "Linked-to ontologies OTHER DOMAINS": "bibo",
+  "Link to TTL file": "https://tud-imb.github.io/BCore/bcore.ttl"
+}
