@@ -1,0 +1,13 @@
+{
+  "Title": "Ontology for structuring design rules for bridge components",
+  "Prefix": "bedro",
+  "Version": "0.1.4",
+  "Created": "2025-08-01",
+  "Description": "The Bridge Element Design Rule Ontology (BEDRO) is a concept for the implementation of German bridge design rules via the Semantic Web Rule Language (SWRL) and the SHACL Rule Language (SRL). BEDRO includes many geometric bridge design parameters named after a newly developed naming convention.",
+  "uri": "https://w3id.org/bedro",
+  "Reference": "_No response_",
+  "Linked-to ontologies AECO": "bcore; bcorecomp; bcoreinfra; bcoremat; bcorezones; brot; brcomp; reloc; bot; infraspatialOT; bmat",
+  "Linked-to ontologies UPPER": "bibo; vann; foaf; schema",
+  "Linked-to ontologies OTHER DOMAINS": "swrl; swrlb; swrla",
+  "Link to TTL file": "https://noacktim.github.io/BEDRO/bedro.ttl"
+}
