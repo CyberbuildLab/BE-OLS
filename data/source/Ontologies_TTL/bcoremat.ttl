@@ -1,0 +1,336 @@
+@prefix bcoremat: <https://w3id.org/bcore/mat#> .
+@prefix bcore: <https://w3id.org/bcore#> .
+@prefix bmat: <https://w3id.org/bmat#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bcore/mat#> .
+
+<https://w3id.org/bcore/mat> rdf:type owl:Ontology ;
+                              <http://purl.org/dc/elements/1.1/abstract> "The Bridge Core Ontology (BCore) enables the representation of a bridge structure, its components and material, as well as the infrastructure and media files connected to it and the environment and location of the bridge. BCore is created by the Institute of Concrete Structures (IMB) at the Dresden University of Technology (TUD). This ontology contains the corresponding material extension."@en ;
+                              <http://purl.org/dc/elements/1.1/title> "Bridge Core Ontology for Institute of Concrete Structures, Dresden University of Technology – Material Extension"@en ;
+                              <http://purl.org/dc/terms/contributor> "Jakob Vogt" ;
+                              <http://purl.org/dc/terms/created> "2025-11-06"^^xsd:date ;
+                              <http://purl.org/dc/terms/creator> "Johannes Reimer" ,
+                                                                 "Morris Florek" ,
+                                                                 "Tim Noack" ,
+                                                                 "Xiaoli Song" ;
+                              <http://purl.org/dc/terms/description> "Extension ontology for the representation of bridge building materials. Designed to work in conjunction with the BCore ontology but to also allow for external use."@en ;
+                              <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/deed.en" ;
+                              <http://purl.org/dc/terms/modified> "2026-08-04"^^xsd:date ;
+                              <http://purl.org/ontology/bibo/status> "Ontology Specification Draft" ;
+                              <http://purl.org/vocab/vann/preferredNamespacePrefix> "bcoremat" ;
+                              rdfs:label "Bridge Core Ontology – Material Extension"@en ;
+                              owl:versionInfo "0.1.1" ;
+                              <http://xmlns.com/foaf/0.1/logo> "https://raw.githubusercontent.com/TUD-IMB/BCore/main/BCore.svg" ;
+                              <https://schema.org/codeRepository> "https://github.com/TUD-IMB/BCore" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+<http://purl.org/dc/elements/1.1/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionIRI
+owl:versionIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/logo
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/unitText
+<https://schema.org/unitText> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/bcore/mat#isCompositeOf
+:isCompositeOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :CompositeMaterial ;
+               rdfs:range <https://w3id.org/bmat#BuildingMaterial> ;
+               rdfs:comment "Verbundmaterial ist Verbund aus anderem Material"@de ,
+                            "composite material is a composite of another material"@en ;
+               rdfs:label "is composite of"@en ,
+                          "ist Verbund aus"@de .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bcore/mat#Ductility
+:Ductility rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Steel ;
+           rdfs:range xsd:string ;
+           rdfs:comment "die Eigenschaft eines Werkstoffes, sich unter Zugbelastung vor einem Bruch dauerhaft plastisch zu verformen (https://de.wikipedia.org/wiki/Duktilit%C3%A4t)"@de ,
+                        "the ability of a material to sustain significant plastic deformation before fracture when undergoing tension (https://en.wikipedia.org/wiki/Ductility)"@en ;
+           rdfs:label "Duktilität"@de ,
+                      "ductility"@en .
+
+
+###  https://w3id.org/bcore/mat#Ec
+:Ec rdf:type owl:DatatypeProperty ,
+             owl:FunctionalProperty ;
+    rdfs:domain <https://w3id.org/bmat#Concrete> ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Elastizitätsmodul des Betons"@de ,
+                 "modulus of elasticity (Young's modulus) of the concrete"@en ;
+    rdfs:label "Ec"@de ,
+               "Ec"@en ;
+    <https://schema.org/unitText> "N/m²" .
+
+
+###  https://w3id.org/bcore/mat#Ep
+:Ep rdf:type owl:DatatypeProperty ,
+             owl:FunctionalProperty ;
+    rdfs:domain :PrestressingSteel ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Elastizitätsmodul des Spannstahls"@de ,
+                 "modulus of elasticity (Young's modulus) of the prestressing steel"@en ;
+    rdfs:label "Ep"@de ,
+               "Ep"@en ;
+    <https://schema.org/unitText> "N/m²" .
+
+
+###  https://w3id.org/bcore/mat#ExpositionClass
+:ExpositionClass rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bmat#Concrete> ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Expositionsklasse (z. B. nach Eurocode 2-1-1)"@de ,
+                              "exposure class (e.g., according to Eurocode 2-1-1)"@en ;
+                 rdfs:label "Expositionsklasse"@de ,
+                            "exposition class"@en ;
+                 rdfs:seeAlso "https://w3id.org/bmat#expositionClassConcrete" .
+
+
+###  https://w3id.org/bcore/mat#Ey
+:Ey rdf:type owl:DatatypeProperty ,
+             owl:FunctionalProperty ;
+    rdfs:domain [ rdf:type owl:Class ;
+                  owl:unionOf ( :ConstructionSteel
+                                <https://w3id.org/bmat#ReinforcementSteel>
+                              )
+                ] ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Elastizitätsmodul des Stahls"@de ,
+                 "modulus of elasticity (Young's modulus) of the steel"@en ;
+    rdfs:label "Ey"@de ,
+               "Ey"@en ;
+    <https://schema.org/unitText> "N/m²" .
+
+
+###  https://w3id.org/bcore/mat#fck
+:fck rdf:type owl:DatatypeProperty ,
+              owl:FunctionalProperty ;
+     rdfs:domain <https://w3id.org/bmat#Concrete> ;
+     rdfs:range xsd:decimal ;
+     rdfs:comment "characteristic compressive strength of the concrete"@en ,
+                  "charakteristische Druckfestigkeit des Betons"@de ;
+     rdfs:label "fck"@de ,
+                "fck"@en ;
+     <https://schema.org/unitText> "N/m²" .
+
+
+###  https://w3id.org/bcore/mat#fpk
+:fpk rdf:type owl:DatatypeProperty ,
+              owl:FunctionalProperty ;
+     rdfs:domain :PrestressingSteel ;
+     rdfs:range xsd:decimal ;
+     rdfs:comment "characteristic tensile strength of the prestressing steel"@en ,
+                  "charakteristische Zugfestigkeit des Spannstahls"@de ,
+                  "N/m²" ;
+     rdfs:label "fpk"@de ,
+                "fpk"@en .
+
+
+###  https://w3id.org/bcore/mat#fyk
+:fyk rdf:type owl:DatatypeProperty ,
+              owl:FunctionalProperty ;
+     rdfs:domain [ rdf:type owl:Class ;
+                   owl:unionOf ( :ConstructionSteel
+                                 <https://w3id.org/bmat#ReinforcementSteel>
+                               )
+                 ] ;
+     rdfs:range xsd:decimal ;
+     rdfs:comment "characteristic tensile strength of the steel"@en ,
+                  "charakteristische Zugfestigkeit des Stahls"@de ;
+     rdfs:label "fyk"@de ,
+                "fyk"@en ;
+     <https://schema.org/unitText> "N/m²" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/bcore/mat#CompositeMaterial
+:CompositeMaterial rdf:type owl:Class ;
+                   rdfs:subClassOf <https://w3id.org/bmat#BuildingMaterial> ;
+                   rdfs:comment "Verbundstoff/ Material, das sich heterogen aus mehreren anderen Materialien zusammensetzt"@de ,
+                                "material, that is heterogenically composed of several materials"@en ;
+                   rdfs:label "Verbundmaterial"@de ,
+                              "composite material"@en .
+
+
+###  https://w3id.org/bcore/mat#ConstructionSteel
+:ConstructionSteel rdf:type owl:Class ;
+                   rdfs:subClassOf :Steel ;
+                   rdfs:comment "Stahl für den Stahl- und den Maschinenbau"@en ,
+                                "structural steel, used for making construction elements in a variety of shapes"@en ;
+                   rdfs:label "Baustahl"@de ,
+                              "construction steel"@en .
+
+
+###  https://w3id.org/bcore/mat#Metal
+:Metal rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/bmat#BuildingMaterial> ;
+       rdfs:comment "elemental metal, metallic construction material or alloy"@en ,
+                    "elementares Metall, metallischer Werkstoff oder Legierung"@de ;
+       rdfs:label "Metall"@de ,
+                  "metal"@en .
+
+
+###  https://w3id.org/bcore/mat#PrestressedConcrete
+:PrestressedConcrete rdf:type owl:Class ;
+                     rdfs:subClassOf :CompositeMaterial ;
+                     rdfs:comment "Beton, der mit vorgespannten Spanngliedern aus anderen Materialien (Stahl, Carbon, ...) durchsetzt ist"@de ,
+                                  "concrete that is permeated by prestressed tendons of other material (steel, carbon fibers, ...)"@en ;
+                     rdfs:label "Spannbeton"@de ,
+                                "prestressed concrete"@en .
+
+
+###  https://w3id.org/bcore/mat#PrestressingSteel
+:PrestressingSteel rdf:type owl:Class ;
+                   rdfs:subClassOf :Steel ;
+                   rdfs:comment "high-tensile steel that is mostly used in prestressed concrete structures"@en ,
+                                "hochfester Stahl, der vor allem im Spannbetonbau zum Vorspannen verwendet wird (https://de.wikipedia.org/wiki/Spannstahl)"@de ;
+                   rdfs:label "Spannstahl"@de ,
+                              "prestressing steel"@en .
+
+
+###  https://w3id.org/bcore/mat#Steel
+:Steel rdf:type owl:Class ;
+       rdfs:subClassOf :Metal ;
+       rdfs:comment "Werkstoff, der überwiegend aus Eisen mit geringem Kohlenstoffanteil besteht (de.wikipedia.org/wiki/Stahl)"@de ,
+                    "alloy of iron and carbon (en.wikipedia.org/wiki/Steel)"@en ;
+       rdfs:label "Stahl"@de ,
+                  "steel"@en .
+
+
+###  https://w3id.org/bcore/mat#SteelConcreteComposite
+:SteelConcreteComposite rdf:type owl:Class ;
+                        rdfs:subClassOf :CompositeMaterial ;
+                        rdfs:comment "Verbund aus (bewehrtem) Beton und Baustahl, die aber räumlich bis auf eine Verbundfläche getrennt sind"@de ,
+                                     "composite of (reinforced) concrete and construction steel, that are spatially separated"@en ;
+                        rdfs:label "Stahl-Beton-Verbund"@de ,
+                                   "steel-concrete composite"@en .
+
+
+###  https://w3id.org/bmat#BuildingMaterial
+<https://w3id.org/bmat#BuildingMaterial> rdf:type owl:Class .
+
+
+###  https://w3id.org/bmat#Concrete
+<https://w3id.org/bmat#Concrete> rdf:type owl:Class ;
+                                 rdfs:subClassOf <https://w3id.org/bmat#BuildingMaterial> ;
+                                 rdfs:comment "Baustoff, der als Dispersion unter Zugabe von Flüssigkeit aus einem Bindemittel und Zuschlagstoffen angemischt wird (de.wikipedia.org/wiki/Beton)"@de ,
+                                              "composite material composed of aggregate bound together with a fluid cement that cures to a solid (en.wikipedia.org/wiki/Concrete)"@en ;
+                                 rdfs:label "Beton"@de ,
+                                            "concrete"@en .
+
+
+###  https://w3id.org/bmat#ReinforcedConcrete
+<https://w3id.org/bmat#ReinforcedConcrete> rdf:type owl:Class ;
+                                           rdfs:subClassOf :CompositeMaterial ;
+                                           rdfs:comment "Beton, der von schlaffer Stahlbewehrung durchsetzt ist"@de ,
+                                                        "concrete that is permeated by steel reinforcement"@en ;
+                                           rdfs:label "Stahlbeton"@de ,
+                                                      "reinforced concrete"@en .
+
+
+###  https://w3id.org/bmat#ReinforcementSteel
+<https://w3id.org/bmat#ReinforcementSteel> rdf:type owl:Class ;
+                                           rdfs:subClassOf :Steel ;
+                                           rdfs:comment "Bewehrungsstahl, für schlaffe Bewehrungen von Stahlbeton verwendet"@de ,
+                                                        "reinforcement (mild) steel"@en ;
+                                           rdfs:label "Betonstahl"@de ,
+                                                      "reinforcement steel"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CompositeMaterial
+                :Metal
+                <https://w3id.org/bmat#Concrete>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :PrestressedConcrete
+                :SteelConcreteComposite
+                <https://w3id.org/bmat#ReinforcedConcrete>
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

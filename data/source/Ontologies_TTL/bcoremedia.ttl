@@ -1,0 +1,202 @@
+@prefix bcoremedia: <https://w3id.org/bcore/media#> .
+@prefix bcore: <https://w3id.org/bcore#> .
+@prefix brot: <https://w3id.org/brot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bcore/media#> .
+
+<https://w3id.org/bcore/media> rdf:type owl:Ontology ;
+                                <http://purl.org/dc/elements/1.1/abstract> "The Bridge Core Ontology (BCore) enables the representation of a bridge structure, its components and material, as well as the infrastructure and media files connected to it and the environment and location of the bridge. BCore is created by the Institute of Concrete Structures (IMB) at the Dresden University of Technology (TUD). This ontology contains the corresponding media extension."@en ;
+                                <http://purl.org/dc/elements/1.1/title> "Bridge Core Ontology for Institute of Concrete Structures, Dresden University of Technology – Media Extension"@en ;
+                                <http://purl.org/dc/terms/contributor> "Jakob Vogt" ;
+                                <http://purl.org/dc/terms/created> "2025-11-06"^^xsd:date ;
+                                <http://purl.org/dc/terms/creator> "Johannes Reimer" ,
+                                                                   "Morris Florek" ,
+                                                                   "Tim Noack" ,
+                                                                   "Xiaoli Song" ;
+                                <http://purl.org/dc/terms/description> "Extension ontology for the representation of bridge-related media. Designed to work in conjunction with the BCore ontology but to also allow for external use."@en ;
+                                <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/deed.en" ;
+                                <http://purl.org/dc/terms/modified> "2026-08-04"^^xsd:date ;
+                                <http://purl.org/ontology/bibo/status> "Ontology Specification Draft" ;
+                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "bcoremedia" ;
+                                rdfs:label "Bridge Core Ontology – Media Extension"@en ;
+                                owl:versionInfo "0.1.1" ;
+                                <http://xmlns.com/foaf/0.1/logo> "https://raw.githubusercontent.com/TUD-IMB/BCore/main/BCore.svg" ;
+                                <https://schema.org/codeRepository> "https://github.com/TUD-IMB/BCore" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+<http://purl.org/dc/elements/1.1/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionIRI
+owl:versionIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/logo
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/unitText
+<https://schema.org/unitText> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/bcore#describes
+<https://w3id.org/bcore#describes> rdf:type owl:ObjectProperty ;
+                                   rdfs:domain <https://w3id.org/bcore#MediaFile> ;
+                                   rdfs:range [ rdf:type owl:Class ;
+                                                owl:unionOf ( <https://w3id.org/brot#Bridge>
+                                                              <https://w3id.org/brot#Component>
+                                                            )
+                                              ] ;
+                                   rdfs:comment "Mediendatei beschreibt (stellt dar, zeigt, veranschaulicht) eine Brücke oder ein Bauteil"@de ,
+                                                "media file describes (represents, depicts, illustrates) a bridge or a bridge component"@en ;
+                                   rdfs:label "beschreibt"@de ,
+                                              "describes"@en .
+
+
+###  https://w3id.org/bcore/media#containsMedia
+:containsMedia rdf:type owl:ObjectProperty ,
+                        owl:AsymmetricProperty ,
+                        owl:TransitiveProperty ;
+               rdfs:domain <https://w3id.org/bcore#MediaFile> ;
+               rdfs:range <https://w3id.org/bcore#MediaFile> ;
+               rdfs:comment "Mediendatei enthält eine andere Mediendatei"@de ,
+                            "media file contains another media file"@en ;
+               rdfs:label "contains media"@en ,
+                          "enthält Mediendatei"@de .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bcore/media#ImageResolutionX
+:ImageResolutionX rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Image ;
+                  rdfs:range xsd:integer ;
+                  rdfs:comment "Bildauflösung in X-Richtung"@de ,
+                               "image resolution in X-direction"@en ;
+                  rdfs:label "Bildauflösung X"@de ,
+                             "image resolution X"@en ;
+                  <https://schema.org/unitText> "pixel" .
+
+
+###  https://w3id.org/bcore/media#ImageResolutionY
+:ImageResolutionY rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Image ;
+                  rdfs:range xsd:integer ;
+                  rdfs:comment "Bildauflösung in Y-Richtung"@de ,
+                               "image resolution in Y-direction"@en ;
+                  rdfs:label "Bildauflösung Y"@de ,
+                             "image resolution Y"@en ;
+                  <https://schema.org/unitText> "pixel" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/bcore#MediaFile
+<https://w3id.org/bcore#MediaFile> rdf:type owl:Class .
+
+
+###  https://w3id.org/bcore/media#Document
+:Document rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/bcore#MediaFile> ;
+          rdfs:comment "Physische oder digitale Darstellung einer Informationseinheit, die zur Kommunikation verwendet werden kann"@de ,
+                       "physical or digital representation of a body of information designed with the capacity to communicate"@en ;
+          rdfs:label "Dokument"@de ,
+                     "document"@en ;
+          rdfs:seeAlso "http://semanticscience.org/resource/SIO_000148" .
+
+
+###  https://w3id.org/bcore/media#Image
+:Image rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/bcore#MediaFile> ;
+       rdfs:comment "Bilddatei"@de ,
+                    "image file"@en ;
+       rdfs:label "Bild"@de ,
+                  "image"@en ;
+       rdfs:seeAlso "http://semanticscience.org/resource/SIO_000081" .
+
+
+###  https://w3id.org/bcore/media#Photo
+:Photo rdf:type owl:Class ;
+       rdfs:subClassOf :Image ;
+       rdfs:comment "Foto (entstanden durch auf eine lichtempfindliche Oberfläche fallendes Licht)"@de ,
+                    "photograph (created by light falling on light-sensitive surface)"@en ;
+       rdfs:label "Foto"@de ,
+                  "photo"@en ;
+       rdfs:seeAlso "http://semanticscience.org/resource/SIO_000082" .
+
+
+###  https://w3id.org/brot#Bridge
+<https://w3id.org/brot#Bridge> rdf:type owl:Class .
+
+
+###  https://w3id.org/brot#Component
+<https://w3id.org/brot#Component> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

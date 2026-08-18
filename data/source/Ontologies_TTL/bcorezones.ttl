@@ -1,0 +1,189 @@
+@prefix bcorezones: <https://w3id.org/bcore/zones#> .
+@prefix bcore: <https://w3id.org/bcore#> .
+@prefix brot: <https://w3id.org/brot#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bcore/zones#> .
+
+<https://w3id.org/bcore/zones> rdf:type owl:Ontology ;
+                                <http://purl.org/dc/elements/1.1/abstract> "The Bridge Core Ontology (BCore) enables the representation of a bridge structure, its components and material, as well as the infrastructure and media files connected to it and the environment and location of the bridge. BCore is created by the Institute of Concrete Structures (IMB) at the Dresden University of Technology (TUD). This ontology contains the corresponding zones extension."@en ;
+                                <http://purl.org/dc/elements/1.1/title> "Bridge Core Ontology for Institute of Concrete Structures, Dresden University of Technology – Zones Extension"@en ;
+                                <http://purl.org/dc/terms/contributor> "Jakob Vogt" ;
+                                <http://purl.org/dc/terms/created> "2025-11-06"^^xsd:date ;
+                                <http://purl.org/dc/terms/creator> "Johannes Reimer" ,
+                                                                   "Morris Florek" ,
+                                                                   "Tim Noack" ,
+                                                                   "Xiaoli Song" ;
+                                <http://purl.org/dc/terms/description> "Extension ontology for the representation of bridge-related zones. Designed to work in conjunction with the BCore ontology but to also allow for external use."@en ;
+                                <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/deed.en" ;
+                                <http://purl.org/dc/terms/modified> "2026-08-04" ;
+                                <http://purl.org/ontology/bibo/status> "Ontology Specification Draft" ;
+                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "bcorezones" ;
+                                rdfs:label "Bridge Core Ontology – Zones Extension"@en ;
+                                owl:versionInfo "0.1.1" ;
+                                <http://xmlns.com/foaf/0.1/logo> "https://raw.githubusercontent.com/TUD-IMB/BCore/main/BCore.svg" ;
+                                <https://schema.org/codeRepository> "https://github.com/TUD-IMB/BCore" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+<http://purl.org/dc/elements/1.1/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionIRI
+owl:versionIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/logo
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/bcore/zones#BuiltUpArea
+:BuiltUpArea rdf:type owl:Class ;
+             rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+             rdfs:comment "Ortschaft/ Fläche, die mit Gebäuden oder Bauwerken bebaut ist oder wird"@de ,
+                          "town/ area that is covered with buildings or anthropogene structures"@en ;
+             rdfs:label "bebautes Gebiet"@de ,
+                        "built-up area"@en .
+
+
+###  https://w3id.org/bcore/zones#Estate
+:Estate rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+        rdfs:comment "Grundstück (Grundbesitz)"@de ,
+                     "estate (land ownership, real estate)"@en ;
+        rdfs:label "Grundstück"@de ,
+                   "estate"@en .
+
+
+###  https://w3id.org/bcore/zones#Field
+:Field rdf:type owl:Class ;
+       rdfs:subClassOf :VegetationArea ;
+       rdfs:comment "Feld (z. B. Landwirtschaft)"@de ,
+                    "field (e.g., agriculture)"@en ;
+       rdfs:label "Feld"@de ,
+                  "field"@en .
+
+
+###  https://w3id.org/bcore/zones#Forest
+:Forest rdf:type owl:Class ;
+        rdfs:subClassOf :VegetationArea ;
+        rdfs:comment "bewaldetes Gebiet"@de ,
+                     "forrest/wood"@en ;
+        rdfs:label "Wald"@de ,
+                   "forest"@en .
+
+
+###  https://w3id.org/bcore/zones#LandscapeConservationMeasureArea
+:LandscapeConservationMeasureArea rdf:type owl:Class ;
+                                  rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+                                  rdfs:comment "Fläche, die einem Landschafts- oder Naturschutz unterliegt"@de ,
+                                               "area that is protected by landscape or nature protection"@en ;
+                                  rdfs:label "Landschaftsschutzgebiet"@de ,
+                                             "landscape conservation measure area"@en .
+
+
+###  https://w3id.org/bcore/zones#Meadow
+:Meadow rdf:type owl:Class ;
+        rdfs:subClassOf :VegetationArea ;
+        rdfs:comment "Wiese/Aue"@de ,
+                     "meadow/ lawn"@en ;
+        rdfs:label "Wiese"@de ,
+                   "meadow"@en .
+
+
+###  https://w3id.org/bcore/zones#VegetationArea
+:VegetationArea rdf:type owl:Class ;
+                rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+                rdfs:comment "bewachsene Fläche"@de ,
+                             "planted area"@en ;
+                rdfs:label "Vegetationsgebiet"@de ,
+                           "vegetation area"@en .
+
+
+###  https://w3id.org/bcore/zones#WaterBody
+:WaterBody rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bot#Zone> ;
+           rdfs:comment "Fläche, die permanent mit Wasser bedeckt ist"@de ,
+                        "area that is permanently covered by water"@en ;
+           rdfs:label "Gewässer"@de ,
+                      "water body"@en .
+
+
+###  https://w3id.org/bot#Zone
+<https://w3id.org/bot#Zone> rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BuiltUpArea
+                :Estate
+                :LandscapeConservationMeasureArea
+                :VegetationArea
+                :WaterBody
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

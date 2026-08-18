@@ -1,0 +1,577 @@
+@prefix bcorecomp: <https://w3id.org/bcore/comp#> .
+@prefix bcore: <https://w3id.org/bcore#> .
+@prefix brot: <https://w3id.org/brot#> .
+@prefix brcomp: <https://w3id.org/brcomp#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bcore/comp#> .
+
+<https://w3id.org/bcore/comp> rdf:type owl:Ontology ;
+                               <http://purl.org/dc/elements/1.1/abstract> "The Bridge Core Ontology (BCore) enables the representation of a bridge structure, its components and material, as well as the infrastructure and media files connected to it and the environment and location of the bridge. BCore is created by the Institute of Concrete Structures (IMB) at the Dresden University of Technology (TUD). This ontology contains the corresponding components extension."@en ;
+                               <http://purl.org/dc/elements/1.1/title> "Bridge Core Ontology for Institute of Concrete Structures, Dresden University of Technology – Components Extension"@en ;
+                               <http://purl.org/dc/terms/contributor> "Jakob Vogt" ;
+                               <http://purl.org/dc/terms/created> "2025-11-06"^^xsd:date ;
+                               <http://purl.org/dc/terms/creator> "Johannes Reimer" ,
+                                                                  "Morris Florek" ,
+                                                                  "Tim Noack" ,
+                                                                  "Xiaoli Song" ;
+                               <http://purl.org/dc/terms/description> "Extension ontology for the representation of bridge components. Designed to work in conjunction with the BCore ontology but to also allow for external use."@en ;
+                               <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/deed.en" ;
+                               <http://purl.org/dc/terms/modified> "2026-07-21"^^xsd:date ;
+                               <http://purl.org/ontology/bibo/status> "Ontology Specification Draft" ;
+                               <http://purl.org/vocab/vann/preferredNamespacePrefix> "bcorecomp" ;
+                               rdfs:label "Bridge Core Ontology – Components Extension"@en ;
+                               owl:versionInfo "0.1.1" ;
+                               <http://xmlns.com/foaf/0.1/logo> "https://raw.githubusercontent.com/TUD-IMB/BCore/main/BCore.svg" ;
+                               <https://schema.org/codeRepository> "https://github.com/TUD-IMB/BCore" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+<http://purl.org/dc/elements/1.1/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionIRI
+owl:versionIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/logo
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/image
+<https://schema.org/image> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/unitText
+<https://schema.org/unitText> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/bcore/comp#beginsAtLocation
+:beginsAtLocation rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Span ;
+                  rdfs:range <https://dtc-ontology.cms.ed.tum.de/infraspatialot#Localisation> ;
+                  owl:propertyDisjointWith :endsAtLocation ;
+                  rdfs:comment "Spannweite beginnt an einer Lokalisation (Punkt)"@de ,
+                               "span begins at localision (location point)"@en ;
+                  rdfs:label "begins at location"@en .
+
+
+###  https://w3id.org/bcore/comp#beginsAtSupport
+:beginsAtSupport rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Span ;
+                 rdfs:range <https://w3id.org/brcomp#SubStructureComponent> ;
+                 owl:propertyDisjointWith :endsAtSupport ;
+                 rdfs:comment "Spannweite beginnt an einem Bauteil des Brückenunterbaus"@de ,
+                              "span begins at a component of the bridge substructure"@en ;
+                 rdfs:label "begins at support"@en .
+
+
+###  https://w3id.org/bcore/comp#endsAtLocation
+:endsAtLocation rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Span ;
+                rdfs:range <https://dtc-ontology.cms.ed.tum.de/infraspatialot#Localisation> ;
+                rdfs:comment "Spannweite endet an einer Lokalisation (Punkt)"@de ,
+                             "span ends at localision (location point)"@en ;
+                rdfs:label "ends at location"@en .
+
+
+###  https://w3id.org/bcore/comp#endsAtSupport
+:endsAtSupport rdf:type owl:ObjectProperty ;
+               rdfs:domain :Span ;
+               rdfs:range <https://w3id.org/brcomp#SubStructureComponent> ;
+               rdfs:comment "Spannweite endet an einem Bauteil des Brückenunterbaus"@de ,
+                            "span ends at a component of the bridge substructure"@en ;
+               rdfs:label "ends at support"@en .
+
+
+###  https://w3id.org/bcore/comp#followsSpan
+:followsSpan rdf:type owl:ObjectProperty ,
+                      owl:TransitiveProperty ;
+             rdfs:domain :Span ;
+             rdfs:range :Span ;
+             rdfs:comment "Spannweite liegt hinter einer anderen Spannweite (wird genutzt, um Teilspannweiten darzustellen, z. B. bei Einzelspannweiten eines Durchlaufträgers oder Hängerabstände einer Schrägkabelbrücke)"@de ,
+                          "span is located behind another span (used to represent partial spans, e.g., individual spans of a continuous girder or suspension spans of a cable-stayed bridge)"@en ;
+             rdfs:label "follows span"@en .
+
+
+###  https://w3id.org/bcore/comp#hasMainSpan
+:hasMainSpan rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain <https://w3id.org/brot#Bridge> ;
+             rdfs:range :Span ;
+             rdfs:comment "Brücke hat eine Hauptspannweite"@de ,
+                          "bridge has main span"@en ;
+             rdfs:label "has main span"@en .
+
+
+###  https://w3id.org/bcore/comp#hasSpan
+:hasSpan rdf:type owl:ObjectProperty ;
+         rdfs:domain <https://w3id.org/brcomp#SuperStructureComponent> ;
+         rdfs:range :Span ;
+         rdfs:comment "Bauteil hat eine Spannweite"@de ,
+                      "component has span"@en ;
+         rdfs:label "has span"@en .
+
+
+###  https://w3id.org/bcore/comp#isSpanOf
+:isSpanOf rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :Span ;
+          rdfs:range <https://w3id.org/brot#Bridge> ;
+          rdfs:comment "ist Feld von genau einer Brücke"@de ,
+                       "the span belongs to just one bridge"@en ;
+          rdfs:label "is span of"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bcore/comp#ArchShape
+:ArchShape rdf:type owl:DatatypeProperty ;
+           rdfs:domain <https://w3id.org/brcomp#Arch> ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Form des Bogens"@de ,
+                        "shape of the arch"@en ;
+           rdfs:label "arch shape"@en .
+
+
+###  https://w3id.org/bcore/comp#GirderShape
+:GirderShape rdf:type owl:DatatypeProperty ;
+             rdfs:domain <https://w3id.org/brcomp#Girder> ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Form des Trägers"@de ,
+                          "shape of the girder"@en ;
+             rdfs:label "girder shape"@en .
+
+
+###  https://w3id.org/bcore/comp#PierShape
+:PierShape rdf:type owl:DatatypeProperty ;
+           rdfs:domain <https://w3id.org/brcomp#Pier> ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Form des Pfeilers"@de ,
+                        "shape of the pier"@en ;
+           rdfs:label "pier shape"@en .
+
+
+###  https://w3id.org/bcore/comp#PylonShape
+:PylonShape rdf:type owl:DatatypeProperty ;
+            rdfs:domain <https://w3id.org/brcomp#Pylon> ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Form des Pylons"@de ,
+                         "shape of the pylon"@en ;
+            rdfs:label "pylon shape"@en .
+
+
+###  https://w3id.org/bcore/comp#SpanLength
+:SpanLength rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Span ;
+            rdfs:range xsd:decimal ;
+            rdfs:comment "Spannweite"@de ,
+                         "length of bridge span"@en ;
+            rdfs:label "span length"@en ;
+            <https://schema.org/unitText> "m" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://dtc-ontology.cms.ed.tum.de/infraspatialot#Localisation
+<https://dtc-ontology.cms.ed.tum.de/infraspatialot#Localisation> rdf:type owl:Class .
+
+
+###  https://w3id.org/bcore/comp#Abutment
+:Abutment rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+          rdfs:comment "Widerlager"@de ,
+                       "bridge abutment"@en ;
+          rdfs:label "abutment"@en .
+
+
+###  https://w3id.org/bcore/comp#BoxGirder
+:BoxGirder rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+           rdfs:comment "Hohlkastenträger"@de ,
+                        "box girder/ hollow beam"@en ;
+           rdfs:label "box girder"@en .
+
+
+###  https://w3id.org/bcore/comp#EquipmentComponent
+:EquipmentComponent rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/brot#Component> ;
+                    owl:disjointWith <https://w3id.org/brcomp#SubStructureComponent> ,
+                                     <https://w3id.org/brcomp#SuperStructureComponent> ;
+                    rdfs:comment "Bauteil der Brückenausstattung"@de ,
+                                 "component of bridge equipment"@en ;
+                    rdfs:label "equipment component"@en ;
+                    rdfs:seeAlso "https://w3id.org/brcomp/#FinishingComponent" .
+
+
+###  https://w3id.org/bcore/comp#IBeam
+:IBeam rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+       rdfs:comment "I-Träger"@de ,
+                    "I-shaped girder"@en ;
+       rdfs:label "I-beam"@en .
+
+
+###  https://w3id.org/bcore/comp#PierUnit
+:PierUnit rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+          rdfs:comment "Pfeilereinheit/-gruppe"@de ,
+                       "pier unit/group"@en ;
+          rdfs:label "pier unit"@en .
+
+
+###  https://w3id.org/bcore/comp#PlateGirder
+:PlateGirder rdf:type owl:Class ;
+             rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+             rdfs:comment "Vollwandträger (z. B. aus Stahl)"@de ,
+                          "plate girder (solid-web; e.g., made of steel)"@en ;
+             rdfs:label "plate girder"@en .
+
+
+###  https://w3id.org/bcore/comp#Rope
+:Rope rdf:type owl:Class ;
+      rdfs:subClassOf <https://w3id.org/brcomp#TensionComponent> ;
+      rdfs:comment "Seil"@de ,
+                   "suspension rope"@en ;
+      rdfs:label "rope"@en .
+
+
+###  https://w3id.org/bcore/comp#Slab
+:Slab rdf:type owl:Class ;
+      rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+      rdfs:comment "Platte"@de ,
+                   "bridge slab"@en ;
+      rdfs:label "slab"@en .
+
+
+###  https://w3id.org/bcore/comp#Span
+:Span rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:comment "Brückenfeld"@de ,
+                   "bridge span"@en ;
+      rdfs:label "span"@en ;
+      <https://schema.org/image> "https://raw.githubusercontent.com/TUD-IMB/BCore/refs/heads/main/comp/BCore_Spans.svg" .
+
+
+###  https://w3id.org/bcore/comp#TBeam
+:TBeam rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+       rdfs:comment "Plattenbalken (Beton)"@de ,
+                    "T-shaped girder"@en ;
+       rdfs:label "T-beam"@en .
+
+
+###  https://w3id.org/bcore/comp#Tendon
+:Tendon rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/brcomp#TensionComponent> ;
+        rdfs:comment "Spannglied"@de ,
+                     "tendon for prestressed concrete"@en ;
+        rdfs:label "tendon"@en .
+
+
+###  https://w3id.org/bcore/comp#TrussGirder
+:TrussGirder rdf:type owl:Class ;
+             rdfs:subClassOf <https://w3id.org/brcomp#GirderMainGirder> ;
+             rdfs:comment "Fachwerkträger"@de ,
+                          "longitudinal truss"@en ;
+             rdfs:label "truss girder"@en .
+
+
+###  https://w3id.org/bcore/comp#Wire
+:Wire rdf:type owl:Class ;
+      rdfs:subClassOf <https://w3id.org/brcomp#TensionComponent> ;
+      rdfs:comment "Draht"@de ,
+                   "tension wire"@en ;
+      rdfs:label "wire"@en .
+
+
+###  https://w3id.org/brcomp#AbutmentBenching
+<https://w3id.org/brcomp#AbutmentBenching> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/brcomp#AbutmentComponent> ;
+                                           rdfs:comment "Auflagerbank"@de ,
+                                                        "abutment front wall (benching, breast wall, stem)"@en ;
+                                           rdfs:label "abutment benching"@en .
+
+
+###  https://w3id.org/brcomp#AbutmentChamberWall
+<https://w3id.org/brcomp#AbutmentChamberWall> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://w3id.org/brcomp#AbutmentComponent> ;
+                                              rdfs:comment "Widerlagerwand"@de ,
+                                                           "abutment wall (breast wall, stem)"@en ;
+                                              rdfs:label "abutment chamber wall"@en .
+
+
+###  https://w3id.org/brcomp#AbutmentComponent
+<https://w3id.org/brcomp#AbutmentComponent> rdf:type owl:Class ;
+                                            rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+                                            rdfs:comment "Bauteil des Widerlagers"@de ,
+                                                         "component of the abutment"@en ;
+                                            rdfs:label "abutment component"@en .
+
+
+###  https://w3id.org/brcomp#AbutmentFooting
+<https://w3id.org/brcomp#AbutmentFooting> rdf:type owl:Class ;
+                                          rdfs:subClassOf <https://w3id.org/brcomp#AbutmentComponent> ,
+                                                          <https://w3id.org/brcomp#Foundation> ;
+                                          rdfs:comment "Fundament des Widerlagers"@de ,
+                                                       "abutment foundation"@en ;
+                                          rdfs:label "abutment footing"@en .
+
+
+###  https://w3id.org/brcomp#AbutmentWingWall
+<https://w3id.org/brcomp#AbutmentWingWall> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/brcomp#AbutmentComponent> ;
+                                           rdfs:comment "Flügelwand des Widerlagers"@de ,
+                                                        "wing wall of abutment"@en ;
+                                           rdfs:label "abutment wing wall"@en .
+
+
+###  https://w3id.org/brcomp#Arch
+<https://w3id.org/brcomp#Arch> rdf:type owl:Class ;
+                               rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ,
+                                               <https://w3id.org/brcomp#SuperStructureComponent> ;
+                               rdfs:comment "Bogen"@de ,
+                                            "bridge arch"@en ;
+                               rdfs:label "arch"@en .
+
+
+###  https://w3id.org/brcomp#Bearing
+<https://w3id.org/brcomp#Bearing> rdf:type owl:Class ;
+                                  rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+                                  rdfs:comment "Lager"@de ,
+                                               "bearing/ support"@en ;
+                                  rdfs:label "bearing"@en .
+
+
+###  https://w3id.org/brcomp#Cable
+<https://w3id.org/brcomp#Cable> rdf:type owl:Class ;
+                                rdfs:subClassOf <https://w3id.org/brcomp#TensionComponent> ;
+                                rdfs:comment "Kabel"@de ,
+                                             "suspension cable"@en ;
+                                rdfs:label "cable"@en .
+
+
+###  https://w3id.org/brcomp#Foundation
+<https://w3id.org/brcomp#Foundation> rdf:type owl:Class ;
+                                     rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+                                     rdfs:comment "Gründung/ Fundament"@de ,
+                                                  "foundation  / footing / grounding"@en ;
+                                     rdfs:label "foundation"@en .
+
+
+###  https://w3id.org/brcomp#Girder
+<https://w3id.org/brcomp#Girder> rdf:type owl:Class ;
+                                 rdfs:subClassOf <https://w3id.org/brcomp#SuperStructureComponent> ;
+                                 rdfs:comment "Brückenträger"@de ,
+                                              "girder/ beam"@en ;
+                                 rdfs:label "girder"@en .
+
+
+###  https://w3id.org/brcomp#GirderComponent
+<https://w3id.org/brcomp#GirderComponent> rdf:type owl:Class ;
+                                          rdfs:subClassOf <https://w3id.org/brcomp#SuperStructureComponent> ;
+                                          rdfs:comment "component of the girder"@en ,
+                                                       "Bauteil des Brückenträgers" ;
+                                          rdfs:label "girder component"@en .
+
+
+###  https://w3id.org/brcomp#GirderCrossGirder
+<https://w3id.org/brcomp#GirderCrossGirder> rdf:type owl:Class ;
+                                            rdfs:subClassOf <https://w3id.org/brcomp#GirderComponent> ;
+                                            rdfs:comment "Querträger"@de ,
+                                                         "cross girder/ cross beam"@en ;
+                                            rdfs:label "cross girder"@en .
+
+
+###  https://w3id.org/brcomp#GirderDeck
+<https://w3id.org/brcomp#GirderDeck> rdf:type owl:Class ;
+                                     rdfs:subClassOf <https://w3id.org/brcomp#GirderComponent> ;
+                                     rdfs:comment "Fahrbahnplatte"@de ,
+                                                  "bridge deck/slab"@en ;
+                                     rdfs:label "deck"@en .
+
+
+###  https://w3id.org/brcomp#GirderMainGirder
+<https://w3id.org/brcomp#GirderMainGirder> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/brcomp#GirderComponent> ;
+                                           rdfs:comment "Hauptträger (Längsträger)"@de ,
+                                                        "main (longitudinal) girder"@en ;
+                                           rdfs:label "main girder"@en .
+
+
+###  https://w3id.org/brcomp#Pier
+<https://w3id.org/brcomp#Pier> rdf:type owl:Class ;
+                               rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+                               rdfs:comment "Stütze"@de ,
+                                            "bridge pier"@en ;
+                               rdfs:label "pier"@en .
+
+
+###  https://w3id.org/brcomp#Pile
+<https://w3id.org/brcomp#Pile> rdf:type owl:Class ;
+                               rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ;
+                               rdfs:comment "Bohrpfahl"@de ,
+                                            "bored/drilled pile"@en ;
+                               rdfs:label "pile"@en .
+
+
+###  https://w3id.org/brcomp#Pylon
+<https://w3id.org/brcomp#Pylon> rdf:type owl:Class ;
+                                rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ,
+                                                <https://w3id.org/brcomp#SuperStructureComponent> ;
+                                rdfs:comment "Pylon"@de ,
+                                             "bridge pylon"@en ;
+                                rdfs:label "pylon"@en .
+
+
+###  https://w3id.org/brcomp#SubStructureComponent
+<https://w3id.org/brcomp#SubStructureComponent> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://w3id.org/brot#Component> ;
+                                                rdfs:comment "Bauteil des Unterbaus"@de ,
+                                                             "component of bridge substructure"@en ;
+                                                rdfs:label "substructure component"@en .
+
+
+###  https://w3id.org/brcomp#SuperStructureComponent
+<https://w3id.org/brcomp#SuperStructureComponent> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://w3id.org/brot#Component> ;
+                                                  rdfs:comment "Bauteil des Überbaus"@de ,
+                                                               "component of bridge superstructure"@en ;
+                                                  rdfs:label "superstructure component"@en .
+
+
+###  https://w3id.org/brcomp#TensionComponent
+<https://w3id.org/brcomp#TensionComponent> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/brcomp#SubStructureComponent> ,
+                                                           <https://w3id.org/brcomp#SuperStructureComponent> ;
+                                           rdfs:comment "Zugkomponente"@de ,
+                                                        "components that only work on tension"@en ;
+                                           rdfs:label "tension component"@en .
+
+
+###  https://w3id.org/brot#Bridge
+<https://w3id.org/brot#Bridge> rdf:type owl:Class .
+
+
+###  https://w3id.org/brot#Component
+<https://w3id.org/brot#Component> rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Abutment
+                <https://w3id.org/brcomp#Arch>
+                <https://w3id.org/brcomp#Bearing>
+                <https://w3id.org/brcomp#Foundation>
+                <https://w3id.org/brcomp#Pier>
+                <https://w3id.org/brcomp#Pile>
+                <https://w3id.org/brcomp#Pylon>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BoxGirder
+                :IBeam
+                :PlateGirder
+                :TBeam
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <https://w3id.org/brcomp#AbutmentBenching>
+                <https://w3id.org/brcomp#AbutmentChamberWall>
+                <https://w3id.org/brcomp#AbutmentFooting>
+                <https://w3id.org/brcomp#AbutmentWingWall>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <https://w3id.org/brcomp#Arch>
+                <https://w3id.org/brcomp#Girder>
+                <https://w3id.org/brcomp#GirderComponent>
+                <https://w3id.org/brcomp#Pylon>
+                <https://w3id.org/brcomp#TensionComponent>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <https://w3id.org/brcomp#GirderCrossGirder>
+                <https://w3id.org/brcomp#GirderDeck>
+                <https://w3id.org/brcomp#GirderMainGirder>
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

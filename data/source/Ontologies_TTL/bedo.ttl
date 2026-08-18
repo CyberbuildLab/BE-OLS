@@ -1,0 +1,466 @@
+@prefix : <https://w3id.org/bedo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bedo#> .
+
+<https://w3id.org/bedo> rdf:type owl:Ontology ;
+                         <http://purl.org/dc/terms/created> "2026-04-05"^^xsd:date ;
+                         <http://purl.org/dc/terms/creator> "Xiaoli Song" ;
+                         <http://purl.org/dc/terms/description> "Ontology for describing bridge engineering drawings, drawing views, title blocks, drawing view titles, and their relations to bridge components."@en ,
+                                                                "This ontology selectively reuses concepts from external ontologies. In particular, more detailed semantics for bridge components may be obtained by importing the BRCOMP ontology https://w3id.org/brcomp#."@en ;
+                         <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                         <http://purl.org/dc/terms/modified> "2026-07-24"^^xsd:date ;
+                         <http://purl.org/dc/terms/title> "Bridge Engineering Drawing Ontology"@en ;
+                         <http://purl.org/vocab/vann/preferredNamespacePrefix> "bedo" ;
+                         <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/bedo#" ;
+                         rdfs:label "Bridge Engineering Drawing Ontology"@en ;
+                         owl:versionInfo "v0.2" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/bedo#depicts
+:depicts rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isDepictedIn ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Document
+                                     :DrawingView
+                                   )
+                     ] ;
+         rdfs:range <https://w3id.org/brot#Component> ;
+         rdfs:comment "Relates a document or drawing view to the bridge component that it depicts."@en ;
+         rdfs:label "depicts"@en .
+
+
+###  https://w3id.org/bedo#forStage
+:forStage rdf:type owl:ObjectProperty ;
+          owl:inverseOf :hasStageDocument ;
+          rdfs:domain :Document ;
+          rdfs:range :Stage ;
+          rdfs:comment "Relates a document to the lifecycle stage for which it is created or used."@en ;
+          rdfs:label "for stage"@en .
+
+
+###  https://w3id.org/bedo#hasDocument
+:hasDocument rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isDocumentOf ;
+             rdfs:domain <https://w3id.org/brot#Bridge> ;
+             rdfs:range :Document ;
+             rdfs:comment "Relates a bridge to a document associated with it."@en ;
+             rdfs:label "has document"@en .
+
+
+###  https://w3id.org/bedo#hasDrawingTitleBlock
+:hasDrawingTitleBlock rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isDrawingTitleBlockOf ;
+                      rdfs:domain :Drawing ;
+                      rdfs:range :DrawingTitleBlock ;
+                      rdfs:comment "Relates a drawing to its title block."@en ;
+                      rdfs:label "has drawing title block"@en .
+
+
+###  https://w3id.org/bedo#hasDrawingView
+:hasDrawingView rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isDrawingViewOf ;
+                rdfs:domain :Drawing ;
+                rdfs:range :DrawingView ;
+                rdfs:comment "Relates a drawing to one of its drawing views."@en ;
+                rdfs:label "has drawing view"@en .
+
+
+###  https://w3id.org/bedo#hasDrawingViewTitle
+:hasDrawingViewTitle rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isDrawingViewTitleOf ;
+                     rdfs:domain :DrawingView ;
+                     rdfs:range :DrawingViewTitle ;
+                     rdfs:comment "Relates a drawing view to its detected or extracted title region."@en ;
+                     rdfs:label "has drawing view title"@en .
+
+
+###  https://w3id.org/bedo#hasMemberDrawing
+:hasMemberDrawing rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :memberOfSeries ;
+                  rdfs:domain :DrawingSeries ;
+                  rdfs:range :Drawing ;
+                  rdfs:comment "Relates a drawing series to a drawing that belongs to it."@en ;
+                  rdfs:label "has member drawing"@en .
+
+
+###  https://w3id.org/bedo#hasStageDocument
+:hasStageDocument rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Stage ;
+                  rdfs:range :Document ;
+                  rdfs:comment "Relates a lifecycle stage to a document created for or used in that stage."@en ;
+                  rdfs:label "has stage document"@en .
+
+
+###  https://w3id.org/bedo#isDepictedIn
+:isDepictedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain <https://w3id.org/brot#Component> ;
+              rdfs:range [ rdf:type owl:Class ;
+                           owl:unionOf ( :Document
+                                         :DrawingView
+                                       )
+                         ] ;
+              rdfs:comment "Relates a bridge component to a document or drawing view in which it is depicted."@en ;
+              rdfs:label "is depicted in"@en .
+
+
+###  https://w3id.org/bedo#isDocumentOf
+:isDocumentOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Document ;
+              rdfs:range <https://w3id.org/brot#Bridge> ;
+              rdfs:comment "Relates a document to the bridge to which it belongs or with which it is associated."@en ;
+              rdfs:label "is document of"@en .
+
+
+###  https://w3id.org/bedo#isDrawingTitleBlockOf
+:isDrawingTitleBlockOf rdf:type owl:ObjectProperty ;
+                       rdfs:domain :DrawingTitleBlock ;
+                       rdfs:range :Drawing ;
+                       rdfs:comment "Relates a drawing title block to the drawing to which it belongs."@en ;
+                       rdfs:label "is drawing title block of"@en .
+
+
+###  https://w3id.org/bedo#isDrawingViewOf
+:isDrawingViewOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :DrawingView ;
+                 rdfs:range :Drawing ;
+                 rdfs:comment "Relates a drawing view to the drawing of which it is a part."@en ;
+                 rdfs:label "is drawing view of"@en .
+
+
+###  https://w3id.org/bedo#isDrawingViewTitleOf
+:isDrawingViewTitleOf rdf:type owl:ObjectProperty ;
+                      rdfs:domain :DrawingViewTitle ;
+                      rdfs:range :DrawingView ;
+                      rdfs:comment "Relates a drawing view title region to the drawing view to which it belongs."@en ;
+                      rdfs:label "is drawing view title of"@en .
+
+
+###  https://w3id.org/bedo#memberOfSeries
+:memberOfSeries rdf:type owl:ObjectProperty ;
+                rdfs:domain :Drawing ;
+                rdfs:range :DrawingSeries ;
+                rdfs:comment "Relates a drawing to the drawing series of which it is a member."@en ;
+                rdfs:label "member of series"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bedo#boundingBox
+:boundingBox rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :DrawingTitleBlock
+                                         :DrawingView
+                                         :DrawingViewTitle
+                                       )
+                         ] ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Specifies the bounding box of a drawing view, drawing title block, or drawing view title. Typically encoded as a string such as \"xmin,ymin,xmax,ymax\" in the coordinate system of the source image or drawing sheet."@en ;
+             rdfs:label "bounding box"@en .
+
+
+###  https://w3id.org/bedo#drawingFilePath
+:drawingFilePath rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Drawing ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Specifies the file path or URI of the source file for a drawing."@en ;
+                 rdfs:label "drawing file path"@en .
+
+
+###  https://w3id.org/bedo#drawingIdentifier
+:drawingIdentifier rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :DrawingTitleBlock ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Specifies the identifier or number of the drawing, typically extracted from the drawing title block."@en ;
+                   rdfs:label "drawing identifier"@en .
+
+
+###  https://w3id.org/bedo#drawingTitle
+:drawingTitle rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Drawing ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Specifies the title of a drawing, typically extracted from the drawing title block."@en ;
+              rdfs:label "drawing title"@en .
+
+
+###  https://w3id.org/bedo#organisationName
+:organisationName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :DrawingTitleBlock ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "Specifies the name of an organization shown in the drawing title block, typically extracted by OCR."@en ;
+                  rdfs:label "organisation name"@en .
+
+
+###  https://w3id.org/bedo#projectName
+:projectName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :DrawingTitleBlock ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Specifies the project name documented in the drawing title block."@en ;
+             rdfs:label "project name"@en .
+
+
+###  https://w3id.org/bedo#scale
+:scale rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :DrawingView ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Specifies the scale used in a drawing view."@en ;
+       rdfs:label "scale"@en .
+
+
+###  https://w3id.org/bedo#seriesType
+:seriesType rdf:type owl:DatatypeProperty ;
+            rdfs:domain :DrawingSeries ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Specifies the type or category of a drawing series."@en ;
+            rdfs:label "series type"@en .
+
+
+###  https://w3id.org/bedo#titleBlockFilePath
+:titleBlockFilePath rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :DrawingTitleBlock ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Specifies the file path or URI of an image crop or source file corresponding to the drawing title block."@en ;
+                    rdfs:label "title block file path"@en .
+
+
+###  https://w3id.org/bedo#viewFilePath
+:viewFilePath rdf:type owl:DatatypeProperty ;
+              rdfs:domain :DrawingView ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Specifies the file path or URI of the source file or extracted image crop for a drawing view."@en ;
+              rdfs:label "view file path"@en .
+
+
+###  https://w3id.org/bedo#viewTitle
+:viewTitle rdf:type owl:DatatypeProperty ;
+           rdfs:domain :DrawingViewTitle ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Specifies the textual title of a drawing view, typically extracted from a detected drawing view title region using OCR."@en ;
+           rdfs:label "view title"@en .
+
+
+###  https://w3id.org/bedo#viewTitleFilePath
+:viewTitleFilePath rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :DrawingViewTitle ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Specifies the file path or URI of an image crop or source file corresponding to a drawing view title region."@en ;
+                   rdfs:label "view title file path"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/bedo#Construction
+:Construction rdf:type owl:Class ;
+              rdfs:subClassOf :Stage ;
+              rdfs:comment "A lifecycle stage representing the construction phase of a bridge project."@en ;
+              rdfs:label "Construction"@en .
+
+
+###  https://w3id.org/bedo#CrossSectionView
+:CrossSectionView rdf:type owl:Class ;
+                  rdfs:subClassOf :SectionView ;
+                  owl:disjointWith :LongitudinalSectionView ;
+                  rdfs:comment "A section view showing a transverse cut through a bridge or bridge component."@en ;
+                  rdfs:label "Cross Section View"@en .
+
+
+###  https://w3id.org/bedo#Design
+:Design rdf:type owl:Class ;
+        rdfs:subClassOf :Stage ;
+        rdfs:comment "A lifecycle stage representing the design phase of a bridge project."@en ;
+        rdfs:label "Design"@en .
+
+
+###  https://w3id.org/bedo#DetailView
+:DetailView rdf:type owl:Class ;
+            rdfs:subClassOf :DrawingView ;
+            rdfs:comment "A drawing view that presents a detailed representation of a specific part of a bridge or component."@en ;
+            rdfs:label "Detail View"@en .
+
+
+###  https://w3id.org/bedo#Document
+:Document rdf:type owl:Class ;
+          rdfs:comment "A document related to bridge engineering drawings, serving as the superclass of drawings and drawing series."@en ;
+          rdfs:label "Document"@en .
+
+
+###  https://w3id.org/bedo#Drawing
+:Drawing rdf:type owl:Class ;
+         rdfs:subClassOf :Document ;
+         owl:disjointWith :DrawingSeries ;
+         rdfs:comment "A bridge engineering drawing document."@en ;
+         rdfs:label "Drawing"@en .
+
+
+###  https://w3id.org/bedo#DrawingSeries
+:DrawingSeries rdf:type owl:Class ;
+               rdfs:subClassOf :Document ;
+               rdfs:comment "A collection or series of related bridge engineering drawings."@en ;
+               rdfs:label "Drawing Series"@en .
+
+
+###  https://w3id.org/bedo#DrawingTitleBlock
+:DrawingTitleBlock rdf:type owl:Class ;
+                   rdfs:comment "Represents the title block of a drawing, containing metadata such as project name, organization name, drawing identifier, and drawing title. In OCR/CV workflows, it may also correspond to a detected image region."@en ;
+                   rdfs:label "Drawing Title Block"@en .
+
+
+###  https://w3id.org/bedo#DrawingView
+:DrawingView rdf:type owl:Class ;
+             rdfs:comment "A graphical view contained in or derived from a bridge engineering drawing."@en ;
+             rdfs:label "Drawing View"@en .
+
+
+###  https://w3id.org/bedo#DrawingViewTitle
+:DrawingViewTitle rdf:type owl:Class ;
+                  rdfs:comment "A textual title region associated with a drawing view, typically detected by computer vision and interpreted by OCR."@en ;
+                  rdfs:label "Drawing View Title"@en .
+
+
+###  https://w3id.org/bedo#ElevationView
+:ElevationView rdf:type owl:Class ;
+               rdfs:subClassOf :OrthographicView ;
+               owl:disjointWith :PlanView ;
+               rdfs:comment "An orthographic view showing the elevation of a bridge or bridge component."@en ;
+               rdfs:label "Elevation View"@en .
+
+
+###  https://w3id.org/bedo#LongitudinalSectionView
+:LongitudinalSectionView rdf:type owl:Class ;
+                         rdfs:subClassOf :SectionView ;
+                         rdfs:comment "A section view showing a longitudinal cut through a bridge or bridge component."@en ;
+                         rdfs:label "Longitudinal Section View"@en .
+
+
+###  https://w3id.org/bedo#Maintenance
+:Maintenance rdf:type owl:Class ;
+             rdfs:subClassOf :Stage ;
+             rdfs:comment "A lifecycle stage representing maintenance, inspection, or repair activities."@en ;
+             rdfs:label "Maintenance"@en .
+
+
+###  https://w3id.org/bedo#OrthographicView
+:OrthographicView rdf:type owl:Class ;
+                  rdfs:subClassOf :DrawingView ;
+                  rdfs:comment "A drawing view based on orthographic projection."@en ;
+                  rdfs:label "Orthographic View"@en .
+
+
+###  https://w3id.org/bedo#OverviewView
+:OverviewView rdf:type owl:Class ;
+              rdfs:subClassOf :DrawingView ;
+              rdfs:comment "A drawing view providing an overall representation of a bridge or a major part of it."@en ;
+              rdfs:label "Overview View"@en .
+
+
+###  https://w3id.org/bedo#PlanView
+:PlanView rdf:type owl:Class ;
+          rdfs:subClassOf :OrthographicView ;
+          rdfs:comment "An orthographic view showing the plan or top view of a bridge or bridge component."@en ;
+          rdfs:label "Plan View"@en .
+
+
+###  https://w3id.org/bedo#SectionView
+:SectionView rdf:type owl:Class ;
+             rdfs:subClassOf :DrawingView ;
+             rdfs:comment "A drawing view representing a cut-through section of a bridge or bridge component."@en ;
+             rdfs:label "Section View"@en .
+
+
+###  https://w3id.org/bedo#Stage
+:Stage rdf:type owl:Class ;
+       rdfs:comment "A lifecycle stage in which a bridge engineering document is produced or used, such as design, construction, or maintenance."@en ;
+       rdfs:label "Stage"@en .
+
+
+###  https://w3id.org/brot#Bridge
+<https://w3id.org/brot#Bridge> rdf:type owl:Class ;
+                               rdfs:comment "A bridge, reused from the BROT namespace."@en ;
+                               rdfs:label "Bridge"@en .
+
+
+###  https://w3id.org/brot#Component
+<https://w3id.org/brot#Component> rdf:type owl:Class ;
+                                  rdfs:comment "A bridge component, reused from the BROT namespace."@en ;
+                                  rdfs:label "Component"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Construction
+                :Design
+                :Maintenance
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Document
+                :DrawingTitleBlock
+                :DrawingView
+                :DrawingViewTitle
+                :Stage
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

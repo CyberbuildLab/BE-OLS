@@ -1,0 +1,264 @@
+@prefix bcoreinfra: <https://w3id.org/bcore/infra#> .
+@prefix bcore: <https://w3id.org/bcore#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://w3id.org/bcore/infra#> .
+
+<https://w3id.org/bcore/infra> rdf:type owl:Ontology ;
+                                <http://purl.org/dc/elements/1.1/abstract> "The Bridge Core Ontology (BCore) enables the representation of a bridge structure, its components and material, as well as the infrastructure and media files connected to it and the environment and location of the bridge. BCore is created by the Institute of Concrete Structures (IMB) at the Dresden University of Technology (TUD). This ontology contains the corresponding infrastructure extension."@en ;
+                                <http://purl.org/dc/elements/1.1/title> "Bridge Core Ontology for Institute of Concrete Structures, Dresden University of Technology – Infrastructure Extension"@en ;
+                                <http://purl.org/dc/terms/contributor> "Jakob Vogt" ;
+                                <http://purl.org/dc/terms/created> "2025-11-06"^^xsd:date ;
+                                <http://purl.org/dc/terms/creator> "Johannes Reimer" ,
+                                                                   "Morris Florek" ,
+                                                                   "Tim Noack" ,
+                                                                   "Xiaoli Song" ;
+                                <http://purl.org/dc/terms/description> "Extension ontology for the representation of bridge-related infrastructure. Designed to work in conjunction with the BCore ontology but to also allow for external use."@en ;
+                                <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/deed.en" ;
+                                <http://purl.org/dc/terms/modified> "2026-08-03" ;
+                                <http://purl.org/ontology/bibo/status> "Ontology Specification Draft" ;
+                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "bcoreinfra" ;
+                                rdfs:label "Bridge Core Ontology – Infrastructure Extension"@en ;
+                                owl:versionInfo "0.1.1" ;
+                                <http://xmlns.com/foaf/0.1/logo> "https://raw.githubusercontent.com/TUD-IMB/BCore/main/BCore.svg" ;
+                                <https://schema.org/codeRepository> "https://github.com/TUD-IMB/BCore" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+<http://purl.org/dc/elements/1.1/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+<http://purl.org/ontology/bibo/status> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionIRI
+owl:versionIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/logo
+<http://xmlns.com/foaf/0.1/logo> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/unitText
+<https://schema.org/unitText> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/bcore/infra#FootCycleRouteType
+:FootCycleRouteType rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain :FootCycleRoute ;
+                    rdfs:range [ rdf:type rdfs:Datatype ;
+                                 owl:oneOf [ rdf:type rdf:List ;
+                                             rdf:first "bike only" ;
+                                             rdf:rest [ rdf:type rdf:List ;
+                                                        rdf:first "foot only" ;
+                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                   rdf:first "segregated" ;
+                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                              rdf:first "shared-use" ;
+                                                                              rdf:rest rdf:nil
+                                                                            ]
+                                                                 ]
+                                                      ]
+                                           ]
+                               ] ;
+                    rdfs:comment "Art des Fuß- und/oder Radweges"@de ,
+                                 """Type of pedestrian and/or bike path. Possible values:
+- foot only
+- bike only
+- segregated
+- shared-use"""@en ;
+                    rdfs:label "Fuß- oder Gehwegtyp"@de ,
+                               "foot or cycle route type"@en .
+
+
+###  https://w3id.org/bcore/infra#RailwayRouteMaximumVelocity
+:RailwayRouteMaximumVelocity rdf:type owl:DatatypeProperty ,
+                                      owl:FunctionalProperty ;
+                             rdfs:domain :RailwayRoute ;
+                             rdfs:range xsd:decimal ;
+                             rdfs:comment "maximal zulässige Geschwindigkeit auf dem Schienenweg"@de ,
+                                          "maximum permitted speed on the rail line"@en ;
+                             rdfs:label "Eisenbahntrasse maximale Geschwindigkeit"@de ,
+                                        "railway route maximum velocity"@en ;
+                             <https://schema.org/unitText> "km/h" .
+
+
+###  https://w3id.org/bcore/infra#RailwayRouteNumberOfTracks
+:RailwayRouteNumberOfTracks rdf:type owl:DatatypeProperty ,
+                                     owl:FunctionalProperty ;
+                            rdfs:domain :RailwayRoute ;
+                            rdfs:range xsd:integer ;
+                            rdfs:comment "Anzahl der Gleise des Schienenweges"@de ,
+                                         "number of tracks on the railroad"@en ;
+                            rdfs:label "Eisenbahntrasse Gleisanzahl"@de ,
+                                       "railway route number of tracks"@en ;
+                            <https://schema.org/unitText> "-" .
+
+
+###  https://w3id.org/bcore/infra#RoadRouteClass
+:RoadRouteClass rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :RoadRoute ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:oneOf [ rdf:type rdf:List ;
+                                         rdf:first "agricultural road" ;
+                                         rdf:rest [ rdf:type rdf:List ;
+                                                    rdf:first "country road" ;
+                                                    rdf:rest [ rdf:type rdf:List ;
+                                                               rdf:first "district road" ;
+                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                          rdf:first "federal road" ;
+                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                     rdf:first "highway" ;
+                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                rdf:first "non-public road" ;
+                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                           rdf:first "urban road" ;
+                                                                                                           rdf:rest rdf:nil
+                                                                                                         ]
+                                                                                              ]
+                                                                                   ]
+                                                                        ]
+                                                             ]
+                                                  ]
+                                       ]
+                           ] ;
+                rdfs:comment "Klassifizierung der Straße"@de ,
+                             """Road classification. Possible values:
+- highway
+- federal road
+- country road
+- district road
+- urban road
+- agricultural road
+- non-public road"""@en ;
+                rdfs:label "Straßentrasse Klasse"@de ,
+                           "road route class"@en .
+
+
+###  https://w3id.org/bcore/infra#RoadRouteNumberOfLanes
+:RoadRouteNumberOfLanes rdf:type owl:DatatypeProperty ,
+                                 owl:FunctionalProperty ;
+                        rdfs:domain :RoadRoute ;
+                        rdfs:range xsd:integer ;
+                        rdfs:comment "Anzahl der Fahrstreifen der Straße (Gesamtzahl beider Richtungsfahrbahnen)"@de ,
+                                     "number of lanes on the road (total number of lanes in both directions)"@en ;
+                        rdfs:label "Straßentrasse Spurenanzahl"@de ,
+                                   "road route number of lanes"@en ;
+                        <https://schema.org/unitText> "-" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/bcore#InfrastructureRoute
+<https://w3id.org/bcore#InfrastructureRoute> rdf:type owl:Class .
+
+
+###  https://w3id.org/bcore/infra#FootCycleRoute
+:FootCycleRoute rdf:type owl:Class ;
+                rdfs:subClassOf <https://w3id.org/bcore#InfrastructureRoute> ;
+                rdfs:comment "Trasse eines Geh- und/oder Radweges"@de ,
+                             "route of a footpath and/or bike path"@en ;
+                rdfs:label "Fuß- oder Radwegtrasse"@de ,
+                           "foot or cycle route"@en .
+
+
+###  https://w3id.org/bcore/infra#RailwayRoute
+:RailwayRoute rdf:type owl:Class ;
+              rdfs:subClassOf <https://w3id.org/bcore#InfrastructureRoute> ;
+              rdfs:comment "Trasse eines Schienenweges"@de ,
+                           "railway line, railroad"@en ;
+              rdfs:label "Eisenbahntrasse"@de ,
+                         "railway route"@en .
+
+
+###  https://w3id.org/bcore/infra#RoadRoute
+:RoadRoute rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bcore#InfrastructureRoute> ;
+           rdfs:comment "Trasse einer Straße/ eines Feldweges/ einer Autobahn"@de ,
+                        "route of a street/road/highway/federal way/..."@en ;
+           rdfs:label "Straßentrasse"@de ,
+                      "road route" .
+
+
+###  https://w3id.org/bcore/infra#WaterWayRoute
+:WaterWayRoute rdf:type owl:Class ;
+               rdfs:subClassOf <https://w3id.org/bcore#InfrastructureRoute> ;
+               rdfs:comment "Trasse einer Wasserstraße"@de ,
+                            "route of a water way"@en ;
+               rdfs:label "Wasserstraßentrasse"@de ,
+                          "water way route"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :FootCycleRoute
+                :RailwayRoute
+                :RoadRoute
+                :WaterWayRoute
+              )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

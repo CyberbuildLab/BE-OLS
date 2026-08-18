@@ -1,0 +1,265 @@
+# =============================================================================
+# BIMxel Application Profile Ontology (lean core / integration profile)
+# Declares ONLY the terms BIMxel itself defines. Every reused external
+# concept (BOT, BEO, SAREF and its extensions, PROV-O, DCAT, schema.org, the
+# pi.pauwel.be MEP vocabulary) appears solely as the object of an
+# rdfs:subClassOf / rdfs:subPropertyOf / rdf:type axiom — never redeclared.
+# Generated to be run through WIDOCO for HTML documentation.
+# =============================================================================
+
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix bimxel:  <https://w3id.org/bimxel#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix schema:  <https://schema.org/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix s4bldg:  <https://saref.etsi.org/saref4bldg/> .
+@prefix s4city:  <https://saref.etsi.org/saref4city/> .
+@prefix s4watr:  <https://saref.etsi.org/saref4watr/> .
+@prefix s4ener:  <https://saref.etsi.org/saref4ener/> .
+@prefix saref:   <https://saref.etsi.org/core/> .
+@prefix bot:     <https://w3id.org/bot#> .
+@prefix beo:     <https://w3id.org/beo#> .
+@prefix mep:     <https://pi.pauwel.be/voc/distributionelement#> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+
+# --- Ontology header ---
+
+<https://w3id.org/bimxel> a owl:Ontology ;
+    dcterms:title "BIMxel Ontology: Semantic Framework for Sustainable Building Information Management"@en ;
+    owl:versionInfo "0.2.0" ;
+    vann:preferredNamespacePrefix "bimxel" ;
+    vann:preferredNamespaceUri "https://w3id.org/bimxel#" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:creator "Héctor Posada"@en ;
+    dcterms:creator "Manel Martinez"@en ;
+    dcterms:creator "Paula Gordo"@en ;
+    dcterms:creator "Albert Solé"@en ;
+    dcterms:abstract "The BIMxel ontology acts as a semantic bridge between widely adopted ontologies and standards—including BOT, SAREF, SAREF4ENER, PROV-O, DCAT, QUDT, GeoSPARQL, and BEO—to support the interoperable generation of building digital twins. BIMxel integrates BIM data, sensors, measurements, external data services, and provenance information into a unified knowledge graph, enabling continuous monitoring of building operation and energy consumption. By linking heterogeneous sources such as IFC models, IoT devices and physical properties, the ontology provides a scalable semantic foundation for assessing operational carbon impact and supporting data-driven strategies for more sustainable buildings."@en ;
+    dcterms:description "BIMxel is a thin integration layer over established built-environment and IoT ontologies: it does not redefine what a building, a sensor, or an organization is. It aligns its own small vocabulary to BOT, BEO, SAREF (and SAREF4BLDG/SAREF4CITY/SAREF4WATR/SAREF4ENER), PROV-O, DCAT, schema.org, and the pi.pauwel.be MEP/distribution-element vocabulary, adding only the handful of terms none of those already cover. See the Example section of this documentation for a real, annotated instance-data walkthrough."@en ;
+    owl:imports <http://www.w3.org/ns/dcat#> ;
+    owl:imports <http://www.w3.org/ns/prov#> ;
+    owl:imports <https://pi.pauwel.be/voc/distributionelement#> ;
+    owl:imports <https://saref.etsi.org/core/> ;
+    owl:imports <https://saref.etsi.org/saref4bldg/> ;
+    owl:imports <https://saref.etsi.org/saref4city/> ;
+    owl:imports <https://saref.etsi.org/saref4ener/> ;
+    owl:imports <https://saref.etsi.org/saref4watr/> ;
+    owl:imports <https://schema.org/> ;
+    owl:imports <https://w3id.org/beo#> ;
+    owl:imports <https://w3id.org/bot#> .
+
+
+# =============================================================================
+# bimxel: classes (terms defined by BIMxel) + external alignments
+# =============================================================================
+
+bimxel:AirQualitySensor a owl:Class ;
+    rdfs:label "Air Quality Sensor"@en ;
+    rdfs:comment "A sensor measuring a gas-concentration property (e.g. CO2) hosted on a building element or zone."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Element , mep:Sensor , saref:Sensor .
+
+bimxel:Agent a owl:Class ;
+    rdfs:label "Agent"@en ;
+    rdfs:comment "A person who owns, edits, or reads a project in the BIMxel Dataspace."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf prov:Agent , s4city:Agent .
+
+bimxel:Building a owl:Class ;
+    rdfs:label "Building"@en ;
+    rdfs:comment "A building ingested from an IFC model and enriched with project-level metadata (use type, construction year, area)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Building , s4bldg:Building , s4city:CityObject .
+
+bimxel:EnergyConsumed a owl:Class ;
+    rdfs:label "Energy Consumed"@en ;
+    rdfs:comment "The energy-consumption property kind measured by a bimxel:EnergyMeter, in kWh. Aligned directly to saref:Property (not s4ener:Energy, which is a saref:Property individual, not a class — verified against the live SAREF4ENER ontology, where it carries no subclasses)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf saref:Property .
+
+bimxel:EnergyMeter a owl:Class ;
+    rdfs:label "Energy Meter"@en ;
+    rdfs:comment "A meter measuring energy consumption, hosted on a building element or zone."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Element , mep:Sensor , saref:Meter .
+
+bimxel:GasConcentration a owl:Class ;
+    rdfs:label "Gas Concentration"@en ;
+    rdfs:comment "A kind of gas-concentration property (a saref:Property), e.g. CO2, measured by a bimxel:AirQualitySensor in PPM."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf saref:Property .
+
+bimxel:Humidity a owl:Class ;
+    rdfs:label "Humidity"@en ;
+    rdfs:comment "A kind of relative-humidity property (a saref:Property), measured by a bimxel:HumiditySensor as %RH."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf saref:Property .
+
+bimxel:HumiditySensor a owl:Class ;
+    rdfs:label "Humidity Sensor"@en ;
+    rdfs:comment "A sensor measuring relative humidity, hosted on a building element or zone."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Element , mep:Sensor , saref:Sensor .
+
+bimxel:Organization a owl:Class ;
+    rdfs:label "Organization"@en ;
+    rdfs:comment "The organization associated with a project. Always co-typed schema:Organization; additionally typed s4city:PublicAdministration when organization.publicEntity is true, or org:Organization (W3C ORG vocabulary) when it is false — mutually exclusive, so not asserted here as subClassOf."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf schema:Organization .
+
+bimxel:Project a owl:Class ;
+    rdfs:label "Project"@en ;
+    rdfs:comment "A digital-twin project: the top-level container for buildings, sensors, and their measurements."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf schema:Project , prov:Activity .
+
+bimxel:Temperature a owl:Class ;
+    rdfs:label "Temperature"@en ;
+    rdfs:comment "A kind of temperature property (a saref:Property), measured by a bimxel:TemperatureSensor in degrees Celsius."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf saref:Property .
+
+bimxel:TemperatureSensor a owl:Class ;
+    rdfs:label "Temperature Sensor"@en ;
+    rdfs:comment "A sensor measuring temperature, hosted on a building element or zone."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Element , mep:Sensor , saref:TemperatureSensor .
+
+bimxel:WaterConsumed a owl:Class ;
+    rdfs:label "Water Consumed"@en ;
+    rdfs:comment "The water-consumption property kind measured by a bimxel:WaterMeter, in cubic metres."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf s4watr:WaterFlowProperty , saref:Property .
+
+bimxel:WaterMeter a owl:Class ;
+    rdfs:label "Water Meter"@en ;
+    rdfs:comment "A sensor measuring water consumption, hosted on a building element or zone."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subClassOf bot:Element , mep:Sensor , s4watr:WaterMeter .
+
+
+# =============================================================================
+# bimxel: controlled vocabularies (enumerated datatypes)
+# =============================================================================
+
+bimxel:DisciplineCode a rdfs:Datatype ;
+    rdfs:label "Discipline Code"@en ;
+    rdfs:comment "Defines the engineering discipline associated with an IFC distribution."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "ARQ" "EST" "MEP" "MEC" "ELE" "PLU" "FP" "LAND" "SITE" )
+    ] .
+
+bimxel:IfcSchemaCode a rdfs:Datatype ;
+    rdfs:label "IFC Schema Version"@en ;
+    rdfs:comment "Specifies the IFC schema version of an ingested BIM model."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "IFC2X3" "IFC4" "IFC4X3_ADD2" )
+    ] .
+
+bimxel:PrimaryFunctionCode a rdfs:Datatype ;
+    rdfs:label "Primary Building Function"@en ;
+    rdfs:comment "Defines the primary use or occupancy category of a building."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Residential" "Commercial" "Office" "Hospitality" "PublicFacility" "Health" "Industrial" "Educational" "Infrastructure" "Other" )
+    ] .
+
+bimxel:ClimateZoneCode a rdfs:Datatype ;
+    rdfs:label "CTE Climate Zone"@en ;
+    rdfs:comment "Defines the Spanish CTE DB-HE climate zone assigned to a building. The letter represents the winter climate severity (A–E, where A is the mildest) and the number the summer climate severity (1–4, where 1 is the mildest). For example, Barcelona belongs to climate zone C2, Tarragona to B3, and Madrid to D3."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "A3" "A4" "B3" "B4" "C1" "C2" "C3" "C4" "D1" "D2" "D3" "E1" )
+    ] .
+
+
+# =============================================================================
+# bimxel: properties
+# =============================================================================
+
+bimxel:climateZone a owl:DatatypeProperty ;
+    rdfs:label "climate zone"@en ;
+    rdfs:comment "The climate zone code of a project's location."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain bimxel:Project ;
+    rdfs:range bimxel:ClimateZoneCode .
+
+bimxel:constructedArea a owl:DatatypeProperty ;
+    rdfs:label "constructed area"@en ;
+    rdfs:comment "The constructed floor area of a building, in square metres (co-asserted with qudt:hasUnit unit:M2 on the same building)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain bimxel:Building ;
+    rdfs:range xsd:float .
+
+bimxel:discipline a owl:DatatypeProperty ;
+    rdfs:label "discipline"@en ;
+    rdfs:comment "The engineering discipline of an ingested IFC file (e.g. ARQ, EST), asserted on its dcat:Distribution node."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range bimxel:DisciplineCode .
+
+bimxel:hasBuilding a owl:ObjectProperty ;
+    rdfs:label "has building"@en ;
+    rdfs:comment "Links a project to a building it contains."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:subPropertyOf bot:hasBuilding ;
+    rdfs:domain bimxel:Project ;
+    rdfs:range bimxel:Building .
+
+bimxel:ifcSchema a owl:DatatypeProperty ;
+    rdfs:label "IFC schema"@en ;
+    rdfs:comment "The IFC schema version (e.g. IFC4) of an ingested IFC file, asserted on its dcat:Distribution node."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range bimxel:IfcSchemaCode .
+
+bimxel:primaryFunction a owl:DatatypeProperty ;
+    rdfs:label "primary function"@en ;
+    rdfs:comment "The primary use type of a building (e.g. Residential, Office, Health), mapped from the source useType value."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain bimxel:Building ;
+    rdfs:range bimxel:PrimaryFunctionCode .
+
+bimxel:rehabilitationYear a owl:DatatypeProperty ;
+    rdfs:label "rehabilitation year"@en ;
+    rdfs:comment "The year a building was last rehabilitated."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain bimxel:Building ;
+    rdfs:range xsd:gYear .
+
+bimxel:yearBuilt a owl:DatatypeProperty ;
+    rdfs:label "year built"@en ;
+    rdfs:comment "The year a building was constructed."@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:domain bimxel:Building ;
+    rdfs:range xsd:gYear .
+
+
+# =============================================================================
+# bimxel: named individuals (controlled vocabulary of project-sharing roles)
+# =============================================================================
+
+bimxel:Editor a prov:Role , owl:NamedIndividual ;
+    rdfs:label "Editor"@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:comment "Role granted to a user who can modify a shared project."@en .
+
+bimxel:Owner a prov:Role , owl:NamedIndividual ;
+    rdfs:label "Owner"@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:comment "Role automatically granted to the user who creates a project."@en .
+
+bimxel:Reader a prov:Role , owl:NamedIndividual ;
+    rdfs:label "Reader"@en ;
+    rdfs:isDefinedBy <https://w3id.org/bimxel> ;
+    rdfs:comment "Role granted to a user who can only view a shared project."@en .
