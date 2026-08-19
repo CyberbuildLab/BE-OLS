@@ -1,0 +1,13 @@
+{
+  "Title": "Bridge Components (BRCOMP)",
+  "Prefix": "brcomp",
+  "Version": "0.1",
+  "Created": "_No response_",
+  "Description": "he ontology for Bridge Components (BRCOMP) allows the further classification of Bridge Elements defined in BROT. Furthermore, additional domain-specific data properties can be assigned to the instances of Bridge Element.",
+  "uri": "https://w3id.org//brcomp#",
+  "Reference": "https://alhakam.github.io/brcomp/",
+  "Linked-to ontologies AECO": "brot",
+  "Linked-to ontologies UPPER": "vann, foaf, dc",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "_No response_"
+}
