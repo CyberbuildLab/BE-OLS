@@ -1,4 +1,4 @@
-@prefix bcorezones: <https://w3id.org/bcore/zones#> .
+@prefix : <https://w3id.org/bcore/zones#> .
 @prefix bcore: <https://w3id.org/bcore#> .
 @prefix brot: <https://w3id.org/brot#> .
 @prefix bot: <https://w3id.org/bot#> .

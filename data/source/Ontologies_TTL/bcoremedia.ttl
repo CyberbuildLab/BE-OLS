@@ -1,4 +1,4 @@
-@prefix bcoremedia: <https://w3id.org/bcore/media#> .
+@prefix : <https://w3id.org/bcore/media#> .
 @prefix bcore: <https://w3id.org/bcore#> .
 @prefix brot: <https://w3id.org/brot#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .

@@ -1,4 +1,4 @@
-@prefix bcoremat: <https://w3id.org/bcore/mat#> .
+@prefix : <https://w3id.org/bcore/mat#> .
 @prefix bcore: <https://w3id.org/bcore#> .
 @prefix bmat: <https://w3id.org/bmat#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .

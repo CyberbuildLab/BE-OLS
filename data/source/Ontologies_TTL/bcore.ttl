@@ -1,4 +1,4 @@
-@prefix bcore: <https://w3id.org/bcore#> .
+@prefix : <https://w3id.org/bcore#> .
 @prefix brot: <https://w3id.org/brot#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix reloc: <https://w3id.org/reloc#> .

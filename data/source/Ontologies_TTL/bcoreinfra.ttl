@@ -1,4 +1,4 @@
-@prefix bcoreinfra: <https://w3id.org/bcore/infra#> .
+@prefix : <https://w3id.org/bcore/infra#> .
 @prefix bcore: <https://w3id.org/bcore#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
