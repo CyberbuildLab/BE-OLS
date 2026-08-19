@@ -1,0 +1,13 @@
+{
+  "Title": "BMAT - Ontology for defining building materials",
+  "Prefix": "bmat",
+  "Version": "0.2",
+  "Created": "_No response_",
+  "Description": "Ontology for defining building materials.",
+  "uri": "https://w3id.org/bmat#",
+  "Reference": "https://alhakam.github.io/bmat/",
+  "Linked-to ontologies AECO": "brcomp, brot",
+  "Linked-to ontologies UPPER": "schema, foaf, vann, cd",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "_No response_"
+}
