@@ -1,99 +1,97 @@
-@prefix : <https://w3id.org/seas/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix pep: <https://w3id.org/pep/> .
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix rdfp: <https://w3id.org/rdfp/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix seas: <https://w3id.org/seas/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-@prefix void: <https://www.w3.org/TR/void/> .
-@base <https://w3id.org/seas/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix void: <https://www.w3.org/TR/void/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix rdfp: <https://w3id.org/rdfp/>.
+@prefix pep: <https://w3id.org/pep/>.
 
-<https://w3id.org/seas/> rdf:type owl:Ontology ;
-                          owl:versionIRI seas:seas-1.0 ;
-                          owl:imports pep: ,
-                                      rdfp: ,
-                                      seas:ActorOntology ,
-                                      seas:ActorVocabulary ,
-                                      seas:ArchitectureOntology ,
-                                      seas:AreaOntology ,
-                                      seas:BuildingCategoriesOntology ,
-                                      seas:BuildingCategoriesVocabulary ,
-                                      seas:BuildingEnergyOntology ,
-                                      seas:BuildingLoadsOntology ,
-                                      seas:BuildingOntology ,
-                                      seas:ElectricPowerSystemVocabulary ,
-                                      seas:ElectricVehicleVocabulary ,
-                                      seas:ElectricityPlayerOntology ,
-                                      seas:EnergyFormVocabulary ,
-                                      seas:EnergyOntology ,
-                                      seas:EnergyUnitVocabulary ,
-                                      seas:EvaluationOntology ,
-                                      seas:FailableVocabulary ,
-                                      seas:FeatureOfInterestOntology ,
-                                      seas:FlexibilityVocabulary ,
-                                      seas:FourierVocabulary ,
-                                      seas:GeolocationVocabulary ,
-                                      seas:GeometryVocabulary ,
-                                      seas:GraphOntology ,
-                                      seas:GreenKPIVocabulary ,
-                                      seas:LightSystemOntology ,
-                                      seas:LightSystemVocabulary ,
-                                      seas:MarketOntology ,
-                                      seas:MonetaryVocabulary ,
-                                      seas:OperatingVocabulary ,
-                                      seas:PhotovoltaicOntology ,
-                                      seas:PhotovoltaicVocabulary ,
-                                      seas:SmartGridArchitectureVocabulary ,
-                                      seas:StatisticsVocabulary ,
-                                      seas:SystemOntology ,
-                                      seas:TechnicalSystemOntology ,
-                                      seas:ThermodynamicSystemOntology ,
-                                      seas:ThermodynamicSystemVocabulary ,
-                                      seas:TimeSeriesOntology ,
-                                      seas:TimeVocabulary ,
-                                      seas:UpperOntology ,
-                                      seas:WeatherOntology ;
-                          cc:license <https://creativecommons.org/licenses/by/4.0> ;
-                          dc:contributor <http://www.vtt.fi/JarmoKalaoja> ,
-                                         <http://zimmer.aprilfoolsreview.com/antoine#me> ,
-                                         <https://w3id.org/people/brigidateixeira#> ,
-                                         <https://w3id.org/people/franciscosilva#> ,
-                                         <https://w3id.org/people/gabrieljlsantos#> ,
-                                         [ rdf:type foaf:Person ;
-                                           foaf:name "Marc Girod-Genet"
-                                         ] ,
-                                         [ rdf:type foaf:Person ;
-                                           foaf:name "Takoua Ghariani"
-                                         ] ,
-                                         [ rdf:type foaf:Person ;
-                                           foaf:name "Erkki Siira"
-                                         ] ;
-                          dc:creator <http://maxime-lefrancois.info/me#> ;
-                          dc:description """The SEAS ontology, that glues together all of the SEAS modules.
+@prefix seas: <https://w3id.org/seas/>.
+
+
+<https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS Ontology"@en ;
+  dc:description """The SEAS ontology, that glues together all of the SEAS modules.
 
   The core modules are [seas:FeatureOfInterestOntology](https://w3id.org/seas/FeatureOfInterestOntology), [seas:EvaluationOntology](https://w3id.org/seas/EvaluationOntology), [seas:SystemOntology](https://w3id.org/seas/SystemOntology) [the RDFP Presentation ontology](https://w3id.org/rdfp/), [the Process Execution Platform ontology](https://w3id.org/pep/).
   """@en ;
-                          dc:issued "2016-05-25"^^xsd:date ;
-                          dc:title "SEAS Ontology"@en ;
-                          vann:preferredNamespacePrefix "seas" ;
-                          vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-                          owl:versionInfo "v1.0" .
+  dc:creator <http://maxime-lefrancois.info/me#> ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  dc:issued "2016-05-25"^^xsd:date ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:versionIRI <https://w3id.org/seas/seas-1.0> ;
+  owl:versionInfo "v1.0" ;
+  owl:imports rdfp:; 
+  owl:imports pep:; 
+  owl:imports seas:ThermodynamicSystemVocabulary; 
+  owl:imports seas:EnergyOntology; 
+  owl:imports seas:OperatingVocabulary; 
+  owl:imports seas:LightSystemOntology; 
+  owl:imports seas:ElectricVehicleVocabulary; 
+  owl:imports seas:StatisticsVocabulary; 
+  owl:imports seas:ActorOntology; 
+  owl:imports seas:FailableVocabulary; 
+  owl:imports seas:MonetaryVocabulary; 
+  owl:imports seas:ArchitectureOntology; 
+  owl:imports seas:BuildingOntology; 
+  owl:imports seas:UpperOntology; 
+  owl:imports seas:GeolocationVocabulary; 
+  owl:imports seas:GeometryVocabulary; 
+  owl:imports seas:AreaOntology; 
+  owl:imports seas:LightSystemVocabulary; 
+  owl:imports seas:TimeVocabulary; 
+  owl:imports seas:FlexibilityVocabulary; 
+  owl:imports seas:ElectricPowerSystemVocabulary; 
+  owl:imports seas:ActorVocabulary; 
+  owl:imports seas:EvaluationOntology; 
+  owl:imports seas:FeatureOfInterestOntology; 
+  owl:imports seas:GraphOntology; 
+  owl:imports seas:PhotovoltaicVocabulary; 
+  owl:imports seas:GreenKPIVocabulary; 
+  owl:imports seas:TimeSeriesOntology; 
+  owl:imports seas:EnergyUnitVocabulary; 
+  owl:imports seas:SystemOntology; 
+  owl:imports seas:TechnicalSystemOntology; 
+  owl:imports seas:BuildingCategoriesVocabulary; 
+  owl:imports seas:BuildingCategoriesOntology; 
+  owl:imports seas:EnergyFormVocabulary; 
+  owl:imports seas:PhotovoltaicOntology; 
+  owl:imports seas:ElectricityPlayerOntology; 
+  owl:imports seas:FourierVocabulary; 
+  owl:imports seas:SmartGridArchitectureVocabulary; 
+  owl:imports seas:BuildingLoadsOntology; 
+  owl:imports seas:ThermodynamicSystemOntology; 
+  owl:imports seas:WeatherOntology; 
+  owl:imports seas:BuildingEnergyOntology; 
+  owl:imports seas:MarketOntology .
 
-#################################################################
-#    Individuals
-#################################################################
-
-###  https://w3id.org/seas/
-<https://w3id.org/seas/> rdf:type owl:NamedIndividual ,
-                                  voaf:Vocabulary .
-
-
-###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

@@ -108,7 +108,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/bedro#runsToTheLeftOf
 :runsToTheLeftOf rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
-                 owl:inverseOf :runsToTheRightOf ;
+                 owl:inverseOf bedro:runsToTheRightOf ;
                  rdf:type owl:TransitiveProperty ;
                  rdfs:domain <https://w3id.org/bcore#InfrastructureRoute> ;
                  rdfs:range <https://w3id.org/bcore#InfrastructureRoute> ;
