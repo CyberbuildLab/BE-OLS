@@ -1,3 +1,4 @@
+@prefix : <http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#> .
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
 @prefix DUL: <http://www.loa-cnr.it/ontologies/DUL.owl#> .
@@ -6,15 +7,17 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qoi: <http://purl.oclc.org/NET/UASO/qoi#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sao: <http://purl.oclc.org/NET/UNIS/sao/sao#> .
+@prefix sao: <http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#> .
 @prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
-@base <http://purl.oclc.org/NET/UNIS/sao/sao#> .
+@base <http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#> .
+
+<http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#> rdf:type owl:Ontology .
 
 
 #################################################################
@@ -39,7 +42,7 @@ dc:description rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#beginsAtLocation
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#beginsAtLocation
 
 sao:beginsAtLocation rdf:type owl:ObjectProperty ;
 
@@ -51,7 +54,7 @@ rdfs:range geo:SpatialThing .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#endsAtLocation
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#endsAtLocation
 
 sao:endsAtLocation rdf:type owl:ObjectProperty ;
 
@@ -63,7 +66,7 @@ rdfs:range geo:SpatialThing .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasPoint
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasPoint
 
 sao:hasPoint rdf:type owl:ObjectProperty ;
 
@@ -74,7 +77,7 @@ sao:StreamData .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasSegment
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasSegment
 
 sao:hasSegment rdf:type owl:ObjectProperty ;
 
@@ -85,7 +88,7 @@ sao:StreamData .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasUnitOfMeasurement
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasUnitOfMeasurement
 
 sao:hasUnitOfMeasurement rdf:type owl:ObjectProperty ;
 
@@ -98,7 +101,7 @@ rdfs:range muo:UnitOfMeasurement .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#quality
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#quality
 
 sao:quality rdf:type owl:ObjectProperty ;
 
@@ -110,7 +113,7 @@ rdfs:range DUL:InformationEntity .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#time
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#time
 
 sao:time rdf:type owl:ObjectProperty ;
 
@@ -250,7 +253,7 @@ rdfs:range sao:StreamEvent .
 #################################################################
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#Timestamp
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#Timestamp
 
 sao:Timestamp rdf:type owl:DatatypeProperty ;
 
@@ -262,7 +265,7 @@ rdfs:range xs:dateTimeStamp .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#alphabetsize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#alphabetsize
 
 sao:alphabetsize rdf:type owl:DatatypeProperty ;
 
@@ -275,7 +278,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#causeArea
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#causeArea
 
 sao:causeArea rdf:type owl:DatatypeProperty ;
 
@@ -287,7 +290,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#clustersize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#clustersize
 
 sao:clustersize rdf:type owl:DatatypeProperty ;
 
@@ -299,7 +302,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#comments
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#comments
 
 sao:comments rdf:type owl:DatatypeProperty ;
 
@@ -311,7 +314,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasDatatype
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasDatatype
 
 sao:hasDatatype rdf:type owl:DatatypeProperty ;
 
@@ -319,7 +322,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasID
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasID
 
 sao:hasID rdf:type owl:DatatypeProperty ;
 
@@ -329,7 +332,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#hasURI
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#hasURI
 
 sao:hasURI rdf:type owl:DatatypeProperty ;
 
@@ -337,7 +340,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#levelOfInterest
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#levelOfInterest
 
 sao:levelOfInterest rdf:type owl:DatatypeProperty ;
 
@@ -349,7 +352,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#minwindowsize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#minwindowsize
 
 sao:minwindowsize rdf:type owl:DatatypeProperty ;
 
@@ -361,7 +364,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#nColumns
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#nColumns
 
 sao:nColumns rdf:type owl:DatatypeProperty ;
 
@@ -372,7 +375,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#nRows
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#nRows
 
 sao:nRows rdf:type owl:DatatypeProperty ;
 
@@ -383,7 +386,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#name
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#name
 
 sao:name rdf:type owl:DatatypeProperty ;
 
@@ -395,7 +398,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#samplesize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#samplesize
 
 sao:samplesize rdf:type owl:DatatypeProperty ;
 
@@ -407,7 +410,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#samplingrate
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#samplingrate
 
 sao:samplingrate rdf:type owl:DatatypeProperty ;
 
@@ -417,7 +420,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#segmentsize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#segmentsize
 
 sao:segmentsize rdf:type owl:DatatypeProperty ;
 
@@ -429,7 +432,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#sensitivity
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#sensitivity
 
 sao:sensitivity rdf:type owl:DatatypeProperty ;
 
@@ -441,7 +444,7 @@ rdfs:range xs:float .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#severity
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#severity
 
 sao:severity rdf:type owl:DatatypeProperty ;
 
@@ -453,7 +456,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#status
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#status
 
 sao:status rdf:type owl:DatatypeProperty ;
 
@@ -465,7 +468,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#stepsize
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#stepsize
 
 sao:stepsize rdf:type owl:DatatypeProperty ;
 
@@ -477,7 +480,7 @@ rdfs:range xs:int .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#type
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#type
 
 sao:type rdf:type owl:DatatypeProperty ;
 
@@ -489,7 +492,7 @@ rdfs:range xs:string .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#value
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#value
 
 sao:value rdf:type owl:DatatypeProperty ;
 
@@ -513,7 +516,7 @@ rdfs:range xs:string .
 #################################################################
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteCosineTransform
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#DiscreteCosineTransform
 
 sao:DiscreteCosineTransform rdf:type owl:Class ;
 
@@ -521,7 +524,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteFourierTransform
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#DiscreteFourierTransform
 
 sao:DiscreteFourierTransform rdf:type owl:Class ;
 
@@ -529,7 +532,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#DiscreteWaveletTransform
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#DiscreteWaveletTransform
 
 sao:DiscreteWaveletTransform rdf:type owl:Class ;
 
@@ -537,7 +540,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#KMeans
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#KMeans
 
 sao:KMeans rdf:type owl:Class ;
 
@@ -545,7 +548,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#Mean
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#Mean
 
 sao:Mean rdf:type owl:Class ;
 
@@ -555,7 +558,7 @@ dc:description "Mean calculate the mean of each row of observations" .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#Median
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#Median
 
 sao:Median rdf:type owl:Class ;
 
@@ -565,7 +568,7 @@ dc:description "Median calculate the median of each row of observations" .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#MovingAverage
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#MovingAverage
 
 sao:MovingAverage rdf:type owl:Class ;
 
@@ -573,7 +576,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#PiecewiseAggregateApproximation
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#PiecewiseAggregateApproximation
 
 sao:PiecewiseAggregateApproximation rdf:type owl:Class ;
 
@@ -581,7 +584,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#Point
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#Point
 
 sao:Point rdf:type owl:Class ;
 
@@ -589,7 +592,7 @@ rdfs:subClassOf sao:StreamData .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#Segment
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#Segment
 
 sao:Segment rdf:type owl:Class ;
 
@@ -597,7 +600,7 @@ rdfs:subClassOf sao:StreamData .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#SensorSAX
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#SensorSAX
 
 sao:SensorSAX rdf:type owl:Class ;
 
@@ -605,7 +608,7 @@ rdfs:subClassOf sao:StreamAnalysis .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamAnalysis
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#StreamAnalysis
 
 sao:StreamAnalysis rdf:type owl:Class ;
 
@@ -614,7 +617,7 @@ prov:Entity .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamData
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#StreamData
 
 sao:StreamData rdf:type owl:Class ;
 
@@ -627,7 +630,7 @@ owl:allValuesFrom DUL:InformationEntity
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#StreamEvent
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#StreamEvent
 
 sao:StreamEvent rdf:type owl:Class ;
 
@@ -635,7 +638,7 @@ rdfs:subClassOf prov:Activity .
 
 
 
-###  http://purl.oclc.org/NET/UNIS/sao/sao#SymbolicAggregateApproximation
+###  http://iot.ee.surrey.ac.uk/citypulse/ontologies/sao/sao#SymbolicAggregateApproximation
 
 sao:SymbolicAggregateApproximation rdf:type owl:Class ;
 

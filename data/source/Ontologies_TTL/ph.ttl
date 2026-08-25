@@ -1,3 +1,4 @@
+@prefix : <https://project-haystack.org/def/ph/4.0.0#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -6,6 +7,9 @@
 @prefix phIct: <https://project-haystack.org/def/phIct/4.0.0#> .
 @prefix phScience: <https://project-haystack.org/def/phScience/4.0.0#> .
 @prefix phIoT: <https://project-haystack.org/def/phIoT/4.0.0#> .
+
+<https://project-haystack.org/def/ph/4.0.0> rdf:type owl:Ontology ;
+    owl:versionInfo "4.0.0" .
 
 ph:hasTag a owl:ObjectProperty ;
     rdfs:range ph:marker .
