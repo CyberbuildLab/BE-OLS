@@ -1,105 +1,118 @@
 # Weekly ontology scan
 
-- Run (UTC): 2026-08-13T04:12:21Z
+- Run (UTC): 2026-08-27T07:12:42Z
 - Lookback days: 7
 
-Found 13 new candidate repositories:
+Found 15 new candidate repositories:
 
-## gillisandrew/dprr-data
-- URL: https://github.com/gillisandrew/dprr-data
-- Updated: 2026-08-13T00:51:10Z
+## scbrown/camayoc
+- URL: https://github.com/scbrown/camayoc
+- Updated: 2026-08-27T05:36:20Z
 - Stars: 0
-- Description: Sharded RDF dataset from the Digital Prosopography of the Roman Republic (DPRR). Per-person Turtle files with RDFC 1.0 canonical output.
-- Sample ontology files: ontology.ttl, reference/misc.ttl, concordances/ocd.ttl, reference/tribes.ttl, concordances/loc.ttl, concordances/gnd.ttl, reference/sources.ttl, concordances/viaf.ttl
+- Description: 🪢 The knot-keeper — bootstrap ontology, knowledge ingress, and knowledge packs for the quipu stack
+- Sample ontology files: ontology/core.ttl, shapes/core.shapes.ttl, shapes/code-entities.ttl, shapes/policies/edit-grounding.ttl, tests/fixtures/golden-paths.ttl, tests/fixtures/verification-liveness.ttl
 
-## api-evangelist/sparql
-- URL: https://github.com/api-evangelist/sparql
-- Updated: 2026-08-12T23:57:28Z
+## dev365code/iirds-validate
+- URL: https://github.com/dev365code/iirds-validate
+- Updated: 2026-08-27T05:35:37Z
 - Stars: 0
-- Description: SPARQL (SPARQL Protocol and RDF Query Language) is a W3C Recommendation that provides a standardized query language for retrieving and manipulating data stored in Resource Description Framework (RDF) format.
-- Topics: apis-json linked-data query-language rdf semantic-web sparql w3c
-- Sample ontology files: json-ld-context.jsonld
+- Description: Offline validator and interoperability linter for iiRDS packages — 188 rules (2026-08-26), every finding with a remedy, single-file .pyz, zero network by design
+- Topics: air-gapped iirds linter offline-first rdf technical-documentation tekom validation
+- Sample ontology files: shapes/iirds-1.3/iirds-core.ttl, shapes/iirds-1.3/iirds-sparql.ttl, shapes/iirds-1.3/iirds-complete.ttl, shapes/iirds-1.3/iirds-handover-core.ttl, shapes/iirds-1.3/iirds-handover-sparql.ttl, shapes/iirds-1.3/iirds-handover-complete.ttl, src/iirds_validate/data/ontologies/1.3/iirds-core.rdf, src/iirds_validate/data/ontologies/1.3/iirds-skos.rdf
 
-## api-evangelist/schema-org
-- URL: https://github.com/api-evangelist/schema-org
-- Updated: 2026-08-12T23:52:30Z
-- Stars: 0
-- Description: Schema.org is a collaborative, community-driven project that creates and maintains a shared vocabulary for structured data on the web. Founded by Google, Microsoft, Yahoo, and Yandex in 2011, it provides types and properties that developers and webmasters use to annotate content in formats like JSON-LD, RDFa, and Microdata, enabling search engines…
-- Topics: apis-json json-ld linked-data ontology rdf schema-org seo structured-data vocabulary web-standards
-- Sample ontology files: json-ld/schema-org-context.jsonld
-
-## api-evangelist/labelbox
-- URL: https://github.com/api-evangelist/labelbox
-- Updated: 2026-08-12T23:24:30Z
-- Stars: 0
-- Description: Labelbox is an enterprise-grade data labeling and AI training data platform that enables teams to build, manage, and evaluate machine learning models. The platform provides a REST API and a GraphQL API (endpoint: https://api.labelbox.com/graphql) for programmatic access to datasets, annotation projects, labels, ontologies, and model evaluation…
-- Topics: ai-training annotation apis-json computer-vision data-labeling dataset-management graphql machine-learning model-evaluation python-sdk rlhf
-- Sample ontology files: json-ld/labelbox-context.jsonld
-
-## api-evangelist/hl7-fhir
-- URL: https://github.com/api-evangelist/hl7-fhir
-- Updated: 2026-08-12T23:16:44Z
-- Stars: 0
-- Description: HL7 FHIR (Fast Healthcare Interoperability Resources) is the standard API specification for healthcare data exchange, published by Health Level Seven International (HL7). FHIR REST APIs provide access to patient, clinical, financial, and administrative healthcare data in JSON, XML, and RDF formats with a CC0 open license.
-- Topics: apis-json clinical fhir healthcare hl7 interoperability
-- Sample ontology files: json-ld/hl7-fhir-context.jsonld
-
-## api-evangelist/amazon-neptune
-- URL: https://github.com/api-evangelist/amazon-neptune
-- Updated: 2026-08-12T22:39:12Z
-- Stars: 0
-- Description: Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets. It supports property graph and RDF models, with multiple query languages including Gremlin, SPARQL, and openCypher.
-- Topics: apis-json aws database graph-database gremlin neptune property-graph rdf sparql
-- Sample ontology files: json-ld/amazon-neptune-context.jsonld, json-ld/amazon-neptune-ml-context.jsonld, json-ld/amazon-neptune-data-context.jsonld, json-ld/amazon-neptune-loader-context.jsonld, json-ld/amazon-neptune-sparql-context.jsonld, json-ld/amazon-neptune-gremlin-context.jsonld, json-ld/amazon-neptune-streams-context.jsonld, json-ld/amazon-neptune-analytics-context.jsonld
-
-## gtfierro/ontoenv-rs
-- URL: https://github.com/gtfierro/ontoenv-rs
-- Updated: 2026-08-12T22:04:04Z
-- Stars: 12
-- Description: ontoenv is an environment manager for ontology management. It eventually wants to be a package manager for RDF ontologies and graphs.
-- Topics: environment ontology rdf
-- Sample ontology files: lib/fixtures/ont3.ttl, lib/fixtures/ont4.ttl, brick/support/rec.ttl, lib/fixtures/ont2.ttl, lib/fixtures/ont1.ttl, brick/support/ref-schema.ttl, brick/support/recimports.ttl, brick/support/brickpatches.ttl
-
-## vaelii/vaelii-foreign
-- URL: https://github.com/vaelii/vaelii-foreign
-- Updated: 2026-08-12T21:57:31Z
-- Stars: 0
-- Description: foreign-format readers for vaelii: OpenCyc, RDF/OWL, WordNet, OBO and ATOMIC, each translated into one corpus format and discovered from the classpath
-- Topics: clojure knowledge-base ontology opencyc rdf wordnet
-- Sample ontology files: test/resources/rdf/tiny.ttl, test/resources/rdf/nary.ttl, test/resources/rdf/tiny.owl
-
-## sachaR063R/bra0-ns
-- URL: https://github.com/sachaR063R/bra0-ns
-- Updated: 2026-08-12T21:33:23Z
-- Stars: 0
-- Description: bra0 schema and ontology documentation website
-- Topics: bra0 knowledge-space ontology
-- Sample ontology files: cross-domain/cq/cq.ttl, cross-domain/grop/grop.ttl, capability/neuro-upper.ttl, cross-domain/edgy/edgy.ttl, evidence-os/evidence-os.ttl, evidence-os/evo-story.shapes.ttl, evidence-os/edcc/edcc-bridge.ttl, essence-kernel/essence-kernel.ttl
-
-## nfdi-de/section-metadata-wg-onto
-- URL: https://github.com/nfdi-de/section-metadata-wg-onto
-- Updated: 2026-08-12T21:32:22Z
-- Stars: 18
-- Description: Document of the work done by NFDI Section (Meta)Data Working Group on Ontology Harmonization and Mapping
-- Sample ontology files: mappings/dcat-schema.ttl
-
-## GerhardBalz/semantic-modeling-ontology
-- URL: https://github.com/GerhardBalz/semantic-modeling-ontology
-- Updated: 2026-08-12T21:27:12Z
-- Stars: 0
-- Description: A small, standards-aligned ontology for authoritative semantic models and their non-authoritative implementation projections.
-- Sample ontology files: model/smo.ttl
-
-## aws/context-ontology-accelerator
-- URL: https://github.com/aws/context-ontology-accelerator
-- Updated: 2026-08-12T21:23:41Z
-- Stars: 465
-- Description: An open-source, ontology-based semantic context accelerator that enables AI agents to make more accurate, consistent, and explainable decisions.
-- Sample ontology files: packages/ontology-engine/scripts/schema_owl.ttl, packages/web-app/data/ontologies/https___example.com_onto.ttl, packages/web-app/data/ontologies/acme/https_example.com_onto.ttl, packages/web-app/data/ontologies/default/https_example.com_onto.ttl, packages/web-app/data/ontologies/default/https_example.com_mixed.ttl, packages/context-manager/tests/unit/fixtures/ontology_sample.ttl, packages/context-manager/tests/unit/fixtures/ontology_sec10q_nvidia.ttl, packages/context-manager/tests/unit/fixtures/agentic_sec10q_ontology.ttl
-
-## zwelz3/holonic
-- URL: https://github.com/zwelz3/holonic
-- Updated: 2026-08-12T20:23:17Z
+## entsoe/application-profiles-library
+- URL: https://github.com/entsoe/application-profiles-library
+- Updated: 2026-08-27T05:35:24Z
 - Stars: 27
-- Description: Holonic RDF Graphs
-- Sample ontology files: docs/SPEC.ttl, src/holonic/ontology/cga.ttl, src/holonic/ontology/cga-shapes.ttl
+- Description: All version of machine understandable artifacts (RDFS, SHACL) for Common Grid Model Exchange Standard (CGMES) and Network (NC) CGMES extensions.
+- Sample ontology files: NCP/SHACL/DatasetMetadata-AP-Con-SHACL.ttl, NCP/SHACL/NC-AP-Con-Complex-Common-SHACL.ttl, NCP/SHACL/Contingency-AP-Con-Simple-SHACL.ttl, NCP/SHACL/Contingency-AP-Con-Complex-SHACL.ttl, NCP/SHACL/PowerSchedule-AP-Con-Simple-SHACL.ttl, NCP/SHACL/NC-AP-Con-ClassCount-Complex-SHACL.ttl, NCP/SHACL/ObjectRegistry-AP-Con-Simple-SHACL.ttl, NCP/SHACL/RemedialAction-AP-Con-Simple-SHACL.ttl
+
+## kumagallium/asterism
+- URL: https://github.com/kumagallium/asterism
+- Updated: 2026-08-27T05:35:00Z
+- Stars: 0
+- Description: CSV -> RDF -> SPARQL/MCP. PROV-O first-class. Self-hostable, sovereignty-first.
+- Sample ontology files: docs/demo/data/mp-links.ttl, docs/ontology/starrydata.ttl, datasets/papers/fusion/fusion.ttl, docs/starrydata/ontology/ontology.ttl, datasets/materials_project/seed/mp.ttl, datasets/papers/jats/PMC5951533.rml.ttl, experiments/phase05/morph-kgc/mapping.ttl, datasets/materials_project/json/mp.rml.ttl
+
+## bibinprathap/VeritasGraph
+- URL: https://github.com/bibinprathap/VeritasGraph
+- Updated: 2026-08-27T04:50:13Z
+- Stars: 313
+- Description: VeritasGraph — open-source Knowledge Graph & GraphRAG framework on GitHub. Build multi-hop reasoning, ontology-aware retrieval, and verifiable attribution over your own data. Nodes, edges, RDF, linked-data — runs locally or in the cloud.
+- Topics: agent ai-agents ai-memory context-window data-privacy enterprise-ai generative-ai graph-analytics graph-database graph-rag information-retrieval knowledge-engineering knowledge-graphs knowledge-management llm multi-hop-reasoning nlp python-library rag
+- Sample ontology files: veritas-reason/cookbook/advanced/knowledge_graph.ttl, veritas-reason/cookbook/advanced/quantum_ontology.ttl, veritas-reason/cookbook/introduction/corporate_ontology.ttl, veritas-reason/cookbook/use_cases/capability_gap_defense/data/prov.ttl, veritas-reason/cookbook/use_cases/capability_gap_defense/data/military_capability_gap_ontology.ttl, veritas-reason/cookbook/use_cases/capability_gap_defense/data/military_capability_gap_instances.ttl
+
+## netwerk-digitaal-erfgoed/dataset-knowledge-graph
+- URL: https://github.com/netwerk-digitaal-erfgoed/dataset-knowledge-graph
+- Updated: 2026-08-27T04:47:02Z
+- Stars: 4
+- Description: Pipeline that generates the NDE Dataset Knowledge Graph
+- Topics: knowledge-graph linked-data rdf sparql
+- Sample ontology files: queries/selection/supplemental.ttl
+
+## synanton/platform
+- URL: https://github.com/synanton/platform
+- Updated: 2026-08-27T04:46:51Z
+- Stars: 1
+- Description: Synanton is an open-source, AI-native enterprise knowledge platform. It unifies full-text search, dense vector search, knowledge-graph reasoning and ontology management into a single modular system - ingesting enterprise content from heterogeneous sources
+- Sample ontology files: java/syntology/src/main/resources/sample-ontology.ttl, java/syntology/data/syntology/tdb2/demo/1.0.0/ontology.ttl
+
+## sempods/sempods-kotlin
+- URL: https://github.com/sempods/sempods-kotlin
+- Updated: 2026-08-27T04:43:26Z
+- Stars: 3
+- Description: sempods reference implementation for the JVM — pod server, identity service, hosted MCP, clients
+- Topics: data-sovereignty decentralized json-ld jvm knowledge-graph kotlin linked-data mcp model-context-protocol oauth2 personal-data rdf rdf4j self-hosted semantic-web sparql webid
+- Sample ontology files: vocabulary/sempods.ttl
+
+## 84000/data-rdf
+- URL: https://github.com/84000/data-rdf
+- Updated: 2026-08-27T04:06:04Z
+- Stars: 0
+- Description: LOD (Linked Open Data) export of translation metadata
+- Sample ontology files: toh9.rdf, toh3.rdf, toh4.rdf, toh7.rdf, toh8.rdf, toh2.rdf, toh5.rdf, toh6.rdf
+
+## obophenotype/human-phenotype-ontology
+- URL: https://github.com/obophenotype/human-phenotype-ontology
+- Updated: 2026-08-27T03:50:31Z
+- Stars: 371
+- Description: Ontology for the description of human clinical features
+- Topics: hpo monarchinitiative obo obofoundry ontologies ontology owl phenotype phenotyping semantic-web
+- Sample ontology files: imports/ro_import.owl, src/ontology/hp-qc.owl, imports/nbo_import.owl, scratch/hp-importer.owl, imports/ncit_import.owl, patterns/definitions.owl, imports/mpath_import.owl, imports/hsapdv_import.owl
+
+## jesstalisman-ia/intentional-arrangement-skos
+- URL: https://github.com/jesstalisman-ia/intentional-arrangement-skos
+- Updated: 2026-08-27T03:28:30Z
+- Stars: 49
+- Description: Build, validate, visualize, and publish SKOS taxonomies in your browser — standards-first, single self-contained file, with a REST API and MCP server.
+- Topics: dublin-core ontologies ontology ontology-engineering ontology-learning rdf rdf-triples rdfs skos skos-rdf skos-tool skos-xl skoservice taxonomic-classification taxonomic-classifications taxonomies taxonomy taxonomy-management thesauri thesaurus
+- Sample ontology files: deploy/config.ttl, api/skos-shapes.ttl
+
+## alisoncf/guara-py
+- URL: https://github.com/alisoncf/guara-py
+- Updated: 2026-08-27T02:03:39Z
+- Stars: 0
+- Description: back-end em python do projeto Guará - OWL, RDF e TTB
+- Sample ontology files: app/usuarios.ttl, ontology/guara.owl, ontology/objetos.owl, ontology/classdef.owl, ontology/repositorios.owl, ontology/repositoriosamigos.owl, ontology/usuarios.rdf, ontology/guaraonto.rdf
+
+## laBioSynCare/laBioSynCare.github.io
+- URL: https://github.com/laBioSynCare/laBioSynCare.github.io
+- Updated: 2026-08-27T01:53:58Z
+- Stars: 5
+- Description: SSTIM, the Sensory Stimulation Ontology — OWL 2 + multilingual SKOS + SHACL — and BSC Lab, the open web app that browses, queries and authors it. Stable w3id.org IRIs, immutable versioned releases, Zenodo DOIs.
+- Topics: binaural-beats brainwave-entrainment controlled-vocabulary knowledge-graph linked-data neuroscience ontology owl rdf semantic-web sensory-stimulation shacl skos sparql sveltekit web-audio-api
+- Sample ontology files: static/ontology/void.ttl, static/ontology/sstim-core.ttl, static/ontology/sstim-vocab.ttl, static/ontology/sstim-shapes.ttl, static/ontology/sstim-common.ttl, static/ontology/sstim-session.ttl, static/ontology/sstim-evidence.ttl, static/ontology/sstim-stimulus.ttl
+
+## dcceew-bdr/bdr-reference-data-sync
+- URL: https://github.com/dcceew-bdr/bdr-reference-data-sync
+- Updated: 2026-08-27T01:29:30Z
+- Stars: 1
+- Description: Harvests and Catalogs Vocabs, Registers, Codelists and Ontologies used in the BDR
+- Sample ontology files: sources/abis-themes.ttl
+
+## Saldubatech/manufacturing-ontologies
+- URL: https://github.com/Saldubatech/manufacturing-ontologies
+- Updated: 2026-08-27T01:24:43Z
+- Stars: 0
+- Description: OWL Specifications of Manufacturing Systems
+- Sample ontology files: owl/imports/qudt-org-vocab-sou.ttl, owl/imports/qudt-org-vocab-soqk.ttl, owl/imports/qudt-org-schema-qudt.ttl, owl/imports/www-w3-org-2006-time.ttl, owl/imports/qudt-org-vocab-prefix.ttl, owl/imports/qudt-org-schema-datatype.ttl, owl/imports/qudt-org-schema-facade-qudt.ttl, owl/imports/qudt-org-collection-usertest.ttl
