@@ -1,67 +1,73 @@
 # Weekly ontology scan
 
-- Run (UTC): 2026-09-10T07:40:17Z
+- Run (UTC): 2026-09-17T06:35:50Z
 - Lookback days: 7
 
-Found 8 new candidate repositories:
+Found 9 new candidate repositories:
 
-## Kieleth/malleus-dev
-- URL: https://github.com/Kieleth/malleus-dev
-- Updated: 2026-09-10T01:44:19Z
+## ogcincubator/registered-item-model
+- URL: https://github.com/ogcincubator/registered-item-model
+- Updated: 2026-09-17T02:10:54Z
 - Stars: 0
-- Description: Root ontology in LinkML for ontology-typed knowledge graphs with write-time validation and content-addressable convergence
-- Topics: crdt knowledge-graph linkml ontology python
-- Sample ontology files: design/PROTOCOL_FOUNDATION_GRAPH.ttl
+- Description: A base RDF and SHACL model for register items, based on ISO 19135:2026
+- Sample ontology files: build/bblocks.ttl, _sources/core-ontology/owl.ttl, _sources/core-ontology/skos.ttl, _sources/core-ontology/ontology.ttl, _sources/ml-activity-profile/ontology.ttl, build/annotated/model/registered-item/core-ontology/ontology.ttl, build/annotated/model/registered-item/ml-activity-profile/ontology.ttl, build/tests/model/registered-item/core-ontology/example_2_1.ttl
 
-## RoboFinSystems/xbrlkit
-- URL: https://github.com/RoboFinSystems/xbrlkit
-- Updated: 2026-09-10T01:36:10Z
+## ImpressiveLLC/FaceoftheCabin
+- URL: https://github.com/ImpressiveLLC/FaceoftheCabin
+- Updated: 2026-09-17T01:27:39Z
+- Stars: 0
+- Description: Multi-site IoT orchestration with live logging rules and workflow logic engines leveraging a local AI assisted ontology definition and user-centered orchestrations to see, think, and act on observations and intuitive questions
+- Topics: blink github-action grafana home-assistant java kidde-homesafe mqtt node-red nodejs ollama reolink tailscale vaultwarden zigbee
+- Sample ontology files: cabin-orchestration-platform/backend/src/main/resources/context/cabin-context.jsonld
+
+## aontu-lang/aontu
+- URL: https://github.com/aontu-lang/aontu
+- Updated: 2026-09-17T01:07:55Z
+- Stars: 11
+- Description: Ontology support system for agent development
+- Sample ontology files: use-cases/repros/includes/vocab.jsonld, test/spec/files/vocab.jsonld
+
+## inboundfound/weo-ontology
+- URL: https://github.com/inboundfound/weo-ontology
+- Updated: 2026-09-17T00:59:37Z
+- Stars: 0
+- Description: WEO — Web Engine Optimization ontology. One standards-grounded vocabulary for the xEO family (SEO / GEO / AEO): entities, episodes, observations, derivations — with provenance all the way down.
+- Topics: geo knowledge-graph neo4j ontology owl seo
+- Sample ontology files: weo-core.ttl, weo-align.ttl, weo-decision.ttl, weo-strategy.ttl, weo-engagement.ttl, weo-visibility.ttl, context.jsonld
+
+## bradleypallen/iss-rdf-checks
+- URL: https://github.com/bradleypallen/iss-rdf-checks
+- Updated: 2026-09-17T00:52:50Z
+- Stars: 0
+- Description: Machine checks for "Implication-Space Semantics for RDF"
+- Sample ontology files: examples/clash.ttl, examples/tweety.ttl, examples/tweety_query.ttl, examples/tweety_query_bnode.ttl
+
+## pnnl/rdf-rules
+- URL: https://github.com/pnnl/rdf-rules
+- Updated: 2026-09-16T22:55:03Z
 - Stars: 1
-- Description: Work with XBRL filings above Arelle: one parse, portable models
-- Topics: arelle edgar financial-analysis financial-data holon json-ld knowledge-graph mcp mcp-server oim python rdf sec tavi xbrl xbrl-json
-- Sample ontology files: xbrlkit/_vendor/ontology/v1/shapes.ttl, xbrlkit/_vendor/ontology/v1/context.jsonld
+- Description: A Python library designed for translating source data to RDF data that complies with a target RDF ontology.
+- Topics: rdf
+- Sample ontology files: tests/data/test.ttl, tests/data/test-ontology.ttl, tests/data/regression/test_rule_spec3_.ttl, tests/data/regression/test_rule_spec8_.ttl, tests/data/regression/test_rule_spec1_.ttl, tests/data/regression/test_rule_spec6_.ttl, tests/data/regression/test_rule_spec7_.ttl, tests/data/regression/test_rule_spec9_.ttl
 
-## theSKAILab/STAD
-- URL: https://github.com/theSKAILab/STAD
-- Updated: 2026-09-10T01:11:03Z
-- Stars: 0
-- Description: The Spatial and Temporal Aggregate Data (STAD) Ontology Design Pattern
-- Sample ontology files: ttl/STAD.ttl, ttl/STAD-MLS.ttl, docs/ontology.ttl, Sample data/STAD Sample Data Core.ttl, Sample data/NH_state_annualMeanTemp.ttl, Sample data/NH_10yr_meantemp_2013-2022.ttl, Sample data/NH_state_10yearSummerMeanTemp.ttl, docs/ontology.owl
+## SOLVE-IT-DF/solve-it-ontology
+- URL: https://github.com/SOLVE-IT-DF/solve-it-ontology
+- Updated: 2026-09-16T22:34:16Z
+- Stars: 2
+- Description: SOLVE-IT ontology - supporting input and output classes for techniques
+- Sample ontology files: solve_it_core.ttl, solve_it_sqlite.ttl, solve_it_analysis.ttl, solve_it_observable.ttl, solve_it_core_shapes.ttl, solve_it_tool_profile.ttl, solve_it_observable_shapes.ttl, solve_it_observable_search.ttl
 
-## bounded-systems/conformance-kit
-- URL: https://github.com/bounded-systems/conformance-kit
-- Updated: 2026-09-10T00:57:12Z
-- Stars: 0
-- Description: Standalone web-conformance toolkit — integrity (provenance/manifest/verify) + conformance gates (SBOM, SHACL runner, SEO/readability/HTTP, lone semantic) + generators (static API/OpenAPI, did:web/VC, IPFS CID). Site-agnostic; vendored hash-pinned by consuming sites.
-- Sample ontology files: fixtures/sparql.shapes.ttl, fixtures/jsonld.shapes.ttl, fixtures/sparql.violating.ttl, fixtures/sparql.conforming.ttl, fixtures/dataset.violating.ttl, fixtures/dataset.conforming.ttl
-
-## jeff1evesque/pyg-knowledge-graph-builder
-- URL: https://github.com/jeff1evesque/pyg-knowledge-graph-builder
-- Updated: 2026-09-10T00:55:30Z
-- Stars: 0
-- Description: GPU-accelerated pipeline for building PyTorch Geometric graphs from enriched RDF knowledge graphs
-- Sample ontology files: tests/fixtures/e2e/ntriples/sec.nt, tests/fixtures/e2e/ntriples/noaa.nt, tests/fixtures/e2e/ntriples/market.nt
-
-## MLSystemsRI/ml-systems-public
-- URL: https://github.com/MLSystemsRI/ml-systems-public
-- Updated: 2026-09-10T00:13:13Z
-- Stars: 0
-- Description: Public reference for the ML Systems platform — Rhode Island circular construction. The deconstruction-to-construction equity loop, the Master Ledger, the Collective Ontology, Ontological Compression, and the Seven Minds. iOS + Android app UI + concept docs.
-- Topics: ai-agents circular-construction circular-economy construction construction-tech deconstruction expo material-recovery ontology proptech react-native rhode-island robotics typescript value-chain
-- Sample ontology files: knowledge/seo/jobposting-template.jsonld, knowledge/seo/localbusiness-schema.jsonld
-
-## volzinnovation/my-phd-thesis-gpt-6-astra
-- URL: https://github.com/volzinnovation/my-phd-thesis-gpt-6-astra
-- Updated: 2026-09-09T23:42:15Z
-- Stars: 0
-- Description: An experimental Description Logic Program (DLP) reasoner built by GPT 6 Astra from my 2004 PhD thesis text
-- Topics: dlp owl owl-el owl-rl rdf
-- Sample ontology files: examples/bach.ttl, examples/family.ttl, examples/bach-family.ttl, examples/existential.ttl, examples/inconsistent.ttl, examples/bach.owl
-
-## andrefs/chilon_rs
-- URL: https://github.com/andrefs/chilon_rs
-- Updated: 2026-09-09T23:15:26Z
+## ogcincubator/bblocks-wf4ever
+- URL: https://github.com/ogcincubator/bblocks-wf4ever
+- Updated: 2026-09-16T22:20:29Z
 - Stars: 1
-- Description: Rust namespace-based summarizer for RDF graphs.
-- Topics: graphs namespaces prefix rdf semantic-web summarization
-- Sample ontology files: afsgs.ttl
+- Description: wf4ever ontology building blocks
+- Sample ontology files: build/bblocks.ttl, _sources/ro/ontology.ttl, _sources/wfdesc/ontology.ttl, _sources/wfprov/ontology.ttl, _sources/wf4ever/ontology.ttl, build/annotated/bbr/wf4ever/ro/ontology.ttl, build/annotated/bbr/wf4ever/wfdesc/ontology.ttl, build/annotated/bbr/wf4ever/wfprov/ontology.ttl
+
+## ogcincubator/bblocks-focal
+- URL: https://github.com/ogcincubator/bblocks-focal
+- Updated: 2026-09-16T22:20:23Z
+- Stars: 0
+- Description: OGC Blocks for the FOCAL project: shared ontology and forest-stand data model, plus a machine-readable model for climate-service workflow transferability
+- Topics: climate-services focal ogc-building-blocks ontology transferability
+- Sample ontology files: build/bblocks.ttl, _sources/focal-ontology/ontology.ttl, _sources/transferability/vocab/ontology.ttl, build/annotated/focal/focal-ontology/ontology.ttl, build/annotated/focal/transferability/vocab/ontology.ttl, build/tests/focal/forestStandFeature/example_1_1.ttl, build/tests/focal/forestStandFeature/feature-fail.ttl, build/tests/focal/transferability/rule/example_1_1.ttl
