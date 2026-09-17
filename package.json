@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "overrides": {
+    "path-to-regexp": "0.1.13"
   }
 }
