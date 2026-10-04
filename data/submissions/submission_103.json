@@ -1,0 +1,13 @@
+{
+  "Title": "Structural Simulation Ontology (SSO)",
+  "Prefix": "sso",
+  "Version": "0.1.0",
+  "Created": "2026",
+  "Description": "SSO (Structural Simulation Ontology) is an OWL ontology for representing structural analysis models as an RDF graph. It captures the finite element mesh (objects, nodes, elements), its assembled instances and node/element sets, the materials and sections, including parametric cross-section profiles, assigned to elements, and the load cases, loads, and boundary conditions applied to the model.",
+  "uri": "https://w3id.org/sso#",
+  "Reference": "https://w3id.org/sso#",
+  "Linked-to ontologies AECO": "bot;brot;beo",
+  "Linked-to ontologies UPPER": "dcterms;prov;rdfs",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://labmodelsdigitalsupc.github.io/SSO/ontology.ttl"
+}
