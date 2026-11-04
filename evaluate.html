@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BE-OLS Ontology Evaluator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="evaluate.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="intro">
+    <h1>Evaluate your ontology for reusability</h1>
+    <p>This webpage allows you to score your ontology against the BE-OLS evaluation framework and see what parts of the ontology can be improved to enhance its reusability.</p>
+  </section>
+
+  <section class="panel" aria-label="Upload">
+    <div class="input-grid">
+      <div class="input-main">
+        <label class="drop" id="drop" for="file">
+          <input type="file" id="file" accept=".ttl,.owl,.rdf,.xml,.nt,.n3,.trig,.jsonld,.json">
+          <strong>Drop your file or click to choose</strong>
+          <span class="formats">Allowed file types: .ttl .owl .rdf .nt .trig .jsonld</span>
+          <span class="file-name" id="file-name"></span>
+        </label>
+        <details class="paste-toggle" id="paste-box">
+          <summary>Paste text instead</summary>
+          <textarea id="paste" spellcheck="false" placeholder="@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; ."></textarea>
+        </details>
+      </div>
+      <div class="btn-row"><button class="primary" id="run" type="button">Evaluate</button></div>
+    </div>
+  </section>
+
+  <section class="panel error" id="error" hidden>
+    <h2 id="error-title">The file could not be read</h2>
+    <p id="error-msg"></p>
+  </section>
+
+  <section id="report" aria-live="polite"></section>
+
+  <details class="method">
+    <summary>How scores work</summary>
+    <ul>
+      <li><b>Connectivity (0 to 3):</b> links to an upper vocabulary, a BE-OLS ontology and a meta schema.</li>
+      <li><b>Accessibility (0 to 3):</b> conceptual model, serialization, HTTP(S) IRI.</li>
+      <li><b>Documentation &amp; Reuse (0 to 2):</b> documentation link, rdfs:comment coverage.</li>
+      <li><b>Governance (0 to 3):</b> license, version, creator.</li>
+    </ul>
+    <p>Best-practice items do not affect the score.</p>
+  </details>
+
+  <footer>
+    <a href="https://cyberbuildlab.github.io/BE-OLS/">BE-OLS</a>, <a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">EC3 Modelling &amp; Standards Committee</a>.
+    Catalogue <span id="cat-date"></span>, <span id="cat-n"></span> ontologies.
+    Cite: Akbarieh et al. (2025), <a href="http://www.doi.org/10.35490/EC3.2025.353">EC3 2025</a>.
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/n3@1.17.2/browser/n3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script src="evaluate.js"></script>
+</body>
+</html>
