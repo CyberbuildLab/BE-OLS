@@ -1,8 +1,8 @@
-"""Rebuild data/evaluator_catalogue.json, the data file used by evaluate.html.
+"""Rebuild evaluate.html for the BE-OLS repo.
 
 Runs the characterisation notebook's functions over data/source to get each
-catalogue ontology's namespace aliases and term names. Run it after the
-catalogue changes. The page itself (evaluate.html/.css/.js) needs no build.
+catalogue ontology's namespace aliases and term names, then embeds them, the
+evaluator engine and the example ontology into a single evaluate.html.
 
 Usage (from the repo root):  python scripts/build_evaluator.py
 Requires: rdflib, pandas, openpyxl, requests
@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'data' / 'source'
-OUT = ROOT / 'data' / 'evaluator_catalogue.json'
+EV = ROOT / 'evaluator'
 NB = sorted(SRC.glob('ontology_characterisation_v*.ipynb'))[-1]
 
 nb = json.load(open(NB, encoding='utf-8'))
@@ -27,12 +27,10 @@ xp = ns['build_extended_uri_prefix_mapping'](ontos)
 from rdflib import Graph, RDF, OWL, URIRef
 pub = {o['Prefix']: o for o in json.load(open(ROOT / 'data' / 'Ontologies_forRepo.json', encoding='utf-8'))}
 key = ns['canonical_match_key']
-BLANK_NODE = re.compile(r'^n[0-9a-f]{32}b\d+$')     # random per run, not a namespace
 out = []
 for o in ontos:
     p = o['prefix_manual']
-    keys = sorted({key(u) for u in o['alias_uris_final'] if u} - {''})
-    keys = [k for k in keys if not BLANK_NODE.match(k)]
+    keys = sorted({key(u) for u in o['alias_uris_final'] if u})
     groups = {}
     f = SRC / 'Ontologies_TTL' / f'{p}.ttl'
     if f.exists():
@@ -54,6 +52,14 @@ for o in ontos:
                 'lb': o.get('linked_by_aeco_auto') or [],
                 'tg': [[n, '|'.join(sorted(v['C'])), '|'.join(sorted(v['P']))] for n, v in groups.items()]})
 
-cat = {'generated': datetime.date.today().isoformat(), 'source': 'CyberbuildLab/BE-OLS', 'ontologies': out, 'xp': xp}
-OUT.write_text(json.dumps(cat, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
-print(f'{OUT.name} written: {len(out)} ontologies, {OUT.stat().st_size // 1024} KB')
+cat = json.dumps({'generated': datetime.date.today().isoformat(), 'source': 'CyberbuildLab/BE-OLS', 'ontologies': out, 'xp': xp},
+                 separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
+page = (EV / 'page.template.html').read_text(encoding='utf-8')
+page = (page.replace('__CATALOGUE__', cat)
+            .replace('__SAMPLE__', (EV / 'sample.ttl').read_text(encoding='utf-8'))
+            .replace('/*__ENGINE__*/', (EV / 'evaluator.js').read_text(encoding='utf-8')))
+head = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">\n')
+page = head + page.replace('<style>', '<style>\n[hidden]{display:none!important}', 1).replace('\n<main class="wrap">', '\n</head>\n<body>\n<main class="wrap">', 1) + '\n</body>\n</html>\n'
+(ROOT / 'evaluate.html').write_text(page, encoding='utf-8')
+print(f'evaluate.html written: {len(out)} ontologies, {len(page)//1024} KB')
