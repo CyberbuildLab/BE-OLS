@@ -1,0 +1,13 @@
+{
+  "Title": "Concrete Element Reuse Ontology (CERO)",
+  "Prefix": "cero",
+  "Version": "1.0",
+  "Created": "2026",
+  "Description": "The Concrete Element Reuse Ontology (CERO) models metadata, structural elements, property groups, and properties relevant to cast-in-place structural concrete elements. It is designed to support the circular economy in construction by enabling the systematic digital tracking for the reuse of concrete elements. CERO complements its TBox class hierarchy with a flexible ABox-based property model, in which structured property groups and individual property instances are linked directly to physical assets. Furthermore, the ontology connects building components and material properties with scientific testing processes, measurement configurations, variables, and units.",
+  "uri": "http://www.w3id.org/cero#",
+  "Reference": "1.) L. Guntermann, N. Krautgartner, H. Zielonka, P. Hagedorn, P. Mark, and M. König, “From inspection to digital passport: Tracing the provenance of testing data of concrete components for circular reuse”, in Proc. of the EC3 2026, Corfu, Greece, 2026. DOI: 10.35490/ec3.2026.290. 2.) N. Krautgartner, F. Günther, P. Hagedorn, A. Hafner, and M. König, “A Semantic Digital Twin for the Sustainability Assessment of Reusable Structural Concrete Elements”, accepted for Proc. of the i3CE 2026, Incheon, South Korea, 2026. Preprint available.",
+  "Linked-to ontologies AECO": "bot; isoprops",
+  "Linked-to ontologies UPPER": "dc; dcat; owl; rdf; rdfs; schema; skos; vann; xsd; quantitykind; unit",
+  "Linked-to ontologies OTHER DOMAINS": "metadata4ing",
+  "Link to TTL file": "https://rub-informatik-im-bauwesen.github.io/crc1683-ontologies/cero/ontology.ttl"
+}
