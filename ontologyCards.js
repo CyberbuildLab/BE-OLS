@@ -375,11 +375,14 @@ document.getElementById('sortDirectionToggle').addEventListener('click', () => {
     applyCurrentView();
 });
 
-// Event listener for the year dropdown
-document.getElementById('yearSelect').addEventListener('change', (e) => {
-    filterState.year = e.target.value;
-    applyCurrentView();
-});
+// Event listener for the year dropdown (only if the Year filter is on the page)
+const yearSelectEl = document.getElementById('yearSelect');
+if (yearSelectEl) {
+    yearSelectEl.addEventListener('change', (e) => {
+        filterState.year = e.target.value;
+        applyCurrentView();
+    });
+}
 
 // Event listener for the primary domain dropdown
 document.getElementById('domainSelect').addEventListener('change', (e) => {
