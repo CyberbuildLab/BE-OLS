@@ -47,6 +47,30 @@ main {
     z-index: 100;
 }
 
+.page-intro {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.page-intro h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #282828;
+    margin-bottom: 8px;
+}
+
+.page-intro h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #282828;
+    margin-bottom: 8px;
+}
+
+.page-intro p {
+    font-size: 15px;
+    color: var(--color-text-medium);
+}
+
 .logo {
     display: flex;
     align-items: center;

@@ -43,10 +43,10 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a href="ontologyCards.html">Ontologies</a></li>
-                <li><a href="ontologyGraph.html">Ontology Network Graph</a></li>
-                <li><a href="analytics.html">Analytics</a></li>
-                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/">About Us</a></li>
+                <li><a href="ontologyCards.html">Cards view</a></li>
+                <li><a href="ontologyNetwork.html">Network view</a></li>
+                <li><a href="analytics.html">Analytics view</a></li>
+                <li><a href="https://ec-3.org/governance/technical-committees/modelling-standards-committee/" target="_blank">About Us</a></li>
                 <li><a href="https://cyberbuildlab.github.io/BIM-SLE/" target="_blank">BIM-SLE (other project)</a></li>
                 <li>
                     <a href="https://github.com/CyberbuildLab/BE-OLS" target="_blank" rel="noopener" class="repo-link">
@@ -72,7 +72,7 @@
 
             <div class="hero-preview-row">
                 <a href="ontologyCards.html" class="hero-preview">
-                    <span class="button">Ontology Cards</span>
+                    <span class="button">Cards view</span>
                     <div class="hero-preview-card hero-preview-card--tall">
                         <div class="hero-spider-chart-wrap">
                             <canvas id="heroSpiderPreview"></canvas>
@@ -81,8 +81,15 @@
                     </div>
                 </a>
 
+                <a href="ontologyNetwork.html" class="hero-preview">
+                    <span class="button">Network view</span>
+                    <div class="hero-preview-card">
+                        <div id="heroGraphPreview" class="hero-graph-preview"></div>
+                    </div>
+                </a>
+
                 <a href="analytics.html" class="hero-preview">
-                    <span class="button">Analytics</span>
+                    <span class="button">Analytics view</span>
                     <div class="hero-preview-card hero-preview-card--split">
                         <div class="hero-analytics-top">
                             <p class="data-content-updated" id="dataContentUpdated"></p>
@@ -102,12 +109,7 @@
                     </div>
                 </a>
 
-                <a href="ontologyGraph.html" class="hero-preview">
-                    <span class="button">Ontology Network Graph</span>
-                    <div class="hero-preview-card">
-                        <div id="heroGraphPreview" class="hero-graph-preview"></div>
-                    </div>
-                </a>
+
             </div>
         </div>
     </div>
