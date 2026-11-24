@@ -24,7 +24,9 @@ main {
     padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
+    width: 100%;
     max-width: 1200px;
+    box-sizing: border-box;
     margin: 20px auto; /* Center the content */
 }
 
@@ -158,12 +160,11 @@ main {
     gap: 20px;
 }
 
-/* Filter bar: single light unified bar (search + sort + temporal scope) */
+/* Filter bar: search on top, filters (domain, sort, year) underneath */
 #filter-bar {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 18px;
-    flex-wrap: wrap;
     background: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 16px;
@@ -171,6 +172,20 @@ main {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
+}
+
+#search-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+}
+
+#filter-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
 /* Search Box */
@@ -251,6 +266,7 @@ main {
     gap: 6px;
 }
 
+#domainSelect,
 #sortSelect,
 #yearSelect {
     background: transparent;
@@ -269,6 +285,7 @@ main {
     background-size: 14px;
 }
 
+#domainSelect option,
 #sortSelect option,
 #yearSelect option {
     color: #000;
@@ -290,33 +307,7 @@ main {
     transform: rotate(180deg);
 }
 
-/* Primary Domain Buttons */
-#primary-domains {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.primary-domain-btn {
-    background-color: transparent;
-    border: 2px solid #333;
-    color: #333;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.primary-domain-btn:hover {
-    background-color: #333;
-    color: white;
-}
-
-.primary-domain-btn:focus, #searchButton:focus {
+#searchButton:focus {
     outline: none;
 }
 

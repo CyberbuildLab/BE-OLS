@@ -321,9 +321,9 @@ function filterOntologies(query) {
     applyCurrentView();
 }
 
-// Function to handle primary domain button clicks for the top box
+// Function to handle a primary domain selection from the dropdown
 function filterByDomain(domain) {
-    filterState.domain = domain === 'All' ? 'all' : domain;
+    filterState.domain = (!domain || domain.toLowerCase() === 'all') ? 'all' : domain;
     applyCurrentView();
 }
 
@@ -381,13 +381,9 @@ document.getElementById('yearSelect').addEventListener('change', (e) => {
     applyCurrentView();
 });
 
-// Event listener for primary domain buttons (including the "All" button)
-const primaryDomainButtons = document.querySelectorAll('.primary-domain-btn');
-primaryDomainButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const domain = e.target.innerText.trim();
-        filterByDomain(domain); // Filter based on primary domain
-    });
+// Event listener for the primary domain dropdown
+document.getElementById('domainSelect').addEventListener('change', (e) => {
+    filterByDomain(e.target.value);
 });
 
 // Load ontologies when the page is loaded

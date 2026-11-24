@@ -49,74 +49,84 @@
         </div>
         <div id="search-and-buttons">
             <div id="filter-bar">
-                <div id="search-container">
-                    <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input type="text" id="searchInput" placeholder="Search by ontology name, prefix, domain, vocabularies...">
+                <div id="search-row">
+                    <div id="search-container">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" id="searchInput" placeholder="Search by ontology name, prefix, domain, vocabularies...">
+                    </div>
+                    <button id="searchButton" onclick="filterOntologies(document.getElementById('searchInput').value)" aria-label="Search">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                    </button>
                 </div>
-                <button id="searchButton" onclick="filterOntologies()" aria-label="Search">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
-                </button>
 
-                <div class="filter-divider"></div>
-
-                <div class="filter-group">
-                    <label for="sortSelect">Sort by</label>
-                    <div class="filter-group-control">
-                        <select id="sortSelect">
-                            <option value="relevance">Relevance</option>
-                            <option value="name">Name (A&ndash;Z)</option>
-                            <option value="fair">FAIR / FOOPS score</option>
-                            <option value="quality">Quality score</option>
-                            <option value="accessibility">Accessibility score</option>
-                            <option value="alignment">Alignment score</option>
-                            <option value="governance">Governance score</option>
-                            <option value="annotation">Annotation score</option>
-                            <option value="classes">Number of classes</option>
-                            <option value="object-properties">Object properties</option>
-                            <option value="data-properties">Data properties</option>
-                            <option value="connectivity">Connectivity (links)</option>
-                            <option value="year">Year created</option>
-                            <option value="domain">Primary domain</option>
+                <div id="filter-row">
+                    <div class="filter-group">
+                        <label for="domainSelect">Primary domain</label>
+                        <select id="domainSelect">
+                            <option value="all">All Domains</option>
+                            <option value="BE Product (Building)">BE Product (Building)</option>
+                            <option value="BE Product (Infrastructure)">BE Product (Infrastructure)</option>
+                            <option value="Circular Economy">Circular Economy</option>
+                            <option value="Comfort">Comfort</option>
+                            <option value="Cost">Cost</option>
+                            <option value="Energy">Energy</option>
+                            <option value="Facilities Management">Facilities Management</option>
+                            <option value="Fire Safety">Fire Safety</option>
+                            <option value="Information Management">Information Management</option>
+                            <option value="Geographic Information">Geographic Information</option>
+                            <option value="Geometry">Geometry</option>
+                            <option value="IoT Sensors/Actuators">IoT Sensors/Actuators</option>
+                            <option value="Materials">Materials</option>
+                            <option value="Mobility/Transport">Mobility/Transport</option>
+                            <option value="Planning Permission">Planning Permission</option>
+                            <option value="Production (Process)">Production (Process)</option>
+                            <option value="Quality">Quality</option>
+                            <option value="Real Estate">Real Estate</option>
+                            <option value="Resources">Resources</option>
+                            <option value="Safety">Safety</option>
+                            <option value="Weather/Climate">Weather/Climate</option>
+                            <option value="Cultural Heritage">Cultural Heritage</option>
                         </select>
-                        <button type="button" id="sortDirectionToggle" aria-label="Toggle sort direction">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-                        </button>
-                </div></div>
+                    </div>
 
-                <div class="filter-divider"></div>
+                    <!--<div class="filter-divider"></div>
 
-                <div class="filter-group">
-                    <label for="yearSelect">Year</label>
-                    <select id="yearSelect">
-                        <option value="all">All Years</option>
-                    </select>
+                    <div class="filter-group">
+                        <label for="yearSelect">Year</label>
+                        <select id="yearSelect">
+                            <option value="all">All Years</option>
+                        </select>
+                    </div>-->
+
+                    <div class="filter-divider"></div>
+
+                    <div class="filter-group">
+                        <label for="sortSelect">Sort by</label>
+                        <div class="filter-group-control">
+                            <select id="sortSelect">
+                                <option value="relevance">Relevance</option>
+                                <option value="name">Name (A&ndash;Z)</option>
+                                <option value="fair">FAIR / FOOPS score</option>
+                                <option value="quality">Quality score</option>
+                                <option value="accessibility">Accessibility score</option>
+                                <option value="alignment">Alignment score</option>
+                                <option value="governance">Governance score</option>
+                                <option value="annotation">Annotation score</option>
+                                <option value="classes">Number of classes</option>
+                                <option value="object-properties">Object properties</option>
+                                <option value="data-properties">Data properties</option>
+                                <option value="connectivity">Connectivity (links)</option>
+                                <option value="year">Year created</option>
+                                <option value="domain">Primary domain</option>
+                            </select>
+                            <button type="button" id="sortDirectionToggle" aria-label="Toggle sort direction">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+
                 </div>
-            </div>
-            <div id="primary-domains">
-                <button class="primary-domain-btn">All</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Building)')">BE Product (Building)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('BE Product (Infrastructure)')">BE Product (Infrastructure)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Circular Economy')">Circular Economy</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Comfort')">Comfort</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Cost')">Cost</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Energy')">Energy</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Facilities Management')">Facilities Management</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Fire Safety')">Fire Safety</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Information Management')">Information Management</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Geographic Information')">Geographic Information</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Geometry')">Geometry</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('IoT Sensors/Actuators')">IoT Sensors/Actuators</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Materials')">Materials</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Mobility/Transport')">Mobility/Transport</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Planning Permission')">Planning Permission</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Production (Process)')">Production (Process)</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Quality')">Quality</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Real Estate')">Real Estate</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Resources')">Resources</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Safety')">Safety</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Weather/Climate')">Weather/Climate</button>
-                <button class="primary-domain-btn" onclick="filterByDomain('Cultural Heritage')">Cultural Heritage</button>
-
             </div>
         </div>
 
