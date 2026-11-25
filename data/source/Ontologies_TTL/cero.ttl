@@ -1,0 +1,3100 @@
+@prefix : <https://w3id.org/cero#> .
+@prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
+@prefix apf: <http://jena.apache.org/ARQ/property#> .
+@prefix array: <http://www.w3.org/2005/xpath-functions/array> .
+@prefix asdf: <https://example.com/defaultNamespaces#> .
+@prefix cero: <https://w3id.org/cero#> .
+@prefix ceroProps: <http://example.org/ceroProperties#> .
+@prefix csup: <https://example.com/calciumSilicateUnitProperties#> .
+@prefix data: <http://examples.ontotext.com/family/data#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dpbbDC: <https://example.com/v1/dpbb/datacatalog#> .
+@prefix dt: <https://w3id.org/dt#> .
+@prefix ex: <http://www.example.com/property#> .
+@prefix family: <http://examples.ontotext.com/family#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix geoext: <http://rdf.useekm.com/ext#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix isoprops: <https://w3id.org/isoprops#> .
+@prefix list: <http://jena.apache.org/ARQ/list#> .
+@prefix loin: <https://w3id.org/loin#> .
+@prefix math: <http://www.w3.org/2005/xpath-functions/math> .
+@prefix map: <http://www.w3.org/2005/xpath-functions/map> .
+@prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
+@prefix ofn: <http://www.ontotext.com/sparql/functions/> .
+@prefix opm: <https://w3id.org/opm#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix schema: <https://schema.org/> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix sts: <https://example.com/segmentTypeStandard#> .
+@prefix tempo: <https://w3id.org/tempo#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix yMod: <https://example.com/yModuleProperties#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+@base <https://w3id.org/cero#> .
+
+<https://w3id.org/cero> rdf:type owl:Ontology ;
+                        owl:versionIRI <https://w3id.org/cero> ;
+						dc:title "Concrete Element Reuse Ontology (CERO)"@de ,
+									"Concrete Element Reuse Ontology (CERO)"@en ;
+						dc:bibliographicCitation "Guntermann, L., Krautgartner, N., & Hagedorn, P. Concrete Element Reuse Ontology (CERO). (2026). Version 1.0. https://www.w3id.org/cero .";
+                         <http://purl.org/dc/terms/created> "2026-01-01"^^xsd:date ;
+                         <http://purl.org/dc/terms/creator> _:genid1 ,
+                                                            _:genid3 ,
+                                                            _:genid5 ;
+                         <http://purl.org/dc/terms/issued> "2021-12-06"^^xsd:date ;
+                         <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                         <http://purl.org/dc/terms/modified> "2025-01-15"^^xsd:date ;
+                         <http://purl.org/dc/terms/publisher> _:genid7 ;
+                         <http://purl.org/vocab/vann/preferredNamespacePrefix> "cero" ;
+                         <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                         rdfs:comment """
+CERO describes reusable cast-in-place reinforced concrete elements to support a circular economy in construction.
+""" ;
+                         rdfs:label "Concrete Element Reuse Ontology (CERO)" ;
+                         owl:versionInfo "1.0" ;
+                         <http://www.w3.org/2004/02/skos/core#historyNote> """
+v0.1: initial ontology
+  """ ;
+                         <https://schema.org/codeRepository> <https://github.com/RUB-Informatik-im-Bauwesen/crc1683-ontologies/tree/main/cero> .
+
+_:genid1 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:lukas.guntermann@rub.de> ;
+          <https://schema.org/identifier> <https://orcid.org/0009-0006-6615-6018> ;
+          <https://schema.org/memberOf> _:genid2 ;
+          <https://schema.org/name> "Lukas Guntermann" .
+
+_:genid3 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:nina.krautgartner@rub.de> ;
+          <https://schema.org/identifier> <https://orcid.org/0009-0007-3836-1177> ;
+          <https://schema.org/memberOf> _:genid4 ;
+          <https://schema.org/name> "Nina Krautgartner" .
+
+_:genid5 rdf:type <https://schema.org/Person> ;
+          <https://schema.org/email> <mailto:philipp.hagedorn-n6v@rub.de> ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-6249-243X> ;
+          <https://schema.org/memberOf> _:genid6 ;
+          <https://schema.org/name> "Philipp Hagedorn" .
+
+_:genid7 rdf:type <https://schema.org/Organization> ;
+          <https://schema.org/identifier> <https://www.inf.bi.rub.de> ;
+          <https://schema.org/name> "Chair of Computing in Engineering, Ruhr University Bochum" ;
+          <https://schema.org/parentOrganization> _:genid8 .
+
+_:genid2 <https://schema.org/identifier> <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/lukas_guntermann.html.en> ;
+          <https://schema.org/name> "Ruhr University Bochum" .
+
+_:genid4 <https://schema.org/identifier> <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/nina_krautgartner.html.en> ;
+          <https://schema.org/name> "Ruhr University Bochum" .
+
+_:genid6 <https://schema.org/identifier> <https://www.inf.bi.ruhr-uni-bochum.de/iib/lehrstuhl/mitarbeiter/philipp_hagedorn.html.en> ;
+          <https://schema.org/name> "Ruhr University Bochum" .
+
+_:genid8 rdf:type <https://schema.org/Organization> ;
+          <https://schema.org/name> "Ruhr University Bochum, Germany" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+<http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://w3id.org/nfdi4ing/metadata4ing#hasUnit
+<http://w3id.org/nfdi4ing/metadata4ing#hasUnit> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#historyNote
+<http://www.w3.org/2004/02/skos/core#historyNote> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/dcat#distribution
+<http://www.w3.org/ns/dcat#distribution> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/codeRepository
+<https://schema.org/codeRepository> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/email
+<https://schema.org/email> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/identifier
+<https://schema.org/identifier> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/memberOf
+<https://schema.org/memberOf> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/name
+<https://schema.org/name> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/parentOrganization
+<https://schema.org/parentOrganization> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#categoryOfGroupOfProperties
+<https://w3id.org/isoprops#categoryOfGroupOfProperties> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#countryOfOrigin
+<https://w3id.org/isoprops#countryOfOrigin> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#countryOfUse
+<https://w3id.org/isoprops#countryOfUse> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#creatorsLanguage
+<https://w3id.org/isoprops#creatorsLanguage> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dataType
+<https://w3id.org/isoprops#dataType> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dateOfActivation
+<https://w3id.org/isoprops#dateOfActivation> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dateOfCreation
+<https://w3id.org/isoprops#dateOfCreation> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dateOfLastChange
+<https://w3id.org/isoprops#dateOfLastChange> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dateOfRevision
+<https://w3id.org/isoprops#dateOfRevision> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dateOfVersion
+<https://w3id.org/isoprops#dateOfVersion> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#dynamicProperty
+<https://w3id.org/isoprops#dynamicProperty> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#exampleInLanguage
+<https://w3id.org/isoprops#exampleInLanguage> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#globallyUniqueIdentifier
+<https://w3id.org/isoprops#globallyUniqueIdentifier> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasDictionaryReferenceDocument
+<https://w3id.org/isoprops#hasDictionaryReferenceDocument> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasDictionarySubset
+<https://w3id.org/isoprops#hasDictionarySubset> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasGroupOfProperties
+<https://w3id.org/isoprops#hasGroupOfProperties> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasNameInLanguage
+<https://w3id.org/isoprops#hasNameInLanguage> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasParentGroupOfProperties
+<https://w3id.org/isoprops#hasParentGroupOfProperties> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasPropertyGroupReference
+<https://w3id.org/isoprops#hasPropertyGroupReference> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#hasUnit
+<https://w3id.org/isoprops#hasUnit> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#revisionNumber
+<https://w3id.org/isoprops#revisionNumber> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#status
+<https://w3id.org/isoprops#status> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/isoprops#versionNumber
+<https://w3id.org/isoprops#versionNumber> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/cero#accessibility
+:accessibility rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#aggregateGradingCurve
+:aggregateGradingCurve rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#aggregateSize
+:aggregateSize rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#anchorPoints
+:anchorPoints rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#calciumContent
+:calciumContent rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#carbonationContent
+:carbonationContent rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#carbonationDepth
+:carbonationDepth rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <https://w3id.org/bot#Element> ;
+                  rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#cementContent
+:cementContent rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#cementType
+:cementType rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#chlorideContent
+:chlorideContent rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Element> ;
+                 rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#color
+:color rdf:type owl:DatatypeProperty ;
+       rdfs:domain <https://w3id.org/bot#Element> ;
+       rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#compressiveStrength
+:compressiveStrength rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Element> ;
+                     rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#concreteCover
+:concreteCover rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#concreteStiffness
+:concreteStiffness rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#connectionType
+:connectionType rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#crackDescription
+:crackDescription rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#crackWidth
+:crackWidth rdf:type owl:DatatypeProperty ;
+            rdfs:domain <https://w3id.org/bot#Element> ;
+            rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#crossSection
+:crossSection rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#damageClass
+:damageClass rdf:type owl:DatatypeProperty ;
+             rdfs:domain <https://w3id.org/bot#Element> ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#dceClass
+:dceClass rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#density
+:density rdf:type owl:DatatypeProperty ;
+         rdfs:domain <https://w3id.org/bot#Element> ;
+         rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#diameter
+:diameter rdf:type owl:DatatypeProperty ;
+          rdfs:domain <https://w3id.org/bot#Element> ;
+          rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#dynamicYoungsModulus
+:dynamicYoungsModulus rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#elementType
+:elementType rdf:type owl:DatatypeProperty ;
+             rdfs:domain <https://w3id.org/bot#Element> ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#energyConsumed
+:energyConsumed rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#environmentalImpact
+:environmentalImpact rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Element> ;
+                     rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#exposureClass
+:exposureClass rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#extraordinaryDamage
+:extraordinaryDamage rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Element> ;
+                     rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#finishing
+:finishing rdf:type owl:DatatypeProperty ;
+           rdfs:domain <https://w3id.org/bot#Element> ;
+           rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#height
+:height rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#identifier
+:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:domain <https://w3id.org/bot#Element> ;
+            rdfs:range xsd:integer .
+
+
+###  https://w3id.org/cero#initialFunction
+:initialFunction rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Element> ;
+                 rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#internalDefects
+:internalDefects rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Element> ;
+                 rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#ironContent
+:ironContent rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#potassiumContent
+:potassiumContent rdf:type owl:DatatypeProperty ;
+                rdfs:domain <https://w3id.org/bot#Element> ;
+                rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#length
+:length rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#loadBearingCapacity
+:loadBearingCapacity rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Element> ;
+                     rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#loadHistory
+:loadHistory rdf:type owl:DatatypeProperty ;
+             rdfs:domain <https://w3id.org/bot#Element> ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#location
+:location rdf:type owl:DatatypeProperty ;
+          rdfs:domain <https://w3id.org/bot#Element> ;
+          rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#machineResources
+:machineResources rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <https://w3id.org/bot#Element> ;
+                  rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#magnesiumContent
+:magnesiumContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#mass
+:mass rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#materialResources
+:materialResources rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#moistureContent
+:moistureContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#name
+:name rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#sodiumContent
+:sodiumContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#origin
+:origin rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#oxygenContent
+:oxygenContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#phase
+:phase rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#photo
+:photo rdf:type owl:DatatypeProperty ;
+       rdfs:domain <https://w3id.org/bot#Element> ;
+       rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#porosity
+:porosity rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementDiameter
+:reinforcementDiameter rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementLayout
+:reinforcementLayout rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://w3id.org/bot#Element> ;
+                     rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#reinforcementMass
+:reinforcementMass rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementRatio
+:reinforcementRatio rdf:type owl:DatatypeProperty ;
+                    rdfs:domain <https://w3id.org/bot#Element> ;
+                    rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementTensileStrength
+:reinforcementTensileStrength rdf:type owl:DatatypeProperty ;
+                              rdfs:domain <https://w3id.org/bot#Element> ;
+                              rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementYieldStrength
+:reinforcementYieldStrength rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#reinforcementYoungModulus
+:reinforcementYoungModulus rdf:type owl:DatatypeProperty ;
+                           rdfs:domain <https://w3id.org/bot#Element> ;
+                           rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#remainingServiceLife
+:remainingServiceLife rdf:type owl:DatatypeProperty ;
+                      rdfs:domain <https://w3id.org/bot#Element> ;
+                      rdfs:range xsd:integer .
+
+
+###  https://w3id.org/cero#shapeCategory
+:shapeCategory rdf:type owl:DatatypeProperty ;
+               rdfs:domain <https://w3id.org/bot#Element> ;
+               rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#siliconContent
+:siliconContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#staticYoungsModulus
+:staticYoungsModulus rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#sulfateContent
+:sulfateContent rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#tensileStrength
+:tensileStrength rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#toxicSubstances
+:toxicSubstances rdf:type owl:DatatypeProperty ;
+                 rdfs:domain <https://w3id.org/bot#Element> ;
+                 rdfs:range xsd:string .
+
+
+###  https://w3id.org/cero#transportDistance
+:transportDistance rdf:type owl:DatatypeProperty ;
+                   rdfs:domain <https://w3id.org/bot#Element> ;
+                   rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#volume
+:volume rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#waterCementRatio
+:waterCementRatio rdf:type owl:DatatypeProperty ;
+        rdfs:domain <https://w3id.org/bot#Element> ;
+        rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#width
+:width rdf:type owl:DatatypeProperty ;
+       rdfs:domain <https://w3id.org/bot#Element> ;
+       rdfs:range xsd:decimal .
+
+
+###  https://w3id.org/cero#workingHours
+:workingHours rdf:type owl:DatatypeProperty ;
+              rdfs:domain <https://w3id.org/bot#Element> ;
+              rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable
+<http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> rdf:type owl:Class .
+
+
+###  http://w3id.org/nfdi4ing/metadata4ing#TextVariable
+<http://w3id.org/nfdi4ing/metadata4ing#TextVariable> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://w3id.org/isoprops#Property> .
+
+
+###  http://w3id.org/nfdi4ing/metadata4ing#VariableSet
+<http://w3id.org/nfdi4ing/metadata4ing#VariableSet> rdf:type owl:Class ;
+                                                    owl:equivalentClass <https://w3id.org/isoprops#GroupOfProperties> .
+
+
+###  http://www.molmod.info/semantics/pims-ii.ttl#Property
+<http://www.molmod.info/semantics/pims-ii.ttl#Property> rdf:type owl:Class ;
+                                                        owl:equivalentClass <https://w3id.org/isoprops#Property> .
+
+
+###  http://www.w3.org/ns/prov#Organization
+<http://www.w3.org/ns/prov#Organization> rdf:type owl:Class .
+
+
+###  https://schema.org/Organization
+<https://schema.org/Organization> rdf:type owl:Class .
+
+
+###  https://schema.org/Person
+<https://schema.org/Person> rdf:type owl:Class .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class .
+
+
+###  https://w3id.org/isoprops#Dictionary
+<https://w3id.org/isoprops#Dictionary> rdf:type owl:Class .
+
+
+###  https://w3id.org/isoprops#DictionaryReferenceDocument
+<https://w3id.org/isoprops#DictionaryReferenceDocument> rdf:type owl:Class .
+
+
+###  https://w3id.org/isoprops#DictionarySubset
+<https://w3id.org/isoprops#DictionarySubset> rdf:type owl:Class .
+
+
+###  https://w3id.org/isoprops#GroupOfProperties
+<https://w3id.org/isoprops#GroupOfProperties> rdf:type owl:Class .
+
+
+###  https://w3id.org/isoprops#Property
+<https://w3id.org/isoprops#Property> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/cero#Group_1_GeneralInformation
+:Group_1_GeneralInformation rdf:type owl:NamedIndividual ,
+                                     <https://w3id.org/isoprops#GroupOfProperties> ;
+                            rdfs:label "Section 1: General Element and Project Information" ;
+                            <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                            <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_1_Form .
+
+
+###  https://w3id.org/cero#Group_1_Identification
+:Group_1_Identification rdf:type owl:NamedIndividual ,
+                                 <https://w3id.org/isoprops#GroupOfProperties> ;
+                        rdfs:label "Identification" ;
+                        <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                        <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#Group_2_1_MechanicalProperties
+:Group_2_1_MechanicalProperties rdf:type owl:NamedIndividual ,
+                                         <https://w3id.org/isoprops#GroupOfProperties> ;
+                                rdfs:label "Section 2.1: Mechanical Properties" ;
+                                <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                                <https://w3id.org/isoprops#hasParentGroupOfProperties> :Group_2_ConditionAssessment .
+
+
+###  https://w3id.org/cero#Group_2_2_GeometryDamage
+:Group_2_2_GeometryDamage rdf:type owl:NamedIndividual ,
+                                   <https://w3id.org/isoprops#GroupOfProperties> ;
+                          rdfs:label "Section 2.2: Geometry and damage" ;
+                          <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                          <https://w3id.org/isoprops#hasParentGroupOfProperties> :Group_2_ConditionAssessment .
+
+
+###  https://w3id.org/cero#Group_2_ConditionAssessment
+:Group_2_ConditionAssessment rdf:type owl:NamedIndividual ,
+                                      <https://w3id.org/isoprops#GroupOfProperties> ;
+                             rdfs:label "Section 2: Condition Assessment" ;
+                             <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                             <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_1_Form .
+
+
+###  https://w3id.org/cero#Group_2_Geometric
+:Group_2_Geometric rdf:type owl:NamedIndividual ,
+                            <https://w3id.org/isoprops#GroupOfProperties> ;
+                   rdfs:label "Geometric" ;
+                   <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                   <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#Group_3_Durability
+:Group_3_Durability rdf:type owl:NamedIndividual ,
+                             <https://w3id.org/isoprops#GroupOfProperties> ;
+                    rdfs:label "Section 3: Durability and Remaining Service Life" ;
+                    <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                    <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_1_Form .
+
+
+###  https://w3id.org/cero#Group_3_PhysicalAndMaterial
+:Group_3_PhysicalAndMaterial rdf:type owl:NamedIndividual ,
+                                      <https://w3id.org/isoprops#GroupOfProperties> ;
+                             rdfs:label "Physical & Material" ;
+                             <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                             <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#Group_4_ConditionAndAssessment
+:Group_4_ConditionAndAssessment rdf:type owl:NamedIndividual ,
+                                         <https://w3id.org/isoprops#GroupOfProperties> ;
+                                rdfs:label "Condition & Assessment" ;
+                                <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                                <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#Group_5_ProcessAndLifecycle
+:Group_5_ProcessAndLifecycle rdf:type owl:NamedIndividual ,
+                                      <https://w3id.org/isoprops#GroupOfProperties> ;
+                             rdfs:label "Process & Lifecycle" ;
+                             <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Domain" ;
+                             <https://w3id.org/isoprops#hasParentGroupOfProperties> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#InspectionCertificateProperties
+:InspectionCertificateProperties rdf:type owl:NamedIndividual ,
+                                          <https://w3id.org/isoprops#DictionarySubset> ;
+                                 rdfs:label "Inspection certificate properties" ;
+                                 <http://www.w3.org/ns/dcat#distribution> :InspectionReport ;
+                                 <https://w3id.org/isoprops#hasDictionaryReferenceDocument> :InspectionReport .
+
+
+###  https://w3id.org/cero#InspectionReport
+:InspectionReport rdf:type owl:NamedIndividual ,
+                           <https://w3id.org/isoprops#DictionaryReferenceDocument> ;
+                  rdfs:label "Properties related to the inspection report" ;
+                  <https://w3id.org/isoprops#hasPropertyGroupReference> :Ref_1_Form .
+
+
+###  https://w3id.org/cero#Organization_CRC1883
+:Organization_CRC1883 rdf:type owl:NamedIndividual ,
+                               <http://www.w3.org/ns/prov#Organization> ;
+                      rdfs:label "Organization CRC1883" .
+
+
+###  https://w3id.org/cero#Ref_1_Form
+:Ref_1_Form rdf:type owl:NamedIndividual ,
+                     <https://w3id.org/isoprops#GroupOfProperties> ;
+            rdfs:label "Inspection form" ;
+            <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Reference document" .
+
+
+###  https://w3id.org/cero#Ref_2_FactSheet
+:Ref_2_FactSheet rdf:type owl:NamedIndividual ,
+                          <https://w3id.org/isoprops#GroupOfProperties> ;
+                 rdfs:label "Factsheet" ;
+                 <https://w3id.org/isoprops#categoryOfGroupOfProperties> "Reference document" .
+
+
+###  https://w3id.org/cero#ReuseProperties
+:ReuseProperties rdf:type owl:NamedIndividual ,
+                          <https://w3id.org/isoprops#Dictionary> ;
+                 <http://purl.org/dc/terms/publisher> :Organization_CRC1883 ;
+                 <http://purl.org/dc/terms/title> "Reuse properties of CRC1683" ;
+                 rdfs:label "Reuse properties of CRC1683" ;
+                 <https://w3id.org/isoprops#hasDictionarySubset> :InspectionCertificateProperties ,
+                                                                 :SustainabilityAssessmentProperties .
+
+
+###  https://w3id.org/cero#SustainabilityAssessmentProperties
+:SustainabilityAssessmentProperties rdf:type owl:NamedIndividual ,
+                                             <https://w3id.org/isoprops#DictionarySubset> ;
+                                    rdfs:label "Sustainability assessment properties" ;
+                                    <http://www.w3.org/ns/dcat#distribution> :SustainabilityAssessmentReport ;
+                                    <https://w3id.org/isoprops#hasDictionaryReferenceDocument> :SustainabilityAssessmentReport .
+
+
+###  https://w3id.org/cero#SustainabilityAssessmentReport
+:SustainabilityAssessmentReport rdf:type owl:NamedIndividual ,
+                                         <https://w3id.org/isoprops#DictionaryReferenceDocument> ;
+                                rdfs:label "Properties related to the sustainability assessment " ;
+                                <https://w3id.org/isoprops#hasPropertyGroupReference> :Ref_2_FactSheet .
+
+
+###  https://w3id.org/cero#accessibility
+:accessibility rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#aggregateGradingCurve
+:aggregateGradingCurve rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#aggregateSize
+:aggregateSize rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#anchorPoints
+:anchorPoints rdf:type owl:NamedIndividual ,
+                       <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                       <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                       <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#calciumContent
+:calciumContent rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#carbonationContent
+:carbonationContent rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#carbonationDepth
+:carbonationDepth rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#cementContent
+:cementContent rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#cementType
+:cementType rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#chlorideContent
+:chlorideContent rdf:type owl:NamedIndividual ,
+                          <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                          <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                          <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#color
+:color rdf:type owl:NamedIndividual ,
+                <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#compressiveStrength
+:compressiveStrength rdf:type owl:NamedIndividual ,
+                              <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                              <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                              <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#concreteCover
+:concreteCover rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#concreteStiffness
+:concreteStiffness rdf:type owl:NamedIndividual ,
+                            <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                            <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                            <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#connectionType
+:connectionType rdf:type owl:NamedIndividual ,
+                         <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                         <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                         <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#crackDescription
+:crackDescription rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#crackWidth
+:crackWidth rdf:type owl:NamedIndividual ,
+                     <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                     <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                     <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#crossSection
+:crossSection rdf:type owl:NamedIndividual ,
+                       <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                       <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                       <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#damageClass
+:damageClass rdf:type owl:NamedIndividual ,
+                      <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                      <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                      <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#dceClass
+:dceClass rdf:type owl:NamedIndividual ,
+                            <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                            <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                            <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#density
+:density rdf:type owl:NamedIndividual ,
+                  <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                  <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                  <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#diameter
+:diameter rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#dynamicYoungsModulus
+:dynamicYoungsModulus rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#elementType
+:elementType rdf:type owl:NamedIndividual ,
+                      <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                      <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                      <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#energyConsumed
+:energyConsumed rdf:type owl:NamedIndividual ,
+                         <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                         <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                         <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#environmentalImpact
+:environmentalImpact rdf:type owl:NamedIndividual ,
+                              <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                              <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                              <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#exposureClass
+:exposureClass rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#extraordinaryDamage
+:extraordinaryDamage rdf:type owl:NamedIndividual ,
+                              <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                              <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                              <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#finishing
+:finishing rdf:type owl:NamedIndividual ,
+                    <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                    <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                    <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#height
+:height rdf:type owl:NamedIndividual ,
+                 <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                 <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                 <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#identifier
+:identifier rdf:type owl:NamedIndividual ,
+                     <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                     <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                     <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#initialFunction
+:initialFunction rdf:type owl:NamedIndividual ,
+                          <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                          <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                          <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#internalDefects
+:internalDefects rdf:type owl:NamedIndividual ,
+                          <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                          <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                          <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#ironContent
+:ironContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#potassiumContent
+:potassiumContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#length
+:length rdf:type owl:NamedIndividual ,
+                 <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                 <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                 <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#loadBearingCapacity
+:loadBearingCapacity rdf:type owl:NamedIndividual ,
+                              <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                              <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                              <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#loadHistory
+:loadHistory rdf:type owl:NamedIndividual ,
+                      <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                      <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                      <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#location
+:location rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#machineResources
+:machineResources rdf:type owl:NamedIndividual ,
+                           <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                           <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                           <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#magnesiumContent
+:magnesiumContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#mass
+:mass rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#materialResources
+:materialResources rdf:type owl:NamedIndividual ,
+                            <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                            <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                            <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#moistureContent
+:moistureContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#name
+:name rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#sodiumContent
+:sodiumContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#origin
+:origin rdf:type owl:NamedIndividual ,
+                 <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                 <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                 <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#oxygenContent
+:oxygenContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#phase
+:phase rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#photo
+:photo rdf:type owl:NamedIndividual ,
+                <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#porosity
+:porosity rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementDiameter
+:reinforcementDiameter rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementLayout
+:reinforcementLayout rdf:type owl:NamedIndividual ,
+                              <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                              <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                              <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementMass
+:reinforcementMass rdf:type owl:NamedIndividual ,
+                            <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                            <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                            <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementRatio
+:reinforcementRatio rdf:type owl:NamedIndividual ,
+                             <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                             <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                             <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementTensileStrength
+:reinforcementTensileStrength rdf:type owl:NamedIndividual ,
+                                       <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                                       <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                                       <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementYieldStrength
+:reinforcementYieldStrength rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#reinforcementYoungModulus
+:reinforcementYoungModulus rdf:type owl:NamedIndividual ,
+                                    <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                                    <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                                    <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#remainingServiceLife
+:remainingServiceLife rdf:type owl:NamedIndividual ,
+                               <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                               <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                               <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#shapeCategory
+:shapeCategory rdf:type owl:NamedIndividual ,
+                        <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                        <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                        <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#siliconContent
+:siliconContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#staticYoungsModulus
+:staticYoungsModulus rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#sulfateContent
+:sulfateContent rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#tensileStrength
+:tensileStrength rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#toxicSubstances
+:toxicSubstances rdf:type owl:NamedIndividual ,
+                          <http://w3id.org/nfdi4ing/metadata4ing#TextVariable> ,
+                          <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                          <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#transportDistance
+:transportDistance rdf:type owl:NamedIndividual ,
+                            <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                            <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                            <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#volume
+:volume rdf:type owl:NamedIndividual ,
+                 <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                 <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                 <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#waterCementRatio
+:waterCementRatio rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#width
+:width rdf:type owl:NamedIndividual ,
+                <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#workingHours
+:workingHours rdf:type owl:NamedIndividual ,
+                       <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                       <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                       <https://w3id.org/isoprops#Property> .
+
+
+###  https://w3id.org/cero#yearOfManufacture
+:yearOfManufacture rdf:type owl:NamedIndividual ,
+                   <http://w3id.org/nfdi4ing/metadata4ing#NumericalVariable> ,
+                   <http://www.molmod.info/semantics/pims-ii.ttl#Property> ,
+                   <https://w3id.org/isoprops#Property> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+
+:identification a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "18F34DB9-24A3-4121-89A0-A7C8EECACBCF";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:53"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-08-13T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Identification"@de-DE ;
+                isoprops:definitionInLanguage "Properties describing the identity, origin, function, and general characteristics of the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00"^^xsd:dateTime .
+
+
+:mechanical a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "27883A93-801A-4D52-ACDE-D2DDA6C3D248";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:53"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-08-13T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Mechanical"@de-DE ;
+                isoprops:definitionInLanguage "Properties describing the material composition, mechanical behaviour, and physical characteristics of the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00"^^xsd:dateTime .
+
+
+:chemical a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "801B7D77-4671-431B-A277-C7D7B9806B4B";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:53"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-09-24T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Chemical"@de-DE ;
+                isoprops:definitionInLanguage "Properties describing the material composition and chemical characteristics of the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00"^^xsd:dateTime .
+
+
+:condition a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "C388F67D-E69F-4D67-B13B-11DF8AF8925C";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:54"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-08-13T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Condition"@de-DE ;
+                isoprops:definitionInLanguage "Properties describing the current state, deterioration, and degradation of the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00"^^xsd:dateTime .
+
+
+:process a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "BAB7E9D4-D6A8-430E-84FF-783534C48DCE";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:54"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-08-13T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Process"@de-DE;
+                isoprops:definitionInLanguage "Properties describing the resources, activities, impacts, and lifecycle-related information associated with the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00"^^xsd:dateTime .
+
+
+:geometry a isoprops:GroupOfProperties;
+                isoprops:globallyUniqueIdentifier "265C9CA6-8EBC-4744-879E-051BDBA2A43E";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-28T16:06:53"^^xsd:dateTime;
+                isoprops:dateOfLastChange "2026-09-28T16:19:56"^^xsd:dateTime;
+                isoprops:dateOfRevision "2026-08-13T13:00:00"^^xsd:dateTime;
+                isoprops:dateOfVersion "2026-01-26T17:00:00"^^xsd:dateTime;
+                isoprops:versionNumber 1;
+                isoprops:revisionNumber 2;
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Geometry"@de-DE ;
+                isoprops:definitionInLanguage "Properties describing the physical dimensions, shape, configuration, and spatial characteristics of the element."@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:categoryOfGroupOfProperties "class";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00"^^xsd:dateTime .
+
+
+:accessibility rdfs:label "Accessibility" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "B7FC3619-C2F1-4160-BD03-864B35564051";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Accessibility"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:aggregateGradingCurve rdfs:label "Aggregate Grading Curve" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "9AD4E476-FD88-4205-96F1-AC6CD3CBE28D";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Aggregate Grading Curve"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:aggregateSize rdfs:label "Aggregate Size" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MilliM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "A221AA17-3D74-4C55-9CAE-C9D6A33F7C89";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Aggregate Size"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Aufzählung";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:anchorPoints rdfs:label "Anchor points" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "827C5074-2297-4B6A-A23D-61B0B1DCD911";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Anchor Points"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:calciumContent rdfs:label "Calcium Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "08F7C5F0-98E8-4D75-885D-DFD341D72946";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Calcium Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:carbonationContent rdfs:label "Carbonation Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "8468600A-1D36-4BC8-A208-1EC1145A6B05";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Carbonation Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:carbonationDepth <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#MilliM> ;
+                  rdfs:label "Carbonation depth" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:MilliM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "8AD66B6A-BD81-42EF-B69D-4577F6C439D5";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Carbonation Depth"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:cementContent rdfs:label "Cement Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:KiloGM-PER-M3;
+                isoprops:hasPhysicalQuantity quantitykind:MassDensity;
+                isoprops:globallyUniqueIdentifier "1D2B999A-29F6-4CD2-A55E-0106E451C2C7";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Cement Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:cementType rdfs:label "Cement Type" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "DCE69F0C-D95A-4265-B677-D457565BDD41";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Cement Type"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:chlorideContent <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#PERCENT> ;
+                 rdfs:label "Chloride content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "5FA70211-7801-46A8-85C4-63FC18D74A40";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Chloride Content"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:color rdfs:label "Color" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "7D6320AD-B886-44DD-B0E2-544DF44BDF5E";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Color"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:compressiveStrength <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#MPa> ;
+                     rdfs:label "Compressive strength" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "E90A7B83-C8C3-4061-B859-BB7B6D86D17B";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Compressive Strength"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:concreteCover <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#MilliM> ;
+               rdfs:label "Concrete cover" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:MilliM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "ED71A794-5157-40DD-B3FD-3199E989E2AB";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Concrete Cover"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:concreteStiffness <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#GPa> ;
+                   rdfs:label "Concrete stiffness" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:GigaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "B44FBE82-4951-4D0B-AEAA-3F72ECF796B6";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Concrete Stiffness"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:connectionType rdfs:label "Connection type" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "CE2DECA8-9075-49BC-9A98-D22D8A5F7AE0";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Connection Type"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+:crackDescription rdfs:label "Crack Description" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "F25DC1C8-B2E6-47C4-9D07-EDDC430E2C77";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Crack Description"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:crackWidth <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#MilliM> ;
+            rdfs:label "Crack width" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:MilliM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "7B6CD3E5-7F4E-47C1-BF7A-17284CD4EE0E";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Crack Width"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:crossSection rdfs:label "Cross section" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "6DD603EC-3957-411F-8924-9CFDF82BDE8C";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE";
+                isoprops:nameInLanguage "Cross Section"@de-DE ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:damageClass rdfs:label "Damage class" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "70C13186-CADF-4CC4-97CA-6B9221340FD0";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Damage Class"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:dceClass rdfs:label "DCE Class" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "EAB068CE-EB22-4448-A57D-63350084DAED";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "DCE Class"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:density <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#KilogramPerCubicMeter> ;
+         rdfs:label "Density" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:KiloGM-PER-M3;
+                isoprops:hasPhysicalQuantity quantitykind:MassDensity;
+                isoprops:globallyUniqueIdentifier "15B0F3C8-8A8B-4CE1-A6CE-CCE496884EB1";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Density"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:diameter <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#Meter> ;
+          rdfs:label "Diameter" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:M;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "0E17AB06-0CAB-400A-A1E7-AE92034A840A";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Diameter"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:dynamicYoungsModulus rdfs:label "Dynamic Youngs Modulus" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "9504F3B2-1D51-4FF0-9EDE-67664942533C";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Dynamic Youngs Modulus"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:elementType rdfs:label "element type" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "EE881CFD-4158-4415-AF6F-85DAEAB4A784";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Element Type"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:energyConsumed <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#KiloW-HR> ;
+                rdfs:label "Energy consumed" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:KiloW-HR;
+                isoprops:hasPhysicalQuantity quantitykind:Energy;
+                isoprops:globallyUniqueIdentifier "F40B946F-7448-46BC-9C42-93D7B47F44BC";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:environmentalImpact rdfs:label "environmental impact" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "40080025-DC19-4293-B649-7AE7E871CBAB";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Environmental Impact"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:exposureClass rdfs:label "Exposure class" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "54434886-61F4-4684-956D-0A54931A50C1";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Exposure Class"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Aufzählung";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:extraordinaryDamage rdfs:label "Extraordinary damage" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "F3937877-775C-40C9-86F0-C9153687187F";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Extraordinary Damage"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:finishing rdfs:label "Finishing" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "286245C7-5932-45BD-B131-D9099A58A79B";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Finishing"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:height <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#Meter> ;
+        rdfs:label "Height" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:M;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "1FA5789A-69A9-4EB4-9CA4-F953E98027C6";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Height"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:identifier rdfs:label "identifier" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "1D35A5BE-C25C-4B35-8F15-E2A0208091EF";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Identifier"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Ganzzahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:initialFunction rdfs:label "Initial function" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "03DA451D-21A9-4560-BB9B-87210E67642E";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Initial Function"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:internalDefects rdfs:label "Internal defects" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "32201A0B-BA58-4A79-A97B-BD5B47B5F13C";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Internal Defects"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:ironContent rdfs:label "Iron Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "AFB9D347-D6BE-435A-8E08-651309C87A25";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Iron Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:length <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#Meter> ;
+        rdfs:label "Length" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:M;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "D612766A-7D11-40F7-AC14-9450F41E057B";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Length"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:loadBearingCapacity rdfs:label "load bearing capacity" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:KiloN;
+                isoprops:hasPhysicalQuantity quantitykind:Force;
+                isoprops:globallyUniqueIdentifier "7AD9E9B8-25FC-4EFE-B6D5-0E4BED082E93";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Load-Bearing Capacity"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:loadHistory rdfs:label "Load history" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "FE650706-2DA8-427C-87F3-211FD2234ECE";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Load History"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:location rdfs:label "Location" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "0909EDAB-E57F-4DD8-B071-0AD1658BC47A";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Location"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:machineResources rdfs:label "Machine resources" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "5889FEBE-26EC-488A-9BA0-DB923BA6D410";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Machine Resources"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:magnesiumContent rdfs:label "Magnesium Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "AACE31CD-1E66-4997-BD75-82ADA4F2D9E9";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Magnesium Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:mass rdfs:label "Mass" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:KiloGM;
+                isoprops:hasPhysicalQuantity quantitykind:Mass;
+                isoprops:globallyUniqueIdentifier "5DB43759-A5AC-40A7-BC4B-1A52B1D24B42";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Mass"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:materialResources rdfs:label "Material resources" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "F6A1E37F-5125-4DE6-88D2-C9EA084EF31F";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Material Resources"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+
+:moistureContent rdfs:label "Moisture Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "57F64A07-39CE-4607-AB15-FFDF4B0D46CF";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Moisture Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:name rdfs:label "Name" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "C6CD2AC8-F3BF-4F83-8CD4-6FA04B44B1D3";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-08-13T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Name"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-08-13T13:00:00" .
+
+:origin rdfs:label "origin" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "2AB002DE-0246-4DED-88A4-AAB87D0A7B6E";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Origin"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:oxygenContent rdfs:label "Oxygen Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "2F50B183-FB86-443A-BF7F-D71CE5CB9D72";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Oxygen Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:phase rdfs:label "Phase" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "BB3917C3-0774-4F6B-9C8C-3B689087583F";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-08-13T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Phase"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-08-13T13:00:00" .
+
+
+:photo rdfs:label "Photo" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "8D38F35F-E372-4F3B-AC66-40E9D69AB870";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Photo"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:porosity rdfs:label "Porosity" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "5F88F4EE-A1ED-4117-B984-5822E7649023";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;      
+                isoprops:nameInLanguage "Porosity"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .   
+
+
+:potassiumContent rdfs:label "Potassium Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "C76E148E-F382-4FE7-91AE-0BC355BFF9A7";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;     
+                isoprops:nameInLanguage "Potassium Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .          
+
+
+:reinforcementDiameter rdfs:label "Reinforcement Diameter" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MilliM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "8D416B38-AA03-4748-A4A8-F245C8888D05";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Diameter"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:reinforcementLayout rdfs:label "Reinforcement layout" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "86E56FC7-1CBD-4DE7-A4BC-4561E7984F72";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Layout"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:reinforcementMass rdfs:label "Reinforcement mass" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:KiloGM;
+                isoprops:hasPhysicalQuantity quantitykind:Mass;
+                isoprops:globallyUniqueIdentifier "B04272DA-82FE-44FC-BF92-3A2126933BC6";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Mass"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:reinforcementRatio rdfs:label "Reinforcement ratio" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "737F4DFF-4A0E-4EBC-BB25-28513EE17E5D";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Ratio"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:reinforcementTensileStrength rdfs:label "Reinforcement tensile strength" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "D932B4B7-AB6F-4CF5-9A64-0C196583C13D";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Tensile Strength"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:reinforcementYieldStrength rdfs:label "Reinforcement Yield Strength" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "3A1DAA93-6725-4177-AB51-C5E598ABA691";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Yield Strength"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:reinforcementYoungModulus <http://w3id.org/nfdi4ing/metadata4ing#hasUnit> <http://qudt.org/vocab/unit#GPa> ;
+                           rdfs:label "Reinforcement young modulus" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:GigaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "475A9365-9196-439B-BF6C-4E08CF703EC4";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Reinforcement Young Modulus"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:remainingServiceLife rdfs:label "Remaining service life" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:YR;
+                isoprops:hasPhysicalQuantity quantitykind:Time;
+                isoprops:globallyUniqueIdentifier "5C345AFD-A9B2-480E-9AAD-4DEF8A59410F";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Remaining Service Life"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Ganzzahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:shapeCategory rdfs:label "Shape category" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "8A41D62C-EDDA-4376-9451-82D69F40F591";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-08-13T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Shape Category"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-08-13T13:00:00" .
+
+
+:siliconContent rdfs:label "Silicon Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "FFB2ADD9-822A-45AF-95CD-DAFCFD634FD6";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Silicon Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:sodiumContent rdfs:label "Sodium Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "56799173-A931-40CF-84DC-7207FA2A5103";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Sodium Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:staticYoungsModulus rdfs:label "Static Youngs Modulus" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "CAF06E11-4C21-496E-8CE7-B37967057008";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Static Youngs Modulus"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:sulfateContent rdfs:label "Sulfate Content" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:PERCENT;
+                isoprops:hasPhysicalQuantity quantitykind:Ratio;
+                isoprops:globallyUniqueIdentifier "4DAAAB2C-B459-4E0F-B85D-3A716C1C9B86";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Sulfate Content"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:tensileStrength rdfs:label "Tensile Strength" ;
+                isoprops:hasGroupOfProperties :mechanical;
+                isoprops:hasUnit unit:MegaPA;
+                isoprops:hasPhysicalQuantity quantitykind:Stress;
+                isoprops:globallyUniqueIdentifier "86F2DE27-1825-48E9-8F26-218B52B439F3";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Tensile Strength"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:toxicSubstances rdfs:label "Toxic substances" ;
+                isoprops:hasGroupOfProperties :condition;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "CD5F8564-D261-420A-9535-C10BABCF14B3";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Toxic Substances"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Zeichenkette";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:transportDistance rdfs:label "Transport distance" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:KiloM;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "64068E96-38EB-45DA-9211-A8211CB45981";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Transport Distance"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:volume rdfs:label "Volume" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:M3;
+                isoprops:hasPhysicalQuantity quantitykind:Volume;
+                isoprops:globallyUniqueIdentifier "FB040AF9-62FF-480E-A1F3-B1CEE9E0314F";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Volume"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:waterCementRatio rdfs:label "Water Cement Ratio" ;
+                isoprops:hasGroupOfProperties :chemical;
+                isoprops:hasUnit unit:UNITLESS;
+                isoprops:hasPhysicalQuantity quantitykind:Dimensionless;
+                isoprops:globallyUniqueIdentifier "DA6A340B-1E9B-47DF-946A-D997A297FF66";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-09-24T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-09-24T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Water Cement Ratio"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-09-24T13:00:00" .
+
+
+:width rdfs:label "Width" ;
+                isoprops:hasGroupOfProperties :geometry;
+                isoprops:hasUnit unit:M;
+                isoprops:hasPhysicalQuantity quantitykind:Length;
+                isoprops:globallyUniqueIdentifier "2B9E1777-4653-497A-B044-15FEC2E29289";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Width"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+
+:workingHours rdfs:label "Working hours" ;
+                isoprops:hasGroupOfProperties :process;
+                isoprops:hasUnit unit:HR;
+                isoprops:hasPhysicalQuantity quantitykind:Time;
+                isoprops:globallyUniqueIdentifier "1189EA88-5578-4664-AF37-8E2E4BAF8FAD";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-01-26T17:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Working Hours"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Gleitkommazahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-01-26T17:00:00" .
+
+:yearOfManufacture rdfs:label "Year Of Manufacture" ;
+                isoprops:hasGroupOfProperties :identification;
+                isoprops:hasUnit unit:YR;
+                isoprops:hasPhysicalQuantity quantitykind:Time;
+                isoprops:globallyUniqueIdentifier "D873623A-4A26-45EA-9A4A-2624122ACD04";
+                isoprops:status "active";
+                isoprops:dateOfCreation "2026-08-13T13:00:00";
+                isoprops:dateOfLastChange "2026-09-28T16:19:56";
+                isoprops:dateOfRevision "2026-08-13T13:00:00";
+                isoprops:dateOfVersion "2026-01-26T17:00:00";
+                isoprops:versionNumber "1";
+                isoprops:revisionNumber "2";
+                isoprops:creatorsLanguage "de-DE" ;
+                isoprops:nameInLanguage "Year Of Manufacture"@de-DE;
+                isoprops:definitionInLanguage "TBD"@de-DE;
+                isoprops:countryOfUse "DE";
+                isoprops:dataType "Ganzzahl";
+                isoprops:dynamicProperty "no";
+                isoprops:countryOfOrigin "DE";
+                isoprops:dateOfActivation "2026-08-13T13:00:00" .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
