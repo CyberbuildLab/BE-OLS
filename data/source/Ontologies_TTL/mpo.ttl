@@ -1,0 +1,1492 @@
+@prefix : <http://www.theworldavatar.com/kg/ontomatpassport/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontomatpassport: <http://www.theworldavatar.com/kg/ontomatpassport/> .
+@base <http://www.theworldavatar.com/kg/ontomatpassport/> .
+
+<http://www.theworldavatar.com/kg/ontomatpassport/> rdf:type owl:Ontology ;
+                                                     dc:date "23 September 2025" ;
+                                                     ontomatpassport:gitCommitHash "c0599beca8df55873a1ab061dee64e52c510c6a0" ;
+                                                     rdfs:comment "The Material Passport Ontology (MPO) is an ontology developed for representing material passports of products and components. It is also known as OntoMatPassport." ;
+                                                     owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/gitCommitHash
+ontomatpassport:gitCommitHash rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:ObjectProperty ;
+           owl:equivalentProperty <http://www.wikidata.org/prop/direct/P170> ;
+           rdfs:domain ontomatpassport:MaterialPassport ;
+           rdfs:range ontomatpassport:Manufacturer ;
+           rdfs:comment "The organisation responsible for creating the material passport." ;
+           rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+           rdfs:label "creator" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                                                    rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                                                                    rdfs:comment "An object property referring to the unit associated with a measured value." ;
+                                                                    rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                    rdfs:label "hasUnit" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                                                     rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                                                     rdfs:comment "An object property referring to the measured value of a quantity." ;
+                                                                     rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                     rdfs:label "hasValue" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/describes
+ontomatpassport:describes rdf:type owl:ObjectProperty ;
+                          rdfs:domain ontomatpassport:MaterialPassport ;
+                          rdfs:range [ rdf:type owl:Class ;
+                                       owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                     ontomatpassport:Component
+                                                     ontomatpassport:Product
+                                                   )
+                                     ] ;
+                          rdfs:comment "An object property indicating what is described by a material passport." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "describes" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasChemicalComposition
+ontomatpassport:hasChemicalComposition rdf:type owl:ObjectProperty ;
+                                       rdfs:domain <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94> ;
+                                       rdfs:range ontomatpassport:ChemicalComposition ;
+                                       rdfs:comment "An object property referring to the chemical composition of a material." ;
+                                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                       rdfs:label "hasChemicalComposition" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasCollector
+ontomatpassport:hasCollector rdf:type owl:ObjectProperty ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                         ontomatpassport:Component
+                                                         ontomatpassport:Product
+                                                       )
+                                         ] ;
+                             rdfs:range ontomatpassport:Collector ;
+                             rdfs:comment "An object property referring to the collector of a component, product or material." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "hasCollector" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasCountry
+ontomatpassport:hasCountry rdf:type owl:ObjectProperty ;
+                           owl:equivalentProperty <http://www.wikidata.org/prop/direct/P17> ;
+                           rdfs:domain [ rdf:type owl:Class ;
+                                         owl:unionOf ( ontomatpassport:Manufacturer
+                                                       ontomatpassport:Supplier
+                                                     )
+                                       ] ;
+                           rdfs:range <https://dbpedia.org/ontology/Country> ;
+                           rdfs:comment "An object property referring to the country where a manufacturing company is located." ;
+                           rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                           rdfs:label "hasCountry" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasImage
+ontomatpassport:hasImage rdf:type owl:ObjectProperty ;
+                         owl:equivalentProperty <http://www.wikidata.org/prop/direct/P18> ;
+                         rdfs:domain [ rdf:type owl:Class ;
+                                       owl:unionOf ( ontomatpassport:Component
+                                                     ontomatpassport:Product
+                                                   )
+                                     ] ;
+                         rdfs:range <http://purl.org/dc/dcmitype/Image> ;
+                         rdfs:comment "An object property referring to the image of a product or component." ;
+                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                         rdfs:label "hasImage" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasManufacturer
+ontomatpassport:hasManufacturer rdf:type owl:ObjectProperty ;
+                                owl:equivalentProperty <http://www.wikidata.org/prop/direct/P176> ;
+                                rdfs:domain [ rdf:type owl:Class ;
+                                              owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                            ontomatpassport:Component
+                                                            ontomatpassport:Product
+                                                          )
+                                            ] ;
+                                rdfs:range ontomatpassport:Manufacturer ;
+                                rdfs:comment "An object property referring to the manufacturer of a component, product or material." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "hasManufacturer" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasMaterial
+ontomatpassport:hasMaterial rdf:type owl:ObjectProperty ;
+                            owl:equivalentProperty <http://www.wikidata.org/prop/direct/P186> ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( ontomatpassport:Component
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94> ;
+                            rdfs:comment "An object property referring to the material of a component or product." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "hasMaterial" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasProperty
+ontomatpassport:hasProperty rdf:type owl:ObjectProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                        ontomatpassport:Component
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                            rdfs:comment "An object property referring to a property or characteristic of a component, product or material." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "hasProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasRecycler
+ontomatpassport:hasRecycler rdf:type owl:ObjectProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                        ontomatpassport:Component
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range ontomatpassport:Recycler ;
+                            rdfs:comment "An object property referring to the recycler of a component, product or material." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "hasRecycler" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasRegistrationCountry
+ontomatpassport:hasRegistrationCountry rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf ontomatpassport:hasCountry ;
+                                       rdfs:domain [ rdf:type owl:Class ;
+                                                     owl:unionOf ( ontomatpassport:Manufacturer
+                                                                   ontomatpassport:Supplier
+                                                                 )
+                                                   ] ;
+                                       rdfs:range <https://dbpedia.org/ontology/Country> ;
+                                       rdfs:comment "An object property referring to the country where a manufacturer, supplier, company or industry is registered." ;
+                                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                       rdfs:label "hasRegistrationCountry" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasSpecificHeatCapacity
+ontomatpassport:hasSpecificHeatCapacity rdf:type owl:ObjectProperty ;
+                                        rdfs:domain <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94> ;
+                                        rdfs:range <http://www.ontology-of-units-of-measure.org/resource/om-2/SpecificHeatCapacity> ;
+                                        rdfs:comment "The quantity of heat needed to increase the temperature of a material's unit mass by one unit." ;
+                                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                        rdfs:label "hasSpecificHeatCapacity" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasSupplier
+ontomatpassport:hasSupplier rdf:type owl:ObjectProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                        ontomatpassport:Component
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range ontomatpassport:Supplier ;
+                            rdfs:comment "An object property referring to the supplier of a component, product or material." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "hasSupplier" .
+
+
+###  http://www.wikidata.org/prop/direct/P17
+<http://www.wikidata.org/prop/direct/P17> rdf:type owl:ObjectProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P170
+<http://www.wikidata.org/prop/direct/P170> rdf:type owl:ObjectProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P176
+<http://www.wikidata.org/prop/direct/P176> rdf:type owl:ObjectProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P18
+<http://www.wikidata.org/prop/direct/P18> rdf:type owl:ObjectProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P186
+<http://www.wikidata.org/prop/direct/P186> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/terms/URI
+<http://purl.org/dc/terms/URI> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain <http://purl.org/dc/dcmitype/Image> ;
+                               rdfs:range xsd:anyURI ;
+                               rdfs:comment "The locatable address of an image on the web." ;
+                               rdfs:isDefinedBy <http://purl.org/dc/terms/URI> ;
+                               rdfs:label "URI" .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain ontomatpassport:MaterialPassport ;
+                                   rdfs:range xsd:dateTime ;
+                                   rdfs:comment "The date and time when the material passport was created." ;
+                                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                   rdfs:label "created" .
+
+
+###  http://purl.org/goodrelations/v1#name
+<http://purl.org/goodrelations/v1#name> rdf:type owl:DatatypeProperty ;
+                                        owl:equivalentProperty <http://www.wikidata.org/prop/direct/P2561> ;
+                                        rdfs:domain [ rdf:type owl:Class ;
+                                                      owl:unionOf ( ontomatpassport:Component
+                                                                    ontomatpassport:ConstituentMaterial
+                                                                    ontomatpassport:ConstituentPart
+                                                                    ontomatpassport:Manufacturer
+                                                                    ontomatpassport:MaterialPassport
+                                                                    ontomatpassport:Product
+                                                                    ontomatpassport:Supplier
+                                                                  )
+                                                    ] ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:comment "A linguistic identity of a product, component, material, or any other entity." ;
+                                        rdfs:isDefinedBy <http://purl.org/goodrelations/v1> ;
+                                        rdfs:label "name" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
+<http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> rdf:type owl:DatatypeProperty ;
+                                                                              owl:equivalentProperty <http://www.wikidata.org/prop/direct/P1181> ;
+                                                                              rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                                                              rdfs:range xsd:float ;
+                                                                              rdfs:comment "The numerical value of a measured quantity." ;
+                                                                              rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                              rdfs:label "hasNumericalValue" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/description
+ontomatpassport:description rdf:type owl:DatatypeProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                                        ontomatpassport:Component
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range xsd:string ;
+                            rdfs:comment "A narrative or detailed account of a product, component or material." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "description" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasAutomaticTrackingOrScanning
+ontomatpassport:hasAutomaticTrackingOrScanning rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain [ rdf:type owl:Class ;
+                                                             owl:unionOf ( ontomatpassport:Component
+                                                                           ontomatpassport:Product
+                                                                         )
+                                                           ] ;
+                                               rdfs:range xsd:boolean ;
+                                               rdfs:comment "A datatype property that indicates if a product or component has an automatic tracking number in the form of a barcode or any other means." ;
+                                               rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                               rdfs:label "hasAutomaticTrackingOrScanning" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasBrandName
+ontomatpassport:hasBrandName rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf <http://purl.org/goodrelations/v1#name> ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( ontomatpassport:Component
+                                                         ontomatpassport:Product
+                                                       )
+                                         ] ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "A name that indicates the commercial brand of a product or component." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "hasBrandName" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasEAN
+ontomatpassport:hasEAN rdf:type owl:DatatypeProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( ontomatpassport:Component
+                                                   ontomatpassport:Product
+                                                 )
+                                   ] ;
+                       rdfs:range xsd:string ;
+                       rdfs:comment "A datatype property expressing the European Article Number (EAN) of a product or component." ;
+                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                       rdfs:label "hasEAN" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasFeedstockFractionFromRecycledProduct
+ontomatpassport:hasFeedstockFractionFromRecycledProduct rdf:type owl:DatatypeProperty ;
+                                                        rdfs:domain [ rdf:type owl:Class ;
+                                                                      owl:unionOf ( ontomatpassport:Component
+                                                                                    ontomatpassport:ConstituentMaterial
+                                                                                    ontomatpassport:ConstituentPart
+                                                                                    ontomatpassport:Product
+                                                                                  )
+                                                                    ] ;
+                                                        rdfs:range xsd:float ;
+                                                        rdfs:comment "A datatype property indicating the fraction of feedstock produced from recycled products or components." ;
+                                                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                        rdfs:label "hasFeedstockFractionFromRecycledProduct" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasFeedstockFractionFromReusedProduct
+ontomatpassport:hasFeedstockFractionFromReusedProduct rdf:type owl:DatatypeProperty ;
+                                                      rdfs:domain [ rdf:type owl:Class ;
+                                                                    owl:unionOf ( ontomatpassport:Component
+                                                                                  ontomatpassport:ConstituentMaterial
+                                                                                  ontomatpassport:ConstituentPart
+                                                                                  ontomatpassport:Product
+                                                                                )
+                                                                  ] ;
+                                                      rdfs:range xsd:float ;
+                                                      rdfs:comment "A datatype property indicating the fraction of feedstock produced from reused sources." ;
+                                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                      rdfs:label "hasFeedstockFractionFromReusedProduct" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasFunctionalUnit
+ontomatpassport:hasFunctionalUnit rdf:type owl:DatatypeProperty ;
+                                  rdfs:domain ontomatpassport:EnvironmentalProperty ;
+                                  rdfs:range xsd:string ;
+                                  rdfs:comment "A property that specifies the reference quantity or unit of measurement for which the environmental impact of a product is assessed, e.g., 1 kilogram of product." ;
+                                  rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                  rdfs:label "hasFunctionalUnit" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasFunctionality
+ontomatpassport:hasFunctionality rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( ontomatpassport:Component
+                                                             ontomatpassport:Product
+                                                           )
+                                             ] ;
+                                 rdfs:range xsd:string ;
+                                 rdfs:comment "The intended purpose of a product or component." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "hasFunctionality" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasGTIN
+ontomatpassport:hasGTIN rdf:type owl:DatatypeProperty ;
+                        owl:equivalentProperty <http://www.wikidata.org/prop/direct/P3962> ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( ontomatpassport:Component
+                                                    ontomatpassport:Product
+                                                  )
+                                    ] ;
+                        rdfs:range xsd:string ;
+                        rdfs:comment "A datatype property expressing the Global Trade Item Number (GTIN) of a product or component." ;
+                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                        rdfs:label "hasGTIN" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasHazardSummaryDocument
+ontomatpassport:hasHazardSummaryDocument rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain [ rdf:type owl:Class ;
+                                                       owl:unionOf ( ontomatpassport:Component
+                                                                     ontomatpassport:ConstituentMaterial
+                                                                     ontomatpassport:ConstituentPart
+                                                                     ontomatpassport:Product
+                                                                   )
+                                                     ] ;
+                                         rdfs:range xsd:anyURI ;
+                                         rdfs:comment "A document providing an overview of potential risks and hazards associated with the use, handling, storage, transportation, and disposal of a product or component." ;
+                                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                         rdfs:label "hasHazardSummaryDocument" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasIndexValue
+ontomatpassport:hasIndexValue rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> ;
+                              rdfs:domain [ rdf:type owl:Class ;
+                                            owl:unionOf ( ontomatpassport:LinearFlowIndex
+                                                          ontomatpassport:MaterialCircularityIndicator
+                                                        )
+                                          ] ;
+                              rdfs:range xsd:float ;
+                              rdfs:comment "The measured/assessed quantity expressed as a value between 0 and 1 inclusive." ;
+                              rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                              rdfs:label "hasIndexValue" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasLFI
+ontomatpassport:hasLFI rdf:type owl:DatatypeProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( ontomatpassport:Component
+                                                   ontomatpassport:ConstituentMaterial
+                                                   ontomatpassport:ConstituentPart
+                                                   ontomatpassport:Product
+                                                 )
+                                   ] ;
+                       rdfs:range xsd:float ;
+                       rdfs:comment "A datatype property indicating the measure of how linear the materials of a product are." ;
+                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                       rdfs:label "hasLFI" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasMCI
+ontomatpassport:hasMCI rdf:type owl:DatatypeProperty ;
+                       rdfs:domain [ rdf:type owl:Class ;
+                                     owl:unionOf ( ontomatpassport:Component
+                                                   ontomatpassport:ConstituentMaterial
+                                                   ontomatpassport:ConstituentPart
+                                                   ontomatpassport:Product
+                                                 )
+                                   ] ;
+                       rdfs:range xsd:float ;
+                       rdfs:comment "A datatype property indicating the measure of how circular the materials of a product are." ;
+                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                       rdfs:label "hasMCI" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasMass
+ontomatpassport:hasMass rdf:type owl:DatatypeProperty ;
+                        owl:equivalentProperty <http://www.wikidata.org/prop/direct/P2067> ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( ontomatpassport:Component
+                                                    ontomatpassport:ConstituentMaterial
+                                                    ontomatpassport:ConstituentPart
+                                                    ontomatpassport:Product
+                                                  )
+                                    ] ;
+                        rdfs:range xsd:float ;
+                        rdfs:comment "A datatype property indicating the mass of a product or component." ;
+                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                        rdfs:label "hasMass" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasNumber
+ontomatpassport:hasNumber rdf:type owl:DatatypeProperty ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "A string of numerals that expresses the identity of an object." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "hasNumber" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasPercentageValue
+ontomatpassport:hasPercentageValue rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> ;
+                                   rdfs:domain [ rdf:type owl:Class ;
+                                                 owl:unionOf ( ontomatpassport:FeedstockFractionFromRecycledProduct
+                                                               ontomatpassport:FeedstockFractionFromReusedProduct
+                                                               ontomatpassport:ProductFractionCollectedForRecycling
+                                                               ontomatpassport:ProductFractionCollectedForReuse
+                                                               ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling
+                                                               ontomatpassport:RecyclingEfficiencyForProducingFeedstock
+                                                             )
+                                               ] ;
+                                   rdfs:range xsd:float ;
+                                   rdfs:comment "The numerical value of a measured/assessed quantity expressed in percentage." ;
+                                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                   rdfs:label "hasPercentageValue" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasProductFractionCollectedForRecycling
+ontomatpassport:hasProductFractionCollectedForRecycling rdf:type owl:DatatypeProperty ;
+                                                        rdfs:domain [ rdf:type owl:Class ;
+                                                                      owl:unionOf ( ontomatpassport:Component
+                                                                                    ontomatpassport:ConstituentMaterial
+                                                                                    ontomatpassport:ConstituentPart
+                                                                                    ontomatpassport:Product
+                                                                                  )
+                                                                    ] ;
+                                                        rdfs:range xsd:float ;
+                                                        rdfs:comment "A datatype property indicating the fraction of mass of a product collected for recycling." ;
+                                                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                        rdfs:label "hasProductFractionCollectedForRecycling" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasProductFractionCollectedForReuse
+ontomatpassport:hasProductFractionCollectedForReuse rdf:type owl:DatatypeProperty ;
+                                                    rdfs:domain [ rdf:type owl:Class ;
+                                                                  owl:unionOf ( ontomatpassport:Component
+                                                                                ontomatpassport:ConstituentMaterial
+                                                                                ontomatpassport:ConstituentPart
+                                                                                ontomatpassport:Product
+                                                                              )
+                                                                ] ;
+                                                    rdfs:range xsd:float ;
+                                                    rdfs:comment "A datatype property indicating the fraction of mass of a product to be reused as a component." ;
+                                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                    rdfs:label "hasProductFractionCollectedForReuse" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasRecyclingEfficiencyForPortionCollectedForRecycling
+ontomatpassport:hasRecyclingEfficiencyForPortionCollectedForRecycling rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:domain [ rdf:type owl:Class ;
+                                                                                    owl:unionOf ( ontomatpassport:Component
+                                                                                                  ontomatpassport:ConstituentMaterial
+                                                                                                  ontomatpassport:ConstituentPart
+                                                                                                  ontomatpassport:Product
+                                                                                                )
+                                                                                  ] ;
+                                                                      rdfs:range xsd:float ;
+                                                                      rdfs:comment "A datatype property referring to the efficiency of the recycling process applied to the portion of a product collected for recycling." ;
+                                                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                                      rdfs:label "hasRecyclingEfficiencyForPortionCollectedForRecycling" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasRecyclingEfficiencyForProducingFeedstock
+ontomatpassport:hasRecyclingEfficiencyForProducingFeedstock rdf:type owl:DatatypeProperty ;
+                                                            rdfs:domain [ rdf:type owl:Class ;
+                                                                          owl:unionOf ( ontomatpassport:Component
+                                                                                        ontomatpassport:ConstituentMaterial
+                                                                                        ontomatpassport:ConstituentPart
+                                                                                        ontomatpassport:Product
+                                                                                      )
+                                                                        ] ;
+                                                            rdfs:range xsd:float ;
+                                                            rdfs:comment "A datatype property referring to the efficiency of the recycling process in producing recycled feedstock." ;
+                                                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                            rdfs:label "hasRecyclingEfficiencyForProducingFeedstock" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasRegistrationNumber
+ontomatpassport:hasRegistrationNumber rdf:type owl:DatatypeProperty ;
+                                      rdfs:subPropertyOf ontomatpassport:hasNumber ;
+                                      rdfs:domain [ rdf:type owl:Class ;
+                                                    owl:unionOf ( ontomatpassport:Manufacturer
+                                                                  ontomatpassport:Supplier
+                                                                )
+                                                  ] ;
+                                      rdfs:range xsd:string ;
+                                      rdfs:comment "A number given to a manufacturer when registration is completed with a regulatory body." ;
+                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                      rdfs:label "hasRegistrationNumber" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasSymbol
+ontomatpassport:hasSymbol rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "A character or group of characters indicating the unit of measurement." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "hasSymbol" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasTotalMass
+ontomatpassport:hasTotalMass rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf ontomatpassport:hasMass ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( ontomatpassport:Component
+                                                         ontomatpassport:ConstituentMaterial
+                                                         ontomatpassport:ConstituentPart
+                                                         ontomatpassport:Product
+                                                       )
+                                         ] ;
+                             rdfs:range xsd:float ;
+                             rdfs:comment "A datatype property indicating the total mass of a product or component." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "hasTotalMass" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/hasTradeName
+ontomatpassport:hasTradeName rdf:type owl:DatatypeProperty ;
+                             owl:equivalentProperty <http://www.wikidata.org/prop/direct/P6427> ;
+                             rdfs:subPropertyOf <http://purl.org/goodrelations/v1#name> ;
+                             rdfs:domain [ rdf:type owl:Class ;
+                                           owl:unionOf ( ontomatpassport:Component
+                                                         ontomatpassport:Product
+                                                       )
+                                         ] ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "A name that indicates the business or company name." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "hasTradeName" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/id
+ontomatpassport:id rdf:type owl:DatatypeProperty ;
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( <http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94>
+                                               ontomatpassport:Component
+                                               ontomatpassport:ConstituentMaterial
+                                               ontomatpassport:ConstituentPart
+                                               ontomatpassport:MaterialPassport
+                                               ontomatpassport:Product
+                                             )
+                               ] ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "A datatype property expressing the Global Trade Item Number (GTIN) of a product or component." ;
+                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                   rdfs:label "id" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/isBiodegradable
+ontomatpassport:isBiodegradable rdf:type owl:DatatypeProperty ;
+                                rdfs:domain [ rdf:type owl:Class ;
+                                              owl:unionOf ( ontomatpassport:Component
+                                                            ontomatpassport:ConstituentMaterial
+                                                            ontomatpassport:ConstituentPart
+                                                            ontomatpassport:Product
+                                                          )
+                                            ] ;
+                                rdfs:range xsd:boolean ;
+                                rdfs:comment "Indicates if a product or component is biodegradable or not." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "isBiodegradable" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/isDecomposable
+ontomatpassport:isDecomposable rdf:type owl:DatatypeProperty ;
+                               rdfs:domain [ rdf:type owl:Class ;
+                                             owl:unionOf ( ontomatpassport:Component
+                                                           ontomatpassport:ConstituentMaterial
+                                                           ontomatpassport:ConstituentPart
+                                                           ontomatpassport:Product
+                                                         )
+                                           ] ;
+                               rdfs:range xsd:boolean ;
+                               rdfs:comment "Indicates if a product or component is decomposable or not." ;
+                               rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                               rdfs:label "isDecomposable" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/isHazardous
+ontomatpassport:isHazardous rdf:type owl:DatatypeProperty ;
+                            rdfs:domain [ rdf:type owl:Class ;
+                                          owl:unionOf ( ontomatpassport:Component
+                                                        ontomatpassport:ConstituentMaterial
+                                                        ontomatpassport:ConstituentPart
+                                                        ontomatpassport:Product
+                                                      )
+                                        ] ;
+                            rdfs:range xsd:boolean ;
+                            rdfs:comment "Indicates if a product or component poses any danger." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "isHazardous" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/version
+ontomatpassport:version rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ontomatpassport:MaterialPassport ;
+                        rdfs:range xsd:string ;
+                        rdfs:comment "The version number of the material passport." ;
+                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                        rdfs:label "version" .
+
+
+###  http://www.wikidata.org/prop/direct/P1181
+<http://www.wikidata.org/prop/direct/P1181> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P2067
+<http://www.wikidata.org/prop/direct/P2067> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P2561
+<http://www.wikidata.org/prop/direct/P2561> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P3962
+<http://www.wikidata.org/prop/direct/P3962> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.wikidata.org/prop/direct/P6427
+<http://www.wikidata.org/prop/direct/P6427> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94
+<http://emmo.info/emmo#EMMO_4207e895_8b83_4318_996a_72cfb32acd94> rdf:type owl:Class ;
+                                                                  owl:equivalentClass ontomatpassport:ConstituentMaterial ,
+                                                                                      <http://www.wikidata.org/entity/Q214609> ;
+                                                                  rdfs:isDefinedBy <http://emmo.info/emmo> ;
+                                                                  rdfs:label "Material" .
+
+
+###  http://purl.org/dc/dcmitype/Image
+<http://purl.org/dc/dcmitype/Image> rdf:type owl:Class ;
+                                    rdfs:comment "A visual representation of an inanimate or animate object captured through technological means or drawn by humans." ;
+                                    rdfs:isDefinedBy <http://purl.org/dc/dcmitype> ;
+                                    rdfs:label "Image" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/HeatTransferCoefficient
+<http://www.ontology-of-units-of-measure.org/resource/om-2/HeatTransferCoefficient> rdf:type owl:Class ;
+                                                                                    owl:equivalentClass <http://www.wikidata.org/entity/Q634340> ;
+                                                                                    rdfs:subClassOf ontomatpassport:ThermalProperty ;
+                                                                                    rdfs:comment "A thermal property that describes the heat transfer coefficient of an object." ;
+                                                                                    rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                                    rdfs:label "HeatTransferCoefficient" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> rdf:type owl:Class ;
+                                                                    rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                    rdfs:label "Measure" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> rdf:type owl:Class ;
+                                                                     rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                     rdfs:label "Quantity" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/SpecificHeatCapacity
+<http://www.ontology-of-units-of-measure.org/resource/om-2/SpecificHeatCapacity> rdf:type owl:Class ;
+                                                                                 owl:equivalentClass <http://www.wikidata.org/entity/Q487756> ;
+                                                                                 rdfs:comment "The quantity of heat needed to increase the temperature of a material's unit mass by one unit." ;
+                                                                                 rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                                 rdfs:label "SpecificHeatCapacity" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/ThermalConductivity
+<http://www.ontology-of-units-of-measure.org/resource/om-2/ThermalConductivity> rdf:type owl:Class ;
+                                                                                owl:equivalentClass <http://www.wikidata.org/entity/Q487005> ;
+                                                                                rdfs:subClassOf ontomatpassport:ThermalProperty ;
+                                                                                rdfs:comment "A thermal property that describes the capacity of an object to conduct heat." ;
+                                                                                rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                                rdfs:label "ThermalConductivity" .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Unit
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> rdf:type owl:Class ;
+                                                                 owl:equivalentClass <http://www.wikidata.org/entity/Q47574> ;
+                                                                 rdfs:isDefinedBy <http://www.ontology-of-units-of-measure.org/resource/om-2> ;
+                                                                 rdfs:label "Unit" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Biodegradability
+ontomatpassport:Biodegradability rdf:type owl:Class ;
+                                 owl:equivalentClass <http://www.wikidata.org/entity/Q125660141> ;
+                                 rdfs:subClassOf ontomatpassport:BiologicalProperty ;
+                                 rdfs:comment "A property expressing whether an object is entirely, partially or not biodegradable." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "Biodegradability" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/BiologicalProperty
+ontomatpassport:BiologicalProperty rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                   rdfs:comment "A property to express the biological feature of an object." ;
+                                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                   rdfs:label "BiologicalProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/CarbonFootprint
+ontomatpassport:CarbonFootprint rdf:type owl:Class ;
+                                owl:equivalentClass <http://www.wikidata.org/entity/Q310667> ;
+                                rdfs:subClassOf ontomatpassport:EnvironmentalProperty ;
+                                rdfs:comment "The total amount of carbon dioxide (CO2) emitted during the raw material extraction and production process." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "CarbonFootprint" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ChemicalComposition
+ontomatpassport:ChemicalComposition rdf:type owl:Class ;
+                                    rdfs:comment "Chemical composition refers to the arrangement, type, and ratio of atoms in molecules of chemical substances [Chemistry LibreTexts]." ;
+                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                    rdfs:label "ChemicalComposition" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ChemicalProperty
+ontomatpassport:ChemicalProperty rdf:type owl:Class ;
+                                 owl:equivalentClass <http://www.wikidata.org/entity/Q764285> ;
+                                 rdfs:subClassOf <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                 rdfs:comment "A property to express the chemical aspect of an object." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "ChemicalProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/CircularityProperty
+ontomatpassport:CircularityProperty rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                    <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                    rdfs:comment "A property that expresses the circular economy aspect of an object." ;
+                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                    rdfs:label "CircularityProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Collector
+ontomatpassport:Collector rdf:type owl:Class ;
+                          rdfs:subClassOf ontomatpassport:IndustrialStakeholder ;
+                          rdfs:comment "A business, company or entity gathering end-of-life products from another business, company or entity for reuse, recycling, or disposal." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "Collector" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Component
+ontomatpassport:Component rdf:type owl:Class ;
+                          owl:equivalentClass ontomatpassport:ConstituentPart ,
+                                              <http://www.wikidata.org/entity/Q1310239> ;
+                          rdfs:comment "Part of a bigger whole that can be a system or a product of composite nature." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "Component" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/CompositionProperty
+ontomatpassport:CompositionProperty rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                    rdfs:comment "A property to describe the composition aspect of an object." ;
+                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                    rdfs:label "CompositionProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/CompressiveStrength
+ontomatpassport:CompressiveStrength rdf:type owl:Class ;
+                                    owl:equivalentClass <http://www.wikidata.org/entity/Q186191> ;
+                                    rdfs:subClassOf ontomatpassport:Resistance ;
+                                    rdfs:comment "The resistance of an object to compressive forces." ;
+                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                    rdfs:label "CompressiveStrength" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ConstituentMaterial
+ontomatpassport:ConstituentMaterial rdf:type owl:Class ;
+                                    rdfs:subClassOf ontomatpassport:CompositionProperty ;
+                                    rdfs:comment "A property to describe the type and amount of constituent materials belonging to an object." ;
+                                    rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                    rdfs:label "ConstituentMaterial" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ConstituentPart
+ontomatpassport:ConstituentPart rdf:type owl:Class ;
+                                rdfs:subClassOf ontomatpassport:CompositionProperty ;
+                                rdfs:comment "A part or component of a bigger whole or component or product." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "ConstituentPart" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Density
+ontomatpassport:Density rdf:type owl:Class ;
+                        owl:equivalentClass <http://www.wikidata.org/entity/Q29539> ;
+                        rdfs:subClassOf <https://w3id.org/mdo/core/PhysicalProperty> ;
+                        rdfs:comment "A physical property that describes the density of an object." ;
+                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                        rdfs:label "Density" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Dimension
+ontomatpassport:Dimension rdf:type owl:Class ;
+                          rdfs:subClassOf <https://w3id.org/mdo/core/PhysicalProperty> ;
+                          rdfs:comment "A physical propertythat describes the dimension of an object." ;
+                          rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                          rdfs:label "Dimension" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/DimensionlessQuantity
+ontomatpassport:DimensionlessQuantity rdf:type owl:Class ;
+                                      owl:equivalentClass <http://www.wikidata.org/entity/Q126818> ;
+                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                      rdfs:comment "A quantity that cannot be associated with a unit of measure." ;
+                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                      rdfs:label "DimensionlessQuantity" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/EnvironmentalProperty
+ontomatpassport:EnvironmentalProperty rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                      <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                      rdfs:comment "A property that expresses the environmental aspect of an object." ;
+                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                      rdfs:label "EnvironmentalProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ExpectedLifetime
+ontomatpassport:ExpectedLifetime rdf:type owl:Class ;
+                                 rdfs:subClassOf ontomatpassport:CircularityProperty ,
+                                                 ontomatpassport:TemporalProperty ;
+                                 rdfs:comment "A temporary property expressing the duration an object may serve its intended purpose." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "ExpectedLifetime" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/FeedstockFractionFromRecycledProduct
+ontomatpassport:FeedstockFractionFromRecycledProduct rdf:type owl:Class ;
+                                                     rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                     rdfs:comment "The fraction of feedstock from recycled products." ;
+                                                     rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                     rdfs:label "FR" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/FeedstockFractionFromReusedProduct
+ontomatpassport:FeedstockFractionFromReusedProduct rdf:type owl:Class ;
+                                                   rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                   rdfs:comment "The fraction of feedstock from reused products." ;
+                                                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                   rdfs:label "FU" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Flammability
+ontomatpassport:Flammability rdf:type owl:Class ;
+                             owl:equivalentClass <http://www.wikidata.org/entity/Q910035> ;
+                             rdfs:subClassOf ontomatpassport:ChemicalProperty ;
+                             rdfs:comment "A property that determines the ease and intensity with which an object can ignite and burn." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "Flammability" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Height
+ontomatpassport:Height rdf:type owl:Class ;
+                       owl:equivalentClass <http://www.wikidata.org/entity/Q208826> ;
+                       rdfs:subClassOf ontomatpassport:Dimension ;
+                       rdfs:comment "A dimensional property expressing the height of an object." ;
+                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                       rdfs:label "Height" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/IndustrialStakeholder
+ontomatpassport:IndustrialStakeholder rdf:type owl:Class ;
+                                      rdfs:comment "An entity involved in economic activities, services, or processes related to the production, transformation, distribution, collection, or recycling of goods at an industrial scale." ;
+                                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                      rdfs:label "IndustrialStakeholder" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Length
+ontomatpassport:Length rdf:type owl:Class ;
+                       owl:equivalentClass <http://www.wikidata.org/entity/Q36253> ;
+                       rdfs:subClassOf ontomatpassport:Dimension ;
+                       rdfs:comment "A dimensional property expressing the length of an object." ;
+                       rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                       rdfs:label "Length" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/LinearFlowIndex
+ontomatpassport:LinearFlowIndex rdf:type owl:Class ;
+                                rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                rdfs:comment "The proportion of material that moves from its origin as virgin materials to its final state as non-recyclable waste [Ellen MacArthur Foundation, 2015]" ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "LFI" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Manufacturer
+ontomatpassport:Manufacturer rdf:type owl:Class ;
+                             owl:equivalentClass <http://www.wikidata.org/entity/Q13235160> ;
+                             rdfs:subClassOf ontomatpassport:IndustrialStakeholder ;
+                             rdfs:comment "A business, company or entity manufacturing products for the consumer market." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "Manufacturer" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Mass
+ontomatpassport:Mass rdf:type owl:Class ;
+                     owl:equivalentClass <http://www.wikidata.org/entity/Q11423> ;
+                     rdfs:subClassOf ontomatpassport:CircularityProperty ,
+                                     <https://w3id.org/mdo/core/PhysicalProperty> ;
+                     rdfs:comment "A physical property to describe the mass of an object." ;
+                     rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                     rdfs:label "Mass" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/MaterialCircularityIndicator
+ontomatpassport:MaterialCircularityIndicator rdf:type owl:Class ;
+                                             rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                             rdfs:comment "A measure of how circular the materials of a product are." ;
+                                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                             rdfs:label "MCI" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/MaterialPassport
+ontomatpassport:MaterialPassport rdf:type owl:Class ;
+                                 rdfs:comment "A passport or document providing identification, physical, temporal, sustainability and other properties of a product or component." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "MaterialPassport" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Product
+ontomatpassport:Product rdf:type owl:Class ;
+                        owl:equivalentClass <http://www.wikidata.org/entity/Q2424752> ;
+                        rdfs:comment "An artefact manufactured in an industrial setting to meet the demands of consumers and usually consists of multiple parts." ;
+                        rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                        rdfs:label "Product" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ProductFractionCollectedForRecycling
+ontomatpassport:ProductFractionCollectedForRecycling rdf:type owl:Class ;
+                                                     rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                     rdfs:comment "The fraction of a product collected for recycling." ;
+                                                     rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                     rdfs:label "CR" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ProductFractionCollectedForReuse
+ontomatpassport:ProductFractionCollectedForReuse rdf:type owl:Class ;
+                                                 rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                 rdfs:comment "The fraction of a product collected for reuse." ;
+                                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                 rdfs:label "CU" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Recycler
+ontomatpassport:Recycler rdf:type owl:Class ;
+                         rdfs:subClassOf ontomatpassport:IndustrialStakeholder ;
+                         rdfs:comment "A business, company or entity recycling end-of-life products to produce recycled feedstock for manufacturing industries." ;
+                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                         rdfs:label "Recycler" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/RecyclingEfficiencyForPortionCollectedForRecycling
+ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling rdf:type owl:Class ;
+                                                                   rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                                   rdfs:comment "The recycling efficiency of a portion collected from a product for recycling." ;
+                                                                   rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                                   rdfs:label "EC" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/RecyclingEfficiencyForProducingFeedstock
+ontomatpassport:RecyclingEfficiencyForProducingFeedstock rdf:type owl:Class ;
+                                                         rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                         rdfs:comment "The recycling efficiency in producing recycled feedstock." ;
+                                                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                         rdfs:label "EF" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Resistance
+ontomatpassport:Resistance rdf:type owl:Class ;
+                           rdfs:subClassOf <https://w3id.org/mdo/core/PhysicalProperty> ;
+                           rdfs:comment "Any mechanical force that tends to retard or oppose motion [WordNet 3.1]" ;
+                           rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                           rdfs:label "Resistance" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Rigidity
+ontomatpassport:Rigidity rdf:type owl:Class ;
+                         owl:equivalentClass <http://www.wikidata.org/entity/Q569057> ;
+                         rdfs:subClassOf <https://w3id.org/mdo/core/PhysicalProperty> ;
+                         rdfs:comment "The physical property of being stiff and resisting bending [WordNet 3.1]" ;
+                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                         rdfs:label "Rigidity" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ServiceLife
+ontomatpassport:ServiceLife rdf:type owl:Class ;
+                            owl:equivalentClass <http://www.wikidata.org/entity/Q1675349> ;
+                            rdfs:subClassOf ontomatpassport:CircularityProperty ,
+                                            ontomatpassport:TemporalProperty ;
+                            rdfs:comment "A temporary property expressing the duration an object may serve its intended purpose." ;
+                            rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                            rdfs:label "ServiceLife" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ShearModulus
+ontomatpassport:ShearModulus rdf:type owl:Class ;
+                             owl:equivalentClass <http://www.wikidata.org/entity/Q461466> ;
+                             rdfs:subClassOf ontomatpassport:Rigidity ;
+                             rdfs:comment "The rigidity of an object to shearing forces." ;
+                             rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                             rdfs:label "ShearModulus" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ShearStrength
+ontomatpassport:ShearStrength rdf:type owl:Class ;
+                              owl:equivalentClass <http://www.wikidata.org/entity/Q901396> ;
+                              rdfs:subClassOf ontomatpassport:Resistance ;
+                              rdfs:comment "The resistance of an object to shearing forces." ;
+                              rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                              rdfs:label "ShearStrength" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Supplier
+ontomatpassport:Supplier rdf:type owl:Class ;
+                         owl:equivalentClass <http://www.wikidata.org/entity/Q1762621> ;
+                         rdfs:subClassOf ontomatpassport:IndustrialStakeholder ;
+                         rdfs:comment "A business, company or entity supplying products to another business, company or entity." ;
+                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                         rdfs:label "Supplier" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/TemporalProperty
+ontomatpassport:TemporalProperty rdf:type owl:Class ;
+                                 rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                 <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                 rdfs:comment "A property to express the temporal aspect of an object." ;
+                                 rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                 rdfs:label "TemporalProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/TensileStrength
+ontomatpassport:TensileStrength rdf:type owl:Class ;
+                                owl:equivalentClass <http://www.wikidata.org/entity/Q76005> ;
+                                rdfs:subClassOf ontomatpassport:Resistance ;
+                                rdfs:comment "The resistance of an object to tensile forces." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "TensileStrength" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/ThermalProperty
+ontomatpassport:ThermalProperty rdf:type owl:Class ;
+                                owl:equivalentClass <http://www.wikidata.org/entity/Q65939908> ;
+                                rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                rdfs:comment "A property to express the thermal aspect of an object." ;
+                                rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                rdfs:label "ThermalProperty" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/TotalWasteMass
+ontomatpassport:TotalWasteMass rdf:type owl:Class ;
+                               rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                               rdfs:comment "The total mass of waste generated from both the recycling and reuse processes." ;
+                               rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                               rdfs:label "W" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Toxicity
+ontomatpassport:Toxicity rdf:type owl:Class ;
+                         owl:equivalentClass <http://www.wikidata.org/entity/Q274160> ;
+                         rdfs:subClassOf ontomatpassport:ChemicalProperty ;
+                         rdfs:comment "A property that indicates the degree to which a substance can be harmful or poisonous." ;
+                         rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                         rdfs:label "Toxicity" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/VirginContentMass
+ontomatpassport:VirginContentMass rdf:type owl:Class ;
+                                  rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                  rdfs:comment "The mass of virgin content in a product." ;
+                                  rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                  rdfs:label "VirginContentMass" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/WasteMassAfterTakingRecyclableReusablePortion
+ontomatpassport:WasteMassAfterTakingRecyclableReusablePortion rdf:type owl:Class ;
+                                                              rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                              rdfs:comment "The mass of waste that remains after the recyclable and reusable materials have been separated and that cannot be turned into useful materials." ;
+                                                              rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                              rdfs:label "W0" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/WasteMassGeneratedInProducingRecycledFeedstock
+ontomatpassport:WasteMassGeneratedInProducingRecycledFeedstock rdf:type owl:Class ;
+                                                               rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                               rdfs:comment "The mass of waste generated while producing recycled feedstock." ;
+                                                               rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                               rdfs:label "WF" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/WasteMassGeneratedInRecyclingCollectedPortion
+ontomatpassport:WasteMassGeneratedInRecyclingCollectedPortion rdf:type owl:Class ;
+                                                              rdfs:subClassOf ontomatpassport:CircularityProperty ;
+                                                              rdfs:comment "The mass of waste generated while recycling the collected portion of a product." ;
+                                                              rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                                                              rdfs:label "WC" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/WaterUsage
+ontomatpassport:WaterUsage rdf:type owl:Class ;
+                           rdfs:subClassOf ontomatpassport:EnvironmentalProperty ;
+                           rdfs:comment "The total amount of water consumed during the raw material extraction and production processes." ;
+                           rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                           rdfs:label "WaterUsage" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/Width
+ontomatpassport:Width rdf:type owl:Class ;
+                      owl:equivalentClass <http://www.wikidata.org/entity/Q35059> ;
+                      rdfs:subClassOf ontomatpassport:Dimension ;
+                      rdfs:comment "A dimensional property expressing the width of an object." ;
+                      rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                      rdfs:label "Width" .
+
+
+###  http://www.theworldavatar.com/kg/ontomatpassport/YoungsModulus
+ontomatpassport:YoungsModulus rdf:type owl:Class ;
+                              owl:equivalentClass <http://www.wikidata.org/entity/Q2091584> ;
+                              rdfs:subClassOf ontomatpassport:Rigidity ;
+                              rdfs:comment "The elastic rigidity of an object to stress." ;
+                              rdfs:isDefinedBy <http://www.theworldavatar.com/kg/ontomatpassport> ;
+                              rdfs:label "YoungsModulus" .
+
+
+###  http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property
+<http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> rdf:type owl:Class ;
+                                                                                  owl:equivalentClass <http://www.wikidata.org/entity/Q937228> ;
+                                                                                  rdfs:comment "A characteristic of an object that can be applied in determining its use in applications." ;
+                                                                                  rdfs:isDefinedBy <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl> ;
+                                                                                  rdfs:label "Property" .
+
+
+###  http://www.wikidata.org/entity/Q11423
+<http://www.wikidata.org/entity/Q11423> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q125660141
+<http://www.wikidata.org/entity/Q125660141> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q126818
+<http://www.wikidata.org/entity/Q126818> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q1310239
+<http://www.wikidata.org/entity/Q1310239> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q13235160
+<http://www.wikidata.org/entity/Q13235160> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q1675349
+<http://www.wikidata.org/entity/Q1675349> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q1762621
+<http://www.wikidata.org/entity/Q1762621> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q186191
+<http://www.wikidata.org/entity/Q186191> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q208826
+<http://www.wikidata.org/entity/Q208826> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q2091584
+<http://www.wikidata.org/entity/Q2091584> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q214609
+<http://www.wikidata.org/entity/Q214609> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q2424752
+<http://www.wikidata.org/entity/Q2424752> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q274160
+<http://www.wikidata.org/entity/Q274160> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q29539
+<http://www.wikidata.org/entity/Q29539> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q310667
+<http://www.wikidata.org/entity/Q310667> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q35059
+<http://www.wikidata.org/entity/Q35059> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q36253
+<http://www.wikidata.org/entity/Q36253> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q4373292
+<http://www.wikidata.org/entity/Q4373292> rdf:type owl:Class ;
+                                          owl:equivalentClass <https://w3id.org/mdo/core/PhysicalProperty> .
+
+
+###  http://www.wikidata.org/entity/Q461466
+<http://www.wikidata.org/entity/Q461466> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q47574
+<http://www.wikidata.org/entity/Q47574> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q487005
+<http://www.wikidata.org/entity/Q487005> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q487756
+<http://www.wikidata.org/entity/Q487756> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q569057
+<http://www.wikidata.org/entity/Q569057> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q634340
+<http://www.wikidata.org/entity/Q634340> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q65939908
+<http://www.wikidata.org/entity/Q65939908> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q76005
+<http://www.wikidata.org/entity/Q76005> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q764285
+<http://www.wikidata.org/entity/Q764285> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q901396
+<http://www.wikidata.org/entity/Q901396> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q910035
+<http://www.wikidata.org/entity/Q910035> rdf:type owl:Class .
+
+
+###  http://www.wikidata.org/entity/Q937228
+<http://www.wikidata.org/entity/Q937228> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Country
+<https://dbpedia.org/ontology/Country> rdf:type owl:Class ;
+                                       rdfs:comment "A political entity associated with a territory considered a motherland to a nation ruled by a government." ;
+                                       rdfs:isDefinedBy <https://dbpedia.org/ontology> ;
+                                       rdfs:label "Country" .
+
+
+###  https://w3id.org/mdo/core/PhysicalProperty
+<https://w3id.org/mdo/core/PhysicalProperty> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ,
+                                                             <http://www.theworldavatar.com/ontology/ontocape/upper_level/system.owl#Property> ;
+                                             rdfs:comment "A property to express the physical aspect of an object." ;
+                                             rdfs:isDefinedBy <https://w3id.org/mdo/core> ;
+                                             rdfs:label "PhysicalProperty" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/cubicMetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/cubicMetre> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/day
+<http://www.ontology-of-units-of-measure.org/resource/om-2/day> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/gallon-Imperial
+<http://www.ontology-of-units-of-measure.org/resource/om-2/gallon-Imperial> rdf:type owl:NamedIndividual ,
+                                                                                     <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/gallon-US
+<http://www.ontology-of-units-of-measure.org/resource/om-2/gallon-US> rdf:type owl:NamedIndividual ,
+                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/gram
+<http://www.ontology-of-units-of-measure.org/resource/om-2/gram> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/gramPerCubicCentimetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/gramPerCubicCentimetre> rdf:type owl:NamedIndividual ,
+                                                                                            <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/joulePerKelvinKilogram
+<http://www.ontology-of-units-of-measure.org/resource/om-2/joulePerKelvinKilogram> rdf:type owl:NamedIndividual ,
+                                                                                            <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/kilogram
+<http://www.ontology-of-units-of-measure.org/resource/om-2/kilogram> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/kilogramOfCarbonDioxideEquivalent
+<http://www.ontology-of-units-of-measure.org/resource/om-2/kilogramOfCarbonDioxideEquivalent> rdf:type owl:NamedIndividual ,
+                                                                                                       <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/kilogramPerCubicmetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/kilogramPerCubicmetre> rdf:type owl:NamedIndividual ,
+                                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/litre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/litre> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/megapascal
+<http://www.ontology-of-units-of-measure.org/resource/om-2/megapascal> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/metre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/metre> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/milligram
+<http://www.ontology-of-units-of-measure.org/resource/om-2/milligram> rdf:type owl:NamedIndividual ,
+                                                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/millimetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/millimetre> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/millipascal
+<http://www.ontology-of-units-of-measure.org/resource/om-2/millipascal> rdf:type owl:NamedIndividual ,
+                                                                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/month
+<http://www.ontology-of-units-of-measure.org/resource/om-2/month> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/pascal
+<http://www.ontology-of-units-of-measure.org/resource/om-2/pascal> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/percent
+<http://www.ontology-of-units-of-measure.org/resource/om-2/percent> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/tonnePerCubicmetre
+<http://www.ontology-of-units-of-measure.org/resource/om-2/tonnePerCubicmetre> rdf:type owl:NamedIndividual ,
+                                                                                        <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/wattPerMetreKelvin
+<http://www.ontology-of-units-of-measure.org/resource/om-2/wattPerMetreKelvin> rdf:type owl:NamedIndividual ,
+                                                                                        <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/wattPerSquareMetreKelvin
+<http://www.ontology-of-units-of-measure.org/resource/om-2/wattPerSquareMetreKelvin> rdf:type owl:NamedIndividual ,
+                                                                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/year
+<http://www.ontology-of-units-of-measure.org/resource/om-2/year> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.ontology-of-units-of-measure.org/resource/om-2/Unit> .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
