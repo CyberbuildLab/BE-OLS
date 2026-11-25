@@ -15,17 +15,18 @@ async function loadOntologies() {
         // Best-effort: lets search also match each ontology's TTL vocabulary
         // (class/property names + descriptions), not just its listed metadata.
         // Missing/failed load just means search falls back to metadata only.
-        window.ttlSearchIndex = {};
+        let ttlIndex = {};
         try {
             const indexResponse = await fetch('data/Ontologies_TTL_SearchIndex.json');
             if (indexResponse.ok) {
                 const index = await indexResponse.json();
-                window.ttlSearchIndex = index.ontologies || {};
+                ttlIndex = index.ontologies || {};
             }
         } catch (indexError) {
             console.warn('TTL search index unavailable, falling back to metadata-only search:', indexError);
         }
 
+        buildSearchIndex(ontologies, ttlIndex);
         populateYearFilter(ontologies);
         applyCurrentView();
     } catch (error) {
@@ -135,6 +136,24 @@ function generateSpiderChart(data) {
 
 
 
+// Cache of spider-chart data URLs, keyed by the ontology object itself.
+const spiderChartCache = new WeakMap();
+
+function getSpiderChartUrl(ontology) {
+    let url = spiderChartCache.get(ontology);
+    if (!url) {
+        url = generateSpiderChart({
+            Connectivity: ontology["Alignment Score"],
+            Accessibility: ontology["Accessibility Score"],
+            "Documentation & Reuse": ontology["Quality Score"],
+            Governance: ontology["Governance Score"],
+        });
+        spiderChartCache.set(ontology, url);
+    }
+    return url;
+}
+
+
 // Display ontologies with spider charts
 function displayOntologies(ontologies) {
     const container = document.getElementById('ontology-container');
@@ -148,13 +167,9 @@ function displayOntologies(ontologies) {
         ontologyLink.href = `individualOntologyDetail.html?ontology=${encodeURIComponent(ontology.Title)}`;
         ontologyLink.classList.add('card-link');
 
-        // Generate spider chart for the ontology (updated field names)
-        const spiderChartUrl = generateSpiderChart({
-            Connectivity: ontology["Alignment Score"],
-            Accessibility: ontology["Accessibility Score"],
-            "Documentation & Reuse": ontology["Quality Score"],
-            Governance: ontology["Governance Score"],
-        });
+        // Spider chart is drawn once per ontology and reused on every re-render
+        // (re-drawing ~160 canvases on each keystroke was the main source of lag).
+        const spiderChartUrl = getSpiderChartUrl(ontology);
 
         // Check if the URI is missing. If missing, route to the missingURI.html - 20251202
         const rawURI = ontology.URI ? ontology.URI.toString().trim() : "";
@@ -192,14 +207,14 @@ function displayOntologies(ontologies) {
 
 // Search text, domain, and year all narrow the same underlying list together
 // (instead of each one resetting the others), and sorting applies on top.
-const filterState = { search: '', domain: 'all', year: 'all' };
+const filterState = { search: '', domain: 'all', year: 'all', includeTtl: true };
 let currentSort = 'relevance';
 let currentSortDir = 'desc';
 
 // Sort fields where "biggest number first" is the more useful default;
 // everything else (name, domain) defaults to ascending (A-Z).
 const DESC_BY_DEFAULT = new Set([
-    'fair', 'quality', 'accessibility', 'alignment', 'annotation', 'governance',
+    'relevance', 'fair', 'quality', 'accessibility', 'alignment', 'annotation', 'governance',
     'classes', 'object-properties', 'data-properties', 'connectivity', 'year',
 ]);
 
@@ -218,23 +233,90 @@ function countLinks(ontology) {
     return linked.split(',').map((s) => s.trim()).filter(Boolean).length;
 }
 
+// ---------------------------------------------------------------------------
+// Search
+// ---------------------------------------------------------------------------
+
+// Only these fields are searched (not URIs, scores or yes/no flags, which made
+// queries like "http" or "3" match nearly every ontology). The weight says how
+// strongly a hit in that field counts towards relevance.
+const SEARCH_FIELDS = [
+    { field: 'Title',                   weight: 10 },
+    { field: 'Prefix',                  weight: 10 },
+    { field: 'Primary Domain',          weight: 5 },
+    { field: 'Description',             weight: 4 },
+    { field: 'Secondary Domain',        weight: 3 },
+    { field: 'Cluster',                 weight: 3 },
+    { field: 'Conforms to Standard(s)', weight: 3 },
+    { field: 'Creator',                 weight: 2 },
+    { field: 'Publisher',               weight: 2 },
+];
+const TTL_WEIGHT = 1;            // hit only in the ontology's TTL vocabulary
+const EXACT_NAME_BONUS = 50;     // whole query equals the title or prefix
+const PHRASE_IN_TITLE_BONUS = 15; // whole multi-word query appears in the title
+
+// Runs once after loading: stores each ontology's searchable text,
+// already lower-cased, so typing doesn't re-process ~1.5 MB per keystroke.
+// The TTL index is keyed by the exact Prefix from Ontologies_forRepo.json.
+const searchIndex = new WeakMap();
+
+function buildSearchIndex(ontologies, ttlIndex) {
+    ontologies.forEach((ontology) => {
+        const ttlEntry = ttlIndex[ontology.Prefix];
+        const fields = [];
+        SEARCH_FIELDS.forEach(({ field, weight }) => {
+            const value = ontology[field];
+            if (value === undefined || value === null) return;
+            const text = String(value).trim().toLowerCase();
+            if (text && text !== 'n/a') fields.push({ text, weight });
+        });
+        searchIndex.set(ontology, {
+            fields,
+            title: String(ontology.Title || '').trim().toLowerCase(),
+            prefix: String(ontology.Prefix || '').trim().toLowerCase(),
+            ttl: ttlEntry && ttlEntry.text ? ttlEntry.text.toLowerCase() : '',
+        });
+    });
+}
+
+// Returns a relevance score (> 0) if every word of the query is found
+// somewhere in the ontology, in any order; returns 0 otherwise.
+function scoreOntology(ontology, query, words) {
+    const entry = searchIndex.get(ontology);
+    if (!entry) return 0;
+
+    let score = 0;
+    for (const word of words) {
+        // Best field this word appears in
+        let best = 0;
+        for (const { text, weight } of entry.fields) {
+            if (weight > best && text.includes(word)) best = weight;
+        }
+        if (best === 0 && filterState.includeTtl && entry.ttl.includes(word)) best = TTL_WEIGHT;
+        if (best === 0) return 0; // every word must match somewhere
+        score += best;
+    }
+
+    if (entry.title === query || entry.prefix === query) score += EXACT_NAME_BONUS;
+    else if (words.length > 1 && entry.title.includes(query)) score += PHRASE_IN_TITLE_BONUS;
+
+    return score;
+}
+
+// Relevance scores from the most recent search (used by the Relevance sort).
+let relevanceScores = new Map();
+
 function computeFilteredList() {
     let list = window.ontologiesData || [];
+    relevanceScores = new Map();
 
     if (filterState.search) {
-        const query = filterState.search.toLowerCase();
-        const ttlIndex = window.ttlSearchIndex || {};
+        const query = filterState.search.toLowerCase().replace(/\s+/g, ' ');
+        const words = query.split(' ').filter(Boolean);
         list = list.filter((ontology) => {
-            const metadataMatch = Object.values(ontology).some((value) =>
-                value && String(value).toLowerCase().includes(query)
-            );
-            if (metadataMatch) return true;
-
-            // Fall back to the ontology's own TTL vocabulary (class/property
-            // names + descriptions), so e.g. searching a class name finds the
-            // ontology even if that term isn't mentioned in its metadata.
-            const ttlEntry = ontology.Prefix && ttlIndex[ontology.Prefix];
-            return !!(ttlEntry && ttlEntry.text && ttlEntry.text.toLowerCase().includes(query));
+            const score = scoreOntology(ontology, query, words);
+            if (score > 0) relevanceScores.set(ontology, score);
+            return score > 0;
         });
     }
 
@@ -302,8 +384,17 @@ function sortOntologies(list, criterion, direction) {
         case 'year':
             sorted.sort((a, b) => dir * (extractYear(a.Created) - extractYear(b.Created)));
             break;
-        default:
-            break; // relevance = original dataset order
+        default: {
+            // Relevance: best search match first; ties (and the no-search
+            // case) keep the original dataset order.
+            const order = new Map(list.map((o, i) => [o, i]));
+            sorted.sort((a, b) =>
+                ((relevanceScores.get(b) || 0) - (relevanceScores.get(a) || 0)) ||
+                (order.get(a) - order.get(b))
+            );
+            if (direction === 'asc') sorted.reverse();
+            break;
+        }
     }
     return sorted;
 }
@@ -355,10 +446,24 @@ function updateSortDirectionButton() {
     btn.title = currentSortDir === 'asc' ? 'Ascending' : 'Descending';
 }
 
-// Event listener for the search function
+// Event listener for the search function. Waits until typing pauses for
+// 150 ms before filtering, so the cards don't rebuild on every keystroke.
+let searchTimer = null;
 document.getElementById('searchInput').addEventListener('input', (e) => {
-    filterOntologies(e.target.value);
+    clearTimeout(searchTimer);
+    const value = e.target.value;
+    searchTimer = setTimeout(() => filterOntologies(value), 150);
 });
+
+// Event listener for the "Include ontology vocabulary (TTL)" checkbox
+const includeTtlToggle = document.getElementById('includeTtlToggle');
+if (includeTtlToggle) {
+    filterState.includeTtl = includeTtlToggle.checked;
+    includeTtlToggle.addEventListener('change', (e) => {
+        filterState.includeTtl = e.target.checked;
+        applyCurrentView();
+    });
+}
 
 // Event listener for the sort dropdown
 document.getElementById('sortSelect').addEventListener('change', (e) => {

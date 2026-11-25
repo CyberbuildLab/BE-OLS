@@ -252,12 +252,27 @@ main {
     gap: 4px;
 }
 
-.filter-group label {
+.filter-group label,
+.filter-group-title {
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #888;
+}
+
+/* "Include ontology vocabulary (TTL)" checkbox: normal-sized text,
+   not the small uppercase style used for the filter headings. */
+.filter-group label.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .filter-group-control {

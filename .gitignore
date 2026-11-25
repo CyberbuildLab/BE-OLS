@@ -2,3 +2,4 @@
 node_modules/
 data/source/Ontologies_forRepo.xlsx
 data/source/.characterisation_cache.json
+/Claude outputs
