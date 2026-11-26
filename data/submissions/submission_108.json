@@ -1,0 +1,13 @@
+{
+  "Title": "ADIRO Provenance Ontology",
+  "Prefix": "adprov",
+  "Version": "2.3.1",
+  "Created": "2026",
+  "Description": "Foundational, domain-neutral module for provenance. It lets any value inferred from a drawing be recorded as an assertion that carries its own source, confidence, and how it was produced, aligned to W3C PROV-O. It also holds the file a drawing is stored in, its pages, and the people and organisations a drawing names, aligned to ISO 21597-1 (ICDD). Part of ADIRO (AEC Drawing Information Representation Ontologies), a suite of six modules submitted separately (adprov, adgeom, admeta, adsym, adcore, adfacade) that share one repository DOI.",
+  "uri": "https://w3id.org/adiro/adiro_provenance#",
+  "Reference": "https://w3id.org/adiro/ontologies/adiro_provenance/ ; https://doi.org/10.5281/zenodo.24319134",
+  "Linked-to ontologies AECO": "ct",
+  "Linked-to ontologies UPPER": "prov; skos; dcterms",
+  "Linked-to ontologies OTHER DOMAINS": "_No response_",
+  "Link to TTL file": "https://w3id.org/adiro/adiro_provenance.ttl"
+}
